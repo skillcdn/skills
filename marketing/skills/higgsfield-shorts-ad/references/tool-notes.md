@@ -12,10 +12,13 @@ How the Higgsfield tools behaved in real runs of this skill, with the workaround
 
 - 2026-09-30, third run (Claude Code, no upload widget): a local reference was uploaded from the agent's own shell, `media_upload` for the presigned URL, `curl -X PUT` with the named `Content-Type`, then `media_confirm`; the hosted URL served the sandbox pass. A `.wav` upload request came back as an `.mp3` slot, so the narration stem was uploaded as MP3. Whisper was not installed locally; the sandbox ran it.
 
+- 2026-09-30, fourth run (an unattended Claude Code session with a tool allowlist): the PUT of a local reference to the presigned upload URL was refused by the harness (the URL carries a credential token, which needs a person's approval), so the sandbox pass could not run. Giving the run a hosted link to the reference instead (uploaded beforehand by whoever can approve) made everything work; the outputs are uploaded from the sandbox, which needs no local shell. In an unattended agent, ask for a link.
+
 ## Scene analysis (`video_analysis_create`, `video_analysis_status`)
 
 - 2026-09-23: a 27-second reference imported from a direct link stayed `queued`, with an unchanged `updated_at`, through eight polls over fifteen minutes and never completed or failed. The brief was built from the frames and the Whisper transcript instead, as the template allows. Do not let this block phase 2.
 - 2026-09-23, second run: the same with a 38-second animated reference; still queued after 80 minutes.
+- 2026-09-30, third and fourth runs: queued for the whole run again, twice. Four runs out of four; do not wait for it.
 
 ## Preflight (`generate_video` and `generate_image` with `get_cost: true`)
 
@@ -57,6 +60,8 @@ How the Higgsfield tools behaved in real runs of this skill, with the workaround
 - 2026-09-23, Seedance 2.5, Korean: "적혔다" came out without its aspiration in two takes (Whisper wrote "적겼다" at about 0.85 both times, and that was the truth, not a homophone). Respelling it in the prompt as "저켰다" while the intended line stayed "적혔다" fixed it on the first retry: Whisper then wrote "적혔다" at 0.98, and the syllable's onset carried about 50 milliseconds of aspiration noise against 10 to 20 in the failed takes. A 10-second take with three lines took about four and a half minutes.
 
 - 2026-09-30, Seedance 2.5, Korean: "스님" lost its final consonant in three places of one take (heard as "스니" by Whisper small and medium). Respelling in the prompt as "스니메" for "스님의" and "스니믄" for "스님은", with the intended line unchanged, fixed it on the first retry (0.99); the retry then blurred "발견됐다", which the first take had clean, so the edit took that sentence from the first take.
+
+- 2026-09-30, Seedance 2.5, Korean, fourth run: a 23-second voice-over of 160 syllables prompted with the pace in numbers (about 7 per second, pauses under half a second, half a second of lead) came out at 7.27 per second with no pause over half a second, every syllable present. The first word, the persona's name "현묵", was the only doubtful one: sung too fast for its vowel to be certain, on both takes, and a retry that asked for the name to be said clearly changed nothing and blurred another word. A name is not the first word of a voice take.
 
 ## Speech-to-text (Whisper in the sandbox)
 
