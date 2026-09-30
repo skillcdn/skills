@@ -4,7 +4,7 @@ Skills for marketing and growth work: ads, promotional video, content, campaigns
 
 | Skill | Tool family | What it does |
 |---|---|---|
-| [`skills/higgsfield-shorts-ad/`](skills/higgsfield-shorts-ad/) | Higgsfield | A vertical short-form AI ad from just a reference video and a product link. Learn what makes the reference work, write an original concept in its medium (live action or animation), derive the rest, approve generated cast portraits and a first frame per shot, confirm a recommended model with its credit estimate, animate one directed draft take at a time, edit and caption in the brand's type in code. |
+| [`skills/higgsfield-shorts-ad/`](skills/higgsfield-shorts-ad/) | Higgsfield | A vertical short-form AI ad from just a reference video and a product link. Learn what makes the reference work (its hook, the rule its story runs on, its measured pacing), write an original story on the product's own world in its medium (live action or animation), derive the rest, approve generated cast portraits and a first frame per shot, confirm a recommended model with its credit estimate, animate one directed draft take at a time, edit and caption in the brand's type in code. |
 
 Documents for this area go in `docs/` next to this file, where SkillCDN discovers them by default; there are none yet.
 

@@ -22,11 +22,20 @@ from faster_whisper import WhisperModel
 m = WhisperModel("small")
 segs, info = m.transcribe("ref.wav", vad_filter=False, word_timestamps=True, language=None)
 print("language:", info.language)
+segs = list(segs)
 for s in segs:
     print(f"{s.start:6.2f} {s.end:6.2f} {s.text.strip()}")
+import re
+speech = sum(s.end - s.start for s in segs)
+text = "".join(s.text for s in segs)
+units = len(re.findall(r"[가-힣぀-ヿ一-鿿]", text)) or len(text.split())
+gaps = [b.start - a.end for a, b in zip(segs, segs[1:])]
+print(f"delivery: speech {speech:.1f}s of {info.duration:.1f}s ({speech / info.duration:.0%}), units {units}, rate {units / speech:.1f}/s, lines/10s {len(segs) / info.duration * 10:.1f}, longest gap {max(gaps) if gaps else 0:.2f}s, hook window {segs[0].end:.1f}s")
 PY
 curl -f -X PUT -H 'Content-Type: image/png' --upload-file sheet.png '<upload_url>'
 ```
+
+The delivery line is the ground truth for pace ([story.md](story.md) "Density"): a reference that feels calm may speak fast, and the script is written to the number, not the feeling. Whisper's segments stand in for lines; when it merges two lines into one segment, split them by the on-screen captions and recount.
 
 The `tile` filter needs both dimensions on the sandbox's ffmpeg (`6x0` is rejected, and because the command is one chain, everything after it would be skipped); the rows are computed from the duration so that one sheet holds the whole reference. The PUT carries the `Content-Type` the `media_upload` result names, because the presigned URL is signed with it. Voice detection is off for the reference: under a music bed it dropped whole lines and returned fragments with impossible timestamps, with the default split and with a 300-millisecond one; set `language` when the product page gave it. The takes are clean speech and are decoded with detection on, as [captions.md](captions.md) says. The per-second loudness in `loudness.txt` shows where speech, music and silence are, which the transcript alone cannot.
 
@@ -45,6 +54,19 @@ Duration: <s> · Frame: <w>x<h> (<aspect>) · Language: <code> · Shots: <n>
 
 ## Why it works
 <The mechanism, not the content. Hook: what stops the thumb in the first two seconds and how (a question, a shock, a face, a claim). Tension: what the viewer wants resolved. Turn: the moment the ad changes direction. Payoff: what the product delivers and how it is shown. Call to action: its wording and timing. Pacing: how cut rhythm carries these. Keep: the mechanism, the medium and the look. Reinvent: the situation, the setting, the cast, the lines.>
+
+## Story engine
+<By [story.md](story.md) "Reading the reference". Form: on-camera dialogue, a narrator over pictures, a testimonial, a demo. Genre and register: the kind of story, the conventions it borrows, its tone words, the words it never uses. Rule of the world: one sentence, "In this world, ...". Device: the concrete thing that carries the rule, where it appears, whether it returns. Figure: who holds authority and how the story proves it. Signature line: the quotable line, verbatim. Reveal: the last fact, and the sentence the viewer thinks after it.>
+
+## Information order
+| # | Line (as spoken) | Adds | Withholds | Mark |
+|---|---|---|---|---|
+| 1 | ... | a legendary figure did one odd thing for one person | why | hook |
+<Marks: hook, rule, exception, question, answer, reveal, CTA. The order is what the new story keeps.>
+
+## Delivery
+Speaking time: <s> of <runtime> (<share>) · Units: <n> (syllables or words) · Rate: <n>/s · Lines per 10 s: <n> · Longest pause: <s> · Hook window: <s> · Picture: <still, slow moves or cut on every line>
+<From the sandbox pass's delivery line. The script of the new ad is written to these numbers ([story.md](story.md) "Density").>
 
 ## Medium and look
 <Live action, 2D animation, 3D animation, stop motion or mixed, and the style in the words an image model follows: line (clean, sketchy, none), color and shading (flat, cel, painterly), backgrounds (painted, photographic), light, camera (static, slow pans, handheld), how faces are drawn, and how flat or rich the finish is (say "flat cel shading, no painterly rendering" when the reference is flat: image models default to a richer finish). This becomes the style line of phase 3.>
@@ -82,7 +104,7 @@ Generate: <shots>. Edit: <elements>. Drop: <elements, with why>.
 
 Ask only for what the request did not give, and only these two:
 
-1. The reference video: a link straight to a media file, or a local file through the upload widget where the client has one. A YouTube link alone is not enough: it feeds the scene analysis but not the frames or the transcript. Short is better; analysis accuracy drops with length.
+1. The reference video: a link straight to a media file, or a local file through the upload widget where the client has one. An agent with a shell and no widget uploads a local file itself: reserve with `media_upload` (the file's name and type), PUT the file from the shell with the `Content-Type` the result names, `media_confirm` it, and use the hosted URL (`show_medias`, type `video`) as the link the sandbox downloads. A YouTube link alone is not enough: it feeds the scene analysis but not the frames or the transcript. Short is better; analysis accuracy drops with length.
 2. The product: a link to its site or page, or a name and one sentence about it.
 
 The message is short: the one or two things needed (for the reference, that the link must lead straight to a media file), one line on what happens next (the reference is analyzed, then a plan with its cost is shown), and nothing else. Never ask about language, length, captions, cast, setting, images or budget. Those are derived and shown at the plan checkpoint, where the user can change any of them. When the request already has both, there is no intake message at all.

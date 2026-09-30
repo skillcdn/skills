@@ -10,6 +10,8 @@ How the Higgsfield tools behaved in real runs of this skill, with the workaround
 - 2026-09-23: the sandbox's own curl of the product page returned the whole page text, so a separate web-reading tool was not needed for the words; it is still useful when a page is script-rendered.
 - 2026-09-23, second run: the whole analysis pass, Whisper download included, finished in about 40 seconds. A 38-second reference fit one `tile=6x7` sheet. Frames zipped and uploaded as a general file (`.zip`, `application/octet-stream`, `media_confirm` type `file`) could be downloaded and viewed on the client.
 
+- 2026-09-30, third run (Claude Code, no upload widget): a local reference was uploaded from the agent's own shell, `media_upload` for the presigned URL, `curl -X PUT` with the named `Content-Type`, then `media_confirm`; the hosted URL served the sandbox pass. A `.wav` upload request came back as an `.mp3` slot, so the narration stem was uploaded as MP3. Whisper was not installed locally; the sandbox ran it.
+
 ## Scene analysis (`video_analysis_create`, `video_analysis_status`)
 
 - 2026-09-23: a 27-second reference imported from a direct link stayed `queued`, with an unchanged `updated_at`, through eight polls over fifteen minutes and never completed or failed. The brief was built from the frames and the Whisper transcript instead, as the template allows. Do not let this block phase 2.
@@ -47,9 +49,14 @@ How the Higgsfield tools behaved in real runs of this skill, with the workaround
 - 2026-09-23: the assembly encode (29 seconds of video plus uploads) took about 50 seconds; run as a background script it finished cleanly, where a foreground call would have hit the transport timeout seen in phase 2. The sandbox had been recycled during the last take's wait, so the script re-fetched every input; a self-contained script is the safe shape.
 - 2026-09-23: the bundled `subtitles` workflow spread cues across pauses, ships no Korean font, burns only white, caps or paper looks, forbids a hand-rolled burn and asks the user about the look; captions.md therefore burns with ffmpeg directly. An SRT cannot be uploaded (backend whitelist), so the cue text travels in the delivery.
 
+- 2026-09-30, third run: a 25-second Seedance 2.5 voice-over take (480p, `draft: true`) prompted as "unhurried and hushed, slow weighty delivery" spoke eight lines at about 5 syllables per second with pauses up to 1.5 seconds, against the reference's 7 per second and no pause over half a second; the ad dragged even after the pauses were cut in code. The pace is now measured and written into the prompt in numbers ([story.md](story.md)), and a voice take is sized to the speech, not the ad. The voice-over's picture (a hand and a brush, no face) was cut under the other shots with the narration as the spine, which worked.
+- 2026-09-30, third run: `draft: true` on Seedance 2.5 was the cheapest setting (75 credits for 25 seconds with audio, 3 per second) and left the take finalizable at 1080p for seven days at 60 credits each; the preflight names both. The same preset recommendation returned on every video call and was declined with `declined_preset_id` each time.
+
 ## Pronunciation outcomes
 
 - 2026-09-23, Seedance 2.5, Korean: "적혔다" came out without its aspiration in two takes (Whisper wrote "적겼다" at about 0.85 both times, and that was the truth, not a homophone). Respelling it in the prompt as "저켰다" while the intended line stayed "적혔다" fixed it on the first retry: Whisper then wrote "적혔다" at 0.98, and the syllable's onset carried about 50 milliseconds of aspiration noise against 10 to 20 in the failed takes. A 10-second take with three lines took about four and a half minutes.
+
+- 2026-09-30, Seedance 2.5, Korean: "스님" lost its final consonant in three places of one take (heard as "스니" by Whisper small and medium). Respelling in the prompt as "스니메" for "스님의" and "스니믄" for "스님은", with the intended line unchanged, fixed it on the first retry (0.99); the retry then blurred "발견됐다", which the first take had clean, so the edit took that sentence from the first take.
 
 ## Speech-to-text (Whisper in the sandbox)
 

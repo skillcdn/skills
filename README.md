@@ -31,7 +31,7 @@ Areas to come, each with its first skill: design, sales, support, operations, da
 
 | Skill | Area | Tool family | What it does |
 |---|---|---|---|
-| [`marketing/skills/higgsfield-shorts-ad/`](marketing/skills/higgsfield-shorts-ad/) | Marketing | Higgsfield | Makes a vertical short-form AI ad from just a reference video and a product link: learns what makes the reference work and writes an original concept for the product, derives language, length, medium and the brand's typography itself, has the user approve generated cast portraits and a still first frame per shot, directs each performance, recommends the latest Kling or Seedance model with a credit estimate, animates one draft-quality take at a time, and adds captions, text and the end card with code-based editing. |
+| [`marketing/skills/higgsfield-shorts-ad/`](marketing/skills/higgsfield-shorts-ad/) | Marketing | Higgsfield | Makes a vertical short-form AI ad from just a reference video and a product link: learns what makes the reference work (its hook, the rule its story runs on, its measured pacing) and writes an original story on the product's own world, derives language, length, medium and the brand's typography itself, has the user approve generated cast portraits and a still first frame per shot, directs each performance, recommends the latest Kling or Seedance model with a credit estimate, animates one draft-quality take at a time, and adds captions, text and the end card with code-based editing. |
 
 ## Document sets
 

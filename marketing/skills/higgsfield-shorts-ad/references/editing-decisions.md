@@ -32,6 +32,7 @@ The reference video itself is never a build material. No frame, clip, still or s
 
 | Situation | Choice | Why |
 |---|---|---|
+| A narrator over pictures (a voice-over ad) | One voice take carries every line, sized to the speaking time plus a second; the pictures are silent takes or stills; the voice is the spine and the pictures are cut to its word timestamps in code | One voice from start to end, and a picture can be recut for free while a voice cannot be re-matched |
 | Two shots of the same character where continuity matters (mid-gesture, same sentence across a cut) | Generate as one longer shot, cut in code | Models keep identity within a generation better than across two. |
 | Two shots of different framings or scenes | Two separate generations, concatenate in code | Cheaper to regenerate one; a hard cut is natural for shorts. |
 | A cut inside a shot of the reference (jump cut for pace) | One generation, then cut in code | Cutting is free. |

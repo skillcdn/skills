@@ -6,6 +6,18 @@
     "chosen": "A barista keeps getting the same question from regulars; on her break she tries the product and the next regular gets a different answer.",
     "alternative": "Two friends on a video call, one still asking, the other already convinced."
   },
+  "story": {
+    "form": "on-camera dialogue",
+    "rule_of_the_world": "In this world, the same question every morning means the answer has never been worth repeating.",
+    "device": "the word 'still', said twice",
+    "figure": "the barista, who hears every order",
+    "hook": "Still sparkling water? Yes. Still.",
+    "hook_runner_up": "Every regular asks. Every morning. Same word.",
+    "signature_line": "Okay. Grapefruit. That is new.",
+    "reveal": "The next regular gets a different answer.",
+    "viewer_thinks": "She finally found the one that ends the question.",
+    "density": { "reference_rate_per_s": 3.1, "reference_lines_per_10s": 2.5, "target_units": 34, "script_units": 33, "script_lines_per_10s": 2.4 }
+  },
   "product": "Example sparkling water",
   "language": "en",
   "medium": "live action",
