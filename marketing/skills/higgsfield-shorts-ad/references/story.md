@@ -40,7 +40,7 @@ The concept is written from the product's world on the reference's mechanism, in
 
 5. **Write the signature line.** In the figure's voice, stating the rule the way a person says it (a proverb, a rebuke, a joke), short enough to quote, in the register. It answers the question someone inside the story asks.
 6. **Write the reveal.** One concrete fact, stated flat, that re-reads the device and the figure's act. Write beside it the sentence the viewer thinks next; it must take one step. Nothing is explained after the reveal. The end card carries the call to action.
-7. **Order the lines** in a table like the reference's, with the same marks. Each line adds one fact. No line says what the picture already shows. The rule is planted before the exception. The reveal is the last line spoken.
+7. **Order the lines** in a table like the reference's, with the same marks. Each line adds one fact. No line says what the picture already shows. The rule is planted before the exception. The reveal is the last line spoken. Every line is heard, not read: a homophone that changes the meaning is replaced ([regeneration.md](regeneration.md) "Pronunciation").
 8. **Match the density** (below). Then cut the story into shots (SKILL.md phase 3).
 
 ## Density and tempo
