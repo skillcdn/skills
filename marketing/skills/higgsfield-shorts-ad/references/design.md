@@ -25,7 +25,7 @@ Sizes are for a 1080x1920 frame and scale with the output.
 | On-screen text (thoughts, labels) | 6 to 8 percent | The brand's display style; the accent color for one word at most | Near the subject, inside safe zones, clear of faces and of the prop in hand at every moment of the shot |
 | End card | Three sizes at most: brand name 9 to 11 percent, tagline 5 to 6, body or address 3.5 to 4 | Brand ground color or a darkened still under it; text color and one accent; letter-spacing for uppercase Latin; line height 1.3 | Logo above or left of the name, 8 percent margins, a column no wider than 84 percent |
 
-Contrast of body text against its ground at least 4.5:1. One accent color. A slow move (zoom or fade) on the end card, on screen for four to six seconds. The address and the call to action are the last things to fade. A reference without an end card still gets one: the brand's card is the ad's call to action, named at the plan checkpoint as a derived decision.
+On-screen text obeys the hook's rule: no word the viewer must decode, and a foreign-script form of a word (a hanja, a Latin name) only next to its plain spelling, never alone. Contrast of body text against its ground at least 4.5:1. One accent color. A slow move (zoom or fade) on the end card, on screen for four to six seconds. The address and the call to action are the last things to fade. A reference without an end card still gets one: the brand's card is the ad's call to action, named at the plan checkpoint as a derived decision.
 
 ## Building it in the sandbox
 

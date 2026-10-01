@@ -63,6 +63,8 @@ How the Higgsfield tools behaved in real runs of this skill, with the workaround
 
 - 2026-09-30, Seedance 2.5, Korean, fourth run: a 23-second voice-over of 160 syllables prompted with the pace in numbers (about 7 per second, pauses under half a second, half a second of lead) came out at 7.27 per second with no pause over half a second, every syllable present. The first word, the persona's name "현묵", was the only doubtful one: sung too fast for its vowel to be certain, on both takes, and a retry that asked for the name to be said clearly changed nothing and blurred another word. A name is not the first word of a voice take.
 
+- 2026-10-01, Seedance 2.5, Korean, fifth run: the hook's last word "까닭" came out as "가도" on the first voice take (the meaning of the hook gone). Respelled in the prompt as "까닥" (the standard pronunciation), it came out right on the retry, 23 seconds of 149 syllables at about 6.5 per second. The discarded take's picture still served as two inserts, at no cost.
+
 ## Speech-to-text (Whisper in the sandbox)
 
 - 2026-09-23: on the mixed master, Whisper's default voice-detection split of two seconds pushed word starts back into pauses and onto a chime, so five of seven cues failed the onset check; a 300-millisecond split plus onset snapping and cut clamping passed all seven. Re-uploading a corrected file to the same presigned URL before `media_confirm` worked.
