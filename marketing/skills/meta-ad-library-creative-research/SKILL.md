@@ -57,7 +57,7 @@ Produces the **research brief**: the subject in a line, the market as a country 
 
 ### Phase 2: Access
 
-Produces the **route**. Take the first route of [ad-library.md](references/ad-library.md) "Routes" that the agent has and prove it with the first view of the search plan: a count and at least one Library ID. When none works, stop as "When no route works" says. Take today's date from the system, not from memory: every "days running" depends on it.
+Produces the **route**. Take the first route of [ad-library.md](references/ad-library.md) "Routes" that the agent has and prove it by running the first view of the search plan: a count and at least one Library ID. With a shell, that means saving the script and running it, not checking the machine first. When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every "days running" depends on it.
 
 ### Phase 3: Collect
 
