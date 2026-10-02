@@ -41,7 +41,7 @@ One headless run prints the page as the browser built it:
 
 ```sh
 python work/adlib.py work/pool.jsonl KR "q=<term>" "q=<term>&media=video" "q=<term>&sort=recent"
-python work/adlib.py work/counts.jsonl KR "q=<domain>&exact=1" "q=<domain>&exact=1&before=7d" "q=<domain>&exact=1&before=30d"
+python work/adlib.py work/counts.jsonl KR "q=<domain>&exact=1&lines=10" "q=<domain>&exact=1&before=7d&lines=0" "q=<domain>&exact=1&before=30d&lines=0"
 python work/adlib.py work/pool.jsonl clean
 ```
 
@@ -55,6 +55,7 @@ python work/adlib.py work/pool.jsonl clean
 | `before`, `after` | The date bounds `start_date[max]` and `start_date[min]`: a date, or `30d` for thirty days ago. |
 | `status` | `inactive` or `all`; active without it. |
 | `id` | A Library ID alone: that one ad, its media addresses signed anew. |
+| `lines` | How many results to print for that page; `lines=0` prints the count alone. The file gets every record either way. |
 
 A full address is accepted in place of a spec. The script needs only the standard library and runs from any directory: a restricted shell that refuses a change of directory or a variable inside the command takes the same line with the script and the output file by their full paths. `CHROME` sets the browser's path when it is not found. The output file's folder is made when it is missing. The browser profile and `loads.log` are created next to the output file; `ADLIB_PROFILE` moves the profile. On Windows the script reaches its own files past 260 characters of path and, when the profile would not fit next to the output file, keeps it in the system's temporary folder, where `clean` finds it; what the agent writes with other tools (frames, the report) still needs a run folder short enough for them. The log has one line per browser run, the first check and the retries included: that is the count the budget is held against. When the run ends, `clean` in place of the country removes the profile this run made and nothing else; it needs no permission to delete files beyond the one to run the script.
 
@@ -224,7 +225,8 @@ if __name__ == "__main__":
             print("NOT READ (no result data in the page):", spec)
             continue
         print(f"count={result['count']} more={result['more']} ads={len(result['ads'])} | {spec}")
-        for a in result["ads"]:
+        shown = re.search(r"(?:^|&)lines=(\d+)", spec)  # the file keeps every record; this only shortens what is printed
+        for a in result["ads"][:int(shown.group(1)) if shown else None]:
             text = " ".join((a["title"] or a["body"] or "").split())[:48]
             flag = " low" if a["low_impressions"] else ""
             print(f"{a['rank']:>3} {a['id']} {a['started']} {a['days']}d x{a['uses']} {a['format']}{flag} | {a['page']} | {urlparse(a['landing'] or '').netloc} | {text}")
@@ -232,7 +234,7 @@ if __name__ == "__main__":
         print("page loads so far:", sum(1 for _ in f))
 ```
 
-The script loads a page up to three times, the second and third with time for the check. `NOT READ` after that is a stop sign, not a prompt to retry harder: see "Manners and limits" in [ad-library.md](ad-library.md). When only the count is wanted, as in counting by age, it is on the `count=` line. Take the script's whole output: a reader that closes the pipe early (`head`, `Select-Object -First`) stops it between pages, and the pages after that are not loaded. A script of the agent's own that prints ad text must write UTF-8 (`sys.stdout.reconfigure(encoding="utf-8")` in Python), or a Windows console stops it at the first emoji.
+The script loads a page up to three times, the second and third with time for the check. `NOT READ` after that is a stop sign, not a prompt to retry harder: see "Manners and limits" in [ad-library.md](ad-library.md). When only the count is wanted, as in counting by age, it is on the `count=` line, and `lines=0` in the spec keeps the rest out of the context. Take the script's whole output: a reader that closes the pipe early (`head`, `Select-Object -First`) stops it between pages, and the pages after that are not loaded. A script of the agent's own that prints ad text must write UTF-8 (`sys.stdout.reconfigure(encoding="utf-8")` in Python), or a Windows console stops it at the first emoji.
 
 ## Driven browser: the embedded results
 
@@ -376,3 +378,4 @@ Names of countries and genders inside the details arrive in the browser's own la
 - 2026-10-02, Windows, a session whose run folder sat deep in a scratch directory: the output file's path came to 260 characters and the profile's to 265. The browser made no profile and each of three tries ran to the one-minute timeout; then the script could not open its output. A shorter folder worked at once. The script now handles both, as the usage notes say.
 - 2026-10-02, an independent session asked what was taking off in a field of work, on the rising products skill: 74 page loads and twelve minutes for eight seed terms and fourteen counted entries. The field's ads sold mostly courses and apps, which the item rules of that day left out; the session chose by itself to count them, and to count phrases that several sellers shared as an exact phrase. Both are in the method since. One app's Page, advertising in many countries, counted several hundred active ads in the market, many of them in other languages.
 - 2026-10-02, an independent session that found the reference for an ad of a software product: 16 page loads and four minutes to a shortlist of eight videos. Their sheets and their audio were made in one pass in a cloud sandbox, which downloaded each address as it was; the speech-to-text model there misheard product names that the captions burned into the frames showed.
+- 2026-10-02, the same request in a fresh session after that change, in a US market: the skill was chosen without a word about ads in the request; 64 page loads and eleven minutes for seven seed terms, eight themes and four items. Two broad seed terms returned a count of exactly 50,001 in both of their views, which is where the count stops. Both sessions cut down what the script printed for the counting phase, one with a wrapper and one by editing the script, which is why a spec now takes `lines`.
