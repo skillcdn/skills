@@ -30,7 +30,7 @@ The spec recommends this order; every `SKILL.md` here follows it so an agent tha
 
 - Write for an agent with no memory of the previous session: current facts and decisions, not history.
 - Imperative mood, short sentences, one idea each.
-- Name a tool by its exact tool name in backticks the first time; describe it in words after that.
+- Name a tool by its exact tool name in backticks the first time; describe it in words after that. Where the tool is a capability that every assistant provides under another name (a browser it can drive, a shell), name the capability and say how to recognize it: a product's tool names do not carry over to the next agent or outlast the next release.
 - Do not pin versions of models, products or APIs. Tell the agent to discover the latest through the tool's own catalog, and say how to choose when several qualify.
 - Where a number matters (a limit, a cost), say how to obtain it at run time. A dated snapshot may illustrate the shape, clearly marked as such.
 - Decision points get a table: condition, choice, why.
