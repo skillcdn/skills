@@ -1,11 +1,11 @@
 ---
 name: Marketing
-description: Skills for marketing and growth work, such as ads, promotional video, content, campaigns and social posts. Use when the task is to make or improve something that promotes a product, brand or service.
+description: Skills for marketing and growth work, such as ads, ad and product research, promotional video, content, campaigns and social posts. Use when the task is to make, improve or research something that promotes a product, brand or service.
 license: MIT
 translations:
   ko:
     name: 마케팅
-    description: 광고, 프로모션 영상, 콘텐츠, 캠페인, 소셜 게시물 등 마케팅과 그로스 업무를 위한 스킬입니다. 제품, 브랜드, 서비스를 알리는 결과물을 만들거나 다듬을 때 쓰세요.
+    description: 광고, 광고·상품 리서치, 프로모션 영상, 콘텐츠, 캠페인, 소셜 게시물 등 마케팅과 그로스 업무를 위한 스킬입니다. 제품, 브랜드, 서비스를 알리는 결과물을 만들거나 다듬을 때, 또는 그에 앞선 조사를 할 때 쓰세요.
 metadata:
   author: skillcdn
 ---

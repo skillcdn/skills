@@ -10,7 +10,7 @@
     {
       "name": "marketing",
       "source": "./marketing",
-      "description": "Marketing and growth: ads, promotional video, content, campaigns. A short-form AI ad from a reference video and a product link, and research in the Meta Ad Library for ad creatives and for rising products.",
+      "description": "Marketing and growth: ads, ad and product research, promotional video, content, campaigns. A short-form AI ad from a reference video and a product link, and research in the Meta Ad Library for ad creatives and for rising products.",
       "license": "MIT"
     }
   ]

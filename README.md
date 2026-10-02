@@ -21,7 +21,7 @@ One folder per area of work. Each carries a `SKILLCDN.md` that says who its skil
 
 | Area | For | Skills |
 |---|---|---|
-| [`marketing/`](marketing/) | Ads, promotional video, content, campaigns, social posts. | 3 |
+| [`marketing/`](marketing/) | Ads, ad and product research, promotional video, content, campaigns, social posts. | 3 |
 | [`product/`](product/) | Discovery, research synthesis, requirements, specifications, roadmaps, prioritization. | none yet |
 | [`engineering/`](engineering/) | Software development: writing and changing code, building apps, code review, testing, debugging. | none yet |
 
