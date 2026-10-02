@@ -1,0 +1,38 @@
+{
+  "schema": "meta-ad-library-rising-products/1",
+  "taken": "2026-10-02",
+  "market": "KR",
+  "sector": "pet supplies",
+  "route": "page dump",
+  "page_loads": 73,
+  "terms": ["<category word>", "<problem phrase>", "<purchase cue> <category word>"],
+  "baseline": { "query": "<category word>", "active": 3130, "older7": 1973, "older30": 1088, "older90": 395, "week_share": 0.57 },
+  "items": [
+    {
+      "key": "example-store.com",
+      "query": "example-store.com",
+      "search_type": "keyword_exact_phrase",
+      "scope": "store",
+      "name": "skin-soothing cream for dogs",
+      "what": "a cream for itchy skin, sold with a free pad",
+      "seller": "Example Store",
+      "pages": 5,
+      "active": 173,
+      "older7": 121,
+      "older30": 25,
+      "older90": 0,
+      "new7": 52,
+      "new30": 148,
+      "week_share": 0.35,
+      "class": "breakout",
+      "pace": "slower",
+      "first_day_between": ["2026-08-04", "2026-08-18"],
+      "since_last_run": null,
+      "video_share": 0.7,
+      "ads": ["000000000000001", "000000000000002"],
+      "flags": ["<an observation about the ads, in the user's language>"],
+      "reported": true
+    }
+  ],
+  "left_out": ["<a kind of advertiser left out, in the user's language>"]
+}

@@ -21,7 +21,7 @@ One folder per area of work. Each carries a `SKILLCDN.md` that says who its skil
 
 | Area | For | Skills |
 |---|---|---|
-| [`marketing/`](marketing/) | Ads, promotional video, content, campaigns, social posts. | 2 |
+| [`marketing/`](marketing/) | Ads, promotional video, content, campaigns, social posts. | 3 |
 | [`product/`](product/) | Discovery, research synthesis, requirements, specifications, roadmaps, prioritization. | none yet |
 | [`engineering/`](engineering/) | Software development: writing and changing code, building apps, code review, testing, debugging. | none yet |
 
@@ -33,6 +33,7 @@ Areas to come, each with its first skill: design, sales, support, operations, da
 |---|---|---|---|
 | [`marketing/skills/higgsfield-shorts-ad/`](marketing/skills/higgsfield-shorts-ad/) | Marketing | Higgsfield | Makes a vertical short-form AI ad from just a reference video and a product link: learns what makes the reference work (its hook, the rule its story runs on, its measured pacing) and writes an original story on the product's own world, derives language, length, medium and the brand's typography itself, has the user approve generated cast portraits and a still first frame per shot, directs each performance, recommends the latest Kling or Seedance model with a credit estimate, animates one draft-quality take at a time, and adds captions, text and the end card with code-based editing. |
 | [`marketing/skills/meta-ad-library-creative-research/`](marketing/skills/meta-ad-library-creative-research/) | Marketing | Meta Ad Library | Researches the ad creatives running for a keyword, a product or a competitor by reading the public library with a browser: finds the ads that show proof of working (their place in the impressions order, days running, reuse of the creative, the advertiser's volume), puts recent ones first, reads videos frame by frame, and delivers a report with the landscape, a linked shortlist, a breakdown of each hook, angle, structure and offer, the patterns across them, and directions for the user's own ads. |
+| [`marketing/skills/meta-ad-library-rising-products/`](marketing/skills/meta-ad-library-rising-products/) | Marketing | Meta Ad Library | Finds the items that sellers are putting the most new advertising behind by reading the public library with a browser: sweeps a sector or purchase phrases, groups ads by the store they lead to, counts each item's active ads and those started in the last 7, 30 and 90 days, classes it as a breakout, a new push or a proven seller with its pace this week, and delivers a ranked report with the ads, the seller, the offer and the risks, plus a snapshot the next run measures real growth against. |
 
 ## Document sets
 
