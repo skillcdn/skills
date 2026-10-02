@@ -118,13 +118,13 @@ A user who names only the product still gets an ad built on what works: the refe
 
 | Step | Rule | Why |
 |---|---|---|
-| Candidates | The shortlisted videos whose frames the research looked at (its report says which). Those it ranks as working now before the old ones it keeps as benchmarks. Nothing off the shortlist, however well it fits. | The reference teaches a video's hook and pacing, and the shortlist is where proof was checked. |
+| Candidates | The shortlisted videos whose frames the research looked at (its report says which). Nothing off the shortlist, however well it fits. | The reference teaches a video's hook and pacing, and the shortlist is where proof was checked. |
 | Honest | Drop a mechanism that rests on what the product lacks: a creator's or a customer's own experience of it, a before and after, a number or an offer its page does not state. | The ad may say only what the product's page or the user says. An invented experience is a false claim. |
 | Fit | Take the candidate whose mechanism the product can carry most fully with what its own page has: its claims, its persona, its story, its reviews, its images. | What transfers is the mechanism. A reference that fits half-way leaves the ad leaning on its surface. |
-| Proof | Between two that fit alike, the one the research gives the stronger proof. | Fit chooses among proven ads; it does not replace proof. |
+| Proof | Between two that fit alike, the one the research gives the stronger proof, and one it ranks as working now before an old one it keeps as a benchmark. | Fit chooses among proven ads; it does not replace proof. An old ad shows that its mechanism lasts, and is the one its viewers have seen longest. |
 | Cost | Then the shorter video, with fewer people and places. | A take is paid by the second, and every person and place adds shots. |
 
-3. **Say what the choice rests on.** The plan checkpoint opens with the reference (the advertiser, its library link), the proof and the weak signs the research found for it (a single use, a low place among its advertiser's own ads), why the product can carry it, and the runner-up with what it would have given instead. The user can pick another, or send their own, before anything is paid for. When no candidate fits, do not force one: say which came nearest and what the user would have to supply for it (a real customer, a result that can be shown), and stop for their choice.
+3. **Say what the choice rests on.** The plan checkpoint opens with the reference (the advertiser, its library link), its proof, its weak signs, why the product can carry it, and the runner-up with what it would have given instead. The weak signs are read from its record even when the research's breakdown names none: a single use, a low place among its advertiser's own ads, an old ad kept only as a benchmark. A choice that passes over the ads the research ranks as working now says in a line what they lacked. The user can pick another, or send their own, before anything is paid for. When no candidate fits, do not force one: say which came nearest and what the user would have to supply for it (a real customer, a result that can be shown), and stop for their choice.
 
 From the chosen reference on, the phases run as for any reference, with these differences:
 

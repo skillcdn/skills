@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Higgsfield MCP server with video generation, image generation, video analysis, media upload and the cloud sandbox (ffmpeg and Whisper). Works in any agent that can call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.3"
+  version: "1.4"
   tools: higgsfield
 skillcdn:
   include:
@@ -130,7 +130,7 @@ Produces the **captioned master** ([captions.md](references/captions.md)): word 
 
 ### Phase 11: Deliver
 
-One message in plain words: the captioned master and the clean master as links; the portraits and frames for reuse; the lines as captioned; the ledger, estimated versus spent, per item, retries called out; what was generated, edited in code, and left out of the reference and why.
+One message in plain words: the captioned master and the clean master as links; the portraits and frames for reuse; the lines as captioned; the ledger, estimated versus spent, per item, retries called out; what was generated, edited in code, and left out of the reference and why. When the cast is generated people in live action, say that they are not real people and that the platform's label for AI-made content is the user's to set when the ad is published.
 
 ## Hard rules
 

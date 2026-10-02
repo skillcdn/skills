@@ -26,7 +26,7 @@ The concept is written from the product's world on the reference's mechanism, in
 
 1. **Find the product's rule.** From the product brief: what the product claims to know, do or see, in its own vocabulary (its metaphors, its named features, its persona). Write the new rule as one sentence "In this world, ...", in the product's terms. Test: take the product's domain away; if the story still works, it is not this product's story, and another rule is needed.
 2. **Choose the device.** One concrete, small thing from the product's own vocabulary or world that carries the rule and can return at the end. Prefer something the product's site itself names, but choose it for the viewer: a thing they already value or fear (money, a date, a door, a meal) beats a thing only the product knows (a page number, a mark, a setting). Never the reference's device.
-3. **Cast the figure.** The product's own persona when the site presents one, else a new figure with authority in the new world. The figure's acts are fiction and read as fiction; claims about the product stay the site's.
+3. **Cast the figure.** The product's own persona when the site presents one, else a new figure with authority in the new world. The figure's acts are fiction and read as fiction; claims about the product stay the site's. A new figure who speaks to the camera as someone who uses the product is not read as fiction: they say what the product's page says it does and report no result of their own (money made, time saved, a problem gone).
 4. **Write five hooks and keep one.** The five use at least three different stakes (money, death, the body, a child, a debt, a taboo, a vow). Score the reference's own hook against the table first, so that the bar is the reference's; then score each candidate, and drop any that fails a row or scores under the reference on one. The runner-up is shown at the plan checkpoint.
 
 | The hook must | Test |
@@ -60,4 +60,4 @@ Pace is measured, never guessed. A calm reference is often fast, and a script wr
 
 ## What the user sees
 
-At the plan checkpoint, before the shots, each in one line of plain words: the hook and the runner-up; the rule of the world; the device; the signature line; the reveal with the sentence the viewer will think; then the lines in order with who says them; and the script's density against the reference. The user need not know these terms, and any of it can be changed there.
+At the plan checkpoint, before the shots, each in one line of plain words: the hook and the runner-up; the rule of the world; the device; the signature line; the reveal with the sentence the viewer will think; then every line as it will be spoken, in order, with who says it; and the script's density against the reference. The lines are the ad the user is about to pay for: a summary of them, or a pointer to a file, does not stand in for them. The user need not know these terms, and any of it can be changed there.
