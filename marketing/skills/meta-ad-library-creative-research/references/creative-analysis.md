@@ -144,7 +144,7 @@ When the user wants an ad made from what the library shows, the run ends in one 
 
 | Step | Rule | Why |
 |---|---|---|
-| Candidates | The shortlisted videos, both sheets of each looked at. Rising and Proven before Evergreen. Nothing off the shortlist, however well it fits. | A video ad takes its hook and its pacing from a video, the newer tiers show what works now, and the shortlist is where proof was checked. |
+| Candidates | The shortlisted videos, the overview sheet of each looked at; both sheets before one is kept as the reference or as the runner-up. Rising and Proven before Evergreen. Nothing off the shortlist, however well it fits. | A video ad takes its hook and its pacing from a video, the newer tiers show what works now, and the shortlist is where proof was checked. |
 | Honest | Drop a mechanism that rests on what the product lacks: a creator's or a customer's own experience of it, a before and after, a number or an offer its page does not state. | The new ad may say only what the product's page or the user says. An invented experience is a false claim. |
 | Fit | Take the candidate whose mechanism the product can carry most fully with what its own page has: its claims, its persona, its story, its reviews, its images. | What transfers is the mechanism. A reference that fits half-way leaves the new ad leaning on its surface. |
 | Proof | Between two that fit alike, the stronger tier and signals. | Fit chooses among proven ads; it does not replace proof. |
@@ -170,7 +170,8 @@ The run's folder holds `report.md` in the user's language, headings included, `a
 <Active ads per term. The share that is new this week. Video share. Advertisers most present, with active ad counts. What is being tested this week (the Fresh group).>
 
 ## Shortlist
-| # | Advertiser | Format, length | Running | Proof | Hook | Link |
+| # | Advertiser | Format, length | Running | Proof | Hook | Read from | Link |
+<"Read from" is what was looked at, not what was made: both sheets, the overview sheet, the poster, the image.>
 
 ## Reference
 <Only for a reference for an ad. The chosen creative with its link, why the product can carry its mechanism, its proof and counter-signals, the runner-up and what it would have given, what must not carry over.>
@@ -187,5 +188,5 @@ The run's folder holds `report.md` in the user's language, headings included, `a
 <Mechanism and source ads, fit, hook line, structure, format, call to action, avoid.>
 
 ## Method and limits
-<Tier rules as used. Which sheets each video was read from. What was not read and why. Links expire: the Library ID links last, the media addresses do not.>
+<Tier rules as used. What was not read and why, the hook sheets that were made and not looked at among it. Links expire: the Library ID links last, the media addresses do not.>
 ```

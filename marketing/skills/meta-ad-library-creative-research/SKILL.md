@@ -70,7 +70,7 @@ Produces the **shortlist**. Give each entry its tier by "Proof", choose by "Shor
 
 ### Phase 5: Deep read
 
-Produces one **breakdown** per shortlisted creative, by "Deep read": the copy, the frames of each video (a hook sheet and an overview sheet, or screenshots, or the poster alone), the image, the versions. Media addresses expire within days, so media is read in the run that collected it. For a reference for an ad every shortlisted video's sheets are looked at, and the breakdowns are written as "Reference for an ad" says.
+Produces one **breakdown** per shortlisted creative, by "Deep read": the copy, the frames of each video (a hook sheet and an overview sheet, or screenshots, or the poster alone), the image, the versions. Media addresses expire within days, so media is read in the run that collected it. For a reference for an ad every shortlisted video's overview sheet is looked at, both sheets of the two that reach the end, and the breakdowns are written as "Reference for an ad" says.
 
 ### Phase 6: Patterns
 
