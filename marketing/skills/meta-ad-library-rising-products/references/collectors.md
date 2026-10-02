@@ -30,10 +30,11 @@ One headless run prints the page as the browser built it:
 "<browser>" --headless=new --disable-gpu --no-first-run --user-data-dir="<a folder kept for the whole run>" --dump-dom "<url>"
 ```
 
-- Keep the same `--user-data-dir` for every call. The first load of a new folder only passes the site's browser check and prints nothing or a page without results; the second load, and every load after it, prints the results.
+- Keep the same `--user-data-dir` for every call: it holds the cookie of the site's browser check.
+- The site answers some loads with that check: a page of about 500 bytes whose script posts to `/__rd_verify…` and reloads. A plain dump leaves before the script finishes, so the check comes back on every load. Give that one load time with `--virtual-time-budget=15000`: the browser finishes the check by itself, the cookie lands in the profile, and plain loads print results again. The check returns from time to time during a run.
 - Never start the browser without `--headless=new` and that folder, not even to ask its version: on Windows the bare command opens a window in the user's own browser session.
-- Do not add `--virtual-time-budget`: the results are in the first HTML, and that flag made runs hang at random.
-- Give each run a timeout of about a minute and one retry. Quote the URL: it contains `&` and brackets.
+- Do not add `--virtual-time-budget` to every load: the results are in the first HTML, and on ordinary pages that flag made runs hang at random.
+- Give each run a timeout of about a minute. Quote the URL: it contains `&` and brackets.
 - Chrome and Chromium print the page. On Windows, Edge printed nothing in the same test; when the output is empty for every URL, try another browser or the driven-browser route.
 
 `adlib.py` below does this. It builds each address from a short spec, prints one short line per result while the full records go to a file (a page costs about a thousand tokens of context instead of ten thousand), and logs every browser run, so that the page-load budget is counted and not guessed. Save it in the run's `work/` folder and call it with `python` (`python3` on some systems): the output file, the country, then one spec per page.
@@ -98,8 +99,11 @@ def address(country, spec):
     return BASE + urlencode({**u, "locale": "en_US"})
 
 
-def dump(url):
-    cmd = [browser(), "--headless=new", "--disable-gpu", "--no-first-run", "--user-data-dir=" + PROFILE, "--dump-dom", url]
+def dump(url, patient=False):
+    cmd = [browser(), "--headless=new", "--disable-gpu", "--no-first-run", "--user-data-dir=" + PROFILE]
+    if patient:  # gives the site's browser check time to finish: its page posts, then reloads
+        cmd.append("--virtual-time-budget=15000")
+    cmd += ["--dump-dom", url]
     try:
         html = subprocess.run(cmd, capture_output=True, timeout=60).stdout.decode("utf-8", "replace")
     except subprocess.TimeoutExpired:
@@ -123,8 +127,10 @@ def find(node, key):
 
 
 def connection(url):
-    for _ in range(2):  # the first load of a fresh profile only passes the site's browser check
-        for block in re.findall(r'<script type="application/json"[^>]*>(.*?)</script>', dump(url), re.S):
+    patient = False
+    for _ in range(3):
+        html = dump(url, patient)
+        for block in re.findall(r'<script type="application/json"[^>]*>(.*?)</script>', html, re.S):
             if "search_results_connection" not in block and "deeplink_ad_archive" not in block:
                 continue
             data = json.loads(block)
@@ -134,6 +140,7 @@ def connection(url):
             conn = find(data, "search_results_connection")
             if conn is not None:
                 return conn
+        patient = True  # no results: most often the site's browser check, which a plain dump leaves before it finishes
         time.sleep(3)
     return None
 
@@ -207,7 +214,7 @@ if __name__ == "__main__":
         print("page loads so far:", sum(1 for _ in f), "| delete when the run ends:", PROFILE)
 ```
 
-`NOT READ` twice for the same spec is a stop sign, not a prompt to retry harder: see "Manners and limits" in [ad-library.md](ad-library.md). When only the count is wanted, as in counting by age, it is on the `count=` line. A script of the agent's own that prints ad text must write UTF-8 (`sys.stdout.reconfigure(encoding="utf-8")` in Python), or a Windows console stops it at the first emoji.
+The script loads a page up to three times, the second and third with time for the check. `NOT READ` after that is a stop sign, not a prompt to retry harder: see "Manners and limits" in [ad-library.md](ad-library.md). When only the count is wanted, as in counting by age, it is on the `count=` line. A script of the agent's own that prints ad text must write UTF-8 (`sys.stdout.reconfigure(encoding="utf-8")` in Python), or a Windows console stops it at the first emoji.
 
 ## Driven browser: the embedded results
 
@@ -344,3 +351,4 @@ Names of countries and genders inside the details arrive in the browser's own la
 - 2026-10-02, first run by a fresh agent: 24 page loads and 28 minutes for a full creative research with frames for six videos. `chrome.exe --version` on Windows opened the user's browser instead of printing a version. Hook frames 240 pixels wide from the small video could not be read for small print; 480 pixels from the large video could.
 - 2026-10-02, second run by a fresh agent: 73 page loads and 25 minutes for a sector sweep with twelve candidates counted. The same creative group came back under different Library IDs in the most-recent and the impressions views, and its `uses` fell from 22 to 19 under a date bound a week back. A hand-built address picked up a carriage return and cost two extra loads, which is why the script builds addresses. A default profile folder shared between two runs would have been deleted by the first to finish, which is why the profile sits next to the output file.
 - 2026-10-02, third run by a fresh agent, driven browser only, a German market: 22 page loads; reach read for six of six shortlisted ads without a load, from the advertiser views; two screenshots per video. The site's header is an element with the role of a dialog that contains `Log in` on every page: it is not a login wall. A dialog closed by script takes about a second and a half to go.
+- 2026-10-02, a run by an independent session: every plain dump returned the 506-byte check page, four times in a row, and the session stopped and told the user, as the rules say. The check was passable all along: the dump was leaving before the page's script had posted and reloaded. One load with `--virtual-time-budget=15000` passed it and stored the `rd_challenge` cookie, and the script now does that by itself when a load brings no results. Earlier the same day fresh profiles had passed on their second plain load by luck of timing, and a profile that had passed two hours before was checked again.
