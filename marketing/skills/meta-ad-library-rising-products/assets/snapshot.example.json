@@ -32,6 +32,31 @@
       "ads": ["000000000000001", "000000000000002"],
       "flags": ["<an observation about the ads, in the user's language>"],
       "reported": true
+    },
+    {
+      "key": "<phrase the sellers share>",
+      "query": "<phrase the sellers share>",
+      "search_type": "keyword_exact_phrase",
+      "scope": "theme",
+      "name": "<the theme in a few words>",
+      "what": "<what its ads promise>",
+      "seller": "<how many sellers, the most present named>",
+      "pages": 9,
+      "active": 64,
+      "older7": 40,
+      "older30": 22,
+      "older90": 6,
+      "new7": 24,
+      "new30": 42,
+      "week_share": 0.57,
+      "class": "proven",
+      "pace": "level",
+      "first_day_between": null,
+      "since_last_run": null,
+      "video_share": 0.5,
+      "ads": ["000000000000003", "000000000000004"],
+      "flags": ["<the spelling the phrase misses, the strays it matches>"],
+      "reported": true
     }
   ],
   "left_out": ["<a kind of advertiser left out, in the user's language>"]
