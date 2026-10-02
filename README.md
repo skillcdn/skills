@@ -21,7 +21,7 @@ One folder per area of work. Each carries a `SKILLCDN.md` that says who its skil
 
 | Area | For | Skills |
 |---|---|---|
-| [`marketing/`](marketing/) | Ads, promotional video, content, campaigns, social posts. | 1 |
+| [`marketing/`](marketing/) | Ads, promotional video, content, campaigns, social posts. | 2 |
 | [`product/`](product/) | Discovery, research synthesis, requirements, specifications, roadmaps, prioritization. | none yet |
 | [`engineering/`](engineering/) | Software development: writing and changing code, building apps, code review, testing, debugging. | none yet |
 
@@ -32,6 +32,7 @@ Areas to come, each with its first skill: design, sales, support, operations, da
 | Skill | Area | Tool family | What it does |
 |---|---|---|---|
 | [`marketing/skills/higgsfield-shorts-ad/`](marketing/skills/higgsfield-shorts-ad/) | Marketing | Higgsfield | Makes a vertical short-form AI ad from just a reference video and a product link: learns what makes the reference work (its hook, the rule its story runs on, its measured pacing) and writes an original story on the product's own world, derives language, length, medium and the brand's typography itself, has the user approve generated cast portraits and a still first frame per shot, directs each performance, recommends the latest Kling or Seedance model with a credit estimate, animates one draft-quality take at a time, and adds captions, text and the end card with code-based editing. |
+| [`marketing/skills/meta-ad-library-creative-research/`](marketing/skills/meta-ad-library-creative-research/) | Marketing | Meta Ad Library | Researches the ad creatives running for a keyword, a product or a competitor by reading the public library with a browser: finds the ads that show proof of working (their place in the impressions order, days running, reuse of the creative, the advertiser's volume), puts recent ones first, reads videos frame by frame, and delivers a report with the landscape, a linked shortlist, a breakdown of each hook, angle, structure and offer, the patterns across them, and directions for the user's own ads. |
 
 ## Document sets
 
@@ -42,6 +43,7 @@ Directories of Markdown without a `SKILL.md`, read by an agent through `search_r
 | Family | What it is | How the user connects it | Documentation |
 |---|---|---|---|
 | Higgsfield | AI image, video and audio generation with a cloud sandbox for editing. | Add the Higgsfield MCP server to the agent. Skills check for the tools they need and ask for the server when it is missing. | [higgsfield.ai](https://higgsfield.ai) |
+| Meta Ad Library | Meta's public library of the ads running on Facebook, Instagram, Messenger, Threads and WhatsApp, read as a website because its API leaves out most commercial ads. | Nothing to connect. The agent needs a shell with a Chromium-family browser, or a browser it can drive; skills check which one it has and say what to add when it has neither. | [facebook.com/ads/library](https://www.facebook.com/ads/library) |
 
 ## Using a skill
 

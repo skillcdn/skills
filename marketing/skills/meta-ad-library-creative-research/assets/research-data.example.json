@@ -1,0 +1,59 @@
+{
+  "schema": "meta-ad-library-creative-research/1",
+  "subject": "tone-up sunscreen",
+  "market": "KR",
+  "read": "2026-10-02",
+  "route": "page dump",
+  "page_loads": 24,
+  "terms": [
+    { "term": "<category word>", "active_ads": 242, "video_ads": 133, "older7": 101, "older30": 63 },
+    { "term": "<benefit phrase>", "active_ads": 19, "video_ads": null, "note": "fits on one page; other views skipped" }
+  ],
+  "advertisers": [
+    { "advertiser": "Example Skincare", "page_id": "000000000000002", "entries_in_pool": 4, "active_ads": 77 }
+  ],
+  "ads": [
+    {
+      "id": "000000000000001",
+      "link": "https://www.facebook.com/ads/library/?id=000000000000001",
+      "advertiser": "Example Skincare",
+      "page_id": "000000000000002",
+      "landing_domain": "example.com",
+      "started": "2026-08-20",
+      "days": 43,
+      "format": "VIDEO",
+      "seconds": 28,
+      "uses": 3,
+      "copies": ["000000000000001", "000000000000003"],
+      "ranks": { "<category word> / impressions / video": 4 },
+      "relevance": "on subject",
+      "tier": "proven",
+      "signals": ["position", "survival", "reuse", "tested account"],
+      "counter_signals": [],
+      "siblings": [],
+      "reach": null,
+      "shortlisted": true,
+      "breakdown": {
+        "hook": { "type": "curiosity gap", "first_frame": "a creator pats a cushion on one cheek", "first_line": "<the first line, verbatim>" },
+        "angle": "ease",
+        "format": "creator talking to camera",
+        "aspect": "9:16",
+        "structure": [
+          { "at": 0, "beat": "hook" },
+          { "at": 3, "beat": "problem" },
+          { "at": 9, "beat": "demonstration" },
+          { "at": 21, "beat": "offer and call to action" }
+        ],
+        "proof_used": ["demonstration", "numbers"],
+        "offer": "bundle",
+        "cta": "Shop now",
+        "landing_kind": "product page",
+        "transfers": "show the result on half the face before naming the product",
+        "read_from": "hook sheet and overview sheet; audio not transcribed"
+      }
+    }
+  ],
+  "dropped": [
+    { "id": "000000000000009", "reason": "off subject" }
+  ]
+}
