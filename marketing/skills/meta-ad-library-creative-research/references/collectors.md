@@ -56,10 +56,10 @@ python work/adlib.py work/pool.jsonl clean
 | `status` | `inactive` or `all`; active without it. |
 | `id` | A Library ID alone: that one ad, its media addresses signed anew. |
 
-A full address is accepted in place of a spec. The script needs only the standard library and runs from any directory: a restricted shell that refuses a change of directory or a variable inside the command takes the same line with the script and the output file by their full paths. `CHROME` sets the browser's path when it is not found. The browser profile and `loads.log` are created next to the output file; `ADLIB_PROFILE` moves the profile. The log has one line per browser run, the first check and the retries included: that is the count the budget is held against. When the run ends, `clean` in place of the country removes the profile this run made and nothing else; it needs no permission to delete files beyond the one to run the script.
+A full address is accepted in place of a spec. The script needs only the standard library and runs from any directory: a restricted shell that refuses a change of directory or a variable inside the command takes the same line with the script and the output file by their full paths. `CHROME` sets the browser's path when it is not found. The output file's folder is made when it is missing. The browser profile and `loads.log` are created next to the output file; `ADLIB_PROFILE` moves the profile. On Windows the script reaches its own files past 260 characters of path and, when the profile would not fit next to the output file, keeps it in the system's temporary folder, where `clean` finds it; what the agent writes with other tools (frames, the report) still needs a run folder short enough for them. The log has one line per browser run, the first check and the retries included: that is the count the budget is held against. When the run ends, `clean` in place of the country removes the profile this run made and nothing else; it needs no permission to delete files beyond the one to run the script.
 
 ```python
-import datetime, json, os, re, shutil, subprocess, sys, time
+import datetime, hashlib, json, os, re, shutil, subprocess, sys, tempfile, time
 from urllib.parse import urlencode, urlparse
 
 CANDIDATES = [os.environ.get("CHROME"), "google-chrome", "google-chrome-stable", "chromium", "chromium-browser",
@@ -191,16 +191,23 @@ def page(url):
             "ads": [record(i + 1, g, today) for i, g in enumerate(groups)]}
 
 
+def long(path):
+    """An absolute path in the form Windows accepts past 260 characters; the plain absolute path elsewhere."""
+    path = os.path.abspath(path)
+    return os.sep * 2 + "?" + os.sep + path if os.name == "nt" else path
+
+
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
     out, country, specs = sys.argv[1], sys.argv[2], [s.strip() for s in sys.argv[3:]]
     folder = os.path.dirname(os.path.abspath(out))
     PROFILE = os.environ.get("ADLIB_PROFILE") or os.path.join(folder, "browser-profile")
-    LOADS = os.path.join(folder, "loads.log")
+    if os.name == "nt" and len(PROFILE) > 200:  # the browser cannot make its profile under a path near 260 characters
+        PROFILE = os.path.join(tempfile.gettempdir(), "adlib-" + hashlib.sha1(folder.encode()).hexdigest()[:12])
+    out, LOADS = long(out), long(os.path.join(folder, "loads.log"))
+    os.makedirs(long(folder), exist_ok=True)
     if country == "clean":  # the run is over: remove the browser profile it made
-        target = os.path.abspath(PROFILE)
-        if os.name == "nt":  # the prefix that lets Windows reach paths longer than 260 characters
-            target = os.sep * 2 + "?" + os.sep + target
+        target = long(PROFILE)
         for root, _, files in os.walk(target):
             for name in files:  # the browser leaves read-only files that Windows will not delete as they are
                 os.chmod(os.path.join(root, name), 0o700)
@@ -225,7 +232,7 @@ if __name__ == "__main__":
         print("page loads so far:", sum(1 for _ in f))
 ```
 
-The script loads a page up to three times, the second and third with time for the check. `NOT READ` after that is a stop sign, not a prompt to retry harder: see "Manners and limits" in [ad-library.md](ad-library.md). When only the count is wanted, as in counting by age, it is on the `count=` line. A script of the agent's own that prints ad text must write UTF-8 (`sys.stdout.reconfigure(encoding="utf-8")` in Python), or a Windows console stops it at the first emoji.
+The script loads a page up to three times, the second and third with time for the check. `NOT READ` after that is a stop sign, not a prompt to retry harder: see "Manners and limits" in [ad-library.md](ad-library.md). When only the count is wanted, as in counting by age, it is on the `count=` line. Take the script's whole output: a reader that closes the pipe early (`head`, `Select-Object -First`) stops it between pages, and the pages after that are not loaded. A script of the agent's own that prints ad text must write UTF-8 (`sys.stdout.reconfigure(encoding="utf-8")` in Python), or a Windows console stops it at the first emoji.
 
 ## Driven browser: the embedded results
 
@@ -366,3 +373,4 @@ Names of countries and genders inside the details arrive in the browser's own la
 - 2026-10-02, the same session rerun after the fix: one check page, passed on the next load; 19 page loads and 11 minutes for the full research with frames for six videos. The session could not delete the browser profile, because its shell allowed no delete command, which is why the script has `clean`.
 - 2026-10-02, an independent session on the rising products skill: 63 page loads and 11 minutes for seven seed terms and the counts of its candidates. `clean` first left 341 files behind on Windows: the browser's read-only files, under paths longer than 260 characters. The script now makes the files writable and uses the long-path prefix, and says when something is still there.
 - 2026-10-02, an independent session that went from research to making an ad: 15 page loads and four minutes to a shortlist of videos with their sheets. A video address taken from a record was downloaded as it was by a cloud sandbox on another network a few minutes after the read, with a plain request and no cookie. The same ad loaded again by `id` half an hour later carried addresses signed anew: the expiry is the address's `oe` value, a hexadecimal timestamp about four days ahead, set when the page loads. The session's shell refused `cd` followed by the script, then a variable inside the command, and took the same line with full paths.
+- 2026-10-02, Windows, a session whose run folder sat deep in a scratch directory: the output file's path came to 260 characters and the profile's to 265. The browser made no profile and each of three tries ran to the one-minute timeout; then the script could not open its output. A shorter folder worked at once. The script now handles both, as the usage notes say.
