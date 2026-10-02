@@ -50,4 +50,4 @@ Reference files and assets use placeholders (`example-store.com`, `0000000000000
 
 Exercise both machine routes: the page dump from an agent with a shell, the driven browser from an assistant that has one. Media addresses expire within days, so a test collects and reads in one run. What a fresh agent had to guess goes back into the files, and what the site did differently goes into "Notes from real runs" with its date.
 
-The creative research skill hands a reference to a skill that makes ads. One request that needs both ("make an ad for this product, and find the reference yourself") exercises that handover; run it at least to the producing skill's cost checkpoint, and read what the agent chose and why before reading what it made.
+A skill that makes ads may start from this research when the user has no reference. The choice among the shortlist is that skill's, and the research stays general. One request that needs both ("make an ad for this product", with no reference) exercises the seam; run it at least to the producing skill's cost checkpoint, and read what the agent chose and why before reading what it made.
