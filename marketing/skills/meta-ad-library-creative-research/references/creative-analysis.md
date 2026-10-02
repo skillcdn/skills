@@ -41,14 +41,14 @@ An ad with no tier stays off the shortlist. A rank in the advertiser's own view 
 
 ## Shortlist and checkpoint
 
-Eight creatives by default. Tiers decide first (Rising, then Proven, then at most two Evergreen); among what qualifies, follow the format mix of the pool (about six videos and two stills where video dominates); for a reference for an ad, videos only. At most two per seller, the Pages that lead to one store counting as one seller; at least four sellers when the pool allows; different hooks before near-duplicates. Load the advertiser view (`page=<page_id>`) of each shortlisted seller's main Page and of the three most present once: the count is its active ads, the first page shows where the creative ranks among its own, and an on-subject ad the keyword views missed may join the pool. A video's length comes from `ffprobe` on its address, or from the player in a driven browser. On the driven-browser route, take each shortlisted ad's full record here, while its advertiser view is open.
+Eight creatives by default. Tiers decide first (Rising, then Proven, then at most two Evergreen); among what qualifies, follow the format mix of the pool (about six videos and two stills where video dominates). At most two per seller, the Pages that lead to one store counting as one seller; at least four sellers when the pool allows; different hooks before near-duplicates. Load the advertiser view (`page=<page_id>`) of each shortlisted seller's main Page and of the three most present once: the count is its active ads, the first page shows where the creative ranks among its own, and an on-subject ad the keyword views missed may join the pool. A video's length comes from `ffprobe` on its address, or from the player in a driven browser. On the driven-browser route, take each shortlisted ad's full record here, while its advertiser view is open.
 
 The checkpoint is one message in the user's language:
 
 1. What was derived, in a line: the market, the terms, the tier rules.
 2. The landscape: active ads per term, the share that is new this week, the share that is video (ads with several versions count in both the video and the image view, so shares may pass 100 percent), the advertisers most present with their active ad counts.
 3. The shortlist as a table: advertiser, format and length, days running, proof in a few words, the hook in a few words, the link by Library ID.
-4. That one word continues to the deep read, and that an ad can be dropped or added, or a term or the market changed. For a reference for an ad, also that one of these will be chosen after the deep read, for its fit to the product, and named with its runner-up.
+4. That one word continues to the deep read, and that an ad can be dropped or added, or a term or the market changed.
 
 ## Deep read
 
@@ -138,24 +138,6 @@ Count, do not characterize: "5 of 8", not "most". Across the shortlist, and acro
 
 Three directions for the user's subject, written new. Each has: the mechanism and the library ads it is taken from (links); why it fits this subject; one hook line in the market's language, with a bracketed blank wherever a fact about the user's product is needed and not known; the structure in beats with seconds; format, length, on-screen text style; the call to action; what to avoid. One direction follows the proven pattern, one bets on an open angle. Statements about the user's product come only from its page or from the user.
 
-## Reference for an ad
-
-When the user wants an ad made from what the library shows, the run ends in one **reference**: the creative whose mechanism the new ad is built on. Choose it after the deep read, in this order:
-
-| Step | Rule | Why |
-|---|---|---|
-| Candidates | The shortlisted videos, the overview sheet of each looked at; both sheets before one is kept as the reference or as the runner-up. Rising and Proven before Evergreen. Nothing off the shortlist, however well it fits. | A video ad takes its hook and its pacing from a video, the newer tiers show what works now, and the shortlist is where proof was checked. |
-| Honest | Drop a mechanism that rests on what the product lacks: a creator's or a customer's own experience of it, a before and after, a number or an offer its page does not state. | The new ad may say only what the product's page or the user says. An invented experience is a false claim. |
-| Fit | Take the candidate whose mechanism the product can carry most fully with what its own page has: its claims, its persona, its story, its reviews, its images. | What transfers is the mechanism. A reference that fits half-way leaves the new ad leaning on its surface. |
-| Proof | Between two that fit alike, the stronger tier and signals. | Fit chooses among proven ads; it does not replace proof. |
-| Cost | Then the shorter video, with fewer people and places. | A remake is paid by the second and by the shot. |
-
-- **Say what the choice rests on.** The reference's tier and signals, its counter-signals (found only in its advertiser's view, a single use, far down its advertiser's own order), and the runner-up with what it would have given instead. Proof says that an ad survives where it runs, not that its mechanism will work for another product.
-- **When none fits**, do not force one. Say which came nearest and what the user would have to supply for it (a real customer, a result that can be shown), and stop for their choice.
-- **Hand over** what the skill that makes the ad needs, in the delivery and as `reference` in `ads.json`: the Library ID link; the video's address (`video_hd`, else `video`) and its length; the breakdown; the three readings of "Patterns" (the trend, the crowded, the open); what must not carry over (its lines, its people, its footage, its brand). That skill starts from the address and the user's product and analyzes the video itself; the breakdown and the readings go into its concept.
-- **Addresses expire within days.** Production starts in the same run. Later, load the ad again by its ID (`id=<Library ID>`) for a fresh address; an ad that has left the library has taken its creative with it.
-- **The report is shorter.** A full breakdown for the reference and for the runner-up; for every other shortlisted creative, a line on what it does and a line on what transfers. The direction built on the reference in full, the other two in a line each. Scope, landscape, shortlist, patterns and limits stay whole.
-
 ## Report
 
 The run's folder holds `report.md` in the user's language, headings included, `ads.json` shaped like [research-data.example.json](../assets/research-data.example.json) (field names and fixed values in English, free text in the user's language), `frames/` when a shell made frames, and `work/`. Where the agent cannot write files, the same report goes into the client's document surface. Frames are working files for the user's own study; the report links ads by Library ID and embeds no one's creative.
@@ -172,9 +154,6 @@ The run's folder holds `report.md` in the user's language, headings included, `a
 ## Shortlist
 | # | Advertiser | Format, length | Running | Proof | Hook | Read from | Link |
 <"Read from" is what was looked at, not what was made: both sheets, the overview sheet, the poster, the image.>
-
-## Reference
-<Only for a reference for an ad. The chosen creative with its link, why the product can carry its mechanism, its proof and counter-signals, the runner-up and what it would have given, what must not carry over.>
 
 ## Breakdowns
 ### 1. <advertiser>: <hook in a few words>

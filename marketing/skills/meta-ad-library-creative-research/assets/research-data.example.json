@@ -53,18 +53,6 @@
       }
     }
   ],
-  "reference": {
-    "$comment": "Only when the purpose is a reference for an ad.",
-    "id": "000000000000001",
-    "link": "https://www.facebook.com/ads/library/?id=000000000000001",
-    "video": "<video_hd address as read; expires within days>",
-    "seconds": 28,
-    "fit": "<what on the product's own page carries the mechanism>",
-    "counter_signals": [],
-    "runner_up": { "id": "000000000000004", "would_have_given": "<in a line>" },
-    "readings": { "trend": "<in a line>", "crowded": "<in a line>", "open": "<in a line>" },
-    "do_not_carry_over": ["lines", "people", "footage", "brand elements"]
-  },
   "dropped": [
     { "id": "000000000000009", "reason": "off subject" }
   ]
