@@ -32,7 +32,7 @@ Every filter is a query parameter. The filter controls on the page carry no labe
 | `country` | An ISO code (`KR`, `US`, `DE`) or `ALL` | Where the ad is delivered. Always set it. |
 | `ad_type` | `all` | The other values are special categories (political, housing, employment, credit). |
 | `active_status` | `active`, `inactive`, `all` | Outside the EU and the UK only `active` holds commercial ads. |
-| `q` with `search_type` | `keyword_unordered` (every word, any order) or `keyword_exact_phrase` | Matches the ad's text, its link domain and the advertiser's name. URL-encode `q`. |
+| `q` with `search_type` | `keyword_unordered` (every word, any order) or `keyword_exact_phrase` | Matches the ad's text, its link (the domain, or as an exact phrase a seller's path on a shared host) and the advertiser's name. URL-encode `q`. |
 | `view_all_page_id` with `search_type=page` | A Page ID | Every ad of one advertiser. The ID is `page_id` in any of its results. |
 | `media_type` | `all`, `video`, `image`, `meme`, `image_and_meme`, `none` | |
 | `sort_data[mode]` with `sort_data[direction]=desc` | `total_impressions` (the default) or `relevancy_monthly_grouped` (most recent first) | `asc` is ignored. |
@@ -46,7 +46,7 @@ A value the site does not know is ignored without a word and the unfiltered resu
 
 ## What a result carries
 
-The page embeds its first results as JSON, the same in every interface language: a `<script type="application/json">` element that contains the key `search_results_connection`, with the exact `count` (the page header rounds it, as in `~1,700 results`), `page_info.has_next_page`, and one creative group per entry of `edges`. A page opened by `id` carries `deeplink_ad_archive_result` instead. The JSON describes the page as first loaded: after a new URL, read it from a fresh page load. Its fields are listed in [collectors.md](collectors.md) "The record".
+The page embeds its first results as JSON, the same in every interface language: a `<script type="application/json">` element that contains the key `search_results_connection`, with the exact `count` (the page header rounds it, as in `~1,700 results`), `page_info.has_next_page`, and one creative group per entry of `edges`. The count is of ads, not of groups: a page that lists twenty groups may count thirty ads. A page opened by `id` carries `deeplink_ad_archive_result` instead. The JSON describes the page as first loaded: after a new URL, read it from a fresh page load. Its fields are listed in [collectors.md](collectors.md) "The record".
 
 Without the JSON (page text, a screenshot, pasted text) a card reads from top to bottom: the status (`Active`), `Library ID: …`, `Started running on …` (followed by `Total active time` on a new ad), `Platforms`, the group line (`N ads use this creative and text`, or `This ad has multiple versions`), `See ad details` or `See summary details`, the advertiser, `Sponsored`, the text, a video length such as `0:00 / 0:19`, the link domain in capitals, the headline, the button.
 
