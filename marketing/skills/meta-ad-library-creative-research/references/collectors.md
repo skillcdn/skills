@@ -198,8 +198,14 @@ if __name__ == "__main__":
     PROFILE = os.environ.get("ADLIB_PROFILE") or os.path.join(folder, "browser-profile")
     LOADS = os.path.join(folder, "loads.log")
     if country == "clean":  # the run is over: remove the browser profile it made
-        shutil.rmtree(PROFILE, ignore_errors=True)
-        print("removed", PROFILE)
+        target = os.path.abspath(PROFILE)
+        if os.name == "nt":  # the prefix that lets Windows reach paths longer than 260 characters
+            target = os.sep * 2 + "?" + os.sep + target
+        for root, _, files in os.walk(target):
+            for name in files:  # the browser leaves read-only files that Windows will not delete as they are
+                os.chmod(os.path.join(root, name), 0o700)
+        shutil.rmtree(target, ignore_errors=True)
+        print("could not remove all of" if os.path.isdir(PROFILE) else "removed", PROFILE)
         sys.exit()
     for n, spec in enumerate(specs):
         if n:
@@ -358,3 +364,4 @@ Names of countries and genders inside the details arrive in the browser's own la
 - 2026-10-02, third run by a fresh agent, driven browser only, a German market: 22 page loads; reach read for six of six shortlisted ads without a load, from the advertiser views; two screenshots per video. The site's header is an element with the role of a dialog that contains `Log in` on every page: it is not a login wall. A dialog closed by script takes about a second and a half to go.
 - 2026-10-02, a run by an independent session: every plain dump returned the 506-byte check page, four times in a row, and the session stopped and told the user, as the rules say. The check was passable all along: the dump was leaving before the page's script had posted and reloaded. One load with `--virtual-time-budget=15000` passed it and stored the `rd_challenge` cookie, and the script now does that by itself when a load brings no results. Earlier the same day fresh profiles had passed on their second plain load by luck of timing, and a profile that had passed two hours before was checked again.
 - 2026-10-02, the same session rerun after the fix: one check page, passed on the next load; 19 page loads and 11 minutes for the full research with frames for six videos. The session could not delete the browser profile, because its shell allowed no delete command, which is why the script has `clean`.
+- 2026-10-02, an independent session on the rising products skill: 63 page loads and 11 minutes for seven seed terms and twelve candidates counted. `clean` first left 341 files behind on Windows: the browser's read-only files, under paths longer than 260 characters. The script now makes the files writable and uses the long-path prefix, and says when something is still there.
