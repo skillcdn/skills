@@ -102,23 +102,37 @@ Generate: <shots>. Edit: <elements>. Drop: <elements, with why>.
 
 ## Intake
 
-Ask only for what the request did not give, and only these two:
+Ask only for what the request did not give and what cannot be found:
 
-1. The reference video: a link straight to a media file, or a local file through the upload widget where the client has one. An agent with a shell and no widget uploads a local file itself: reserve with `media_upload` (the file's name and type), PUT the file from the shell with the `Content-Type` the result names, `media_confirm` it, and use the hosted URL (`show_medias`, type `video`) as the link the sandbox downloads. A YouTube link alone is not enough: it feeds the scene analysis but not the frames or the transcript. Short is better; analysis accuracy drops with length.
-2. The product: a link to its site or page, or a name and one sentence about it.
+1. The product: a link to its site or page, or a name and one sentence about it.
+2. The reference video: a link straight to a media file, or a local file through the upload widget where the client has one. An agent with a shell and no widget uploads a local file itself: reserve with `media_upload` (the file's name and type), PUT the file from the shell with the `Content-Type` the result names, `media_confirm` it, and use the hosted URL (`show_medias`, type `video`) as the link the sandbox downloads. A YouTube link alone is not enough: it feeds the scene analysis but not the frames or the transcript. Short is better; analysis accuracy drops with length. When the request has none, it is found before it is asked for ("When there is no reference" below), and asked for only when nothing at hand can find one.
 
-The message is short: the one or two things needed (for the reference, that the link must lead straight to a media file), one line on what happens next (the reference is analyzed, then a plan with its cost is shown), and nothing else. When the agent also has a skill that researches ads, the message offers it in a line: a user without a reference can say that one should be found. Never ask about language, length, captions, cast, setting, images or budget. Those are derived and shown at the plan checkpoint, where the user can change any of them. When the request already has both, there is no intake message at all.
+The message is short: the one or two things needed (for the reference, that the link must lead straight to a media file), one line on what happens next (the reference is analyzed, then a plan with its cost is shown), and nothing else. Never ask about language, length, captions, cast, setting, images or budget. Those are derived and shown at the plan checkpoint, where the user can change any of them. When the request already has both, there is no intake message at all.
 
-## A reference found by research
+## When there is no reference
 
-A user without a reference may ask for one to be found. A research skill then chooses it (in this collection `meta-ad-library-creative-research`, among the ads running in the Meta Ad Library) and hands over the ad's library link, its video address, a breakdown, and three readings of its market: the trend, what is crowded, what is open. From there:
+A user who names only the product still gets an ad built on what works: the reference is found among the ads now running for that kind of product. A skill that researches running ads does the finding (in this collection `meta-ad-library-creative-research`, which reads the Meta Ad Library), and this skill chooses from what it returns. Say in a line that a reference is being looked for and that the user's own is welcome at any point. With no such skill at hand, ask for the reference as "Intake" says and name the skill that would find one.
 
-- **The address is the link.** The sandbox downloads it as it is. It expires within days: run the sandbox pass in the same run, and once it has expired have the research skill load the ad again for a fresh one.
+1. **Research.** Run the research skill with the product as its subject, through to its delivery. Its method, its limits and its checkpoint are its own: none of it is repeated here, and none of it is cut short because an ad comes next.
+2. **Choose** among the videos on its shortlist, in this order:
+
+| Step | Rule | Why |
+|---|---|---|
+| Candidates | The shortlisted videos whose frames the research looked at (its report says which). Those it ranks as working now before the old ones it keeps as benchmarks. Nothing off the shortlist, however well it fits. | The reference teaches a video's hook and pacing, and the shortlist is where proof was checked. |
+| Honest | Drop a mechanism that rests on what the product lacks: a creator's or a customer's own experience of it, a before and after, a number or an offer its page does not state. | The ad may say only what the product's page or the user says. An invented experience is a false claim. |
+| Fit | Take the candidate whose mechanism the product can carry most fully with what its own page has: its claims, its persona, its story, its reviews, its images. | What transfers is the mechanism. A reference that fits half-way leaves the ad leaning on its surface. |
+| Proof | Between two that fit alike, the one the research gives the stronger proof. | Fit chooses among proven ads; it does not replace proof. |
+| Cost | Then the shorter video, with fewer people and places. | A take is paid by the second, and every person and place adds shots. |
+
+3. **Say what the choice rests on.** The plan checkpoint opens with the reference (the advertiser, its library link), the proof and the weak signs the research found for it (a single use, a low place among its advertiser's own ads), why the product can carry it, and the runner-up with what it would have given instead. The user can pick another, or send their own, before anything is paid for. When no candidate fits, do not force one: say which came nearest and what the user would have to supply for it (a real customer, a result that can be shown), and stop for their choice.
+
+From the chosen reference on, the phases run as for any reference, with these differences:
+
+- **The address is the link.** The video's address is in the research's record of that ad, and the sandbox downloads it as it is. It expires within days: run the sandbox pass in the same run, and once it has expired have the research skill load that ad again for a fresh one.
 - **The breakdown is a first look, not the brief.** Frames the research made may stand in for the pass's own when they cover the whole reference; the transcript and the delivery are measured here, and every section of the template is filled.
 - **The readings feed the concept.** Keep the mechanism that shows proof. Leave the surface the market crowds: the opening, the proof shot and the offer line that most of its ads share. Take the open angle where the product's own world covers it.
 - **The reference is a competitor's ad.** Its viewers may see the new ad too, so the plan says what the ad keeps (the mechanism, the medium, the look in kind) and what differs at a glance: the cast, the first frame, the colors and the type, the device, every line. A line that is the reference's with the words swapped is rewritten, the hook and the closing line first: the odd act and the last turn of phrase must be the product's own, not the reference's with another year, another seller or another verb.
 - **It speaks after its turn.** A direct-response ad names the product, the offer and a call to action after its story turns. The new script keeps those marks in the reference's order ([story.md](story.md) "Writing the new story", step 7), in the product's own words and with only an offer its page states.
-- **The checkpoint names it.** The plan checkpoint opens with the reference (the advertiser, the library link), why it was chosen and its runner-up, so that the user can pick another before anything is paid for.
 
 ## Product brief
 
