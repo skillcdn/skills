@@ -18,7 +18,7 @@ Advertisers keep paying only for what returns, so an item whose ads multiply and
 - **Views per term**, one page load each: most recent, and impressions order, both with all media. When a term's first view fits on one page (`more` is false), the second would repeat the same ads: skip it. A term that returns fewer than about twenty ads is replaced once.
 - **Budget.** 80 page loads for the run: the sweep (two per term), the baseline (3), the counts (4 per candidate, 12 candidates at most), a few spare.
 
-Work in one folder under the agent's working folder, `rising-products-<sector>-<YYYYMMDD>/`, the sector in lowercase ASCII words joined by hyphens (translated when it is not written in Latin script; `broad-sweep` when there is none). Scripts, raw records and the load log go in `work/` inside it. Earlier runs are the folders beside it whose names begin with `rising-products-`; the earlier snapshot is the latest `snapshot.json` among them with the same `market` and a `sector` that means the same, looked for before the sweep.
+Work in one folder under the agent's working folder, `rising-products-<sector>-<YYYYMMDD>/`, the sector in lowercase ASCII words joined by hyphens (translated when it is not written in Latin script; `broad-sweep` when there is none). Scripts, raw records and the load log go in `work/` inside it. Earlier runs are the other `rising-products-…` folders in that same working folder, and nothing outside it is searched; the earlier snapshot is the latest `snapshot.json` among them with the same `market` and a `sector` that means the same, looked for before the sweep.
 
 ## Items
 
@@ -47,7 +47,7 @@ What the request is after decides how many of the twelve candidates are themes, 
 | A question about the sector itself (what is taking off in it, what people use, do or pay for, what to build or offer next) | Eight: they are the answer. | Four: the sellers most present in those themes. |
 
 - **Find.** In the pool's titles and first lines: a phrase of one to three words that three or more sellers use for the same thing. A seed term that is what sellers call the thing is itself a theme.
-- **Key.** The phrase, counted as an exact phrase. The count spans every seller that uses it and is never one seller's number.
+- **Key.** The phrase, counted as an exact phrase. The count spans every seller that uses it and is never one seller's number. A phrase whose count sits at the library's ceiling ([ad-library.md](ad-library.md) "What a result carries") is too broad to be a theme.
 - **Check** on the first page of the first count. An exact phrase still matches strays: when under about two thirds of the page is on the theme, tighten the phrase or drop it. A language that writes the phrase two ways (spaced or joined, a loanword spelled twice) hides the ads of the other spelling: count the one more of the pool's sellers use and name the other as a flag.
 - **Tally** as for items, with sellers in place of Pages: creative groups, sellers, the youngest and the oldest `days`.
 
@@ -71,11 +71,11 @@ Four counts per candidate, by [ad-library.md](ad-library.md) "Counting by age". 
 | `older(30)` | `before=30d` | `new30 = A − older(30)`; `older(30)` itself is the ads that outlived a month. |
 | `older(90)` | `before=90d` | The ads that outlived a quarter. Zero means no surviving ad is older than 90 days. |
 
-Each of these loads also lists the most-shown ads of that age group with their start dates: keep them for the profile. When the `older(30)` page fits on one page, its oldest start date is the first day of the item's surviving ads; when it does not, two more counts at 45 and 60 days narrow that day to a fortnight, or to the month beyond day 60 when the 60-day count is not zero; for a Breakout only and inside the budget.
+Each of these loads also lists the most-shown ads of that age group with their start dates: they are saved with the count and read from the file for the profile, so the dated counts can print the count alone (`lines=0` in the spec). When the `older(30)` page fits on one page, its oldest start date is the first day of the item's surviving ads; when it does not, two more counts at 45 and 60 days narrow that day to a fortnight, or to the month beyond day 60 when the 60-day count is not zero; for a Breakout only and inside the budget.
 
 **An item inside a general store.** The store's counts are not the item's. Count the item itself: a product phrase that only its ads use, as an exact phrase, after checking on the first page that no other product comes back; failing that, the sum of `uses` over the item's creative groups, read on the unfiltered page and again under each date bound, where `uses` shrinks to the copies that had started by then. When neither isolates the item, report the store's numbers labeled as the store's, and do not class the item.
 
-**Baseline.** The seed term with the highest count (a category word in a sector, a purchase cue in a broad sweep), with the same three date bounds (its `A` is already known from the sweep). Its shares say what is ordinary. As an illustration only: on 2026-10-02, for four broad terms in one market, 33 to 46 percent of the active ads had started within seven days, 64 to 77 percent within thirty, and 7 to 13 percent were older than ninety; `new7 / new30` lay between 0.53 and 0.59. A third of the ads being new is the normal churn of the library, not a rise.
+**Baseline.** The seed term with the highest count under the library's ceiling (a category word in a sector, a purchase cue in a broad sweep), with the same three date bounds (its `A` is already known from the sweep). Its shares say what is ordinary. As an illustration only: on 2026-10-02, for four broad terms in one market, 33 to 46 percent of the active ads had started within seven days, 64 to 77 percent within thirty, and 7 to 13 percent were older than ninety; `new7 / new30` lay between 0.53 and 0.59. A third of the ads being new is the normal churn of the library, not a rise.
 
 ## Classes
 
