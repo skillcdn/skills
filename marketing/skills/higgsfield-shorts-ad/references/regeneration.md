@@ -38,6 +38,7 @@ If none of these keeps the meaning and the delivery natural, regenerate.
 ## How to regenerate
 
 - Same model, same tier, same duration, same aspect ratio. Regeneration is not the moment to upgrade quality.
+- A take that holds several lines, one of them wrong, is not made again whole when the edit already cuts between lines (a monologue in jump cuts, a voice under pictures). Make a **pickup**: a short take of that line alone, from the same first frame and portrait, sized to the line plus a second, preflighted because its duration is new, and cut in at the line. It costs the line, not the take, and it is the shot's one retry.
 - Put the intended line in the prompt verbatim, in quotes, and state explicitly that the character says exactly these words, in which language, and nothing else. Keep the visual prompt unchanged so the take still cuts with its neighbors.
 - Aim the retry at the word that failed. When the user rejects a take, quote their complaint word for word and check that word in the review; a retry that fixes a different word is a wasted take.
 - Fix the word as "Pronunciation" below says, before spending the take.

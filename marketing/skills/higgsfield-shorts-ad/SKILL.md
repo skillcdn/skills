@@ -1,11 +1,11 @@
 ---
 name: higgsfield-shorts-ad
-description: Makes a short-form vertical AI ad, promo or commercial on Higgsfield from a reference video and a product link. Learns what makes the reference work (the hook, the rule its story runs on, the device, the reveal, the measured pacing) and writes an original story for the product on the product's own world rather than a copy; never feeds the reference to a model. Derives language, length, medium (live action or animation, as the reference), look and brand typography itself, generates approved portraits and a still first frame per shot, directs each character's performance, recommends the latest Kling or Seedance model with a credit estimate, animates one draft take at a time, and adds captions, text and the end card in code. Use when a user wants a promo or ad short (TikTok, Reels, Shorts) for a product, brand or website in the spirit of a reference short, with credit use kept low and no expertise needed.
+description: Makes a short-form vertical AI ad, promo or commercial on Higgsfield from a reference video and a product link. Learns what makes the reference work (the hook, the rule its story runs on, the device, the reveal, the measured pacing) and writes an original story for the product on the product's own world rather than a copy; never feeds the reference to a model. Derives language, length, medium (live action or animation, as the reference), look and brand typography itself, generates approved portraits and a still first frame per shot, directs each character's performance, recommends the latest Kling or Seedance model with a credit estimate, animates one draft take at a time, and adds captions, text and the end card in code. Use when a user wants a promo or ad short (TikTok, Reels, Shorts) for a product, brand or website in the spirit of a reference short, with credit use kept low and no expertise needed. When the user has no reference, meta-ad-library-creative-research finds one first.
 license: MIT
 compatibility: Needs the Higgsfield MCP server with video generation, image generation, video analysis, media upload and the cloud sandbox (ffmpeg and Whisper). Works in any agent that can call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: higgsfield
 skillcdn:
   include:
@@ -21,7 +21,7 @@ skillcdn:
   translations:
     ko:
       title: 레퍼런스 영상으로 만드는 숏폼 AI 광고
-      description: 레퍼런스 영상 하나와 제품 링크만으로 Higgsfield에서 세로형 숏폼 AI 광고·프로모 영상을 만듭니다. 레퍼런스가 왜 통하는지(후킹, 이야기가 굴러가는 세계의 규칙, 장치, 반전, 측정한 호흡)를 배워 제품 자신의 세계 위에 새 이야기를 쓰며, 레퍼런스 자체는 절대 모델에 넣지 않습니다. 언어·길이·매체(레퍼런스처럼 실사 또는 애니메이션)·룩·브랜드 타이포그래피를 스스로 정하고, 승인받은 인물 초상과 컷별 첫 프레임을 만든 뒤 최신 Kling 또는 Seedance 모델을 크레딧 견적과 함께 추천하고, 초안 테이크를 한 번에 하나씩 생성하며, 자막·문구·엔드 카드는 코드로 넣습니다. 제품·브랜드·웹사이트를 위한 프로모/광고 숏폼(TikTok, Reels, Shorts)을 레퍼런스 숏폼의 느낌으로, 크레딧을 아끼면서 전문 지식 없이 만들고 싶을 때 쓰세요.
+      description: 레퍼런스 영상 하나와 제품 링크만으로 Higgsfield에서 세로형 숏폼 AI 광고·프로모 영상을 만듭니다. 레퍼런스가 왜 통하는지(후킹, 이야기가 굴러가는 세계의 규칙, 장치, 반전, 측정한 호흡)를 배워 제품 자신의 세계 위에 새 이야기를 쓰며, 레퍼런스 자체는 절대 모델에 넣지 않습니다. 언어·길이·매체(레퍼런스처럼 실사 또는 애니메이션)·룩·브랜드 타이포그래피를 스스로 정하고, 승인받은 인물 초상과 컷별 첫 프레임을 만든 뒤 최신 Kling 또는 Seedance 모델을 크레딧 견적과 함께 추천하고, 초안 테이크를 한 번에 하나씩 생성하며, 자막·문구·엔드 카드는 코드로 넣습니다. 제품·브랜드·웹사이트를 위한 프로모/광고 숏폼(TikTok, Reels, Shorts)을 레퍼런스 숏폼의 느낌으로, 크레딧을 아끼면서 전문 지식 없이 만들고 싶을 때 쓰세요. 레퍼런스가 없으면 meta-ad-library-creative-research가 먼저 찾아 줍니다.
 ---
 # Shorts-style AI ad from a reference video
 
@@ -29,8 +29,8 @@ One reference video and one product (a link is enough) go in; a captioned vertic
 
 ## How the user is involved
 
-- **Questions:** only for the reference video and the product, and only when the request did not give them. Nothing else is ever asked; it is derived.
-- **Checkpoints:** the plan with its cost, the portraits, the first frames, the clean master, the finished ad. Each is one short message in plain words: what was made, the recommendation, and that one word ("OK" in the user's language) continues. Anything can be changed at a checkpoint. Takes are reported, not approved one by one.
+- **Questions:** only for the reference video and the product, and only when the request did not give them. Nothing else is ever asked; it is derived. A user without a reference may ask for one to be found: a research skill finds it first, and that is not a question.
+- **Checkpoints:** the plan with its cost, the portraits, the first frames, the clean master, the finished ad. Each is one short message in the user's language and in plain words: what was made, the recommendation, and that one word ("OK" in the user's language) continues. Anything can be changed at a checkpoint. Takes are reported, not approved one by one.
 - **Go-ahead:** when the user says to go ahead alone, the checkpoints after the cost are skipped; the cost is confirmed in every mode.
 - **Changes mid-run:** applied from that point on; reported at the next checkpoint when within the accepted budget, re-quoted first when beyond it.
 
@@ -54,7 +54,7 @@ Optional: any web-reading tool for the product page's text. No text-to-speech. I
 
 | Input | Source |
 |---|---|
-| Reference video | Required. A link straight to a media file, or a local file through the widget. Asked for only when missing. |
+| Reference video | Required. A link straight to a media file, or a local file through the widget. Asked for only when missing. When the user asks for one to be found (what works in their market, a competitor's ads), a research skill finds it first and its chosen ad is the reference, as [analysis-brief.md](references/analysis-brief.md) "A reference found by research" says; in this collection `meta-ad-library-creative-research` reads the Meta Ad Library for it. |
 | Product | Required. A link to its site or page, or a name with a sentence. Asked for only when missing. |
 | Everything else | Derived, never asked: language (the product page's, else the reference's), length (the reference's), medium and look (the reference's: live action or animation, and its style in words), what changes (everything but the mechanism, the medium and the look), typography and colors (the brand's, see [design.md](references/design.md)), product images (logo, one product image, the site's own people if cast), budget (quoted at the cost checkpoint). Stated at the plan checkpoint, changed on request. |
 
@@ -66,7 +66,7 @@ Each phase produces a named artifact. Phases stop only at the checkpoints above.
 
 Produces the **intake record**.
 
-1. Both inputs in the request: ask nothing, say in a line what happens next, go on. One or both missing: ask for what is missing as [analysis-brief.md](references/analysis-brief.md) "Intake" shows, and stop.
+1. Both inputs in the request: ask nothing, say in a line what happens next, go on. One or both missing: ask for what is missing as [analysis-brief.md](references/analysis-brief.md) "Intake" shows, and stop. A request to find the reference is not a missing input when a research skill is at hand: it runs to its chosen reference, and this skill goes on from there in the same run. Without one, ask for the reference and name the skill that would find it.
 2. Read the product page as "Product brief" there: name, what it is, tagline, claims (only these may be spoken), language, images, and its type and colors ([design.md](references/design.md)). The site's assets are the advertiser's and may be used.
 3. Derive the rest and record it.
 
@@ -77,7 +77,8 @@ Produces the **analysis brief** ([template](references/analysis-brief.md)).
 1. Import the reference; start the scene analysis and never wait for it. Run the sandbox pass in the background: probe, frames, contact sheet, transcript.
 2. Fill the brief from frames and transcript: the medium and the look (live action or animation, and the style in words an image model can follow), mood, shots with their beats, dialogue, on-screen text and its look, cast, sound, and above all **why it works**: the hook in the first two seconds, the tension and the turn, the payoff, the call to action, the pacing that carries them. Then the **story engine** and the **delivery** by [story.md](references/story.md): the form, the genre and register, the rule of the world, the device, the figure, the signature line, the information order line by line, the reveal; and the measured speech rate, lines per ten seconds, longest pause and hook window from the sandbox pass.
 3. Mark build routes (generate, edit, drop) by [editing-decisions.md](references/editing-decisions.md).
-4. Nothing of the reference becomes a model input or a piece of the output. Open decisions go to the plan checkpoint; there is no checkpoint here.
+4. A reference found by research comes with a breakdown and with what its market's ads share. They are a first look and they feed the concept, as [analysis-brief.md](references/analysis-brief.md) "A reference found by research" says; the sandbox pass still runs and the brief is still filled.
+5. Nothing of the reference becomes a model input or a piece of the output. Open decisions go to the plan checkpoint; there is no checkpoint here.
 
 ### Phase 3: Concept and plan
 
@@ -97,7 +98,7 @@ Produces the **estimate**, the **model choice** and the approved plan ([model-se
 1. Find the latest general model of each family with `models_explore`; lock the lowest tier (`480p`, else `std`); read its roles and aspect ratios.
 2. Preflight once per family and distinct duration of the shot list for the takes, and the image model or models for portraits and frames. Reserve: one take per three shots at the dearest shots, one portrait per cast member, one frame per three shots. Read `balance`.
 3. Recommend one family with its reason in one line.
-4. Checkpoint, in plain words: the story as [story.md](references/story.md) "What the user sees" (the hook and the runner-up, the rule, the device, the signature line, the reveal, the lines with who says them, the density against the reference) and its alternative, what the ad will be, the cast, what the edit adds, the derived settings and open decisions, the recommended model's total with reserve and the balance, the other family's total. "OK" proceeds; the user may pick the alternative, the other family, or change anything. A changed plan is preflighted again.
+4. Checkpoint, in plain words: the reference with its link and why it was chosen, when the agent found it; the story as [story.md](references/story.md) "What the user sees" (the hook and the runner-up, the rule, the device, the signature line, the reveal, the lines with who says them, the density against the reference) and its alternative, what the ad will be, the cast, what the edit adds, the derived settings and open decisions, the recommended model's total with reserve and the balance, the other family's total. "OK" proceeds; the user may pick the alternative, the other family, or change anything. A changed plan is preflighted again.
 
 ### Phase 5: Cast portraits
 
@@ -125,7 +126,7 @@ Produces the **captioned master** ([captions.md](references/captions.md)): word 
 
 ### Phase 10: Regenerate
 
-[regeneration.md](references/regeneration.md) decides during phase 7 and at the clean-master checkpoint: ambiguous, broken, flat, drifted or dragging takes only, same frame and portrait, one retry from the reserve, the failed word respelled, a second retry only with consent.
+[regeneration.md](references/regeneration.md) decides during phase 7 and at the clean-master checkpoint: ambiguous, broken, flat, drifted or dragging takes only, same frame and portrait, one retry from the reserve, the failed word respelled, one bad line of a long take as a short pickup, a second retry only with consent.
 
 ### Phase 11: Deliver
 
@@ -158,7 +159,7 @@ One message in plain words: the captioned master and the clean master as links; 
 | Rule of the world | The one sentence, "In this world, ...", that the story runs on; taken from what the product claims to know or do. |
 | Device | The small concrete thing (an object, a number, a habit) that carries the rule and returns at the reveal. |
 | Signature line | The quotable line in the figure's own voice that states the rule. |
-| Reveal | The last spoken fact, which re-reads everything before it in one step. |
+| Reveal | The story's last fact, which re-reads everything before it in one step. |
 | Density | The reference's measured speech rate, lines per ten seconds and longest pause; the script and the delivery are written to it. |
 | Style line | The one sentence that fixes the medium and the look; repeated verbatim in every portrait, frame and take prompt. |
 | Derived setting | A choice taken from the inputs instead of asked; shown at the plan checkpoint. |
