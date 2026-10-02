@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Higgsfield MCP server with video generation, image generation, video analysis, media upload and the cloud sandbox (ffmpeg and Whisper). Works in any agent that can call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: higgsfield
 skillcdn:
   include:
@@ -87,7 +87,7 @@ Produces the **concept**, the **cast list**, the **shot list** ([example](assets
 1. **Story.** By [story.md](references/story.md) "Writing the new story": the rule of the world taken from what the product itself claims to know or do, in its own vocabulary; a device from the product's world; the figure (the site's own persona when it has one); five hooks scored against the table and one kept, with the runner-up; the signature line in the figure's voice; the reveal as one flat fact with the sentence the viewer thinks next; the lines in order, each adding one fact, at the reference's measured density. This is the concept: a different situation, setting, cast and lines that deliver the same mechanism in the reference's medium and look. The reference's surface (its scenes, its device, its wording, its cast) is not reused, and a story that would work for any product in the category is rewritten. Write one alternative (another rule or device) in one line for the checkpoint. Only when the user asks for a close remake is the reference followed scene by scene, and the plan says so.
 2. **Style line.** One sentence from the brief's medium and look that fixes the style for every image and take prompt: the medium, line, color and shading, backgrounds, light, camera. Repeated verbatim in every portrait, frame and take prompt, so they match ([cast.md](references/cast.md)); a portrait prompt may leave out its scene clauses (background, camera).
 3. **Cast.** One description per character: age range, build, hair, skin tone, clothing, baseline expression, role. Never the reference's people; the product site's own people may be cast ([cast.md](references/cast.md)).
-4. **Lines.** Every spoken line is an **intended line**, short and speakable ([regeneration.md](references/regeneration.md) "Pronunciation"), in which every statement about the product comes from the product page or the user (story lines are fiction and free), spoken by the video model in the take. A line spoken off screen (a voice-over, a speaker outside the frame) is marked so, and the character on screen does not mouth it. The script's unit count and line count are checked against the density target ([story.md](references/story.md) "Density") and both numbers go to the checkpoint.
+4. **Lines.** Every spoken line is an **intended line**, short and speakable, with a prompt spelling for every word that is not said the way it is written and its key words kept clear of the sounds the model slurs ([regeneration.md](references/regeneration.md) "Pronunciation"), in which every statement about the product comes from the product page or the user (story lines are fiction and free), spoken by the video model in the take. A line spoken off screen (a voice-over, a speaker outside the frame) is marked so, and the character on screen does not mouth it. The script's unit count and line count are checked against the density target ([story.md](references/story.md) "Density") and both numbers go to the checkpoint.
 5. **Shots.** One shot is one generation, merged only for continuity. Each records duration, cast, the first-frame description, the **performance** (emotion at the start, the turn, emotion at the end, delivery, eye line, the action), the intended line, the product image if any, audio on for a line. The form decides the shape: on-camera dialogue is one speaking take per shot; a narrator over pictures is one voice take for every line, sized to the speaking time plus a second, under silent takes or stills cut to its words ([editing-decisions.md](references/editing-decisions.md)). Total length matches the reference within the model's durations; an end card the reference lacks adds its own seconds.
 6. **Edit plan and design.** Cut order, inserts, on-screen text, effects, music, captions and the end card, in the brand's type and colors by [design.md](references/design.md).
 
@@ -112,8 +112,8 @@ Produces one **approved first frame** per generated shot ([cast.md](references/c
 
 Produces one **take** per shot and the **budget ledger**.
 
-1. One shot per call: the frame as `start_image`, the portrait in the identity role where one exists, audio on, `count` 1, `use_unlim` explicit, and a prompt made of the style line, the performance line, the delivery pace in the measured terms of [story.md](references/story.md) "Density" (never "slow" from a mood), and the intended line in quotes, with the instruction that, after about half a second of silence, the character speaks exactly these words in the dialogue language with natural standard pronunciation and nothing else; a word the model is known to get wrong is respelled as "Pronunciation" says. Never the batch tool. Poll `jobs_wait`; use the wait to warm up Whisper, fetch the font and prepare the assembly.
-2. Review from a 2 fps sheet, the word-timed transcript and a loudness curve: the same person, setting and style as the frame (no drift toward photoreal or another drawing style), the speaker's mouth moving in the speech window and still outside it (for a voice-over, the on-screen mouth stays closed throughout), the performance matching the beat (the emotion and its turn visible), the pace within the density target (rate and longest pause), no text or artifacts, speech only where it should be. Verdict by [regeneration.md](references/regeneration.md): accept, accept with edit, or regenerate.
+1. One shot per call: the frame as `start_image`, the portrait in the identity role where one exists, audio on, `count` 1, `use_unlim` explicit, and a prompt made of the style line, the performance line, the delivery pace in the measured terms of [story.md](references/story.md) "Density" (never "slow" from a mood), and the intended line in quotes, with the instruction that, after about half a second of silence, the character speaks exactly these words in the dialogue language with natural standard pronunciation and nothing else; a word that has a prompt spelling is written in it. Never the batch tool. Poll `jobs_wait`; use the wait to warm up Whisper, fetch the font and prepare the assembly.
+2. Review from a 2 fps sheet, two plain word-timed transcripts (a small and a medium model) and a loudness curve: the same person, setting and style as the frame (no drift toward photoreal or another drawing style), the speaker's mouth moving in the speech window and still outside it (for a voice-over, the on-screen mouth stays closed throughout), the performance matching the beat (the emotion and its turn visible), the pace within the density target (rate and longest pause), no text or artifacts, speech only where it should be. Verdict by [regeneration.md](references/regeneration.md), which settles what was said ("Reading the transcript") before whether it matters: accept, accept with edit, or regenerate.
 3. Ledger row and a one-line report per take; act on the verdict without stopping (one retry per shot from the reserve). Stop only for a second retry or when the ledger reaches the accepted estimate.
 
 ### Phase 8: Assemble and edit in code
@@ -126,11 +126,11 @@ Produces the **captioned master** ([captions.md](references/captions.md)): word 
 
 ### Phase 10: Regenerate
 
-[regeneration.md](references/regeneration.md) decides during phase 7 and at the clean-master checkpoint: ambiguous, broken, flat, drifted or dragging takes only, same frame and portrait, one retry from the reserve, the failed word respelled, one bad line of a long take as a short pickup, a second retry only with consent.
+[regeneration.md](references/regeneration.md) decides during phase 7 and at the clean-master checkpoint: ambiguous, broken, flat, drifted or dragging takes only, same frame and portrait, one retry from the reserve, an ordinary word that failed said another way and a key word respelled, one bad line of a long take as a short pickup, a second retry only with consent.
 
 ### Phase 11: Deliver
 
-One message in plain words: the captioned master and the clean master as links; the portraits and frames for reuse; the lines as captioned; the ledger, estimated versus spent, per item, retries called out; what was generated, edited in code, and left out of the reference and why. When the cast is generated people in live action, say that they are not real people and that the platform's label for AI-made content is the user's to set when the ad is published.
+One message in plain words: the captioned master and the clean master as links; the portraits and frames for reuse; the lines as captioned; the ledger, estimated versus spent, per item, retries called out; the words accepted as close enough or left unsettled, each with what was heard; what was generated, edited in code, and left out of the reference and why. When the cast is generated people in live action, say that they are not real people and that the platform's label for AI-made content is the user's to set when the ad is published.
 
 ## Hard rules
 
@@ -145,7 +145,7 @@ One message in plain words: the captioned master and the clean master as links; 
 9. Every spoken word comes from the video model's native audio. No text-to-speech, dubbing or voice tools.
 10. Overlays are code: captions, text, logos, end cards, inserts, in the brand's type and colors. Never asked of the video model.
 11. Captions show the intended line; speech-to-text supplies timing only.
-12. Regenerate only ambiguous, broken, flat, drifted or dragging takes, or what the user asks for; close enough is accepted, except on the brand's own words.
+12. Regenerate only ambiguous, broken, flat, drifted or dragging takes, or what the user asks for; close enough is accepted, except on key words. What a take says is settled before the user is asked to listen for it.
 13. Every credit is preflighted, recorded, and never exceeds what the user accepted.
 14. Free-trial unlimited generations only when the user asks; `use_unlim` set explicitly on every call.
 
@@ -167,6 +167,8 @@ One message in plain words: the captioned master and the clean master as links; 
 | First frame | The approved 9:16 still a shot is animated from, carrying its starting emotion. |
 | Performance | A shot's direction: emotion at the start, the turn, emotion at the end, delivery, eye line, action. |
 | Intended line | The exact words a character says in a shot; the source of the captions. |
+| Key word | A word that must come out right and must stay: the brand or product name, the product's own terms, the story's device, every word of the hook, the signature line and the reveal. |
+| Prompt spelling | A word written in the take prompt the way it sounds; the intended line and the caption keep its spelling. |
 | Take | One generated video for a shot, from its first frame; one is accepted. |
 | Lowest tier | The cheapest resolution or quality mode a model offers. |
 | Preflight | A generation call with `get_cost: true`; a number, no job. |

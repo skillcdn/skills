@@ -61,6 +61,15 @@ How the Higgsfield tools behaved in real runs of this skill, with the workaround
 
 ## Pronunciation outcomes
 
+Read this when the lines are written and when a take is reviewed ([regeneration.md](regeneration.md) "Pronunciation" and "Reading the transcript"). All of it is Seedance 2.5 speaking Korean at six to seven syllables a second, drawn from the dated notes below; a new outcome moves a sound from one list to another.
+
+- **Fixed by spelling for the ear**, so spelled that way from the first take: an aspirated cluster ("적혔다" as "저켰다"); a final consonant carried onto a particle ("…님의" as "…니메", "크레딧이" as "크레디시"); a double final ("까닭" as "까닥").
+- **Slurred, and no spelling helped**: 져 and 겨 inside a word (heard as 서 and 려), "견적" (heard as "견약"), the counter "권" after a number (heard as "간", "건"), "소재" once (heard as "소회"; naming its syllables in Latin letters fixed it). Most words with these sounds came out right in the same takes, which is why only key words are kept clear of them.
+- **The first word of a take** is said fastest: never a name.
+- **Written differently, heard the same**, so no fault: ㅐ and ㅔ ("세로", "새로"), a loanword's vowel or final ("숏폼", "쇼폼"), a numeral for its word, spacing.
+
+Names and loanwords in Latin script came out as the language says them when the prompt wrote them in Hangul.
+
 - 2026-09-23, Seedance 2.5, Korean: "적혔다" came out without its aspiration in two takes (Whisper wrote "적겼다" at about 0.85 both times, and that was the truth, not a homophone). Respelling it in the prompt as "저켰다" while the intended line stayed "적혔다" fixed it on the first retry: Whisper then wrote "적혔다" at 0.98, and the syllable's onset carried about 50 milliseconds of aspiration noise against 10 to 20 in the failed takes. A 10-second take with three lines took about four and a half minutes.
 
 - 2026-09-30, Seedance 2.5, Korean: a noun ending in ㅁ lost that final consonant before a particle in three places of one take (Whisper small and medium both wrote it without the ㅁ). Respelling it in the prompt the way it links to the particle ("…니메" for "…님의", "…니믄" for "…님은"), with the intended line unchanged, fixed it on the first retry (0.99); the retry then blurred another word, which the first take had clean, so the edit took that sentence from the first take.
@@ -71,7 +80,7 @@ How the Higgsfield tools behaved in real runs of this skill, with the workaround
 
 - 2026-10-02, Seedance 2.5, Korean, sixth run: the counter "권" after a number lost its glide at about six syllables per second: heard as "간" in an 18-second take (small and medium, about 0.68), and as "건" in a 4-second pickup whose prompt respelled the phrase as it sounds. The prompted decode read "권" at 0.41, so the machine check did not settle it and the delivery asked the user to listen.
 
-- 2026-10-02, Seedance 2.5, Korean, seventh run: at about 6.4 syllables per second the sound most often lost was a plain ㅈ inside a word: "소재" was heard as "소회", "뒤져서" as "뒤서서" and "견적부터" as "견약부터" in one 22-second take. A pickup at about six per second that named the syllables after the line in Latin letters ("so and jae, with a clear j sound") fixed the first. Respelling the others as they sound ("뒤저서", "견적뿌터") changed nothing: the third was cut out of the audio in code, the line and its caption shortened with it and the word left to a card on screen, and the second stayed and was flagged in the delivery. Names in Latin script (an abbreviation said letter by letter, two product names) written in Hangul in the prompt were spoken the way the language says them; the captions kept the Latin spelling.
+- 2026-10-02, Seedance 2.5, Korean, seventh run: at about 6.4 syllables per second the sound most often lost was a plain ㅈ inside a word: "소재" was heard as "소회", "뒤져서" as "뒤서서" and "견적부터" as "견약부터" in one 22-second take. A pickup at about six per second that named the syllables after the line in Latin letters ("so and jae, with a clear j sound") fixed the first. Respelling the others as they sound ("뒤저서", "견적뿌터") changed nothing: the third was cut out of the audio in code, the line and its caption shortened with it and the word left to a card on screen, and the second stayed and was handed to the user as something the machine could not settle. The user heard it as wrong at once. It had been settled all along: the small and the medium model had both written the same other word, in the take and again in the pickup, and only a decode prompted with the intended line read it right. Two plain decodes that agree are the answer, and an ordinary word like that one is said another way in the retry, not respelled: a 6-second pickup with another verb in its place came out clean in both decodes, at 0.99. Names in Latin script (an abbreviation said letter by letter, two product names) written in Hangul in the prompt were spoken the way the language says them; the captions kept the Latin spelling.
 
 ## Speech-to-text (Whisper in the sandbox)
 

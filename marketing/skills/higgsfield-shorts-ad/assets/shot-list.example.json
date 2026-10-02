@@ -42,6 +42,8 @@
       "duration": 5,
       "cast": ["host"],
       "intended_line": "Still sparkling water? Yes. Still.",
+      "prompt_spellings": {},
+      "at_risk": [],
       "first_frame": {
         "description": "Behind a cafe counter at morning light, the host (mustard knit sweater, curly dark hair, gold hoop earrings) mid-pour, eyes up at an unseen regular, patient half-smile.",
         "media_id": null,
@@ -61,6 +63,8 @@
       "duration": 5,
       "cast": ["host"],
       "intended_line": "Okay. Grapefruit. That is new.",
+      "prompt_spellings": { "Grapefruit": "GRAPE-froot" },
+      "at_risk": ["Grapefruit"],
       "first_frame": {
         "description": "Back room on her break, the host (same sweater, hair, earrings) holding a slim can at eye level, skeptical eyebrow raised, soft window light.",
         "media_id": null,
