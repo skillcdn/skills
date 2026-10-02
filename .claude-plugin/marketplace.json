@@ -4,7 +4,7 @@
     "name": "SkillCDN"
   },
   "metadata": {
-    "description": "The official skill collection of SkillCDN, one plugin per area of work. The same folders are served live through SkillCDN at skillcdn.ai/gh/skillcdn/skills."
+    "description": "Skills that put the AI you already use in charge of a job, one plugin per area of work. The same folders are served live through SkillCDN at skillcdn.ai/gh/skillcdn/skills."
   },
   "plugins": [
     {

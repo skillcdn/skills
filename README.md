@@ -1,8 +1,16 @@
 # SkillCDN skills
 
-The official skill collection of [SkillCDN](https://github.com/skillcdn/skillcdn), building a company of agents one area of work at a time. Each folder is an area of work with the skills that do it and the documents its people read: marketing, product and engineering today, more areas to come. Every skill drives a real tool and carries the job from the request to a result the user can hold, asking before anything is spent. It is also the reference repository for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a skill repository, kept working against real tools. Fork it to publish your own skills in the same shape.
+Put the AI you already use in charge of the job. Each skill here holds what someone who does that job for a living knows: what to ask and what to work out alone, which tool to drive, what to check before anything costs money. You say what you want in a sentence; the skill takes it from there to a result you can hold, shows each step on the way and spends nothing before you agree.
 
-SkillCDN turns a git repository into an MCP server. Point an agent at an address and it gets what the address covers:
+| You say | You get |
+|---|---|
+| "Make an ad for this product." | A captioned vertical ad built on a reference that is working now, its cost approved before anything is generated. |
+| "What is taking off in this market?" | A ranked report of what advertisers are putting new money behind, with a snapshot the next run measures growth against. |
+| "Research the ads running for this keyword." | The creatives that show proof of working, each broken down, with directions for your own ads. |
+
+Each folder is an area of work with the skills that do it and the documents its people read: marketing has the first skills, product and engineering are next, and more areas will follow. This is also the reference repository for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a skill repository, kept working against real tools. Fork it to publish your own skills in the same shape.
+
+[SkillCDN](https://github.com/skillcdn/skillcdn) turns a git repository into an MCP server. Point an agent at an address and it gets what the address covers:
 
 ```
 skillcdn.ai/gh/skillcdn/skills                                        the whole repository (recommended)

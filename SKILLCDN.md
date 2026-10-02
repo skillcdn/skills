@@ -1,13 +1,13 @@
 ---
 name: SkillCDN skills
-description: The official skill collection of SkillCDN, building a company of agents one area of work at a time. Use when a task in one of its areas should be done with a real tool, from the request to the finished result.
+description: Skills that put the AI you already use in charge of a job, one area of work at a time. Use when a task in one of its areas should be carried from a one-line request to a finished result with real tools, asking before anything is spent.
 documents:
   - docs
 language: en
 translations:
   ko:
     name: SkillCDN 스킬
-    description: SkillCDN의 공식 스킬 모음으로, 업무 분야를 하나씩 더해 가며 에이전트로 이루어진 회사를 만들어 갑니다. 각 분야의 일을 실제 도구로 요청부터 결과물까지 맡길 때 쓰세요.
+    description: 쓰던 AI를 일 잘하는 담당자로 만들어 주는 스킬 모음으로, 마케팅부터 분야를 하나씩 넓혀 갑니다. 맡은 일은 실제 도구로 결과물까지 끝내고, 비용이 드는 일은 먼저 묻습니다.
 license: MIT
 metadata:
   author: skillcdn
