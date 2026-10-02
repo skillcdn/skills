@@ -81,7 +81,7 @@ Produces three **directions** for the user's subject, written new, each tied to 
 
 ### Phase 8: Deliver
 
-The run's folder by "Report": `report.md` in the user's language, `ads.json`, and the frames as working files. Delete the browser profile the page dump left behind. One message: where the files are, the three or four findings that matter most, what was not read and why. When the user wants one of the references made into an ad, say that a skill that produces ads takes it from here; in this collection `higgsfield-shorts-ad` starts from a reference video's address and a product link.
+The run's folder by "Report": `report.md` in the user's language, `ads.json`, and the frames as working files. Remove the browser profile the page dump left behind, with the script's `clean`. One message: where the files are, the three or four findings that matter most, what was not read and why. When the user wants one of the references made into an ad, say that a skill that produces ads takes it from here; in this collection `higgsfield-shorts-ad` starts from a reference video's address and a product link.
 
 ## Hard rules
 

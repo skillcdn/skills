@@ -76,7 +76,7 @@ Produces one **profile** per reported item, by "Profiles": what it is, who sells
 
 ### Phase 7: Deliver
 
-The run's folder by "Report and snapshot": `report.md` in the user's language and `snapshot.json`. Delete the browser profile the page dump left behind. One message: where the files are, the three or four items that matter most and why, what was left out, and that running again in a week or two turns this snapshot into measured growth. For an item the user wants to enter, the creative research skill of this family reads its ads in depth.
+The run's folder by "Report and snapshot": `report.md` in the user's language and `snapshot.json`. Remove the browser profile the page dump left behind, with the script's `clean`. One message: where the files are, the three or four items that matter most and why, what was left out, and that running again in a week or two turns this snapshot into measured growth. For an item the user wants to enter, the creative research skill of this family reads its ads in depth.
 
 ## Hard rules
 
