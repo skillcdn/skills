@@ -1,10 +1,10 @@
 # SkillCDN skills
 
-Put the AI you already use in charge of the job. Each skill here holds what someone who does that job for a living knows: what to ask and what to work out alone, which tool to drive, what to check before anything costs money. You say what you want in a sentence; the skill takes it from there to a result you can hold, shows each step on the way and spends nothing before you agree.
+Skills for an AI agent to do real company work. From marketing to design, engineering and customer support.
 
 | You say | You get |
 |---|---|
-| "Make an ad for this product." | A captioned vertical ad built on a reference that is working now, its cost approved before anything is generated. |
+| "Make an ad for this product." | A captioned vertical ad built on a reference that is working now. |
 | "What is taking off in this market?" | A ranked report of what advertisers are putting new money behind, with a snapshot the next run measures growth against. |
 | "Research the ads running for this keyword." | The creatives that show proof of working, each broken down, with directions for your own ads. |
 

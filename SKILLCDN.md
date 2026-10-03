@@ -1,13 +1,13 @@
 ---
 name: SkillCDN skills
-description: Skills that put the AI you already use in charge of a job, one area of work at a time. Use when a task in one of its areas should be carried from a one-line request to a finished result with real tools, asking before anything is spent.
+description: Skills for an AI agent to do real company work. From marketing to design, engineering and customer support.
 documents:
   - docs
 language: en
 translations:
   ko:
     name: SkillCDN 스킬
-    description: 쓰던 AI를 일 잘하는 담당자로 만들어 주는 스킬 모음으로, 마케팅부터 분야를 하나씩 넓혀 갑니다. 맡은 일은 실제 도구로 결과물까지 끝내고, 비용이 드는 일은 먼저 묻습니다.
+    description: AI 에이전트가 실제 회사 업무를 하기 위한 스킬. 마케팅부터 디자인, 엔지니어링, 고객지원까지.
 license: MIT
 metadata:
   author: skillcdn

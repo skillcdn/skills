@@ -2,7 +2,7 @@
   "name": "@skillcdn/skills",
   "private": true,
   "type": "module",
-  "description": "Skills that put the AI you already use in charge of a job, served live at skillcdn.ai/gh/skillcdn/skills, and the reference repository for the SkillCDN Format. Content only; no runtime dependencies.",
+  "description": "Skills for an AI agent to do real company work, served live at skillcdn.ai/gh/skillcdn/skills, and the reference repository for the SkillCDN Format. Content only; no runtime dependencies.",
   "license": "MIT",
   "scripts": {
     "check": "node scripts/check.mjs"
