@@ -11,6 +11,7 @@ Higgsfield is one MCP server, so the skills name its tools by their exact names 
 - **Spend only after a preflight.** `generate_video` and `generate_image` with `get_cost: true`, once per distinct parameter set; the sum with a reserve goes to the user before any job, images included. A preset recommendation instead of a number is answered with `declined_preset_id`.
 - **`use_unlim` explicit on every call**, `false` unless the user asked for free-trial unlimited generations; left out, the server may return a question instead of a job.
 - **Lowest tier, one job per call, `count` 1, never a batch tool**, so the review of one take can stop a fault before the next take repeats it.
+- **A role list is not proof that two roles combine in one call.** The preflight accepts what the generation may refuse (a start frame with reference images, on one model in October 2026); the first real take is the test, and the cost checkpoint names the fallback.
 - **The model speaks.** Every spoken word is the video model's native audio; no text-to-speech, dubbing or voice tools.
 - **Overlays are code.** Captions, text, cards, logos, inserts, end cards: ffmpeg and Pillow in the sandbox, never the video model.
 - **Two plain decodes decide what was said.** Every speaking take is decoded twice with Whisper without a prompt, with two model sizes; spelling the ear does not hear is set aside; agreement decides; a decode prompted with the intended line supports a reading but never overrules two plain ones; a word that is really wrong is never handed to the user as unsettled.
