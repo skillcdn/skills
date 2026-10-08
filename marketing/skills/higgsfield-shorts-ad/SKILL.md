@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Higgsfield MCP server with video generation, image generation, video analysis, media upload and the cloud sandbox (ffmpeg and Whisper). Works in any agent that can call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.7"
+  version: "1.8"
   tools: higgsfield
 skillcdn:
   include:
@@ -18,6 +18,7 @@ skillcdn:
     - references/model-selection.md
     - references/regeneration.md
     - references/captions.md
+    - /docs/higgsfield/pronunciation.md
   translations:
     ko:
       title: 레퍼런스 영상으로 만드는 숏폼 AI 광고
@@ -50,7 +51,7 @@ All from the Higgsfield MCP server. Check that they are callable before the firs
 
 Optional: any web-reading tool for the product page's text; a skill that researches running ads, which finds the reference when the request has none. No text-to-speech. In a client without the upload widget everything comes in as links, or an agent with a shell uploads a local file itself ([analysis-brief.md](references/analysis-brief.md) "Intake"). The references this skill links come with it when the server returns them; when only their list came, read each with `read_repo_file` before the phase that links it. How these tools behaved in real runs of this skill is in [tool-notes.md](references/tool-notes.md); know it before phase 2.
 
-What every Higgsfield skill of the repository shares (the sandbox, models and credits, portraits and frames, decoding a take, the sounds of each language) is in the repository's shared pages under [`docs/higgsfield/`](/docs/higgsfield/README.md), linked from the phases that read them and read with `read_repo_file` through the repository connection. A skill mounted alone, installed as a plugin or copied into another agent does not have them: say so in the first message, fetch them where the agent can from `docs/higgsfield/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`), and otherwise run on this skill's own files, which carry its workflow and its rules.
+What every Higgsfield skill of the repository shares (the sandbox, models and credits, portraits and frames, decoding a take, the sounds of each language) is in the repository's shared pages under [`docs/higgsfield/`](/docs/higgsfield/README.md). [pronunciation.md](/docs/higgsfield/pronunciation.md), which every run writes and reviews lines with, is included: it arrives with this skill wherever SkillCDN serves it. The other pages are linked from the phases that read them and read with `read_repo_file` through the connection at the repository root. Without that connection (a mount of the area or of this skill alone, a host that takes skills through the skills extension and has no `read_repo_file`, a plugin install, a copy of this directory) the linked pages cannot be read, and a plugin install or a copy lacks the included page too: say so in the first message, fetch what is missing where the agent can from `docs/higgsfield/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`), and otherwise run on this skill's own files, which carry its workflow and its rules.
 
 ## Inputs
 
