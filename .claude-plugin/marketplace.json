@@ -12,6 +12,12 @@
       "source": "./marketing",
       "description": "Marketing and growth: ads, ad and product research, promotional video, content, campaigns. A short-form AI ad from a reference video and a product link, and research in the Meta Ad Library for ad creatives and for rising products.",
       "license": "MIT"
+    },
+    {
+      "name": "media",
+      "source": "./media",
+      "description": "Original video and audio content: scripted short dramas, series episodes and story-driven shorts. One episode of a vertical short drama on Higgsfield from a premise or a series bible, with native dialogue, verified lines and coded subtitles.",
+      "license": "MIT"
     }
   ]
 }

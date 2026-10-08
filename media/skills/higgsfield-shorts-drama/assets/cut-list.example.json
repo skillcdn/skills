@@ -1,0 +1,69 @@
+{
+  "$comment": "Example cut table produced in phase 2. Values are illustrative placeholders. Costs are filled in phase 3 from get_cost preflights, never typed by hand. Portrait and set ids are filled in phase 4 and first-frame ids in phase 5, once approved. Every take is animated from its first frame (start_image) with the portraits of the characters in the cut as the video model's references.",
+  "episode": 1,
+  "language": "<language tag of the dialogue>",
+  "aspect_ratio": "9:16",
+  "target_seconds_after_edit": 150,
+  "style_line": "<the bible's style line, repeated verbatim in every image and take prompt>",
+  "references": {
+    "HERO": { "kind": "portrait", "look": "present day", "description": "<age range, build, hair, skin tone, costume, baseline expression>", "media_id": null },
+    "RIVAL": { "kind": "portrait", "look": "present day", "description": "<...>", "media_id": null },
+    "EDGE": { "kind": "set", "description": "<the edge of a place at night in a storm, wide, empty>", "media_id": null }
+  },
+  "continuity_clauses": [
+    "<HERO's hair color, stated in capitals once a take has missed it>",
+    "<HERO wears no ring after cut 3>"
+  ],
+  "cuts": [
+    {
+      "id": "E1",
+      "seconds": 8,
+      "references": ["HERO", "RIVAL"],
+      "set": "EDGE",
+      "look": "<present day, storm night, cold blue>",
+      "first_frame": { "description": "<wide: HERO and RIVAL at the edge in the rain, HERO guarded, RIVAL smiling>", "job_id": null, "approved": false },
+      "shots": [
+        { "n": 1, "window": [0, 3], "text": "<wide: the two at the edge, wind>" },
+        { "n": 2, "window": [3, 6], "text": "<close-up: RIVAL smiles and steps forward>" },
+        { "n": 3, "window": [6, 8], "text": "<HERO's foot slips, the frame tilts>" }
+      ],
+      "lines": [
+        { "speaker": "RIVAL", "window": [3.5, 5.5], "text": "<one short spoken line, five to twelve words>", "prompt_spelling": {}, "voice_over": false }
+      ],
+      "sound": ["wind", "a scream"],
+      "edit": { "name_card": { "who": "RIVAL", "line": "<name> · <relationship in one phrase>" }, "flash_from": null },
+      "knowledge_note": "<who hears the line and what they know at this second>",
+      "cost_credits": null,
+      "takes": []
+    },
+    {
+      "id": "E2",
+      "seconds": 12,
+      "references": ["HERO"],
+      "set": null,
+      "look": "<falling through storm clouds, lightning>",
+      "first_frame": { "description": "<HERO mid-fall, eyes closing, rain streaking upward, lightning behind>", "job_id": null, "approved": false },
+      "shots": [
+        { "n": 1, "window": [0, 2], "text": "<HERO falls, eyes close, body goes limp: she faints and sees nothing after this>" },
+        { "n": 2, "window": [2, 7], "text": "<the event only the viewer sees>" },
+        { "n": 3, "window": [7, 12], "text": "<close-up of the sleeping HERO>" }
+      ],
+      "lines": [
+        { "speaker": "HERO", "window": [8.5, 11.5], "text": "<inner voice, one line, in the tense the bible fixed>", "prompt_spelling": {}, "voice_over": true }
+      ],
+      "sound": ["a roar", "a crash"],
+      "edit": { "name_card": null, "flash_from": null },
+      "knowledge_note": "<HERO learns nothing here; her column of the knowledge table stays at never for this episode>",
+      "cost_credits": null,
+      "takes": []
+    }
+  ],
+  "not_on_screen": ["series title", "next-episode card"],
+  "ledger": {
+    "estimate_credits": null,
+    "reserve_credits": null,
+    "accepted_budget_credits": null,
+    "spent_credits": 0,
+    "entries": []
+  }
+}
