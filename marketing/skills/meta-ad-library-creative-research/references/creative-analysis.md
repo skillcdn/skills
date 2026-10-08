@@ -4,11 +4,13 @@ The method of phases 3 to 8: what to load, what to keep, what counts as proof, h
 
 ## Search plan
 
+Views are written here as the page-dump script's specs ([page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script"). On another route each key maps to a parameter of [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "URLs": `media` to `media_type`, `sort=recent` to the most-recent sort, `before` and `after` to the date bounds, `page` to the advertiser view, `exact=1` to the exact phrase; `lines` only shortens what the script prints.
+
 - **Terms.** Two to four, in the market's language, as buyers and sellers write them: the category word; a problem or benefit phrase; a named competitor when the user gave one (its advertiser view, or its domain as an exact phrase). For the user's own product, take the category words from its page. Where a language spells or spaces a word several ways, each variant is a different search: spend one load on a variant and keep it only when most of what it returns is not in the pool yet. A term whose first view is mostly off the subject is dropped, its other views unloaded.
 - **Views per term**, one page load each: impressions order, all media (`q=<term>`); impressions order, video (`q=<term>&media=video`). Add impressions order for still images (`q=<term>&media=image_and_meme`) when the category sells with them or the user asked. When a term's first view fits on one page (`more` is false), its other views would repeat the same ads: skip them.
 - **This week**, one load, for the main term only: most recent, all media (`q=<term>&sort=recent`). It returns ads a day or two old, which is the Fresh group and nothing for the shortlist.
-- **Churn of the main term**, two loads: its counts by age (`q=<term>&before=7d`, `q=<term>&before=30d`; [ad-library.md](ad-library.md) "Counting by age") say what share of the active ads is new this week and what share has outlived a month.
-- **Budget.** 40 page loads for the run: the views, the most-recent view, the two age counts, one advertiser view for each shortlisted seller and for the three sellers with the most entries in the cleaned pool, and a few spare. Note each view's count: together they are the landscape.
+- **Churn of the main term**, two loads: its counts by age (`q=<term>&before=7d`, `q=<term>&before=30d`; [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "Counting by age") say what share of the active ads is new this week and what share has outlived a month.
+- **Budget.** 40 page loads for the run: the views, the most-recent view, the two age counts, one advertiser view for each shortlisted seller and for the three sellers with the most entries in the cleaned pool, and a few spare. Note each view's count: together they are the landscape. A full research with frames for six videos has taken 15 to 24 page loads and 11 to 28 minutes; a shortlist of videos with their sheets, as the reference for an ad, 15 or 16 loads and four minutes.
 
 Work in one folder, `ad-research-<subject>-<YYYYMMDD>/`, the subject in lowercase ASCII words joined by hyphens (translated when it is not written in Latin script). Scripts, raw records and the load log go in `work/` inside it.
 
@@ -66,11 +68,11 @@ ffmpeg -v error -y -ss "$T" -i "$URL_HD" -frames:v 1 "frames/frame-$ID-$T.jpg"
 ```
 
 - `URL` is the record's `video`; `URL_HD` is its `video_hd`, or `video` when there is none.
-- The hook sheet is the first three seconds, six frames half a second apart, read left to right and top to bottom, large enough to read the words on screen.
+- The hook sheet is the first three seconds, six frames half a second apart, read left to right and top to bottom, large enough to read the words on screen: 480 pixels wide from the large video; 240 from the small one cannot be read for small print.
 - The overview sheet is the whole ad. `N` is the duration divided by 24 and rounded up, at least 1: one frame every N seconds. `ROWS` is the number of frames (the duration divided by N, rounded up) divided by 6 and rounded up; the tile filter needs both dimensions.
 - The last command takes one frame at second `T` at full size, for small print the sheets do not show.
 
-Look at the images: a sheet that was made and not looked at was not read, and each breakdown says which sheets it comes from. Where a speech-to-text tool is installed, extract the audio (`-vn -ac 1 -ar 16000`) and transcribe it; where none is, the burned-in captions on the frames carry the script, and the report says the audio was not transcribed.
+Look at the images: a sheet that was made and not looked at was not read, and each breakdown says which sheets it comes from. Where a speech-to-text tool is installed, extract the audio (`-vn -ac 1 -ar 16000`) and transcribe it; where none is, the burned-in captions on the frames carry the script, and the report says the audio was not transcribed. A speech-to-text model mishears product names that the burned-in captions show: for names, the frames are the ground truth.
 
 **Video, with a driven browser only.** Open the video's own address (`video_hd`, else `video`) in a tab, run this in the page and take one screenshot. It draws the frames side by side over the page, as large as the viewport allows, so a video costs two screenshots: once with `show` as `"hook"` and once as `"overview"`. For small print, give `show` a second and `part` a third of the frame, and take another. Frames are not kept on this route; say so in the report. Where no script can run, pause the player and take a screenshot at 0, 1, 2 and 3 seconds and at a few later moments.
 
@@ -140,7 +142,7 @@ Three directions for the user's subject, written new. Each has: the mechanism an
 
 ## Report
 
-The run's folder holds `report.md` in the user's language, headings included, `ads.json` shaped like [research-data.example.json](../assets/research-data.example.json) (field names and fixed values in English, free text in the user's language), `frames/` when a shell made frames, and `work/`. Where the agent cannot write files, the same report goes into the client's document surface. Frames are working files for the user's own study; the report links ads by Library ID and embeds no one's creative.
+The run's folder holds `report.md` in the user's language, headings included, `ads.json` shaped like [research-data.example.json](../assets/research-data.example.json) (field names and fixed values in English, free text in the user's language; it reshapes the record: `advertiser` is the record's `page`, `landing_domain` the host of its `landing`, `copies` the Library IDs of its creative group, `ranks` its `rank` per view), `frames/` when a shell made frames, and `work/`. Where the agent cannot write files, the same report goes into the client's document surface. Frames are working files for the user's own study; the report links ads by Library ID and embeds no one's creative.
 
 ```markdown
 # Ad creative research: <subject> (<market>, <date>)

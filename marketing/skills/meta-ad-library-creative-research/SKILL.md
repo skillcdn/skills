@@ -5,11 +5,11 @@ license: MIT
 compatibility: Needs a real browser engine to load facebook.com/ads/library, either a shell with a Chromium-family browser on the same machine or a browser the agent can drive (a built-in browser, a browser extension, a Playwright or Chrome DevTools server). Video frames need ffmpeg or the driven browser. Plain fetch and search tools cannot load the site. Any agent with one of the two can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: meta-ad-library
 skillcdn:
   include:
-    - references/ad-library.md
+    - references/creative-analysis.md
   translations:
     ko:
       title: 메타 광고 라이브러리 광고 소재 리서치
@@ -32,13 +32,13 @@ Capabilities, not product names: the tools that provide them differ by assistant
 
 | Need | Any one of | When missing |
 |---|---|---|
-| Load the library | A shell with a Chromium-family browser on the same machine (the page-dump route); a browser the agent drives (the driven-browser route) | Stop and tell the user what to add, as [ad-library.md](references/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
+| Load the library | A shell with a Chromium-family browser on the same machine (the page-dump route); a browser the agent drives (the driven-browser route) | Stop and tell the user what to add, as [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
 | See a video's frames | `ffmpeg` and `ffprobe` in the shell; or the driven browser | Go on with posters and copy, and mark each such breakdown "poster only". |
 | Write the report | A file tool; or the client's document surface | Put the whole report in the reply. |
 
 Optional: a speech-to-text tool for the audio, a web-reading tool for the user's product page. Nothing here costs money; a paid service (a scraping service, a paid analysis tool) is used only when the user asks for it and agrees to its cost.
 
-[ad-library.md](references/ad-library.md) comes with this skill. Read [collectors.md](references/collectors.md) and [creative-analysis.md](references/creative-analysis.md) before phase 1, which is before the terms are chosen and the first page is loaded; when only their names came with the skill, fetch them (`read_repo_file` through SkillCDN, the files themselves in a local copy).
+[creative-analysis.md](references/creative-analysis.md), the method, comes with this skill. How the library is reached and read is in the pages the skills of this family share, under [`marketing/docs/meta-ad-library/`](/marketing/docs/meta-ad-library/README.md): read [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) before phase 1, which is before the terms are chosen and the first page is loaded, then [record.md](/marketing/docs/meta-ad-library/record.md) and the page of the route the agent has, [page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) or [driven-browser.md](/marketing/docs/meta-ad-library/driven-browser.md). They come with the repository or the marketing connection (`read_repo_file` at those paths) and with the marketing plugin, two levels above this skill's folder (`../../docs/meta-ad-library/`). A skill mounted alone or copied into another agent does not have them: say so in the first message and fetch them before phase 2 from `marketing/docs/meta-ad-library/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`); without them the routes, the URL parameters and the readers are unknown.
 
 ## Inputs
 
@@ -57,7 +57,7 @@ Produces the **research brief**: the subject in a line, the market as a country 
 
 ### Phase 2: Access
 
-Produces the **route**. Take the first route of [ad-library.md](references/ad-library.md) "Routes" that the agent has and prove it by running the first view of the search plan: a count and at least one Library ID. With a shell, that means saving the script and running it, not checking the machine first. When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every "days running" depends on it.
+Produces the **route**. Take the first route of [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "Routes" that the agent has and prove it by running the first view of the search plan: a count and at least one Library ID. With a shell, that means saving the script of [page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script" and running it, not checking the machine first; with a driven browser, navigating and running the reader of [driven-browser.md](/marketing/docs/meta-ad-library/driven-browser.md) "The embedded results". Either yields the record of [record.md](/marketing/docs/meta-ad-library/record.md). When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every "days running" depends on it.
 
 ### Phase 3: Collect
 
@@ -69,7 +69,7 @@ Produces the **shortlist**. Give each entry its tier by "Proof", choose by "Shor
 
 ### Phase 5: Deep read
 
-Produces one **breakdown** per shortlisted creative, by "Deep read": the copy, the frames of each video (a hook sheet and an overview sheet, or screenshots, or the poster alone), the image, the versions. Media addresses expire within days, so media is read in the run that collected it.
+Produces one **breakdown** per shortlisted creative, by "Deep read": the copy, the frames of each video (a hook sheet and an overview sheet, or screenshots, or the poster alone), the image, the versions. Media addresses expire within days ([record.md](/marketing/docs/meta-ad-library/record.md) "Media addresses"), so media is read in the run that collected it.
 
 ### Phase 6: Patterns
 
@@ -81,12 +81,12 @@ Produces three **directions** for the user's subject, written new, each tied to 
 
 ### Phase 8: Deliver
 
-The run's folder by "Report": `report.md` in the user's language, `ads.json`, and the frames as working files. Remove the browser profile the page dump left behind, with the script's `clean`. One message: where the files are, the three or four findings that matter most, what was not read and why. When the user wants one of the references made into an ad, say that a skill that produces ads takes it from here; in this collection `higgsfield-shorts-ad` starts from a reference video's address and a product link.
+The run's folder by "Report": `report.md` in the user's language, `ads.json`, and the frames as working files. Remove the browser profile the page dump left behind, with the script's `clean` ([page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script"). One message: where the files are, the three or four findings that matter most, what was not read and why. When the user wants one of the references made into an ad, say that a skill that produces ads takes it from here; in this collection `higgsfield-shorts-ad` starts from a reference video's address and a product link.
 
 ## Hard rules
 
 1. Only the subject is asked for. Everything else is derived, stated at the checkpoint and changed on request.
-2. The library is read with a real browser engine, one page at a time, inside the budget. No sign-in, and no way around a browser check, a login wall or a block: at the signs of being slowed down, stop and tell the user.
+2. The library is read with a real browser engine, one page at a time, at least two seconds apart, inside the budget, every browser run or navigation counted, the first check and the retries included; bulk or continuous collection is outside this skill. No sign-in, and no way around a browser check, a login wall or a block: at the signs of being slowed down, stop and tell the user.
 3. Proof is what the library shows: the order, the dates, the reuse, the ad counts, and reach in the EU and the UK. Never state or imply spend, impressions, click rates or sales for an ad, and never call one "the best performing"; say which signals it shows.
 4. Every ad in the report was read in this run and carries its Library ID link. Nothing is described from memory, a search engine or a third-party listing.
 5. Recent first: Rising and Proven before Evergreen. A Fresh ad is never evidence.
