@@ -4,7 +4,7 @@ One cut is one `generate_video` call: the approved first frame as `start_image`,
 
 ## Structure
 
-1. **Reference mapping.** One line per reference: the label, who it is, and what to take from it ("the face, hair and costume of <character>"). Then: "Use only the faces and costumes from the portraits, not their plain backgrounds. The first image is the opening frame; continue from it."
+1. **Reference mapping.** The frame goes in `start_image`; the portraits go in the model's reference role in the order the mapping lists them. One line per portrait, in that order: "Reference image N: <character>; take the face, hair and build." Then: "Use only the faces and hair from the reference images, not their plain backgrounds. The start image is the opening frame; continue from it, with the costumes as in the start image."
 2. **Style and world line.** The style line verbatim, then the look of this cut in one sentence: period, place, light, palette, grading. Copied from the episode's prompt conventions.
 3. **Shots.** "Shot N (a to b s): ..." with the camera, the action and the expression. One to three seconds each; a cut of 10 or 12 seconds holds three to five.
 4. **Lines.** For each spoken line: "Between X and Y seconds <CHARACTER> speaks <language> with natural standard pronunciation, lips synced, every syllable articulated distinctly, no added syllables: '<the line>'", the line written in the language's own script, with the voice the bible gives the character in a few words. For the inner voice: "<language> voice-over in <CHARACTER>'s voice, <the bible's voice line>, calm pace, lips NOT moving: '<the line>'".

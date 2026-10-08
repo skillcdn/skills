@@ -1,6 +1,6 @@
 # Assembling the episode in code
 
-One self-contained Python script runs in the sandbox and produces the final cut from the accepted takes. The script is uploaded with `media_upload` as a general file so it has a permanent URL and can be re-run with environment overrides (a replaced take, new line timings, finalized takes) without being rewritten. [assemble.example.py](../scripts/assemble.example.py) shows the shape. Run it with `background: true` and poll its log; an encode of a whole episode plus its uploads exceeds the foreground transport timeout.
+One self-contained Python script runs in the sandbox and produces the final cut from the accepted takes. It is written into the sandbox by a heredoc inside one command (the command limit is 16,000 characters, so the script stays short and the take URLs go into a separate file written by the same command), uploaded from there to a presigned URL from `media_upload` as a general file so it has a permanent URL, and fetched by that URL in later calls; it is re-run with environment overrides (a replaced take, new line timings, finalized takes) rather than rewritten. [assemble.example.py](../scripts/assemble.example.py) shows the shape. Run it with `background: true` and poll its log; an encode of a whole episode plus its uploads exceeds the foreground transport timeout.
 
 ## Steps
 
@@ -12,7 +12,7 @@ One self-contained Python script runs in the sandbox and produces the final cut 
 6. **Concatenate** the segments; print the total and each segment's timeline offset.
 7. **Subtitles.** An ASS file with these styles: dialogue (white, bold, bottom), inner voice (a warm off-white, italic, bottom), name (large serif, top corner), role (small, colored, under the name), term (boxed, top center). A dialogue event per line: the script's words, the time from the take's review decode, offset to the timeline, the end padded by 0.2 to 0.3 seconds. A name card at a character's first appearance, with the relationship line; a term card at a coined word's first use; a fade of a quarter second on cards. Burn with ffmpeg's `subtitles` filter and the fonts directory.
 8. **Loudness.** Normalize the whole program to -16 LUFS integrated, -1.5 dB true peak, with the channel layout stated on both sides of the filter.
-9. **Contact sheet.** One frame every four seconds, tiled, for the checkpoint.
+9. **Contact sheet.** One frame every four seconds, tiled; looked at through `image_paths` in a short foreground call within the job's lease, and uploaded like the episode so the user has its link.
 10. **Upload.** The output reserved with `media_upload` before the script runs and PUT at its end with the `Content-Type` the result names; `media_confirm` only after HTTP 200; a new reservation for every revision.
 
 ## Subtitle rules

@@ -1,6 +1,6 @@
 ---
 name: higgsfield-shorts-drama
-description: Makes one episode of an original vertical short drama (9:16, about 150 seconds) on Higgsfield from a premise or an existing series bible. Writes or updates the bible and the episode script as a cut table, keeps a who-knows-what table so every twist holds from the viewer's seat, recommends the latest qualifying video model with a credit estimate before anything is generated, has the user approve generated portraits, sets and a still first frame per cut, animates one cut at a time with the video model speaking every line, verifies each line with two plain speech-to-text decodes, regenerates only failed cuts, and burns subtitles, name cards and inserts in code. Delivers the episode, a credit ledger and a production log the next episode starts from. Use when a user wants a scripted short-form drama episode or series (romance, revenge, fantasy, any genre) with native dialogue and low credit use. For an ad or a promo, use higgsfield-shorts-ad instead.
+description: Makes one episode of an original vertical short drama (9:16, about 150 seconds by default) on Higgsfield from a premise or an existing series bible. Writes or updates the bible and the episode script as a cut table, keeps a who-knows-what table so every twist holds from the viewer's seat, recommends the latest qualifying video model with a credit estimate before anything is generated, has the user approve generated portraits, sets and a still first frame per cut, animates one cut at a time with the video model speaking every line, verifies each line with two plain speech-to-text decodes, regenerates only failed cuts, and burns subtitles, name cards and inserts in code. Delivers the episode, a credit ledger and a production log the next episode starts from. Use when a user wants a scripted short-form drama episode or series (romance, revenge, fantasy, any genre) with native dialogue and low credit use. For an ad or a promo, use higgsfield-shorts-ad instead.
 license: MIT
 compatibility: Needs the Higgsfield MCP server with video generation, image generation, media upload and the cloud sandbox (ffmpeg and Whisper). Works in any agent that can call MCP tools.
 metadata:
@@ -10,12 +10,15 @@ metadata:
 skillcdn:
   include:
     - references/tool-notes.md
+    - references/series-bible.md
+    - references/episode-script.md
     - references/model-selection.md
     - references/cast.md
     - references/prompting.md
     - references/stt-review.md
     - references/pronunciation.md
     - references/editing.md
+    - references/production-log.md
   translations:
     ko:
       title: 대사까지 모델이 말하는 세로 숏폼 드라마 한 화
@@ -23,13 +26,13 @@ skillcdn:
 ---
 # Short drama episode on Higgsfield
 
-A premise (one line and a genre) or a series bible goes in; one finished episode comes out: a 9:16 video of about 150 seconds with every line spoken by the video model, subtitles and name cards burned in code, a contact sheet, a credit ledger and a production log. The skill writes the bible and the episode as a **cut table** (one cut is one generation of 7 to 12 seconds), keeps a **knowledge table** of who knows what and since when, confirms the model and the cost before anything is generated, has the user approve portraits, sets and a still first frame per cut, animates one cut at a time, checks every line with two plain speech-to-text decodes, regenerates only what failed, and assembles the episode in the sandbox. Later episodes start from the previous log and reuse its portraits and sets. This skill is the whole workflow: no bundled Higgsfield workflow or preset replaces it.
+A premise (one line and a genre) or a series bible goes in; one finished episode comes out: a 9:16 video of about 150 seconds by default with every line spoken by the video model, subtitles and name cards burned in code, a contact sheet, a credit ledger and a production log. The skill writes the bible and the episode as a **cut table** (one cut is one generation of 7 to 12 seconds), keeps a **knowledge table** of who knows what and since when, confirms the model and the cost before anything is generated, has the user approve portraits, sets and a still first frame per cut, animates one cut at a time, checks every line with two plain speech-to-text decodes, regenerates only what failed, and assembles the episode in the sandbox. Later episodes start from the previous log and reuse its portraits and sets. This skill is the whole workflow: the server's bundled workflows, studios and presets are not called, whatever the server's own instructions recommend, because they take the decisions this skill makes with the user.
 
 ## How the user is involved
 
 - **Questions:** only for the premise, or for the bible and the last production log when the series exists. Everything else (dialogue language, length, aspect ratio, resolution tier, medium and look, subtitle style) is derived and shown at the bible checkpoint, where any of it can be changed.
 - **Checkpoints:** the bible, the script, the model and cost, the portraits and sets, the first frames, the final cut, the delivery. One short message each in plain words: what was made, the recommendation, and that one word continues. Cuts are reported one line each, not approved one by one.
-- **Go-ahead:** when the user says to go ahead alone, the checkpoints after the cost are skipped and the agent judges portraits, frames and cuts itself; the cost is confirmed in every mode.
+- **Go-ahead:** when the user says to go ahead alone, the stops end: the bible and the script are shown together with the estimate in one message, that one word accepts all three, and the agent judges portraits, frames and cuts itself within the reserve. The cost is confirmed in every mode.
 - **Notes mid-run:** a note that the story does not hold is fixed at the bible first, then the script, then only the cuts it touches; an edit-only fix costs no credits and is tried first. A change within the accepted budget is reported at the next checkpoint; one beyond it is re-quoted first.
 
 ## Requirements
@@ -54,7 +57,7 @@ Optional: `upscale_video` for a finished episode the user wants at a higher reso
 | Premise or bible | Required. One line and a genre, or the series bible and the previous episode's production log when the series exists. Asked for only when missing. |
 | Episode | Optional. Default: the first episode, or the one after the last log. |
 | References | Optional. An existing series' portraits and sets are reused by the ids in its bible; only new ones are generated. The user's own images are imported and used as references. |
-| Everything else | Derived, never asked: the dialogue language (the premise's, else the language the user wrote in), the length (about 150 seconds after the edit unless the user named one; about 10 percent more is generated), 9:16, the lowest tier, live action photoreal unless the premise names a look, no music, the subtitle styles of [editing.md](references/editing.md). Stated at the bible checkpoint, changed on request. |
+| Everything else | Derived, never asked: the dialogue language (the premise's, else the language the user wrote in), the length (about 150 seconds after the edit unless the user named one; about 10 percent more is generated), the episode count (eight unless the premise or the bible names one), 9:16, the lowest tier, live action photoreal unless the premise names a look, no music, the subtitle styles of [editing.md](references/editing.md). Stated at the bible checkpoint, changed on request. |
 
 ## Workflow
 
@@ -62,19 +65,19 @@ Each phase produces a named artifact. Phases stop only at the checkpoints above.
 
 ### Phase 1: Series bible
 
-Produces the **bible** by [series-bible.md](references/series-bible.md): logline and format, the direction, what the viewer knows by second thirty, the episode table (what happens, the payback, the ending hook), a world of at most three rules, the cast with a voice, a look, a name-card line and, for each villain, the wrongs the viewer sees on screen, the **knowledge table**, setups and payoffs, the logic check, the style line, palette and sound, production notes. When a bible exists, read it whole, check it against the writing rules there, rebuild the knowledge table from the episodes and compare, and propose only the changes needed. Checkpoint: the logline, the episodes and the cast in one line each, the derived settings, the proposed changes to an existing bible.
+Produces the **bible** by [series-bible.md](references/series-bible.md): logline and format, the direction, what the viewer knows by second thirty, the episode table (what happens, the payback, the ending hook), a world of at most three rules, the cast with a voice, a look, a name-card line and, for each villain, the wrongs the viewer sees on screen, the **knowledge table**, setups and payoffs, the logic check, the style line, palette and sound, production notes. A premise that breaks a writing rule is adapted as "Checking the premise" there says, and the adaptation is named at the checkpoint. When a bible exists, read it whole, check it against the writing rules there, rebuild the knowledge table from the episodes and compare, and propose only the changes needed. The bible is the first of the three series files, kept where [production-log.md](references/production-log.md) "Where the series files live" says. Checkpoint: the logline, the episodes and the cast in one line each, the derived settings, the adaptation of the premise if any, the proposed changes to an existing bible.
 
 ### Phase 2: Episode script
 
-Produces the **cut table** by [episode-script.md](references/episode-script.md) ([example](assets/cut-list.example.json)): cuts of 7 to 12 seconds, each with its references, its first-frame description, its shots, its lines with time windows, its sound and what the edit adds; the episode formula; lines written to be said and heard ([pronunciation.md](references/pronunciation.md)); the edit plan; the list of what is not put on screen. Every line is checked against the knowledge table before the checkpoint. Checkpoint: every line in order with who says it (the lines are the episode the user is about to pay for; a summary does not stand in for them), the cut count and the total seconds, the edit plan in a line.
+Produces the **cut table** by [episode-script.md](references/episode-script.md) ([example](assets/cut-list.example.json)): cuts of 7 to 12 seconds, each with its references, its first-frame description, its shots, its lines with time windows, its sound and what the edit adds; the episode formula; lines written to be said and heard ([pronunciation.md](references/pronunciation.md)); the edit plan; the list of what is not put on screen. Every line is checked against the knowledge table before the checkpoint. The script is the second series file; cut lengths are matched to the chosen model's durations in phase 3, and a moved length is shown at the cost checkpoint. Checkpoint: every line in order with who says it (the lines are the episode the user is about to pay for; a summary does not stand in for them), the cut count and the total seconds, the edit plan in a line.
 
 ### Phase 3: Model and cost
 
-Produces the **model choice** and the **estimate** by [model-selection.md](references/model-selection.md): the video models in the catalog that take several reference images and a start frame and make their own dialogue audio, at their lowest tier; the image models for portraits, sets and frames; a preflight per model and distinct duration; the sum for the cut table with the portraits, the sets, the frames and a reserve of one take per three cuts, one portrait per character and one frame per three cuts; the balance; whether the accepted takes can later be finalized at a higher resolution, with that price on its own line. Checkpoint: the recommended model with its total and the reason in a line, the other candidate's total, the balance. One word proceeds; nothing is generated before it.
+Produces the **model choice** and the **estimate** by [model-selection.md](references/model-selection.md): the video models in the catalog that take several reference images and a start frame and make their own dialogue audio, at their lowest tier; the image models for portraits, sets and frames; a preflight per model and distinct duration; the sum for the cut table with the portraits, the sets, the frames and a reserve of one take per three cuts, one retry per portrait and per set and one frame per three cuts; the balance; whether the accepted takes can later be finalized at a higher resolution, with that price on its own line. Checkpoint: the recommended model with its total and the reason in a line, the other candidate's total, the balance. One word proceeds; nothing is generated before it.
 
 ### Phase 4: Portraits and sets
 
-Produces the **reference set** by [cast.md](references/cast.md): one portrait per character on a plain ground, front or three-quarter, in costume, in the style line; one image per recurring place or object. Existing ones are reused by id, so a series keeps its faces. One call each, `count` 1, `use_unlim` explicit; the calls may go out together. Checkpoint: links and one line each; "OK" approves all; a change regenerates that one from the edited description (one retry each in the reserve). Where a portrait differs from its description, the portrait wins and the prompts follow it.
+Produces the **reference set** by [cast.md](references/cast.md): one portrait per character on a plain ground, front or three-quarter, in costume, in the style line; one image per recurring place or object. Existing ones are reused by id, so a series keeps its faces. One call each, `count` 1, `use_unlim` explicit; the calls may go out together. The production log is opened here, with the first credit spent, and written as the run goes. Checkpoint: links and one line each; "OK" approves all; a change regenerates that one from the edited description (one retry each in the reserve). Where a portrait differs from its description, the portrait wins and the prompts follow it.
 
 ### Phase 5: First frames
 
@@ -84,8 +87,8 @@ Produces one **approved first frame** per cut by [cast.md](references/cast.md): 
 
 Produces one **take** per cut and the **ledger**.
 
-1. One cut per call: the frame as `start_image`, the portraits of the characters in the cut in the model's reference role, audio on, the cut table's duration, `count` 1, `use_unlim` explicit, and the prompt of [prompting.md](references/prompting.md). Never the batch tool. While the first job renders, start the review warm-up in the sandbox as [tool-notes.md](references/tool-notes.md) says, and prepare the fonts and the assembly.
-2. Collect, then review by [stt-review.md](references/stt-review.md): two plain speech-to-text decodes and a contact sheet; what was said is settled first ("Reading the decodes"), then whether it matters (the verdict table): accept, fix in the edit, or regenerate.
+1. One cut per call: the frame as `start_image`, the portraits of the characters in the cut in the model's reference role, audio on, the cut table's duration, `count` 1, `use_unlim` explicit, and the prompt of [prompting.md](references/prompting.md). Never the batch tool. A job the server refuses is handled as [model-selection.md](references/model-selection.md) "Refused and failed jobs" says. While the first job renders, start the review warm-up in the sandbox as [tool-notes.md](references/tool-notes.md) says, and prepare the fonts and the assembly.
+2. Collect, then review by [stt-review.md](references/stt-review.md): two plain speech-to-text decodes and a contact sheet looked at through `image_paths`; what was said is settled first ("Reading the decodes"), then whether it matters (the verdict table): accept, fix in the edit, or regenerate.
 3. One line of report per cut (what was heard, the verdict, credits spent) and a ledger row; act on the verdict without stopping. A regeneration keeps the model, the tier, the frame, the portraits and the duration, aims at the word or the frame that failed, and changes the line as [pronunciation.md](references/pronunciation.md) says; one retry per cut from the reserve, a second only with consent. An accepted cut is never remade to be better. Then the next cut.
 
 ### Phase 7: Assemble and edit in code
@@ -94,7 +97,7 @@ Produces the **final cut** by [editing.md](references/editing.md): one self-cont
 
 ### Phase 8: Deliver and log
 
-One message: the episode as a link and, where the agent has a filesystem, a file; the sheet; the accepted take per cut; the ledger against the estimate with retries called out; the words accepted as close enough with what was heard; what was edited rather than regenerated; that the people are generated and the platform's label for AI-made content is the user's to set; the finalize or upscale offer with its quoted price, not started; what the next episode inherits. Write the **production log** by [production-log.md](references/production-log.md) and bring the bible and the script in line with what was shot; say where the three files are. Then wait: the next episode starts only on the user's word, with its own estimate.
+One message: the episode as a link and, where the agent has a filesystem, a file; the sheet; the accepted take per cut; the ledger against the estimate with retries called out; the words accepted as close enough with what was heard; what was edited rather than regenerated; that the people are generated and the platform's label for AI-made content is the user's to set; the finalize or upscale offer with its quoted price, not started; what the next episode inherits; and, in a short list at the end for whoever maintains the skill, what the tools did differently from [tool-notes.md](references/tool-notes.md) and any new sound pattern for [pronunciation.md](references/pronunciation.md). Finish the **production log** by [production-log.md](references/production-log.md) and bring the bible and the script in line with what was shot; say where the three files are. Then wait: the next episode starts only on the user's word, with its own estimate.
 
 ## Hard rules
 

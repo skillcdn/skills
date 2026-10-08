@@ -36,7 +36,7 @@ One row per portrait and set the episode needs: the key, what it is, the look (a
 | Column | Content |
 |---|---|
 | Number | E1, E2, ... in shooting order, which is screen order. |
-| Length | 7 to 12 seconds, within the model's durations. A cut with two or more lines needs 10 or 12. |
+| Length | 7 to 12 seconds. A cut with two or more lines needs 10 or 12. A model with fixed duration options is matched in phase 3 by moving each cut to the nearest allowed length; the moved lengths are shown at the cost checkpoint, with no new script checkpoint. |
 | References | The keys of the portraits in the cut (the look of the period) and its set. |
 | First frame | The opening image in one sentence: framing, who stands where, the place, the light, the pose and the starting emotion. The image model makes it from the references; the video model starts from it. |
 | Shots | Numbered shots with the camera and the action, one to three seconds each; the look of the period or world in brackets at the start. |

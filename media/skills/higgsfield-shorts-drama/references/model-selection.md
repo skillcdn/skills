@@ -35,7 +35,7 @@ Audio stays on for every cut; a cut without a line still carries its sound. Neve
 
 ## Preflight
 
-Call `generate_video` with `get_cost: true` and the exact parameters a cut will use: the model, the tier, `9:16`, the duration, audio on, `use_unlim` explicit, and a reference media id where the model's reference mode needs one even to quote (any image the account holds serves; the number does not depend on which). Nothing is submitted or charged. The cost depends on the model, the duration, the tier and the audio flag, not on the prompt, so preflight once per candidate and distinct duration of the cut table and reuse the numbers.
+Call `generate_video` with `get_cost: true` and the exact parameters a cut will use: the model, the tier, `9:16`, the duration, audio on, `use_unlim` explicit, and a reference media id where the model's reference mode needs one even to quote (any image the account holds serves, found with `show_medias`; when the account holds none, make a tiny placeholder image in the sandbox with ImageMagick and upload it with `media_upload` and `media_confirm`, which costs no credits; the number does not depend on which). Nothing is submitted or charged. The cost depends on the model, the duration, the tier and the audio flag, not on the prompt, so preflight once per candidate and distinct duration of the cut table and reuse the numbers.
 
 When the preflight returns a preset recommendation instead of a number, read the preset id from the answer and call again with it in `declined_preset_id`; pass the same field on the real generation. The skill uses no presets and does not put the notice to the user.
 
@@ -45,18 +45,22 @@ Images are preflighted with `generate_image` and `get_cost: true`, once per imag
 
 ```
 Model        Tier    Takes (per cut)                 Images                               Reserve                        Total
-<candidate>  <low>   8, 10, 12, ... = <n> s = <c>     <p> portraits, <s> sets, <f> frames  +<r> takes, +<p> img, +<f/3>   <t>
+<candidate>  <low>   8, 10, 12, ... = <n> s = <c>     <p> portraits, <s> sets, <f> frames  +<r> takes, +<p+s> img, +<f/3>  <t>
 <candidate>  <low>   ...                             ...                                  ...                            <t>
 Balance: <credits> · Finalize at <res>: <price> per take, optional, not in the total · Free-trial unlimited generations: <available or not>
 ```
 
-The shape is illustrative; present only numbers that came back from `get_cost` in this run. The reserve is one take per three cuts (rounded up) priced at the longest cuts, one portrait per character, one frame per three cuts. Read `balance` before presenting; when the total exceeds it, say so and offer a shorter episode or fewer cuts before anything else.
+The shape is illustrative; present only numbers that came back from `get_cost` in this run. The reserve is one take per three cuts (rounded up) priced at the longest cuts, one retry per portrait and per set, one frame per three cuts; it is the whole retry budget, images included, and beyond it every retry needs consent. Read `balance` before presenting; when the total exceeds it, say so and offer a shorter episode or fewer cuts before anything else.
 
 The user sees, in plain words: the recommended model with its total including the reserve and the reason in a line; the other candidate's total; the balance; and the finalize price as a separate, optional line. Recommend by these, in order: the model that takes both references and a start frame; the lower total; the durations the table needs; native audio in the dialogue language. One word proceeds; the user may pick the other candidate or change the plan, which is preflighted again.
 
 ## Free-trial unlimited generations
 
 If the catalog reports that the account can spend free-trial unlimited generations on a candidate, say so in the estimate. Use `use_unlim: true` only when the user explicitly asks for it; never add it to save credits on their behalf, and never drop it once they asked. Set `use_unlim` explicitly on every generation call, `false` unless the user asked: left out, the server may withhold the job and return a question (`unlim_choice`) instead of a take. If that happens anyway, put the question to the user once and call again with their answer.
+
+## Refused and failed jobs
+
+A job the server refuses (moderation, an invalid parameter) or that fails without a result is not a take and not the cut's retry: fix what it names (a fight described by its sound and the reaction on a face rather than the blow, a parameter read again from the catalog) and submit again. Check `transactions` when a charge is in doubt; a charge for a job that gave nothing is a ledger row with its reason, and it counts against the accepted estimate. After two refusals of one cut, stop and show the user the shot with what was refused. On a transport timeout the job may still have been submitted: read `show_generations` before submitting again.
 
 ## After the episode: a higher resolution
 

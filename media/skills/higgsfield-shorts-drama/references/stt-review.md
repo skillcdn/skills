@@ -8,8 +8,8 @@ One `sandbox_exec` call per take, run as a background job and polled ([tool-note
 
 1. Normalize loudness (integrated -16 LUFS, true peak -1.5 dB), then 16 kHz mono WAV.
 2. Decode twice with Whisper, **without a prompt**, with two model sizes (small and medium), the language set, voice activity detection off, word timestamps on. Print every segment with its times and its no-speech probability, and every word with its probability.
-3. Only when the two disagree on a word: a third decode with the cut's lines as `initial_prompt`, and a 10-millisecond RMS envelope over the disputed word. These support a reading; they never decide alone.
-4. A contact sheet at 2 frames per second, tiled, and the duration.
+3. A third decode with the cut's lines as `initial_prompt` runs in the same pass but is read only when the two plain decodes disagree on a word; so is a 10-millisecond RMS envelope over the disputed word (ffmpeg's `astats` with `reset=1` and `length=0.01`, printed through `ametadata`: a dip of about 20 dB lasting around 100 milliseconds is the closure between two words, a burst of noise right before a vowel is an aspirated consonant). These support a reading; they never decide alone.
+4. A contact sheet at 2 frames per second, tiled, and the duration. When the job is done, look at the sheet with a short foreground `sandbox_exec` that passes it in `image_paths`; a picture verdict is never guessed from text.
 
 Voice activity detection stays off for takes: it has missed whispers and invented phrases over wind. Silence is settled by loudness and the no-speech probability, not by the transcript.
 
@@ -32,7 +32,7 @@ Look first at the names and the key words of the cut: the ending's lines, a secr
 | An ordinary word is one sound off and comes out as no other word, or is replaced by a word of the same meaning, and the delivery is natural | Close enough | Accept; list the word and what was heard in the delivery. The subtitle keeps the script. |
 | A word comes out as another word, or as sounds a listener would take for other words; a syllable added or dropped (a particle doubled, a final consonant lost); any real difference in a name or a key word; a line cut off, mumbled, overlapped, or in the wrong language | Wrong word | Regenerate after changing the line ("Regeneration" below). |
 | The line arrives outside its window, overlaps another line, or is cut at the head or the tail | Timing | Trim or move in the edit when the words are whole; otherwise regenerate with the window restated and half a second of lead-in. |
-| Speech where there should be none, at word probability under 0.1 and a no-speech probability above 0.5, on a stretch more than about 12 dB under the take's real speech | Hallucination | Noise, not speech. Accept; note it. |
+| Speech where there should be none, at word probability under 0.1 and a no-speech probability above 0.5, on a stretch more than about 12 dB under the take's real speech (per-second RMS from the same `astats` filter at one second) | Hallucination | Noise, not speech. Accept; note it. |
 | A quiet line present with detection off and right in both decodes | Soft line | Accept; the edit may raise it. |
 | The picture breaks continuity (hair, a ring, a costume, an age, the place), drifts from the frame or the style, or contradicts the knowledge table (a character watching what they must not see) | Continuity | Regenerate with the clause in capitals at the top of the prompt. |
 | The event is weak (a crash that barely moves the frame, a transformation too short) but the words are right | Weak picture | Accept; strengthen in the edit (a speed ramp, a flash, a sound) and note it. |
@@ -49,4 +49,4 @@ A bad word at the end of a line: trim there and cut to the next segment early. A
 - Fix the word before spending the take, in this order: a plainer word of the same meaning for an ordinary word (the line and the subtitle change with it); for a name or a key word, a prompt spelling for the ear, then its syllables named after the line; a name dropped from the line when the sentence survives; a word moved to a term card. A name or a key word is never changed without the user. What the model does with the sounds of the language is in [pronunciation.md](pronunciation.md).
 - One retry per cut comes from the reserve without asking. A second needs the user's consent with the ledger shown. When the reserve is gone, every retry does.
 - Never regenerate an accepted cut to make it better.
-- Record every verdict and retry in the production log: the word, what was tried, what came back, the model, the date. A new sound pattern goes into [pronunciation.md](pronunciation.md) in the same change, in every skill that carries the file.
+- Record every verdict and retry in the production log: the word, what was tried, what came back, the model, the date. A new sound pattern is reported at the delivery for whoever maintains the skill, so that it reaches [pronunciation.md](pronunciation.md) in every skill that carries the file.
