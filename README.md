@@ -22,7 +22,7 @@ skillcdn.ai/gh/skillcdn/skills@<commit>                               pinned to 
 
 A host that implements the MCP skills extension receives these skills as skills: each `SKILL.md` arrives as a plain Agent Skills document with the repository's rules, the area's rules and the references every run needs inside it, listed with a digest per file under `skill://gh/skillcdn/skills/<path>`. Any other MCP client reaches the same skills through the server's tools: `browse_repo`, `search_repo`, `load_skill` and `read_repo_file`.
 
-The same folders work without SkillCDN. Every skill is a plain [Agent Skills](https://agentskills.io/specification) folder: copy `<area>/skills/<name>/` into any agent that reads `SKILL.md`. Every area with skills is a [Claude Code](https://code.claude.com/docs/en/plugins) plugin: `claude plugin marketplace add skillcdn/skills`, then `claude plugin install marketing@skillcdn`. Only through SkillCDN do the rules in [SKILLCDN.md](SKILLCDN.md) and the area's manifest arrive with every skill; a copied or installed skill relies on its own hard rules, and reads the pages its tool family shares (`docs/<family>/`) from this repository on the git host.
+The same folders work without SkillCDN. Every skill is a plain [Agent Skills](https://agentskills.io/specification) folder: copy `<area>/skills/<name>/` into any agent that reads `SKILL.md`. Every area with skills is a [Claude Code](https://code.claude.com/docs/en/plugins) plugin: `claude plugin marketplace add skillcdn/skills`, then `claude plugin install marketing@skillcdn`. Only through SkillCDN do the rules in [SKILLCDN.md](SKILLCDN.md) and the area's manifest arrive with every skill; a copied or installed skill relies on its own hard rules; what its tool family shares comes with an area plugin when the set is the area's (`<area>/docs/<family>/`), and from this repository on the git host when the set is the root's (`docs/<family>/`) or the skill was copied bare.
 
 ## Areas
 
@@ -53,6 +53,7 @@ Directories of Markdown without a `SKILL.md`, read by an agent through `search_r
 | Document set | What it holds |
 |---|---|
 | [`docs/higgsfield/`](docs/higgsfield/) | What the skills that drive Higgsfield share, whichever area they are in: how the sandbox behaves, how models and credits are found and quoted, how portraits and first frames are made, how a take is decoded, and what the video models do with the sounds of each language, as real runs showed it. One file per topic, organized by what holds now; each skill links it from the phase that reads it. |
+| [`marketing/docs/meta-ad-library/`](marketing/docs/meta-ad-library/) | What the two skills that read the Meta Ad Library share: what the library is evidence of, the routes into it with their code, the URL parameters, the record a result yields, counting by age, manners and limits. In the area's `docs/`, because both skills are marketing skills, so it travels with the area's mount and plugin. |
 
 ## Where things live
 
@@ -62,7 +63,7 @@ Four scopes, each with one place, so that nothing is written twice and a finding
 |---|---|---|
 | A rule for every skill | The body of [`SKILLCDN.md`](SKILLCDN.md) | Paged before every skill, on every mount |
 | A rule for every skill of one area | The body of `<area>/SKILLCDN.md` | Paged before every skill of the area |
-| What the skills of one tool family share: how its tools behave, what they did in runs, the knowledge every run adds to | `docs/<family>/`, one file per topic | Read on demand through the repository connection, from the phase that links it |
+| What the skills of one tool family share: how its tools behave, what they did in runs, the knowledge every run adds to | `docs/<family>/`, or `<area>/docs/<family>/` when one area holds every skill of the family; one file per topic | Read on demand through the repository connection, an area's set also through the area's mount and plugin, from the phase that links it |
 | A skill's own workflow, checkpoints, verdicts, hard rules and craft | `<area>/skills/<name>/` | With the skill, wherever it is mounted, installed or copied |
 
 Areas are by function, and a tool family can serve several of them, which is why what its skills share sits at the root; a family whose skills all sit in one area keeps it in that area's `docs/`, which travels with the area's mount and its plugin. A skill carries what it cannot work without, so that it still works alone; what it shares it reads from one place, so that a run's finding is written once. A rule the family shares (the model speaks, overlays are code, two plain decodes decide what was said) stays in each skill's hard rules, in the form that skill gives it, because a manifest's rules reach only the skills below it.
@@ -90,8 +91,8 @@ This repository takes no pull requests. It is meant to be forked: the layout, th
 2. In `SKILLCDN.md`, set `name`, `description`, `translations` and `metadata.author` to yours. Keep the rules that hold for you; change the rest.
 3. Keep a license SkillCDN can pass on. It serves a skill in full only under a license it recognizes as permissive, taken from the skill's directory, its `license` field, the manifests above it or the repository's license file; under a restrictive or unrecognized license the skill is only described, with a link to its source.
 4. Keep the areas you need and delete the others. A new area is a folder with a `SKILLCDN.md` and a `README.md`; the steps are in [guide/adding.md](guide/adding.md).
-5. Write your skills at `<area>/skills/<name>/`, following [guide/skill-authoring.md](guide/skill-authoring.md); put what the skills of one tool share in `docs/<tool>/`. Run `node scripts/check.mjs`; CI runs it on every push.
-6. Rewrite this README for your repository. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills.
+5. Write your skills at `<area>/skills/<name>/`, following [guide/skill-authoring.md](guide/skill-authoring.md); put what the skills of one tool share in `docs/<tool>/`, or in the area's `docs/` when one area holds every skill of the tool. Run `node scripts/check.mjs`; CI runs it on every push.
+6. Rewrite this README for your repository. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place its shared pages come from, put yours.
 7. Connect it at `skillcdn.ai/gh/<you>/<repo>`. A public repository needs no setup.
 
 The rules for changing anything, for people and agents alike, are in [CLAUDE.md](CLAUDE.md); a fork keeps them or changes them. A skill here that no longer works can be reported in an issue.
@@ -105,8 +106,8 @@ README.md         this introduction
   SKILLCDN.md     the area manifest: who its skills are for, the rules its skills add
   README.md       the area's catalog
   skills/<name>/  one directory per skill: SKILL.md, references/, assets/, optional scripts/
-  docs/           the area's document sets
-docs/             document sets that serve every area, docs/<family>/ for what a tool family's skills share
+  docs/           the area's document sets, <area>/docs/<family>/ for what a tool family's skills share when all are here
+docs/             document sets that serve every area, docs/<family>/ for what a tool family's skills share across areas
 guide/            how skills in this layout are written and how to add to a repository like this one
 scripts/          check.mjs, the validation CI runs
 .claude-plugin/   the Claude Code marketplace: one plugin per area with skills
