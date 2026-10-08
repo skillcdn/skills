@@ -48,4 +48,4 @@ A job the server refuses or that fails without a result is not a take and not th
 
 ## After the episode: a higher resolution
 
-The episode is delivered at the draft tier. The finalize of the accepted takes is quoted at the delivery and an upscale of the episode is offered without a quote, as the shared page says; neither is in the estimate. A finalize re-runs the assembly script with the finalized takes' URLs ([editing.md](editing.md)) and nothing else changes.
+The episode is delivered at the draft tier. The finalize of the accepted takes is quoted at the delivery and an upscale of the episode is offered as a spend the tool will not price first, as the shared page says; neither is in the estimate. A finalize re-runs the assembly script with the finalized takes' URLs ([editing.md](editing.md)) and nothing else changes.
