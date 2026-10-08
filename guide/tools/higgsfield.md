@@ -21,9 +21,9 @@ The conventions are listed once, for agents, in the set's [README](../../docs/hi
 | `pronunciation.md`: the sounds per language, by kind, with what fixed each | Nothing |
 | | `references/tool-notes.md`: how the tools behave in this skill's own phases |
 
-The test for a sentence: would it be true, word for word, in the next Higgsfield skill? Then it belongs in the set. A page of the set is linked from the phase that reads it, with a root-relative path (`/docs/higgsfield/<topic>.md`), and, until the spec's shared pages are served, not included: a shared page costs one `read_repo_file` call when its phase comes and no page of the skill's load. Once they are served, `pronunciation.md`, which every run writes and reviews lines with, goes into each skill's `skillcdn.include` by its root-relative path, and the rest stay linked.
+The test for a sentence: would it be true, word for word, in the next Higgsfield skill? Then it belongs in the set. A page of the set is reached by a root-relative path (`/docs/higgsfield/<topic>.md`). `pronunciation.md`, which every run writes and reviews lines with, is in each skill's `skillcdn.include` and arrives with the skill wherever SkillCDN serves it; the rest are linked from the phase that reads them and cost one `read_repo_file` call when it comes and no page of the skill's load. A change to `pronunciation.md` changes the served digest of both skills, as a change to a manifest does, and a host that verified one asks its user again: edit it deliberately.
 
-A skill runs without the set when it is mounted alone, installed as a plugin or copied: its Requirements say so and name `docs/higgsfield/` in the repository as where to fetch the pages. Keep every hard rule and every step of the workflow in the skill for that case; the set holds knowledge, not rules.
+A skill runs without the linked pages when it is mounted below the repository root or taken through the skills extension by a host without `read_repo_file`, and without the set at all when it is installed as a plugin or copied: its Requirements say so and name `docs/higgsfield/` in the repository as where to fetch the pages. Keep every hard rule and every step of the workflow in the skill for that case; the set holds knowledge, not rules.
 
 ## Where a finding goes
 
