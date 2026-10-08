@@ -48,7 +48,7 @@ Total the lengths under the table.
 ## Writing lines
 
 - Short. Five to twelve words, one breath, commas where the voice should pause. Lines in one cut are at least a second apart; the last line ends at least half a second before the cut does, or the edit cannot trim the tail.
-- Plain words. A word the viewer must decode, a coined term, or a sound the model is known to slur in the dialogue language ([pronunciation.md](pronunciation.md)) is replaced with a plain word of the same meaning before the first take. Ordinary words are otherwise left as written; a script rewritten around sounds loses its voice.
+- Plain words. A word the viewer must decode, a coined term, or a sound the model is known to slur in the dialogue language ([/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md)) is replaced with a plain word of the same meaning before the first take. Ordinary words are otherwise left as written; a script rewritten around sounds loses its voice.
 - A character's name is never the first word of a line, and a name whose sound the model has bent before is left out of the line when the sentence survives without it. Names and key words (a secret said aloud, the ending's lines) are what the review looks at first; they carry a prompt spelling from the first take when they are not said the way they are written.
 - A line that must land in a window is given one: "between 3 and 5.5 seconds".
 - The inner voice narrates the situation at turning points, in the character's own voice, in the tense the bible fixed; it is marked so the prompt keeps the mouth closed.

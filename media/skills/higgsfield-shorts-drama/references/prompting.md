@@ -4,7 +4,7 @@ One cut is one `generate_video` call: the approved first frame as `start_image`,
 
 ## Structure
 
-1. **Reference mapping.** The frame goes in `start_image`; the portraits go in the model's reference role in the order the mapping lists them. One line per portrait, in that order: "Reference image N: <character>; take the face, hair and build." Then: "Use only the faces and hair from the reference images, not their plain backgrounds. The start image is the opening frame; continue from it, with the costumes as in the start image." Read the echoed parameters of the first take: when the server folded the frame into the reference list as its first entry ([tool-notes.md](tool-notes.md)), the mapping says "Reference image 1 is the opening frame" and numbers the portraits from 2, in every cut after.
+1. **Reference mapping.** The frame goes in `start_image`; the portraits go in the model's reference role in the order the mapping lists them. One line per portrait, in that order: "Reference image N: <character>; take the face, hair and build." Then: "Use only the faces and hair from the reference images, not their plain backgrounds. The start image is the opening frame; continue from it, with the costumes as in the start image." Read the echoed parameters of the first take: when the server folded the frame into the reference list as its first entry ([/docs/higgsfield/models.md](/docs/higgsfield/models.md)), the mapping says "Reference image 1 is the opening frame" and numbers the portraits from 2, in every cut after.
 2. **Style and world line.** The style line verbatim, then the look of this cut in one sentence: period, place, light, palette, grading. Copied from the episode's prompt conventions.
 3. **Shots.** "Shot N (a to b s): ..." with the camera, the action and the expression. One to three seconds each; a cut of 10 or 12 seconds holds three to five.
 4. **Lines.** For each spoken line: "Between X and Y seconds <CHARACTER> speaks <language> with natural standard pronunciation, lips synced, every syllable articulated distinctly, no added syllables: '<the line>'", the line written in the language's own script, with the voice the bible gives the character in a few words. For the inner voice: "<language> voice-over in <CHARACTER>'s voice, <the bible's voice line>, calm pace, lips NOT moving: '<the line>'".
@@ -15,7 +15,7 @@ One cut is one `generate_video` call: the approved first frame as `start_image`,
 ## Rules
 
 - Write the dialogue in the language's own script, directly. A line typed as escape sequences lost a final consonant once and cost a take.
-- Put a word that is not said the way it is written in the prompt the way it sounds, and keep the script's spelling for the subtitle ([pronunciation.md](pronunciation.md)).
+- Put a word that is not said the way it is written in the prompt the way it sounds, and keep the script's spelling for the subtitle ([/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md)).
 - Give the first line of a cut at least half a second of lead-in; a take can start mid-word. A name is never the first word of a line.
 - Spectacle and a line do not share a second. Put the transformation, the fall or the crash in its own shot and the line before or after it.
 - A character who must not see something (they fainted, they turned away) is described as not seeing it in the shot where it happens, or the take shows them watching.
@@ -26,4 +26,4 @@ One cut is one `generate_video` call: the approved first frame as `start_image`,
 
 ## Regeneration prompts
 
-Keep the frame, the portraits, the shots and the duration; change only what failed. A wrong ordinary word: a plainer word of the same meaning, as [pronunciation.md](pronunciation.md) says, and the line and the subtitle change with it. A wrong name or key word: the respelling for the ear, then the syllables named after the line. A continuity miss (hair, ring, costume): the clause in capitals at the top of the prompt. A missing event (no visible faint, no crash): the event in its own shot with a time window and what the viewer sees.
+Keep the frame, the portraits, the shots and the duration; change only what failed. A wrong ordinary word: a plainer word of the same meaning, as [/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md) says, and the line and the subtitle change with it. A wrong name or key word: the respelling for the ear, then the syllables named after the line. A continuity miss (hair, ring, costume): the clause in capitals at the top of the prompt. A missing event (no visible faint, no crash): the event in its own shot with a time window and what the viewer sees.
