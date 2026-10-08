@@ -10,6 +10,6 @@ Skills for marketing and growth work: ads, ad and product research, promotional 
 
 The skills chain. "Make an ad for this product", with no reference, has `higgsfield-shorts-ad` find one first with `meta-ad-library-creative-research` and choose among its shortlist; the research skill itself stays general.
 
-Documents for this area live in [`docs/`](docs/), discovered next to this file. The first set, [`docs/meta-ad-library/`](docs/meta-ad-library/), holds what the two Meta Ad Library skills share (the routes into the library and their code, the URL parameters, the record a result yields, counting by age, manners and limits); it is read through the repository or the area connection and shipped with the `marketing` plugin.
+Documents for this area live in [`docs/`](docs/), discovered next to this file. The first set, [`docs/meta-ad-library/`](docs/meta-ad-library/), holds what the two Meta Ad Library skills share (the routes into the library and their code, the URL parameters, the record a result yields, counting by age, manners and limits); each of the two skills includes `ad-library.md`, and the rest is read through the repository or the area connection and shipped with the `marketing` plugin.
 
 How to write a skill: [guide/skill-authoring.md](../guide/skill-authoring.md). How to add one here: [guide/adding.md](../guide/adding.md). The `node scripts/check.mjs` check fails when a skill directory is missing from this table.

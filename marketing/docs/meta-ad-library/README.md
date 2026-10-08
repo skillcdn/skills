@@ -4,14 +4,14 @@ The skills that read the Meta Ad Library (`meta-ad-library-…`) share how the l
 
 | Document | Holds | Read |
 |---|---|---|
-| [`ad-library.md`](ad-library.md) | What the library is evidence of, the routes, the URL parameters, what a result carries, counting by age, what needs a click, manners and limits, what to do when no route works. | Before the first page is loaded. |
+| [`ad-library.md`](ad-library.md) | What the library is evidence of, the routes, the URL parameters, what a result carries, counting by age, what needs a click, manners and limits, what to do when no route works. | Before the first page is loaded; included with each skill. |
 | [`record.md`](record.md) | The record every route yields per creative group: its fields, where each comes from in the page's JSON and on a card, how long its media addresses last. | With the route's page. |
 | [`page-dump.md`](page-dump.md) | The shell route: one headless browser run per URL, the site's browser check, and the script that builds addresses, prints short lines, keeps the full records and counts the loads. | When the agent has a shell; the script finds the browser. |
 | [`driven-browser.md`](driven-browser.md) | The driven-browser route: what a driven browser does and does not do on the site, the in-page readers for the embedded results and for cards that arrived by scrolling, and the script that reads reach in the EU and the UK. | When the agent drives a browser. |
 
 ## Who reads this
 
-[`meta-ad-library-creative-research`](../../skills/meta-ad-library-creative-research/SKILL.md) and [`meta-ad-library-rising-products`](../../skills/meta-ad-library-rising-products/SKILL.md), both in this area. Each reads these pages with `read_repo_file` at `marketing/docs/meta-ad-library/<file>` through the repository or the marketing connection, and finds them at `docs/meta-ad-library/` of the marketing plugin, two levels above its own folder. A skill mounted alone or copied into another agent does not have them: its Requirements say so and name this directory in the repository, which is where to fetch them. What a skill cannot work without (its workflow, its checkpoint, its method, its hard rules) stays in the skill.
+[`meta-ad-library-creative-research`](../../skills/meta-ad-library-creative-research/SKILL.md) and [`meta-ad-library-rising-products`](../../skills/meta-ad-library-rising-products/SKILL.md), both in this area. Each declares `ad-library.md`, which every run reads before its first page load, in its `skillcdn.include` by its root-relative path, so that the page arrives with the skill wherever SkillCDN serves it, and reads the other pages with `read_repo_file` at `marketing/docs/meta-ad-library/<file>` through the repository or the marketing connection, or as files at `docs/meta-ad-library/` of the marketing plugin, two levels above its own folder. A skill mounted alone cannot read those pages there, and a copy taken into another agent has none of them: its Requirements say so and name this directory in the repository, which is where to fetch them. What a skill cannot work without (its workflow, its checkpoint, its method, its hard rules) stays in the skill.
 
 ## What every Meta Ad Library skill does the same way
 
