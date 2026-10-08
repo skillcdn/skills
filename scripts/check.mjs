@@ -7,13 +7,15 @@
 //      its `language` and `translations` are well formed; its body starts with a level-one heading.
 //   2. Every SKILL.md has front-matter with a valid `name` and `description`, the name equals its directory,
 //      the body starts with a level-one heading, and what SkillCDN adds under `skillcdn` (the files that
-//      come with the skill, the translations) points at what exists and is well formed.
+//      come with the skill, the translations) points at what exists and is well formed. An included file
+//      outside the skill is a shared page: a document under docs/ of the repository or of the skill's own
+//      area, named from the repository root, which the indexer inlines with the skill on every mount.
 //   3. Every skill lives at <area>/skills/<name>, under an area manifest; none at the root.
 //   4. A skill links inside its own directory, or into a document directory of the repository or of its own
 //      area, where what the skills of one tool family share lives; it may be mounted alone, so its workflow
 //      and rules stay inside. A served document links only to what an agent can reach through the mount:
-//      skills, manifests, document directories, and the README of a served folder. A link that starts with
-//      `/` is resolved from the repository root, as the indexer resolves it.
+//      skills, manifests, document directories, and the README of a served folder. A link or an include that
+//      starts with `/` is resolved from the repository root, as the indexer resolves it.
 //   5. No rendered media or binaries; JSON parses; text carries no control or invisible characters.
 //   6. Every area, skill and document set is listed in its catalog README and in the root README, and every
 //      area with skills is one plugin in .claude-plugin/marketplace.json.
@@ -318,12 +320,19 @@ function checkSkillcdnBlock(file, value) {
   } else {
     if (include.length > INCLUDE_MAX) fail(file, `skillcdn.include: more than ${INCLUDE_MAX} files`);
     for (const entry of include) {
-      const segments = entry.split("/");
-      if (entry.startsWith("/") || entry.includes("\\") || segments.some((s) => s === "" || s === "." || s === ".." || s.startsWith("."))) {
-        fail(file, `skillcdn.include: not a plain relative path inside the skill: ${entry}`);
+      // A plain relative path names one of the skill's own files. A path from the repository root (a leading
+      // `/`, as a link is written) names a shared page: a document of the repository or of the skill's own
+      // area, which the indexer inlines with the skill on every mount (the spec's shared pages, ADR-0044).
+      const shared = typeof entry === "string" && entry.startsWith("/");
+      const segments = typeof entry === "string" ? entry.slice(shared ? 1 : 0).split("/") : [""];
+      const abs = shared ? resolve(root, entry.slice(1)) : resolve(dir, String(entry));
+      if (typeof entry !== "string" || entry.includes("\\") || segments.some((s) => s === "" || s === "." || s === ".." || s.startsWith("."))) {
+        fail(file, `skillcdn.include: a plain relative path inside the skill, or a shared page from the repository root (\`/docs/<family>/<topic>.md\`): ${entry}`);
       } else if (!INCLUDABLE_RE.test(entry) || /(^|\/)SKILL\.md$/.test(entry)) {
-        fail(file, `skillcdn.include: only Markdown or JSON files of the skill can come with it: ${entry}`);
-      } else if (!exists(resolve(dir, entry))) {
+        fail(file, `skillcdn.include: only a Markdown or JSON file can come with the skill: ${entry}`);
+      } else if (shared && (!sharedDocumentDirs(dir).some((d) => inside(abs, d)) || isExcluded(abs) || skillDirs.some((d) => inside(abs, d)))) {
+        fail(file, `skillcdn.include: a shared page is a document under docs/ of the repository or of the skill's own area; the indexer drops anything else: ${entry}`);
+      } else if (!exists(abs)) {
         fail(file, `skillcdn.include: no such file: ${entry}`);
       }
     }
