@@ -13,7 +13,7 @@ From each result, pick the latest general model of the family as the shared page
 
 ## Tier and audio
 
-Lock the lowest tier the shared page's table gives (`480p`, else `std`, a draft flag where there is one), for both families. Native audio on for shots with dialogue or diegetic sound, off for shots that get music in the edit; whether off is cheaper, the preflight tells. Drafts are what the user pays for: a higher resolution (the finalize of the accepted takes where the draft tier offers one, quoted; an upscale of the master, which has no preflight) is a separate step offered at the delivery and started only on the user's word.
+Lock the lowest tier the shared page's table gives (`480p`, else `std`, a draft flag where there is one), for both families. Native audio on for shots with dialogue or diegetic sound, off for shots that get music in the edit; whether off is cheaper, the preflight tells. Drafts are what the user pays for: a higher resolution (the finalize of the accepted takes where the draft tier offers one, quoted; an upscale of the master, which costs credits and has no preflight) is a separate step offered at the delivery and started only on the user's word.
 
 **Animated looks.** Both families animate a drawn first frame; no style parameter is needed, the frame and the style line in the prompt set the look. A catalog entry that says the model holds stylized or anime looks steady decides a tie.
 
