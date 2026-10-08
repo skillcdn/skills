@@ -5,11 +5,11 @@ license: MIT
 compatibility: Needs a real browser engine to load facebook.com/ads/library, either a shell with a Chromium-family browser on the same machine or a browser the agent can drive (a built-in browser, a browser extension, a Playwright or Chrome DevTools server). Plain fetch and search tools cannot load the site. Any agent with one of the two can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: meta-ad-library
 skillcdn:
   include:
-    - references/ad-library.md
+    - references/rising-signals.md
   translations:
     ko:
       title: 메타 광고 라이브러리 급상승 아이템 탐색
@@ -32,12 +32,12 @@ Capabilities, not product names: the tools that provide them differ by assistant
 
 | Need | Any one of | When missing |
 |---|---|---|
-| Load the library | A shell with a Chromium-family browser on the same machine (the page-dump route); a browser the agent drives (the driven-browser route) | Stop and tell the user what to add, as [ad-library.md](references/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
+| Load the library | A shell with a Chromium-family browser on the same machine (the page-dump route); a browser the agent drives (the driven-browser route) | Stop and tell the user what to add, as [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
 | Write the report | A file tool; or the client's document surface | Put the whole report in the reply, and the snapshot as a code block to save. |
 
 Optional: a web-reading tool for a landing page's price. Nothing here costs money; a paid service (a scraping service, an "ad spy" subscription) is used only when the user asks for it and agrees to its cost.
 
-[ad-library.md](references/ad-library.md) comes with this skill. Read [collectors.md](references/collectors.md) and [rising-signals.md](references/rising-signals.md) before phase 1, which is before the seed terms are chosen and the first page is loaded; when only their names came with the skill, fetch them (`read_repo_file` through SkillCDN, the files themselves in a local copy).
+[rising-signals.md](references/rising-signals.md), the method, comes with this skill. How the library is reached and read is in the pages the skills of this family share, under [`marketing/docs/meta-ad-library/`](/marketing/docs/meta-ad-library/README.md): read [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) before phase 1, which is before the seed terms are chosen and the first page is loaded, then [record.md](/marketing/docs/meta-ad-library/record.md) and the page of the route the agent has, [page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) or [driven-browser.md](/marketing/docs/meta-ad-library/driven-browser.md). They come with the repository or the marketing connection (`read_repo_file` at those paths) and with the marketing plugin, two levels above this skill's folder (`../../docs/meta-ad-library/`). A skill mounted alone or copied into another agent does not have them: say so in the first message and fetch them before phase 2 from `marketing/docs/meta-ad-library/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`); without them the routes, the URL parameters and the readers are unknown.
 
 ## Inputs
 
@@ -56,11 +56,11 @@ Produces the **scope**: the sector or the broad sweep, what counts as an item in
 
 ### Phase 2: Access
 
-Produces the **route**. Take the first route of [ad-library.md](references/ad-library.md) "Routes" that the agent has and prove it by running the first seed: a count and at least one Library ID. With a shell, that means saving the script and running it, not checking the machine first. When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every count by age depends on it.
+Produces the **route**. Take the first route of [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "Routes" that the agent has and prove it by running the first seed: a count and at least one Library ID. With a shell, that means saving the script of [page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script" and running it, not checking the machine first; with a driven browser, navigating and running the reader of [driven-browser.md](/marketing/docs/meta-ad-library/driven-browser.md) "The embedded results". Either yields the record of [record.md](/marketing/docs/meta-ad-library/record.md). When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every count by age depends on it.
 
 ### Phase 3: Sweep
 
-Produces the **pool** and the **candidates**. Load two views per seed term, one page at a time, inside the budget of 80 page loads for the run, with `locale=en_US` on every URL. Keep the full records in a file and only short lines in context. Turn ads into items and themes and tally them by "Items" and "Themes", duplicates removed by creative group; choose candidates by "Candidates and checkpoint". Checkpoint: the message that section describes.
+Produces the **pool** and the **candidates**. Load two views per seed term, one page at a time, inside the budget of 80 page loads for the run, with `locale=en_US` on every URL. Keep the full records ([record.md](/marketing/docs/meta-ad-library/record.md)) in a file and only short lines in context; on the driven-browser route the short lines are the record. Turn ads into items and themes and tally them by "Items" and "Themes", duplicates removed by creative group; choose candidates by "Candidates and checkpoint". Checkpoint: the message that section describes.
 
 ### Phase 4: Count
 
@@ -76,12 +76,12 @@ Produces one **profile** per reported item or theme, by "Profiles": what it is, 
 
 ### Phase 7: Deliver
 
-The run's folder by "Report and snapshot": `report.md` in the user's language and `snapshot.json`. A request that asked more than a ranking (what to build, what to stock, what to write about) is answered in the section the report keeps for it, from the ranking. Remove the browser profile the page dump left behind, with the script's `clean`. One message: where the files are, the three or four entries that matter most and why, the answer to what was asked, what was left out, and that running again in a week or two turns this snapshot into measured growth. For an item the user wants to enter, the creative research skill of this family reads its ads in depth.
+The run's folder by "Report and snapshot": `report.md` in the user's language and `snapshot.json`. A request that asked more than a ranking (what to build, what to stock, what to write about) is answered in the section the report keeps for it, from the ranking. Remove the browser profile the page dump left behind, with the script's `clean` ([page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script"). One message: where the files are, the three or four entries that matter most and why, the answer to what was asked, what was left out, and that running again in a week or two turns this snapshot into measured growth. For an item the user wants to enter, the creative research skill of this family reads its ads in depth.
 
 ## Hard rules
 
 1. The sector is asked for at most once. Everything else is derived, stated at the checkpoint and changed on request.
-2. The library is read with a real browser engine, one page at a time, inside the budget. No sign-in, and no way around a browser check, a login wall or a block: at the signs of being slowed down, stop and tell the user.
+2. The library is read with a real browser engine, one page at a time, at least two seconds apart, inside the budget, every browser run or navigation counted, the first check and the retries included; bulk or continuous collection is outside this skill. No sign-in, and no way around a browser check, a login wall or a block: at the signs of being slowed down, stop and tell the user.
 3. Every number is a count the library showed on the day it was read, or is computed from such counts: a difference, a share, a ratio. Never state or imply sales, revenue, spend or return. "Probably selling", with the reason, is the strongest claim.
 4. An item or a theme is called rising only as a Breakout that is not slowing, by measured growth against a snapshot, or by a rising weekly series in the EU or the UK. Anything else carries the name of its class and pace. A store's numbers are never given as one product's, nor a theme's as one seller's.
 5. Every reported item or theme links the ads it was read from by Library ID, all read in this run. Nothing comes from memory, a search engine or a third-party listing.
