@@ -87,7 +87,7 @@ Node.js 24. No install step; the script has no dependencies. Do not add a packag
 | How skills are written or checked, beyond the spec | `guide/skill-authoring.md`; `scripts/check.mjs` if the rule is mechanical. A change to the format itself belongs in SkillCDN's spec, not here |
 | The process for adding things | `guide/adding.md` |
 | A new tool family | Root `README.md` table; `docs/<family>/` once two skills share knowledge, and `guide/tools/<family>.md` for how authors keep the skills and the set in step |
-| What a run taught about a tool, where every skill of its family meets it | `docs/<family>/<topic>.md`, dated, as behavior and never as the run's words; an edge of one skill's own phase in that skill's `references/tool-notes.md` |
+| What a run taught about a tool, where every skill of its family meets it | The sentence it bears on in `docs/<family>/<topic>.md`, with the model and the month where the fact can go stale, as behavior and never as the run's words (`guide/skill-authoring.md` "Knowledge pages"); an edge of one skill's own phase in that skill's `references/tool-notes.md`, in the same shape |
 | A durable gotcha you learned the hard way | "Gotchas" below |
 
 One topic, one file. Link instead of restating.

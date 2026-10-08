@@ -37,3 +37,13 @@ The spec recommends this order; every `SKILL.md` here follows it so an agent tha
 - Decision points get a table: condition, choice, why.
 - Anything the agent must ask the user is written as the question to ask.
 - The `description` field is what search ranks first and what a client is told on connect. Write it as the sentence a user would say, ending with when to use the skill. Say when another skill in the repository is the better choice where their purposes overlap.
+
+## Knowledge pages
+
+A page that holds what skills know about a tool (a skill's `references/tool-notes.md`, or a page of `docs/<family>/`) is organized by topic and says what holds now, so that an agent finds a fact where it would look for it, not where it was learned.
+
+- One section per topic, in the order a run meets them. A procedure in the imperative, a fact as a statement. No chronological sections, no run narratives ("second run", "first production"), no changelog.
+- A fact that can go stale (a price, a model's roles or quirks, a render time, a limit read from a tool's description) names the model or the source it was seen on and the month it was checked, at the end of the sentence: "(Seedance 2.5, checked 2026-10)". A fact about how the tool works carries no date; when a run finds it wrong, the sentence changes.
+- The evidence that makes a fact credible (a number, an error text, what the decoders wrote) goes into the sentence it supports, as a clause. What a run taught replaces or sharpens the sentence it bears on; it is not appended.
+- A number that illustrates a shape is marked as illustrative; the run's own measurement is the number.
+- What a run produced (its product, persona, lines, story) stays out; the behavior goes in.

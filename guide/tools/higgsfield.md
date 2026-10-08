@@ -14,12 +14,12 @@ The conventions are listed once, for agents, in the set's [README](../../docs/hi
 
 | In `docs/higgsfield/` | In the skill |
 |---|---|
-| `models.md`: reading the catalog, the tier table, the preflight and its answers, `use_unlim`, one job per call, refused jobs, a higher resolution; dated notes on costs, render times and roles | Which models qualify for this skill and why, the reserve, the estimate's shape, the recommendation order, the fallback |
-| `cast.md`: the image models, the style line, the portrait prompt, the approval loop, frame to take, reuse by id; dated notes | Who is cast (a site's own person, a voice with no face, one portrait per look, sets), what the skill's record keeps |
-| `sandbox.md`: lease and polls, commands and scripts, uploads, files in, images, fonts, ffmpeg, verification; dated notes | The skill's own passes (the analysis of a reference, an assembly's steps), its example scripts |
-| `decodes.md`: the review pass and how its output is read, silence and hallucination; dated notes on the decoders | The verdict table, the retry budget, how lines are written and retried |
-| `pronunciation.md`: the sounds per language and the dated outcomes | Nothing |
-| | `references/tool-notes.md`: what the tools did in this skill's own phases, dated |
+| `models.md`: reading the catalog and the roles seen, the tier table, the preflight and its answers, presets, `use_unlim`, one job per call, refused jobs, a higher resolution, the prices and times seen | Which models qualify for this skill and why, the reserve, the estimate's shape, the recommendation order, the fallback |
+| `cast.md`: the image models and how they behave, the style line, the portrait prompt, the approval loop, frame to take, reuse by id | Who is cast (a site's own person, a voice with no face, one portrait per look, sets), what the skill's record keeps |
+| `sandbox.md`: lease and polls, commands and scripts, uploads, files in, images, fonts, ffmpeg, verification | The skill's own passes (the analysis of a reference, an assembly's steps), its example scripts |
+| `decodes.md`: the review pass and how its output is read, what the decodes cannot settle | The verdict table, the retry budget, how lines are written and retried |
+| `pronunciation.md`: the sounds per language, by kind, with what fixed each | Nothing |
+| | `references/tool-notes.md`: how the tools behave in this skill's own phases |
 
 The test for a sentence: would it be true, word for word, in the next Higgsfield skill? Then it belongs in the set. A page of the set is linked from the phase that reads it, with a root-relative path (`/docs/higgsfield/<topic>.md`), and never included: the spec keeps `skillcdn.include` inside the skill directory, so a shared page costs one `read_repo_file` call when its phase comes and no page of the skill's load.
 
@@ -27,11 +27,11 @@ A skill runs without the set when it is mounted alone, installed as a plugin or 
 
 ## Where a finding goes
 
-What a run taught goes into the files the same day, with the date and the model, as behavior and never as a run's product, persona, lines or story:
+What a run taught goes into the files the same day, as behavior and never as a run's product, persona, lines or story, in the shape [skill-authoring.md](../skill-authoring.md) "Knowledge pages" gives: the sentence it bears on changes, a fact that can go stale names the model and the month, nothing is appended as a log.
 
-- A tool that behaved differently for every skill of the family (a refusal, a folding, a limit, a price shape): the topic page of the set, in its prose where it changes what every skill does, in its dated notes otherwise.
-- A sound outcome: `pronunciation.md`, under its language, and the sound moves to the list it belongs to.
-- An edge of one skill's own phase: that skill's `tool-notes.md`.
+- A tool that behaved differently for every skill of the family (a refusal, a folding, a limit, a price shape): the topic section of the set's page.
+- A sound outcome: `pronunciation.md`, into the list it belongs to, with the word as a sound example and what settled it.
+- An edge of one skill's own phase: that skill's `tool-notes.md`, in the same shape.
 - A step a fresh agent had to guess: the skill's `SKILL.md` or the reference of that phase.
 
 A skill run by an agent without the repository at hand reports its findings in the delivery, in a short list for whoever maintains the skill; both skills ask for that list.
