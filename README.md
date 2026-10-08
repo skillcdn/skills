@@ -52,7 +52,7 @@ Directories of Markdown without a `SKILL.md`, read by an agent through `search_r
 
 | Document set | What it holds |
 |---|---|
-| [`docs/higgsfield/`](docs/higgsfield/) | What the skills that drive Higgsfield share, whichever area they are in: how the sandbox behaves, how models and credits are found and quoted, how portraits and first frames are made, how a take is decoded, and what the video models do with the sounds of each language, with the dated outcomes of real runs. One file per topic, kept current in one place; each skill links it from the phase that reads it. |
+| [`docs/higgsfield/`](docs/higgsfield/) | What the skills that drive Higgsfield share, whichever area they are in: how the sandbox behaves, how models and credits are found and quoted, how portraits and first frames are made, how a take is decoded, and what the video models do with the sounds of each language, as real runs showed it. One file per topic, organized by what holds now; each skill links it from the phase that reads it. |
 
 ## Where things live
 

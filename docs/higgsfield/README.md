@@ -4,11 +4,11 @@ The skills that drive Higgsfield (`higgsfield-…`, in any area) share how the t
 
 | Document | Holds | Read |
 |---|---|---|
-| [`models.md`](models.md) | Finding the latest models in the catalog, the lowest tier, the credit preflight, presets, free-trial unlimited generations, one job per call, refused and failed jobs, a higher resolution later; dated notes on costs, render times and what the generators accepted or refused. | Before the cost checkpoint, and when a job is refused. |
-| [`cast.md`](cast.md) | The image models for portraits and first frames, the style line, the portrait prompt, the approval loop, how a frame becomes a take, reuse by id; dated notes on the image models. | Before portraits and first frames. |
-| [`sandbox.md`](sandbox.md) | The sandbox's lease and polls, background jobs, the command limit, uploads and their reservations, files in, fonts, looking at images, the assembly's shape, verification; dated notes. | Before the first sandbox call. |
-| [`decodes.md`](decodes.md) | The review pass that settles what a take says: two plain speech-to-text decodes, the tiebreak, what supports a reading and never decides, silence and hallucination; dated notes on the decoders. | Before the first take. |
-| [`pronunciation.md`](pronunciation.md) | What the video models do with the sounds of each language run so far, and the dated outcomes. | When lines are written, and before a retry. |
+| [`models.md`](models.md) | Finding the latest models in the catalog and the roles seen so far, the lowest tier, the credit preflight, presets, free-trial unlimited generations, one job per call, refused and failed jobs, a higher resolution later, the prices and times seen. | Before the cost checkpoint, and when a job is refused. |
+| [`cast.md`](cast.md) | The image models for portraits and first frames and how they behave, the style line, the portrait prompt, the approval loop, how a frame becomes a take, reuse by id. | Before portraits and first frames. |
+| [`sandbox.md`](sandbox.md) | The sandbox's lease and polls, commands and scripts, uploads, files in, looking at images, fonts, ffmpeg and audio, verification. | Before the first sandbox call. |
+| [`decodes.md`](decodes.md) | The review pass that settles what a take says: two plain speech-to-text decodes, the tiebreak, what supports a reading and never decides, what the decodes cannot settle. | Before the first take. |
+| [`pronunciation.md`](pronunciation.md) | What the video models do with the sounds of each language run so far, by kind of sound, with what fixed each. | When lines are written, and before a retry. |
 
 ## Who reads this
 
@@ -24,11 +24,15 @@ The skills of the repository that drive Higgsfield: [`higgsfield-shorts-ad`](../
 - **Overlays are code.** Captions, text, cards, logos, inserts, end cards: ffmpeg and Pillow in the sandbox, never the video model.
 - **Two plain decodes decide what was said.** A decode prompted with the intended line supports a reading and never overrules two plain ones; a word that is really wrong is never handed to the user as unsettled.
 - **Captions and subtitles show the intended words;** speech-to-text supplies the clock.
-- **A higher resolution is a separate step**, quoted at the delivery and started only on the user's word.
+- **A higher resolution is a separate step**, offered at the delivery and started only on the user's word.
 - **Generated people are delivered as generated.** The delivery says so; the platform's label for AI-made content is the user's to set.
 
 Each skill states these in the form its own workflow gives them, in its hard rules or in the phase they belong to, so that they hold where these pages do not travel.
 
+## How these pages are written
+
+Each page is organized by topic and says what holds now, so that an agent finds a fact where it would look for it, not where it was learned. A fact that can go stale (a price, a model's roles or quirks, a limit read from a tool's description) names the model or the source it was seen on and the month it was checked, at the end of the sentence; a fact about how a tool works carries no date, and changes when a run finds it wrong. The evidence that makes a fact credible (a number, an error text, what the decoders wrote) sits in the sentence it supports. There is no chronological log and no run narrative.
+
 ## Adding what a run taught
 
-A tool that behaved differently from what a page says: trust the tool, and change the page in the same change, with the date and the model. A sound outcome goes to [`pronunciation.md`](pronunciation.md) under its language, and the sound moves to the list it belongs to. A note that holds for one skill only (its own phase, its own artifact) goes to that skill's `references/tool-notes.md`. Notes record behavior, a final consonant lost before a particle or a job refused with its error, never a run's product, persona, lines or story. An agent running a skill without the repository at hand reports the finding in its delivery, for whoever maintains the skill.
+A tool that behaved differently from what a sentence says: trust the tool, and change that sentence in the same change, with the model and the month where the fact can go stale. A sound outcome goes to [`pronunciation.md`](pronunciation.md), into the list it belongs to, with the word as a sound example and what settled it. A note that holds for one skill only (its own phase, its own artifact) goes to that skill's `references/tool-notes.md`, in the same shape. Notes record behavior, a final consonant lost before a particle or a job refused with its error, never a run's product, persona, lines or story. An agent running a skill without the repository at hand reports the finding in its delivery, for whoever maintains the skill.
