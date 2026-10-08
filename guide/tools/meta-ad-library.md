@@ -13,7 +13,7 @@ There is no MCP server and no account to connect. A skill's "Requirements" name 
 | `references/ad-library.md` | What the library is evidence of, the routes, the URL parameters, the fields of a result, counting by age, what needs a click, manners and limits, what to do when no route works. Included with the skill. |
 | `references/collectors.md` | The record, the page-dump script, the in-page readers, the script that reads reach, notes from real runs. Linked, and read before the first page is loaded. |
 
-Both are the same file in every skill of the family. Change every copy in one commit, scoped to the area, and compare them before committing:
+Both are the same file in every skill of the family, and the last copies in the repository: rule 8 of `CLAUDE.md` now puts what a family shares in a document set, and these two move to `marketing/docs/meta-ad-library/` in a change of their own. Until then, change every copy in one commit, scoped to the area, and compare them before committing:
 
 ```sh
 diff marketing/skills/meta-ad-library-creative-research/references/ad-library.md marketing/skills/meta-ad-library-rising-products/references/ad-library.md

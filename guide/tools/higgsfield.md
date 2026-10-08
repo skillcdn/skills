@@ -1,6 +1,6 @@
 # Higgsfield skills
 
-Conventions shared by the skills that drive Higgsfield (`higgsfield-…`). For authors: a skill still carries what it cannot work without in its own `references/`, because it may be mounted alone and this page is not discoverable.
+How the skills that drive Higgsfield (`higgsfield-…`) are written and kept in step, for authors. What the skills share at run time is not here: it is the document set [`docs/higgsfield/`](../../docs/higgsfield/README.md), which agents read. This page says what goes there, what stays in a skill, and how a run's findings travel.
 
 ## One server, named tools
 
@@ -8,34 +8,34 @@ Higgsfield is one MCP server, so the skills name its tools by their exact names 
 
 ## What every Higgsfield skill does the same way
 
-- **Spend only after a preflight.** `generate_video` and `generate_image` with `get_cost: true`, once per distinct parameter set; the sum with a reserve goes to the user before any job, images included. A preset recommendation instead of a number is answered with `declined_preset_id`.
-- **`use_unlim` explicit on every call**, `false` unless the user asked for free-trial unlimited generations; left out, the server may return a question instead of a job.
-- **Lowest tier, one job per call, `count` 1, never a batch tool**, so the review of one take can stop a fault before the next take repeats it.
-- **A role list is not proof that two roles combine in one call.** The preflight accepts what the generation may refuse (a start frame with reference images, on one model in October 2026); the first real take is the test, and the cost checkpoint names the fallback.
-- **The model speaks.** Every spoken word is the video model's native audio; no text-to-speech, dubbing or voice tools.
-- **Overlays are code.** Captions, text, cards, logos, inserts, end cards: ffmpeg and Pillow in the sandbox, never the video model.
-- **Two plain decodes decide what was said.** Every speaking take is decoded twice with Whisper without a prompt, with two model sizes; spelling the ear does not hear is set aside; agreement decides; a decode prompted with the intended line supports a reading but never overrules two plain ones; a word that is really wrong is never handed to the user as unsettled.
-- **Captions and subtitles show the intended words;** speech-to-text supplies the clock.
-- **A higher resolution is a separate step**, quoted at the delivery and started only on the user's word.
+The conventions are listed once, for agents, in the set's [README](../../docs/higgsfield/README.md): a preflight before any spend, `use_unlim` explicit, the lowest tier and one job per call, a role list is not proof, the model speaks, overlays are code, two plain decodes decide, the intended words on screen, a higher resolution as a separate step, generated people delivered as generated. Each skill states them in its hard rules in the form its workflow gives them (which call is preflighted, what its verdict table does with a wrong word), because a manifest's rules reach only the skills below it and the family spans areas, and because a copied or installed skill has only its hard rules.
 
-## The sandbox
+## What is shared and what stays in the skill
 
-`sandbox_exec` is a Linux box with ffmpeg, sox, Pillow, faster-whisper, Playwright and caption fonts, discarded about ten seconds after a foreground call ends and held for fifteen minutes by a background job. Long work runs with `background: true` and is polled with short calls (a sleep of at most 25 seconds, `timeout_seconds` at most 45). A command is at most 16,000 characters and a presigned URL about 2 KB, so URLs go into a file in one call and a script in the next. Outputs are reserved with `media_upload` before the producing command, PUT with the `Content-Type` the result names, confirmed with `media_confirm` after HTTP 200, and reserved anew for every revision. Fonts beyond Latin are fetched from the google/fonts repository under the Open Font License.
-
-## Shared file, kept identical
-
-| File | Holds |
+| In `docs/higgsfield/` | In the skill |
 |---|---|
-| `references/pronunciation.md` | What the video models do with the sounds of each language run so far, and the dated outcomes. Included with every skill that speaks. |
+| `models.md`: reading the catalog, the tier table, the preflight and its answers, `use_unlim`, one job per call, refused jobs, a higher resolution; dated notes on costs, render times and roles | Which models qualify for this skill and why, the reserve, the estimate's shape, the recommendation order, the fallback |
+| `cast.md`: the image models, the style line, the portrait prompt, the approval loop, frame to take, reuse by id; dated notes | Who is cast (a site's own person, a voice with no face, one portrait per look, sets), what the skill's record keeps |
+| `sandbox.md`: lease and polls, commands and scripts, uploads, files in, images, fonts, ffmpeg, verification; dated notes | The skill's own passes (the analysis of a reference, an assembly's steps), its example scripts |
+| `decodes.md`: the review pass and how its output is read, silence and hallucination; dated notes on the decoders | The verdict table, the retry budget, how lines are written and retried |
+| `pronunciation.md`: the sounds per language and the dated outcomes | Nothing |
+| | `references/tool-notes.md`: what the tools did in this skill's own phases, dated |
 
-The same file in every Higgsfield skill. Change every copy in one commit and compare them before committing:
+The test for a sentence: would it be true, word for word, in the next Higgsfield skill? Then it belongs in the set. A page of the set is linked from the phase that reads it, with a root-relative path (`/docs/higgsfield/<topic>.md`), and never included: the spec keeps `skillcdn.include` inside the skill directory, so a shared page costs one `read_repo_file` call when its phase comes and no page of the skill's load.
 
-```sh
-diff marketing/skills/higgsfield-shorts-ad/references/pronunciation.md media/skills/higgsfield-shorts-drama/references/pronunciation.md
-```
+A skill runs without the set when it is mounted alone, installed as a plugin or copied: its Requirements say so and name `docs/higgsfield/` in the repository as where to fetch the pages. Keep every hard rule and every step of the workflow in the skill for that case; the set holds knowledge, not rules.
 
-What belongs to one skill (how its lines are written, its verdict table, its retry budget) lives in that skill's own reference. Each skill's `tool-notes.md` is its own; a note about a tool's behavior that holds for every skill is copied to the others' notes with its date.
+## Where a finding goes
+
+What a run taught goes into the files the same day, with the date and the model, as behavior and never as a run's product, persona, lines or story:
+
+- A tool that behaved differently for every skill of the family (a refusal, a folding, a limit, a price shape): the topic page of the set, in its prose where it changes what every skill does, in its dated notes otherwise.
+- A sound outcome: `pronunciation.md`, under its language, and the sound moves to the list it belongs to.
+- An edge of one skill's own phase: that skill's `tool-notes.md`.
+- A step a fresh agent had to guess: the skill's `SKILL.md` or the reference of that phase.
+
+A skill run by an agent without the repository at hand reports its findings in the delivery, in a short list for whoever maintains the skill; both skills ask for that list.
 
 ## Testing
 
-A skill is exercised from a fresh session that gets only the user's request and reads the skill through SkillCDN, with the real server. First to the cost checkpoint (no credits), read against the skill's text; then one production with the checkpoint answered as the user would. What a fresh agent had to guess goes back into the files; what the tools did differently goes into the skill's `tool-notes.md` with its date, and a sound outcome into `pronunciation.md` in every copy. Notes record the behavior, never a run's product, persona, lines or story.
+A skill is exercised from a fresh session that gets only the user's request and reads the skill through SkillCDN at the repository root, with the real server. First to the cost checkpoint (no credits), read against the skill's text; then one production with the checkpoints answered as the user would. What a fresh agent had to guess goes back into the files; what the tools did differently goes where "Where a finding goes" says. A change to a page of the set is read by every skill of the family: read each skill's links to that page before pushing.
