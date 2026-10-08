@@ -12,7 +12,7 @@ The text in the ad is part of the brand. Nothing is left to a burner's default, 
 
 - Use the site's own family when it is an open-license font that can be downloaded (most Google Fonts, SIL Open Font License). In a mixed stack (system fonts first, a web font as fallback), the first family that can be downloaded under an open license is the site's own. Otherwise the closest open-license family in the same classification: serif for serif, geometric sans for geometric sans, display for display, hand for hand. Two weights at most, one family for captions and text, a second only for the brand name if the site does so.
 - A glyph the family lacks (a hanja, a symbol) comes from a fallback font of the same classification, set on the line's baseline and scaled so its ink height matches the line's; check it on a zoomed crop.
-- Check glyph coverage for the dialogue language before anything is rendered; the sandbox's preinstalled caption fonts cover Latin only ([captions.md](captions.md) says where to fetch others).
+- Check glyph coverage for the dialogue language before anything is rendered; the sandbox's preinstalled caption fonts cover Latin only ([/docs/higgsfield/sandbox.md](/docs/higgsfield/sandbox.md) "Fonts" says where to fetch others).
 - Never the "default subtitle" look (bold white sans, black outline, bottom center) unless the reference itself is UGC-style and the brand has no type of its own.
 
 ## Type system

@@ -19,7 +19,7 @@ Four steps, in one `sandbox_exec` call on the clean master, in this order. Skipp
 
 Write an ASS or SRT file from the aligned intended lines and burn it with ffmpeg's `subtitles` filter, with `fontsdir` and `force_style` in the brand's type and color ([design.md](design.md)), in one background script. Keep the cue file next to the output for verification; it cannot be uploaded, so the delivery carries the cue text.
 
-The server's bundled `subtitles` workflow burns only its own white, caps or paper looks, aligns by block windows that spread cues across pauses, and asks the user about the look, so this skill does not use it; its rule against a hand-rolled burn does not apply here.
+The server's bundled `subtitles` workflow is not used ([/docs/higgsfield/sandbox.md](/docs/higgsfield/sandbox.md) says why); its rule against a hand-rolled burn does not apply here.
 
 ## Look
 
@@ -29,4 +29,4 @@ The caption look is the brand's: family, weight, color and size from [design.md]
 
 Captions are in the dialogue language unless the user asked for another. A translated caption is still aligned to the spoken line's clock. "Caps" in the looks table applies only to scripts that have case.
 
-The sandbox's preinstalled caption fonts (Metropolis, Montserrat) cover Latin only. For Korean, Japanese, Chinese, Cyrillic, Arabic, Thai, Devanagari and every other script, fetch a font under the SIL Open Font License in the same sandbox command, before burning: Noto Sans for that script, from the google/fonts repository on GitHub (the `ofl/<family>` directory, for example `ofl/notosanskr`) or from the Noto releases. Put it in a `fonts` directory, pass `fontsdir=fonts` to the subtitles filter together with `force_style='FontName=<family name>'`, and check that the download is a font (a few megabytes, not an error page) before using it. A variable font's filename carries brackets, which must be URL-encoded in the download address. Fetch the font while a take renders, so the caption step does not wait for it. `FontName` is the font's English family name; the first name record of a Korean font may be its Korean name. An empty or boxed caption is a font failure, not a timing failure.
+Fonts beyond Latin are fetched as [/docs/higgsfield/sandbox.md](/docs/higgsfield/sandbox.md) "Fonts" says, while a take renders, so the caption step does not wait for them; `FontName` is the family's English name, and an empty or boxed caption is a font failure, not a timing failure.
