@@ -100,6 +100,7 @@ card("s01", 3.3, 6.0, "RIVAL", "the relationship in one phrase")
 T2 = json.loads(os.environ.get("STT2", "[[8.5,11.5]]"))
 add("VO", "s02b", T2[0][0], T2[0][1] + 0.3, "HERO's inner voice, as written")
 
+# ASS colours are &HAABBGGRR (blue, green, red): the warm off-white below is RGB F5E8D6 written as D6E8F5.
 ASS = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -110,7 +111,7 @@ ScaledBorderAndShadow: yes
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Dlg,<Sans family>,27,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,2.6,0.8,2,24,24,138,1
-Style: VO,<Sans family>,26,&H00F5E8D6,&H000000FF,&H00000000,&H80000000,-1,-1,0,0,100,100,0,0,1,2.4,0.8,2,24,24,138,1
+Style: VO,<Sans family>,26,&H00D6E8F5,&H000000FF,&H00000000,&H80000000,-1,-1,0,0,100,100,0,0,1,2.4,0.8,2,24,24,138,1
 Style: Name,<Serif family>,50,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3.2,1,7,0,0,0,1
 Style: Role,<Serif family>,23,&H0080D4F2,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,2.2,0.8,7,0,0,0,1
 Style: Term,<Serif family>,24,&H00FFFFFF,&H000000FF,&H00000000,&HA0000000,-1,0,0,0,100,100,0,0,3,10,0,8,0,0,0,1

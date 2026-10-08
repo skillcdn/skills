@@ -4,7 +4,7 @@ One cut is one `generate_video` call: the approved first frame as `start_image`,
 
 ## Structure
 
-1. **Reference mapping.** The frame goes in `start_image`; the portraits go in the model's reference role in the order the mapping lists them. One line per portrait, in that order: "Reference image N: <character>; take the face, hair and build." Then: "Use only the faces and hair from the reference images, not their plain backgrounds. The start image is the opening frame; continue from it, with the costumes as in the start image."
+1. **Reference mapping.** The frame goes in `start_image`; the portraits go in the model's reference role in the order the mapping lists them. One line per portrait, in that order: "Reference image N: <character>; take the face, hair and build." Then: "Use only the faces and hair from the reference images, not their plain backgrounds. The start image is the opening frame; continue from it, with the costumes as in the start image." Read the echoed parameters of the first take: when the server folded the frame into the reference list as its first entry ([tool-notes.md](tool-notes.md)), the mapping says "Reference image 1 is the opening frame" and numbers the portraits from 2, in every cut after.
 2. **Style and world line.** The style line verbatim, then the look of this cut in one sentence: period, place, light, palette, grading. Copied from the episode's prompt conventions.
 3. **Shots.** "Shot N (a to b s): ..." with the camera, the action and the expression. One to three seconds each; a cut of 10 or 12 seconds holds three to five.
 4. **Lines.** For each spoken line: "Between X and Y seconds <CHARACTER> speaks <language> with natural standard pronunciation, lips synced, every syllable articulated distinctly, no added syllables: '<the line>'", the line written in the language's own script, with the voice the bible gives the character in a few words. For the inner voice: "<language> voice-over in <CHARACTER>'s voice, <the bible's voice line>, calm pace, lips NOT moving: '<the line>'".
@@ -20,7 +20,7 @@ One cut is one `generate_video` call: the approved first frame as `start_image`,
 - Spectacle and a line do not share a second. Put the transformation, the fall or the crash in its own shot and the line before or after it.
 - A character who must not see something (they fainted, they turned away) is described as not seeing it in the shot where it happens, or the take shows them watching.
 - When a face must read, say "close-up" and the expression; when the world must read, say "wide" and what is in it. The model defaults to medium shots.
-- When the server answers with a preset recommendation instead of a job, read the preset id from that answer and call again with it in `declined_preset_id`; the id is read from the answer each time, never remembered.
+- When the server answers with a preset recommendation instead of a job, read the preset id from that answer and call again with it in `declined_preset_id`. The id is read from the answer; within one run, when the same id has come back on every cut so far, send it from the start on the next cut, which saves a round trip, and read a new id from the answer when another comes.
 - The duration is the cut table's. Do not round up for safety; an unused tail is paid for and then trimmed.
 - One cut per call, `count` 1, `use_unlim` explicit. The batch tool does not let the review stop a wrong line before the next cut repeats it.
 

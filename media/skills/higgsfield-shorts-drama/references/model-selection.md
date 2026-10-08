@@ -6,7 +6,7 @@ Nothing is generated before the user accepts the model and the estimate. The vid
 
 | Needs | Why |
 |---|---|
-| Several reference images in one call, and a start frame | The portraits of every character in the cut keep the cast the same across many cuts; the approved first frame fixes the composition. A model that takes only references, or only a start frame, is a fallback, and the plan says what it loses. |
+| Several reference images in one call, and a start frame | The portraits of every character in the cut keep the cast the same across many cuts; the approved first frame fixes the composition. A model that takes only references, or only a start frame, is a fallback, and the plan says what it loses. A role list is not proof that the two roles combine in one call: the preflight accepts what the generation may refuse, and the first cut is the test ([tool-notes.md](tool-notes.md)). |
 | Native dialogue audio with lip sync | The model speaks every line; there is no text-to-speech. |
 | 9:16 | Vertical platforms. |
 | Durations that cover 7 to 12 seconds | The cut lengths of the table. A model with fixed options takes the nearest allowed length, and the table is written to them. |
@@ -19,7 +19,7 @@ models_explore  action: recommend  type: video  query: several reference images 
 models_explore  action: search  type: video  query: <each family the recommendation named>
 ```
 
-From the results keep every model that meets the table above, reading `medias[].roles` (a reference role such as `image_references`, and `start_image`), the audio parameter, `aspect_ratios` and the duration range. Within a family keep the latest general model: the highest generation number, not an edit, extension, turbo or product wrapper. Then read each candidate's parameters with `action: get`. Two or three candidates is usual; one is enough; none means the skill cannot run as written, and the user is told what is missing.
+The recommendation returns only part of the catalog (on 2026-10-08 it left out the cheapest candidate), so also page through `action: list` with `type: video` and keep every model that meets the table above, reading `medias[].roles` (a reference role such as `image_references`, and `start_image`), the audio parameter, `aspect_ratios` and the duration range. Within a family keep the latest general model: the highest generation number, not an edit, extension, turbo or product wrapper. Then read each candidate's parameters with `action: get`. Two or three candidates is usual; one is enough; none means the skill cannot run as written, and the user is told what is missing.
 
 ## Lowest tier
 
@@ -35,7 +35,7 @@ Audio stays on for every cut; a cut without a line still carries its sound. Neve
 
 ## Preflight
 
-Call `generate_video` with `get_cost: true` and the exact parameters a cut will use: the model, the tier, `9:16`, the duration, audio on, `use_unlim` explicit, and a reference media id where the model's reference mode needs one even to quote (any image the account holds serves, found with `show_medias`; when the account holds none, make a tiny placeholder image in the sandbox with ImageMagick and upload it with `media_upload` and `media_confirm`, which costs no credits; the number does not depend on which). Nothing is submitted or charged. The cost depends on the model, the duration, the tier and the audio flag, not on the prompt, so preflight once per candidate and distinct duration of the cut table and reuse the numbers.
+Call `generate_video` with `get_cost: true` and the exact parameters a cut will use: the model, the tier, `9:16`, the duration, audio on, `use_unlim` explicit, and a reference media id where the model's reference mode needs one even to quote (any image the account holds serves; when none is at hand, or `show_medias` fails, make a tiny placeholder image in the sandbox with ImageMagick and upload it with `media_upload` and `media_confirm`, which costs no credits; the number does not depend on which). Nothing is submitted or charged. The cost depends on the model, the duration, the tier and the audio flag, not on the prompt, so preflight once per candidate and distinct duration of the cut table and reuse the numbers.
 
 When the preflight returns a preset recommendation instead of a number, read the preset id from the answer and call again with it in `declined_preset_id`; pass the same field on the real generation. The skill uses no presets and does not put the notice to the user.
 
@@ -52,7 +52,7 @@ Balance: <credits> · Finalize at <res>: <price> per take, optional, not in the 
 
 The shape is illustrative; present only numbers that came back from `get_cost` in this run. The reserve is one take per three cuts (rounded up) priced at the longest cuts, one retry per portrait and per set, one frame per three cuts; it is the whole retry budget, images included, and beyond it every retry needs consent. Read `balance` before presenting; when the total exceeds it, say so and offer a shorter episode or fewer cuts before anything else.
 
-The user sees, in plain words: the recommended model with its total including the reserve and the reason in a line; the other candidate's total; the balance; and the finalize price as a separate, optional line. Recommend by these, in order: the model that takes both references and a start frame; the lower total; the durations the table needs; native audio in the dialogue language. One word proceeds; the user may pick the other candidate or change the plan, which is preflighted again.
+The user sees, in plain words: the recommended model with its total including the reserve and the reason in a line; the other candidate's total; the balance; the finalize price as a separate, optional line; and the **fallback**: what happens when the first cut shows the recommended model refusing the frame with the references, or speaking the dialogue language badly (a model the notes have never heard speak it is on trial in its first cut). The fallback is the next candidate at its quoted total, or the same model with the frame as reference image 1; when the user's word covered it, the switch happens without a second stop, and the images already made are kept; otherwise it is re-quoted. Recommend by these, in order: the model that takes both references and a start frame; a record in the dialogue language; the lower total; the durations the table needs. One word proceeds; the user may pick the other candidate or change the plan, which is preflighted again.
 
 ## Free-trial unlimited generations
 
@@ -64,4 +64,4 @@ A job the server refuses (moderation, an invalid parameter) or that fails withou
 
 ## After the episode: a higher resolution
 
-The episode is delivered at the draft tier. Two ways up, each quoted at the delivery and started only on the user's word: finalize every accepted take at the resolution the catalog names (the preflight showed the price per take; the assembly script is re-run with the finalized takes' URLs and nothing else changes), or upscale the assembled episode with `upscale_video`, preflighted the same way. Neither is in the estimate.
+The episode is delivered at the draft tier. Two ways up, each quoted at the delivery and started only on the user's word: finalize every accepted take at the resolution the catalog names (the preflight showed the price per take; the assembly script is re-run with the finalized takes' URLs and nothing else changes), or upscale the assembled episode with `upscale_video`, which has no preflight: say so, quote the finalize route, and name the window the catalog gives for finalizing a draft. Neither is in the estimate.
