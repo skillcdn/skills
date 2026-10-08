@@ -9,9 +9,11 @@
 //      the body starts with a level-one heading, and what SkillCDN adds under `skillcdn` (the files that
 //      come with the skill, the translations) points at what exists and is well formed.
 //   3. Every skill lives at <area>/skills/<name>, under an area manifest; none at the root.
-//   4. A skill links only inside its own directory (it may be mounted alone). A served document links only
-//      to what an agent can reach through the mount: skills, manifests, document directories, and the
-//      README of a served folder.
+//   4. A skill links inside its own directory, or into a document directory of the repository or of its own
+//      area, where what the skills of one tool family share lives; it may be mounted alone, so its workflow
+//      and rules stay inside. A served document links only to what an agent can reach through the mount:
+//      skills, manifests, document directories, and the README of a served folder. A link that starts with
+//      `/` is resolved from the repository root, as the indexer resolves it.
 //   5. No rendered media or binaries; JSON parses; text carries no control or invisible characters.
 //   6. Every area, skill and document set is listed in its catalog README and in the root README, and every
 //      area with skills is one plugin in .claude-plugin/marketplace.json.
@@ -398,6 +400,12 @@ const isExposedDir = (dir) =>
 const isOverview = (abs) => README_RE.test(basename(abs)) && isExposedDir(dirname(abs));
 const isReachable = (abs) => isDiscoverable(abs) || isOverview(abs) || (isDirectory(abs) && isExposedDir(abs));
 
+// The document directories a skill may link into: the repository's and its own area's. They travel with the
+// root connection and the area connection, and the area's with its plugin; a skill mounted alone or copied
+// says in its Requirements where they are.
+const sharedDocumentDirs = (skillRoot) =>
+  manifests.filter((m) => m.dir === root || inside(skillRoot, m.dir)).flatMap((m) => m.documentDirs);
+
 function checkLinks(file, text) {
   const dir = dirname(file);
   const skillRoot = skillRootOf(file);
@@ -410,12 +418,15 @@ function checkLinks(file, text) {
     if (/^([a-z][a-z0-9+.-]*:|#)/i.test(target)) continue;
     const path = target.split("#")[0];
     if (!path) continue;
-    const abs = resolve(dir, decodeURIComponent(path));
+    // A leading `/` means the repository root, for the indexer and for the git host alike.
+    const decoded = decodeURIComponent(path);
+    const abs = decoded.startsWith("/") ? resolve(root, decoded.slice(1)) : resolve(dir, decoded);
     if (!inside(abs, root)) {
       fail(file, `link escapes the repository: ${target}`);
-    } else if (skillRoot && !inside(abs, skillRoot)) {
-      // A skill may be mounted alone, so nothing it links to may live outside its own directory.
-      fail(file, `link leaves the skill directory: ${target}`);
+    } else if (skillRoot && !inside(abs, skillRoot) && !sharedDocumentDirs(skillRoot).some((d) => inside(abs, d))) {
+      // A skill may be mounted alone: its workflow and rules stay inside its directory, and only the shared
+      // documents of the repository or of its area are linked from outside, by the phase that reads them.
+      fail(file, `link leaves the skill and the document directories it may share (its own directory, docs/ of the repository or of its area): ${target}`);
     } else if (servedDocument && !isReachable(abs)) {
       fail(file, `link leaves what an agent can reach through the mount (skills, manifests, document directories, the README of a served folder): ${target}`);
     } else if (!exists(abs)) {

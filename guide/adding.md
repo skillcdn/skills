@@ -6,7 +6,7 @@ A repository in this layout, this one or a fork of it, grows one piece at a time
 
 1. Read [skill-authoring.md](skill-authoring.md), the rules in [`SKILLCDN.md`](../SKILLCDN.md) and the manifest of the area the skill belongs to. Open the existing skill closest to yours (start with `marketing/skills/higgsfield-shorts-ad/`) and copy its skeleton.
 2. Create `<area>/skills/<name>/SKILL.md`. The directory name is the skill name. Prefix it with the tool family (`higgsfield-`, `github-`, ...). If no area fits, add the area first (below).
-3. Put anything longer than a paragraph in `references/`, and link each reference from the phase that uses it. List the references every run needs in `skillcdn.include` in the front-matter, so that they arrive with the skill. Data files go in `assets/`. Never link outside the skill directory.
+3. Put anything longer than a paragraph in `references/`, and link each reference from the phase that uses it. List the references every run needs in `skillcdn.include` in the front-matter, so that they arrive with the skill. Data files go in `assets/`. Link outside the skill only to a page the skills of its tool family share, `docs/<family>/<topic>.md` at the root or in the area's `docs/`, with a root-relative path, from the phase that reads it.
 4. Do not restate the repository's or the area's rules; they arrive with the skill. Name the tools the skill requires in "Requirements", with what to do when one is missing.
 5. Add one row to the table in `<area>/README.md` and one to the "Skills" table in the root `README.md`. If it is the area's first skill, update the area's row in the root `README.md` and add the area to `.claude-plugin/marketplace.json` (below).
 6. Run `node scripts/check.mjs`. Fix what it reports. With a checkout of SkillCDN at hand, `pnpm --filter @skillcdn/server run start check <path to this repository>` shows what an agent would get, with the indexer's own parser: the connection instructions, each skill's license, and whether the MCP skills extension lists it.
@@ -32,11 +32,11 @@ The first skill for a tool that the repository does not cover yet also needs:
 
 - A line in the "Tool families" table in the root `README.md`: what the tool is, how the user connects it (an MCP server address, an install step) and where its own documentation lives.
 - The `metadata.tools` value in the front-matter, so skills can be found by family.
-- If the tool has conventions that every skill for it will share (how uploads work, how costs are queried, how results come back), write them once in `guide/tools/<family>.md` for authors. Each skill still carries what it cannot work without, because a skill may be mounted alone and guide pages are not discoverable.
+- The first skill carries everything it knows about the tool in its own `references/`. When a second skill of the family would repeat it (how the tool behaves, what it did in runs, the knowledge runs add to), move that into `docs/<family>/` (or `<area>/docs/<family>/` when one area holds every skill of the family) as a document set (below), one file per topic, and link it from both skills; `guide/tools/<family>.md` then says, for authors, what belongs in the set and what stays in a skill, and how a run's findings get there. Each skill still carries what it cannot work without (its workflow and its hard rules), because a skill may be mounted alone and the set is read through the repository connection.
 
 ## A new document set
 
-A document set is a directory of Markdown without a `SKILL.md`, under a document directory: `docs/` at the root for what serves every area, `<area>/docs/` for what serves one. SkillCDN lists and searches it through `browse_repo` and `search_repo` and serves it through `read_repo_file`; no skill is needed.
+A document set is a directory of Markdown without a `SKILL.md`, under a document directory: `docs/` at the root for what serves every area (a handbook, or what the skills of one tool family share, as `docs/<family>/`), `<area>/docs/` for what serves one. SkillCDN lists and searches it through `browse_repo` and `search_repo` and serves it through `read_repo_file`; no skill is needed.
 
 1. Create `<docs>/<name>/` with a `README.md` that says what the set is and how it is organized. For the first set of an area, create `<area>/docs/README.md` as the area's document catalog as well.
 2. Give each document a front-matter `title` and `description`, or a level-one heading followed by one summary paragraph, because that is what search shows.
