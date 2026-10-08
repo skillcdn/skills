@@ -8,7 +8,7 @@ Skills for an AI agent to do real company work. From marketing to design, engine
 | "What is taking off in this market?" | A ranked report of what advertisers are putting new money behind, with a snapshot the next run measures growth against. |
 | "Research the ads running for this keyword." | The creatives that show proof of working, each broken down, with directions for your own ads. |
 
-Each folder is an area of work with the skills that do it and the documents its people read: marketing has the first skills, product and engineering are next, and more areas will follow. This is also the reference repository for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a skill repository, kept working against real tools. Fork it to publish your own skills in the same shape.
+Each folder is an area of work with the skills that do it and the documents its people read: marketing and media have the first skills, product and engineering are next, and more areas will follow. This is also the reference repository for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a skill repository, kept working against real tools. Fork it to publish your own skills in the same shape.
 
 [SkillCDN](https://github.com/skillcdn/skillcdn) turns a git repository into an MCP server. Point an agent at an address and it gets what the address covers:
 
@@ -32,6 +32,7 @@ One folder per area of work. Each carries a `SKILLCDN.md` that says who its skil
 | [`marketing/`](marketing/) | Ads, ad and product research, promotional video, content, campaigns, social posts. | 3 |
 | [`product/`](product/) | Discovery, research synthesis, requirements, specifications, roadmaps, prioritization. | none yet |
 | [`engineering/`](engineering/) | Software development: writing and changing code, building apps, code review, testing, debugging. | none yet |
+| [`media/`](media/) | Original video and audio content: scripted short dramas, series episodes, story-driven shorts. | none yet |
 
 Areas to come, each with its first skill: design, sales, support, operations, data, finance, legal, people. The naming rule and the steps are in [guide/adding.md](guide/adding.md).
 
@@ -81,7 +82,7 @@ The rules for changing anything, for people and agents alike, are in [CLAUDE.md]
 ```
 SKILLCDN.md       the repository manifest: name, description, document roots, the rules for every skill
 README.md         this introduction
-<area>/           one folder per area of work: marketing/, product/, engineering/, ...
+<area>/           one folder per area of work: marketing/, media/, product/, engineering/, ...
   SKILLCDN.md     the area manifest: who its skills are for, the rules its skills add
   README.md       the area's catalog
   skills/<name>/  one directory per skill: SKILL.md, references/, assets/, optional scripts/
