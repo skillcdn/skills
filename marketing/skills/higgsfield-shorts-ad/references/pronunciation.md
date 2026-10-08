@@ -2,7 +2,7 @@
 
 Video models with native dialogue have no pronunciation dictionary, and a transcript often cannot show the fault. This file is the knowledge, per language, gathered from real runs of the Higgsfield skills that carry it; the procedure that uses it (how lines are written, how a take is read, how a retry is made) is each skill's own. A fault kept out of the first take costs nothing; one found in a take costs a retry; one found by the user costs their trust.
 
-The same file lives in every Higgsfield skill of the repository. A new outcome goes into every copy in one commit, with its date, the model and what was tried. Add a language section when a run teaches one.
+The same file lives in every Higgsfield skill of the repository. A new outcome goes into every copy in one commit, with its date, the model and what was tried; an agent running a skill without the repository at hand reports it in its delivery instead. Add a language section when a run teaches one.
 
 ## In any language
 
