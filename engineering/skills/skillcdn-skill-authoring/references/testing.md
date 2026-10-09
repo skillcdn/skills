@@ -4,9 +4,9 @@ A skill is proven only when an agent with none of the authoring session's contex
 
 ## Dry read
 
-A fresh agent that reads and does nothing else. Where the host has a subagent tool, run one with a capable model and this brief; otherwise the user opens a session with it. A subagent may arrive with the host's memory index or the checkout's agreement in its context; the brief tells it to use neither.
+A fresh agent that reads and does nothing else. Start it as [fresh-agents.md](/engineering/docs/skillcdn/fresh-agents.md) says for the host: where the host has a subagent tool, a subagent with a capable model and this brief; otherwise the user opens a session with it. A subagent may arrive with the host's memory index or the checkout's agreement in its context; the brief tells it to use neither.
 
-> You are about to run the skill at `<path>` in a fresh session, with only this request from the user: "<request>". Read only the files of that skill directory, and in the checkout the files its SKILL.md names, and nothing else; use nothing you remember from memory or from any earlier context; run nothing and change nothing. Then report, as a numbered list, every place where you would have to guess, ask the user, or look something up to go on: an artifact used before it is named, a choice without its rule, a question without its wording, a value you would need, a term you do not know, a step whose result you cannot tell, a contradiction between two sentences, an instruction you could not carry out in this environment. Quote the sentence each finding is about and name the file. Say which findings you could resolve from the files on a second read and which you could not.
+> You are about to run the skill at `<path>` in a fresh session, with only this request from the user: "<request>". Read only these files and nothing else: the files of that skill directory, the bodies of the manifests above it, and the shared pages its SKILL.md includes or links. Use nothing you remember, from memory or from an earlier context, and nothing from a working agreement such as `CLAUDE.md`; run nothing, call no tool except to read those files, change nothing. Walk the skill phase by phase as you would run it for that request. Report, as a numbered list, most important first, every place where you would have to guess, ask the user, or look something up to go on: an artifact used before it is named, a choice without its rule, a question without its wording, a value you would need and no way to find it, a term you do not know, a step whose result you cannot tell, an order you cannot follow, a contradiction between two sentences, a rule you could not keep, an instruction you could not carry out in this environment, a part you would be tempted to skip. Quote the sentence each finding is about and name the file. Say which findings you could resolve from the files on a second read and which you could not. End with the first 200 characters of the skill's description and whether this request would make you pick the skill.
 
 Fix each finding in the files: the phase gains the sentence it lacked, the term joins the terminology, the rule gets its why. A finding about the format or about a manifest's rule is reported to the user and left in place. A dry read of a changed skill before its push catches most of what a fresh run would, at no cost.
 
@@ -14,30 +14,30 @@ Fix each finding in the files: the phase gains the sentence it lacked, the term 
 
 ### Push first
 
-The service serves the default branch, so the skill is pushed before the run: commit the skill's files and the catalog rows, `git pull --rebase`, push. Then wait until the commit is served, checking about once a minute. The mount's status at `https://skillcdn.ai/api/v1/mounts/<address>` (`gh/skillcdn/skills` for this collection) names the `commit` it serves and its `index.status`, `ready` when the skill can be loaded; on the connection, `browse_repo` names the served commit in its `Source` line. A push is served within a few minutes (checked 2026-10); a status still not ready after ten minutes names diagnostics, which say what to fix. Do not push again while a fresh agent is loading the skill: its continuation cursors stop matching.
+The service serves the default branch, so the skill is pushed before the run: commit the skill's files and the catalog rows, `git pull --rebase`, push. Then wait until the commit is served, as [serving.md](/engineering/docs/skillcdn/serving.md) says: `browse_repo`'s `Source` line names the served commit, and that page says how long serving takes and what a status that stays not ready means. Do not push again while a fresh agent is loading the skill: its continuation cursors stop matching.
 
 ### The runner
 
-The run gets only the request and a few facts about its environment, nothing of the authoring session.
+The run gets only the request and a few facts about its environment, nothing of the authoring session. Start it as [fresh-agents.md](/engineering/docs/skillcdn/fresh-agents.md) says for the host: what can still reach a subagent, a directory of its own, a second session, a runner script.
 
-- A subagent with a fresh directory of its own, so that the host's memory, keyed on the directory, is fresh too; in Claude Code the Agent tool's worktree isolation gives one, a copy of the checkout that the brief tells it not to read skills from. The strongest model the host offers for real work, at a high effort setting, never a pinned name. Its brief: the user's request in the user's words, on the stand-in subject the test plan names; that the skills come from the SkillCDN connection at the repository root, never from local files; the folder outside the repository where outputs go; that it stops and ends its turn at every checkpoint with the checkpoint message as its report, and never answers a checkpoint itself. Each stop comes back as its report, and the user's one-line answer sent to the same subagent resumes it with its context intact.
-- Or a separate session the user starts, a headless session of the host or a second window from another folder, with the same brief. A runner script with a scoped allowlist (the SkillCDN server's tools, the tool's own server, the shell commands the skill names) works; a blanket permission bypass is refused by the host. A prompt in Korean or another non-ASCII script reaches a child process intact when read from a UTF-8 file, not when passed inline.
+- A subagent with a directory of its own, a copy of the checkout that the brief tells it not to read skills from; or a separate session the user starts in another directory, with the same brief. The strongest model the host offers for real work, at a high effort setting, never a pinned name. Its brief: the user's request in the user's words, on the stand-in subject the test plan names, verbatim and last; that the skills come from the SkillCDN connection at the repository root, `load_skill` followed through every `nextCursor` before the skill is used, never from local files; the folder outside the repository where outputs go; that it uses nothing it remembers, and no memory index or working agreement its host handed it; that it stops and ends its turn at every checkpoint with the checkpoint message as its report, never answers a checkpoint itself, never spends what was not accepted, and never pushes. Each stop comes back as its report, and the user's one-line answer sent to the same agent resumes it with its context intact.
 - The first run of a new skill goes to the end: the skill is done only when a fresh agent reached the result. A rerun, when the point is the plan and not the product, stops at the cost checkpoint, left unanswered, so that nothing is spent.
 
 Answer each checkpoint in one short line, with the answer the user approved in the test plan, and no more: a hint the user would not give masks a gap in the skill. A stop the plan did not foresee, and an estimate above the one the user approved, go to the user before the run goes on. An agent that does not pick the skill for the request gets one line of direction, as the user would give it ("use the <name> skill"), and that miss is a finding about the description.
 
 ### Reading the run
 
-The run's record (the subagent's reports, and its transcript where [evidence.md](evidence.md) "Earlier sessions" locates it) against the skill, phase by phase:
+The run's record (the subagent's reports, and its transcript where [transcripts.md](/engineering/docs/skillcdn/transcripts.md) locates it) against the skill, phase by phase:
 
 | Where the run | It means |
 |---|---|
 | Asked something the skill derives | The derivation rule is missing or buried |
 | Improvised a step | The phase lacks the sentence |
 | Ignored a sentence | Unclear, or in the wrong place; move it to the phase that needs it |
-| Did what the tool notes say the tool would not do, or met what they do not say | A tool note changes, with the source and month |
+| Met what the tool notes or the family's pages do not say, or the opposite of what they say | A tool note or the family page changes, with the source and the month |
 | Spent more than the estimate's shape allows | The estimate's shape, the reserve, or the stop before exceeding it |
 | Delivered less than the verdicts ask | A verdict is missing, or the delivery's list is incomplete |
+| Did not pick the skill, or strayed from it | The description, or the phase it left |
 | Answered in another language, or slipped once | The maintainer list, not the skill |
 
 ### Where a finding goes

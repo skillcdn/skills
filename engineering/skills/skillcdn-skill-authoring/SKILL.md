@@ -5,13 +5,15 @@ license: MIT
 compatibility: Needs a shell with git and Node.js in a checkout of the target repository, and the host's transcripts and memory where the user points to earlier sessions. The tool the new skill drives is needed for the test run. The example script needs Python; a transcript can be read without it. Works in any agent that can read files and run a shell.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: skillcdn
 skillcdn:
   include:
     - references/evidence.md
     - references/distillation.md
     - references/testing.md
+    - /engineering/docs/skillcdn/serving.md
+    - /engineering/docs/skillcdn/fresh-agents.md
   translations:
     ko:
       title: 이미 한 일로 만드는 SkillCDN 스킬
@@ -34,12 +36,14 @@ What goes in: a job that was done with a tool, in this session or in others, wit
 |---|---|
 | A shell in a checkout of the target repository, this one or a fork, with git and Node.js | The conventions, the existing skills whose shape is kept, `node scripts/check.mjs`, the commit and the push. |
 | This session's context | The first and main evidence. |
-| The host's transcripts and memory | Evidence from sessions this one did not see, read when the user points to them or the session refers to work it does not hold; [evidence.md](references/evidence.md) says where each host keeps them. |
+| The host's transcripts and memory | Evidence from sessions this one did not see, read when the user points to them or the session refers to work it does not hold; [transcripts.md](/engineering/docs/skillcdn/transcripts.md) says where each host keeps them. |
 | The tool the new skill drives | Its catalog today, for the discovery instructions; the test run. |
 | A way to run a fresh agent: a subagent tool, or a second session the user starts | The dry read and the fresh run. |
 | Optional: the SkillCDN connection to the repository (`skillcdn.ai/gh/<owner>/<repo>`); `npx @skillcdn/cli check`, which needs npm and the network | Loading the pushed skill as a fresh agent does, and `search_repo` over the skills' descriptions; the indexer's own check, which prints what an agent is told and the skill's size as served. |
 
 Check these before the first message. Without a checkout, stop: say that the skill is written into a checkout of the repository, give the clone command (`git clone https://github.com/skillcdn/skills` for this collection; a fork gives its own), and go on to the design only if the user wants it handed over as text. Without the tool but with a run, write from the evidence and report the test as not run. Without the tool and without a run, stop and say what to connect: there is nothing to write from. Without a way to run a fresh agent, the user runs it: give them the brief.
+
+What the SkillCDN skills share is in the area's document set [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md). [serving.md](/engineering/docs/skillcdn/serving.md) (which commit an agent is served, how long a push takes) and [fresh-agents.md](/engineering/docs/skillcdn/fresh-agents.md) (how an agent with none of this session's context is started on each host), which every run reads, are included and arrive with this skill wherever SkillCDN serves it. [transcripts.md](/engineering/docs/skillcdn/transcripts.md) (where a session's record is kept) is linked from the phases that read it and read with `read_repo_file` through the repository or the engineering connection, or as a file: under `docs/skillcdn/` of the engineering plugin, or at `engineering/docs/skillcdn/` of a checkout of this repository. A copy of this skill's directory lacks all three, and a mount of it alone lacks the linked one: say so in the first message, fetch what is missing from `engineering/docs/skillcdn/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules.
 
 What to read in the checkout, and when. The format is the [SkillCDN Format specification](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md) in the SkillCDN repository: the layout, the front-matter, what is served and searched. It is not restated here; the guide says what this layout adds and the two checks apply the format's rules, so read the specification when the checkout's agreement asks for it or when a check reports what the guide does not explain. `CLAUDE.md` is the working agreement for every change, with its documentation protocol and its gotchas: it is in the agent's context in this checkout, and read first elsewhere. `guide/adding.md` has the list of areas and the steps for an area, a tool family and a document set: read in phase 1. The root `SKILLCDN.md` and the target area's `SKILLCDN.md` carry the rules the new skill inherits and must not restate; the rules that arrived with this skill are the engineering area's, so read the target area's before the design. `guide/skill-authoring.md` holds what this layout adds to the format, the body skeleton, the style and the shape of a knowledge page, `guide/roadmap.md` the row the skill gets, and `guide/tools/<family>.md`, where one exists, what the family's skills do the same way: read before phase 4. Where they differ from this skill, follow them: a fork changes its conventions there, not here.
 
