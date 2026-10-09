@@ -19,7 +19,7 @@ Skills about the skills: how work already done becomes a skill, and how a skill 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
 | "Make what we just did into a skill." A skill in this repository from the session's own work, earlier transcripts, memory and results: designed, written in this layout, checked, run once by a fresh agent, shipped. [`skillcdn-skill-authoring`](../engineering/skills/skillcdn-skill-authoring/). A fresh run reached the push checkpoint; the push, the fresh run and the fold-in as a fresh agent does them, and the skill as it reads the shared pages, are untried. | engineering | SkillCDN | done |
-| "Verify this skill." A fresh agent dry-reads the files, a fresh agent runs the served skill with its checkpoints answered as the user would, and the findings are folded back; also for the rounds after a tool, a model or a shared page changes. [`skillcdn-skill-verification`](../engineering/skills/skillcdn-skill-verification/) | engineering | SkillCDN | next |
+| "Verify this skill." A fresh agent dry-reads the files, a fresh agent runs the served skill with its checkpoints answered as the user would, and the findings are folded back; also for the rounds after a tool, a model or a shared page changes. [`skillcdn-skill-verification`](../engineering/skills/skillcdn-skill-verification/). Used once by the authoring session on the four skills below (2026-10); its own fresh run is untried. | engineering | SkillCDN | next |
 
 ## M1: Discovery
 
@@ -27,7 +27,7 @@ What to build: where demand is moving, what people complain about, what is worth
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
-| "What is taking off in this market?" [`meta-ad-library-rising-products`](../marketing/skills/meta-ad-library-rising-products/) | marketing | Meta Ad Library | done |
+| "What is taking off in this market?" [`meta-ad-library-rising-products`](../marketing/skills/meta-ad-library-rising-products/). A fresh run on the US market reached the delivery (2026-10); a second run against a snapshot, the EU and UK series and the broad sweep are untried. | marketing | Meta Ad Library | done |
 | "What do people want and complain about in this kind of app?" Charts, rankings and reviews of the app stores, read with a browser: the unmet needs and the words people use for them. | product | The App Store and Google Play as websites | candidate |
 | "Is anyone asking for this?" Demand in communities, Reddit, Hacker News and Product Hunt: the threads, the recurring asks, the workarounds people built. | product | The sites, with a browser or their APIs | candidate |
 | "Write up the opportunity." A brief from the research in the team's document tool, with the evidence kept apart from the inference. | product | The document tool in use, Confluence, Notion or Claude Docs | candidate |
@@ -76,8 +76,8 @@ Keeping a codebase one that an agent can keep working in: its documents true to 
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
-| "Make an ad for this product." [`higgsfield-shorts-ad`](../marketing/skills/higgsfield-shorts-ad/) | marketing | Higgsfield | done |
-| "Research the ads running for this keyword." [`meta-ad-library-creative-research`](../marketing/skills/meta-ad-library-creative-research/) | marketing | Meta Ad Library | done |
+| "Make an ad for this product." [`higgsfield-shorts-ad`](../marketing/skills/higgsfield-shorts-ad/). A fresh run with no reference reached the plan and cost checkpoint (2026-10); the production phases of this version are untried. | marketing | Higgsfield | done |
+| "Research the ads running for this keyword." [`meta-ad-library-creative-research`](../marketing/skills/meta-ad-library-creative-research/). A fresh run on the US market reached the delivery (2026-10); the KR market, the driven-browser route and a shell without ffmpeg are untried. | marketing | Meta Ad Library | done |
 | "Post this short to TikTok." With a trending sound where one fits, through the connected account. | marketing | Higgsfield's TikTok tools | candidate |
 | "Run a campaign on this creative." Campaign, ad set and ad from a finished creative, the budget estimated and gated, the results read back. | marketing | Meta Marketing API | candidate |
 | "Make product-shot and UGC ads from these product images." | marketing | Higgsfield ads studio | candidate |
@@ -98,5 +98,5 @@ The `support`, `operations` and `data` areas are created with their first skills
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
-| "Make episode one of a short drama from this premise." [`higgsfield-shorts-drama`](../media/skills/higgsfield-shorts-drama/); a second episode and a 150-second episode are not yet exercised. | media | Higgsfield | done |
+| "Make episode one of a short drama from this premise." [`higgsfield-shorts-drama`](../media/skills/higgsfield-shorts-drama/). A fresh run reached the cost checkpoint with the fallback named (2026-10); a production of this version, a second episode and a 150-second episode are untried. | media | Higgsfield | done |
 | "Make an explainer video for this." | media | Higgsfield explainer presets | candidate |
