@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a real browser engine to load facebook.com/ads/library, either a shell with a Chromium-family browser on the same machine or a browser the agent can drive (a built-in browser, a browser extension, a Playwright or Chrome DevTools server). Plain fetch and search tools cannot load the site. Any agent with one of the two can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.3"
+  version: "1.4"
   tools: meta-ad-library
 skillcdn:
   include:
@@ -53,11 +53,11 @@ Each phase produces a named result. Only phase 3 stops for the user.
 
 ### Phase 1: Intake
 
-Produces the **scope**: the sector or the broad sweep, what counts as an item in it, how many candidates are themes, the market as a country code, the seed terms by [rising-signals.md](references/rising-signals.md) "Seeds", and the earlier snapshot when one is found.
+Produces the **scope**: the sector or the broad sweep, what counts as an item in it, how many candidates are themes, the market as a country code, the seed terms by [rising-signals.md](references/rising-signals.md) "Seeds", the run's folder, and the earlier snapshot when one is found. A request that names no platform is read as the library's, Facebook and Instagram.
 
 ### Phase 2: Access
 
-Produces the **route**. Take the first route of [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "Routes" that the agent has and prove it by running the first seed: a count and at least one Library ID. With a shell, that means saving the script of [page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script" and running it, not checking the machine first; with a driven browser, navigating and running the reader of [driven-browser.md](/marketing/docs/meta-ad-library/driven-browser.md) "The embedded results". Either yields the record of [record.md](/marketing/docs/meta-ad-library/record.md). When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every count by age depends on it.
+Produces the **route**. Take the first route of [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "Routes" that the agent has and prove it by running the first seed's first view: a count and at least one Library ID. That load is the view itself, written to the pool and counted in the budget. With a shell, that means saving the script of [page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script" and running it, not checking the machine first; with a driven browser, navigating and running the reader of [driven-browser.md](/marketing/docs/meta-ad-library/driven-browser.md) "The embedded results". Either yields the record of [record.md](/marketing/docs/meta-ad-library/record.md). When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every count by age depends on it.
 
 ### Phase 3: Sweep
 
