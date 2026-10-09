@@ -1,6 +1,6 @@
 # Tool notes
 
-How the Higgsfield tools behave in what is this skill's own. What holds for every Higgsfield skill (the sandbox and its lease, the preflight and the presets, the models and what they accept or refuse, the decoders, the sounds of a language) is in the repository's shared pages under [/docs/higgsfield/](/docs/higgsfield/README.md); read those before phase 3. When a tool behaves differently from what a sentence here says, trust the tool and change the sentence. Nothing here changes the rules in SKILL.md.
+How the Higgsfield tools behave in what is this skill's own. What holds for every Higgsfield skill (the sandbox and its lease, the preflight and the presets, the models and what they accept or refuse, the decoders, the sounds of a language) is in the repository's shared pages under [/docs/higgsfield/](/docs/higgsfield/README.md); read `models.md` before phase 3, `cast.md` before phase 4, `sandbox.md` and `decodes.md` before phase 6. When a tool behaves differently from what a sentence here says, trust the tool and change the sentence. Nothing here changes the rules in SKILL.md.
 
 ## Cost and time of an episode
 

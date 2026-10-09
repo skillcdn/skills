@@ -4,7 +4,7 @@ One Markdown file per episode, next to the script. It is the record the next epi
 
 ## Where the series files live
 
-The bible, the script and the log are files; `<series>` is the slug the bible gives the series. An agent with a filesystem keeps them in the user's working directory as `<series>/bible.md`, `<series>/ep<NN>-script.md` and `<series>/ep<NN>-log.md`. An agent without one writes each into the sandbox with a heredoc and uploads it with `media_upload` as a general file (a `.md` filename) at the delivery, and puts the permanent URLs in the message. The next episode takes the bible and the last log as files or as those links. The delivery says where they are. The log is opened in phase 4, when the first credit is spent, and written as the run goes.
+The bible, the script and the log are files; `<series>` is the slug the bible gives the series. An agent with a filesystem keeps them under the folder the user named for the run, else in the working directory when it is not a code repository, else in a folder outside it named at the bible checkpoint, as `<series>/bible.md`, `<series>/ep<NN>-script.md` and `<series>/ep<NN>-log.md`. An agent without one writes each into the sandbox with a heredoc and uploads it with `media_upload` as a general file (a `.md` filename) at the delivery, and puts the permanent URLs in the message. The next episode takes the bible and the last log as files or as those links. The delivery says where they are. The log is opened in phase 4, when the first credit is spent, and written as the run goes.
 
 ## Sections
 

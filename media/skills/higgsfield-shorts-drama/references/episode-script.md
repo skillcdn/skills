@@ -1,6 +1,6 @@
 # Episode script: the cut table
 
-One episode is one Markdown file: a header table, the reference table, the cut table, the edit plan, and the prompt conventions that hold for the episode. An example of the cut table as data is [cut-list.example.json](../assets/cut-list.example.json).
+One episode is one Markdown file: a header table, the reference table, the cut table, the edit plan, and the prompt conventions that hold for the episode. An example of the cut table as data is [cut-list.example.json](../assets/cut-list.example.json): an agent may keep the cut table as that JSON and update it per phase, writing the Markdown from it at the checkpoints; the ledger lives in the production log.
 
 ## Header
 
@@ -9,7 +9,7 @@ One episode is one Markdown file: a header table, the reference table, the cut t
 | Target length | After the edit, about 150 seconds unless the user named a length; generate about 10 percent more. |
 | Format and model | 9:16, the model chosen in phase 3, lowest tier, audio on. |
 | Method | Every cut new, one at a time, from its approved first frame; two plain speech-to-text decodes and a contact sheet per cut; only failed cuts regenerated. |
-| What the viewer knows by second thirty | Copied from the bible. |
+| What the viewer knows by second thirty | Copied from the bible for the first episode; for a later one, what the viewer knows at its start. |
 | What a character does not know | The knowledge-table facts this episode turns on, so the ending is checked against them. |
 | Ending hook | The last three lines, verbatim. |
 | Estimated credits | From the preflight, with the reserve; filled in phase 3. |
@@ -47,7 +47,7 @@ Total the lengths under the table.
 
 ## Writing lines
 
-- Short. Five to twelve words, one breath, commas where the voice should pause. Lines in one cut are at least a second apart; the last line ends at least half a second before the cut does, or the edit cannot trim the tail.
+- Short. Five to twelve words, one breath, commas where the voice should pause; within the subtitle cap of [editing.md](editing.md) (about 18 Hangul or 32 Latin characters per line, two lines), or the line is two cues. Lines in one cut are at least a second apart; the last line ends at least half a second before the cut does, or the edit cannot trim the tail.
 - Plain words. A word the viewer must decode, a coined term, or a sound the model is known to slur in the dialogue language ([/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md)) is replaced with a plain word of the same meaning before the first take. Ordinary words are otherwise left as written; a script rewritten around sounds loses its voice.
 - A character's name is never the first word of a line, and a name whose sound the model has bent before is left out of the line when the sentence survives without it. Names and key words (a secret said aloud, the ending's lines) are what the review looks at first; they carry a prompt spelling from the first take when they are not said the way they are written.
 - A line that must land in a window is given one: "between 3 and 5.5 seconds".

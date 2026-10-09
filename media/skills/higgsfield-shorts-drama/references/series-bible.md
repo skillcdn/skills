@@ -1,17 +1,17 @@
 # Series bible
 
-The bible is one Markdown file the whole series is written from. Phase 1 writes it or checks an existing one against the rules below. Phase 8 brings it in line with what was shot. It is written in the skill's language for the agent; the lines of the story are in the dialogue language.
+The bible is one Markdown file the whole series is written from. Phase 1 writes it or checks an existing one against the rules below. Phase 8 brings it in line with what was shot. It is written in the skill's language for the agent; the lines of the story, the name-card lines and the term cards are in the dialogue language, and the script and the log follow the bible in this.
 
 ## Sections, in order
 
-1. **Logline and format.** One sentence; the series slug (a few lowercase words of the title joined by hyphens, the folder name of the series files); episode count (eight unless the premise or the user names one); seconds per episode; aspect ratio; the dialogue language and its script.
-2. **Direction.** Four principles in one table: fast, strong, clear, at a glance. Each row names the failure it prevents.
+1. **Logline and format.** One sentence; the series slug (a few lowercase words of the title in Latin letters, translated or romanized when the title is in another script, joined by hyphens: the folder name of the series files); episode count (eight unless the premise or the user names one); seconds per episode; aspect ratio; the dialogue language and its script.
+2. **Direction.** Four principles in one table, each with the failure it prevents: fast (an event every ten seconds or so; prevents drift), strong (a wrong the viewer feels; prevents mildness), clear (one secret at a time; prevents confusion), at a glance (every beat readable with the sound off; prevents the muted scroll-past).
 3. **What the viewer knows by second thirty.** Three or four numbered facts. Everything else in the series rests on them.
 4. **Episode table.** One row per episode: title, what happens, the payback, the ending hook.
 5. **World.** At most three rules, each one sentence. Any coined word the viewer must learn gets a term card line here.
-6. **Cast.** For each character: a name that is short, with plain vowels the model has not bent in the dialogue language ([/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md)), unlike every other name of the cast in sound; role; voice (one line a video model can follow, such as "a low, calm voice, unhurried", and one sample line); look for the portrait prompt (apparent age range, build, hair, skin tone, main costume, baseline expression), one look per period or state the character appears in; the name-card line (name plus the relationship in one phrase). For each villain, the **wrongs the viewer sees on screen**, as a list.
+6. **Cast.** For each character: a name that is short, with plain vowels the model has not bent in the dialogue language ([/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md)), unlike every other name of the cast in sound; role; voice (one line a video model can follow, with the pace as a number, such as "a low, calm voice, about six syllables a second", and one sample line; a mood word for the pace slows the take, as [/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md) says); look for the portrait prompt (apparent age range, build, hair, skin tone, main costume, baseline expression), one look per period or state the character appears in; the name-card line (name plus the relationship in one phrase). Which characters have an inner voice (the hero by default), and in what tense it speaks. For each villain, the **wrongs the viewer sees on screen**, as a list.
 7. **Knowledge table.** Rows are secrets; columns are the viewer and each character; cells say the episode and the moment each learns it, or "never". This table is the test every line passes.
-8. **Past, when there is one.** What happened before the first episode, in the order it is shown, with seconds.
+8. **Past, when there is one.** What happened before the first episode, in the order it is shown, with the seconds of the episode where each piece is shown.
 9. **Episode formula.** The beats of one episode with their timecodes (see [episode-script.md](episode-script.md)).
 10. **Setups and payoffs.** A table: the thing planted, the episode it is planted in, the episode it pays off.
 11. **Logic check.** The questions a skeptical viewer asks, each with its answer in one or two sentences. A question without a clean answer is a story fix, not a note.
@@ -29,11 +29,11 @@ The bible is one Markdown file the whole series is written from. Phase 1 writes 
 - **Name cards carry relationships.** Not "the sister" but "half-sister; took her place once before".
 - **Endings are events.** An episode stops on something that happened, not on a mood.
 - **One villain is the final one.** Lesser antagonists are converted or discarded along the way; the last one's end is the series' end.
-- **Few faces, few places.** Every character needs a portrait and every place a set; an episode of 150 seconds carries three or four characters and two or three places well.
+- **Few faces, few places.** Every character with a line or a close-up needs a portrait and every recurring place a set; a witness or an extra is placed by the cut's first-frame description and needs none. An episode of 150 seconds carries three or four characters and two or three places well.
 
 ## Checking the premise
 
-A premise may break a writing rule: a revenge that takes a season, a wrong done in secret, a hero who learns the secret last. Keep the premise and adapt the episode: give the first episode an open wrong and a first payback of its own while the larger revenge goes on; show the viewer the secret in the opening even when a character learns it later; move a secret wrong into the open when the viewer must see it. Name the adaptation and its reason at the bible checkpoint, where the user may keep the premise as it is.
+A premise may break a writing rule: a revenge that takes a season, a wrong done in secret, a hero who learns the secret last, a discovery with no one wronged. A premise with no villain or no wrong on screen (a romance, a comedy) keeps the formula at its own scale: the wrong is a slight, a lie or a loss the viewer sees, and the payback a reply in kind. Keep the premise and adapt the episode: give the first episode an open wrong and a first payback of its own while the larger revenge goes on; show the viewer the secret in the opening even when a character learns it later; move a secret wrong into the open when the viewer must see it. Name the adaptation and its reason at the bible checkpoint, where the user may keep the premise as it is.
 
 ## Checking an existing bible
 

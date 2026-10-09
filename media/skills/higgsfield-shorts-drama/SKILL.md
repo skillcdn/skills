@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Higgsfield MCP server with video generation, image generation, media upload and the cloud sandbox (ffmpeg and Whisper). Works in any agent that can call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: higgsfield
 skillcdn:
   include:
@@ -44,11 +44,11 @@ All from the Higgsfield MCP server. Check that they are callable before the firs
 | `models_explore` | The video models that take several reference images and a start frame and make their own dialogue audio; the image models for portraits, sets and first frames; their parameters and roles. |
 | `generate_video`, `generate_image`, each with `get_cost: true` first | Credit preflight, then one take, portrait, set or frame per call. |
 | `jobs_wait`, `show_generation_by_ids` | Collecting a finished job. |
-| `media_upload`, `media_confirm`, `media_import_url` | The user's own references and the edit script in, the finished episode and the series files out. |
+| `media_upload`, `media_confirm` | The edit script in, the finished episode and the series files out. |
 | `sandbox_exec` | Speech-to-text, contact sheets, assembly, subtitles, loudness. |
 | `balance` | Credits before the estimate. |
 
-Optional: `upscale_video` for a finished episode the user wants at a higher resolution, offered separately; it has no preflight, so the finalize of the accepted takes is what gets quoted. In a client without the upload widget, the user's own images come in as links. The references this skill links come with it when the server returns them; when only their list came, read each with `read_repo_file` before the phase that links it. How the tools behaved in real runs of this skill is in [tool-notes.md](references/tool-notes.md); know it before phase 3.
+Optional: `upscale_video` for a finished episode the user wants at a higher resolution, offered separately; it has no preflight, so the finalize of the accepted takes is what gets quoted. `media_import_url` only when the user brings images; `transactions` and `show_generations` when a charge or a job is in doubt; `show_medias` for a placeholder reference at the preflight. In a client without the upload widget, the user's own images come in as links. The references this skill links come with it when the server returns them; when only their list came, read each with `read_repo_file` before the phase that links it. How the tools behaved in real runs of this skill is in [tool-notes.md](references/tool-notes.md); know it before phase 3.
 
 What every Higgsfield skill of the repository shares (the sandbox, models and credits, portraits and frames, decoding a take, the sounds of each language) is in the repository's shared pages under [`docs/higgsfield/`](/docs/higgsfield/README.md). [pronunciation.md](/docs/higgsfield/pronunciation.md), which every run writes and reviews lines with, is included: it arrives with this skill wherever SkillCDN serves it. The other pages are linked from the phases that read them and read with `read_repo_file` through the connection at the repository root. Without that connection (a mount of the area or of this skill alone, a host that takes skills through the skills extension and has no `read_repo_file`, a plugin install, a copy of this directory) the linked pages cannot be read, and a plugin install or a copy lacks the included page too: say so in the first message, fetch what is missing where the agent can from `docs/higgsfield/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`), and otherwise run on this skill's own files, which carry its workflow and its rules.
 
@@ -58,12 +58,12 @@ What every Higgsfield skill of the repository shares (the sandbox, models and cr
 |---|---|
 | Premise or bible | Required. One line and a genre, or the series bible and the previous episode's production log when the series exists. Asked for only when missing. |
 | Episode | Optional. Default: the first episode, or the one after the last log. |
-| References | Optional. An existing series' portraits and sets are reused by the ids in its bible; only new ones are generated. The user's own images are imported and used as references. |
+| References | Optional. An existing series' portraits and sets are reused by the ids in its bible; only new ones are generated. The user's own drawings or generated images are imported and used as references, and one may stand as a character's approved portrait; a photo of a real person is not used. |
 | Everything else | Derived, never asked: the dialogue language (the premise's, else the language the user wrote in), the length (about 150 seconds after the edit unless the user named one; about 10 percent more is generated), the episode count (eight unless the premise or the bible names one), 9:16, the lowest tier, live action photoreal unless the premise names a look, no music, the subtitle styles of [editing.md](references/editing.md). Stated at the bible checkpoint, changed on request. |
 
 ## Workflow
 
-Each phase produces a named artifact. Phases stop only at the checkpoints above.
+Each phase produces a named artifact. Phases stop only at the checkpoints above. The series files are kept where [production-log.md](references/production-log.md) "Where the series files live" says, outside any code repository.
 
 ### Phase 1: Series bible
 
@@ -75,7 +75,7 @@ Produces the **cut table** by [episode-script.md](references/episode-script.md) 
 
 ### Phase 3: Model and cost
 
-Produces the **model choice** and the **estimate** by [model-selection.md](references/model-selection.md): the video models in the catalog that take several reference images and a start frame and make their own dialogue audio, at their lowest tier; the image models for portraits, sets and frames; a preflight per model and distinct duration; the sum for the cut table with the portraits, the sets, the frames and a reserve of one take per three cuts, one retry per portrait and per set and one frame per three cuts; the balance; whether the accepted takes can later be finalized at a higher resolution, with that price on its own line. Checkpoint: the recommended model with its total and the reason in a line, the other candidate's total, the fallback if the first cut refuses the frame with the references or speaks the language badly, the balance. One word proceeds; nothing is generated before it.
+Produces the **model choice** and the **estimate** by [model-selection.md](references/model-selection.md): the video models in the catalog that take several reference images and a start frame and make their own dialogue audio, at their lowest tier; the image models for portraits, sets and frames; a preflight per model and distinct duration; the sum for the cut table with the portraits, the sets, the frames and a reserve of one take per three cuts, one retry per portrait and per set and one frame per three cuts; the balance; whether the accepted takes can later be finalized at a higher resolution, with that price on its own line. A later episode keeps the series' model and tier while the catalog offers them; otherwise the latest qualifying model, re-quoted, with the change named here. Checkpoint: the recommended model with its total and the reason in a line, the other candidate's total, the fallback if the first cut refuses the frame with the references or speaks the language badly, the balance. One word proceeds; nothing is generated before it.
 
 ### Phase 4: Portraits and sets
 
@@ -83,13 +83,13 @@ Produces the **reference set** by [cast.md](references/cast.md): one portrait pe
 
 ### Phase 5: First frames
 
-Produces one **approved first frame** per cut by [cast.md](references/cast.md): a 9:16 still made from the portraits of the characters in the cut and its set as references, the style line and the cut's first-frame description, carrying the opening shot and the starting emotion. Sent together, collected with one `jobs_wait`, judged as a set (the right people, costume, place, framing, expression, the style held; no text, no artifacts); a failed frame is regenerated from the reserve. Checkpoint: all frames in order with one line each on what the cut does from there.
+Produces one **approved first frame** per cut by [cast.md](references/cast.md): a 9:16 still made from the portraits of the characters in the cut and its set as references, the style line and the cut's first-frame description, carrying the opening shot and the starting emotion. Sent together, collected with `jobs_wait` in as many waits as its cap needs, looked at as one tiled sheet ([cast.md](references/cast.md) "First frames"), judged as a set (the right people, costume, place, framing, expression, the style held; no text, no artifacts); a failed frame is regenerated from the reserve. Checkpoint: all frames in order with one line each on what the cut does from there.
 
 ### Phase 6: Cuts, one at a time
 
 Produces one **take** per cut and the **ledger**.
 
-1. One cut per call: the frame as `start_image`, the portraits of the characters in the cut in the model's reference role, audio on, the cut table's duration, `count` 1, `use_unlim` explicit, and the prompt of [prompting.md](references/prompting.md). Never the batch tool. The first take's echoed parameters are read for how the frame and the references landed ([prompting.md](references/prompting.md) "Reference mapping"); a job the server refuses is handled as [/docs/higgsfield/models.md](/docs/higgsfield/models.md) "Refused and failed jobs" says, and a refusal of the frame with the references switches to the fallback named at the cost checkpoint. While the first job renders, start the review warm-up in the sandbox as [/docs/higgsfield/sandbox.md](/docs/higgsfield/sandbox.md) says, and prepare the fonts and the assembly.
+1. One cut per call: the frame as `start_image`, the portraits of the characters in the cut in the model's reference role, audio on, the cut table's duration, `count` 1, `use_unlim` explicit, and the prompt of [prompting.md](references/prompting.md). Never the batch tool. The first take's echoed parameters are read for how the frame and the references landed ([prompting.md](references/prompting.md) "Reference mapping"); a job the server refuses is handled as [/docs/higgsfield/models.md](/docs/higgsfield/models.md) "Refused and failed jobs" says, and a refusal of the frame with the references, or a first cut that speaks the language badly, switches to the fallback named at the cost checkpoint: on that checkpoint's word when the fallback's total is the same or lower, re-quoted first when it is higher. While the first job renders, start the review warm-up in the sandbox as [/docs/higgsfield/sandbox.md](/docs/higgsfield/sandbox.md) says, and prepare the fonts and the assembly.
 2. Collect, then review by [stt-review.md](references/stt-review.md): the pass of [/docs/higgsfield/decodes.md](/docs/higgsfield/decodes.md) (two plain speech-to-text decodes, a third to break a tie, a contact sheet looked at through `image_paths`) settles what was said; then the verdict table decides whether it matters: accept, fix in the edit, or regenerate.
 3. One line of report per cut (what was heard, the verdict, credits spent) and a ledger row; act on the verdict without stopping. A regeneration keeps the model, the tier, the frame, the portraits and the duration, aims at the word or the frame that failed, and changes the line as [stt-review.md](references/stt-review.md) "Regeneration" and [/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md) say; one retry per cut from the reserve, a second only with consent. An accepted cut is never remade to be better. Then the next cut.
 
@@ -107,9 +107,9 @@ One message: the episode as a link and, where the agent has a filesystem, a file
 2. Every checkpoint stops for the user unless the user gave the go-ahead; the cost is confirmed in every mode. Nothing is generated, not even a portrait, before the bible, the script and the cost are accepted.
 3. Every line and reaction agrees with the knowledge table. A conflict is fixed in the script before a credit is spent.
 4. A villain's wrongs are shown on screen; the payback comes in the same episode.
-5. The latest qualifying video model found in the catalog at run time, never pinned; the lowest tier; one cut per call, `count` 1, no batch tool; `use_unlim` explicit on every call, true only when the user asked.
+5. The latest qualifying video model found in the catalog at run time, never pinned, and a series' model kept across its episodes while the catalog offers it; the lowest tier; one cut per call, `count` 1, no batch tool; `use_unlim` explicit on every call, true only when the user asked.
 6. Every cut is animated from an approved first frame with the approved portraits as references, and every image and take prompt carries the style line.
-7. Every sound is the video model's own audio. No text-to-speech, dubbing or voice tools; music only from a licensed track the user supplies.
+7. Every spoken word is the video model's own audio. No text-to-speech, dubbing or voice tools; music only from a licensed track the user supplies; a sound effect added in the edit is code, synthesized or the user's.
 8. Every spoken cut is checked by two plain speech-to-text decodes before it is accepted; their agreement decides what was said, and a prompted decode never overrules it. A wrong name or key word is regenerated; a difference the ear does not hear is accepted.
 9. Subtitles show the script's words; speech-to-text supplies only the clock. A raw transcript is never burned.
 10. Overlays are code: subtitles, name cards, term cards, inserts, fades. The video model is never asked for text.
@@ -143,7 +143,7 @@ One message: the episode as a link and, where the agent has a filesystem, a file
 | Prompt spelling | A word written in the take prompt the way it sounds; the script and the subtitle keep its spelling. |
 | Lowest tier | The cheapest resolution, quality mode or draft flag a model offers. |
 | Preflight | A generation call with `get_cost: true`; a number, no job. |
-| Reserve | The retries priced into the estimate: one take per three cuts, one portrait per character, one frame per three cuts. |
+| Reserve | The retries priced into the estimate: one take per three cuts, one retry per portrait and per set, one frame per three cuts. |
 | Ledger | Estimate, accepted budget and credits spent per cut and retry. |
 | Production log | The per-cut record and the final-edit record the next episode starts from. |
 | Three-file sync | The bible, the script and the log agree after every change. |
