@@ -6,7 +6,7 @@ Jobs and tools only. No product, no market and no plan of any business is named 
 
 | Status | Meaning |
 |---|---|
-| done | Shipped, and exercised at least once from a fresh session that followed the files alone. What that run did not cover is in the skill's notes. |
+| done | Shipped, and exercised at least once from a fresh session that followed the files alone. What that run did not cover is in the row, or in the skill's notes. |
 | next | Being built, or the next to build. |
 | candidate | The job is known. The tool is chosen when the job is first done with it. |
 
@@ -18,7 +18,7 @@ Skills about the skills: how work already done becomes a skill, and how a skill 
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
-| "Make what we just did into a skill." A skill in this repository from the session's own work, earlier transcripts, memory and results: designed, written in this layout, checked, run once by a fresh agent, shipped. [`skillcdn-skill-authoring`](../engineering/skills/skillcdn-skill-authoring/) | engineering | SkillCDN | next |
+| "Make what we just did into a skill." A skill in this repository from the session's own work, earlier transcripts, memory and results: designed, written in this layout, checked, run once by a fresh agent, shipped. [`skillcdn-skill-authoring`](../engineering/skills/skillcdn-skill-authoring/). A fresh run reached the push checkpoint; the push, the fresh run and the fold-in as a fresh agent does them, and the skill as it reads the shared pages, are untried. | engineering | SkillCDN | done |
 | "Verify this skill." A fresh agent dry-reads the files, a fresh agent runs the served skill with its checkpoints answered as the user would, and the findings are folded back; also for the rounds after a tool, a model or a shared page changes. [`skillcdn-skill-verification`](../engineering/skills/skillcdn-skill-verification/) | engineering | SkillCDN | next |
 
 ## M1: Discovery
