@@ -44,7 +44,7 @@ One folder per area of work. Each carries a `SKILLCDN.md` that says who its skil
 | [`engineering/`](engineering/) | Software development: writing and changing code, building apps, code review, testing, debugging. | none yet |
 | [`media/`](media/) | Original video and audio content: scripted short dramas, series episodes, story-driven shorts. | 1 |
 
-Areas to come, each with its first skill: design, sales, support, operations, data, finance, legal, people. The naming rule and the steps are in [guide/adding.md](guide/adding.md).
+Areas to come, each with its first skill: design, sales, support, operations, data, finance, legal, people. The naming rule and the steps are in [guide/adding.md](guide/adding.md); what is planned, stage by stage of a product's life, is in [guide/roadmap.md](guide/roadmap.md).
 
 ## Skills
 
@@ -117,7 +117,7 @@ README.md         this introduction
   skills/<name>/  one directory per skill: SKILL.md, references/, assets/, optional scripts/
   docs/           the area's document sets, <area>/docs/<family>/ for what a tool family's skills share when all are here
 docs/             document sets that serve every area, docs/<family>/ for what a tool family's skills share across areas
-guide/            how skills in this layout are written and how to add to a repository like this one
+guide/            how skills in this layout are written, how to add to a repository like this one, and what is planned
 scripts/          check.mjs, the validation CI runs
 .claude-plugin/   the Claude Code marketplace: one plugin per area with skills
 ```

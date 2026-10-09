@@ -35,7 +35,7 @@ README.md         for people on the git host, including whoever forks it; readab
   docs/           the area's document sets, Markdown only, discovered by default next to the manifest
 docs/             document sets that serve every area, declared in the root manifest: handbooks, and       (served)
                   docs/<family>/ for what the skills of one tool family share
-guide/            skill-authoring, adding, tools/<family>.md                                           (git host)
+guide/            skill-authoring, adding, roadmap, tools/<family>.md                                  (git host)
 scripts/          check.mjs (validation; what CI runs)                                                 (git host)
 .claude-plugin/   marketplace.json: one Claude Code plugin per area with skills                        (hidden)
 .github/          CI (validation, secret scan), the pull request notice, dependabot                    (hidden)
@@ -87,6 +87,7 @@ Node.js 24. No install step; the script has no dependencies. Do not add a packag
 | The badge, or the brand files the READMEs link | The tops of the root `README.md` and of every area's `README.md`, step 6 of "Make it yours", and step 3 of "A new area" in `guide/adding.md` |
 | How skills are written or checked, beyond the spec | `guide/skill-authoring.md`; `scripts/check.mjs` if the rule is mechanical. A change to the format itself belongs in SkillCDN's spec, not here |
 | The process for adding things | `guide/adding.md` |
+| A skill you add, change in what it does, or retire | Its row in `guide/roadmap.md`: the status, and the name once it is built |
 | A new tool family | Root `README.md` table; `docs/<family>/` once two skills share knowledge, and `guide/tools/<family>.md` for how authors keep the skills and the set in step |
 | What a run taught about a tool, where every skill of its family meets it | The sentence it bears on in `docs/<family>/<topic>.md`, with the model and the month where the fact can go stale, as behavior and never as the run's words (`guide/skill-authoring.md` "Knowledge pages"); an edge of one skill's own phase in that skill's `references/tool-notes.md`, in the same shape |
 | A durable gotcha you learned the hard way | "Gotchas" below |
