@@ -20,7 +20,7 @@ An area is a directory at the root that groups the skills of one kind of work, f
 
 1. Create `<area>/SKILLCDN.md`. Its `name` is the function's name in title case. Its `description` says who the skills in this folder are for and for which tasks, in the words those people would use: it is shown with the folder on connect and on the page of the address. Add `translations` for each language you can write, and `license: MIT`. Do not declare `language` (it is inherited from the root) or `documents` (`docs` next to the manifest is the default; declare it only for another directory, and only one that exists).
 2. Write the body: a level-one heading, then only the rules that hold for every skill of the area and are not already rules of the repository, each in a sentence or two. The body is paged before every skill of the area, so keep it to a few lines. A rule for one skill belongs in that skill.
-3. Create `<area>/README.md`: what the area is, its catalog table (a placeholder row until the first skill), and where its documents go. Copy an existing area's README.
+3. Create `<area>/README.md`: the top every area README shares (the symbol, the area's name, the badge for its address), what the area is, its catalog table (a placeholder row until the first skill), and where its documents go. Copy an existing area's README and change the name and the address wherever they appear; in the badge's picture the address is written with `%2F` for `/`.
 4. Add the area to the "Areas" table in the root `README.md`.
 5. Run `node scripts/check.mjs`. Commit as `feat(repo): add the <area> area`.
 

@@ -1,6 +1,15 @@
-# SkillCDN skills
-
-Skills for an AI agent to do real company work. From marketing to design, engineering and customer support.
+<div align="center">
+  <a href="https://skillcdn.ai"><picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/skillcdn/skillcdn/main/apps/web/public/brand/logo-white.svg"><img alt="SkillCDN" src="https://raw.githubusercontent.com/skillcdn/skillcdn/main/apps/web/public/brand/logo-black.svg" width="360"></picture></a>
+  <p><strong>Skills for an AI agent to do real company work.</strong></p>
+  <p>
+  <a href="https://skillcdn.ai/gh/skillcdn/skills"><img alt="SkillCDN: skillcdn.ai/gh/skillcdn/skills" src="https://img.shields.io/badge/SkillCDN-skillcdn.ai%2Fgh%2Fskillcdn%2Fskills-3a6dd4?labelColor=0b1019&amp;logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGl0bGU%2BU2tpbGxDRE48L3RpdGxlPjxwYXRoIGZpbGw9IiMzYTZkZDQiIGQ9Ik05Ny4zOSA2Ny42NUM5Ni4zOSA1MS43NyA4My4yMiAzOS4xOCA2Ny4wOCAzOS4xOEM2Ni43MSAzOS4xOCA2Ni4zNSAzOS4yMyA2NS45OCAzOS4yNEM3MS4zNyA0MS40MyA3NS4xNyA0Ni43MiA3NS4xNyA1Mi45Qzc1LjE3IDYxLjA1IDY4LjU3IDY3LjY1IDYwLjQyIDY3LjY1TDM2Ljc3IDY3LjY1TDM0Ljg2IDY3LjY1QzE2Ljk5IDY3LjY1IDIuNTEgODIuMTMgMi41MSAxMDBMNjEuMDQgMTAwTDY3LjA4IDEwMEM4My44OCAxMDAgOTcuNDkgODYuMzkgOTcuNDkgNjkuNTlDOTcuNDkgNjguOTQgOTcuNDQgNjguMyA5Ny4zOSA2Ny42NVogTTIuNjEgMzIuMzVDMy42MSA0OC4yMyAxNi43OCA2MC44MiAzMi45MiA2MC44MkMzMy4yOSA2MC44MiAzMy42NSA2MC43NyAzNC4wMiA2MC43NkMyOC42MyA1OC41NyAyNC44MyA1My4yOCAyNC44MyA0Ny4xQzI0LjgzIDM4Ljk1IDMxLjQzIDMyLjM1IDM5LjU4IDMyLjM1TDYzLjIzIDMyLjM1TDY1LjE0IDMyLjM1QzgzLjAxIDMyLjM1IDk3LjQ5IDE3Ljg3IDk3LjQ5IDBMMzguOTYgMEwzMi45MiAwQzE2LjEyIDAgMi41MSAxMy42MSAyLjUxIDMwLjQxQzIuNTEgMzEuMDYgMi41NiAzMS43IDIuNjEgMzIuMzVaIi8%2BPC9zdmc%2BCg%3D%3D"></a>
+  <a href="https://github.com/skillcdn/skills/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/skillcdn/skills/actions/workflows/ci.yml/badge.svg?branch=main"></a>
+  <a href="LICENSE.md"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-3a6dd4"></a>
+  </p>
+  <p>
+  <a href="https://skillcdn.ai">skillcdn.ai</a> · <a href="https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md">SkillCDN Format</a> · <a href="#skills">Skills</a> · <a href="#make-it-yours">Make it yours</a> · <a href="guide/skill-authoring.md">Authoring guide</a>
+  </p>
+</div>
 
 | You say | You get |
 |---|---|
@@ -9,7 +18,7 @@ Skills for an AI agent to do real company work. From marketing to design, engine
 | "Research the ads running for this keyword." | The creatives that show proof of working, each broken down, with directions for your own ads. |
 | "Make episode one of a short drama from this premise." | A vertical short-drama episode with every line spoken by the video model and verified, subtitles and name cards in code, and a series bible and log the next episode starts from. |
 
-Each folder is an area of work with the skills that do it and the documents its people read: marketing and media have the first skills, product and engineering are next, and more areas will follow. This is also the reference repository for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a skill repository, kept working against real tools. Fork it to publish your own skills in the same shape.
+From marketing to design, engineering and customer support, each folder is an area of work with the skills that do it and the documents its people read: marketing and media have the first skills, product and engineering are next, and more areas will follow. This is also the reference repository for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a skill repository, kept working against real tools. Fork it to publish your own skills in the same shape.
 
 [SkillCDN](https://github.com/skillcdn/skillcdn) turns a git repository into an MCP server. Point an agent at an address and it gets what the address covers:
 
@@ -92,7 +101,7 @@ This repository takes no pull requests. It is meant to be forked: the layout, th
 3. Keep a license SkillCDN can pass on. It serves a skill in full only under a license it recognizes as permissive, taken from the skill's directory, its `license` field, the manifests above it or the repository's license file; under a restrictive or unrecognized license the skill is only described, with a link to its source.
 4. Keep the areas you need and delete the others. A new area is a folder with a `SKILLCDN.md` and a `README.md`; the steps are in [guide/adding.md](guide/adding.md).
 5. Write your skills at `<area>/skills/<name>/`, following [guide/skill-authoring.md](guide/skill-authoring.md); put what the skills of one tool share in `docs/<tool>/`, or in the area's `docs/` when one area holds every skill of the tool. Run `node scripts/check.mjs`; CI runs it on every push.
-6. Rewrite this README for your repository. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place its shared pages come from, put yours.
+6. Rewrite this README and each area's README for your repository, their tops first. The lockup and the symbol are SkillCDN's marks, so put your own there or none ([trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md)); keep the badge and give it your address, in its link and, with `/` written `%2F`, in its text, so that a reader sees where SkillCDN serves your repository. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place its shared pages come from, put yours.
 7. Connect it at `skillcdn.ai/gh/<you>/<repo>`. A public repository needs no setup.
 
 The rules for changing anything, for people and agents alike, are in [CLAUDE.md](CLAUDE.md); a fork keeps them or changes them. A skill here that no longer works can be reported in an issue.
@@ -123,6 +132,6 @@ From a checkout of SkillCDN, `pnpm --filter @skillcdn/server run start check ../
 
 ## License
 
-The content of this repository is under the [MIT License](LICENSE.md), a license SkillCDN recognizes as permissive, which is why it serves these skills in full. "SkillCDN" is a trademark of KDX Labs Corp.; its [trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md) allows everyone the file name `SKILLCDN.md`, the `skillcdn` front-matter key and the name of the format, so a fork keeps them. The tools the skills drive are third-party products with their own terms.
+The content of this repository is under the [MIT License](LICENSE.md), a license SkillCDN recognizes as permissive, which is why it serves these skills in full. "SkillCDN" and its logos are trademarks of KDX Labs Corp.; its [trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md) allows everyone the file name `SKILLCDN.md`, the `skillcdn` front-matter key and the name of the format, so a fork keeps them. The tools the skills drive are third-party products with their own terms.
 
 Built by KDX Labs. Copyright (c) 2026 KDX Labs Corp.

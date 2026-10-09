@@ -1,4 +1,11 @@
-# marketing/
+<p align="center">
+  <a href="https://skillcdn.ai"><img alt="SkillCDN" src="https://raw.githubusercontent.com/skillcdn/skillcdn/main/apps/web/public/brand/symbol.svg" width="72"></a>
+</p>
+<h1 align="center">marketing/</h1>
+<p align="center">
+  <a href="https://skillcdn.ai/gh/skillcdn/skills/marketing"><img alt="SkillCDN: skillcdn.ai/gh/skillcdn/skills/marketing" src="https://img.shields.io/badge/SkillCDN-skillcdn.ai%2Fgh%2Fskillcdn%2Fskills%2Fmarketing-3a6dd4?labelColor=0b1019&amp;logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGl0bGU%2BU2tpbGxDRE48L3RpdGxlPjxwYXRoIGZpbGw9IiMzYTZkZDQiIGQ9Ik05Ny4zOSA2Ny42NUM5Ni4zOSA1MS43NyA4My4yMiAzOS4xOCA2Ny4wOCAzOS4xOEM2Ni43MSAzOS4xOCA2Ni4zNSAzOS4yMyA2NS45OCAzOS4yNEM3MS4zNyA0MS40MyA3NS4xNyA0Ni43MiA3NS4xNyA1Mi45Qzc1LjE3IDYxLjA1IDY4LjU3IDY3LjY1IDYwLjQyIDY3LjY1TDM2Ljc3IDY3LjY1TDM0Ljg2IDY3LjY1QzE2Ljk5IDY3LjY1IDIuNTEgODIuMTMgMi41MSAxMDBMNjEuMDQgMTAwTDY3LjA4IDEwMEM4My44OCAxMDAgOTcuNDkgODYuMzkgOTcuNDkgNjkuNTlDOTcuNDkgNjguOTQgOTcuNDQgNjguMyA5Ny4zOSA2Ny42NVogTTIuNjEgMzIuMzVDMy42MSA0OC4yMyAxNi43OCA2MC44MiAzMi45MiA2MC44MkMzMy4yOSA2MC44MiAzMy42NSA2MC43NyAzNC4wMiA2MC43NkMyOC42MyA1OC41NyAyNC44MyA1My4yOCAyNC44MyA0Ny4xQzI0LjgzIDM4Ljk1IDMxLjQzIDMyLjM1IDM5LjU4IDMyLjM1TDYzLjIzIDMyLjM1TDY1LjE0IDMyLjM1QzgzLjAxIDMyLjM1IDk3LjQ5IDE3Ljg3IDk3LjQ5IDBMMzguOTYgMEwzMi45MiAwQzE2LjEyIDAgMi41MSAxMy42MSAyLjUxIDMwLjQxQzIuNTEgMzEuMDYgMi41NiAzMS43IDIuNjEgMzIuMzVaIi8%2BPC9zdmc%2BCg%3D%3D"></a>
+  <a href="../LICENSE.md"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-3a6dd4"></a>
+</p>
 
 Skills for marketing and growth work: ads, ad and product research, promotional video, content, campaigns, social posts. The area manifest next to this file ([SKILLCDN.md](SKILLCDN.md)) says who these skills are for and adds the rules every marketing skill follows on top of the repository's. The area mounts alone at `skillcdn.ai/gh/skillcdn/skills/marketing` and installs as the `marketing` plugin of the repository's Claude Code marketplace.
 
