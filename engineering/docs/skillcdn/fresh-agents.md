@@ -18,7 +18,7 @@ Its brief therefore tells it to use none of these for the task, to use nothing i
 
 Where the host has a tool that starts a subagent (Claude Code's `Agent` tool, checked 2026-10):
 
-- Give it a directory of its own. Claude Code's worktree isolation starts it in a temporary copy of the checkout, removed afterwards when nothing in it changed; the brief says not to read skills from it.
+- Give it a directory of its own. Claude Code's worktree isolation starts it in a temporary copy of the checkout, removed as soon as a turn of the subagent ends with nothing changed in it; a subagent resumed after that works in the session's own checkout, so check `git worktree list` before answering its first stop (checked 2026-10). The brief says not to read skills from it.
 - Set the model and the effort on the call. Run it in the background when the session has other work, in the foreground when the next step waits on it.
 - It returns at each stop with its report, which is the message the stop asks for. A message sent to the same agent (Claude Code's `SendMessage`, by the agent's id or name) resumes it with its context intact; a new start would begin without it.
 - Whether a subagent may start subagents of its own is the host's to allow. Where a run needs one and the host refuses it, the user starts that run from a second session, and the refusal is reported.
