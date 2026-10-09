@@ -9,7 +9,7 @@ The shell route of [ad-library.md](ad-library.md) "Routes": one headless run of 
 ```
 
 - Keep the same `--user-data-dir` for every call: it holds the cookie of the site's browser check.
-- The site answers some loads with that check, a fresh profile's first load most often: an empty dump, or a page of about 500 bytes whose script posts to `/__rd_verify…` and reloads. A plain dump leaves before the script finishes, so the check comes back on every load. Give that one load time with `--virtual-time-budget=15000`: the browser finishes the check by itself, the cookie (`rd_challenge`) lands in the profile, and plain loads print results again. The check returns from time to time during a run.
+- The site answers some loads with that check, a fresh profile's first load most often: an empty dump, or a page of about 500 bytes whose script posts to `/__rd_verify…` and reloads. A plain dump leaves before the script finishes, so the check comes back on every load. Give that one load time with `--virtual-time-budget=15000`: the browser finishes the check by itself, the cookie (`rd_challenge`) lands in the profile, and plain loads print results again. When both patient loads hang to the timeout, the cookie may have landed all the same: one plain load of the same address then prints results (checked 2026-10). The check returns from time to time during a run.
 - Never start the browser without `--headless=new` and that folder, not even to ask its version: on Windows the bare command, `--version` included, opens a window in the user's own browser session.
 - Do not add `--virtual-time-budget` to every load: the results are in the first HTML, and on ordinary pages that flag made three runs in twenty hang until killed, against none in a hundred without it.
 - Give each run a timeout of about a minute. Quote the URL: it contains `&` and brackets.
@@ -17,7 +17,7 @@ The shell route of [ad-library.md](ad-library.md) "Routes": one headless run of 
 
 ## The script
 
-`adlib.py` below does this. It builds each address from a short spec, prints one short line per result while the full records go to a file (a page costs about a thousand tokens of context instead of ten thousand), and logs every browser run, so that the page-load budget is counted and not guessed. Save it in the run's `work/` folder and call it with `python` (`python3` on some systems): the output file, the country, then one spec per page.
+`adlib.py` below does this. It builds each address from a short spec, prints one short line per result while the full records go to a file (a page costs about a thousand tokens of context instead of ten thousand), and logs every browser run, so that the page-load budget is counted and not guessed. The printed line is for the eye; the record's `group` and `page_id`, which cleaning and the advertiser views need, are read from the output file with a few lines of the agent's own. Pass about eight specs per call at most: sixteen take one to three minutes, past a shell tool's usual timeout. Save it in the run's `work/` folder and call it with `python` (`python3` on some systems): the output file, the country, then one spec per page.
 
 ```sh
 python work/adlib.py work/pool.jsonl KR "q=<term>" "q=<term>&media=video" "q=<term>&sort=recent"
@@ -45,6 +45,8 @@ from urllib.parse import urlencode, urlparse
 
 CANDIDATES = [os.environ.get("CHROME"), "google-chrome", "google-chrome-stable", "chromium", "chromium-browser",
               r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+              r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+              os.path.join(os.environ.get("LOCALAPPDATA", ""), r"Google\Chrome\Application\chrome.exe"),
               "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
               "/Applications/Chromium.app/Contents/MacOS/Chromium"]
 BASE = "https://www.facebook.com/ads/library/?"
