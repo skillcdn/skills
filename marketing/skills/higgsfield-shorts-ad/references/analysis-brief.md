@@ -26,18 +26,21 @@ segs = list(segs)
 for s in segs:
     print(f"{s.start:6.2f} {s.end:6.2f} {s.text.strip()}")
 import re
-speech = sum(s.end - s.start for s in segs)
-text = "".join(s.text for s in segs)
-units = len(re.findall(r"[가-힣぀-ヿ一-鿿]", text)) or len(text.split())
-gaps = [b.start - a.end for a, b in zip(segs, segs[1:])]
-print(f"delivery: speech {speech:.1f}s of {info.duration:.1f}s ({speech / info.duration:.0%}), units {units}, rate {units / speech:.1f}/s, lines/10s {len(segs) / info.duration * 10:.1f}, longest gap {max(gaps) if gaps else 0:.2f}s, hook window {segs[0].end:.1f}s")
+if not segs:
+    print("delivery: no speech; measure the cut rhythm and the on-screen text cadence from the frames")
+else:
+    speech = sum(s.end - s.start for s in segs)
+    text = "".join(s.text for s in segs)
+    units = len(re.findall(r"[가-힣぀-ヿ一-鿿]", text)) or len(text.split())
+    gaps = [b.start - a.end for a, b in zip(segs, segs[1:])]
+    print(f"delivery: speech {speech:.1f}s of {info.duration:.1f}s ({speech / info.duration:.0%}), units {units}, rate {units / speech:.1f}/s, lines/10s {len(segs) / info.duration * 10:.1f}, longest gap {max(gaps) if gaps else 0:.2f}s, hook window {segs[0].end:.1f}s")
 PY
-curl -f -X PUT -H 'Content-Type: image/png' --upload-file sheet.png '<upload_url>'
+curl -f -X PUT -H 'Content-Type: <the content type the media_upload result names>' --upload-file sheet.png '<upload_url>'
 ```
 
 The delivery line is the ground truth for pace ([story.md](story.md) "Density"): a reference that feels calm may speak fast, and the script is written to the number, not the feeling. Whisper's segments stand in for lines; when it merges two lines into one segment, split them by the on-screen captions and recount.
 
-The `tile` filter needs both dimensions, and the rows are computed from the duration so that one sheet holds the whole reference; the PUT carries the `Content-Type` the `media_upload` result names (the shared sandbox page says why). Voice detection is off for the reference: under a music bed it dropped whole lines and returned fragments with impossible timestamps, with the default split and with a 300-millisecond one; set `language` when the product page gave it. Detection is on only for timing the captions of the master, as [captions.md](captions.md) says. The per-second loudness in `loudness.txt` shows where speech, music and silence are, which the transcript alone cannot.
+The `tile` filter needs both dimensions, and the rows are computed from the duration so that one sheet holds the whole reference; the PUT carries the `Content-Type` the `media_upload` result names (the shared sandbox page says why). Voice detection is off for the reference: under a music bed it dropped whole lines and returned fragments with impossible timestamps, with the default split and with a 300-millisecond one; set `language` to the reference's language when it is known (the research names it; the ad's language may differ), else leave it for detection. Detection is on only for timing the captions of the master, as [captions.md](captions.md) says. The per-second loudness in `loudness.txt` shows where speech, music and silence are, which the transcript alone cannot.
 
 To look at frames larger than the sheet, pass them in `image_paths` in a short call, or zip the `frames` directory and upload it as a general file for the client to download ([/docs/higgsfield/sandbox.md](/docs/higgsfield/sandbox.md) "Looking at images").
 
@@ -113,7 +116,7 @@ The message is short: the one or two things needed (for the reference, that the 
 
 A user who names only the product still gets an ad built on what works: the reference is found among the ads now running for that kind of product. A skill that researches running ads does the finding (in this collection `meta-ad-library-creative-research`, which reads the Meta Ad Library), and this skill chooses from what it returns. Say in a line that a reference is being looked for and that the user's own is welcome at any point. With no such skill at hand, ask for the reference as "Intake" says and name the skill that would find one.
 
-1. **Research.** Run the research skill with the product as its subject, through to its delivery. Its method, its limits and its checkpoint are its own: none of it is repeated here, and none of it is cut short because an ad comes next.
+1. **Research.** Run the research skill with the product as its subject, in the market of the ad's language (the product page's, in the user's language when the page has it), through to its delivery. Its method, its limits and its checkpoint are its own: none of it is repeated here, and none of it is cut short because an ad comes next.
 2. **Choose** among the videos on its shortlist, in this order:
 
 | Step | Rule | Why |
@@ -129,7 +132,7 @@ A user who names only the product still gets an ad built on what works: the refe
 From the chosen reference on, the phases run as for any reference, with these differences:
 
 - **The address is the link.** The video's address is in the research's record of that ad, and the sandbox downloads it as it is. It expires within days: run the sandbox pass in the same run, and once it has expired have the research skill load that ad again for a fresh one.
-- **The breakdown is a first look, not the brief.** Frames the research made may stand in for the pass's own when they cover the whole reference; the transcript and the delivery are measured here, and every section of the template is filled.
+- **The breakdown is a first look, not the brief.** Frames the research made, in its run folder's `frames/`, may stand in for looking at the reference when they cover the whole of it; the sandbox pass still runs for the transcript and the delivery line, and every section of the template is filled.
 - **The readings feed the concept.** Keep the mechanism that shows proof. Leave the surface the market crowds: the opening, the proof shot and the offer line that most of its ads share. Take the open angle where the product's own world covers it.
 - **The reference is a competitor's ad.** Its viewers may see the new ad too, so the plan says what the ad keeps (the mechanism, the medium, the look in kind) and what differs at a glance: the cast, the first frame, the colors and the type, the device, every line. A line that is the reference's with the words swapped is rewritten, the hook and the closing line first: the odd act and the last turn of phrase must be the product's own, not the reference's with another year, another seller or another verb.
 - **It speaks after its turn.** A direct-response ad names the product, the offer and a call to action after its story turns. The new script keeps those marks in the reference's order ([story.md](story.md) "Writing the new story", step 7), in the product's own words and with only an offer its page states.
@@ -141,8 +144,8 @@ From the product page (or the user's sentence), record:
 - Name, what it is, who it is for: one line each.
 - The tagline, if any, verbatim.
 - The claims the page makes, as a short list. Only these, or what the user states, may be spoken in the ad.
-- The page's language, which becomes the dialogue and caption language.
-- The page's type and colors: font families from its stylesheet, the ground, text and accent colors, the logo's clear space ([design.md](design.md)).
+- The page's language, which becomes the dialogue and caption language: a site with several languages gives the user's where it has it (fetch with `Accept-Language` set to it and read the page's `lang`), else its default.
+- The page's type and colors: font families from its stylesheet, the ground, text and accent colors, the logo's clear space where the site states one, else the logo's own height on every side ([design.md](design.md)).
 - Images: the logo, one product image, and the photo of any person the site presents as the brand's own (a founder, a face of the brand, a mascot). Fetch the page in the sandbox (`curl -sL '<url>'`), read the `og:image` tag and the `img` sources whose path, alt or class mentions logo, product, hero, portrait or the product's name; download the candidates, look at them, and keep what serves: a logo for the end card and overlays, a product image for overlays and as a product reference where the video model takes one, a person's photo for casting ([cast.md](cast.md)). Import them with `media_import_url`. They are the advertiser's own assets and may be used as they are or as references; nothing is taken from any other site.
 
 A text-only web tool gives the words; the images need the sandbox. Without either, ask the user for two lines about the product and go on without images.

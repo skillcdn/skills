@@ -1,11 +1,11 @@
 ---
 name: higgsfield-shorts-ad
-description: Makes a short-form vertical AI ad, promo or commercial on Higgsfield from a reference video and a product link. Learns what makes the reference work (the hook, the rule its story runs on, the device, the reveal, the measured pacing) and writes an original story for the product on the product's own world rather than a copy; never feeds the reference to a model. Derives language, length, medium (live action or animation, as the reference), look and brand typography itself, generates approved portraits and a still first frame per shot, directs each character's performance, recommends the latest Kling or Seedance model with a credit estimate, animates one draft take at a time, and adds captions, text and the end card in code. Use when a user wants a promo or ad short (TikTok, Reels, Shorts) for a product, brand or website in the spirit of a reference short, with credit use kept low and no expertise needed. With no reference, it first finds one among running ads, using meta-ad-library-creative-research.
+description: Makes a short-form vertical AI ad, promo or commercial on Higgsfield from a product link and a reference video, found among the ads running now when the user has none. Learns what makes the reference work (the hook, the rule its story runs on, the device, the reveal, the measured pacing) and writes an original story for the product on the product's own world rather than a copy; never feeds the reference to a model. Derives language, length, medium, look and brand typography itself, generates approved portraits and a still first frame per shot, directs each character's performance, recommends the latest model with a credit estimate, animates one draft take at a time, and adds captions, text and the end card in code. Use when a user wants a promo or ad short (TikTok, Reels, Shorts) for a product, brand or website in the spirit of a reference short, with credit use kept low and no expertise needed. The reference is found with meta-ad-library-creative-research.
 license: MIT
 compatibility: Needs the Higgsfield MCP server with video generation, image generation, video analysis, media upload and the cloud sandbox (ffmpeg and Whisper). Works in any agent that can call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.8"
+  version: "1.9"
   tools: higgsfield
 skillcdn:
   include:
@@ -31,7 +31,7 @@ One reference video and one product (a link is enough) go in; a captioned vertic
 ## How the user is involved
 
 - **Questions:** only for the product, and for the reference video when the request has none and nothing at hand can find one. Nothing else is ever asked; it is derived. A missing reference is found, not asked for, wherever a skill that researches running ads is at hand ([analysis-brief.md](references/analysis-brief.md) "When there is no reference").
-- **Checkpoints:** the plan with its cost, the portraits, the first frames, the clean master, the finished ad. Each is one short message in plain words: what was made, the recommendation, and that one word ("OK" in the user's language) continues. Anything can be changed at a checkpoint. Takes are reported, not approved one by one.
+- **Checkpoints:** the research skill's own shortlist checkpoint when the reference is found, then the plan with its cost, the portraits, the first frames, the clean master, the finished ad. Each is one message in plain words, as short as its content allows: what was made, the recommendation, and that one word ("OK" in the user's language) continues. Anything can be changed at a checkpoint. Takes are reported, not approved one by one.
 - **Go-ahead:** when the user says to go ahead alone, the checkpoints after the cost are skipped; the cost is confirmed in every mode.
 - **Changes mid-run:** applied from that point on; reported at the next checkpoint when within the accepted budget, re-quoted first when beyond it.
 
@@ -59,7 +59,7 @@ What every Higgsfield skill of the repository shares (the sandbox, models and cr
 |---|---|
 | Reference video | A link straight to a media file, or a local file through the widget. When the request has none, it is found among the ads now running for that kind of product, with a skill that researches them, as [analysis-brief.md](references/analysis-brief.md) "When there is no reference" says; in this collection `meta-ad-library-creative-research` reads the Meta Ad Library. Asked for only when no such skill is at hand. |
 | Product | Required. A link to its site or page, or a name with a sentence. Asked for only when missing. |
-| Everything else | Derived, never asked: language (the product page's, else the reference's), length (the reference's), medium and look (the reference's: live action or animation, and its style in words), what changes (everything but the mechanism, the medium and the look), typography and colors (the brand's, see [design.md](references/design.md)), product images (logo, one product image, the site's own people if cast), budget (quoted at the cost checkpoint). Stated at the plan checkpoint, changed on request. |
+| Everything else | Derived, never asked: language (the product page's, in the user's language when the page has it, else the reference's), channel (the platform the reference runs on, or the one the user names, whose documented format is read at run time; the safe zones and sizes in [captions.md](references/captions.md) and [design.md](references/design.md) are the values last seen), length (the reference's), medium and look (the reference's: live action or animation, and its style in words), what changes (everything but the mechanism, the medium and the look), typography and colors (the brand's, see [design.md](references/design.md)), product images (logo, one product image, the site's own people if cast), budget (quoted at the cost checkpoint). Stated at the plan checkpoint, changed on request. |
 
 ## Workflow
 
@@ -69,15 +69,16 @@ Each phase produces a named artifact. Phases stop only at the checkpoints above.
 
 Produces the **intake record**.
 
-1. Both inputs in the request: ask nothing, say in a line what happens next, go on. The product missing: ask for it as [analysis-brief.md](references/analysis-brief.md) "Intake" shows, and stop. The reference missing: find one as "When there is no reference" there says, and say so in a line; ask for it only when no skill at hand can find one.
+1. Both inputs in the request: ask nothing, say in a line what happens next, go on. The product missing: ask for it as [analysis-brief.md](references/analysis-brief.md) "Intake" shows, and stop.
 2. Read the product page as "Product brief" there: name, what it is, tagline, claims (only these may be spoken), language, images, and its type and colors ([design.md](references/design.md)). The site's assets are the advertiser's and may be used.
-3. Derive the rest and record it.
+3. The reference missing: find one as "When there is no reference" there says, in the market of the ad's language, and say so in a line; ask for it only when no skill at hand can find one.
+4. Derive the rest and record it. The artifacts of every phase are written in the folder the user named for the run, else in a folder named for the ad outside any repository; the delivery says where.
 
 ### Phase 2: Analyze the reference
 
 Produces the **analysis brief** ([template](references/analysis-brief.md)).
 
-1. Import the reference; start the scene analysis and never wait for it. Run the sandbox pass in the background: probe, frames, contact sheet, transcript.
+1. Import the reference. Start the scene analysis only for a reference uploaded through `media_upload` or given as a YouTube link, which is what the tool takes, and never wait for it ([tool-notes.md](references/tool-notes.md) "Scene analysis"). Run the sandbox pass in the background: probe, frames, contact sheet, transcript.
 2. Fill the brief from frames and transcript: the medium and the look (live action or animation, and the style in words an image model can follow), mood, shots with their beats, dialogue, on-screen text and its look, cast, sound, and above all **why it works**: the hook in the first two seconds, the tension and the turn, the payoff, the call to action, the pacing that carries them. Then the **story engine** and the **delivery** by [story.md](references/story.md): the form, the genre and register, the rule of the world, the device, the figure, the signature line, the information order line by line, the reveal; and the measured speech rate, lines per ten seconds, longest pause and hook window from the sandbox pass.
 3. Mark build routes (generate, edit, drop) by [editing-decisions.md](references/editing-decisions.md).
 4. A reference this skill found comes with the research's breakdown of it and its readings of the market. They are a first look and they feed the concept, as [analysis-brief.md](references/analysis-brief.md) "When there is no reference" says; the sandbox pass still runs and the brief is still filled.
@@ -100,16 +101,16 @@ Produces the **estimate**, the **model choice** and the approved plan ([model-se
 
 1. Find the latest general model of each family with `models_explore` ([/docs/higgsfield/models.md](/docs/higgsfield/models.md)); lock the lowest tier, every one the model exposes (`480p`, `std`, a draft flag); read its roles and aspect ratios.
 2. Preflight once per family, distinct duration and audio setting of the shot list for the takes, and the image model or models for portraits and frames; a preset recommendation instead of a number is answered with `declined_preset_id`. Reserve: one take per three shots at the dearest shots, one portrait per cast member, one frame per three shots. Read `balance`.
-3. Recommend one family with its reason in one line, and name the fallback: the other family at its total, or the same model with the portrait alone as its reference and the frame's composition in the prompt, for when the first take refuses the frame together with the portrait.
+3. Recommend one family with its reason in one line, and name the fallback: the other family at its total, or the same model with the portrait alone as its reference and the frame's composition in the prompt, for when the first take refuses the frame together with the portrait. When the total exceeds the balance, say so and offer a shorter ad or the other family before anything else.
 4. Checkpoint, in plain words: when the agent found the reference, its link, why it was chosen, and in a line what the ad keeps of it and what differs at a glance; the story as [story.md](references/story.md) "What the user sees" (the hook and the runner-up, the rule, the device, the signature line, the reveal, the lines with who says them, the density against the reference) and its alternative, what the ad will be, the cast, what the edit adds, the derived settings and open decisions, the recommended model's total with reserve and the balance, the other family's total, the fallback. "OK" proceeds; the user may pick the alternative, the other family, or change anything. A changed plan is preflighted again.
 
 ### Phase 5: Cast portraits
 
-Produces the **approved portraits** ([cast.md](references/cast.md)). One per cast member, in the style line, one call each (the calls may be sent together), cheapest setting, `use_unlim` explicit, in the ledger. Checkpoint: links and one line each; "OK" approves all, a change regenerates that one from the edited description (one retry per member in the reserve). Where a portrait differs from its description, the portrait wins and the prompts follow it.
+Produces the **approved portraits** ([cast.md](references/cast.md)). One per cast member, in the style line, one call each (the calls may be sent together), cheapest setting, `use_unlim` explicit, in the ledger. Checkpoint: links and one line each; "OK" approves all, a change regenerates that one from the edited description (one retry per member in the reserve). Where a portrait differs from its description, the portrait wins and the prompts follow it. A plan that casts no generated person skips this checkpoint; the frames' is the first.
 
 ### Phase 6: First frames
 
-Produces one **approved first frame** per generated shot ([cast.md](references/cast.md)). A 9:16 still from the portrait as reference, the style line and the shot's first-frame description, carrying the shot's starting emotion; one call each, sent together and collected with one `jobs_wait`, looked at as a set (right person, clothing, setting, framing, expression, the style held; no legible text, no artifacts), one failed frame regenerated from the reserve. Checkpoint: all frames in order with one line each on what the shot does from there.
+Produces one **approved first frame** per generated shot ([cast.md](references/cast.md)). A still in the take's aspect, 9:16 unless the edit plan composes the take into the 9:16 canvas (a split layout, an inset), from the portrait as reference, the style line and the shot's first-frame description, carrying the shot's starting emotion; one call each, sent together and collected with one `jobs_wait`, looked at as a set (right person, clothing, setting, framing, expression, the style held; no legible text, no artifacts), one failed frame regenerated from the reserve. Checkpoint: all frames in order with one line each on what the shot does from there.
 
 ### Phase 7: Takes, one at a time
 
@@ -133,7 +134,7 @@ Produces the **captioned master** ([captions.md](references/captions.md)): word 
 
 ### Phase 11: Deliver
 
-One message in plain words: the captioned master and the clean master as links; the portraits and frames for reuse; the lines as captioned; the ledger, estimated versus spent, per item, retries called out; the words accepted as close enough or left unsettled, each with what was heard; what was generated, edited in code, and left out of the reference and why; a higher resolution as a separate step, not started: the finalize of the accepted takes at its quoted price where the model's draft tier offers one, and an upscale of the master, a spend the tool will not price first, as [/docs/higgsfield/models.md](/docs/higgsfield/models.md) "A higher resolution" says; and, in a short list at the end for whoever maintains the skill, what the tools did differently from the shared Higgsfield pages or [tool-notes.md](references/tool-notes.md), and any new sound pattern for [/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md). When the cast is generated people in live action, say that they are not real people and that the platform's label for AI-made content is the user's to set when the ad is published.
+One message in plain words: the captioned master and the clean master as links; the portraits and frames for reuse; the lines as captioned; the ledger, estimated versus spent, per item, retries called out; the words accepted as close enough or left unsettled, each with what was heard; what was generated, edited in code, and left out of the reference and why; that the imported reference stays in the user's Higgsfield library, where they may remove it; a higher resolution as a separate step, not started: the finalize of the accepted takes at its quoted price where the model's draft tier offers one, and an upscale of the master, a spend the tool will not price first, as [/docs/higgsfield/models.md](/docs/higgsfield/models.md) "A higher resolution" says; and, in a short list at the end for whoever maintains the skill, what the tools did differently from the shared Higgsfield pages or [tool-notes.md](references/tool-notes.md), and any new sound pattern for [/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md). When the cast is generated people in live action, say that they are not real people and that the platform's label for AI-made content is the user's to set when the ad is published.
 
 ## Hard rules
 
