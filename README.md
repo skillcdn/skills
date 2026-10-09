@@ -128,7 +128,7 @@ What an agent connected through SkillCDN gets: the skills, the manifests and the
 node scripts/check.mjs    # validates manifests, front-matter, catalogs, links and text; needs Node.js 24, no install
 ```
 
-From a checkout of SkillCDN, `pnpm --filter @skillcdn/server run start check ../skills` reads the repository with the indexer itself and prints what an agent is told.
+`npx @skillcdn/cli check` reads the repository with the indexer itself, the same code SkillCDN serves it with, and prints what an agent is told; it needs Node.js 24 or newer and no checkout of SkillCDN.
 
 ## License
 

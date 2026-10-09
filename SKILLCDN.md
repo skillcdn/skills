@@ -1,6 +1,7 @@
 ---
 name: SkillCDN skills
 description: Skills for an AI agent to do real company work. From marketing to design, engineering and customer support.
+image: https://raw.githubusercontent.com/skillcdn/skillcdn/main/apps/web/public/brand/banner.png
 documents:
   - docs
 language: en

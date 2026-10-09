@@ -22,8 +22,8 @@
 // Hidden entries (any path segment starting with a dot) are ignored, as the indexer ignores them; the
 // marketplace is the one hidden file this repository maintains by hand, so it is checked on its own.
 //
-// The indexer's own verdict, with the same parser and the same limits, comes from the `check` role of the
-// SkillCDN image: from a checkout of SkillCDN, `pnpm --filter @skillcdn/server run start check <this dir>`.
+// The indexer's own verdict, with the same parser and the same limits, comes from the skillcdn command:
+// `npx @skillcdn/cli check` in this directory (Node.js 24 or newer).
 
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { basename, dirname, join, relative, resolve, sep } from "node:path";
