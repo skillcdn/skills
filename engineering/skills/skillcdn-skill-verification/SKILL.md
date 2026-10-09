@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a checkout of the repository the skill lives in, with git and Node.js, the SkillCDN connection to that repository, and a way to start a fresh agent (a subagent tool, or a second session the user starts). The run of the skill under test needs that skill's own tools. Works in any agent that can read files, run a shell and call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: skillcdn
 skillcdn:
   include:
