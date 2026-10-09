@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a real browser engine to load facebook.com/ads/library, either a shell with a Chromium-family browser on the same machine or a browser the agent can drive (a built-in browser, a browser extension, a Playwright or Chrome DevTools server). Video frames need ffmpeg or the driven browser. Plain fetch and search tools cannot load the site. Any agent with one of the two can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.3"
+  version: "1.4"
   tools: meta-ad-library
 skillcdn:
   include:
@@ -34,7 +34,7 @@ Capabilities, not product names: the tools that provide them differ by assistant
 | Need | Any one of | When missing |
 |---|---|---|
 | Load the library | A shell with a Chromium-family browser on the same machine (the page-dump route); a browser the agent drives (the driven-browser route) | Stop and tell the user what to add, as [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
-| See a video's frames | `ffmpeg` and `ffprobe` in the shell; or the driven browser | Go on with posters and copy, and mark each such breakdown "poster only". |
+| See a video's frames | `ffmpeg` and `ffprobe` in the shell; or the driven browser | Stop before the deep read and say so: an `ffmpeg` install is free and takes a minute, and without it every video is read from its poster and copy alone, with its length unknown. Go on poster-only on the user's word, marking each such breakdown "poster only". |
 | Write the report | A file tool; or the client's document surface | Put the whole report in the reply. |
 
 Optional: a speech-to-text tool for the audio, a web-reading tool for the user's product page. Nothing here costs money; a paid service (a scraping service, a paid analysis tool) is used only when the user asks for it and agrees to its cost.
@@ -54,7 +54,7 @@ Each phase produces a named result. Only phase 4 stops for the user.
 
 ### Phase 1: Intake
 
-Produces the **research brief**: the subject in a line, the market as a country code, the terms. A product link is read for what the product is and for the words its page uses. No message to the user unless the subject is missing.
+Produces the **research brief**: the subject in a line, the market as a country code, the terms, and the run's folder ([creative-analysis.md](references/creative-analysis.md) "Search plan"). A product link is read for what the product is and for the words its page uses. A request that names no platform is read as the library's, Facebook and Instagram, and the checkpoint says so. No message to the user unless the subject is missing.
 
 ### Phase 2: Access
 
