@@ -17,7 +17,7 @@ metadata:
 
 **Ask only what cannot be derived.** A skill asks for the inputs it cannot get from the request, in one short message, and derives everything else from those inputs and sensible defaults. What was derived is stated at the next step and changed when the user asks. The user need not know the tool or the craft; an answer stands for the rest of the run.
 
-**Show every step, briefly.** Each phase ends with its result in front of the user in plain words: what was made, the recommendation, and that one word continues. When the user says to go ahead alone, these stops end; consent to spend never does.
+**Show every step, briefly.** Each phase ends with its result in front of the user in plain words: what was made, and what comes next. Where the skill stops for the user, the message also gives the recommendation, and one word continues; elsewhere the run goes on. When the user says to go ahead alone, the stops end; consent to spend never does.
 
 **Request missing tools.** Before starting, confirm the tools a skill names are reachable. If one is missing, stop and tell the user exactly what to add and why. Do not substitute something that changes the result or the cost, and do not pretend the step happened.
 
