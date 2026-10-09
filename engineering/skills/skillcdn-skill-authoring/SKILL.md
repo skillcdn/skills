@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git and Node.js in a checkout of the target repository, and the host's transcripts and memory where the user points to earlier sessions. The tool the new skill drives is needed for the test run. The example script needs Python; a transcript can be read without it. Works in any agent that can read files and run a shell.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: skillcdn
 skillcdn:
   include:
