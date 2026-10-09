@@ -22,7 +22,7 @@
     {
       "name": "engineering",
       "source": "./engineering",
-      "description": "Software development and the tooling an agent works with: code, a codebase's documents, apps, testing, debugging. A skill written from work already done with an agent, in a repository of this layout, checked and tried by a fresh agent.",
+      "description": "Software development and the tooling an agent works with: code, a codebase's documents, apps, testing, debugging. A skill written from work already done with an agent, in a repository of this layout, checked and tried by a fresh agent, and a skill verified again from a fresh session after it changed.",
       "license": "MIT"
     }
   ]

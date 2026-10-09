@@ -1,0 +1,35 @@
+{
+  "$comment": "Example findings sheet, a scratch file kept outside the repository. Values are placeholders. Phase 2 fills the findings, phase 4 the run, phase 5 the verdicts and where each change went.",
+  "skill": "<area>/skills/<name>",
+  "address": "skillcdn.ai/gh/<owner>/<repo>",
+  "served_commit": "<short sha>",
+  "mode": "full",
+  "order": "served and unchanged",
+  "request_for_the_run": "<what a user would say to the skill, on a subject that is neither a customer's nor this session's>",
+  "findings": [
+    {
+      "n": 1,
+      "phase": "<the phase where a run meets it>",
+      "tag": "high",
+      "file": "references/<file>.md",
+      "line": 0,
+      "arrives": "included",
+      "quote": "<the sentence, word for word>",
+      "would_guess": "<what an agent would have to guess or ask>",
+      "second_read": "open",
+      "run": "met",
+      "verdict": "fix",
+      "goes_to": "<the sentence or the page the change is in>"
+    }
+  ],
+  "run": {
+    "runner": "subagent",
+    "stops": [
+      { "stop": "<the checkpoint>", "answer": "<the planned one-line answer>", "foreseen": true }
+    ],
+    "spend": "<against the plan>",
+    "transcript": "<path>",
+    "outputs": "<folder outside the repository>"
+  },
+  "maintainer_list": []
+}
