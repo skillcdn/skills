@@ -18,6 +18,12 @@
       "source": "./media",
       "description": "Original video and audio content: scripted short dramas, series episodes and story-driven shorts. One episode of a vertical short drama on Higgsfield from a premise or a series bible, with native dialogue, verified lines and coded subtitles.",
       "license": "MIT"
+    },
+    {
+      "name": "engineering",
+      "source": "./engineering",
+      "description": "Software development and the tooling an agent works with: code, a codebase's documents, apps, testing, debugging. A skill written from work already done with an agent, in a repository of this layout, checked and tried by a fresh agent.",
+      "license": "MIT"
     }
   ]
 }

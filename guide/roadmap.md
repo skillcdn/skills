@@ -18,7 +18,7 @@ Skills about the skills: how work already done becomes a skill, and how a skill 
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
-| "Make what we just did into a skill." A skill in this repository from the session's own work, earlier transcripts, memory and results: designed, written in this layout, checked, run once by a fresh agent, shipped. `skillcdn-skill-authoring` | engineering | SkillCDN | next |
+| "Make what we just did into a skill." A skill in this repository from the session's own work, earlier transcripts, memory and results: designed, written in this layout, checked, run once by a fresh agent, shipped. [`skillcdn-skill-authoring`](../engineering/skills/skillcdn-skill-authoring/) | engineering | SkillCDN | next |
 | "Verify this skill." A fresh session follows the files alone, its run is read against the skill, and the findings are folded back. Today a phase of the authoring skill; later a skill of its own, for the rounds after a tool or a shared page changes. | engineering | SkillCDN | candidate |
 
 ## M1: Discovery

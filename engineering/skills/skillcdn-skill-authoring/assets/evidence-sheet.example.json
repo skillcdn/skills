@@ -1,0 +1,27 @@
+{
+  "job": {
+    "you_say": "Make a short ad for this product from this reference video.",
+    "you_get": "A captioned vertical ad, its clean master and a credit ledger."
+  },
+  "family": "<tool family>",
+  "area": "marketing",
+  "existing_skill": null,
+  "sources": [
+    { "kind": "session", "where": "this session, from the first request to the delivery" },
+    { "kind": "transcript", "where": "~/.claude/projects/<slug>/<session id>.jsonl" },
+    { "kind": "memory", "where": "~/.claude/projects/<slug>/memory/" },
+    { "kind": "results", "where": "<outputs folder>" },
+    { "kind": "tool", "where": "the catalog call <name>, the cost call <name>" }
+  ],
+  "items": [
+    { "kind": "request", "tag": "invariant", "text": "User gave a reference video link and a product link and asked for a short ad.", "becomes": "description: 'Use when'; inputs: reference, product" },
+    { "kind": "question", "tag": "invariant", "text": "Agent asked which language; the product page's language would have answered.", "becomes": "derived input: language, from the product page, else the reference" },
+    { "kind": "step", "tag": "invariant", "text": "Imported the reference, started the scene analysis, did not wait for it, took frames in the sandbox.", "becomes": "phase 2, step 1" },
+    { "kind": "correction", "tag": "invariant", "times": 2, "text": "User: do not reuse the reference's scenes; write a new story on the product's world.", "becomes": "hard rule" },
+    { "kind": "approval", "tag": "invariant", "text": "Plan shown with the estimate and the balance; user said OK.", "becomes": "checkpoint: plan and cost" },
+    { "kind": "failure", "tag": "invariant", "text": "The scene analysis stayed queued for over an hour.", "becomes": "tool-notes: scene analysis, dated" },
+    { "kind": "rejected_draft", "tag": "invariant", "text": "First take set aside: the mouth moved outside the line.", "becomes": "verdict: redo when the mouth moves outside the speech window" },
+    { "kind": "cost", "tag": "instance", "text": "<n> credits for <m> takes at the lowest tier", "becomes": "the estimate's shape only" },
+    { "kind": "result", "tag": "instance", "text": "<name>_final.mp4, <name>_clean_master.mp4, DELIVERY.md with links and the ledger", "becomes": "delivery shape" }
+  ]
+}

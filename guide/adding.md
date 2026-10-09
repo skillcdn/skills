@@ -4,11 +4,13 @@ A repository in this layout, this one or a fork of it, grows one piece at a time
 
 ## A new skill
 
+An agent does these steps with the authoring skill, [`engineering/skills/skillcdn-skill-authoring/`](../engineering/skills/skillcdn-skill-authoring/), from the work already done: it reads the session, the transcripts, the memory and the results for the evidence, designs the skill, writes it, checks it and has a fresh agent try it. By hand, the steps are:
+
 1. Read [skill-authoring.md](skill-authoring.md), the rules in [`SKILLCDN.md`](../SKILLCDN.md) and the manifest of the area the skill belongs to. Open the existing skill closest to yours (start with `marketing/skills/higgsfield-shorts-ad/`) and copy its skeleton.
 2. Create `<area>/skills/<name>/SKILL.md`. The directory name is the skill name. Prefix it with the tool family (`higgsfield-`, `github-`, ...). If no area fits, add the area first (below).
 3. Put anything longer than a paragraph in `references/`, and link each reference from the phase that uses it. List the references every run needs in `skillcdn.include` in the front-matter, so that they arrive with the skill. Data files go in `assets/`. Reach outside the skill only for a page the skills of its tool family share, `docs/<family>/<topic>.md` at the root or in the area's `docs/`, by a root-relative path: in `skillcdn.include` when every run needs it, otherwise as a link from the phase that reads it.
 4. Do not restate the repository's or the area's rules; they arrive with the skill. Name the tools the skill requires in "Requirements", with what to do when one is missing.
-5. Add one row to the table in `<area>/README.md` and one to the "Skills" table in the root `README.md`. If it is the area's first skill, update the area's row in the root `README.md` and add the area to `.claude-plugin/marketplace.json` (below).
+5. Add one row to the table in `<area>/README.md` and one to the "Skills" table in the root `README.md`, and set the skill's row in [roadmap.md](roadmap.md). If it is the area's first skill, update the area's row in the root `README.md` and add the area to `.claude-plugin/marketplace.json` (below).
 6. Run `node scripts/check.mjs`. Fix what it reports. `npx @skillcdn/cli check` shows what an agent would get, with the indexer's own parser: the connection instructions, each skill's license, the shared pages it includes, and whether the MCP skills extension lists it.
 7. Add a `translations` entry for each language you can write, under `skillcdn` in the skill, so that people who read the page in that language see what the skill is.
 8. Try the skill end to end with an agent that has the required tools, from a fresh session, following only what the files say. Whatever you had to explain in chat is missing from the skill: add it.

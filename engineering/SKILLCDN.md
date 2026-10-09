@@ -1,11 +1,11 @@
 ---
 name: Engineering
-description: Skills for software development, such as writing and changing code, building apps, code review, testing and debugging. Use when the task is to build or change software.
+description: Skills for software development and for the tooling an agent works with, such as writing and changing code, keeping a codebase's documents true to it, building apps, testing, debugging, and making skills from work done. Use when the task is to build or change software, or to turn a job into a skill.
 license: MIT
 translations:
   ko:
     name: 개발
-    description: 코드 작성과 수정, 앱 개발, 코드 리뷰, 테스트, 디버깅 등 소프트웨어 개발 업무를 위한 스킬입니다. 소프트웨어를 만들거나 고치는 일에 쓰세요.
+    description: 코드 작성과 수정, 코드베이스 문서를 사실에 맞게 유지하기, 앱 개발, 테스트, 디버깅, 그리고 한 일을 스킬로 만들기처럼 소프트웨어 개발과 에이전트가 쓰는 도구를 위한 스킬입니다. 소프트웨어를 만들거나 고칠 때, 또는 일을 스킬로 만들 때 쓰세요.
 metadata:
   author: skillcdn
 ---
