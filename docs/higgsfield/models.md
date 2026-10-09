@@ -78,4 +78,5 @@ Illustrative: the preflight of the run is the number. A take is priced by the se
 | Seedance 2.5, 480p draft, audio on | 3 credits per second of take; the finalize at 1080p 12 per second, within seven days | A 10- or 12-second take in two to five minutes; a 4-second take in about three and a half | 2026-10 |
 | Kling 3.0, std, sound on | 2 credits per second | | 2026-09 |
 | The reference-capable image model (Nano Banana Pro) at its lowest setting, 9:16 or 3:4 | 0.25 per image, with or without a reference input | | 2026-09 |
+| The reference-capable image model the recommendation named a month later (GPT Image 2.5, low, 1k) | 0.25 per image; the 2026-09 model's 1k setting then priced at 2 | | 2026-10 |
 | The identity portrait model (Soul Cast) | 0.12 per portrait, shown as a rounded 1 by the preflight | | 2026-09 |

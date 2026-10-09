@@ -19,7 +19,7 @@ models_explore  action: recommend  type: image  query: character design of a fic
 
 When a recommendation returns more than one model that fits, take the cheaper at its lowest setting and name it as a derived setting. Read each model's parameters with `action: get` and lock the cheapest setting it exposes: the lowest `resolution` or `quality`, a `budget` at its minimum; a 1k image is more than the video model needs. Preflight each once with `generate_image` and `get_cost: true` ([`models.md`](models.md)).
 
-The identity model may output a single aspect ratio, ignore the framing in the prompt and return a character sheet instead of a portrait: the one recommended so far (Soul Cast, checked 2026-09) returns a 2048x1152 three-panel sheet (full body front, full body back, face) every time and takes no reference input. A sheet is a better identity reference and is used as it is; the first frames then come from the reference-capable model (Nano Banana Pro, checked 2026-09). Read the video model's `aspect_ratios` and `medias[].roles` before any image is made, so that every image is made in a ratio its role accepts.
+The identity model may output a single aspect ratio, ignore the framing in the prompt and return a character sheet instead of a portrait: the one recommended so far (Soul Cast, checked 2026-09) returns a 2048x1152 three-panel sheet (full body front, full body back, face) every time and takes no reference input. A sheet is a better identity reference and is used as it is; the first frames then come from the reference-capable model (Nano Banana Pro, checked 2026-09; in 2026-10 the recommendation named GPT Image 2.5 instead, whose low 1k setting was the cheapest at 0.25 per image: read the recommendation each run, the name changes between months). Read the video model's `aspect_ratios` and `medias[].roles` before any image is made, so that every image is made in a ratio its role accepts.
 
 ## The style line
 
@@ -31,7 +31,7 @@ One paragraph, in this order:
 
 1. Framing: head-and-shoulders or three-quarter, eyes to camera, on a plain neutral ground in soft daylight (or a setting and light matching the piece's mood, when the skill wants the portrait to carry it).
 2. The person: apparent age range, build, hair (color, length, style), skin tone, the facial features that matter, the baseline expression of the role, one line on how they carry themselves.
-3. Clothing and accessories, exactly. They are repeated word for word in every later prompt for that character.
+3. Clothing and accessories, exactly. They are repeated word for word in every later prompt for that character, unless a shot changes them, in which case that shot's first-frame description and prompt carry the change and the portrait stays.
 4. The style line.
 5. Never: a real person, a celebrity likeness, a logo on clothing, text anywhere in the image.
 
