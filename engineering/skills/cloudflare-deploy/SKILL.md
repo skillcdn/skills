@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project, network access to the Cloudflare API and to the git host, and a Cloudflare API token the user creates (or a wrangler login). Works in any agent that can run a shell.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: cloudflare
 skillcdn:
   include:
@@ -23,7 +23,7 @@ What goes in: a project in a checkout, with a Wrangler configuration or a framew
 ## How the user is involved
 
 - **Questions:** one message at the start, written under "Inputs": the token, the domain, the repository. The values only they hold (provider keys) are asked at the plan checkpoint, when the live address is known and the exact steps can be given. Everything else is derived and shown.
-- **Checkpoints:** the deploy plan before anything is created; each purchase with its price (a domain, the Paid plan, the R2 subscription); the first production deploy, because the address becomes public; every push, which after the connection is also a deploy. One short message each, and one word continues.
+- **Checkpoints:** the deploy plan before anything is created; each purchase with its price (a domain, the Paid plan, the R2 subscription); the first production deploy, because the address becomes public, whose confirmation names the deploys that follow it in this launch (the domain's); every push, which after the connection is also a deploy. One short message each, and one word continues. The edits the plan lists land after the plan's word, each shown as a diff; an edit the plan did not list waits for a word.
 - **Go-ahead:** when the user says to go ahead alone, the reports between phases need no answer. Purchases, the first deploy and pushes are confirmed in every mode; a word that names the pushes ("push as you see fit") is consent for this run's pushes and is said back in one line, a go-ahead that does not name them is not.
 - **Changes mid-run:** applied from that point. A resource already created is kept and recorded, never silently deleted.
 
@@ -31,7 +31,7 @@ What goes in: a project in a checkout, with a Wrangler configuration or a framew
 
 | What | Used for |
 |---|---|
-| A shell with Node.js (the current LTS), npm, git and curl, in a checkout of the project | Wrangler through `npx`, the build, the API calls, the commit of the deploy record |
+| A shell with Node.js (the major the project pins in `.node-version` or `engines`, else the current LTS), npm, git and curl, in a checkout of the project with its dependencies installed (`npm ci` when `node_modules` is missing) | Wrangler through `npx`, the build, the API calls, the commit of the deploy record |
 | The Cloudflare API token, or a `wrangler login` | Everything the first table of [automation.md](/engineering/docs/cloudflare/automation.md) lists |
 | Network access to `api.cloudflare.com` and the git host | Resources, deploys, the repository connection |
 | Optional: the `gh` CLI signed in | Creating the repository and pushing without the user's hands |
@@ -48,13 +48,13 @@ What the Cloudflare skills share is the area's document set [`engineering/docs/c
 | The project | The current directory, or the path the user names. Its `wrangler.jsonc` (or `.toml`), `package.json` scripts, `migrations/`, `db/seed.sql` when there is one, `.dev.vars.example` and `secrets.required` say what it needs; a project without a configuration gets one written from the framework guide, as platform.md says. |
 | Access | The token, asked; its account id, derived with the accounts call. |
 | The domain | Asked: one they own, one to buy, or none yet. |
-| The repository | Asked: the GitHub address, or none yet; the owner, when `gh` creates it, is the one the user names, else the signed-in `gh` user. |
+| The repository | Asked: the GitHub address, or none yet; the owner, when `gh` creates it, is the one the user names, else the signed-in `gh` user; its name is the Worker's name. |
 | Secret values | Generated for signing keys (a name with `_SECRET` or `_KEY` and no provider named, or marked as generated in the example file); asked at the plan checkpoint, by name and with where to get each, for provider keys. |
 | Everything else | Derived and shown in the plan: the Worker's name (`name` in the configuration), its `workers.dev` address (the subdomain call), resource names (the configuration's, else `<name>-db`, `<name>-files`, `<name>-kv`), the plan (Free unless a feature needs Paid), the build and deploy commands (`package.json`, resources.md "Inventory"), the build variables (`NEXT_PUBLIC_*` names found in the code and the example files, `NODE_VERSION` from the project's version file or the machine's `node -v`). |
 
 The questions, in one message at the start, each only when the answer is not already in the request, the project, or the handover from `cloudflare-new-app`:
 
-- "To work on your Cloudflare account I need an API token. It takes a minute: [the steps of tokens.md, as the dashboard shows them today]. Save it in a file named `.cf-token` in the project folder and tell me; that keeps it out of this chat. If you paste it here instead, I move it into that file and never repeat it."
+- "To work on your Cloudflare account I need an API token. It takes a minute: [the steps of tokens.md, as the dashboard shows them today, with the rows of its second table that the configuration's bindings and the request need]. Save it in a file named `.cf-token` in the project folder and tell me; that keeps it out of this chat. If you paste it here instead, I move it into that file and never repeat it."
 - "Do you already have a domain for this, should I find and buy one (I show the price before buying), or do we start on a free address (`<name>.<subdomain>.workers.dev`) and add a domain later?"
 - "Where does the code live on GitHub? If nowhere yet, I can create a private repository for it, under your account or an organization you name."
 
@@ -70,7 +70,7 @@ Produces the **access record**: the token's kind, the account id and name, the `
 
 ### Phase 2: Inventory and plan
 
-Produces the **deploy plan**, shown at the checkpoint. Read the project: the configuration's bindings and their ids, `secrets.required` and the example file, the migrations, the framework and its scripts ([platform.md](/engineering/docs/cloudflare/platform.md) for what each key means), the `NEXT_PUBLIC_*` names, the Node.js version. Derive the address, what will be created, what will be set, which code edits the launch needs (the analytics snippet when the address is not a zone of Cloudflare, a redirect for `www`), which dashboard steps the user owes and when, and what it costs: the plan's included usage from platform.md's table with its month, and the live price of a domain from the check call. Then stop: "I will create <resources>, set <n> secrets (<generated>; <asked>: here is where each comes from), deploy to <address>, <attach domain / buy domain at price / stay on workers.dev>, connect <repository> so that pushes deploy, and <edits>. On the Free plan this costs nothing; <the domain costs X per year>. You do once: <dashboard steps>. OK?"
+Produces the **deploy plan**, shown at the checkpoint. Read the project: the configuration's bindings and their ids, `secrets.required` and the example file, the migrations, the framework and its scripts ([platform.md](/engineering/docs/cloudflare/platform.md) for what each key means), the `NEXT_PUBLIC_*` names, the Node.js version. Derive the address, what will be created, what will be set, which code edits the launch needs (the analytics beacon when the address is a `workers.dev` one or a hostname under a zone shared with other sites, a redirect for `www`), which dashboard steps the user owes and when, and what it costs: the plan's included usage from platform.md's table with its month, and the live price of a domain from the check call. Then stop: "I will create <resources>, apply <n> migrations <and load the sample data>, set <n> secrets (<generated>; <asked>: here is where each comes from), deploy to <address>, <attach domain / buy domain at price / stay on workers.dev>, connect <repository> so that pushes deploy, and <edits>. On the Free plan this costs nothing; <the domain costs X per year>. You do once: <dashboard steps>. OK?"
 
 ### Phase 3: Resources
 
@@ -78,7 +78,7 @@ Produces the **resource record**: each database, bucket and namespace with its n
 
 ### Phase 4: Secrets
 
-Produces the **secrets file**: fresh generated values for production (the local `.dev.vars` keeps its own, from the new-app skill or the developer) and the values the user gave, in one bulk file outside the repository, in the shape of [secrets.example.json](assets/secrets.example.json); a placeholder value found locally is never sent and counts as "later"; a generated value the user must know (an admin password) goes to a file next to the token file, named in the delivery and never written in a message. Nothing is sent yet: a Worker that was never deployed cannot take secrets before its first version. A value the user said "later" to is handled as resources.md "Secrets" says and named in the delivery.
+Produces the **secrets file**: fresh generated values for production (the local `.dev.vars` keeps its own, from the new-app skill or the developer) and the values the user gave, in one bulk file outside the repository, in the shape of [secrets.example.json](assets/secrets.example.json); a placeholder value found locally is never sent and counts as "later"; a generated value the user must know (an admin password) goes to a file in the folder above the project, outside the checkout, named in the delivery and never written in a message. Nothing is sent yet: a Worker that was never deployed cannot take secrets before its first version. A value the user said "later" to is handled as resources.md "Secrets" says and named in the delivery.
 
 ### Phase 5: First deploy
 
@@ -90,11 +90,11 @@ Produces the **domain record**. None yet: the `workers.dev` address stays, the d
 
 ### Phase 7: Deploys on push
 
-Produces the **build connection**. First the commit of everything the launch changed (the configuration with its ids, the types, the migrations), with the ignore list checked; then the repository on the git host (created with `gh` and pushed after the user's word, or the address the user gave). The user installs the GitHub App once; the agent makes the connection, the production and preview triggers, the build variables and the Node.js version through the API, runs one build (covered by the confirmation of the push that carried the code), reads its log, and verifies that the active deployment is that build and that build is `HEAD`. When the API refuses, the dashboard steps replace it, as resources.md gives them. From here on, a push to `main` is a deploy and a push to a branch is a preview; say so.
+Produces the **build connection**. First the commit of everything the launch changed (the configuration with its ids, the types, the migrations), with the ignore list checked; then the repository on the git host (created empty with `gh` after the user's word, or the address the user gave). The user installs the GitHub App once; the agent makes the connection, the production and preview triggers, the build variables and the Node.js version through the API; then the push, after the user's word, which triggers the first build; it reads the log and verifies that the active deployment is that build and that build is `HEAD`. When the API refuses, the dashboard steps replace it, as resources.md gives them. From here on, a push to `main` is a deploy and a push to a branch is a preview; say so.
 
 ### Phase 8: Observe and record
 
-Produces **`DEPLOY.md`** in the project (the template in resources.md) and the delivery. Create the Web Analytics site (injected at the edge for a domain on Cloudflare; a beacon token set as a build variable, or a shown edit of the root layout, for a `workers.dev` address); confirm logs are on. Commit `DEPLOY.md` and push on the user's word. Deliver in one message: the addresses, what was created and set, what the user still owes (a nameserver change, a "later" secret), what was verified and how, and how the next deploy happens.
+Produces **`DEPLOY.md`** in the project (the template in resources.md) and the delivery. Create the Web Analytics site (injected at the edge for a zone that is this site's alone; a beacon token set as a build variable, or a shown edit of the root layout, for a `workers.dev` address or a hostname under a zone shared with other sites); confirm logs are on. Commit `DEPLOY.md` and push on the user's word. Deliver in one message: the addresses, what was created and set, what the user still owes (a nameserver change, a "later" secret), what was verified and how, and how the next deploy happens.
 
 ### Verdicts
 

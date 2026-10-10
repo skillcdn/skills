@@ -20,7 +20,7 @@ What every public page carries so that search engines index it per language and 
 
 ## Structured data
 
-JSON-LD in the page head, only for what is true: `WebSite` and `Organization` (name, URL, logo, the owner from the brief, the same names as the pages) on every page; `SoftwareApplication` or `Product` on the page that describes the offer, with real prices when there are any; `FAQPage` where a page answers questions; `Article` with dates and author on posts; `BreadcrumbList` on nested pages. No ratings, reviews or counts that are not real; search engines penalize invented ones and the user is embarrassed. An owner given "later" leaves the `Organization` out until it is known.
+JSON-LD in the page head, only for what is true: `WebSite` and `Organization` (name, URL, logo, the owner from the brief, the same names as the pages) on every page; `SoftwareApplication` or `Product` on the page that describes the offer, with real prices when there are any; `FAQPage` where a page answers questions; `Event` on a page that describes a dated happening at a place (a meeting, a show), with its time and place; `Article` with dates and author on posts; `BreadcrumbList` on nested pages. No ratings, reviews or counts that are not real; search engines penalize invented ones and the user is embarrassed. An owner given "later" leaves the `Organization` out until it is known.
 
 ## For AI engines
 
@@ -39,7 +39,7 @@ Source: the brand symbol as SVG in `public/brand/` with the wordmark, from the l
 | `favicon.svg` | any | the symbol on its tile |
 | `favicon.ico` | 16, 32, 48 | the PNG tiles, packed by a small ICO writer (a dev dependency such as `png-to-ico`, or a handful of lines) |
 | `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (180) | square | the tile, with safe margins for the maskable variant |
-| `og-image.png` and `og-image-<locale>.png` | 1200 by 630 | the symbol, the site's name and tagline in that locale, on the brand background |
+| `og-image.png` (the default locale's copy, for anything that asks for one file) and `og-image-<locale>.png` for every locale, the one the metadata names | 1200 by 630 | the symbol, the site's name and tagline in that locale, on the brand background |
 
 Rendering: an SVG-to-PNG renderer that embeds fonts (`@resvg/resvg-js` as a dev dependency; it reads TTF and OTF files passed by path). The script fetches the font files itself into `.brand-tmp/fonts/` (gitignored): a Google Fonts family's TTFs are raw files in the `google/fonts` repository on GitHub, where a Latin family may exist only as a variable font (the CJK family of the same name includes Latin and covers both, checked 2026-10); the Noto CJK subsets are release archives on the `notofonts` organization. The share image's text is set in each locale's font. The outputs are committed, because a scaffold without them is a page with no icon; the fonts are not. When the fonts cannot be fetched in the run's environment, render with the system fonts for the Latin outputs, leave the CJK share images as the symbol alone, and list them in `docs/status.md`. A per-page share image generated at request time (the framework's image response) comes later, when the adapter supports it (platform.md names where to check).
 

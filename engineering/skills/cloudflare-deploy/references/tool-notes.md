@@ -12,7 +12,7 @@ By topic, in the order a run meets them. A fact that can go stale names where it
 
 ## D1
 
-- `wrangler d1 execute --file` uploaded a large SQL file and failed with `fetch failed` on one Windows machine; the same statements sent with `--command` in a few batches went through (seen 2026-09).
+- `wrangler d1 execute --file` uploaded a large SQL file and failed with `fetch failed` on one Windows machine; the same statements sent with `--command` in a few batches went through (seen 2026-09); a 534 KB file of 60 multi-row inserts went through on another Windows machine (seen 2026-10), so the file goes first.
 - A `LIKE` or `GLOB` pattern longer than 50 bytes fails the whole query on D1; a "contains" search uses `instr` (seen 2026-09 on a list page that answered 500 for long search terms).
 - Applying migrations in a non-interactive shell skips the confirmation prompt and still takes the backup, so the remote apply runs unattended.
 - `--update-config` appends a new entry to the configuration; on a binding that already has an entry (a placeholder id from the scaffold), create without it and write the id into the existing entry, or the Worker ends up with two bindings of one name.

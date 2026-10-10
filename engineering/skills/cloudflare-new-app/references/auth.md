@@ -4,7 +4,7 @@ The default sign-in, how it is built so that it stays off until its keys exist, 
 
 ## The guest path comes first
 
-The brief's core action (saving, writing, booking) works on one device before anyone signs in: a random device id in a one-year cookie groups what a guest did on this device, and signing in claims it (`lib/db/claim.ts`: everything with this device id, or the same verified email, moves to the member). Sign-in is what makes the data follow the person across devices, not what unlocks the app; the plan says so in one line. The brief may name an action that needs an account (paying, publishing under a name), and only that action waits for sign-in. When the core action is itself one per person (a vote, an entry under a name), browsing is the guest path and the action waits for sign-in; the plan's line then says so instead of "saving works before signing in". This is also why an app ships before its sign-in keys exist.
+The brief's core action (saving, writing, booking) works on one device before anyone signs in: a random device id in a one-year cookie groups what a guest did on this device, and signing in claims it (`lib/db/claim.ts`: everything with this device id, or the same verified email, moves to the member). Sign-in is what makes the data follow the person across devices, not what unlocks the app; the plan says so in one line. The brief may name an action that needs an account (paying, publishing under a name), and only that action waits for sign-in. When the core action must be one per person and enforced (a vote, a ranking), browsing is the guest path and the action waits for sign-in, and the plan's line says so instead of "saving works before signing in"; an entry that only needs a name and a contact (a sign-up, a booking, a comment) takes them typed in on the guest path and is claimed on sign-in. This is also why an app ships before its sign-in keys exist.
 
 ## The default: Google, implemented directly
 
@@ -27,7 +27,7 @@ When the brief asks for email: a single-use token in D1 with a 15-minute expiry,
 
 ## A test sign-in without a provider
 
-When the user wants to try sign-in before any provider's keys exist: a nickname plus a code. The code is a secret (`TEST_LOGIN_CODE`), only a request that carries it creates or opens a member, those members carry `provider = 'test'` so that one statement deletes them with what they made, what they create is marked as test on the pages, and deleting the secret closes the door. Never the default; named in the delivery and in `DEPLOY.md`, and off before the site is announced.
+When the user wants to try sign-in before any provider's keys exist: a nickname plus a code. The code is a secret (`TEST_LOGIN_CODE`) in letters and digits, because a password field under a Korean input method refuses Hangul (seen 2026-10), only a request that carries it creates or opens a member, those members carry `provider = 'test'` so that one statement deletes them with what they made, what they create is marked as test on the pages, and deleting the secret closes the door. Never the default; named in the delivery and in `DEPLOY.md`, and off before the site is announced. Sample accounts loaded from a seed (`provider = 'sample'`, ids outside the real sequence) never hold a session.
 
 ## When to use a library
 

@@ -9,7 +9,7 @@ How the app speaks every locale the brief names, so that adding one later touche
 - `LOCALES` as a readonly tuple of tags (`ko`, `en`, `zh-TW`, `ja`), the default first; `type Locale`; `DEFAULT_LOCALE`.
 - `type Dict<T> = Record<Locale, T>`: every dictionary in the app is typed with it, so that a missing locale fails the typecheck.
 - Per locale, in the same file: the `html lang` value, the Open Graph locale (`ko_KR`), the hreflang tag, the time zone (the Worker runs in UTC), the currency and number format, the font family for its script, the URL prefix or parameter.
-- `localeFeatures(locale)`: the switches that differ by market (a disclaimer line, a sign-in provider, an analytics pixel allowed or not), read here and nowhere else; a `locale === 'x'` scattered through pages is the thing to avoid.
+- `localeFeatures(locale)`: the switches that differ by market (a disclaimer line, a sign-in provider, an analytics pixel allowed or not), kept in `config/features.ts` next to it and read from there and nowhere else; a `locale === 'x'` scattered through pages is the thing to avoid.
 
 ## Dictionaries
 
@@ -36,7 +36,7 @@ Every public page: `html lang`, the canonical URL of its own locale, hreflang al
 ## Formatting and time
 
 - Money: a price table per currency in `config/pricing.ts`, formatted with `Intl.NumberFormat(locale, { style: 'currency', currency })`; never a number with a symbol typed into copy.
-- Dates and times: `Intl.DateTimeFormat` with the locale and the locale's time zone; "today" for a user is computed in their zone, since the Worker's clock is UTC. A locale with a region takes the region's zone; a locale without one (`en`) takes the operator's zone, from the brief's owner, else the default locale's; UTC only for a worldwide audience the brief names.
+- Dates and times: `Intl.DateTimeFormat` with the locale and the locale's time zone; "today" for a user is computed in their zone, since the Worker's clock is UTC. A locale with a region takes the region's zone; a locale without one (`ko`, `en`) takes the operator's zone, from the brief's owner (question 1 asks where they are based), else the zone usual for the default locale's language (`ko` is Asia/Seoul); a thing that happens at a place (a meeting, a show) shows that place's time in every locale; UTC only for a worldwide audience the brief names.
 - Plurals and lists: `Intl.PluralRules` and `Intl.ListFormat`; counts never hardcode "s".
 - Input: names without a required family-name split, addresses as free lines, phone numbers with a country code; validation by shape, not by one country's rule.
 

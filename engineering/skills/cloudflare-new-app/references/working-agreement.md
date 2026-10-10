@@ -50,4 +50,4 @@ A rule enters only with its why and after a slip repeated or a correction made w
 }
 ```
 
-The patterns name the secret files exactly, so that `.dev.vars.example` and `.env.example` stay readable. Writes are not denied: the agent writes generated values into `.dev.vars` at the launch, through the shell, without reading the file back. A host with another settings file gets the same two lists in its own format.
+The patterns name the secret files exactly, so that `.dev.vars.example` and `.env.example` stay readable. Writes are not denied: the agent writes generated values into `.dev.vars` at the build and at the launch, through the shell, without reading the file back. A host with another settings file gets the same two lists in its own format.

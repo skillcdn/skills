@@ -36,7 +36,7 @@ What the Cloudflare Workers runtime can and cannot do, the configuration an app 
 
 - Plain Workers and vinext: `import { env } from "cloudflare:workers"` anywhere on the server, or the `env` argument of the handler. The OpenNext adapter: `getCloudflareContext().env` from `@opennextjs/cloudflare`. Wrap the access in one module (`lib/cf.ts`, `lib/env.ts`) so the rest of the code does not know which adapter runs.
 - A secret is read the same way as a binding (`env.SESSION_SECRET`); with Node.js compatibility `process.env` also sees secrets and `vars`, never bindings.
-- Local development: `.dev.vars` (or `.env`, not both) next to the configuration holds the secrets as `KEY=value`; both files are gitignored, with a committed `.dev.vars.example` of names and comments only. `wrangler dev` and the framework's dev server simulate D1, R2 and KV locally under `.wrangler/`; `wrangler d1 migrations apply <db> --local` prepares the local database.
+- Local development: `.dev.vars` (or `.env`, not both) next to the configuration holds the secrets as `KEY=value`; both files are gitignored, with a committed `.dev.vars.example` of names and comments only; a framework's public build variables are set in the shell or the build's variables, never in a local `.env`. `wrangler dev` and the framework's dev server simulate D1, R2 and KV locally under `.wrangler/`; `wrangler d1 migrations apply <db> --local` prepares the local database.
 - Deployed: per-Worker secrets through Wrangler (`secret put`, `secret bulk <file>`, `deploy --secrets-file <file>`), each of which creates a new version and deploys it. Secrets Store, account-level secrets shared by Workers, is in open beta (checked 2026-10) and is not needed for one app.
 
 ## Next.js and other frameworks
