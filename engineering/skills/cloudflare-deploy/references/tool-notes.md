@@ -21,6 +21,7 @@ By topic, in the order a run meets them. A fact that can go stale names where it
 
 - `wrangler secret put` and `secret bulk` each create and deploy a new version, and fail on a Worker that has never been deployed; the first deploy carries the secrets with `--secrets-file` instead (Wrangler reference, checked 2026-10).
 - On a Worker that Workers Builds deploys, a sister project once found the live code reverted to an older version after a CLI secret change; the deploy status showed it and a rebuild fixed it (seen 2026-09). Check `wrangler deployments status` after every CLI secret change on a connected Worker.
+- A secret change makes a version that `wrangler versions view <id>` labels `Source: Secret Change`, built from the code of the version active at that moment, not from the last build: when those differ, the Worker goes live on the older code, which is what the check above catches; the next push-triggered build became the active version again (seen 2026-10).
 
 ## Deploy and domains
 
