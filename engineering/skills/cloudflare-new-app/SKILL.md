@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: cloudflare
 skillcdn:
   include:
@@ -24,14 +24,14 @@ What goes in: an idea in the user's words and the answers to a few plain questio
 
 - **Questions:** one message at the start, the ones in [intake.md](references/intake.md) that the request leaves open, each in plain words. Everything else is derived and shown in the plan.
 - **Checkpoints:** the plan, before any file of the project is written; the look, with the home page in front of them, before the pages are built on it; then the deploy skill's own stops (a purchase, the first deploy, every push). Each is one short message in plain words, with a recommendation, and one word continues.
-- **Go-ahead:** when the user says to go ahead alone, the questions with defaults are not asked (the defaults are shown in the plan) and the look is reported instead of approved. The plan, and every stop of the deploy skill, hold in every mode.
+- **Go-ahead:** when the user says to go ahead alone, the questions with defaults are not asked (the defaults are shown in the plan) and the look is reported instead of approved. The plan, and every stop of the deploy skill, hold in every mode. An answer that hands one question or one plan to the agent ("you decide the first day", "the rest as you proposed") answers that question; it is not a go-ahead, and the checkpoints stay.
 - **Changes mid-run:** applied from that point. A changed plan after the build rewrites the parts it touches, not the whole app.
 
 ## Requirements
 
 | What | Used for |
 |---|---|
-| A shell with Node.js (the current LTS, or an older LTS the scaffold accepts: say which in the first message and pin it in `.node-version`), npm and git | Scaffolding, running, checking, committing |
+| A shell with Node.js (the current LTS, or an older LTS the tools accept: the LTS list is `nodejs.org/dist/index.json`, a tool's floor is `npm view <package> engines`; say which in the first message and pin that major in `.node-version` and in `@types/node`), npm and git | Scaffolding, running, checking, committing |
 | Network access to the npm registry and to `developers.cloudflare.com` | Packages, and the framework guide that names the path of the day |
 | Optional: a browser the agent can drive, or a screenshot tool | Looking at the pages at the design checkpoint and for the layout verdicts; without one, the user looks at the local address on a phone-width window and the layout verdicts are reported as not run |
 | Optional: a design skill the host has installed (one that reviews or crafts interfaces) | The look; without one, [stack.md](references/stack.md) "The look" carries the method |
@@ -68,7 +68,7 @@ Produces the **plan**, shown at the checkpoint with the message intake.md gives,
 
 ### Phase 3: Design
 
-Produces the **look** (`docs/brand.md`, the tokens in the stylesheet, the brand symbol as SVG) and the home page built on it. Derive a palette, type per script, spacing, radius, motion and tone from the look direction (stack.md "The look"); when the host has a design skill installed, use it for this phase and record what it decided in `docs/brand.md`. Scaffold the project (phase 4, step 1) so that the home page can be rendered, build the home page, and show it: a screenshot when a browser is available, otherwise the local address with "run `npm run dev` in the project folder, then open it on your phone or in a narrow window", because a server the agent starts ends with its turn. Checkpoint: "Here is the look: <three words>, <palette>, <type>. The alternative would be <one line>. Keep it?"
+Produces the **look** (`docs/brand.md`, the tokens in the stylesheet, the brand symbol as SVG) and the home page built on it. Derive a palette, type per script, spacing, radius, motion and tone from the look direction (stack.md "The look"); when the host has a design skill installed, use it for this phase and record what it decided in `docs/brand.md`. Scaffold the project (phase 4, step 1) so that the home page can be rendered, build the home page (a page that is empty without data gets a development-only switch, a query parameter the production build ignores, that fills it with sample states), and show it: a screenshot when a browser is available, otherwise the local address with "run `npm run dev` in the project folder, then open it on your phone or in a narrow window", because a server the agent starts ends with its turn. Checkpoint: "Here is the look: <three words>, <palette>, <type>. The alternative would be <one line>. Keep it?"
 
 ### Phase 4: Build
 
@@ -80,7 +80,7 @@ Produces the **app**. In this order, each step reported in a line and verified b
 4. The pages of the brief on the tokens, mobile-first (stack.md "Mobile first"), with the shell (header, footer, switcher, sign-in state).
 5. The data: the first migration, a module per entity under `lib/db/`, applied locally; when the brief asks for sample content (a demo, a mockup's figures), `db/seed.sql` as stack.md says, applied locally and named in the handover.
 6. Sign-in as [auth.md](references/auth.md) says: the core action works for a guest on this device, sign-in claims it, and the provider stays off until its keys exist. Generate the local `SESSION_SECRET` into `.dev.vars` here (never shown), so that the dev server signs sessions without a warning; the deploy skill generates the live one.
-7. Search and AI readiness, the share image and the favicon set, analytics with its slot for the beacon token, as [seo-geo.md](references/seo-geo.md) says.
+7. Search and AI readiness, the share image and the favicon set, analytics with its slot for the beacon token, as [seo-geo.md](references/seo-geo.md) says. The rendered share image and icons are looked at with the host's image reading (a PNG opened with the file tool), browser or not.
 8. Tests: the dictionary test, the boundary test where the framework has a server and client split, a test per pure module that holds a rule; `npm run check` passes.
 9. Run: the dev server, every public page in every locale answers 200, the sign-in button appears only when its keys are set (placeholder values in `.dev.vars` show it; the round trip waits for real keys), the seo-geo.md check runs against the local address; a screenshot or the address for the user.
 

@@ -4,7 +4,7 @@ The default sign-in, how it is built so that it stays off until its keys exist, 
 
 ## The guest path comes first
 
-The brief's core action (saving, writing, booking) works on one device before anyone signs in: a random device id in a one-year cookie groups what a guest did on this device, and signing in claims it (`lib/db/claim.ts`: everything with this device id, or the same verified email, moves to the member). Sign-in is what makes the data follow the person across devices, not what unlocks the app; the plan says so in one line. The brief may name an action that needs an account (paying, publishing under a name), and only that action waits for sign-in. This is also why an app ships before its sign-in keys exist.
+The brief's core action (saving, writing, booking) works on one device before anyone signs in: a random device id in a one-year cookie groups what a guest did on this device, and signing in claims it (`lib/db/claim.ts`: everything with this device id, or the same verified email, moves to the member). Sign-in is what makes the data follow the person across devices, not what unlocks the app; the plan says so in one line. The brief may name an action that needs an account (paying, publishing under a name), and only that action waits for sign-in. When the core action is itself one per person (a vote, an entry under a name), browsing is the guest path and the action waits for sign-in; the plan's line then says so instead of "saving works before signing in". This is also why an app ships before its sign-in keys exist.
 
 ## The default: Google, implemented directly
 
@@ -19,11 +19,15 @@ A signed JWT (`jose`, HS256, `SESSION_SECRET`) in an `HttpOnly`, `Secure`, `Same
 
 ## Markets and providers
 
-`localeFeatures(locale).login` says which providers a market shows: Google everywhere; a regional provider (LINE for Taiwan and Japan, Kakao for Korea) when the brief or the market asks, each with its own keys, its own callback and the same signed-state scheme. A provider that does not return an email gets a synthetic one (`<id>@<provider>.local`) that is never used as a claim key.
+`localeFeatures(locale).login` says which providers a market shows: Google everywhere; a regional provider (LINE for Taiwan and Japan, Kakao for Korea) when the brief or the market asks, each with its own keys, its own callback and the same signed-state scheme. A provider that does not return an email gets a synthetic one (`<id>@<provider>.local`) that is never used as a claim key. Kakao Login (checked 2026-10): the two values are the REST API key and its client secret (on by default), the redirect URI is set under the app's platform keys for the REST API key, the consent items a new app gets without review are the nickname and the profile image, so there is no email and the synthetic id applies; the dashboard steps are in automation.md's second table.
 
 ## Email link sign-in
 
 When the brief asks for email: a single-use token in D1 with a 15-minute expiry, sent by the app's email sender (platform.md names what the plan allows), verified by a route that creates the session; rate-limited per address. It needs a sending domain and the sender's key, so it waits for the launch.
+
+## A test sign-in without a provider
+
+When the user wants to try sign-in before any provider's keys exist: a nickname plus a code. The code is a secret (`TEST_LOGIN_CODE`), only a request that carries it creates or opens a member, those members carry `provider = 'test'` so that one statement deletes them with what they made, what they create is marked as test on the pages, and deleting the secret closes the door. Never the default; named in the delivery and in `DEPLOY.md`, and off before the site is announced.
 
 ## When to use a library
 

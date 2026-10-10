@@ -36,7 +36,7 @@ Then, before anything else is written: move `app/` to `src/app/` and point the a
 | `.gitattributes` | `* text=auto eol=lf`, so that a Windows checkout does not trip the formatter with CRLF |
 | `.editorconfig`, `.node-version` | Two-space indent, LF, UTF-8; the Node.js major the build pins |
 | `.dev.vars.example` | Every secret's name with a comment on where it comes from and whether it is generated; no values |
-| `.env.example` | The public build variables: `NEXT_PUBLIC_SITE_URL` (localhost in development; the deploy skill sets the live one), `NEXT_PUBLIC_CF_BEACON_TOKEN` (empty until the deploy skill creates the analytics site) |
+| `.env.example` | The public build variables: `NEXT_PUBLIC_SITE_URL` (the dev server's address in development, on the port `vite.config.ts` sets; the deploy skill sets the live one), `NEXT_PUBLIC_CF_BEACON_TOKEN` (empty until the deploy skill creates the analytics site) |
 | `.claude/settings.json` | Denies reads of secret files, allows the check commands and read-only git commands (working-agreement.md) |
 | `CLAUDE.md`, `AGENTS.md`, `README.md`, `docs/` | working-agreement.md |
 
@@ -53,7 +53,7 @@ migrations/         0001_init.sql, numbered, never edited after they are applied
 db/seed.sql         only when the brief asks for sample content (a demo, a mockup's figures): idempotent (`INSERT OR IGNORE`, fixed ids), applied after the migrations, locally by `db:seed:local` and once live by the deploy skill
 public/             favicon set, share images, brand/ (the SVG symbol and wordmark); the manifest is a route that reads config/site.ts, so the name is not retyped
 scripts/brand/      render.mjs: the SVG to every PNG the metadata names
-tests/              *.test.ts: dictionaries, boundaries, the rules; register.mjs registers a resolve hook that maps `@/` to `src/` (through `pathToFileURL`, which Windows paths need)
+tests/              *.test.ts: dictionaries, boundaries, the rules; register.mjs registers a resolve hook that maps `@/` to `src/` and adds the extension to relative imports (through `pathToFileURL`, which Windows paths need); a database module or a route handler is tested against an in-memory D1 from Wrangler's `getPlatformProxy`, with stand-ins for `cloudflare:workers` and the framework's request helpers
 docs/               brief.md, brand.md, status.md, decisions.md
 DEPLOY.md           written by the deploy skill at the launch
 ```

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project, network access to the Cloudflare API and to the git host, and a Cloudflare API token the user creates (or a wrangler login). Works in any agent that can run a shell.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: cloudflare
 skillcdn:
   include:
@@ -24,7 +24,7 @@ What goes in: a project in a checkout, with a Wrangler configuration or a framew
 
 - **Questions:** one message at the start, written under "Inputs": the token, the domain, the repository. The values only they hold (provider keys) are asked at the plan checkpoint, when the live address is known and the exact steps can be given. Everything else is derived and shown.
 - **Checkpoints:** the deploy plan before anything is created; each purchase with its price (a domain, the Paid plan, the R2 subscription); the first production deploy, because the address becomes public; every push, which after the connection is also a deploy. One short message each, and one word continues.
-- **Go-ahead:** when the user says to go ahead alone, the reports between phases need no answer. Purchases, the first deploy and pushes are confirmed in every mode.
+- **Go-ahead:** when the user says to go ahead alone, the reports between phases need no answer. Purchases, the first deploy and pushes are confirmed in every mode; a word that names the pushes ("push as you see fit") is consent for this run's pushes and is said back in one line, a go-ahead that does not name them is not.
 - **Changes mid-run:** applied from that point. A resource already created is kept and recorded, never silently deleted.
 
 ## Requirements
@@ -66,7 +66,7 @@ Each phase produces a named artifact and ends with one line to the user; the rec
 
 ### Phase 1: Access
 
-Produces the **access record**: the token's kind, the account id and name, the `workers.dev` subdomain, what the token can do. Export the token from its file (never print it), run the verify call, the accounts call and the subdomain call, then `npx wrangler whoami`; when the token sees several accounts, set `CLOUDFLARE_ACCOUNT_ID`. Probe each permission the project's bindings and the request will need with the harmless reads resources.md lists, and report a missing one now, with the row of tokens.md to add, not at the step that fails.
+Produces the **access record**: the token's kind, the account id and name, the `workers.dev` subdomain, what the token can do. Export the token from its file (never print it), run the verify call, the accounts call and the subdomain call, then `npx wrangler whoami`; when the token sees several accounts, take the one that holds the zone of the domain the user named, else the one they name, else ask, and set `CLOUDFLARE_ACCOUNT_ID`. Probe each permission the project's bindings and the request will need with the harmless reads resources.md lists, and report a missing one now, with the row of tokens.md to add, not at the step that fails.
 
 ### Phase 2: Inventory and plan
 
@@ -78,7 +78,7 @@ Produces the **resource record**: each database, bucket and namespace with its n
 
 ### Phase 4: Secrets
 
-Produces the **secrets file**: the generated values written to the local `.dev.vars` (kept out of the commit) and, with the values the user gave, into one bulk file outside the repository, in the shape of [secrets.example.json](assets/secrets.example.json). Nothing is sent yet: a Worker that was never deployed cannot take secrets before its first version. A value the user said "later" to is handled as resources.md "Secrets" says and named in the delivery.
+Produces the **secrets file**: fresh generated values for production (the local `.dev.vars` keeps its own, from the new-app skill or the developer) and the values the user gave, in one bulk file outside the repository, in the shape of [secrets.example.json](assets/secrets.example.json); a placeholder value found locally is never sent and counts as "later"; a generated value the user must know (an admin password) goes to a file next to the token file, named in the delivery and never written in a message. Nothing is sent yet: a Worker that was never deployed cannot take secrets before its first version. A value the user said "later" to is handled as resources.md "Secrets" says and named in the delivery.
 
 ### Phase 5: First deploy
 
@@ -108,7 +108,7 @@ Produces **`DEPLOY.md`** in the project (the template in resources.md) and the d
 
 1. The token and every secret stay out of the repository, the logs and the agent's own words: a value is read from its file into the environment, written to the Worker and to the local secrets file, never echoed, never put as a literal on a command line, and the bulk file is deleted. A leak means a rotation, which the user is told at once.
 2. Nothing is bought or upgraded without the price in front of the user and their word: a domain (non-refundable), the Paid plan, the R2 subscription. A go-ahead never covers these.
-3. The first production deploy and every push are confirmed. After the repository is connected, a push is a deploy, which the user chose at the plan checkpoint; a change they want kept off production goes to a branch, which previews.
+3. The first production deploy and every push are confirmed, unless the user's own words covered this run's pushes. After the repository is connected, a push is a deploy, which the user chose at the plan checkpoint; a change they want kept off production goes to a branch, which previews.
 4. The agent never asks the user to do what the token can do, and gives every dashboard step as the exact clicks of the day in one message, so that the user can do them while the run goes on.
 5. A schema change reaches the remote database before the code that needs it is deployed, because a connected repository deploys on push and a page that meets a missing table answers 500.
 6. After a secret is changed from the CLI on a Worker that builds deploy, the active deployment is checked against the latest build and the build is rerun when they differ; a sister project once found its live code reverted by that path.

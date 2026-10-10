@@ -1,6 +1,6 @@
 # Intake: the questions and what they derive
 
-The questions are asked in one message, in plain words, only where the request leaves them open; a question half answered by the request is asked for its missing half only. An answer stands for the run. What is not asked is derived and shown in the plan with its reason. When the user said to go ahead alone, questions 3 to 6 are not asked: their defaults go into the plan.
+The questions are asked in one message, in plain words, only where the request leaves them open; a question half answered by the request is asked for its missing half only. An answer stands for the run. What is not asked is derived and shown in the plan with its reason. A request that is a link to a mockup or a reference site is read first: it answers what it shows (the idea, the audience, the name, the look, a sign-in its text names), the message says what was taken from it, and the questions it leaves are asked, plus one it raises: whether the sample content it shows goes in as marked sample data (stack.md's `db/seed.sql`) or the site opens empty. When the user said to go ahead alone, questions 3 to 6 are not asked: their defaults go into the plan.
 
 ## The questions
 
