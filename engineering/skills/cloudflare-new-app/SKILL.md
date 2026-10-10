@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: cloudflare
 skillcdn:
   include:
@@ -78,7 +78,7 @@ Produces the **app**. In this order, each step reported in a line and verified b
 2. The structure of stack.md: the single sources (`config/i18n.ts`, `config/site.ts` with the site URL read from the public build variable, `config/features.ts`), the platform access module, the folders, the database entry with its placeholder id.
 3. Localization as [localization.md](references/localization.md) says: the locale list, the dictionaries typed for completeness, the routing, per-locale metadata, formatting, the switcher.
 4. The pages of the brief on the tokens, mobile-first (stack.md "Mobile first"), with the shell (header, footer, switcher, sign-in state).
-5. The data: the first migration, a module per entity under `lib/db/`, applied locally.
+5. The data: the first migration, a module per entity under `lib/db/`, applied locally; when the brief asks for sample content (a demo, a mockup's figures), `db/seed.sql` as stack.md says, applied locally and named in the handover.
 6. Sign-in as [auth.md](references/auth.md) says: the core action works for a guest on this device, sign-in claims it, and the provider stays off until its keys exist. Generate the local `SESSION_SECRET` into `.dev.vars` here (never shown), so that the dev server signs sessions without a warning; the deploy skill generates the live one.
 7. Search and AI readiness, the share image and the favicon set, analytics with its slot for the beacon token, as [seo-geo.md](references/seo-geo.md) says.
 8. Tests: the dictionary test, the boundary test where the framework has a server and client split, a test per pure module that holds a rule; `npm run check` passes.
@@ -90,7 +90,7 @@ Produces the **working agreement**: `CLAUDE.md`, `AGENTS.md`, `README.md`, `docs
 
 ### Phase 6: Launch
 
-Hands over to **`cloudflare-deploy`** with: the project path, the token file the user prepared, the domain answer, the secrets by name with which are generated and which the user holds (the sign-in provider's keys, which the deploy skill asks for with the exact callback URLs once the address is known), and the repository answer when the deploy skill asks it. Its stops are the user's. When the deploy skill cannot be loaded, say so, and give the user its name and address to run it next.
+Hands over to **`cloudflare-deploy`** with: the project path, the token file the user prepared, the domain answer, the secrets by name with which are generated and which the user holds (the sign-in provider's keys, which the deploy skill asks for with the exact callback URLs once the address is known), the seed file when one exists, and the repository answer when the deploy skill asks it. Its stops are the user's. When the deploy skill cannot be loaded, say so, and give the user its name and address to run it next.
 
 ### Phase 7: Delivery
 

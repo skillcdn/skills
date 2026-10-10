@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project, network access to the Cloudflare API and to the git host, and a Cloudflare API token the user creates (or a wrangler login). Works in any agent that can run a shell.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: cloudflare
 skillcdn:
   include:
@@ -45,7 +45,7 @@ What the Cloudflare skills share is the area's document set [`engineering/docs/c
 
 | Input | Source |
 |---|---|
-| The project | The current directory, or the path the user names. Its `wrangler.jsonc` (or `.toml`), `package.json` scripts, `migrations/`, `.dev.vars.example` and `secrets.required` say what it needs; a project without a configuration gets one written from the framework guide, as platform.md says. |
+| The project | The current directory, or the path the user names. Its `wrangler.jsonc` (or `.toml`), `package.json` scripts, `migrations/`, `db/seed.sql` when there is one, `.dev.vars.example` and `secrets.required` say what it needs; a project without a configuration gets one written from the framework guide, as platform.md says. |
 | Access | The token, asked; its account id, derived with the accounts call. |
 | The domain | Asked: one they own, one to buy, or none yet. |
 | The repository | Asked: the GitHub address, or none yet; the owner, when `gh` creates it, is the one the user names, else the signed-in `gh` user. |
@@ -74,7 +74,7 @@ Produces the **deploy plan**, shown at the checkpoint. Read the project: the con
 
 ### Phase 3: Resources
 
-Produces the **resource record**: each database, bucket and namespace with its name and id, created under the configuration's names and written into it (resources.md "Resources" says which name wins when an entry exists), and the migrations applied to the remote database before any code that needs them is deployed. Regenerate the types. Verify with the list commands.
+Produces the **resource record**: each database, bucket and namespace with its name and id, created under the configuration's names and written into it (resources.md "Resources" says which name wins when an entry exists), and the migrations applied to the remote database before any code that needs them is deployed, then the seed file the project or the handover names, once. Regenerate the types. Verify with the list commands.
 
 ### Phase 4: Secrets
 
@@ -86,7 +86,7 @@ Produces the **live address**. Build with the project's script (resources.md "In
 
 ### Phase 6: Domain
 
-Produces the **domain record**. None yet: the `workers.dev` address stays, the delivery says how to add a domain later (run this skill again with the domain), and the phase ends here. An owned domain: the zone exists or is created, the nameservers go to the user, the run continues with everything that does not wait on them, and the custom domains are attached once the zone is active. A new domain: search, check, show the price and the renewal, confirm, register, poll. For a domain: the apex and `www` as custom domains in the configuration, a deploy, and a check of DNS, certificate and the `www` redirect.
+Produces the **domain record**. None yet: the `workers.dev` address stays, the delivery says how to add a domain later (run this skill again with the domain), and the phase ends here. An owned domain: the zone exists or is created, the nameservers go to the user, the run continues with everything that does not wait on them, and the custom domains are attached once the zone is active. A new domain: search, check, show the price and the renewal, confirm, register, poll. For a domain: the apex and `www` as custom domains in the configuration, a deploy, and a check of DNS, certificate and the `www` redirect. A hostname under a zone the account already has (`app.example.com`): no new zone and no nameservers, that one custom domain alone, no `www`.
 
 ### Phase 7: Deploys on push
 

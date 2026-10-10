@@ -26,7 +26,7 @@ Failures: `Unable to authenticate request` on every call means the value was cop
 
 1. Which name wins: an entry with a name and a real id is kept and verified (`npx wrangler d1 info <database name>`); an entry with a name and a placeholder or missing id is created under that name (`npx wrangler d1 create <database name>` without `--update-config`, then the id written into the entry as a shown change); a binding the code uses with no entry is created with `--update-config` under the derived name. List first (`d1 list`, `r2 bucket list`, `kv namespace list`) and reuse a resource that already carries the name. The same for buckets and namespaces.
 2. R2 answers with a subscription error until the user has added R2 in the dashboard: give the step, go on with the rest, and come back.
-3. `npx wrangler d1 migrations apply <database name> --remote` (a non-interactive shell skips the confirmation and keeps the backup). A project with a single `schema.sql` instead of migrations: `npx wrangler d1 execute <database name> --remote --file=./db/schema.sql`; when the upload fails with `fetch failed`, send the statements with `--command` in small batches (seen 2026-09 on a Windows shell).
+3. `npx wrangler d1 migrations apply <database name> --remote` (a non-interactive shell skips the confirmation and keeps the backup). A project with a single `schema.sql` instead of migrations: `npx wrangler d1 execute <database name> --remote --file=./db/schema.sql`; when the upload fails with `fetch failed`, send the statements with `--command` in small batches (seen 2026-09 on a Windows shell). A seed file the project or the handover names (`db/seed.sql`, sample content): `npx wrangler d1 execute <database name> --remote --file=./db/seed.sql` once, after the migrations, and a count query afterwards to show the rows landed; the file is idempotent, so running it twice changes nothing.
 4. `npx wrangler types` (or the project's `cf-typegen` script); `npx wrangler d1 migrations list <database name> --remote` must print no unapplied migration.
 5. A public bucket: `dev-url enable` for a temporary address during the run, `domain add` with the zone id once the domain serves; record the public base URL for the app's configuration.
 
@@ -47,7 +47,7 @@ Failures: `Unable to authenticate request` on every call means the value was cop
 ## Domain
 
 1. None yet: nothing to do; the record and the delivery say "to add a domain, run the deploy skill again with it", and the rest of this phase is skipped.
-2. Owned domain: `GET /zones?name=<domain>` says whether the zone exists and its status. Missing: `POST /zones` with the account id and `type: full`; give the two `name_servers` to the user with "set these at your registrar; it takes minutes to a day"; poll the zone's status while other phases run.
+2. Owned domain: the zone is the registrable domain (`example.com` for `app.example.com`): `GET /zones?name=<that domain>` says whether it exists and its status. A hostname under a zone that exists needs no new zone and no nameserver change: take the zone id, skip to step 4 with that one hostname as the only custom domain, and add no `www`. Missing: `POST /zones` with the account id and `type: full`; give the two `name_servers` to the user with "set these at your registrar; it takes minutes to a day"; poll the zone's status while other phases run.
 3. New domain: the Registrar API's check immediately before the register call, the price in the confirmation, then register; a `202` is polled; `action_required` stops and gives the user the reason; a domain bought this way is active on Cloudflare at once.
 4. In the configuration: `routes` with the apex and `www` as custom domains; `workers_dev: false` and `preview_urls: false` once the domain serves. Deploy; `curl -sIL https://<domain>/` and `https://www.<domain>/` both answer; the certificate can take a few minutes after the records appear.
 5. `www` to apex: the app redirects when it sees the `www` host (one line in the request handler or the framework's proxy file, shown as a change), or a Single Redirect rule when the token has that permission; one of the two, not both. Update the site URL build variable to the domain.
@@ -81,7 +81,7 @@ Addresses: https://<name>.<subdomain>.workers.dev; https://<domain> (apex and ww
 
 | Resource | Name | Binding | Notes |
 |---|---|---|---|
-| D1 | <database name> | DB | migrations in `migrations/`, applied with `npx wrangler d1 migrations apply <database name> --remote` before pushing code that needs them |
+| D1 | <database name> | DB | migrations in `migrations/`, applied with `npx wrangler d1 migrations apply <database name> --remote` before pushing code that needs them; sample data in `db/seed.sql`; a read or a fix on the live data: `npx wrangler d1 execute <database name> --remote --command "<sql>"` |
 | R2 | <bucket name> | BUCKET | public at https://files.<domain> |
 
 ## Secrets

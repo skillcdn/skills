@@ -31,7 +31,7 @@ Then, before anything else is written: move `app/` to `src/app/` and point the a
 | File | Holds |
 |---|---|
 | `wrangler.jsonc` | platform.md "The configuration file"; the D1 entry carries `database_name` `<slug>-db` and a placeholder `database_id` (`00000000-0000-0000-0000-000000000000`) until the deploy skill creates the database and writes the real id; local development does not check it. No `secrets.required` while a provider's keys are optional (platform.md says why); the names live in `.dev.vars.example` |
-| `package.json` scripts | `dev`, `build`, `preview`, `deploy`, `cf-typegen` from the scaffold; add `typecheck` (`tsc --noEmit`), `lint`, `test`, `check` (typecheck, lint, test, build in that order), `db:migrate:local`, `db:migrate:remote`, `brand` (renders the icon and share images) |
+| `package.json` scripts | `dev`, `build`, `preview`, `deploy`, `cf-typegen` from the scaffold; add `typecheck` (`tsc --noEmit`), `lint`, `test`, `check` (typecheck, lint, test, build in that order), `db:migrate:local`, `db:migrate:remote`, `db:seed:local` when a seed exists, `brand` (renders the icon and share images) |
 | `.gitignore` | `node_modules`, the framework's output (`.next`, `.open-next`, `.vinext`, `dist`), `.wrangler`, `.dev.vars*` except `.dev.vars.example`, `.env*` except `.env.example`, `.cf-token`, `*.tsbuildinfo`, `.brand-tmp/` (the brand render's scratch folder) |
 | `.gitattributes` | `* text=auto eol=lf`, so that a Windows checkout does not trip the formatter with CRLF |
 | `.editorconfig`, `.node-version` | Two-space indent, LF, UTF-8; the Node.js major the build pins |
@@ -50,6 +50,7 @@ src/
   lib/              pure logic: db/ (one module per entity, a client.ts), auth/, i18n.ts (locale from the request, URLs per locale), seo.ts (metadata helpers), cf.ts (bindings and secrets behind one function), analytics.ts
   styles/           globals.css with the tokens
 migrations/         0001_init.sql, numbered, never edited after they are applied live
+db/seed.sql         only when the brief asks for sample content (a demo, a mockup's figures): idempotent (`INSERT OR IGNORE`, fixed ids), applied after the migrations, locally by `db:seed:local` and once live by the deploy skill
 public/             favicon set, share images, brand/ (the SVG symbol and wordmark); the manifest is a route that reads config/site.ts, so the name is not retyped
 scripts/brand/      render.mjs: the SVG to every PNG the metadata names
 tests/              *.test.ts: dictionaries, boundaries, the rules; register.mjs registers a resolve hook that maps `@/` to `src/` (through `pathToFileURL`, which Windows paths need)
