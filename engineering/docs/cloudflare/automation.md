@@ -1,0 +1,40 @@
+# Automation: what the token does and what a person does once
+
+What an agent with the token does by itself (resources, secrets, deploys, domains, builds, analytics) and the few steps only a signed-in person can take in the dashboard, with the command or call for each. An agent does everything in the first table before asking for anything in the second. Commands and endpoints are as the Wrangler reference and the API reference gave them when checked (2026-10); `npx wrangler <command> --help` and the API reference at `developers.cloudflare.com/api/` are the source when one has moved. Every path below is under `https://api.cloudflare.com/client/v4`, with the token as a bearer header.
+
+## What the agent does with the token
+
+| Need | How |
+|---|---|
+| Account id, zones | `GET /accounts`; `GET /zones?name=<domain>` (the zone id and `status`) |
+| The `workers.dev` address | `GET /accounts/<id>/workers/subdomain` answers `result.subdomain`; the Worker's address is `https://<name>.<subdomain>.workers.dev`. An empty result means the account has none: `PUT /accounts/<id>/workers/subdomain` with `{"subdomain":"<chosen>"}` registers one (Workers Scripts Edit; checked 2026-10) |
+| A database | `npx wrangler d1 create <name> --binding DB --update-config`; schema: `npx wrangler d1 migrations create <name> <message>`, then `npx wrangler d1 migrations apply <name> --remote` (`--local` for dev); ad hoc: `npx wrangler d1 execute <name> --remote --command "<sql>"`; `npx wrangler d1 list`, `d1 info <name>` |
+| A bucket | `npx wrangler r2 bucket create <name> --binding BUCKET --update-config`; public files: `npx wrangler r2 bucket domain add <name> --domain files.<domain> --zone-id <zone id>`, or `dev-url enable` for a temporary `r2.dev` address |
+| A key-value namespace | `npx wrangler kv namespace create <NAME> --update-config` |
+| Secrets | A JSON file outside the repository `{"NAME":"value"}` (a key set to `null` deletes); on a Worker that exists: `npx wrangler secret bulk <file>`; on one never deployed: `npx wrangler deploy --secrets-file <file>` sets them with the first version; `npx wrangler secret list` to confirm names; delete the file |
+| Deploy | The project's build script, then `npx wrangler deploy`; `npx wrangler deployments status` (the active version id), `npx wrangler versions list`, `npx wrangler rollback` |
+| Logs | `npx wrangler tail <name>` live; Workers Logs in the dashboard when `observability.enabled` |
+| A zone for a domain the user owns | `POST /zones` with `{"name":"<domain>","account":{"id":"<account id>"},"type":"full"}`; the result's `name_servers` go to the user, who sets them at the current registrar; `status` turns `active` once they resolve |
+| A new domain | Registrar API, beta (checked 2026-10): `GET /accounts/<id>/registrar/domain-search?q=<words>`, `POST /accounts/<id>/registrar/domain-check` with `{"domains":[...]}` for the live price, `POST /accounts/<id>/registrar/registrations` with `{"domain_name":"<domain>"}`; a `202` is polled at `.../registrations/<domain>/registration-status`; `extension_not_supported_via_api` means the dashboard. The domain uses Cloudflare nameservers, so its zone is active at once |
+| DNS records | `POST /zones/<zone id>/dns_records` with `{"type":"TXT","name":"<name>","content":"<value>","proxied":false}`; `GET` to list |
+| The app on its domain | `routes: [{"pattern":"<domain>","custom_domain":true},{"pattern":"www.<domain>","custom_domain":true}]` in the configuration, then deploy; Cloudflare creates the records and the certificate; the app redirects `www` to the apex, or a Single Redirect rule does |
+| Deploys on push: the connection | After the GitHub App is installed (below): GitHub ids from `https://api.github.com/users/<user>` and `/repos/<user>/<repo>` (`.id` of each); `PUT /accounts/<id>/builds/repos/connections` with `{"provider_type":"github","provider_account_id":"<user id>","provider_account_name":"<user>","repo_id":"<repo id>","repo_name":"<repo>"}`, keep `repo_connection_uuid`; the Worker's tag from `GET /accounts/<id>/workers/scripts` (`.result[].tag` for `.id` equal to the name); a build token from `GET /accounts/<id>/builds/tokens` (`build_token_uuid`; empty until the dashboard's Settings > Builds > API token > Create new token made one). The Builds API takes a user token only (checked 2026-10) |
+| Deploys on push: the triggers | `POST /accounts/<id>/builds/triggers` with `{"external_script_id":"<tag>","repo_connection_uuid":"<uuid>","build_token_uuid":"<uuid>","trigger_name":"Deploy production","build_command":"npm run build","deploy_command":"npx wrangler deploy","root_directory":"/","branch_includes":["main"],"branch_excludes":[],"path_includes":["*"],"path_excludes":[]}`; the same once more for previews with `"trigger_name":"Deploy previews"`, `"deploy_command":"npx wrangler preview"`, `"branch_includes":["*"]`, `"branch_excludes":["main"]`. Build variables: `PATCH /accounts/<id>/builds/triggers/<trigger uuid>/environment_variables` with `{"NODE_VERSION":{"value":"24","is_secret":false},"NEXT_PUBLIC_SITE_URL":{"value":"https://...","is_secret":false}}`. Run one: `POST /accounts/<id>/builds/triggers/<trigger uuid>/builds` with `{"branch":"main"}`; list: `GET /accounts/<id>/builds/workers/<tag>/builds` (status, `build_trigger_metadata.commit_hash`, the version it produced); log: `GET /accounts/<id>/builds/builds/<build uuid>/logs` |
+| Analytics | `POST /accounts/<id>/rum/site_info` with `{"zone_tag":"<zone id>","auto_install":true}` for a domain on Cloudflare (the beacon is injected at the edge), or `{"host":"<name>.<subdomain>.workers.dev"}` for an address Cloudflare does not proxy, where the returned snippet (`beacon.min.js` with the site's token) goes into the HTML; needs Account Settings Edit (checked 2026-10) |
+| Transactional email | Email Service: `send_email: [{"name":"EMAIL"}]` in the configuration and `env.EMAIL.send({...})`, or `POST /accounts/<id>/email/sending/send`; Workers Paid, beta (checked 2026-10) |
+| A bot check on forms | Turnstile widget: `POST /accounts/<id>/challenges/widgets` (user token) |
+
+## What a person does once in the dashboard
+
+| Step | Where | Why the agent cannot |
+|---|---|---|
+| Create the API token | My Profile > API Tokens, or Manage Account > Account API Tokens ([tokens.md](tokens.md)) | A token is made by a signed-in person |
+| Install the Cloudflare GitHub App | Workers & Pages > any Worker > Settings > Builds > Connect > GitHub, authorize the account or organization (checked 2026-10) | A GitHub authorization; after it, every build setting is API |
+| Add the R2 subscription | Storage & databases > R2 > Overview, complete the checkout (free tier, a billing profile) | A purchase flow, even at zero |
+| Move to Workers Paid | Workers & Pages > Plans | A purchase |
+| Prepare domain buying | Billing with a default payment method; a default registrant contact and the Domain Registration Agreement at `dash.cloudflare.com/<account id>/domains/registrations` (checked 2026-10) | Legal and billing consent |
+| Point an existing domain at Cloudflare | At the current registrar: replace the nameservers with the two the zone call returned | Another provider's account |
+| Enable Email Sending for a domain | Email Service pages for the account and the zone, as the Email Sending get-started page says | Plan and domain consent |
+| OAuth client for Google sign-in | Google Cloud Console > APIs & Services > Credentials > Create credentials > OAuth client ID > type Web application; Authorized redirect URIs: `https://<address>/<callback path>` for the live address (and the domain, when it comes) and `http://localhost:<port>/<callback path>` for development; copy the client id and secret (path as of 2026-10). Another provider (LINE, Kakao) has its own console with the same two values and a callback URL | Outside Cloudflare |
+
+Give each step as the exact clicks of the day, in one message, with what to send back (a token, a "done", nameservers set), and continue with everything that does not wait on it.

@@ -63,12 +63,14 @@ Keeping a codebase one that an agent can keep working in: its documents true to 
 | "Keep the docs true after this change." The pages a change touches, found and updated under a documentation protocol like this repository's, in the same commit. | engineering | git | candidate |
 | "Hand over to the next session." What was decided and why, what is open, what the next session must know, recorded where the next agent looks first. | engineering | git | candidate |
 | "Keep the project building as its tools move." Dependency and toolchain updates with the checks that prove them, one at a time, nothing merged on a green badge alone. | engineering | The git host and the package manager | candidate |
+| "Build me an app for this and put it online." A new TypeScript web app from a few plain questions, with its working agreement for a team and its launch through the deploy skill. [`cloudflare-new-app`](../engineering/skills/cloudflare-new-app/). Written from the reference projects of this collection (2026-10); its fresh run is in progress. | engineering | Cloudflare | next |
 
 ## M5: Launch
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
-| "Deploy the site." | engineering | Vercel or Cloudflare, or the Higgsfield website builder's deploy | candidate |
+| "Put this project live on Cloudflare." Access, resources, secrets, the first deploy, the domain, deploys on every push, logs and analytics, with a record in the project. [`cloudflare-deploy`](../engineering/skills/cloudflare-deploy/). Written from the reference projects and the platform's documentation (2026-10); no fresh run yet, because a run needs the user's account and token. | engineering | Cloudflare | next |
+| "Deploy the site elsewhere." Vercel, or the Higgsfield website builder's deploy. | engineering | Vercel or the Higgsfield website builder | candidate |
 | "Submit the app and write the listing." Metadata, screenshots, review notes, the listing's words and keywords. | engineering, marketing | App Store Connect and Google Play Console | candidate |
 | "Launch on Product Hunt." The page, the assets, the schedule, the first comment. | marketing | Product Hunt | candidate |
 
