@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.6"
+  version: "1.7"
   tools: cloudflare
 skillcdn:
   include:

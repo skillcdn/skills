@@ -36,10 +36,6 @@ A provider that does not return an email gets a synthetic one (`<id>@<provider>.
 
 When the brief asks for email: a single-use token in D1 with a 15-minute expiry, sent by the app's email sender (platform.md names what the plan allows), verified by a route that creates the session; rate-limited per address. It needs a sending domain and the sender's key, so it waits for the launch.
 
-## A test sign-in without a provider
-
-When the user wants to try sign-in before any provider's keys exist: a nickname plus a code. The code is a secret (`TEST_LOGIN_CODE`) in letters and digits, because a password field refuses the characters of some input methods (a Korean one, seen 2026-10), only a request that carries it creates or opens a member, those members carry `provider = 'test'` so that one statement deletes them with what they made, what they create is marked as test on the pages, and deleting the secret closes the door. Never the default; named in the delivery and in `DEPLOY.md`, and off before the site is announced. Sample accounts loaded from a seed (`provider = 'sample'`, ids outside the real sequence) never hold a session.
-
 ## When to use a library
 
 Better Auth, with its Cloudflare integration for D1 and Workers, when the brief needs several providers, two-factor, organizations or passkeys (checked 2026-10); its schema replaces the `members` table and its routes replace the handlers above. Not for a single Google sign-in: the direct implementation is a few hundred lines with no dependency to keep up with.
