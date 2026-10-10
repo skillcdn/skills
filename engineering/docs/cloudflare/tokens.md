@@ -14,7 +14,7 @@ Convenience is the priority for a developer's own account: one user token with t
 ## The steps the user takes
 
 1. Open the token page for the kind chosen above and select **Create Token**.
-2. Start from the **Edit Cloudflare Workers** template (Workers Routes, Workers Scripts, Workers KV Storage, Workers Tail, Workers R2 Storage, Account Settings, User Details, Memberships; checked 2026-10), then add the rows below with **+ Add more**, and raise Account Settings to Edit. Each row is scope, resource, level.
+2. Start from the **Edit Cloudflare Workers** template (Workers Routes, Workers Scripts, Workers KV Storage, Workers Tail, Workers R2 Storage, Workers Builds Configuration, Account Settings, User Details, Memberships; checked 2026-10 in the dashboard), then add the rows below that the template lacks (D1, DNS, Zone, and the ones the plan needs) with **+ Add more**, and raise Account Settings to Edit. Each row is scope, resource, level.
 3. Account Resources: **Include > All accounts** (or the one account). Zone Resources: **Include > All zones**: a new domain gets a new zone, and "all zones" covers it without editing the token.
 4. Client IP filtering: none. TTL: none, or one year.
 5. Continue to summary, create, copy the secret once. Save it in a file named `.cf-token` in the project's root folder (the folder that holds the Wrangler configuration; for a project not created yet, the folder it will be created in, from where the agent moves it) and tell the agent; this keeps it out of any chat log. A token pasted into the chat instead is moved into that file by the agent at once and never repeated.
@@ -32,7 +32,7 @@ Always, whatever the project:
 | Account | Workers R2 Storage | Edit | R2 buckets, their public URLs and domains |
 | Account | D1 | Edit | Databases, migrations, queries |
 | Account | Workers Tail | Read | `wrangler tail` |
-| Account | Workers Builds Configuration | Edit | Connecting a repository, triggers, build variables, running builds through the API; the permissions reference lists it as Workers CI (checked 2026-10) |
+| Account | Workers Builds Configuration | Edit | Connecting a repository, triggers, build variables, running builds through the API; in the template, and the permissions reference lists it as Workers CI (checked 2026-10) |
 | Account | Account Settings | Edit | Listing accounts; creating the Web Analytics site through the API needs Edit (checked 2026-10); Read is enough without analytics |
 | Zone | Workers Routes | Edit | Routes and custom domains |
 | Zone | DNS | Edit | Records for email, verification, redirects |
