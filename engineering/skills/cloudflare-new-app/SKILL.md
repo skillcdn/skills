@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: cloudflare
 skillcdn:
   include:
@@ -86,7 +86,7 @@ Produces the **app**. In this order, each step reported in a line and verified b
 
 ### Phase 5: Agreement
 
-Produces the **working agreement**: `CLAUDE.md`, `AGENTS.md`, `README.md`, `docs/status.md`, `docs/decisions.md`, as [working-agreement.md](references/working-agreement.md) says, written for the people the brief names and in the team's language. Then the first commit of the skill's work on top of the scaffold's, with everything above and nothing secret. Nothing is pushed here: pushing is the deploy skill's stop.
+Produces the **working agreement**: `CLAUDE.md`, `AGENTS.md`, `README.md`, `docs/status.md`, `docs/decisions.md`, and the skills connection files (`.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml`, at the address this skill was loaded from), as [working-agreement.md](references/working-agreement.md) says, written for the people the brief names and in the team's language. Then the first commit of the skill's work on top of the scaffold's, with everything above and nothing secret. Nothing is pushed here: pushing is the deploy skill's stop.
 
 ### Phase 6: Launch
 
@@ -94,7 +94,7 @@ Hands over to **`cloudflare-deploy`** with: the project path, the token file the
 
 ### Phase 7: Delivery
 
-One message: the address (or the local one, when the launch waits on the user), what was built in the user's words, what the check verified and what was not run (a layout verdict without a browser), what is placeholder or waiting (a key, nameservers, the owner's details, content marked in `docs/status.md`), and how the team continues: open the repository, read `CLAUDE.md`, and the loop it describes.
+One message: the address (or the local one, when the launch waits on the user), what was built in the user's words, what the check verified and what was not run (a layout verdict without a browser), what is placeholder or waiting (a key, nameservers, the owner's details, content marked in `docs/status.md`), and how the team continues: open the repository, approve the skills connection when the tool asks, read `CLAUDE.md`, and the loop it describes.
 
 ### Verdicts
 

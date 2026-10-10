@@ -39,6 +39,7 @@ Then, before anything else is written: move `app/` to `src/app/` and point the a
 | `.env.example` | The public build variables: `NEXT_PUBLIC_SITE_URL` (the dev server's address in development, on the dev server's port, 5173 unless `vite.config.ts` sets one; the deploy skill sets the live one), `NEXT_PUBLIC_CF_BEACON_TOKEN` (empty until the deploy skill creates the analytics site); an example only, no local `.env` is written (Wrangler would read it as secrets next to `.dev.vars`), the values come from the shell or the build's variables |
 | `.claude/settings.json` | Denies reads of secret files, allows the check commands and read-only git commands (working-agreement.md) |
 | `CLAUDE.md`, `AGENTS.md`, `README.md`, `docs/` | working-agreement.md |
+| `.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml` | The skills connection, one file per tool, at the address this skill was loaded from (working-agreement.md "The skills connection") |
 
 ## The structure
 
