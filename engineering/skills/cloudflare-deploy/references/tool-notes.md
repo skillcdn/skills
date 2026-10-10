@@ -32,10 +32,5 @@ By topic, in the order a run meets them. A fact that can go stale names where it
 
 ## Workers Builds
 
-- The Builds API takes a user token; an account token answers "Invalid token" (API reference, checked 2026-10).
-- The repository connection call fails until the Cloudflare GitHub App is installed for the GitHub account that owns the repository; it is the one dashboard step the connection cannot skip (checked 2026-10).
 - The build image's default Node.js moves with the LTS releases and is announced; pinning `NODE_VERSION` to the project's major keeps a build from changing under the project (build image page, checked 2026-10).
-- A build started through the API shows no `commit_hash` in the builds list; the build a push triggers does (seen 2026-10).
-- The account's build tokens carry the names of the projects they were made for, and the API cannot create one; the dashboard does (checked 2026-10).
-- `GET /accounts/<id>/rum/site_info/list` answered an authentication error with a token that had just created a site with the `POST` (seen 2026-10).
 - `NEXT_PUBLIC_*` values missing from the build variables build fine and ship empty strings; the symptom is a wrong site URL in canonical links and share images, not a failed build.

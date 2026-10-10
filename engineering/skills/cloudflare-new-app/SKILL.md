@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.7"
+  version: "1.8"
   tools: cloudflare
 skillcdn:
   include:
@@ -39,7 +39,7 @@ What goes in: an idea in the user's words and the answers to a few plain questio
 
 Check these before the first message. Without Node.js or git, stop and say what to install. Without network, stop: nothing can be scaffolded.
 
-What the Cloudflare skills share is the area's document set [`engineering/docs/cloudflare/`](/engineering/docs/cloudflare/README.md). [platform.md](/engineering/docs/cloudflare/platform.md) (what the runtime can do, the configuration, bindings and secrets, the framework paths, the plans), which every run reads, is included and arrives with this skill wherever SkillCDN serves it. [tokens.md](/engineering/docs/cloudflare/tokens.md) (the steps the user takes for a token) is linked from the intake and [automation.md](/engineering/docs/cloudflare/automation.md) from the launch; both are read with `read_repo_file` through the repository or the engineering connection, or as files under `docs/cloudflare/` of the engineering plugin, or at `engineering/docs/cloudflare/` of a checkout of this repository. A copy of this skill's directory lacks all three, and a mount of it alone lacks the linked two: say so in the first message, fetch what is missing from `engineering/docs/cloudflare/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules. The launch is the `cloudflare-deploy` skill of the same area; where it cannot be loaded, the delivery says so and gives the user its name and address. What the tools did in runs of this skill is in [tool-notes.md](references/tool-notes.md), read before the build and when a tool misbehaves.
+The Cloudflare skills share the area's document set [`engineering/docs/cloudflare/`](/engineering/docs/cloudflare/README.md): [platform.md](/engineering/docs/cloudflare/platform.md) (the runtime, the configuration, bindings and secrets, the framework paths, the plans) is included and arrives with this skill wherever SkillCDN serves it; [tokens.md](/engineering/docs/cloudflare/tokens.md) (the token steps) is linked from the intake and [automation.md](/engineering/docs/cloudflare/automation.md) from the launch, read with `read_repo_file` through the repository or engineering connection, from the engineering plugin's `docs/cloudflare/`, or from a checkout of this repository. A mount of this skill alone lacks the two linked pages and a copy of its directory lacks all three: say so in the first message, fetch them from `engineering/docs/cloudflare/` of the repository this skill comes from (`github.com/skillcdn/skills` for this collection) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules. The launch is `cloudflare-deploy` of the same area; where it cannot be loaded, the delivery says so and gives the user its name and address. [tool-notes.md](references/tool-notes.md) holds what the tools did in runs, read before the build and when a tool misbehaves.
 
 ## Inputs
 
