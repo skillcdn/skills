@@ -12,6 +12,10 @@ By topic, in the order a run meets them. A fact that can go stale names where it
 ## Local development
 
 - The framework's dev server simulates the bindings through the adapter; a `.dev.vars` next to the configuration is loaded for secrets. A local D1 database lives under `.wrangler/` and is prepared with the migrations applied `--local`; the placeholder `database_id` in the configuration does not stop it.
+- With `secrets.required` declared, local development loaded only the listed names from `.dev.vars` and the optional Google keys did not reach the app; the file was dropped and the names kept in `.dev.vars.example` (vinext scaffold, seen 2026-10).
+- A long file written through a shell heredoc on Windows arrives truncated past a few thousand characters; write files with the editor's file tools and keep heredocs for short text (seen 2026-10).
+- vinext's route table at startup did not list the framework's `sitemap.ts` and `robots.ts` routes, yet it served `/sitemap.xml` and `/robots.txt`; check them with a request, not the table (vinext, seen 2026-10).
+- Node.js 22.12 ran the scaffold, the dev server, the checks and the Worker preview; `--experimental-strip-types` is needed there for the tests and the brand script (seen 2026-10).
 - OpenNext path only: the adapter's dev initializer must run only in development, not during the build, or the local runtime's lock collides with the build (seen 2026-09).
 - A Windows checkout saves new files with CRLF unless `.gitattributes` says `eol=lf`; the formatter then flags every line of a new file (seen 2026-09).
 
@@ -24,3 +28,5 @@ By topic, in the order a run meets them. A fact that can go stale names where it
 
 - `node --test` runs `.test.ts` files directly on a current Node.js LTS; an older one needs `--experimental-strip-types`, and a `register` hook resolves `@/` path aliases in tests that import source modules (seen 2026-09).
 - A server module that imports a function or value from a `'use client'` module throws at call time in production and works in development; the boundary test walks the imports and fails early (seen 2026-10).
+- `npm run check` fails with `EBUSY` on `dist/client` while a local `wrangler dev` of the built output is still running; stop that server before the check (seen 2026-10).
+- On Windows, Git Bash rewrites an argument that starts with `/` into a Windows path (a `/path` label in a curl loop comes out mangled; `MSYS_NO_PATHCONV=1` or a leading `//` stops it), and Node's `fetch` to `localhost` resolves to `::1` while the local Worker listens on `127.0.0.1`: use the numeric address (seen 2026-10).

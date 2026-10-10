@@ -30,7 +30,7 @@ Then, in the same message: "While I plan, you can create the Cloudflare key I wi
 
 ## Pages every app gets
 
-Besides the pages of the idea: the home page with the one-sentence entity statement and a short FAQ; an about page (a section of the home page for a small app); terms and privacy pages per locale (a refund page only when money is taken); a not-found page; the sign-in and account pages when sign-in exists; `sitemap.xml`, `robots.txt`, `llms.txt`; the share image per locale and the favicon set. "Small" is not a reason to drop any of these: they cost minutes and the delivery is judged on them.
+Besides the pages of the idea: the home page with the one-sentence entity statement and a short FAQ; an about page (a section of the home page for a small app); terms and privacy pages per locale (a refund page only when money is taken); a not-found page; the sign-in and account pages when sign-in exists; `sitemap.xml`, `robots.txt`, `llms.txt`; the share image per locale and the favicon set. "Small" is not a reason to drop any of these: they cost minutes and the delivery is judged on them. The app's own screen, when it shows only the visitor's data, is a private page: it exists, but it is kept out of the sitemap and marked `noindex` (seo-geo.md).
 
 ## The plan message
 

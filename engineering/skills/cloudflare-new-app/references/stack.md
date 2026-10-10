@@ -18,17 +18,21 @@ A proposal, not a requirement: the stack the reference projects of this collecti
 | Analytics | Cloudflare Web Analytics (seo-geo.md) | Free, no cookies, no banner; a `track()` fan-out for pixels later |
 | Design input | A design skill of the host when installed; otherwise "The look" below | A reviewed look beats a default one |
 
-## Scaffold prompts
+## Scaffold
 
-`npm create cloudflare@latest -- <slug> --framework=next` in the parent folder (its `--help` lists the flags that preset answers for a non-interactive shell). The Cloudflare prompts: TypeScript yes, git yes, deploy no. The framework's own creator then asks its questions: TypeScript yes, ESLint yes (keep what it brings), Tailwind yes, `src/` directory yes, App Router yes, import alias `@/*`, the default bundler. A commit the scaffold makes is kept; the skill's first commit goes on top.
+`npm create cloudflare@latest -- <slug> --framework=next --platform=workers --lang=ts --git --no-deploy --no-open --no-agents --accept-defaults` in the parent folder: the flags that answered every prompt when checked (2026-10; `--help` lists today's). `--no-agents` declines C3's own `AGENTS.md`, because the agreement writes one that points to `CLAUDE.md` (when the scaffold added its Cloudflare guidance anyway, move that text to `docs/cloudflare-agents.md` and link it from `CLAUDE.md`). With `--framework=next`, C3 ran the vinext creator, which asked nothing more (checked 2026-10).
+
+What it made when checked (2026-10): `app/` at the root with the alias `@/*` to `./*`, Tailwind 4, no ESLint, every dependency at `"latest"`, a `vite.config.ts` next to `next.config.ts`, scripts `dev` (`vinext dev`), `build` (`vinext build`), `start` (`wrangler dev` on the built output under `dist/server/`), `deploy` (the framework's deploy wrapper with `--config dist/server/wrangler.json`), `preview` and `cf-typegen`; `main` set to `vinext/server/fetch-handler` and `assets.directory` to `dist/client` in `wrangler.jsonc`; a commit on a branch named `master`.
+
+Then, before anything else is written: move `app/` to `src/app/` and point the alias at `./src/*`; add Biome (lint and format) since the scaffold brought no linter; pin every dependency to the version the install resolved (`npm ls --depth=0`, written as `^x.y.z`), because `"latest"` makes every install a different app; rename the branch (`git branch -M main`), because the deploy skill and Workers Builds take `main` as production; keep the scaffold's scripts as they are, since the deploy skill runs the project's `deploy` script when it is such a wrapper. The scaffold's commit is kept; the skill's first commit goes on top.
 
 ## Files at the root
 
 | File | Holds |
 |---|---|
-| `wrangler.jsonc` | platform.md "The configuration file"; the D1 entry carries `database_name` `<slug>-db` and a placeholder `database_id` (`00000000-0000-0000-0000-000000000000`) until the deploy skill creates the database and writes the real id; local development does not check it |
+| `wrangler.jsonc` | platform.md "The configuration file"; the D1 entry carries `database_name` `<slug>-db` and a placeholder `database_id` (`00000000-0000-0000-0000-000000000000`) until the deploy skill creates the database and writes the real id; local development does not check it. No `secrets.required` while a provider's keys are optional (platform.md says why); the names live in `.dev.vars.example` |
 | `package.json` scripts | `dev`, `build`, `preview`, `deploy`, `cf-typegen` from the scaffold; add `typecheck` (`tsc --noEmit`), `lint`, `test`, `check` (typecheck, lint, test, build in that order), `db:migrate:local`, `db:migrate:remote`, `brand` (renders the icon and share images) |
-| `.gitignore` | `node_modules`, the framework's output (`.next`, `.open-next`, `dist`), `.wrangler`, `.dev.vars`, `.env*` except `.env.example`, `.cf-token`, `*.tsbuildinfo`, `.brand-tmp/` (the brand render's scratch folder) |
+| `.gitignore` | `node_modules`, the framework's output (`.next`, `.open-next`, `.vinext`, `dist`), `.wrangler`, `.dev.vars*` except `.dev.vars.example`, `.env*` except `.env.example`, `.cf-token`, `*.tsbuildinfo`, `.brand-tmp/` (the brand render's scratch folder) |
 | `.gitattributes` | `* text=auto eol=lf`, so that a Windows checkout does not trip the formatter with CRLF |
 | `.editorconfig`, `.node-version` | Two-space indent, LF, UTF-8; the Node.js major the build pins |
 | `.dev.vars.example` | Every secret's name with a comment on where it comes from and whether it is generated; no values |
@@ -46,9 +50,9 @@ src/
   lib/              pure logic: db/ (one module per entity, a client.ts), auth/, i18n.ts (locale from the request, URLs per locale), seo.ts (metadata helpers), cf.ts (bindings and secrets behind one function), analytics.ts
   styles/           globals.css with the tokens
 migrations/         0001_init.sql, numbered, never edited after they are applied live
-public/             favicon set, share images, brand/ (the SVG symbol and wordmark), site.webmanifest
+public/             favicon set, share images, brand/ (the SVG symbol and wordmark); the manifest is a route that reads config/site.ts, so the name is not retyped
 scripts/brand/      render.mjs: the SVG to every PNG the metadata names
-tests/              *.test.ts: dictionaries, boundaries, the rules
+tests/              *.test.ts: dictionaries, boundaries, the rules; register.mjs registers a resolve hook that maps `@/` to `src/` (through `pathToFileURL`, which Windows paths need)
 docs/               brief.md, brand.md, status.md, decisions.md
 DEPLOY.md           written by the deploy skill at the launch
 ```

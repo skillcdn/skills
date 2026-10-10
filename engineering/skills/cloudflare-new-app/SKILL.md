@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: cloudflare
 skillcdn:
   include:
@@ -31,7 +31,7 @@ What goes in: an idea in the user's words and the answers to a few plain questio
 
 | What | Used for |
 |---|---|
-| A shell with Node.js (the current LTS), npm and git | Scaffolding, running, checking, committing |
+| A shell with Node.js (the current LTS, or an older LTS the scaffold accepts: say which in the first message and pin it in `.node-version`), npm and git | Scaffolding, running, checking, committing |
 | Network access to the npm registry and to `developers.cloudflare.com` | Packages, and the framework guide that names the path of the day |
 | Optional: a browser the agent can drive, or a screenshot tool | Looking at the pages at the design checkpoint and for the layout verdicts; without one, the user looks at the local address on a phone-width window and the layout verdicts are reported as not run |
 | Optional: a design skill the host has installed (one that reviews or crafts interfaces) | The look; without one, [stack.md](references/stack.md) "The look" carries the method |
@@ -68,18 +68,18 @@ Produces the **plan**, shown at the checkpoint with the message intake.md gives,
 
 ### Phase 3: Design
 
-Produces the **look** (`docs/brand.md`, the tokens in the stylesheet, the brand symbol as SVG) and the home page built on it. Derive a palette, type per script, spacing, radius, motion and tone from the look direction (stack.md "The look"); when the host has a design skill installed, use it for this phase and record what it decided in `docs/brand.md`. Scaffold the project (phase 4, step 1) so that the home page can be rendered, build the home page, run the dev server, and show it: a screenshot when a browser is available, otherwise the local address with "open it on your phone or in a narrow window". Checkpoint: "Here is the look: <three words>, <palette>, <type>. The alternative would be <one line>. Keep it?"
+Produces the **look** (`docs/brand.md`, the tokens in the stylesheet, the brand symbol as SVG) and the home page built on it. Derive a palette, type per script, spacing, radius, motion and tone from the look direction (stack.md "The look"); when the host has a design skill installed, use it for this phase and record what it decided in `docs/brand.md`. Scaffold the project (phase 4, step 1) so that the home page can be rendered, build the home page, and show it: a screenshot when a browser is available, otherwise the local address with "run `npm run dev` in the project folder, then open it on your phone or in a narrow window", because a server the agent starts ends with its turn. Checkpoint: "Here is the look: <three words>, <palette>, <type>. The alternative would be <one line>. Keep it?"
 
 ### Phase 4: Build
 
 Produces the **app**. In this order, each step reported in a line and verified before the next:
 
-1. Scaffold with the path platform.md names (`npm create cloudflare@latest -- <name> --framework=<framework>` in the chosen folder; the prompts answered as stack.md "Scaffold prompts" says), keep the commit the scaffold makes when it makes one, write `docs/brief.md`, then the project files of stack.md "Files at the root": `.gitignore`, `.gitattributes`, `.editorconfig`, the Node.js version file, `.dev.vars.example`, `.claude/settings.json`, and the scripts `check`, `typecheck`, `lint`, `test`.
+1. Scaffold with the path platform.md names, as stack.md "Scaffold" says (the command and its flags, what it makes, what is moved, the versions pinned, the branch renamed), keep the commit the scaffold makes when it makes one, write `docs/brief.md`, then the project files of stack.md "Files at the root": `.gitignore`, `.gitattributes`, `.editorconfig`, the Node.js version file, `.dev.vars.example`, `.claude/settings.json`, and the scripts `check`, `typecheck`, `lint`, `test`.
 2. The structure of stack.md: the single sources (`config/i18n.ts`, `config/site.ts` with the site URL read from the public build variable, `config/features.ts`), the platform access module, the folders, the database entry with its placeholder id.
 3. Localization as [localization.md](references/localization.md) says: the locale list, the dictionaries typed for completeness, the routing, per-locale metadata, formatting, the switcher.
 4. The pages of the brief on the tokens, mobile-first (stack.md "Mobile first"), with the shell (header, footer, switcher, sign-in state).
 5. The data: the first migration, a module per entity under `lib/db/`, applied locally.
-6. Sign-in as [auth.md](references/auth.md) says: the core action works for a guest on this device, sign-in claims it, and the provider stays off until its keys exist.
+6. Sign-in as [auth.md](references/auth.md) says: the core action works for a guest on this device, sign-in claims it, and the provider stays off until its keys exist. Generate the local `SESSION_SECRET` into `.dev.vars` here (never shown), so that the dev server signs sessions without a warning; the deploy skill generates the live one.
 7. Search and AI readiness, the share image and the favicon set, analytics with its slot for the beacon token, as [seo-geo.md](references/seo-geo.md) says.
 8. Tests: the dictionary test, the boundary test where the framework has a server and client split, a test per pure module that holds a rule; `npm run check` passes.
 9. Run: the dev server, every public page in every locale answers 200, the sign-in button appears only when its keys are set (placeholder values in `.dev.vars` show it; the round trip waits for real keys), the seo-geo.md check runs against the local address; a screenshot or the address for the user.

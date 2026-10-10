@@ -63,7 +63,7 @@ Keeping a codebase one that an agent can keep working in: its documents true to 
 | "Keep the docs true after this change." The pages a change touches, found and updated under a documentation protocol like this repository's, in the same commit. | engineering | git | candidate |
 | "Hand over to the next session." What was decided and why, what is open, what the next session must know, recorded where the next agent looks first. | engineering | git | candidate |
 | "Keep the project building as its tools move." Dependency and toolchain updates with the checks that prove them, one at a time, nothing merged on a green badge alone. | engineering | The git host and the package manager | candidate |
-| "Build me an app for this and put it online." A new TypeScript web app from a few plain questions, with its working agreement for a team and its launch through the deploy skill. [`cloudflare-new-app`](../engineering/skills/cloudflare-new-app/). Written from the reference projects of this collection (2026-10); its fresh run is in progress. | engineering | Cloudflare | next |
+| "Build me an app for this and put it online." A new TypeScript web app from a few plain questions, with its working agreement for a team and its launch through the deploy skill. [`cloudflare-new-app`](../engineering/skills/cloudflare-new-app/). A fresh run on a stand-in app reached the launch handover with a passing check, every public page serving in both languages locally and on a built Worker (2026-10); the launch through the deploy skill, a browser-driven look check and a run with a design skill are untried. | engineering | Cloudflare | done |
 
 ## M5: Launch
 

@@ -10,7 +10,8 @@ What every public page carries so that search engines index it per language and 
 
 - Title (a template `%s | <site name>`), description, canonical URL for the page's locale, hreflang alternates with `x-default`, Open Graph (`type`, `locale`, `siteName`, `title`, `description`, `images` at 1200 by 630 with `alt`), Twitter card `summary_large_image`, icons (`favicon.ico`, `favicon.svg`, `icon-192.png`, `apple-touch-icon.png`), the manifest, `theme-color`, viewport with `viewportFit: cover`.
 - From the framework's metadata API, built by one helper in `lib/seo.ts` that takes the locale and the path, so that no page writes a URL by hand.
-- Private or transactional pages (an account page, a result only its owner sees, a checkout return, the admin) are `noindex` in the page and disallowed in `robots`.
+- Private or transactional pages (the app's own screen when it shows only the visitor's data, sign-in, the account page, a result only its owner sees, a checkout return, the admin) are `noindex` in the page, out of the sitemap and disallowed in `robots`; the public pages are the home, about, FAQ, legal and content pages, and those are what the sitemap and the checks cover.
+- The manifest is served by a route that reads `config/site.ts` (name, short name, theme color, icons), so that the app's name is not retyped.
 
 ## Sitemap and robots
 
@@ -40,7 +41,7 @@ Source: the brand symbol as SVG in `public/brand/` with the wordmark, from the l
 | `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (180) | square | the tile, with safe margins for the maskable variant |
 | `og-image.png` and `og-image-<locale>.png` | 1200 by 630 | the symbol, the site's name and tagline in that locale, on the brand background |
 
-Rendering: an SVG-to-PNG renderer that embeds fonts (`@resvg/resvg-js` as a dev dependency; it reads TTF and OTF files passed by path). The font files come from the family's own download (the download button of Google Fonts gives TTF; the Noto CJK subsets are release archives on the `notofonts` GitHub organization), saved in `.brand-tmp/fonts/` (gitignored) or a folder outside the repository that the script takes as an argument; the share image's text is set in each locale's font. The outputs are committed, because a scaffold without them is a page with no icon; the fonts are not. When the fonts cannot be fetched in the run's environment, render with the system fonts for the Latin outputs, leave the CJK share images as the symbol alone, and list them in `docs/status.md`. A per-page share image generated at request time (the framework's image response) comes later, when the adapter supports it (platform.md names where to check).
+Rendering: an SVG-to-PNG renderer that embeds fonts (`@resvg/resvg-js` as a dev dependency; it reads TTF and OTF files passed by path). The script fetches the font files itself into `.brand-tmp/fonts/` (gitignored): a Google Fonts family's TTFs are raw files in the `google/fonts` repository on GitHub, where a Latin family may exist only as a variable font (the CJK family of the same name includes Latin and covers both, checked 2026-10); the Noto CJK subsets are release archives on the `notofonts` organization. The share image's text is set in each locale's font. The outputs are committed, because a scaffold without them is a page with no icon; the fonts are not. When the fonts cannot be fetched in the run's environment, render with the system fonts for the Latin outputs, leave the CJK share images as the symbol alone, and list them in `docs/status.md`. A per-page share image generated at request time (the framework's image response) comes later, when the adapter supports it (platform.md names where to check).
 
 ## Analytics
 
