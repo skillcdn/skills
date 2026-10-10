@@ -15,7 +15,7 @@ How the app speaks every locale the brief names, so that adding one later touche
 
 - A dictionary lives next to the piece it serves (`components/<feature>/copy.ts`) as a typed object `Dict<{...}>`; strings with variables are functions, so that word order can differ by language.
 - Written in the language, not translated word by word: honorifics and tone per language (Japanese and Korean politeness levels, Chinese variants), no exclamation marks when the tone forbids them, the product's name spelled as each language spells it.
-- The dictionary test (`tests/dictionaries.test.ts`): walks every dictionary and fails on an empty string and on a script that does not belong to the locale (Hangul in a non-Korean dictionary, Latin-only text in a Japanese one); the typecheck catches a missing key, this catches a wrong one. A string that is a URL, a bracketed placeholder (`[owner]`) or a name from a short allowlist of brands and product names in the test passes the script check, so that "Google" in a Korean dictionary is not a failure.
+- The dictionary test (`tests/dictionaries.test.ts`): walks every dictionary and fails on an empty string and on a script that does not belong to the locale (the script of one locale in another's dictionary, Latin-only text in the dictionary of a language with its own script); the typecheck catches a missing key, this catches a wrong one. A string that is a URL, a bracketed placeholder (`[owner]`) or a name from a short allowlist of brands and product names in the test passes the script check, so that a brand name in Latin letters is not a failure in the dictionary of another script.
 - AI prompts, when the app uses a model, are a dictionary too: one pack per locale written in that language only, with a test that no other script leaks in.
 
 ## Routing and detection
@@ -36,7 +36,7 @@ Every public page: `html lang`, the canonical URL of its own locale, hreflang al
 ## Formatting and time
 
 - Money: a price table per currency in `config/pricing.ts`, formatted with `Intl.NumberFormat(locale, { style: 'currency', currency })`; never a number with a symbol typed into copy.
-- Dates and times: `Intl.DateTimeFormat` with the locale and the locale's time zone; "today" for a user is computed in their zone, since the Worker's clock is UTC. A locale with a region takes the region's zone; a locale without one (`ko`, `en`) takes the operator's zone, from the brief's owner (question 1 asks where they are based), else the zone usual for the default locale's language (`ko` is Asia/Seoul); a thing that happens at a place (a meeting, a show) shows that place's time in every locale; UTC only for a worldwide audience the brief names.
+- Dates and times: `Intl.DateTimeFormat` with the locale and the locale's time zone; "today" for a user is computed in their zone, since the Worker's clock is UTC. A locale with a region takes the region's zone; a locale without one (`ko`, `en`) takes the operator's zone, from the brief's owner (question 1 asks where they are based), else the zone of the default locale's main country; a thing that happens at a place (a meeting, a show) shows that place's time in every locale; UTC only for a worldwide audience the brief names.
 - Plurals and lists: `Intl.PluralRules` and `Intl.ListFormat`; counts never hardcode "s".
 - Input: names without a required family-name split, addresses as free lines, phone numbers with a country code; validation by shape, not by one country's rule.
 

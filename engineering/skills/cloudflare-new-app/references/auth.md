@@ -19,7 +19,18 @@ A signed JWT (`jose`, HS256, `SESSION_SECRET`) in an `HttpOnly`, `Secure`, `Same
 
 ## Markets and providers
 
-`localeFeatures(locale).login` says which providers a market shows: Google everywhere; a regional provider (LINE for Taiwan and Japan, Kakao for Korea) when the brief or the market asks, each with its own keys, its own callback and the same signed-state scheme. A provider that does not return an email gets a synthetic one (`<id>@<provider>.local`) that is never used as a claim key. Kakao Login (checked 2026-10): the two values are the REST API key and its client secret (on by default), the redirect URI is set under the app's platform keys for the REST API key, the consent items a new app gets without review are the nickname and the profile image, so there is no email and the synthetic id applies; the dashboard steps are in automation.md's second table.
+`localeFeatures(locale).login` says which providers a market shows: Google everywhere, and the provider most people of the market sign in with, when the brief or the market asks; each has its own keys, its own callback and the same signed-state scheme. The table below is what the intake question draws on; the brief's market decides, the user's answer wins, and a market not listed gets Google alone until the user names one.
+
+| Market | Provider most people use | Note |
+|---|---|---|
+| Korea | Kakao (also Naver) | The basic consent items carry a nickname and a picture, no email (checked 2026-10) |
+| Japan, Taiwan, Thailand | LINE | An email needs the provider's permission |
+| China | WeChat | Needs a registered company account |
+| Vietnam | Zalo | |
+| Russia | VK | |
+| Everywhere | Google, Apple | |
+
+A provider that does not return an email gets a synthetic one (`<id>@<provider>.local`) that is never used as a claim key. Every provider's console gives the same two values (a client id or key, and a secret) and takes the same two callback URLs; its menu names come from its own documentation on the day, and automation.md's second table says what to give the user.
 
 ## Email link sign-in
 
@@ -27,7 +38,7 @@ When the brief asks for email: a single-use token in D1 with a 15-minute expiry,
 
 ## A test sign-in without a provider
 
-When the user wants to try sign-in before any provider's keys exist: a nickname plus a code. The code is a secret (`TEST_LOGIN_CODE`) in letters and digits, because a password field under a Korean input method refuses Hangul (seen 2026-10), only a request that carries it creates or opens a member, those members carry `provider = 'test'` so that one statement deletes them with what they made, what they create is marked as test on the pages, and deleting the secret closes the door. Never the default; named in the delivery and in `DEPLOY.md`, and off before the site is announced. Sample accounts loaded from a seed (`provider = 'sample'`, ids outside the real sequence) never hold a session.
+When the user wants to try sign-in before any provider's keys exist: a nickname plus a code. The code is a secret (`TEST_LOGIN_CODE`) in letters and digits, because a password field refuses the characters of some input methods (a Korean one, seen 2026-10), only a request that carries it creates or opens a member, those members carry `provider = 'test'` so that one statement deletes them with what they made, what they create is marked as test on the pages, and deleting the secret closes the door. Never the default; named in the delivery and in `DEPLOY.md`, and off before the site is announced. Sample accounts loaded from a seed (`provider = 'sample'`, ids outside the real sequence) never hold a session.
 
 ## When to use a library
 
