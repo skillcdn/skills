@@ -18,7 +18,7 @@ Rank the distinct sizes on each page from the largest down, then across the docu
 
 ## Images
 
-Embedded images come out through the library's operator list: the paint-image operations of a page name image objects, read from the page's object store as width, height and raw pixel data in one, three or four channels (pdfjs-dist, `getOperatorList`, `OPS.paintImageXObject`, `page.objs`; checked 2026-10); the example script's `--images` mode writes them as PNG. Their size and placement say which block they belong to. Where the image is drawn as vectors (a device mockup, a diagram), render the page at three or four times and crop it by the region's coordinates. A crop carries the page's background in its margins: flood-fill from the border, turning pixels near the background color transparent, so that the crop sits on any slide fill (the script's `--transparent` mode). Name each file by page and role; the map lists them.
+Embedded images come out through the library's operator list: the paint-image operations of a page name image objects, read from the page's object store as width, height and raw pixel data in one, three or four channels (pdfjs-dist, `getOperatorList`, `OPS.paintImageXObject`, `page.objs`; checked 2026-10); the example script's `--images` mode writes them as PNG. Their size and placement say which block they belong to. Where the image is drawn as vectors (a device mockup, a diagram, a chart), render the page at three or four times and crop it by the region's coordinates; a chart's own labels then stay in the document's font, which the delivery says. The crop's ink may be recolored to the deck's accent when it is one color. A crop carries the page's background in its margins: flood-fill from the border, turning pixels near the background color transparent, so that the crop sits on any slide fill (the script's `--transparent` mode). Name each file by page and role; the map lists them.
 
 ## Layout types
 
@@ -32,6 +32,7 @@ Read each page's render and assign one type; the plan maps it to the deck's part
 | Tiles with descriptions | A column of labelled shapes, each with a description beside it; often a side block of lists |
 | Numbered rows | Several rows, each with a number or a label at the left and a description at the right |
 | Device mockups | Phone or screen images in a row with a caption under each |
+| Figures | Large numbers with captions, a chart, proportion bars; a page of metrics |
 | Timeline | Dates or phases down one or two columns with items under each |
 | Two columns | Two headed lists or paragraphs side by side |
 | Closing | A thank-you line, a logo, contact lines |

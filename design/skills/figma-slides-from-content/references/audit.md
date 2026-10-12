@@ -14,8 +14,8 @@ One read-only `use_figma` call over the new slides, found by the row's name, ret
 | Mark gap | For each bullet mark, the nearest text to its right: the gap from the mark's right edge to the text's left, and the mark's top against the text's top | One gap value, the spec's; the offset within half a pixel of the spec's `mark.offset` |
 | Text styles | Every `size/style/color/lineHeight` combination with the slides it appears on | Every combination is a role of the scale; no stray size |
 | Collapsed boxes | Text nodes with auto-resize off and a height below the font size | None |
-| Overflow and padding | For each text inside a card (the card found by containment): the text's right and bottom against the card's edges minus the padding | Nothing within the padding; nothing outside |
-| Overlap and bounds | The batch validation from Figma's slides guidance: overlapping boxes, text clipping, nodes outside the slide | Clean |
+| Overflow and padding | For each text inside a card (the card found by containment): the text's ink (`absoluteRenderBounds`, or the box when the text is left-aligned at its natural width) against the card's edges minus the padding; a centered label's box spans its container on purpose and is not the measure | Nothing within the padding; nothing outside |
+| Overlap and bounds | The batch validation from Figma's slides guidance: overlapping boxes, text clipping, nodes outside the slide. Two text boxes that overlap at coordinates taken from an existing slide pass when their ink does not touch, and the report says so | Clean, or noted |
 | Protected slides | Child counts and names of the slides in the intake record's grid, against it now | Unchanged by the run; a slide the user changed is named in the report and left as it is |
 
 Return each check's failures as short strings with the slide and the node name; an empty list is a pass.

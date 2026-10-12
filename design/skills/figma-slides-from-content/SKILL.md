@@ -98,7 +98,7 @@ Checkpoint, in plain words: the page-to-slide list with each layout type and any
 Produces the **slides**.
 
 1. Create the row and the slides with the lifecycle guidance, re-reading the grid at the start of every call; move a slide that landed in another row with the row's `appendChild` (tool-notes.md "Slide rows").
-2. Build three to five slides per `use_figma` call, each call starting with the preamble verbatim. Every node gets a name that says its role (`Title bar`, `Card`, `Bullet bar`, `Number`, `Caption`): the audit counts by name, and a later call addresses nodes by name, never by a size or font filter (tool-notes.md "Addressing nodes").
+2. Build three to five slides per `use_figma` call, each call starting with the preamble verbatim. Every node gets a name that says its role (`Title bar`, `Card`, `Bullet bar`, `Number`, `Caption`): the audit counts by name, and a later call addresses nodes by name, never by a size or font filter (tool-notes.md "Addressing nodes"). A slide itself keeps no name (Figma numbers slides), so a slide is found by its row and its index in it.
 3. Text is created as deck-spec.md "Text" says: the characters with the document's breaks, the width set first and the auto-resize set to height after it, the vertical position computed from the box's height only after that order.
 4. Upload the images with `upload_assets`, one node per image, and post the files one after another (tool-notes.md "Uploads").
 5. Return the created node ids and each slide's child count from every call; screenshot the first batch's slides inline before the next batch.

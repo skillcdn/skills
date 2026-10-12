@@ -10,8 +10,9 @@ What the server and the Plugin API did in runs of this skill, by topic, as it ho
 
 - `figma.getSlideGrid()` returns arrays of slides per row and leaves out an empty row, so a row created in the same call is not at the index its position suggests; `figma.createSlide(row, index)` then puts the slide in another row (checked 2026-10). Find rows as nodes: the `SLIDE_GRID` child of the current page, its `SLIDE_ROW` children by name, and move a slide with `row.appendChild(slide)`.
 - `figma.setSlideGrid()` throws "must contain all the children in the current grid" when the array passed leaves any slide out; moving with `appendChild` avoids it.
-- The grid, the row indices and the slide ids change under the run when the user adds, removes or reorders slides between calls. Every call reads the grid again and finds the row by name and the slides by name; an id or an index from an earlier call is not reused.
+- The grid, the row indices and the slide ids change under the run when the user adds, removes or reorders slides between calls. Every call reads the grid again and finds the row by name and the slides by their index in it; an id or a row index from an earlier call is not reused.
 - `SLIDE_ROW.name` is settable; the arrays `getSlideGrid()` returns are not rows, and a name set on them does nothing.
+- A slide's own `name` does not persist: Figma Slides names every slide by its ordinal in the deck, and a name set at build time reads back as a number in the next call (checked 2026-10). Find a new slide by its row (by name) and its index in that row, and carry role names on the nodes inside the slide, never on the slide.
 
 ## Text sizing
 

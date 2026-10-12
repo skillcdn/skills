@@ -75,6 +75,7 @@ A page's layout type maps to the spec's parts:
 | Tiles with descriptions | A column of tiles with centered labels, a column of cards with vertically centered descriptions, a side card with sub-headings and lists; the three columns share one bottom |
 | Numbered rows | Full-width cards of one height (taller for a two-line description), a numbered circle, a bold label, a description, each vertically centered on the row |
 | Device mockups | Equal images across the content width, a bold caption and a muted description under each |
+| Figures | Large numbers with their units and a caption each, in a row over the deck's rule or in cards; a chart kept as an image crop below or beside them; proportion rows as a track and a fill in the deck's tints with the name and the value on the bar's center line |
 | Timeline | Two columns, each a vertical line with a dot and a heading per phase and a list under it, the dot centered on the heading's glyphs |
 | Two columns | Two cards of one height, each a heading and a list with explicit breaks |
 | Closing | The deck's own closing slide, measured as the cover is: its fill, the logo's place, the line's style |

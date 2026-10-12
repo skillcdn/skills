@@ -49,7 +49,7 @@ The `design` area was created with its first skill.
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
-| "Make slides from this content, in the style of this deck." A document moved into an existing deck as new slides in the deck's own measured design system, audited by numbers and zoomed renders. [`figma-slides-from-content`](../design/skills/figma-slides-from-content/). Written from one run on a proposal in Korean; its fresh run is pending. Figma's MCP server writes to Slides with `use_figma`; writing needs a paid Full seat (checked 2026-10). | design | Figma | next |
+| "Make slides from this content, in the style of this deck." A document moved into an existing deck as new slides in the deck's own measured design system, audited by numbers and zoomed renders. [`figma-slides-from-content`](../design/skills/figma-slides-from-content/). A fresh run on a ten-page company profile into a deck of twelve styled slides reached the delivery (2026-10): thirteen slides, two pages split, two local fonts substituted, both checkpoints as written. Untried: a slide the user edits mid-run, a document in a script with spaces, a deck with a single content slide. Figma's MCP server writes to Slides with `use_figma`; writing needs a paid Full seat (checked 2026-10). | design | Figma | done |
 | "Make the brand kit." Name options, logo, palette and type, explored as images and fixed in a design file. | design | Higgsfield and Figma | candidate |
 | "Make the app icon and the store screenshots." | design | Figma | candidate |
 
