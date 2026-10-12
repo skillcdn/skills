@@ -1,0 +1,39 @@
+{
+  "document": "<file name>",
+  "pageSize": { "width": "<pt>", "height": "<pt>" },
+  "levels": { "title": "<size>", "lead": "<size>", "heading": "<size>", "body": "<size>", "caption": "<size>" },
+  "pages": [
+    {
+      "page": 1,
+      "layoutType": "cover",
+      "blocks": [
+        { "level": "title", "text": "<title line>", "x": "<pt>", "y": "<pt>" },
+        { "level": "lead", "text": "<subtitle>\n<date>", "x": "<pt>", "y": "<pt>" }
+      ],
+      "images": [{ "file": "p1-logo.png", "role": "logo", "x": "<pt>", "y": "<pt>", "width": "<pt>", "height": "<pt>" }]
+    },
+    {
+      "page": 2,
+      "layoutType": "lead-and-cards",
+      "blocks": [
+        { "level": "title", "text": "<section title>" },
+        { "level": "lead", "text": "<one sentence>" },
+        { "level": "heading", "text": "<card 1 heading>", "region": "card-1" },
+        { "level": "body", "text": "<line 1>\n<line 2>\n<line 3>", "region": "card-1" },
+        { "level": "heading", "text": "<card 2 heading>", "region": "card-2" },
+        { "level": "body", "text": "<label> <value>\n<label> <value>", "region": "card-2", "list": true, "labels": true }
+      ],
+      "images": []
+    },
+    {
+      "page": 3,
+      "layoutType": "device-mockups",
+      "blocks": [
+        { "level": "title", "text": "<section title>" },
+        { "level": "caption", "text": "<screen name>", "region": "mockup-1" },
+        { "level": "body", "text": "<what the screen does>", "region": "mockup-1" }
+      ],
+      "images": [{ "file": "p3-mockup-1.png", "role": "mockup", "region": "mockup-1", "transparentMargins": true }]
+    }
+  ]
+}

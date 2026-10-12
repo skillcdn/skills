@@ -1,0 +1,27 @@
+{
+  "slide": { "width": "<measured>", "height": "<measured>" },
+  "margins": { "left": "<min left of content>", "right": "<max right of content>", "contentTop": "<top of first content element>", "contentBottom": "<bottom of lowest>" },
+  "fonts": { "deck": ["<family seen in the deck>"], "loadable": "<family that loads>", "styles": { "bold": "Bold", "regular": "Regular", "medium": "Medium" } },
+  "colors": { "title": "#<hex>", "body": "#<hex>", "muted": "#<hex>", "accent": "#<hex>", "card": "#ffffff", "tileLight": "#<hex>", "tileDark": "#<hex>" },
+  "scale": {
+    "base": "<body size measured>",
+    "title": { "size": "<n>", "style": "bold", "lineHeight": 120, "color": "title" },
+    "lead": { "size": "<n>", "style": "medium", "lineHeight": 140, "color": "muted" },
+    "heading": { "size": "<n>", "style": "bold", "lineHeight": 120, "color": "title" },
+    "subhead": { "size": "<n>", "style": "bold", "lineHeight": 130, "color": "title" },
+    "body": { "size": "<base>", "style": "regular", "lineHeight": 160, "color": "body" },
+    "caption": { "size": "<base>", "style": "bold", "lineHeight": 160, "color": "body" }
+  },
+  "titleGroup": {
+    "bar": { "x": "<n>", "y": "<n>", "width": "<n>", "height": "<n>", "color": "accent" },
+    "title": { "x": "<n>", "y": "<n>" },
+    "subtitle": { "x": "<n>", "y": "<n>" }
+  },
+  "mark": { "width": "<n>", "height": "<n>", "color": "accent", "opacity": "<0..1>", "gap": "<px from mark to text>", "offset": "<px from the first line's top to the mark's top>" },
+  "cover": { "logo": { "x": "<n>", "y": "<n>", "width": "<n>" }, "title": { "size": "<n>", "x": "<n>", "y": "<n>" } },
+  "closing": { "fill": "#<hex>", "logo": { "x": "<n>", "y": "<n>", "width": "<n>" } },
+  "card": { "radius": "<n>", "shadow": { "color": "#<hex>", "opacity": "<0..1>", "offsetY": "<n>", "blur": "<n>" }, "padding": "<n>" },
+  "listGap": "<px between items>",
+  "timeline": { "dot": "<diameter>", "line": "<width>", "headingSize": "<n>" },
+  "pageNumber": { "size": "<n>", "color": "muted", "right": "<x of right edge>", "y": "<n>" }
+}

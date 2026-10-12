@@ -24,6 +24,12 @@
       "source": "./engineering",
       "description": "Software development and the tooling an agent works with: code, a codebase's documents, apps, testing, debugging. A skill written from work already done with an agent, in a repository of this layout, checked and tried by a fresh agent, and a skill verified again from a fresh session after it changed.",
       "license": "MIT"
+    },
+    {
+      "name": "design",
+      "source": "./design",
+      "description": "Design work in the team's design tool: slides and decks, brand assets, icons and store graphics. A document moved into an existing Figma Slides deck as new slides in the deck's own measured design system, audited by numbers and zoomed renders.",
+      "license": "MIT"
     }
   ]
 }

@@ -45,11 +45,11 @@ Deciding what it is, and finding out cheaply whether anyone wants it.
 
 ## M3: Brand and design
 
-The `design` area is created with its first skill.
+The `design` area was created with its first skill.
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
-| "Make slides from this content, in the style of this deck." The content exists; the skill applies the design of a reference or template deck, its layouts, type, color and the shapes of its slides. Figma's MCP server writes to Slides with `use_figma` and makes a deck from its own templates with `generate_deck`; writing needs a paid Full seat (checked 2026-10). | design | Figma | next |
+| "Make slides from this content, in the style of this deck." A document moved into an existing deck as new slides in the deck's own measured design system, audited by numbers and zoomed renders. [`figma-slides-from-content`](../design/skills/figma-slides-from-content/). Written from one run on a proposal in Korean; its fresh run is pending. Figma's MCP server writes to Slides with `use_figma`; writing needs a paid Full seat (checked 2026-10). | design | Figma | next |
 | "Make the brand kit." Name options, logo, palette and type, explored as images and fixed in a design file. | design | Higgsfield and Figma | candidate |
 | "Make the app icon and the store screenshots." | design | Figma | candidate |
 
