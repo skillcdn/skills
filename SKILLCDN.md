@@ -15,6 +15,8 @@ metadata:
 ---
 # Rules for every skill in this repository
 
+**Bound to a console?** When `.skillcdn-console.json` is in the checkout, or `console whoami` names a project, work the task through that SkillCDN console (`console help` says how). Without a console, the skill runs as written.
+
 **Ask only what cannot be derived.** A skill asks for the inputs it cannot get from the request, in one short message, and derives everything else from those inputs and sensible defaults. What was derived is stated at the next step and changed when the user asks. The user need not know the tool or the craft; an answer stands for the rest of the run.
 
 **Show every step, briefly.** Each phase ends with its result in front of the user in plain words: what was made, and what comes next. Where the skill stops for the user, the message also gives the recommendation, and one word continues; elsewhere the run goes on. When the user says to go ahead alone, the stops end; consent to spend never does.
