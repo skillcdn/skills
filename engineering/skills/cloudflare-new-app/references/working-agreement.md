@@ -1,6 +1,6 @@
 # The working agreement
 
-What the new project carries so that developers, planners and designers keep working in it, each with their own agent, without rules piling up or a shared file being changed by accident. The shape comes from the reference projects of this collection; the words are the project's, in the team's language, with code, identifiers and commit messages in English.
+What the new project carries so that developers, planners and designers keep working in it, each with their own agent, without rules piling up or a shared file being changed by accident. The shape comes from the reference projects of this pack; the words are the project's, in the team's language, with code, identifiers and commit messages in English.
 
 ## The files
 
@@ -43,7 +43,7 @@ A rule enters only with its why and after a slip repeated or a correction made w
 
 ## The skills connection
 
-The project keeps the connection to the skills it was built with, so that every person's agent works from the same references: the files below are committed, and section 10 of `CLAUDE.md` says what they are for. The address is the one this skill was loaded from (`https://skillcdn.ai/gh/skillcdn/skills` for this collection; a fork writes its own).
+The project keeps the connection to the skills it was built with, so that every person's agent works from the same references: the files below are committed, and section 10 of `CLAUDE.md` says what they are for. The address is the one this skill was loaded from (`https://skillcdn.ai/gh/skillcdn/skills` for this pack; a fork writes its own).
 
 | File | Tool | Content |
 |---|---|---|

@@ -114,7 +114,7 @@ The message is short: the one or two things needed (for the reference, that the 
 
 ## When there is no reference
 
-A user who names only the product still gets an ad built on what works: the reference is found among the ads now running for that kind of product. A skill that researches running ads does the finding (in this collection `meta-ad-library-creative-research`, which reads the Meta Ad Library), and this skill chooses from what it returns. Say in a line that a reference is being looked for and that the user's own is welcome at any point. With no such skill at hand, ask for the reference as "Intake" says and name the skill that would find one.
+A user who names only the product still gets an ad built on what works: the reference is found among the ads now running for that kind of product. A skill that researches running ads does the finding (in this pack `meta-ad-library-creative-research`, which reads the Meta Ad Library), and this skill chooses from what it returns. Say in a line that a reference is being looked for and that the user's own is welcome at any point. With no such skill at hand, ask for the reference as "Intake" says and name the skill that would find one.
 
 1. **Research.** Run the research skill with the product as its subject, in the market of the ad's language (the product page's, in the user's language when the page has it), through to its delivery. Its method, its limits and its checkpoint are its own: none of it is repeated here, and none of it is cut short because an ad comes next.
 2. **Choose** among the videos on its shortlist, in this order:
