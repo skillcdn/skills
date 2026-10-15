@@ -1,6 +1,6 @@
 # The reference stack and structure
 
-A proposal, not a requirement: the stack the reference projects of this collection run on and the structure they converged on, with the reason for each choice, so that a new app starts from something proven and changes what the brief needs. Versions are never written here: `npm view <package> version` and the framework guide of the day say what is current.
+A proposal, not a requirement: the stack the reference projects of this pack run on and the structure they converged on, with the reason for each choice, so that a new app starts from something proven and changes what the brief needs. Versions are never written here: `npm view <package> version` and the framework guide of the day say what is current.
 
 ## The stack
 

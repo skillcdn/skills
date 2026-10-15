@@ -4,10 +4,10 @@ The working agreement for this repository. It applies to AI agents and humans al
 
 ## Project
 
-This repository holds SkillCDN's own skills, served as an MCP server at `skillcdn.ai/gh/skillcdn/skills`: skills for an AI agent to do real company work, one area at a time (marketing, media, product, engineering, more to come), each driving a real tool from the request to the finished result. It is the reference repository for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a skill repository. It takes no pull requests; it is meant to be forked, so that a team publishes its own skills in the same shape with the same checks. Content, not code: Markdown that agents read, small JSON, and one dependency-free script that validates it. Every push to `main` is a public release, because SkillCDN indexes the default branch.
+This repository is SkillCDN's own pack, served as an MCP server at `skillcdn.ai/gh/skillcdn/skills`. A pack is what an agent receives whole at one address, a git repository of skills, documents and rules; this one holds skills for an AI agent to do real company work, one area at a time (marketing, media, product, engineering, more to come), each driving a real tool from the request to the finished result. It is the reference pack for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a pack. It takes no pull requests; it is meant to be forked, so that a team publishes its own pack in the same shape with the same checks. Content, not code: Markdown that agents read, small JSON, and one dependency-free script that validates it. Every push to `main` is a public release, because SkillCDN indexes the default branch.
 
-- **Format:** the SkillCDN Format, which is the [Agent Skills](https://agentskills.io/specification) layout plus manifests. A skill is a directory with a `SKILL.md`; an area is a directory with a `SKILLCDN.md` that describes its skills and adds their rules; a document set is a directory of Markdown under `docs/` at the root or in an area; `SKILLCDN.md` at the root names the repository and carries the rules for every skill.
-- **Audience:** two readers at once. An agent that will execute a skill from a fresh session with no memory, and a person who wants to see how a skill for a given tool, or a repository in the format, is written, and to fork it.
+- **Format:** the SkillCDN Format, which is the [Agent Skills](https://agentskills.io/specification) layout plus manifests. A skill is a directory with a `SKILL.md`; an area is a directory with a `SKILLCDN.md` that describes its skills and adds their rules; a document set is a directory of Markdown under `docs/` at the root or in an area; `SKILLCDN.md` at the root names the pack and carries the rules for every skill.
+- **Audience:** two readers at once. An agent that will execute a skill from a fresh session with no memory, and a person who wants to see how a skill for a given tool, or a pack in the format, is written, and to fork it.
 - **License:** MIT. Public repository.
 
 ## Non-negotiables
@@ -26,7 +26,7 @@ This repository holds SkillCDN's own skills, served as an MCP server at `skillcd
 ## Repository map
 
 ```
-SKILLCDN.md       the repository manifest: name, description, documents: [docs], the rules for every skill
+SKILLCDN.md       the repository manifest: the pack's name, description, documents: [docs], the rules for every skill
 README.md         for people on the git host, including whoever forks it; readable by agents on demand
 <area>/           one folder per area of work (marketing, product, engineering, ...)               (served)
   SKILLCDN.md     the area manifest: who its skills are for, the rules its skills add

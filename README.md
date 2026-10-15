@@ -23,12 +23,12 @@
 | "Put this PDF into this deck, as it is." | New slides in the deck, one per page, in the deck's own measured design system, every alignment and element checked by numbers and zoomed renders before you see them. |
 | "Put this project live on Cloudflare." | The project at its address on Workers with its database, storage, secrets and domain in place, deploying itself on every push, with a record in the project of what exists and how to run it. |
 
-From marketing to design, engineering and customer support, each folder is an area of work with the skills that do it and the documents its people read: marketing, media, engineering and design have the first skills, product is next, and more areas will follow. This is also the reference repository for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a skill repository, kept working against real tools. Fork it to publish your own skills in the same shape.
+This repository is a SkillCDN pack: what an agent receives whole at one address, with the skills as the units inside. From marketing to design, engineering and customer support, each folder is an area of work with the skills that do it and the documents its people read: marketing, media, engineering and design have the first skills, product is next, and more areas will follow. It is also the reference pack for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a pack, kept working against real tools. Fork it to publish your own pack in the same shape.
 
 [SkillCDN](https://github.com/skillcdn/skillcdn) turns a git repository into an MCP server. Point an agent at an address and it gets what the address covers:
 
 ```
-skillcdn.ai/gh/skillcdn/skills                                        the whole repository (recommended)
+skillcdn.ai/gh/skillcdn/skills                                        the whole pack (recommended)
 skillcdn.ai/gh/skillcdn/skills/marketing                              one area
 skillcdn.ai/gh/skillcdn/skills/marketing/skills/higgsfield-shorts-ad  one skill
 skillcdn.ai/gh/skillcdn/skills@<commit>                               pinned to a commit
@@ -96,7 +96,7 @@ Areas are by function, and a tool family can serve several of them, which is why
 |---|---|---|---|
 | Higgsfield | AI image, video and audio generation with a cloud sandbox for editing. | Add the Higgsfield MCP server to the agent. Skills check for the tools they need and ask for the server when it is missing. | [higgsfield.ai](https://higgsfield.ai) |
 | Meta Ad Library | Meta's public library of the ads running on Facebook, Instagram, Messenger, Threads and WhatsApp, read as a website because its API leaves out most commercial ads. | Nothing to connect. The agent needs a shell with a Chromium-family browser, or a browser it can drive; skills check which one it has and say what to add when it has neither. | [facebook.com/ads/library](https://www.facebook.com/ads/library) |
-| SkillCDN | A git repository in the SkillCDN Format, this one or a fork of it, with its check and its git host, served as an MCP server. | A checkout of the repository with git and Node.js. The SkillCDN connection to the repository, for a fresh agent to load what was pushed. | [skillcdn.ai](https://skillcdn.ai), the [format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md) |
+| SkillCDN | A pack in the SkillCDN Format, this one or a fork of it, with its check and its git host, served as an MCP server. | A checkout of the repository with git and Node.js. The SkillCDN connection to the repository, for a fresh agent to load what was pushed. | [skillcdn.ai](https://skillcdn.ai), the [format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md) |
 | Cloudflare | The Workers platform with D1, R2, KV, custom domains, Workers Builds, the Registrar and Email Service, driven through Wrangler and the REST API. | A Cloudflare account and an API token the user creates with the steps the skills give (or `wrangler login`); a shell with Node.js, npm, git and curl. Skills say which dashboard steps only a signed-in person can take. | [developers.cloudflare.com](https://developers.cloudflare.com/workers/) |
 | Figma | Figma Design, FigJam and Figma Slides, written through the Figma MCP server's Plugin API tool with its own skills guidance, image uploads and screenshots. | Add the Figma MCP server to the agent and sign in to a Figma account that can edit the file; writing through the server needs a paid Full seat. Skills check for the tools they need and ask for the server when it is missing. | [help.figma.com](https://help.figma.com/hc/en-us/articles/32132100833559) |
 
@@ -117,7 +117,7 @@ This repository takes no pull requests. It is meant to be forked: the layout, th
 3. Keep a license SkillCDN can pass on. It serves a skill in full only under a license it recognizes as permissive, taken from the skill's directory, its `license` field, the manifests above it or the repository's license file; under a restrictive or unrecognized license the skill is only described, with a link to its source.
 4. Keep the areas you need and delete the others. A new area is a folder with a `SKILLCDN.md` and a `README.md`; the steps are in [guide/adding.md](guide/adding.md).
 5. Write your skills at `<area>/skills/<name>/`, following [guide/skill-authoring.md](guide/skill-authoring.md), or have an agent write them from work already done with the authoring skill in [`engineering/`](engineering/); put what the skills of one tool share in `docs/<tool>/`, or in the area's `docs/` when one area holds every skill of the tool. Run `node scripts/check.mjs`; CI runs it on every push. Replace [guide/roadmap.md](guide/roadmap.md) with your own plan, or delete it.
-6. Rewrite this README and each area's README for your repository, their tops first. The lockup and the symbol are SkillCDN's marks, so put your own there or none ([trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md)); keep the badge and give it your address, in its link and in its picture's URL (`https://skillcdn.ai/badge/gh/<you>/<repo>`), so that a reader sees where SkillCDN serves your repository and how many skills it has. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place its shared pages come from, put yours.
+6. Rewrite this README and each area's README for your repository, their tops first. The lockup and the symbol are SkillCDN's marks, so put your own there or none ([trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md)); keep the badge and give it your address, in its link and in its picture's URL (`https://skillcdn.ai/badge/gh/<you>/<repo>`), so that a reader sees where SkillCDN serves your pack and how many skills it has. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place its shared pages come from, put yours.
 7. Connect it at `skillcdn.ai/gh/<you>/<repo>`. A public repository needs no setup.
 
 The rules for changing anything, for people and agents alike, are in [CLAUDE.md](CLAUDE.md); a fork keeps them or changes them. A skill here that no longer works can be reported in an issue.
@@ -125,7 +125,7 @@ The rules for changing anything, for people and agents alike, are in [CLAUDE.md]
 ## Repository layout
 
 ```
-SKILLCDN.md       the repository manifest: name, description, document roots, the rules for every skill
+SKILLCDN.md       the repository manifest: the pack's name, description, document roots, the rules for every skill
 README.md         this introduction
 <area>/           one folder per area of work: marketing/, media/, product/, engineering/, ...
   SKILLCDN.md     the area manifest: who its skills are for, the rules its skills add

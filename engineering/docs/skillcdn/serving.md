@@ -9,7 +9,7 @@ SkillCDN serves the repository's default branch, so a push to it is a public rel
 ## Which commit an agent gets
 
 - On the connection: `browse_repo`, `load_skill` and `read_repo_file` name the served commit in their `Source` line, as `Source: <owner>/<repo> (commit <short sha>)`. The instructions an agent received when it connected name the commit served at that moment and are not refreshed; a later call's `Source` line names the current one (checked 2026-10).
-- Over HTTP: `https://skillcdn.ai/api/v1/mounts/<address>`, the address without the host (`gh/<owner>/<repo>`; `gh/skillcdn/skills` for this collection), returns the mount's `commit`, its `index.status` (`ready` when the skills can be loaded), the counts of skills and documents, and the diagnostics when there are any (checked 2026-10).
+- Over HTTP: `https://skillcdn.ai/api/v1/mounts/<address>`, the address without the host (`gh/<owner>/<repo>`; `gh/skillcdn/skills` for this pack), returns the mount's `commit`, its `index.status` (`ready` when the skills can be loaded), the counts of skills and documents, and the diagnostics when there are any (checked 2026-10).
 - Against the checkout: `git rev-parse HEAD` and `git status` say what is local; `git diff <served commit> HEAD -- <paths>` says whether what an agent gets differs from the checkout for a skill's directory, the manifests above it and the shared pages it reads; `git show <served commit>:<path>` prints a file as it was at the served commit.
 
 ## How long serving takes

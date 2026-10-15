@@ -1,14 +1,14 @@
 ---
-name: SkillCDN skills
-description: Skills for an AI agent to do real company work. From marketing to design, engineering and customer support.
+name: SkillCDN Pack
+description: SkillCDN's own pack. Skills for an AI agent to do real company work, from marketing to design, engineering and customer support.
 image: https://raw.githubusercontent.com/skillcdn/skillcdn/main/apps/web/public/brand/banner.png
 documents:
   - docs
 language: en
 translations:
   ko:
-    name: SkillCDN 스킬
-    description: AI 에이전트가 실제 회사 업무를 하기 위한 스킬. 마케팅부터 디자인, 엔지니어링, 고객지원까지.
+    name: SkillCDN 팩
+    description: SkillCDN의 팩. AI 에이전트가 실제 회사 업무를 하기 위한 스킬. 마케팅부터 디자인, 엔지니어링, 고객지원까지.
 license: MIT
 metadata:
   author: skillcdn
