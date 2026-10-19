@@ -104,7 +104,7 @@ One message: where the buy flow is, what a purchase grants, what was created on 
 |---|---|
 | A test payment settles the order once, grants what the plan says, a resent event changes nothing, a refund and a dispute do their bookkeeping, the free code costs nothing and counts as nothing, an event of the other mode is ignored, the check passes | Accepted |
 | The flow passes but the project is not deployed yet, the live switch waits on the user's activation or keys (the sandbox key and endpoint then leave the deployed Worker until the switch, as verification.md says), or a test payment could not be made | Accepted with the gap named in `docs/payments.md` and the delivery |
-| An order is settled twice, a client-reported amount is trusted, a webhook with a bad signature or of the other mode is processed, a secret appears in a file or a message | Redone before anything is committed |
+| An order is settled twice, a client-reported amount is trusted, a webhook with a bad signature or of the other mode is processed, a secret appears in a file or a message, paid content shows free because a key is missing | Redone before anything is committed |
 
 ## Hard rules
 
