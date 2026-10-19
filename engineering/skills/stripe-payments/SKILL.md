@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project with its dependencies installed, a Stripe account the user can create keys for, network access to api.stripe.com, and the Stripe CLI (installed with npm) for local webhook tests. The live phase needs the project deployed with cloudflare-deploy. A browser the agent drives is optional, for the test payments. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: stripe
 skillcdn:
   include:
@@ -33,7 +33,7 @@ What goes in: a project in a checkout, what it sells and at what price in the us
 |---|---|
 | A shell with Node.js (the project's major), npm, git and curl, in a checkout with `node_modules` installed | The code, the setup scripts, the checks, the commit |
 | A Stripe account and the keys the user creates ([access.md](/engineering/docs/stripe/access.md)): the sandbox's secret key first, two restricted live keys at the live phase | Every call to Stripe: products, prices, the webhook endpoint, the test refund, reading a session back |
-| The Stripe CLI, `npm install -g @stripe/cli` (checked 2026-10), installed by the agent before the first message when it is missing | `stripe listen` for local webhooks, `stripe trigger` for event fixtures, `stripe docs` as the reference of the day |
+| The Stripe CLI, `npm install -D @stripe/cli` in the project with `XDG_CONFIG_HOME` pointed at a temporary folder (checked 2026-10), installed by the agent before the first message when it is missing | `stripe listen` for local webhooks, `stripe trigger` for event fixtures, `stripe docs` as the reference of the day |
 | Network access to `api.stripe.com` | All of it; see [tool-notes.md](references/tool-notes.md) "Shell" for a shell whose curl cannot reach it |
 | A running dev server for the sandbox phase | Where the listener forwards the webhook |
 | For the live phase: the project deployed by `cloudflare-deploy`, with its `DEPLOY.md` and its `.cf-token` | The live address the endpoint points at, the Worker's secrets and variables, the deploy of the live code |
@@ -60,7 +60,7 @@ The questions, in one message at the start, each only when the request, the brie
 - "What do you sell, and at what price? For example a one-time unlock at 10 dollars, a pack of 10 credits at 5, or a monthly plan at 8 with a 7-day free trial. If prices differ by country, give each."
 - "Who should the buyer pay: your business, which is the usual choice, or Stripe as the seller of record (Managed Payments), which then handles sales tax, VAT, refund support and disputes for a higher fee? I recommend your business unless you sell digital goods in many countries and want tax handled for you."
 - "Refunds: on request within 14 days, handled by you from the dashboard? Say otherwise if you want a different window or no refunds for used content."
-- "To set things up I need your Stripe sandbox's secret key (it moves no real money): [the steps of access.md 'Where a key is created and kept' for the sandbox]. Save it as the line `STRIPE_SECRET_KEY=<key>` in the file `<the project's local secrets file>` in the project folder and tell me; that keeps it out of this chat. If you paste it here instead, I move it there and never repeat it."
+- "To set things up I need the secret key of a Stripe sandbox made for this project (it moves no real money; a sandbox borrowed from another project shows that project's name on the test payment page): [Sandboxes > Create when the account has none for this project, then the steps of access.md 'Where a key is created and kept' for the sandbox]. Save it as the line `STRIPE_SECRET_KEY=<key>` in the file `<the project's local secrets file>` in the project folder and tell me; that keeps it out of this chat. If you paste it here instead, I move it there and never repeat it."
 
 In the plan: "You will make a few test payments on the local page with Stripe's test cards when I ask: one ordinary, one with a code that makes the order free, and, if you want the refund and dispute paths proven, one more each."
 

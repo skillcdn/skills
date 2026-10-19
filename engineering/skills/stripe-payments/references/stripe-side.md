@@ -16,7 +16,7 @@ Local development uses the CLI's listener, no endpoint. A deployed address gets 
 
 ## Promotion codes
 
-A coupon and a promotion code per mode for the operator's use, created by the agent only when the plan asks for one; always one test code in the sandbox: `POST /v1/coupons` with `percent_off=100`, `duration=once`, `name=Test`, then `POST /v1/promotion_codes` with `coupon`, `code=TEST<random>`, `max_redemptions=50`; the code goes into `docs/payments.md` and the delivery, and the live account gets no such code unless the user asks, because a guessable full discount in live mode is a loss.
+A coupon and a promotion code per mode for the operator's use, created by the agent only when the plan asks for one; always one test code in the sandbox: `POST /v1/coupons` with `percent_off=100`, `duration=once`, `name=Test`, then `POST /v1/promotion_codes` with `code=TEST<random>`, `max_redemptions=50` and the coupon in the shape the account's API version takes (checkout.md on promotion codes); the code goes into `docs/payments.md` and the delivery, and the live account gets no such code unless the user asks, because a guessable full discount in live mode is a loss.
 
 ## Customer portal
 
