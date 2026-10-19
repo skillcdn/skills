@@ -1,0 +1,51 @@
+{
+  "_comment": "The shape of the price table (src/config/pricing.ts) as data. Values are placeholders; amounts are whole units of the currency; lookup keys are derived as <product>-<currency>-<once|month|year>; Stripe product ids are <project>-<product id>.",
+  "project": "example-app",
+  "products": [
+    {
+      "id": "item-unlock",
+      "kind": "once",
+      "grant": {
+        "type": "unlock"
+      },
+      "prices": {
+        "USD": 10,
+        "EUR": 10,
+        "JPY": 1000
+      },
+      "listPrices": {
+        "USD": 15,
+        "EUR": 15,
+        "JPY": 1500
+      }
+    },
+    {
+      "id": "credits-10",
+      "kind": "once",
+      "grant": {
+        "type": "credits",
+        "amount": 10
+      },
+      "prices": {
+        "USD": 5
+      }
+    },
+    {
+      "id": "plan-monthly",
+      "kind": "recurring",
+      "interval": "month",
+      "trialDays": 7,
+      "grant": {
+        "type": "period"
+      },
+      "prices": {
+        "USD": 8
+      }
+    }
+  ],
+  "minCharge": {
+    "USD": 0.5,
+    "EUR": 0.5,
+    "JPY": 50
+  }
+}

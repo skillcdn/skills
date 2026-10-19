@@ -50,6 +50,7 @@ When the plan needs it:
 | Zone | Zone Settings | Edit | SSL mode, always-HTTPS |
 | Zone | Single Redirect | Edit | A www-to-apex redirect rule instead of a redirect in code |
 | Zone | Email Routing Rules | Edit | Inbound mail routing |
+| Account | Access: Apps and Policies | Read | Reading an Access application's AUD tag for an operator's Worker ([access.md](access.md)); Edit, and the Organizations and Service Tokens rows of that page, only when the agent creates the application, the login method or a service token itself; without them the person does the dashboard steps |
 
 To see the current groups with their ids: `GET https://api.cloudflare.com/client/v4/user/tokens/permission_groups` with any valid token.
 

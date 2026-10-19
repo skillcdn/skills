@@ -1,0 +1,31 @@
+{
+  "_comment": "A campaign spec as scripts/meta/campaign.mjs reads it. Values are placeholders. Amounts are in the ad account's currency, minor units as the API takes them (cents for USD). The script fills `created` when it runs with --apply.",
+  "market": "us",
+  "account_id": "act_<id>",
+  "dataset_id": "<dataset id>",
+  "page_id": "<page id>",
+  "instagram_user_id": null,
+  "landing": "https://<site>/<landing path>?lang=en",
+  "objective": "OUTCOME_SALES",
+  "optimization_event": "LEAD",
+  "optimization_event_reason": "fewer than 50 paid orders a week in the site's ledger",
+  "attribution": [{ "event_type": "CLICK_THROUGH", "window_days": 7 }],
+  "audience": { "countries": ["US"], "age_min": 18, "age_max": 65, "advantage_audience": true },
+  "placements": "automatic",
+  "daily_budget_per_adset": 1500,
+  "spend_cap": 21000,
+  "enhancements": { "standard_enhancements": "OPT_IN", "ig_video_native_subtitle": "OPT_IN" },
+  "url_tags": "utm_source=meta&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}&ad_id={{ad.id}}",
+  "creatives": [
+    {
+      "name": "hook-a",
+      "video": "./creatives/hook-a.mp4",
+      "thumbnail": "./creatives/hook-a.jpg",
+      "primary_text": "<two to four sentences in the market's language>",
+      "headline": "<a few words>",
+      "call_to_action": "LEARN_MORE",
+      "text_variants": []
+    }
+  ],
+  "created": null
+}

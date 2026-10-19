@@ -1,0 +1,67 @@
+# The measurement code
+
+What the wire phase writes into the project so that the site measures what the ads bring and nothing more: the analytics configuration, the pixel loader, the attribution module, the server events module, the columns, the hooks into the payments module, the lead event, the privacy switch, the policy paragraph, the test event script and the tests. The facts behind each piece are in [measurement.md](/engineering/docs/meta-marketing-api/measurement.md); the layout follows `cloudflare-new-app`'s (`src/config/`, `src/lib/`, `src/components/`, `migrations/`), and a project of another shape gets the same modules in its own places, with a piece this page leans on that the project lacks (a `Dict` type, a features table, a `track()` facade, a settings table, a check script, a per-locale privacy page) added in its smallest form and named in the plan rather than skipped. The code is complete and silent while the dataset ids are empty, so that it ships before the business exists.
+
+## Configuration
+
+`src/config/analytics.ts`, the one place:
+
+- `META_DATASET_IDS`: a map from locale to dataset id, typed with the project's `Dict`, each value `process.env.NEXT_PUBLIC_META_DATASET_ID<_SUFFIX> || '<id>'` where the id is written in after phase 4 (a public value, committed); a market where Meta does not deliver is `''` with a comment, and `localeFeatures(locale).adPixel` is `false` there.
+- `META_ENV_SUFFIX`: the market suffix of the dataset token secret per locale (`''` for the default market, `_<MARKET>` for the others), so that the server reads `META_CAPI_ACCESS_TOKEN<suffix>` and sends nothing for a market whose secret is unset.
+- `META_DOMAIN_VERIFICATION`: the meta tag value, written in after phase 4 (public), rendered in the root layout's head when set.
+- `META_GRAPH_VERSION_DEFAULT`: the version of the day, overridable by the secret `META_GRAPH_VERSION`.
+- `META_PUBLIC_PATHS`: the exact home path `/` and the prefixes of the other public pages (the product pages, the legal pages); everything else is private.
+- `metaDatasetFor(locale)`, `metaPublicPath(pathname)`, `sanitizeEventUrl(url, fallback)` (origin plus the public path, or the first segment; no query, no hash).
+- `META_BROWSER_EVENTS`: the map from the site's event vocabulary to Meta's (`page_view` to `PageView`, `product_view` to `ViewContent`); `MetaServerEvent` is `Lead | InitiateCheckout | Purchase`.
+- `US_MARKETS`: the locales whose market includes the United States, for the Limited Data Use flag.
+
+## The pixel loader
+
+`src/components/analytics/MetaPixel.tsx`, mounted by the layout of the public route group only, so that a private page's HTML (an item page, an account page, the checkout and return pages) contains no pixel script, which `curl` proves: on each route change, when the path is public, the dataset of the current locale exists and the visitor has not opted out, it loads `fbevents.js` once, sets `fbq.disablePushState = true` and calls `fbq('set', 'autoConfig', false, id)` before `fbq('init', id)` (the flag stops the pixel's own page view on history changes, which would send a private URL after a client-side navigation into a private route; Meta's single-page application page, checked 2026-10), sends `PageView` itself on each public route change, and sends the browser events of the vocabulary through the site's `track()` facade (`src/lib/analytics.ts`), which also persists the click ids. No advanced matching call, no automatic events. The private route group's layout renders `<meta name="referrer" content="no-referrer">` and the server answers private routes with `Referrer-Policy: no-referrer` (`same-origin` would still hand the full private URL to the next page of the site, where the pixel reads `document.referrer`), so that a navigation from a private page carries no private URL in a referrer. The operator's screens never load it (they are another Worker when the dashboard skill built them).
+
+## Attribution
+
+`src/lib/ads/attribution.ts`:
+
+- The allowlist with maximum lengths: `utm_source` 100, `utm_medium` 100, `utm_campaign` 200, `utm_content` 200, `utm_term` 200, `campaign_id` 128, `adset_id` 128, `ad_id` 128, `fbclid` 450, `fbc` 450, `fbp` 450, `referrer` 300 (the origin only).
+- `persistAttribution()` in the browser on landing: reads the URL's fields and the external referrer's origin, stores them in a first-party cookie (`<app>_atr`, 90 days, `SameSite=Lax`, `Secure` on https, JSON with the capture time, kept under 3.4 KB by dropping the least important fields first); a tagged visit replaces the stored one; an untagged internal navigation keeps it.
+- `captureClientAttribution()` when the visitor starts the thing the site keeps (a session, an item): the merge of the stored cookie, the current URL and the `_fbp`, `_fbc` and `fbclid` cookies, sent in the request body.
+- `captureRequestAttribution(request, body)` on the server: re-validates the body against the allowlist, merges the cookie and the referer, and returns what the row stores; `fbcFromClickId(fbclid, seenAt)` builds `fb.1.<ms>.<fbclid>` when `_fbc` is absent.
+- `requestOptedOut(request)`: `Sec-GPC: 1` or the site's opt-out cookie.
+- `attributionForMeta(request, row)`: `{ fbp, fbc, ip (cf-connecting-ip), userAgent, sourceUrl }` for the server events, with `optOut` when the visitor opted out; it is what the payments module's attribution provider writes into the order row at creation (`orders.attribution`, as JSON), so that the webhook finds there what the browser knew.
+
+## The server events
+
+`src/lib/ads/capi.ts`: `sendMetaEvent({ name, eventId, locale, attribution, fallbackUrl, email?, value?, currency?, contentId?, testEventCode? })` builds the event of measurement.md "The Conversions API" (hashed email for a purchase only, IP and user agent, `fbp` and `fbc`, `event_source_url` sanitized, `action_source` `website`, `custom_data` with value, currency and content ids, the Limited Data Use options for a US market), posts it to `graph.facebook.com/<version>/<dataset>/events` with the market's dataset token in the `Authorization: Bearer` header and a five-second timeout, and returns `{ ok, response }` or `{ ok: false, reason }` without throwing and without logging the token or the URL; it returns at once when the visitor opted out, when the market has no dataset or no token of its own, or when the request's host is a loopback address and no test event code is set. `inBackground(promise)` hands the send to the platform's `waitUntil` so that the response is not delayed. Three wrappers: `trackLead(request, row)` with event id `lead_<row id>`, `trackCheckout(order)` with the order id and the order row's attribution, `trackPurchaseOnce(order, email)` guarded by a `capi:<order id>` row in `payment_events` (deleted again when the send fails for a network or API reason, so that the other settlement path, the return confirmation or the webhook, retries).
+
+## Columns
+
+A migration adds to the row the site keeps per visitor's attempt (the session or item table): the allowlist's fields as columns, `attribution_version` (1 captured, 2 opted out), and an index on `(locale, campaign_id, created_at)`. The order row's `attribution` JSON (from `stripe-payments`) receives `attributionForMeta`'s fields at order creation. A project without a per-attempt row stores the attribution on the order alone and the lead event uses the device id.
+
+## Hooks into payments
+
+When `stripe-payments` ran, its `src/lib/payments/hooks.ts` is where the ads code attaches: an attribution provider that returns `attributionForMeta(request, row)` for the order row, `trackCheckout` called where the order is created with a positive amount, and an `onPaid` hook that calls `trackPurchaseOnce` with the buyer's email. Without the payments module, the two events are left as exported functions with a note in `docs/ads.md` saying where to call them.
+
+## The lead
+
+At the lead moment the plan named, the server calls `trackLead` once per row (the first submission only), after the row is written and in the background.
+
+## The privacy switch
+
+The pixel loader and the attribution module check `navigator.globalPrivacyControl` and the opt-out cookie first; when set, they expire the measurement cookies (`_fbp`, `_fbc`, `fbclid`, the attribution cookie), set the opt-out cookie, and do nothing else; the server reads the header and the cookie and drops every event. Where the site has a consent banner, declining sets the same cookie. In a market the plan marks consent-first, the loader and the attribution module wait for the consent cookie's positive value and the server drops the events of a visitor without it.
+
+## The privacy policy
+
+The privacy page's measurement paragraph, per locale, rendered only when at least one dataset id is set: that the site sends to Meta the fact of a page view on public pages, of a lead, a checkout and a purchase, with the IP address, the browser, the click id and, for a purchase, the hashed email and the amount; never a name or the content; that a browser's Global Privacy Control signal stops it; and, for a US market, that Limited Data Use applies to California.
+
+## Local development and testing
+
+Nothing is sent from a loopback host unless `META_CAPI_TEST_EVENT_CODE` is set in the local secrets file, and then every event goes to Events Manager's test tab only. `scripts/meta/test-event.mjs <market> <event> <test code>`, written in this phase, sends one event with the dataset token read from the local secrets file (never printed) and prints Meta's answer, which is how phase 4 proves a dataset and a token; the same script against the deployed site is a request to the site's lead moment while the test code is set as the Worker's secret for the hour of the test.
+
+## Secrets
+
+The local secrets example file gains `META_CAPI_ACCESS_TOKEN` (and `_<MARKET>` per extra market; the dataset's own token, generated in Events Manager), `META_GRAPH_VERSION` (optional), `META_CAPI_TEST_EVENT_CODE` (verification only), with comments and no values; these are the public Worker's. `META_ADS_ACCESS_TOKEN` (the employee system user's read-only token) and `META_AD_ACCOUNT_IDS` (`<market>:act_<id>[@YYYY-MM-DD],...`) are the spend sync's and the dashboard's: they go into the local secrets file for the script and into the dashboard Worker's secrets, never into the public Worker. `DEPLOY.md`'s secrets section lists them under those two holders. Dataset ids and the verification tag are configuration, not secrets; `.meta-token` is neither, and is in `.gitignore` and the host's read-deny list.
+
+## Tests
+
+`tests/ads.test.ts`: `sanitizeEventUrl` strips ids, queries and hashes and keeps public paths; `fbcFromClickId` has the official shape; the allowlist drops unknown fields and trims lengths; the cookie value stays under its limit; the pixel's path check is false for every private route of the project and true for the public ones; a rendered private page contains no `fbevents.js`; a client-side navigation from a public page to a private route sends no request to `facebook.com/tr` with the private path (a browser the agent drives, else the loader's unit test that `disablePushState` is set before `init` and no page view is sent on a private path); a full navigation from a private page to a public one leaves `document.referrer` empty and no pixel request carries the private path; a zero-amount order and an opted-out attribution send nothing; the hashed email is lower-cased and trimmed before hashing; the purchase guard sends once for two callers; the market routing drops an event for a locale without a dataset or without its token; the request carries the token in a header and the logged failure carries no token; a US market's event carries the Limited Data Use options. The project's `npm run check` runs them.

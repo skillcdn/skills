@@ -39,7 +39,7 @@ Deciding what it is, and finding out cheaply whether anyone wants it.
 | Job | Area | Tool family | Status |
 |---|---|---|---|
 | "Put up a landing page with a waitlist." | marketing | Higgsfield website builder | candidate |
-| "Run a small test campaign on this creative." The M6 campaign skill at a small budget, the spend gated. | marketing | Meta Marketing API | candidate |
+| "Run a small test campaign on this creative." Covered by the campaign phase of [`meta-ads-setup`](../engineering/skills/meta-ads-setup/): one ad set per creative at a small daily budget, the spend confirmed before activation. | engineering | Meta Marketing API | next |
 | "Turn the brief into a PRD and a backlog." Requirements with their assumptions and open questions, and the stories that follow from them. | product | Jira and Confluence, or Linear and Notion | candidate |
 | "Translate and localize the product into this language." The strings, the store listing and the site, with a glossary and the product's voice kept per product and reused on the next pass. | product | The codebase's localization files; Crowdin or Lokalise where used | candidate |
 
@@ -70,6 +70,7 @@ Keeping a codebase one that an agent can keep working in: its documents true to 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
 | "Put this project live on Cloudflare." Access, resources, secrets, the first deploy, the domain, deploys on every push, logs and analytics, with a record in the project. [`cloudflare-deploy`](../engineering/skills/cloudflare-deploy/). A fresh run put the app of the new-app skill's second run live (2026-10): token, D1, secrets, first deploy, a hostname under an existing zone, the repository connection with a push-triggered build, analytics by host, `DEPLOY.md`, then two requests after the launch (sample data loaded into the live database, a secret changed); untried: a domain to buy, a zone to create, R2 and KV, the OpenNext path, a run on a project the new-app skill did not make. | engineering | Cloudflare | done |
+| "Take payments on the site." Stripe from a sandbox to live money: the order ledger, the hosted Checkout, the webhook that settles once, products and prices registered by the agent, the live switch confirmed, the owner's dashboard items listed. [`stripe-payments`](../engineering/skills/stripe-payments/). Written from running payment code and sandboxes read in 2026-10; its fresh run is next. | engineering | Stripe | next |
 | "Deploy the site elsewhere." Vercel, or the Higgsfield website builder's deploy. | engineering | Vercel or the Higgsfield website builder | candidate |
 | "Submit the app and write the listing." Metadata, screenshots, review notes, the listing's words and keywords. | engineering, marketing | App Store Connect and Google Play Console | candidate |
 | "Launch on Product Hunt." The page, the assets, the schedule, the first comment. | marketing | Product Hunt | candidate |
@@ -81,7 +82,7 @@ Keeping a codebase one that an agent can keep working in: its documents true to 
 | "Make an ad for this product." [`higgsfield-shorts-ad`](../marketing/skills/higgsfield-shorts-ad/). A fresh run with no reference reached the plan and cost checkpoint (2026-10); the production phases of this version are untried. | marketing | Higgsfield | done |
 | "Research the ads running for this keyword." [`meta-ad-library-creative-research`](../marketing/skills/meta-ad-library-creative-research/). A fresh run on the US market reached the delivery (2026-10); the KR market, the driven-browser route and a shell without ffmpeg are untried. | marketing | Meta Ad Library | done |
 | "Post this short to TikTok." With a trending sound where one fits, through the connected account. | marketing | Higgsfield's TikTok tools | candidate |
-| "Run a campaign on this creative." Campaign, ad set and ad from a finished creative, the budget estimated and gated, the results read back. | marketing | Meta Marketing API | candidate |
+| "Connect Meta ads and run them." The site's measurement, the datasets and the domain, the ad accounts and spend, campaigns from finished creatives in the shape a working account runs them, created paused and activated after the budget is confirmed, and the rules by which they are watched. [`meta-ads-setup`](../engineering/skills/meta-ads-setup/). Written from working ad accounts' structure read through the API and their operators' practice (2026-10); its fresh run is next. A marketing-only skill that runs a campaign on an account already wired stays a candidate. | engineering | Meta Marketing API | next |
 | "Make product-shot and UGC ads from these product images." | marketing | Higgsfield ads studio | candidate |
 | "Write the launch posts and the launch email." A series for the channels the product uses. | marketing | Open | candidate |
 
@@ -91,6 +92,7 @@ The `support`, `operations` and `data` areas are created with their first skills
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
+| "Give me an admin to watch sales and ads." A separate Worker only the operator can open, behind Cloudflare Access, with the funnel, the orders, the campaigns and their controls, the costs, the system's health, an audit log and a daily digest. [`cloudflare-admin-dashboard`](../engineering/skills/cloudflare-admin-dashboard/). Designed from an operator's threat model and the monitoring operators do by hand (2026-10); its fresh run is next. | engineering | Cloudflare | next |
 | "Give me this week's numbers." A readout from the product's analytics and the stores against last week, with what moved and why it might have. | data | GA4 or PostHog, App Store Connect, Google Play Console | candidate |
 | "Answer the store reviews." Replies in the product's voice, grouped by what they report, with the bugs filed. | support | App Store Connect and Google Play Console | candidate |
 | "Write the support macros." From the tickets that repeat. | support | Intercom or Zendesk | candidate |

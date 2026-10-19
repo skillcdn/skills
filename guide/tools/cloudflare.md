@@ -1,6 +1,6 @@
 # Cloudflare skills
 
-How the skills that build for and deploy to Cloudflare (`cloudflare-…`) are written and kept in step, for authors. What they share at run time is the document set [`engineering/docs/cloudflare/`](../../engineering/docs/cloudflare/README.md), which agents read; this page says what goes there, what stays in a skill, and how the family is tested.
+How the skills that build for, deploy to and operate on Cloudflare (`cloudflare-…`) are written and kept in step, for authors. What they share at run time is the document set [`engineering/docs/cloudflare/`](../../engineering/docs/cloudflare/README.md), which agents read; this page says what goes there, what stays in a skill, and how the family is tested.
 
 ## The tool is the account, the CLI and the documentation
 
@@ -13,14 +13,19 @@ The skills drive a shell with Wrangler through `npx`, the Cloudflare REST API th
 | `tokens.md`: the two token kinds, the dashboard steps, the permission list with what each is for, verification, storage, the sign-in fallback | What the skill asks the user for at intake, and when |
 | `platform.md`: the runtime's limits, the configuration keys, bindings and secrets in code, the framework paths, the plans | The structure a new app gets, the pieces the build adds, the agreement it writes |
 | `automation.md`: what the token does with the command for each, what a person does once in the dashboard | The order of the phases, what each verifies, what fails and what to do (`references/resources.md`), and the stops |
+| `access.md`: what Access is, the one-time setup, protecting a Worker, verifying the token at the origin, service tokens, the token permissions | The admin's security design (`references/security.md`), its panels and its code |
 
 The test for a sentence: would it be true for the next skill of the family (a skill that moves a site to Cloudflare, one that adds a cron Worker, one that sets up email)? Then it belongs in the set. A sentence that holds for one skill's phase stays in that skill's reference; how a tool behaved in that phase goes in its `references/tool-notes.md`.
 
-The set sits in the area's `docs/` because both skills are engineering skills: it travels with the engineering mount and plugin; a skill mounted alone cannot read its linked pages, and a copy lacks all of them, which each skill's Requirements say. The deploy skill includes `tokens.md` and `automation.md`; the new-app skill includes `platform.md`; the rest is linked from the phase that reads it. A change to an included page changes the served digest of the skill that includes it: edit deliberately.
+The set sits in the area's `docs/` because all three skills are engineering skills: it travels with the engineering mount and plugin; a skill mounted alone cannot read its linked pages, and a copy lacks all of them, which each skill's Requirements say. The deploy skill includes `tokens.md` and `automation.md`; the new-app skill includes `platform.md`; the admin skill includes `access.md`; the rest is linked from the phase that reads it. A change to an included page changes the served digest of the skill that includes it: edit deliberately.
 
 ## The seam between the two skills
 
 The new-app skill hands over at its launch phase with the project path, the token, the domain answer, the secrets by name (generated or held by the user, with the steps for each) and the repository answer; the deploy skill stays general and takes any project with a Wrangler configuration or a framework the platform page names. A change to what the deploy skill asks at intake is mirrored in the new-app skill's intake, so that the user is asked once; a change to the agreement's deploy section (`DEPLOY.md`) is made in the deploy skill, which writes it.
+
+## The admin's seams
+
+The admin skill reads the project, not the other skills: `docs/payments.md` (written by `stripe-payments`) and `docs/ads.md` (written by `meta-ads-setup`) tell it which panels apply and what each shows, and `docs/admin.md` (written by the admin skill) tells a later integration how to add its panel. A change to what a panel shows is made in the skill that writes the spec; a change to the panel contract in the admin skill. The admin's data pages of other families (`engineering/docs/stripe/ledger.md`, `engineering/docs/meta-marketing-api/monitoring.md`) are linked, not included, so that the admin's served digest does not change when those families' pages do.
 
 ## Facts are dated
 
