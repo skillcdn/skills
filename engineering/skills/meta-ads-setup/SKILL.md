@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project, network access to graph.facebook.com, a Meta business portfolio with an ad account, a Page and the system user tokens the user creates, the project deployed with cloudflare-deploy (its address, its token file) for the live events and the domain, and finished creative files for the campaign phase. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: meta-marketing-api
 skillcdn:
   include:
@@ -110,7 +110,7 @@ One message: what the site now measures and how to see it (Events Manager, the t
 
 1. The admin token stays on the machine and out of the repository, the logs and the agent's own words: read from its file into the environment, sent in a header and never in a URL, never set on a Worker, revoked by the user when the campaign work from this machine ends. A leak means revoking it in Business settings, which the user is told at once.
 2. Nothing is turned on without the budget in front of the user and their word: a campaign is created paused with a spend cap, an activation and a budget increase are confirmed in every mode, and an automated rule may pause and lower but never raise.
-3. Nothing private goes to Meta: no name, nothing typed into a form, no content the visitor made or received, no page URL with a bearer key; a zero-amount order and an opted-out visitor send nothing, and in a consent-first market nothing is sent before the visitor opts in; what is sent is listed in the privacy policy.
+3. Nothing private goes to Meta: no name, nothing typed into a form, no content the visitor made or received, no page URL with a bearer key and no field that carries one (an event id is never the key of a private page); a zero-amount order and an opted-out visitor send nothing, and in a consent-first market nothing is sent before the visitor opts in; what is sent is listed in the privacy policy.
 4. One dataset per market, one token per dataset, and no fallback: an event for a market without its dataset and its own token is dropped, because a market's learning must not be fed another's visitors and a public site must never hold the business's admin token.
 5. The site's own numbers decide money: cost per paid order and ROAS are computed on the site's orders and settled revenue, with Meta's attributed figures beside them, never instead of them.
 6. A budget moves by at most 20 percent a day and one thing of an ad set changes per day, because larger or combined changes send the ad set back into learning and blur the next day's reading.
