@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of a project that runs on Cloudflare Workers with a D1 database, the Cloudflare API token the deploy skill uses, network access to the Cloudflare API, and a person who can enable Cloudflare Access in the dashboard once. The read-only keys of the integrations the admin shows are created by that person; a chat bot token is optional, for alerts. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: cloudflare
 skillcdn:
   include:
@@ -69,7 +69,7 @@ Each phase produces a named artifact and ends with one line to the user. The Wor
 
 ### Phase 1: Inventory
 
-Produces the **inventory**: the Worker's name and account from the project's configuration and `DEPLOY.md`; the database id; the tables and columns the funnel's moments map to, the orders, events and entitlements tables when payments exist, the spend and attribution tables when ads exist, the usage table when the project logs model calls; the cache tables the project already has (named in `docs/payments.md` and `docs/ads.md`) and the ones the admin will add; which secrets each Worker holds and the ones the admin needs instead; whether `admin/.dev.vars` is ignored (`git check-ignore -q admin/.dev.vars`), else the `.gitignore` line is added first, as a shown change; the time zone; any switch found in the public code that unlocks paid content or bypasses a payment, any admin key in the public Worker's secrets and any password page, reported as findings; and the panels that apply by [panels.md](references/panels.md) "Which panels apply". The questions of "Inputs" go out after it, in one message.
+Produces the **inventory**: the Worker's name and account from the project's configuration and `DEPLOY.md`; the database id; the tables and columns the funnel's moments map to (a moment with no record, such as a visit or the first view of a result, gets a small addition to the public site named in the plan: a daily counter by page group with no cookie, or a timestamp column), the orders, events and entitlements tables when payments exist, the spend and attribution tables when ads exist, the usage table when the project logs model calls; the cache tables the project already has (named in `docs/payments.md` and `docs/ads.md`) and the ones the admin will add; which secrets each Worker holds and the ones the admin needs instead; whether `admin/.dev.vars` is ignored (`git check-ignore -q admin/.dev.vars`), else the `.gitignore` line is added first, as a shown change; the time zone; any switch found in the public code that unlocks paid content or bypasses a payment, any admin key in the public Worker's secrets and any password page, reported as findings; and the panels that apply by [panels.md](references/panels.md) "Which panels apply". The questions of "Inputs" go out after it, in one message.
 
 ### Phase 2: Plan
 

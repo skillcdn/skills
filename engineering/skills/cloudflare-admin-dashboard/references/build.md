@@ -4,7 +4,7 @@ What the build phase writes under `admin/`, how it is run locally, tested and de
 
 ## Stack
 
-A plain Worker, no framework adapter: Hono for routing and server-rendered pages with its JSX (`hono/jsx`), `jose` for the Access token, D1 through the binding, Wrangler's bundler straight from TypeScript (no build step of its own). The packages are added to the project's root `package.json` (one lockfile, one install) at the version the registry resolves (`npm view hono version`), pinned; `tsx` as a dev dependency runs the tests. No client framework: a few hundred lines of the admin's own script for confirmations and tabs, one stylesheet, inline SVG charts. The reason: the admin is a dozen server-rendered screens that read a database; a framework would add a build, a client bundle and an update treadmill for nothing the operator sees.
+A plain Worker, no framework adapter: Hono for routing and server-rendered pages with its JSX (`hono/jsx`) or its `html` template tag (`hono/html`, which escapes values the same way and needs no JSX build for the tests), `jose` for the Access token, D1 through the binding, Wrangler's bundler straight from TypeScript (no build step of its own). The packages are added to the project's root `package.json` (one lockfile, one install) at the version the registry resolves (`npm view hono version`), pinned; `tsx` as a dev dependency runs the tests. No client framework: a few hundred lines of the admin's own script for confirmations and tabs, one stylesheet, inline SVG charts. The reason: the admin is a dozen server-rendered screens that read a database; a framework would add a build, a client bundle and an update treadmill for nothing the operator sees.
 
 ## Files
 

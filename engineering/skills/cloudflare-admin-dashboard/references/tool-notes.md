@@ -16,6 +16,9 @@ By topic, in the order a run meets them. A fact that can go stale names where it
 - A scheduled handler has the Worker's CPU limit per invocation; a sync that reads many pages keeps its calls sequential per account and its writes in batches, and `waitUntil` after a response is good for about thirty seconds, which is too short for a long sync (seen 2026-09).
 - A CLI secret change on a Worker that Workers Builds deploys can roll the live code back to the version active at that moment; the deploy status is checked after each change (seen 2026-09).
 
+- A project on Cloudflare's typed configuration (`cloudflare.config.ts`, the `cf` CLI) takes `wrangler` as a dev dependency for the admin; the two coexist, each with its own configuration file (seen 2026-10).
+- `GET /user` with the deploy skill's user token answers the account owner's email, which served as the operators' list when the user said "me", written straight into `admin/.dev.vars` and never shown (seen 2026-10).
+
 ## Dashboards in production
 
 - Figures bucketed by UTC in one place and by the business day in another made two tabs disagree by a day; one zone in one helper used everywhere was the fix (seen 2026-09).

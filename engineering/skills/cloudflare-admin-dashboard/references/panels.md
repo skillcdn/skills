@@ -17,7 +17,7 @@ The plan names the set; a panel the project cannot feed is not built and `docs/a
 
 ## Overview
 
-Today so far, yesterday, the last 7 days and the last 30, each against the same window a week earlier: visits (the first moment), the paid step's count, conversion between the first and the last moment, paid orders and their revenue (orders table, excluding zero-amount orders), settled net revenue (the ledger cache), ad spend and net profit (revenue net minus spend minus costs) when the caches exist, ROAS on the site's revenue. A line of what needs attention from the alert rules. "Today" is the business day in the operator's zone; a figure with no data yet shows a dash and the date counting started.
+Today so far, yesterday, the last 7 days and the last 30, each against the same window a week earlier: visits (the first moment; a project with no visits table gets a daily counter by page group, written in the background by the public site's request handler with no cookie and bots excluded, as a shown addition of the plan), the paid step's count, conversion between the first and the last moment, paid orders and their revenue (orders table, excluding zero-amount orders), settled net revenue (the ledger cache), ad spend and net profit (revenue net minus spend minus costs) when the caches exist, ROAS on the site's revenue. A line of what needs attention from the alert rules. "Today" is the business day in the operator's zone; a figure with no data yet shows a dash and the date counting started.
 
 ## Funnel
 
