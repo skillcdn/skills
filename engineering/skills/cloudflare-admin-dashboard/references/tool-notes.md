@@ -5,7 +5,7 @@ By topic, in the order a run meets them. A fact that can go stale names where it
 ## Access
 
 - Every Access API call on an account without a Zero Trust organization answers `access.api.error.not_enabled` with the instruction to enable Access in the dashboard; the organization is created by a person, and the API token needs the Access rows before it can read the applications (seen 2026-10).
-- The per-Worker setting (Workers & Pages > the Worker > Settings > Domains & Routes > Enable Cloudflare Access) covers every hostname of the Worker and creates a reusable policy named `<worker-name> - Production`; preview URLs share one policy across the account (Workers changelog, 2025-12; checked 2026-10).
+- The per-Worker setting lives on the Worker's own Access tab (Workers & Pages > the Worker > Access > Protect this Worker with Access), not under Settings; its dialog defaults to "Preview only", which leaves the production address public, so "All traffic" is chosen for an operator's Worker; the tab then shows the AUD tag and the JWKS URL, and enabling it on an account with no Zero Trust organization created one (seen 2026-10).
 - The token arrives in `Cf-Access-Jwt-Assertion`; the cookie is not guaranteed on every request, so the guard reads the header only.
 
 ## Workers and D1

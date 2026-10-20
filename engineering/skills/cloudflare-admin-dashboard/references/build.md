@@ -70,7 +70,7 @@ Worker `<project>-admin` at https://<name>-admin.<subdomain>.workers.dev, bound 
 Secrets (set with `npx wrangler secret bulk <file> --config admin/wrangler.jsonc`, mirrored in `admin/.dev.vars` except the Access pair): <names, generated or from where>.
 Migrations: `admin/migrations/`, applied with `npm run db:migrate:admin:remote` before deploying code that needs them.
 Deploys: <Workers Builds connection for admin/ | `npm run deploy:admin`>. Cron: hourly syncs, digest at <hour> <zone>.
-Operators: the Access policy (Workers & Pages > the Worker > Settings > Domains & Routes > Manage Cloudflare Access) and the secret `ADMIN_OPERATORS` on the admin Worker, kept the same; the addresses are not written in the repository.
+Operators: the Access policy (Workers & Pages > the Worker > the Access tab > Manage Access) and the secret `ADMIN_OPERATORS` on the admin Worker, kept the same; the addresses are not written in the repository.
 ```
 
 ## `docs/admin.md` template
