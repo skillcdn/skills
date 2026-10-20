@@ -32,7 +32,7 @@ What goes in: documents a person has, in whatever formats, and a repository they
 
 | What | Used for |
 |---|---|
-| A shell with git and Node.js in a checkout of the target repository | The layout, the files, `npx @skillcdn/cli check`, the commit. |
+| A shell with git and Node.js in a checkout of the target repository; Node.js 24 or newer for the check, which asks for it (checked 2026-10) | The layout, the files, `npx @skillcdn/cli check`, the commit. |
 | What converts each format on this machine, found at run time ([conversion.md](references/conversion.md) says how to look) | Turning each source into Markdown. A format nothing converts is reported, never guessed at. |
 | The agent's own vision model | Describing a figure and reading a scanned page, written as text beside the image. |
 | Optional: the SkillCDN connection to the repository, or the `skillcdn` command on a directory | Trying the pack as an agent will meet it, before and after the push. |
@@ -94,9 +94,9 @@ Produces the **described pack**: every file with its front-matter, every set wit
 
 Produces the **check report**.
 
-1. `npx @skillcdn/cli check` in the checkout until it prints `ok: no index diagnostics`. Read the documents it lists with their section counts: a document with no sections has no headings and is read whole; a document named as too large to search is split. Read the instructions a client is told on connect: they quote the manifest's description.
+1. `npx @skillcdn/cli check` in the checkout until it prints `ok: no index diagnostics`. Read the documents it lists with their section counts: a document with no sections has no headings and is read whole; a document named as too large to search is split. Read the instructions a client is told on connect: they quote the manifest's description. The section counts, the sections in a search result and the matching of Korean, Japanese and Chinese words by their parts need the command from version 0.4.0 on; an older command lists the documents without counts, names the document alone in a search, and finds such a word only in the form the text uses (checked 2026-10).
 2. Where the repository has a check of its own (`node scripts/check.mjs` in a fork of the reference pack), run it too.
-3. Where the `skillcdn` command is at hand, `skillcdn find <directory> <words>` for three questions the documents answer, in the pack's language: each should name the document and the section that answers, and `skillcdn file <directory> <path> --offset <n> --limit <n>` with the numbers the result gave should read that section. A question that finds nothing is a title, a description or a heading that does not say what the text says: fix the words.
+3. Where the `skillcdn` command is at hand, `skillcdn find <directory> <words>` for three questions the documents answer, in the pack's language, one of them in each language the pack has: each should name the document and the section that answers, and `skillcdn file <directory> <path> --offset <n> --limit <n>` with the numbers the result gave should read that section. With an older command, which names the document alone, find the section by the headings of the file. A question that finds nothing is a title, a description or a heading that does not say what the text says: fix the words.
 
 Checkpoint, skipped on a go-ahead: the tree of the pack, the counts, the check's last line, the three questions and what each found.
 

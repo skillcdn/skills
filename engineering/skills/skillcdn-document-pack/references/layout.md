@@ -78,7 +78,7 @@ Everything a workspace owner, dispatcher or technician needs, one document per t
 | api/README.md | The REST API: authentication, jobs, customers, pagination and limits. |
 ```
 
-Write each document's name as a link to its file, so that a person reading the map on the git host opens it too. A map is read by an agent before it searches, and shown as the folder's introduction; it is not searched as a document itself, so the line of a document says what the document's title and description say, not more.
+Write each document's name as a link to its file, so that a person reading the map on the git host opens it too. A map is read by an agent before it searches, and shown as the folder's introduction. A map under a document root is also a document of its own, found by its words: keep the line of a document to what the document's title and description say, not more, so that the map does not outrank the document it points to. The map at the root of the pack also points to the folders written in other languages, in a sentence, so that an agent reading the English map knows the Korean documents exist and how to search them.
 
 ## Manifests
 

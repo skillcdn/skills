@@ -44,4 +44,4 @@ source: research note, 2026-10
 
 ## The map and the manifest
 
-The notes set has a `README.md` with one line per note, like every set; a new note adds its line. A new notes set is added to the `documents` of the manifest that governs it, when the root is not the default `docs` next to the manifest. The commit follows the repository's agreement; a push to the default branch is served within minutes, and the note is found by the next run.
+The notes set has a `README.md` with one line per note, like every set; a new note adds its line. A new notes set is also a line in the map of the set it sits under (`docs/README.md` for `docs/notes/`), as any subfolder with a map is, so that a person reading the map finds the notes; and it is added to the `documents` of the manifest that governs it when the root is not the default `docs` next to the manifest. The commit follows the repository's agreement; a push to the default branch is served within minutes, and the note is found by the next run.

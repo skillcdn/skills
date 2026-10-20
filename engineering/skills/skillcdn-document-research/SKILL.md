@@ -98,7 +98,7 @@ Produces the **note**, when the user owns the repository ([notes.md](references/
 
 ## Hard rules
 
-1. Every finding is quoted from a section that was read, with its path and heading path. An excerpt in a search result is a pointer, not evidence.
+1. Every finding is quoted from a section that was read, with its path and heading path, and checked against the text word for word before the answer is written. An excerpt in a search result is a pointer, not evidence.
 2. The pack is the source. What it does not say is said to be not said; nothing is filled in from memory or from outside the pack unless the user asks for it and the answer marks it as such.
 3. Search in the pack's language, with its words; three searches that find nothing end the search, and the answer says what was tried.
 4. Sections are read by their offset and limit; a whole document is read only when the question is about the document.
