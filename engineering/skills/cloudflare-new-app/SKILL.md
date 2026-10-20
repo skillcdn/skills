@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.8"
+  version: "1.9"
   tools: cloudflare
 skillcdn:
   include:
@@ -36,6 +36,7 @@ What goes in: an idea in the user's words and the answers to a few plain questio
 | Optional: a browser the agent can drive, or a screenshot tool | Looking at the pages at the design checkpoint and for the layout verdicts; without one, the user looks at the local address on a phone-width window and the layout verdicts are reported as not run |
 | Optional: a design skill the host has installed (one that reviews or crafts interfaces) | The look; without one, [stack.md](references/stack.md) "The look" carries the method |
 | For the launch: what `cloudflare-deploy` requires (the token, the account) | Prepared at intake so that the launch does not wait |
+| When the app writes text with AI: a Gemini API key the user creates ([stack.md](references/stack.md) "AI text") | The model calls in development; the deploy skill sets it on the Worker; without it the app runs on its fallback text and the delivery says so |
 
 Check these before the first message. Without Node.js or git, stop and say what to install. Without network, stop: nothing can be scaffolded.
 
@@ -50,7 +51,7 @@ The Cloudflare skills share the area's document set [`engineering/docs/cloudflar
 | Sign-in, and how | Asked; the default is Google, no sign-in when nothing is kept per person |
 | The domain: owned, to buy, or none yet | Asked; none yet is the default |
 | The look: a site they like, colors, a mood, or "propose one" | Asked; the default is a proposal |
-| Everything else | Derived and shown in the plan: the app's name and folder, the pages (with the ones every app gets), the data, the stack and its adapter (platform.md), the structure (stack.md), the brand files, analytics, the team facts (who works in the repository, the language of its documents), what the user prepares for the launch |
+| Everything else | Derived and shown in the plan: the app's name and folder, the pages (with the ones every app gets), the data, the stack and its adapter (platform.md), the structure (stack.md), the AI model with its price per call and its daily cap when the app writes text (stack.md "AI text"), the brand files, analytics, the team facts (who works in the repository, the language of its documents), what the user prepares for the launch |
 
 The questions are written in intake.md, in the words to use; intake.md also says what each answer derives and holds the plan message.
 
@@ -78,7 +79,7 @@ Produces the **app**. In this order, each step reported in a line and verified b
 2. The structure of stack.md: the single sources (`config/i18n.ts`, `config/site.ts` with the site URL read from the public build variable, `config/features.ts`), the platform access module, the folders, the database entry with its placeholder id.
 3. Localization as [localization.md](references/localization.md) says: the locale list, the dictionaries typed for completeness, the routing, per-locale metadata, formatting, the switcher.
 4. The pages of the brief on the tokens, mobile-first (stack.md "Mobile first"), with the shell (header, footer, switcher, sign-in state).
-5. The data: the first migration, a module per entity under `lib/db/`, applied locally; when the brief asks for sample content (a demo, a mockup's figures), `db/seed.sql` as stack.md says, applied locally and named in the handover.
+5. The data: the first migration, a module per entity under `lib/db/`, applied locally; the AI module as stack.md "AI text" says when the app writes text (the model chosen from the list and recorded with its price in `docs/decisions.md`, the key read from the local secrets file, the shape check, the fallback, the daily cap); when the brief asks for sample content (a demo, a mockup's figures), `db/seed.sql` as stack.md says, applied locally and named in the handover.
 6. Sign-in as [auth.md](references/auth.md) says: the core action works for a guest on this device, sign-in claims it, and the provider stays off until its keys exist. Generate the local `SESSION_SECRET` into `.dev.vars` here (never shown), so that the dev server signs sessions without a warning, and, when the app has an operator screen, `ADMIN_SECRET` and `ADMIN_PASSWORD`, the password also written to a file in the folder above the project so that the user can open the screen locally; the deploy skill generates the live ones.
 7. Search and AI readiness, the share image and the favicon set, analytics with its slot for the beacon token, as [seo-geo.md](references/seo-geo.md) says. The rendered share image and icons are looked at with the host's image reading (a PNG opened with the file tool), browser or not.
 8. Tests: the dictionary test, the boundary test where the framework has a server and client split, a test per pure module that holds a rule; `npm run check` passes.

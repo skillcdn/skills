@@ -35,3 +35,11 @@ By topic, in the order a run meets them. A fact that can go stale names where it
 - `npm run check` fails with `EBUSY` on `dist/client` while a local `wrangler dev` of the built output is still running; stop that server before the check (seen 2026-10). Stopping a backgrounded `npm run dev` or `npm run start` can leave child `node` and `workerd` processes holding the port and `dist/`; find them by port or name and end them by PID (seen 2026-10).
 - Biome's `noDescendingSpecificity` rule flags a stylesheet ported from a mockup; turn the rule off for that file rather than reorder working CSS (seen 2026-10).
 - On Windows, Git Bash rewrites an argument that starts with `/` into a Windows path (a `/path` label in a curl loop comes out mangled; `MSYS_NO_PATHCONV=1` or a leading `//` stops it), and Node's `fetch` to `localhost` resolves to `::1` while the local Worker listens on `127.0.0.1`: use the numeric address (seen 2026-10).
+
+## AI
+
+- Workers AI has no local simulation: the dev server of a typed-configuration project refused to start with an AI binding and no `CLOUDFLARE_API_TOKEN`, and a token without the Workers AI permission still deploys the binding but cannot run it locally, so no real answer was seen before the first deploy (seen 2026-10).
+- A model that reasons by default (Gemma on Workers AI) spent its whole output budget thinking and answered nothing (`finish_reason` `length`) until thinking was turned off; every reading fell back to the stock text for a day before telemetry showed why (seen 2026-10).
+- Gemini's models list names text and speech models alike, and a generation may have a Flash with no Flash-Lite for text; filter by the supported generation methods and read the names before choosing (seen 2026-10).
+- A Flash-Lite model whose thinking cannot be turned off runs with the lowest thinking level and a larger output budget; the price per call stayed near a fifth of a cent for a reading (seen 2026-10).
+- The pricing page lists a price change with its date for some models; the plan quotes the price of the day and the date it changes (seen 2026-10).

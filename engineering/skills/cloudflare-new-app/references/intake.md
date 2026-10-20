@@ -11,7 +11,7 @@ The questions are asked in one message, in plain words, only where the request l
 5. **The look.** "How should it feel? A site you like, a few colors, a mood in two or three words, or I propose a look." Default: a proposal from the idea and the audience.
 6. **Must-haves.** "Is there anything it must do from day one that I have not mentioned, such as taking payments, sending emails, or a page people already expect?" Default: none.
 
-Then, in a second message, so that the questions stay short: "While I plan, you can create the Cloudflare key I will need to put it online: [the steps of tokens.md with its always rows; add the Registrar row if you want me to buy a domain]. Save it in a file named `.cf-token` in this folder (I move it into the project when the project exists) and tell me; that keeps it out of this chat."
+Then, in a second message, so that the questions stay short: "While I plan, you can create the Cloudflare key I will need to put it online: [the steps of tokens.md with its always rows; add the Registrar row if you want me to buy a domain]. Save it in a file named `.cf-token` in this folder (I move it into the project when the project exists) and tell me; that keeps it out of this chat. If the app writes text with AI, also create a Gemini API key (Google AI Studio > Get API key, with billing turned on so that your visitors' inputs are not used to improve Google's products) and save it as one line in a file named `.gemini-key` here; it becomes the project's `GEMINI_API_KEY`."
 
 ## What the answers derive
 
@@ -26,6 +26,7 @@ Then, in a second message, so that the questions stay short: "While I plan, you 
 | The look | Palette, type per script, radius, motion, tone; the symbol for the favicon and share image | "Calm, warm, serif headings" |
 | Must-haves | Payments: a later phase on the launched project, done by `stripe-payments`, never in the first commit; ads: `meta-ads-setup` after the launch; an operator's screen beyond a password page: `cloudflare-admin-dashboard`; email: the sender and the plan it needs (platform.md); a page: added to the pages | Named in the plan, with the skill that does it later |
 | The user's language | The language of the project's documents (brief, brand, agreement, status); code, identifiers and commit messages stay in English | "Documents in <language>, code in English" |
+| The idea, when the app writes text (readings, answers, summaries, descriptions) | Gemini as the provider (stack.md "AI text"): the newest Flash-tier model from the models list, chosen for cost, with its price per call and a daily cap; the key the user creates, billing on; the quality check and the fallback text; a free tier of the app's own when the plan has one | "Written by Google's Gemini (<model>), about <price> per <unit>, at most <n> a day; you create the key, I show where" |
 | The team | Who will work in the repository (the user, developers, a planner, a designer), from the request; the user alone when nobody is named; it shapes the agreement's roles section | "You, for now" |
 | An action only the operator does (posting, approving, removing) | An operator screen (`/admin`) behind `ADMIN_PASSWORD`, generated locally and handed over as a file (SKILL.md phase 4, step 6); who the operator is comes from question 1 | "You manage the schedule at /admin" |
 
