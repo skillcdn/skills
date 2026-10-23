@@ -1,0 +1,47 @@
+{
+  "audience": { "scope": "domestic", "market": "<country or region>", "language": "<language tag>" },
+  "topic": { "line": "<the story in one line>", "picked_on": "0000-00-00" },
+  "angle": {
+    "text": "<the interpretation in one sentence>",
+    "source": { "outlet": "example-outlet", "date": "0000-00-00", "url": "https://example-outlet.example/article", "sentence": "<the article's sentence, quoted>" },
+    "also_in": [{ "outlet": "example-outlet-2", "date": "0000-00-00" }]
+  },
+  "headline": "<a working headline in the angle's words, or from the leading fact>",
+  "facts": [
+    {
+      "id": "f1",
+      "text": "<one sentence, absolute date, unit>",
+      "kind": "number",
+      "source": { "outlet": "example-outlet", "date": "0000-00-00", "url": "https://example-outlet.example/article", "sentence": "<the article's sentence>" },
+      "also_in": [{ "outlet": "example-outlet-2", "date": "0000-00-00" }],
+      "single_source": false
+    }
+  ],
+  "disagreements": [
+    { "about": "<what>", "values": [{ "value": "<a>", "outlet": "example-outlet" }, { "value": "<b>", "outlet": "example-outlet-2" }], "used": "<a>", "reason": "<quotes an official release>" }
+  ],
+  "unverified": [
+    { "item": "<a handle for a mention>", "looked_for": "<where>" }
+  ],
+  "images": [
+    {
+      "file": "img/example-outlet_subject.jpg",
+      "caption": "<as printed>",
+      "credit": { "agency": "<agency>", "photographer": "", "outlet": "example-outlet", "date": "0000-00-00" },
+      "url": "https://example-outlet.example/path/to/image.jpg",
+      "px": { "w": 1200, "h": 800 },
+      "watermark": "none seen",
+      "licence": { "terms": "none stated", "modification_allowed": "unknown" },
+      "role": "cover",
+      "notes": ""
+    }
+  ],
+  "candidates": {
+    "shown": [{ "rank": 1, "line": "<what happened>", "angle": "<one line>", "why_now": "<movement>", "articles": ["example-outlet 0000-00-00"], "images": "<note>", "recommended": true }],
+    "excluded": ["<a story the account already posted, or none>"]
+  },
+  "beats": [
+    { "order": 1, "facts": ["f1"], "image_role": "cover", "note": "<what this beat does>" }
+  ],
+  "articles_read": [{ "outlet": "example-outlet", "author": "<name or empty>", "date": "0000-00-00", "time": "00:00", "url": "https://example-outlet.example/article", "kind": "report" }]
+}

@@ -1,0 +1,27 @@
+# The topic brief
+
+The topic brief is one story made ready to be built: who it is for, the angle as a published interpretation, every fact with the sentence it comes from, where sources disagree, what could not be verified, and the images with their credits, sizes and licence terms. The research skill writes it as a JSON file (`topic-brief.json`) in a brief folder that also holds `img/` (the downloaded images), `credits.md` (one line per image in the credit line's pattern), `facts.md` (the facts table) and `candidates.md` (the list the user picked from); the build skill reads the JSON and `credits.md` and writes nothing on a slide that is not in them. The example JSON the research skill ships is the shape; this page says what each field means. A fact the build needs and the brief lacks goes back to the research, never onto a slide from memory.
+
+## Fields
+
+| Field | Holds | Comes from |
+|---|---|---|
+| `audience` | `scope` (domestic or global), `market` (the country or region the readers are in) and `language` (the post's language). | The user, asked once for the half the request leaves open. |
+| `topic` | The story in one line, as the user picked it, and the day of the pick. | The candidate list checkpoint, or the request. |
+| `angle` | The interpretation the post runs on, as one sentence in the agent's words, with the outlet, the date, the URL and the quoted sentence of the article that states it, and the other articles that share it. An angle without a quoted sentence is not an angle; a story with none yet says so and the post stays a report. | Two or more articles that frame the story the same way; the one that states it best is quoted. |
+| `headline` | A working headline in the angle's words, or from the leading fact when there is no angle; a starting point for the build. | The research skill. |
+| `facts` | One entry per fact: `id`, the fact in one sentence in the post's language, `kind` (number, date, place, quote, event, claim), `source` (outlet, date, URL, the article's own sentence), `also_in` (the other articles that carry it), `single_source` (true when no other article read carries it). | The article bodies, read in full. |
+| `disagreements` | A fact that two articles give differently: both values, both sources, which the brief uses and the reason. | The cross-check. |
+| `unverified` | What the post would like to say and no article confirmed: an account handle for a mention, an official notice, a figure found only in a search summary; each with where it was looked for. Listed so that the user checks before publishing. | The gaps the research met. |
+| `images` | One entry per image: `file`, `caption` as the article printed it, `credit` (agency, photographer where named, the outlet it appeared in, the date), `url`, `px` (width, height), `watermark` (where a logo or a credit mark sits), `licence` (the terms the publisher states; `modification_allowed` true, false or unknown), `role` (cover, subject, mood, detail), `notes` (a horizontal image that loses a subject when cropped to portrait; a share image credited to its outlet). | The articles read, their figures and captions; the files on disk. |
+| `candidates` | `shown`, the list at the checkpoint, each with its one-line angle, why it is timely, the articles that carry it, its rank and whether it was the recommended one; and `excluded`, what the account had already covered, or none. | The candidate phase. |
+| `beats` | A suggested order of five to eight beats, each naming the fact ids it would carry and an image role, as a starting point for the build. Not the script. | The research skill's reading of the story. |
+| `articles_read` | Every article read in full: outlet, author where named, date and time, URL, and its kind (report, analysis, interview). | The reading. |
+
+## How the build reads it
+
+Every sentence the build writes names the fact ids it rests on; a note slide's lines name the image caption or the quoted source sentence they come from; the headline rests on `angle` or `headline`; the caption's first paragraph carries the facts with their dates and the outlets, and its credit line is `credits.md`, rewritten in the spec's pattern when the two differ. Mentions come only from a fact that carries a handle with its source; anything in `unverified` goes to the pre-publish checklist. An image whose `licence.modification_allowed` is false is used whole, with no crop, dim or overlay, or not at all; one marked unknown is used as the account uses news photographs, with its credit, and the delivery says so. `beats` is the starting order of the build's plan.
+
+## Example
+
+The research skill ships [`topic-brief.example.json`](../../skills/web-cardnews-topic-brief/assets/topic-brief.example.json) with placeholder values in this shape.

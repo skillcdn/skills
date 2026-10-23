@@ -1,0 +1,84 @@
+{
+  "account": { "handle": "example-account", "read_on": "0000-00-00", "visible_posts": 12, "posts_read": 4 },
+  "categories": [
+    { "name": "<category in the account's words>", "share": 0.5, "example": "<a caption's first line, to identify the post>" }
+  ],
+  "cadence": "<posts per day or week, counted>",
+  "canvas": {
+    "ratio": "4:5",
+    "documented_size": { "width": 1080, "height": 1350, "looked_up": "0000-00-00" },
+    "slides_per_post": { "min": 5, "max": 8, "typical": 7 }
+  },
+  "cover": {
+    "photo": "full-bleed, gradient over the lower part to about 80% black (estimate)",
+    "label": { "kind": "<a series label, a sponsor>", "color": "#RRGGBB", "weight": 800, "italic": true, "size_px": 30, "position": "bottom-left above the headline", "estimate": true },
+    "headline": { "lines": 2, "chars_per_line": { "typical": 10, "range": [7, 13] }, "weight": 800, "size_px": 72, "color": "#RRGGBB", "style": "news title", "estimate": true }
+  },
+  "slide_types": [
+    {
+      "name": "story",
+      "anatomy": { "photo": "full-bleed, gradient at the bottom", "sub": { "lines": 1, "size_px": 46, "weight": 800 }, "body": { "size_px": 31, "weight": 400, "line_height": 1.62 }, "position": "bottom-left", "estimate": true },
+      "carries": "one beat of the story in three sentences",
+      "seen_in": ["<post id>", "<post id>"]
+    },
+    {
+      "name": "note",
+      "anatomy": { "photo": "full-bleed, gradient at the top when the photo is bright there", "note": { "face": "serif", "lines": { "min": 2, "max": 4 }, "size_px": 34, "position": "top-right, right-aligned" }, "estimate": true },
+      "carries": "a mood or a quote, no fact",
+      "seen_in": ["<post id>"],
+      "tentative": true
+    },
+    {
+      "name": "lead",
+      "anatomy": { "sub": { "lines": 2, "size_px": 54 }, "body": { "lines": { "min": 1, "max": 2 }, "size_px": 28 }, "tag": "source, top-right, small", "estimate": true },
+      "carries": "one item of a list, with its source",
+      "seen_in": ["<post id>"],
+      "tentative": true
+    },
+    {
+      "name": "poster",
+      "anatomy": { "type": "large display type on a dim photo", "carries_date": true, "estimate": true },
+      "carries": "a date range or a list of places",
+      "seen_in": ["<post id>"],
+      "tentative": true
+    },
+    {
+      "name": "collage",
+      "anatomy": { "photo": "two photos stacked", "sub_and_body": "as story" },
+      "carries": "two related images with one beat",
+      "seen_in": ["<post id>"],
+      "tentative": true
+    }
+  ],
+  "density": {
+    "story": { "sub_chars": { "typical": 8, "range": [6, 10] }, "sentences": { "typical": 3, "range": [3, 4] }, "chars_per_sentence": { "typical": 30, "range": [28, 32] }, "lines": { "typical": 3, "range": [3, 4] }, "one_fact_per_sentence": true, "detail_goes_to": "caption" },
+    "note": { "lines": { "typical": 3, "range": [2, 4] }, "chars_per_line": { "typical": 17, "range": [12, 20] } }
+  },
+  "register": {
+    "headline": { "right": "a news title that states the fact or the claim", "wrong": "a question that withholds, a teaser" },
+    "sub": { "right": "a noun phrase", "wrong": "a full sentence, an explanation" },
+    "body": { "right": "<the slides' speech level or voice>, with sentence-final noun phrases mixed in about one in three", "wrong": "explanatory closers that tell the reader what the slide meant, hedges, the caption's voice" },
+    "caption": { "right": "<the caption's speech level or voice>, a connective the voice favors between facts, a first-person closer", "wrong": "the slides' voice" }
+  },
+  "caption": {
+    "parts": ["facts with the date and the outlet", "context", "a closing line or a question", "mentions", "credit line"],
+    "credit_line_pattern": "<the exact pattern: a marker, the word for photo, a separator, then the agencies>"
+  },
+  "variants_by_content": {
+    "a list of places or items": "poster or lead",
+    "a date, a time, a route": "poster",
+    "a quote or a mood": "note",
+    "two related images": "collage",
+    "one beat of a story": "story"
+  },
+  "never": [
+    { "statement": "no call to action on a story post", "kind": "story", "posts_read": 2 },
+    { "statement": "no number as an overlay; numbers sit in sentences", "kind": "story", "posts_read": 2 }
+  ],
+  "fonts": {
+    "display": { "closest_free": "<sans family>", "load": "<the distributor's documented CDN URL>", "weights": [400, 800], "guess": false },
+    "serif": { "closest_free": "<serif family>", "load": "<the distributor's documented CDN URL>", "weights": [500], "guess": true }
+  },
+  "colors": { "label": "#RRGGBB", "text": "#FFFFFF", "gradient_bottom": "rgba(0,0,0,0.8)", "dim": "rgba(0,0,0,0.62)", "estimate": true },
+  "posts_read": [{ "id": "<post id>", "kind": "story", "slides": 7 }]
+}

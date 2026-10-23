@@ -1,0 +1,50 @@
+# The script: thesis, thread, density, register, caption
+
+How the slides' text is written from the brief in the spec's format, and the checks each sentence passes before it is set.
+
+## The thesis
+
+One sentence, the brief's `angle` in the post's language. It is not the headline; the headline is made from it in the spec's headline style (a news title states the fact or the claim in two lines of the spec's characters per line). A post whose brief has no angle is a report: its thesis is its leading fact.
+
+## The thread
+
+The beats in the order that carries the thesis, one per slide, from the spec's typical count. Two shapes cover most posts:
+
+| The post is | The thread |
+|---|---|
+| A story (why something is happening, who, what it means) | Phenomenon (what is happening, the numbers), a turn (what is not obvious about it), the reason (the angle, in the outlet's reading), the close (what it looks like from here) |
+| An announcement or a guide (a rule, an event, a day that changes) | Why now, where, when and what changes, how much (the numbers), what to do |
+
+Not every slide carries text. A beat that is a mood, a quote or a scene is a photo with a serif note of two to four lines; a beat that is two related images is a collage with one sub. A deck that puts sentences on every slide to fill it reads as an explainer; the format's own posts leave slides to the photo.
+
+Each beat names the fact ids from the brief it carries. A note's lines come from the brief too: an image's printed caption, the angle's quoted sentence or a fact's source sentence, shortened to the spec's line length and marked with what they came from; a note that would need words the brief does not hold is a photo without a note. A beat whose facts the brief lacks is dropped or kept as a photo, and the checkpoint says so with the offer to extend the brief.
+
+## Density
+
+From the spec's `density` per slide type, as counts: the sub's characters, the sentences, the characters per sentence, the lines. A sentence over the count wraps at the canvas, and a wrapped sentence is the first thing a reader of the format sees. One fact per sentence. What does not fit goes to the caption, which carries the detail in the format's own posts.
+
+Count before setting: characters in the post's script, spaces included, against the spec's range. A sentence at the top of the range is a candidate to shorten.
+
+## Register
+
+The spec's `register` patterns, applied sentence by sentence. The checks, with what each prevents:
+
+| Check | Right | Wrong |
+|---|---|---|
+| The headline | A news title: states the fact or the claim, two lines | A question that withholds, a teaser, a pun the story does not earn |
+| The sub | A noun phrase in the spec's characters | A full sentence; an explanation of the slide |
+| Body endings | The spec's plain declaratives, with sentence-final noun phrases mixed in at the spec's proportion | Every sentence ending the same way; the polite register the caption uses |
+| Closers | None; the last sentence is a fact or a noun phrase | A sentence that tells the reader what the slide meant ("this is the story they are watching", "that is what one reader said") |
+| Hedges | None | "it seems", "reportedly" where the fact has a source; the source goes in the caption |
+| Voice | The account's, as the spec's patterns give it | The agent's; a first-person line on a slide unless the spec shows one |
+| A quote | As the article printed it, marked as a quote, with who said it in the sub or the sentence | Paraphrased as a fact |
+
+A sentence that fails a check is rewritten, not softened. Read the finished slides once more as the account's editor would: a line a news desk would not print is rewritten.
+
+## The caption
+
+The spec's `caption.parts` in order, in the spec's caption register: the leading facts with their dates and outlets (from the brief's sources), the context, a closing line in the voice the spec describes, the mentions (only a handle the brief carries as a fact with its source; an unverified handle goes to the checklist, not the caption), and the credit line from the brief's `credits.md` rewritten in the spec's pattern, or built from `images[].credit` when the brief has no credits file. The caption is where the numbers and the detail the slides left out live; a reader who wants the whole story reads it there. It is written into `caption.txt` with the plan and finished at the delivery.
+
+## The plan's text block
+
+For every slide in the plan: the layout type, the sub or the headline, the sentences each followed by its fact ids in brackets, or the note lines, or the poster's parts (the kicker, the date line, the big figure, the route line, the notes), and the image file with its crop. The checkpoint shows this block as a numbered list; the build reads it.

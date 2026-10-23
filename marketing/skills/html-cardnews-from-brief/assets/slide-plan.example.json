@@ -1,0 +1,21 @@
+{
+  "post": "example-story",
+  "spec": "<path to format-spec.json, or 'defaults'>",
+  "brief": "<path to topic-brief.json>",
+  "thesis": "<one sentence from the brief's angle>",
+  "headline": ["<line one>", "<line two>"],
+  "thread": "story",
+  "slides": [
+    { "n": 1, "type": "cover", "image": "img/example-outlet_cover.jpg", "position": "52% 50%", "facts": ["f1"] },
+    { "n": 2, "type": "story", "sub": "<noun phrase>", "sentences": [{ "text": "<sentence>", "facts": ["f2"] }, { "text": "<sentence>", "facts": ["f3", "f4"] }, { "text": "<sentence>", "facts": ["f5"] }], "image": "img/example-outlet_subject.jpg", "position": "50% 50%" },
+    { "n": 3, "type": "list-poster", "kicker": "<kicker>", "heading": "<heading>", "items": [{ "n": "01", "text": "<item>", "tag": "<tag>" }], "footer": "<the rest and one sentence of context>", "facts": ["f6"], "image": "img/example-outlet_mood.jpg", "dim": true },
+    { "n": 4, "type": "time-poster", "kicker": "<kicker>", "date": "<date line>", "span": ["<hh:mm>", "<hh:mm>"], "route": "<route line>", "notes": ["<note>", "<note>"], "facts": ["f7", "f8"], "image": "img/example-outlet_detail.jpg", "dim": true },
+    { "n": 5, "type": "note", "lines": ["<line>", "<line>", "<line>"], "from": "image_caption:img/example-outlet_mood.jpg", "facts": [], "image": "img/example-outlet_mood.jpg", "gradient": "top" },
+    { "n": 6, "type": "stat", "kicker": "<kicker>", "heading": "<heading>", "rows": [{ "figure": "<figure>", "unit": "<unit>", "label": "<label>", "detail": "<detail>", "facts": ["f9"] }], "footer": "<sentence>", "image": "img/example-outlet_detail.jpg", "dim": true },
+    { "n": 7, "type": "note", "lines": ["<line>", "<line>"], "from": "source_sentence:f10", "facts": ["f10"], "image": "img/example-outlet_subject.jpg", "gradient": "top" }
+  ],
+  "caption": "<the caption text, also in caption.txt>",
+  "credits": ["<one line per image in the spec's credit pattern>"],
+  "derived": { "slide_count": 7, "fonts": "spec", "defaults_used": [], "dropped_beats": [] },
+  "checklist": { "unverified": ["<item>"], "upscaled": [{ "file": "img/example-outlet_cover.jpg", "factor": 2.0 }], "licence_flags": [] }
+}
