@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Python 3 and a Chromium-family browser the agent can drive for the PDF (Playwright with Chromium is what the helper script uses); without a browser the HTML is still delivered and the PDF is printed by the user. Image rendering of PDF pages for the review needs a PDF rasterizer (PyMuPDF or a browser screenshot). Works in any agent that can write files and run a shell.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: browser
 skillcdn:
   include:
@@ -122,10 +122,11 @@ The defaults a reviewer rejects on sight, whatever the outline says. They are ch
 - Section numbers where the sequence carries no information.
 - Gradient text, decorative blur, thick colored left borders, emoji or glyphs standing in for icons, a generic icon standing in for a named product.
 - Line breaks inside words, a lone word on a second line, a value that wraps in a list or a tile.
+- A page whose blocks sit in its upper half or one corner and leave the rest empty: a statement with a short list is sized to the page or joined by a second block (the dates beside the steps, the facts beside the statement) before it ships.
 
 ## Hard rules
 
-- Content comes from the outline. No figures, names, prices or promises that the outline does not contain; where the outline is silent, the slide stays silent or says what is still to be confirmed. A license, a version or a package name is read from the repository, not recalled.
+- Content comes from the outline. No figures, names, prices or promises that the outline does not contain; where the outline is silent, the slide stays silent or says what is still to be confirmed; a milestone the outline names by an event without a date (a holiday, a launch) sits after the last dated step with the outline's words, and the delivery says it is undated rather than placing it from memory. A license, a version or a package name is read from the repository, not recalled.
 - A deck for people outside the organization passes the declared house-style check before it is delivered, and never carries another party's document text, screenshots or prices unless the outline supplies them for that purpose. A client's logo is used only when the organization already holds it as an asset; a tool's mark is used to refer to the tool, from its official assets.
 - The HTML and the PDF are rendered from the deck file, never edited by hand; every change goes through the deck file, and both files are delivered every time.
 - The contact sheet is looked at before the delivery. A render the agent has not seen is not delivered.
