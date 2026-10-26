@@ -13,13 +13,18 @@
   "kinds": {
     "story": {
       "builds": [
-        { "name": "feature", "slides": { "min": 7, "max": 10 }, "text_on": "sentences on photos", "typical_order": ["cover", "story", "story", "photo-only", "story", "story", "story"], "seen_in": ["<post id>", "<post id>"] },
-        { "name": "photo story", "slides": { "min": 5, "max": 9 }, "text_on": "talk boxes on photos", "seen_in": ["<post id>"] },
-        { "name": "short news", "slides": { "min": 2, "max": 3 }, "text_on": "the caption; the cover only on slides", "seen_in": ["<post id>"] }
+        { "name": "feature", "slides": { "min": 7, "max": 10 }, "text_on": "sentences on photos", "typical_order": ["cover", "story", "story", "photo-only", "story", "story", "story"], "order": "varies", "seen_in": ["<post id>", "<post id>"] },
+        { "name": "photo story", "slides": { "min": 5, "max": 9 }, "text_on": "talk boxes on photos", "order": "varies", "seen_in": ["<post id>"] },
+        { "name": "short news", "slides": { "min": 2, "max": 3 }, "text_on": "the caption; the cover only on slides", "order": "fixed", "seen_in": ["<post id>"] }
       ]
     },
-    "list": { "builds": [{ "name": "weekly picks", "slides": { "min": 8, "max": 10 }, "text_on": "lead slides", "seen_in": ["<post id>"], "tentative": true }] },
-    "event": { "builds": [{ "name": "sponsored", "slides": { "min": 4, "max": 6 }, "text_on": "story slides and a poster", "seen_in": ["<post id>"], "tentative": true }] }
+    "report": {
+      "builds": [
+        { "name": "frame stack", "slides": { "min": 3, "max": 5 }, "text_on": "the material's own captions; the account's text on the cover only", "typical_order": ["cover", "frame stack", "frame stack", "frame stack"], "order": "fixed", "seen_in": ["<post id>", "<post id>"] }
+      ]
+    },
+    "list": { "builds": [{ "name": "weekly picks", "slides": { "min": 8, "max": 10 }, "text_on": "lead slides", "order": "varies", "seen_in": ["<post id>"], "tentative": true }] },
+    "event": { "builds": [{ "name": "sponsored", "slides": { "min": 4, "max": 6 }, "text_on": "story slides and a poster", "order": "fixed", "seen_in": ["<post id>"], "tentative": true }] }
   },
   "cover": {
     "photo": "full-bleed, gradient over the lower part (estimate)",
@@ -38,6 +43,12 @@
       "seen_in": ["<post id>", "<post id>"]
     },
     { "name": "photo-only", "anatomy": { "photo": "full-bleed, no text" }, "carries": "a photo with nothing to add", "seen_in": ["<post id>"] },
+    {
+      "name": "frame stack",
+      "anatomy": { "photo": "two 16:9 frames kept whole at their own ratio, stacked, on a flat background", "frames_per_slide": 2, "frame_edges": [{ "y": "5-50%" }, { "y": "50-95%" }], "marks_kept": ["broadcaster's logo", "program label", "subtitles"], "background": "#000000", "own_text": "none", "material_text": "the frames' subtitles and labels, as aired", "estimate": true },
+      "carries": "consecutive moments of a report or footage, told by the material's own captions",
+      "seen_in": ["<post id>", "<post id>"]
+    },
     { "name": "collage", "anatomy": { "photo": "two photos stacked", "sub_and_body": "as story" }, "carries": "two related photos with one step", "seen_in": ["<post id>"], "tentative": true },
     { "name": "lead", "anatomy": { "sub": { "lines": 2, "y": "70-79%" }, "body": { "lines": 2, "y": "81-88%" }, "tag": "source, top-right, small" }, "carries": "one item of a list, with its source", "seen_in": ["<post id>"], "tentative": true },
     { "name": "poster", "anatomy": { "type": "event name small, the date range large", "estimate": true }, "carries": "an event's name and dates", "seen_in": ["<post id>"], "tentative": true }
@@ -74,17 +85,19 @@
     "two related photos": "collage",
     "a reaction, a date and a place": "talk box",
     "an event's name and dates": "poster",
-    "a photo with nothing to add": "photo-only"
+    "a photo with nothing to add": "photo-only",
+    "moments of a report or footage, as aired": "frame stack"
   },
   "never": [
     { "statement": "no call to action on a story slide", "kind": "story", "posts_read": 8 },
-    { "statement": "no number as a large overlay", "kind": "story/feature", "posts_read": 3 }
+    { "statement": "no number as a large overlay", "kind": "story/feature", "posts_read": 3 },
+    { "statement": "no text of the account's after the cover, and no frame cropped", "kind": "report/frame stack", "posts_read": 2 }
   ],
   "fonts": {
     "display": { "closest_free": "<sans family>", "load": "<the family's documented CDN URL>", "weights": [400, 700, 800], "guess": false },
     "serif": { "closest_free": "<serif family>", "load": "<css2 API URL>", "weights": [500], "guess": true },
     "label": { "closest_free": "<expanded italic family>", "load": "<css2 API URL>", "weights": [800], "guess": true }
   },
-  "colors": { "label": "#RRGGBB", "text": "#FFFFFF", "gradient_bottom": "rgba(0,0,0,0.45)", "dim": "rgba(0,0,0,0.4)", "estimate": true },
-  "posts_read": [{ "id": "<post id>", "kind": "story", "build": "feature", "slides": 7 }]
+  "colors": { "label": "#RRGGBB", "text": "#FFFFFF", "background": "#000000", "gradient_bottom": "rgba(0,0,0,0.45)", "dim": "rgba(0,0,0,0.4)", "estimate": true },
+  "posts_read": [{ "id": "<post id>", "kind": "story", "build": "feature", "slides": 7 }, { "id": "<post id>", "kind": "report", "build": "frame stack", "slides": 4 }]
 }

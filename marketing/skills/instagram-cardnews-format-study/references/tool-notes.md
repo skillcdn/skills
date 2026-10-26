@@ -8,7 +8,7 @@ A profile shows its bio, its counts and about a dozen recent posts; older posts 
 
 ## The platform's documented size
 
-The platform's help page on post sizes gave a maximum width of 1080 pixels and supported ratios from 1.91:1 to 3:4, not a fixed portrait size (checked 2026-10-23); the height is the width divided by the measured ratio (1350 for 4:5). A fetch tool that converts pages to text returned nothing from the help site, which renders by script; the driven browser read it.
+The platform's help page on post sizes, found by searching its help site for the photo or post size, gave a maximum width of 1080 pixels and supported ratios from 1.91:1 to 3:4, not a fixed portrait size (checked 2026-10-23); the height is the width divided by the measured ratio (1350 for 4:5). A fetch tool that converts pages to text returned nothing from the help site, which renders by script; the driven browser read it.
 
 ## The sign-in prompt
 
