@@ -24,7 +24,7 @@ A capability the host lacks is worked around as the sections below say, and the 
 - A desktop viewport serves a desktop layout. Narrower than about 768 CSS pixels, most sites serve their mobile layout, where a post or a card fills the width and reads at zoom. Set the viewport before the first page and reset it at the end of the run.
 - On one host the zoom action cropped the downscaled screenshot rather than re-rendering the region, so small type at a desktop viewport could not be read; a narrower viewport, about 720 by 1050, made every line of a post readable at zoom (checked 2026-10). Where the viewport cannot be set, open the page in the narrowest window the host allows, or read the page's text and its embedded data and judge the type from one zoom.
 - A zoom called inside a batch of actions returned no image on one host when a scale factor was passed with it; leaving the scale out returned the image (checked 2026-10). Zoom alone, with the region only.
-- A post's or a card's region on a screenshot stays the same across the pages of one site at one viewport: find it once and reuse the coordinates.
+- A post's or a card's region on a screenshot stays the same across the pages of one site at one viewport and one shape: find it once per shape and reuse the coordinates. A square post's box is shorter than a portrait one's, and the controls centered on it sit higher.
 
 ## Clicks that script cannot make
 
