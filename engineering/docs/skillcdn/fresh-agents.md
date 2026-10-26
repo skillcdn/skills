@@ -36,4 +36,6 @@ Where there is no subagent tool, or the run must be a separate process: a sessio
 
 ## Its stops
 
-A fresh agent stops where its skill says to consult the user and ends its turn with the checkpoint message as its report. The session that started it answers in its place, as the user would: one short line, the answer the user approved, nothing more, sent to the same agent so that it resumes where it stopped.
+A fresh agent stops where its skill says to consult the user and ends its turn with the checkpoint message as its report. The session that started it answers in its place, as the user would: one short line, the answer the user approved, nothing more, sent to the same agent so that it resumes where it stopped. A subagent receives that line framed as another agent's message, not the user's, and one whose brief did not say who answers refused it as the checkpoint's approval and stopped again (Claude Code, checked 2026-10): the brief says that the session that started it answers each checkpoint in the user's place, with the answers the user approved, and that a stop nobody foresaw still goes to the user.
+
+A subagent has no tool to attach a file to the user's chat (Claude Code, checked 2026-10). Where the skill's delivery attaches files, the subagent gives their paths, and the session that started it attaches them when it reports the run.
