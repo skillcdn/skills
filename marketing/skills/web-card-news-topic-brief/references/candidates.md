@@ -19,7 +19,7 @@ How the candidate list is searched, ranked and written. The list is what the use
 | Images | The articles carry photographs of the subject, or cite a public clip or footage that shows it; a story with only logos or stock imagery costs a cover. |
 | Breadth | Two or more outlets carry it, so facts can be cross-checked; a story one outlet carries is not a card, and is named in one line under its category as a lead. |
 
-The criteria are in order of weight: fit first, then timeliness, then save and share; images break ties, and breadth is the floor. Five to eight candidates in all, at most three per category. A category with nothing timely this week is said so rather than filled.
+The criteria are in order of weight: fit first, then timeliness, then save and share; images break ties, and breadth is the floor. Five to eight candidates in all, at most three per category; a request that names one category keeps three, and the rest as leads under the list. A category with nothing timely this week is said so rather than filled. A guide that gathers several events of the week (a list of places, a day's dates), each carried by two or more outlets, is one candidate, and its card says that the outlets may share no angle, which makes the post a report.
 
 ## The candidate card
 
