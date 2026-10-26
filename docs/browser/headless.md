@@ -31,6 +31,28 @@ async function launch(args = []) {
 
 `from playwright.sync_api import sync_playwright`, then `p.chromium.launch()` inside `with sync_playwright() as p`; `launch(channel="chrome")` uses the installed Chrome. `pip install playwright` installs the driver, and `playwright install chromium` downloads a browser: ask first. Without Playwright, a skill that prints a PDF writes the HTML and says the PDF is printed from a browser's print dialog at the page size with background graphics on.
 
+## Driving a page from a script
+
+Where a skill names this route for a host that offers a shell and no browser tool, a headless browser driven by a script of the run's own stands in for the browser the agent drives. Every capability in [driven-browser.md](driven-browser.md) "Capabilities, and how to recognize them" is a Playwright call, and what that page says about the viewport, real clicks, prompts and walls, and pace holds unchanged.
+
+| Capability | In Playwright from Node.js (Python: the same calls in snake case, options as keyword arguments, `page.url` a property) |
+|---|---|
+| Navigate, and report the URL | `page.goto(url, { waitUntil: "domcontentloaded" })`; `page.url()` after a click, which is how a step is confirmed |
+| Read the page's text | `page.innerText("body")` |
+| Run a script in the page | `page.evaluate(() => ...)`, which returns the value |
+| Take a screenshot | `page.screenshot({ path })`: the viewport, to a file the agent reads |
+| Zoom into a region | `page.screenshot({ path, clip: { x, y, width, height } })` in a context made with `deviceScaleFactor: 2` or `3`: the region is rendered at that scale (twice the width and the height for a clip at 2), not cut from a smaller image |
+| Click and hover at coordinates | `page.mouse.move(x, y)`, then `page.mouse.click(x, y)`: input to the browser itself, so that a control that shows on hover appears and a carousel's arrow advances, which a `click()` run from `page.evaluate` does not do (driven-browser.md "Clicks that script cannot make") |
+| Scroll with real input | `page.mouse.wheel(0, dy)` |
+| Set the tab's viewport | `browser.newContext({ viewport: { width, height }, deviceScaleFactor })`, before the first page |
+| Save a screenshot to a file | Every screenshot above is a file |
+
+- One run of the script is one page, or one post with its slides: it opens the page, acts, writes its screenshots and what it read into a folder of the run's own under the host's scratch folder, never the folder of what is delivered, closes the browser and ends; the agent reads the files and gives the next run what it found on them (where a prompt's close control sits, where a carousel's next control sits). A control is addressed by its role and name where it exposes one (`page.getByRole("button", { name })`), else at coordinates read from a screenshot. A `chromium.connect` to a `launchServer()` endpoint does not keep a page across shell calls: a client's contexts close when it disconnects.
+- The browser's cookies go from run to run in a state file of the run's own (`context.storageState({ path })` before the browser closes, `storageState: path` in the next `newContext`), so that the site sees one visitor through the skill's run, as it sees a person's browser, and what it counts per visitor applies to the run and not to a new visitor on every page; the file lives beside the screenshots and goes with them. A prompt that returns after some navigations in a window returns here too and is closed the same way. A later run does not undo what the site said on an earlier one: a request to log in or an error box after pages that read fine ends the skill's run, not only that script run (driven-browser.md "Prompts and walls"). Playwright's own temporary profile folder goes when the browser closes; a run cut by a timeout can leave one (`playwright_chromiumdev_profile-*`) in the system's temporary folder: remove the one this run made.
+- The browser goes to the site as Playwright launches it and is never made to pass for another browser or device. A wall the site shows it ends the reading, as any wall does (driven-browser.md "Prompts and walls"): say what stopped it; the reading is not moved to another browser to get past it.
+- A page at a time, a few seconds between loads within a run and between runs, nothing in parallel, and no more pages than the skill's budget, a dozen or a few dozen for one user's own purpose: never a list of pages handed to one run, a loop left running or a run on a schedule (driven-browser.md "Pace").
+- The screenshots are the agent's reading material: kept out of what is delivered and removed when the skill's run ends, as the skill's rules on images say.
+
 ## The bare browser with --dump-dom
 
 One run per URL prints the page as the browser built it, with the page's embedded JSON inside; two to nine seconds a page, and a site that answers only a browser engine answers this.

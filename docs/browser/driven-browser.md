@@ -16,7 +16,7 @@ A browser the agent operates through tools: an assistant's built-in browser or b
 | Set the tab's viewport | A tool or a setting that takes a width and a height | The mobile layout; a slide read at zoom |
 | Save a screenshot to a file | A tool that writes the image to a path | Frames of a clip kept as files; a render looked at later |
 
-A capability the host lacks is worked around as the sections below say, and the delivery says what could not be done. A browser the agent cannot drive at all is not replaced by a fetch tool where the site answers only a browser ([reading-pages.md](reading-pages.md) "Which tool reads a page").
+A capability the host lacks is worked around as the sections below say, and the delivery says what could not be done. Where a skill names the route, a host with a shell and no browser tool has every capability of the table in a headless browser driven by a script of the run's own ([headless.md](headless.md) "Driving a page from a script"). A browser the agent cannot drive at all is not replaced by a fetch tool where the site answers only a browser ([reading-pages.md](reading-pages.md) "Which tool reads a page").
 
 ## The window and the viewport
 
