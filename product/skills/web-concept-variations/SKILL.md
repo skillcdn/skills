@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a web search tool and a way to read a page (a fetch tool, or a browser the agent drives) for the reference and the other references, and a file tool for the brief and the sheet. Works in any agent that can search the web; without search, the user supplies the other references as links or text.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: web
 skillcdn:
   include:
@@ -25,7 +25,7 @@ A reference and a subject go in (what the direction is for: a product, an accoun
 
 ## How the user is involved
 
-- **Questions:** in one message, only what nothing at hand answers: the subject, when the request names only a reference ("directions for what: which product, account, page or deck?"); the subject's page or two lines about it, when the request names a subject that has neither ("where is its page, or what does it claim, in two lines?"); the audience, when neither the request nor the subject's page says ("who is it for: which market, and in which language will it run?"); and a reference described but not named, confirmed in the same message by the piece the search found ("I take the reference to be <the piece>; say so if not"). The reference itself is asked for only when the request has none and no research skill at hand can find one.
+- **Questions:** in one message, only what nothing at hand answers: the subject, when the request names only a reference ("directions for what: which product, account, page or deck?"); the subject's page or two lines about it, when the request names a subject that has neither ("where is its page, or what does it claim, in two lines?"); the audience, when neither the request nor the subject's page says ("who is it for: which market, and in which language will it run?"); and a reference described but not named, confirmed in the same message by the piece the search found ("I take the reference to be <the piece>; say so if not"), said in a first message even when nothing else is asked, and the run goes on without waiting for it. The reference itself is asked for only when the request has none and no research skill at hand can find one.
 - **Checkpoint:** the sheet, once: the directions with their positions, the opening lines, the recommendation and the runner-up. The user picks one, merges two, asks for more on one axis, or disputes a reading; the pick is theirs and the run waits.
 - **Go-ahead:** when the user says to go ahead alone, the sheet is still shown and the recommendation is taken as the pick, said so.
 - **Changes mid-run:** a disputed reading re-opens the effect brief; a merge or "more on this axis" re-enters at the candidates and goes through the verdict again.
@@ -79,7 +79,7 @@ Checkpoint, in plain words: the readings in six lines; the directions as a numbe
 
 ### Phase 6: The handoff
 
-Produces the **handoff** (`handoff.md`), by [handoff.md](/docs/variation/handoff.md): the brief, the pick's row, the mechanism line and the rule, what must stay, the sample, the fixes, the other references by where seen, the assumptions the run rests on (which piece was read, the market, the medium) and what was left out, and the producing skill's inputs filled as far as the pick fills them, in that skill's vocabulary where the skill is known. A merge, or more on an axis, is placed on the axes, judged, and shown once more on the sheet within six, the weakest kept ones dropped, before it is handed off. The delivery: the run folder's path, the pick in one line, the producing skill to start next (or that the pack has none for this medium) and what it will ask that the pick does not answer, and that nothing was made in the medium here.
+Produces the **handoff** (`handoff.md`), by [handoff.md](/docs/variation/handoff.md): the brief, the pick's row, the mechanism line and the rule, what must stay, the sample, the fixes, the other references by where seen, the assumptions the run rests on (which piece was read, the market, the medium) and what was left out, and the producing skill's inputs filled as far as the pick fills them, in that skill's vocabulary where the skill is known. A merge, or more on an axis, is placed on the axes, judged, and shown once more on the sheet within six, the weakest kept ones dropped, before it is handed off. The delivery: the run folder's path, the pick in one line, the producing skill to start next (or that the pack has none for this medium, in which case the handoff is the brief for whoever makes it, and the looks skill is named for the piece's cover or first screen) and what it will ask that the pick does not answer, and that nothing was made in the medium here.
 
 ## Verdicts
 
