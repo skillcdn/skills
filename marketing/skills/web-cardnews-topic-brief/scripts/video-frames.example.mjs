@@ -5,12 +5,17 @@
 //   interval  seconds of video between frames      rate   playback rate (2 halves the wall time)
 //   start/end seconds of video to cover            PLAYWRIGHT_FROM  a package.json of a project that has
 //             playwright-core installed, to borrow it; else playwright-core is resolved from this folder.
-// Written against the watch page of the largest video platform (its t= parameter and its player API,
-// checked 2026-10). Playback stalled after about a minute at a raised rate, so the page is reloaded at the
-// next time code every CHUNK seconds of video. Frames are 1280 by 720 CSS pixels at device scale 1.5,
-// which gives 1920 by 1080 files; the served resolution is written to frames.tsv beside them.
+// Written against the watch page of the largest video platform (its t= parameter, its player API and
+// its advertisement class names, which drift; checked 2026-10). Playback stalled after about a minute
+// at a raised rate, so the page is reloaded at the next time code every CHUNK seconds of video. Frames
+// are 1280 by 720 CSS pixels at device scale 1.5, which gives 1920 by 1080 files whatever was served;
+// frames.tsv beside them holds, per frame, the seconds, the served width by height (the entry's px)
+// and the file, appended on every run. File names are tenths of a second: t00120.jpg is 12.0 s.
+// A clip of several minutes runs for minutes: run it in the background. "frames 0" with no other line
+// means the player never readied (a consent page, a bot check, an age gate): the clip is then listed
+// as a source and the frames are not taken. The install hint below downloads a browser; ask first.
 import { createRequire } from "node:module";
-import { appendFileSync, mkdirSync } from "node:fs";
+import { appendFileSync, mkdirSync, unlinkSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -47,6 +52,19 @@ const browser = await launch();
 const context = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1.5 });
 const page = await context.newPage();
 
+// Pins the video element over the page at the box's size and says whether it fills the box. The player
+// rewrites the element's inline size when it lays itself out again (a frame then fills two thirds of
+// the file, the rest black), so this runs before every capture, not once (checked 2026-10).
+const pin = ({ W, H }) => {
+  const v = document.querySelector("video");
+  const wanted = { position: "fixed", left: "0px", top: "0px", width: `${W}px`, height: `${H}px`, "z-index": "2147483647", "object-fit": "contain", transform: "none" };
+  for (const [name, value] of Object.entries(wanted)) {
+    if (v.style.getPropertyValue(name) !== value || v.style.getPropertyPriority(name) !== "important") v.style.setProperty(name, value, "important");
+  }
+  const r = v.getBoundingClientRect();
+  return Math.round(r.left) === 0 && Math.round(r.top) === 0 && Math.round(r.width) === W && Math.round(r.height) === H;
+};
+
 // Plays the clip from `from` with the video element pinned over the page; returns the clip's duration.
 async function prepare(from) {
   await page.goto(watch(from), { waitUntil: "domcontentloaded" });
@@ -63,7 +81,7 @@ async function prepare(from) {
     if (!state.ad && isFinite(state.duration) && state.duration > 0 && state.ready >= 3) break;
     await page.waitForTimeout(1000);
   }
-  return page.evaluate(async ({ from, rate, W, H }) => {
+  const duration = await page.evaluate(async ({ from, rate, W, H }) => {
     const player = document.getElementById("movie_player");
     try { player.setPlaybackQualityRange("hd1080", "hd1080"); } catch {}
     try { player.seekTo(Math.max(from, 0.1), true); } catch {}
@@ -71,13 +89,14 @@ async function prepare(from) {
     const backdrop = document.createElement("div");
     backdrop.style.cssText = `position:fixed;left:0;top:0;width:${W}px;height:${H}px;background:#000;z-index:2147483646`;
     document.body.appendChild(backdrop);
-    v.style.cssText = `position:fixed!important;left:0!important;top:0!important;width:${W}px!important;height:${H}px!important;z-index:2147483647!important;object-fit:contain!important;transform:none!important`;
     document.body.appendChild(v);
     v.muted = true;
     v.playbackRate = rate;
     await v.play().catch(() => {});
     return player && player.getDuration ? player.getDuration() : v.duration;
   }, { from, rate, W, H });
+  await page.evaluate(pin, { W, H });
+  return duration;
 }
 
 let end = Number(endArg) || Infinity;
@@ -100,8 +119,11 @@ while (from < end) {
     else if (!state.ad && Date.now() - lastMove > 15000) { console.log("stalled at", state.time.toFixed(1)); break; }
     if (state.paused && !state.ad) await page.evaluate(() => document.querySelector("video").play().catch(() => {}));
     if (!state.ad && state.time >= next) {
+      // Pin, shoot, then check that the element still filled the box; a frame shot during a relayout is dropped and retaken.
+      if (!(await page.evaluate(pin, { W, H }))) { await page.waitForTimeout(100); continue; }
       const file = join(outDir, `t${String(Math.round(state.time * 10)).padStart(5, "0")}.jpg`);
       await page.screenshot({ path: file, type: "jpeg", quality: 92, clip: { x: 0, y: 0, width: W, height: H } });
+      if (!(await page.evaluate(pin, { W, H }))) { unlinkSync(file); continue; }
       appendFileSync(join(outDir, "frames.tsv"), `${state.time.toFixed(2)}\t${state.size}\t${file}\n`);
       frames++;
       next = state.time + interval;
