@@ -29,4 +29,19 @@ Say so plainly: there is no skill in this pack for this job. Name the nearest sk
 
 What `search_repo` returned for ten requests, five said in English and five translated from Korean to English words first, scoped to `docs/pack` and then unscoped, and what `browse_repo` showed for two areas, on the day named. Checked again when the search changes or a skill is renamed.
 
-- Checked 2026-10: the examples are written after the index of the commit that adds this page has been built; see the next version of this page.
+Checked 2026-10-26, on the commit that added this set, with the deployment ranking by words and meaning. "Index" is the first section of the first result with `path` set to `docs/pack`; "whole pack" is the first result without a path.
+
+| Request, as words | Index | Whole pack |
+|---|---|---|
+| "card news post" | the build (`html-card-news-from-brief`) | the study (`instagram-card-news-format-study`): a card news skill, not the one that makes the post |
+| "slides from notes" | the deck (`html-deck-from-outline`) | the Figma skill, whose name holds "slides" and whose files hold "notes" |
+| "ad from a reference video" | the ad (`higgsfield-shorts-ad`) | a Meta ads document; the ad skill second |
+| "answer from the handbook" | the research (`skillcdn-document-research`) | the research |
+| "four looks for this landing" | no skill: the index names the next skills planned | a drama skill, by meaning alone |
+| "analyze this account's card news format" (from 이 계정 카드뉴스 포맷 분석) | the study | a payments document, where "account" is a word of every page; the study third |
+| "build an app and put it online" (from 앱 만들어서 올려줘) | the new app (`cloudflare-new-app`) | the new app |
+| "take payments on the site" (from 결제 붙여줘) | the payments (`stripe-payments`) | the payments |
+| "competitor ad research" (from 경쟁사 광고 조사) | the creative research (`meta-ad-library-creative-research`) | the ad skill, whose files say "research" often; the creative research second |
+| "make documents searchable for agents" (from 문서를 에이전트가 검색하게) | the document pack (`skillcdn-document-pack`), as the second result's first section; the first result was this page | the document pack |
+
+Nine of ten requests found their skill in the index, and the tenth has no skill yet; five of ten found it first in the whole pack, where a reference file that repeats a common word of the request ("account", "notes", "research", "video") outranks the skill whose job it is. That is why the index comes first and the whole pack last, with the distinctive noun of the job and not its common words; a word that names the pack's own furniture (notes, tool, example, reference) is noise. `browse_repo` on `marketing/skills` and `design/skills` listed every skill with the first lines of its description, enough to pick the study, the brief or the build among the three card news skills and the deck against the Figma slides.
