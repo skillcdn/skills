@@ -86,6 +86,7 @@ Look at the contact sheet the helper made (`--sheet`), or make one as [rendering
 - The diagram's arrows point from the sources to the center and from the center to the outputs; the labels are readable; the step chips on the nodes match the process strip.
 - The Gantt bars sit in the months the outline gives; a milestone sits on its date.
 - Nothing on the slides is a placeholder, except a screenshot frame the outline asked for.
+- What any medium's reader calls the AI feel, beyond this floor, is listed in the repository's [not-ai.md](/docs/variation/not-ai.md), read when a slide passes the floor and still reads as a default.
 
 Show the contact sheet, by its path or attached where the host attaches files (checkpoint).
 
