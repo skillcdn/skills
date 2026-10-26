@@ -5,6 +5,7 @@ Document sets that serve every area: directories of Markdown with no `SKILL.md`.
 | Document set | What it is |
 |---|---|
 | [`higgsfield/`](higgsfield/) | What the skills that drive Higgsfield share: the sandbox, models and credits, portraits and first frames, decoding a take, and the sounds of each language, as real runs showed it. One file per topic, organized by what holds now; the skills link each from the phase that reads it. |
+| [`browser/`](browser/) | What the skills that read a website or render a page with a browser share, whichever area they are in: a browser the agent drives and how hosts differ, a headless Chromium-family browser from a shell, reading a page in full and taking its images, rendering an HTML page the agent wrote to PNG or PDF, frames of a public clip. One file per topic; each skill includes the page every run needs and links the rest from the phase that reads it. |
 
 Handbooks and playbooks an area's people work from, written so that an agent finds and reads them without a skill, will join them.
 

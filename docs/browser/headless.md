@@ -1,0 +1,69 @@
+# A headless Chromium-family browser from a shell
+
+A shell with Node.js or Python and an installed Chrome, Edge or Chromium renders pages, prints PDFs, takes screenshots and dumps a page's DOM with no window opening. Skills that render their own HTML and skills that read a site that answers only a browser engine both launch it this way. Nothing here costs money; a browser download is the one step that is asked first.
+
+## playwright-core from Node.js
+
+- `playwright-core` is the driver without the browsers. Require it from where it is installed, in this order: a neighbouring project's `node_modules`, through `createRequire` of that project's `package.json`, named in the environment variable `PLAYWRIGHT_FROM` (no install); else `npm install playwright-core` into the run's folder (no browser download, a few seconds).
+- Launch an installed browser by channel, `chrome` then `msedge`, and fall back to Playwright's own `chromium` where one is installed. A channel launch needs a `playwright-core` from the last year or so (its `package.json` `version`; checked 2026-10): a borrowed copy older than that is left where it is, and `playwright-core` is installed into the run's folder instead.
+- Where no browser is installed at all, `npx playwright install chromium` downloads one, a few hundred megabytes: say so and run it only on the user's word.
+- Check with one `require` from the shell before a skill's first message: `node -e "require('playwright-core')"` in the folder it is installed in, or with `PLAYWRIGHT_FROM` set.
+- Write the scripts as ES modules (`.mjs`), so that they run whatever a neighbouring `package.json` sets as `"type"`; a CommonJS `.js` file fails with a reference error under `"type": "module"` (checked 2026-10).
+
+```js
+import { createRequire } from "node:module";
+const require = createRequire(process.env.PLAYWRIGHT_FROM || new URL("./package.json", import.meta.url));
+const { chromium } = require("playwright-core");
+
+async function launch(args = []) {
+  for (const channel of ["chrome", "msedge", "chromium"]) {
+    try {
+      return await chromium.launch(channel === "chromium" ? { args } : { channel, args });
+    } catch {
+      // try the next one
+    }
+  }
+  throw new Error("no Chromium-family browser found: install Chrome or Edge, or run npx playwright install chromium");
+}
+```
+
+## Playwright from Python
+
+`from playwright.sync_api import sync_playwright`, then `p.chromium.launch()` inside `with sync_playwright() as p`; `launch(channel="chrome")` uses the installed Chrome. `pip install playwright` installs the driver, and `playwright install chromium` downloads a browser: ask first. Without Playwright, a skill that prints a PDF writes the HTML and says the PDF is printed from a browser's print dialog at the page size with background graphics on.
+
+## The bare browser with --dump-dom
+
+One run per URL prints the page as the browser built it, with the page's embedded JSON inside; two to nine seconds a page, and a site that answers only a browser engine answers this.
+
+```sh
+"<browser>" --headless=new --disable-gpu --no-first-run --user-data-dir="<a folder kept for the run>" --dump-dom "<url>"
+```
+
+- Never start the browser without `--headless=new` and that folder, not even to ask its version: on Windows the bare command, `--version` included, opens a window in the user's own browser session (checked 2026-10).
+- One profile folder per run: the site's cookies live there. Remove it when the run ends; the browser leaves read-only files that Windows will not delete as they are, so clear the attribute first. A profile path near 260 characters makes no profile on Windows and every load runs to the timeout: keep the path short, or put the profile in the system's temporary folder.
+- A timeout of about a minute per run. Quote the URL: it carries `&` and brackets.
+- `--virtual-time-budget=<milliseconds>` lets the page's scripts run to the end before the dump, for a load whose page is a check that posts and reloads; on ordinary pages the flag made some runs hang until killed, so it is added to that load only.
+- Chrome and Chromium print the page; on Windows, Edge printed nothing in the same test (checked 2026-10). When the output is empty for every URL, try another browser or a driven browser.
+- Find the binary by the `CHROME` environment variable, then the names on the path (`google-chrome`, `chromium`, `chromium-browser`), then the usual install paths of each system. A restricted shell may refuse a look at the disk while it allows the run: the run is the test.
+
+## Waiting for a page
+
+- Before a screenshot or a PDF: wait for the network to go idle (`waitUntil: "networkidle"`, Python `wait_for_load_state("networkidle")`), then for `document.fonts.ready`, then about 300 milliseconds for images to finish decoding. Without the fonts wait a web font falls back and the render is wrong.
+- A page that loads its content by script: wait for an element the content has (`waitForSelector`), never for a fixed time alone.
+
+## Screenshots
+
+- A screenshot clipped to a rectangle at `deviceScaleFactor: 1` is exactly that many pixels: set the viewport to the canvas and clip to it for a render. At 1.5, a 1280 by 720 clip gives a 1920 by 1080 file: set the scale for a frame.
+- PNG for a render whose pixels are measured; JPEG at a quality around 90 for frames of a clip.
+
+## PDF
+
+`page.pdf({ path, width: "13.333in", height: "7.5in", printBackground: true, preferCSSPageSize: true })` in Node.js, `page.pdf(path=..., width=..., height=..., print_background=True, prefer_css_page_size=True)` in Python, after the waits above. The CSS declares `@page { size: <w> <h>; margin: 0 }` and gives every page element that size with `break-after: page`. Background graphics are off by default: set them on, or every tint disappears.
+
+## Long runs
+
+A capture of a clip of several minutes runs for minutes: run it in the background and read its output when it ends. A shell tool's timeout cuts a foreground run; pass a few URLs per call to a script that dumps pages (about eight; sixteen took one to three minutes).
+
+## The check before the first message
+
+A skill that needs this names it in its Requirements and checks before its first message: Node.js or Python; a Chromium-family browser, which is an installed Chrome or Edge or Playwright's own; `playwright-core` or Playwright resolvable where the skill launches it. Without a browser, stop and say what to install (Chrome or Edge, or the download above with consent); without `playwright-core`, borrow or install it as above. A browser looked for on the disk and not found proves nothing: the launch is the test.

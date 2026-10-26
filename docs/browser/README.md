@@ -1,0 +1,42 @@
+# Browser: what its skills share
+
+The skills that read a website or render a page with a browser (the card-news study, research and build, the deck draft, the two Meta Ad Library skills, and any skill that looks at a page it made) share how browsers behave for an agent: what a browser the agent drives can do and how hosts differ, how a headless Chromium-family browser is launched from a shell, how a page is read in full and its images taken, how an HTML page the agent wrote becomes PNG or PDF, and how frames of a public clip are captured. That lives here once, one file per topic, kept current in one place. Each skill includes the page every run of it needs, links the rest from the phase that reads them, and carries its own workflow, checkpoints, verdicts and rules itself. What one site does (its labels, its prompts, the keys of its JSON) stays with the skill or the family that reads that site.
+
+| Document | Holds | Read |
+|---|---|---|
+| [`driven-browser.md`](driven-browser.md) | A browser the agent drives: the capabilities to look for and how to recognize them, the window and the viewport, screenshots and zoom, real clicks against script clicks, prompts and walls, data embedded in a page, pace. | Before the first page is opened in a driven browser; included by the card-news study skill. |
+| [`headless.md`](headless.md) | A Chromium-family browser from a shell: `playwright-core` borrowed or installed and the browser found by channel, a browser download asked first, Playwright from Python, the bare browser with `--dump-dom`, waiting for a page, screenshots, PDF, long runs, the check before the first message. | Before the first launch from a shell. |
+| [`reading-pages.md`](reading-pages.md) | Reading a page in full: which tool reads what (a fetch tool, a driven browser, curl), the sign that the end was reached, walls, pages that render by script, the images on a page, downloading a file, pixel sizes. | Before the first article or site page is read; included by the card-news research skill. |
+| [`rendering-html.md`](rendering-html.md) | An HTML page the agent wrote, rendered: boxes at native size and an export mode, serving the page and the host's preview, PNG at the canvas size, PDF at a declared page size, fonts, the line check, looking at a render at native and phone size, a contact sheet of many pages. | Before the page is written; included by the card-news build skill, linked by the deck skill. |
+| [`video-frames.md`](video-frames.md) | Frames of a public clip: a watch page in a headless browser, a direct media address with ffmpeg, a driven browser with a script or by hand, and what a frame records. | When a clip is a source or a subject. |
+
+## Who reads this
+
+- [`instagram-cardnews-format-study`](/marketing/skills/instagram-cardnews-format-study/SKILL.md) (marketing) includes `driven-browser.md`: every run steps carousels in a driven browser.
+- [`web-cardnews-topic-brief`](/marketing/skills/web-cardnews-topic-brief/SKILL.md) (marketing) includes `reading-pages.md` and links `video-frames.md` and `headless.md` from the phase that captures a clip.
+- [`html-cardnews-from-brief`](/marketing/skills/html-cardnews-from-brief/SKILL.md) (marketing) includes `rendering-html.md` and links `headless.md` from the export.
+- [`html-deck-from-outline`](/design/skills/html-deck-from-outline/SKILL.md) (design) links `rendering-html.md` and `headless.md` from the print and the review.
+- [`meta-ad-library-creative-research`](/marketing/skills/meta-ad-library-creative-research/SKILL.md) and [`meta-ad-library-rising-products`](/marketing/skills/meta-ad-library-rising-products/SKILL.md) (marketing) reach these pages through their own set, [`marketing/docs/meta-ad-library/`](/marketing/docs/meta-ad-library/README.md), which keeps what the library's site does and links here for what any browser does.
+
+A page a skill includes is declared in its `skillcdn.include` by its root-relative path (`/docs/browser/<topic>.md`), so that it arrives with the skill wherever SkillCDN serves it; the rest are read with `read_repo_file` at `docs/browser/<file>` through the repository connection when the phase that links them comes. A mount of one area or one skill, and a host that takes skills through the skills extension without `read_repo_file`, cannot read the linked pages; a skill installed as its area's plugin or copied into another agent has none of them. Each skill's Requirements say so and name this directory in the repository as where to fetch them. What a skill cannot work without (its workflow, its checkpoints, its verdicts, its hard rules) stays in the skill.
+
+## What every browser skill does the same way
+
+- **The tool is a capability, not a product.** A skill names what it needs (a browser the agent drives that can navigate, click at coordinates, zoom and run a script in the page; a shell with a Chromium-family browser; a fetch tool) and how to recognize it by what a tool does, never by a product's tool names, which every host renames within months. A product appears only as a dated example.
+- **No sign-in, and nothing past a wall.** A prompt that only covers a page is closed by its own control; a login, a paywall, a consent the content needs, a browser check or a CAPTCHA that does not pass by itself ends the reading, with no form filled, no replay of a check and no disguised browser. A browser the user already signed in is theirs: read what the skill needs and touch nothing else.
+- **One page at a time, at a person's pace.** A couple of seconds between loads, nothing in parallel, retries counted as loads where a skill sets a budget.
+- **A download is asked first.** `playwright-core` installs without a browser; a browser download (`npx playwright install chromium`, Python's `playwright install`) is said and agreed to before it runs. A borrowed install is preferred to any install.
+- **No window on the user's screen.** A headless run opens none; the bare browser is never started without `--headless=new` and a profile folder of the run's own, which on Windows otherwise opens a window in the user's own browser session.
+- **A render or a screenshot that was made and not looked at was not read.** The review names the file it read, at the size its reader will see it.
+- **Site facts carry their day and the way to find them again.** What a site shows, where a control sits and what a label says change without notice; a host's behavior carries the month it was seen.
+- **Screenshots and downloads stay in the run's folder.** Nothing rendered or downloaded enters a repository; a frame or a photo is cited by its address and time.
+
+Each skill states what applies to it in its hard rules, in the form its workflow gives them, so that they hold where these pages do not travel.
+
+## How these pages are written
+
+Each page is organized by topic and says what holds now, so that an agent finds a fact where it would look for it, not where it was learned. A fact about a host's browser or a site that can go stale carries the month it was checked, at the end of the sentence, and names the host only as "one host": hosts rename their tools and the fact is about the behavior. A fact about how a browser works carries no date and changes when a run finds it wrong. The evidence that makes a fact credible (what a screenshot showed, an error text, a size) sits in the sentence it supports. No chronological log, no run narrative, no product, account, outlet or client from a run.
+
+## Adding what a run taught
+
+A browser or a host that behaved differently for any skill that uses it (a tool that timed out, a click that did nothing, a wait that was not enough): the topic section of the page it bears on, the sentence changed rather than a note appended. What one site did (a label, a prompt, a key, a limit): the set of the family that reads that site, or the skill's own `references/tool-notes.md`, with the day. An edge of one skill's own phase (its own artifact, its own script): that skill's `tool-notes.md`, in the same shape. An agent running a skill without the repository at hand reports the finding in its delivery, for whoever maintains the skill. For authors, what belongs here and what stays in a skill is in the repository's guide, `guide/tools/browser.md`, on the git host.
