@@ -1,6 +1,6 @@
 # Reading posts for the spec
 
-Which posts the study reads, how each slide is measured and recorded, and what is taken from the profile and the caption. How the site is read without signing in, and what a post page carries, are in the area's Instagram set, [signed-out.md](/docs/instagram/signed-out.md) and [posts.md](/docs/instagram/posts.md), both included with this skill.
+Which posts the study reads, how each slide is measured and recorded, and what is taken from the profile and the caption. How the site is read without signing in, and what a post page carries, are in the repository's Instagram set, [signed-out.md](/docs/instagram/signed-out.md) and [posts.md](/docs/instagram/posts.md), both included with this skill.
 
 ## The profile
 
