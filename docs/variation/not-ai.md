@@ -39,7 +39,7 @@
 | Every slide or page the same layout; everything centered; the hero, three features and a call to action on every page. | No two consecutive units share a layout; the eye enters at one place; a layout chosen for what the unit says. |
 | A stock photograph of hands on a laptop, a diverse team laughing, a city at night; a device mockup at an angle. | The product itself, the material the story has, a captured frame kept whole, type alone. |
 | Hierarchy by size alone, or no hierarchy; type that is even everywhere. | Weight, width, case and position doing the work; a scale of a few steps. |
-| A slide type, a block or a layout the reference account or the organization never uses. | Only the types the measured format has; a type seen once is tentative. |
+| A slide type, a block or a layout the reference account or the organization never uses, in a post built in its format or a slight change of it. | Only the types the spec has; a type seen once is tentative. A format of the user's own, or something new from a reference, makes its types at the user's pick. |
 | A line broken inside a word; a lone word on a second line; a value that wraps in a tile. | Breaks at spaces placed by hand; fewer words; a definition list instead of the tile. |
 
 ## The bundle is the tell
