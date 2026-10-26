@@ -19,7 +19,10 @@ const types = {
   ".png": "image/png",
   ".webp": "image/webp",
   ".svg": "image/svg+xml",
+  ".woff": "font/woff",
   ".woff2": "font/woff2",
+  ".txt": "text/plain; charset=utf-8",
+  ".md": "text/markdown; charset=utf-8",
 };
 
 createServer((req, res) => {
