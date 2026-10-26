@@ -25,6 +25,8 @@ The test for a sentence: would it be true, word for word, in the next Higgsfield
 
 A skill runs without the linked pages when it is mounted below the repository root or taken through the skills extension by a host without `read_repo_file`, and without the set at all when it is installed as a plugin or copied: its Requirements say so and name `docs/higgsfield/` in the repository as where to fetch the pages. Keep every hard rule and every step of the workflow in the skill for that case; the set holds knowledge, not rules.
 
+The variation set, `docs/variation/`, generalizes the ad skill's hook table, its "Choose" rule among researched ads and its plan checkpoint with a runner-up; the ad and drama skills keep their own forms until a run of them can be made again, when their story pages cite the general pages and the seam in `docs/variation/handoff.md` is tested with one request that needs both skills ([variation.md](../variation.md)).
+
 ## Where a finding goes
 
 What a run taught goes into the files the same day, as behavior and never as a run's product, persona, lines or story, in the shape [skill-authoring.md](../skill-authoring.md) "Knowledge pages" gives: the sentence it bears on changes, a fact that can go stale names the model and the month, nothing is appended as a log.
