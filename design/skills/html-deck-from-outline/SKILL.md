@@ -33,11 +33,11 @@ A content outline goes in: the slides the deck should have, with the words that 
 | What | Used for |
 |---|---|
 | A shell with Python 3 | The helper `scripts/render.py` in this directory renders the deck file to HTML and prints the PDF. The skill works without it: [layout.md](references/layout.md) gives the page geometry and the markup of every block, enough to write the HTML by hand. |
-| A Chromium-family browser the agent can drive | Printing the HTML to PDF at the page size the CSS declares. The helper uses Playwright's Chromium; any browser the agent can drive with a print-to-PDF call does the same. Without one, deliver the HTML and say the PDF is printed from the browser's print dialog with background graphics on. |
+| A Chromium-family browser the agent can drive | Printing the HTML to PDF at the page size the CSS declares. The helper uses Playwright's Chromium; any browser the agent can drive with a print-to-PDF call does the same, as [rendering-html.md](/docs/browser/rendering-html.md) "PDF at a declared page size" and [headless.md](/docs/browser/headless.md) say (a browser download is asked first). Without one, deliver the HTML and say the PDF is printed from the browser's print dialog with background graphics on. |
 | A PDF rasterizer or a page screenshot | The contact sheet for the review: PyMuPDF renders pages to PNG; a browser screenshot of each page does as well. |
 | The organization's design tokens and logos | Colors, the font family and the wordmark files, read from the organization's brand file, a previous deck or its website, and written into the deck file's `theme` and logo paths. Without any, the neutral defaults in [layout.md](references/layout.md) apply and the delivery says so. |
 
-Check the shell and the browser before the first message. Nothing here costs money.
+Check the shell and the browser before the first message. Nothing here costs money. What any skill that renders a page with a browser shares (serving, printing, fonts, looking at a render, a contact sheet) is in the repository's document set [`docs/browser/`](/docs/browser/README.md), read through the repository connection when phases 3 and 4 link it; a copy of this directory, the area's plugin and a mount of one area or one skill cannot read it, and the helper and [layout.md](references/layout.md) carry what the PDF and the review need.
 
 ## Inputs
 

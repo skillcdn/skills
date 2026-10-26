@@ -78,9 +78,9 @@ Logos and symbols are image files embedded as data URLs: PNG, JPG or SVG. A word
 
 ## Printing
 
-- Print with a Chromium-family browser: page width 13.333in, height 7.5in, background graphics on, the CSS page size preferred. Wait for the network to go idle and for `document.fonts.ready` before printing, or the font falls back.
+- Print with a Chromium-family browser at 13.333in by 7.5in, background graphics on, the CSS page size preferred, after the network went idle and `document.fonts.ready`, as [rendering-html.md](/docs/browser/rendering-html.md) "PDF at a declared page size" and [headless.md](/docs/browser/headless.md) "PDF" say; without the wait the font falls back.
 - A page that overflows prints a cut: the fix is in the deck file (fewer words, fewer items, a split slide), never in the CSS.
 
 ## Review
 
-Rasterize each page small (about 55 dpi) and tile them three per row into one image. Look for: cut text at the bottom of a page, a line broken inside a word, a lone word on a second line, a fact value that wraps, a loop whose center touches its nodes, a diagram whose nodes wrap into three lines, a Gantt bar whose text overflows its ends, a brand panel whose marks are recolored or on a dark ground, a profile card whose rows run past the card, and the design-floor defaults (icon card grids, number tiles, kickers). Then open any suspect page at about 85 dpi.
+Rasterize each page small and tile them into one image, as rendering-html.md "A contact sheet of many pages" says. Look for: cut text at the bottom of a page, a line broken inside a word, a lone word on a second line, a fact value that wraps, a loop whose center touches its nodes, a diagram whose nodes wrap into three lines, a Gantt bar whose text overflows its ends, a brand panel whose marks are recolored or on a dark ground, a profile card whose rows run past the card, and the design-floor defaults (icon card grids, number tiles, kickers). Then open any suspect page at about 85 dpi.
