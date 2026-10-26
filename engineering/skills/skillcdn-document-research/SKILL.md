@@ -5,11 +5,11 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory; a shell with git in a checkout of the pack's repository to keep notes. Works in any agent that can call MCP tools or run a shell.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: skillcdn
 skillcdn:
   include:
-    - references/searching.md
+    - /engineering/docs/skillcdn/searching.md
     - references/notes.md
   translations:
     ko:
@@ -34,7 +34,7 @@ What goes in: a question, a reference to compile or a claim to check, and a pack
 | The SkillCDN connection to the pack, or the `skillcdn` command (`skillcdn browse`, `skillcdn find`, `skillcdn file` with the pack's address or directory) | Reading the maps, searching, reading sections, outlining a document. The connection's instructions name the pack and its language. |
 | Optional: a shell with git in a checkout of the pack's repository | Keeping the note ([notes.md](references/notes.md)). Without it, the note is text in the delivery. |
 
-Check these before the first message. Without a connection or the command, stop and say what to connect: the pack's address at a deployment, or the command on a directory.
+Check these before the first message. Without a connection or the command, stop and say what to connect: the pack's address at a deployment, or the command on a directory. How a search over a pack behaves, and how to ask it so that it answers, is in the area's document set [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md): [searching.md](/engineering/docs/skillcdn/searching.md) is included and arrives with this skill wherever SkillCDN serves it; a copy of this directory lacks it, and fetches it from `engineering/docs/skillcdn/` of the repository this skill comes from (`github.com/skillcdn/skills`, which is not the pack the question is put to) or reads it as a file at `docs/skillcdn/` of the engineering plugin.
 
 ## Inputs
 
@@ -54,7 +54,7 @@ Each phase produces a named artifact. The answer is built from sections read, ne
 Produces the **frame**: the question in one line, what would answer it (a number, a rule, a procedure, a list, a yes or no), and the words it is likely written with in the pack's language.
 
 1. Say what kind of answer the question wants, so that a section is recognized as the answer when it is read.
-2. Where the user's words and the pack's language differ, translate the words the pack would use; where the question uses a synonym or an abbreviation, note the words the pack might use instead ([searching.md](references/searching.md), "Words").
+2. Where the user's words and the pack's language differ, translate the words the pack would use; where the question uses a synonym or an abbreviation, note the words the pack might use instead ([searching.md](/engineering/docs/skillcdn/searching.md), "Words").
 3. Where a research note on the question exists in the pack ([notes.md](references/notes.md), "Where notes live"), read it first: the answer may be there, with its sources to check.
 
 ### Phase 2: Map
@@ -68,8 +68,8 @@ Produces the **map reading**: the document sets the question concerns, and the d
 
 Produces the **candidate sections**: the sections a search named, with their path, heading, offset and limit.
 
-1. `search_repo` with the words of the frame, in the pack's language, scoped with `path` to the document set the map named when the pack is large. Where the connection's instructions say the pack is searched by meaning as well as by words, search once more in the frame's own words ([searching.md](references/searching.md), "What a search does"). Each document result names the sections that matched, best first, each with its heading path, its offset and limit, and an excerpt.
-2. Search again with other words when the first search misses ([searching.md](references/searching.md), "When a search finds nothing"): the pack's words for the thing, a particle or an inflection dropped, the heading a map promised. Three searches that find nothing mean the pack does not say it, and the answer says so.
+1. `search_repo` with the words of the frame, in the pack's language, scoped with `path` to the document set the map named when the pack is large. Where the connection's instructions say the pack is searched by meaning as well as by words, search once more in the frame's own words ([searching.md](/engineering/docs/skillcdn/searching.md), "What a search does"). Each document result names the sections that matched, best first, each with its heading path, its offset and limit, and an excerpt.
+2. Search again with other words when the first search misses ([searching.md](/engineering/docs/skillcdn/searching.md), "When a search finds nothing"): the pack's words for the thing, a particle or an inflection dropped, the heading a map promised. Three searches and the outline of the document that should hold it that find nothing mean the pack does not say it, and the answer says so.
 3. Keep the candidates in order of the search; read them in that order.
 
 ### Phase 4: Read
