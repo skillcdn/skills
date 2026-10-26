@@ -6,8 +6,8 @@ What `scripts/render.py` does, written so that the HTML can be produced by hand 
 
 - One slide is one page of 13.333in by 7.5in (16:9, the size of a widescreen presentation). The CSS declares `@page { size: 13.333in 7.5in; margin: 0; }` and every `.slide` has that width and height, `overflow: hidden`, and `break-after: page`.
 - Content lives inside a frame 0.55in from the left and right edges, 0.42in from the top and 0.45in from the bottom.
-- The background is a light gradient (white to a pale tint, 155deg). The closing page is solid navy.
-- Content slides carry a two-digit page number at the lower right (0.5in from the right, 0.26in from the bottom, 9.5pt, light gray).
+- The background is a light gradient (white to `tint`, 155deg). The closing page is solid navy.
+- Content slides carry a two-digit page number at the lower right (0.5in from the right, 0.26in from the bottom, 9.5pt, `faint`).
 - Text breaks at spaces, never inside a word (`word-break: keep-all` with `overflow-wrap: break-word` as the fallback for a string longer than its box).
 - The HTML is one self-contained file: the stylesheet inline, the logos and marks as data URLs, the font loaded from the URL in `theme.font_css` with a system fallback. Nothing else is fetched.
 
@@ -22,10 +22,16 @@ What `scripts/render.py` does, written so that the HTML can be produced by hand 
 | `tint` | `#E7EDFA` | Diagram nodes, pale step labels, the first Gantt tone |
 | `tint2` | `#D9E2F6` | Chips, the first cover stripe |
 | `line` | `#E2E8F5` | Panel borders, list rules, Gantt month lines |
-| `pale` | `#BFD0EC` | The loop ring, the diagram frame, timeline rails |
+| `pale` | `#BFD0EC` | The loop ring, the diagram frame, timeline rails, the cover's logo separator, the closing's contact lines |
+| `rule` | `#C9D1E3` | The thin rules of definition lists and the Gantt header, the borders of loop nodes, profile row rules |
+| `faint` | `#8A94A8` | Page numbers |
 | `font` | `Pretendard`, falling back to the system's Korean-capable sans | All text |
 
 Read the organization's own values from its brand file, website stylesheet or a previous deck; write them into `meta.theme`. Keep the roles: a theme is the colors, not a new layout.
+
+### Deriving a theme from one color
+
+With one brand color, the organization's primary, `navy` is that color, and the tinted tokens keep its hue and take these lightness and saturation values (HSL, rounded): `steel` 60% and 38%, `pale` 84% and 51%, `rule` 84% and 32%, `tint2` 91% and 62%, `line` 92% and 49%, `tint` 94% and 66%; these are the defaults' own values, so a brand whose primary is the default navy gets the defaults back. `ink`, `mute` and `faint` stay neutral unless the brand has its own grays. A second brand color, where the brand has one, is `steel`. Write the derived values into `meta.theme`, so that the deck file carries the theme and a later run edits it there.
 
 ## Marks
 
@@ -53,7 +59,7 @@ Logos and symbols are image files embedded as data URLs: PNG, JPG or SVG. A word
 | Diagram node title, body | 13.5pt, 11pt (full width) | bold, regular | ink, white on an accent node |
 | Profile name, title | 21pt, 10.5pt | bold, regular | ink, mute |
 | Profile row label, lines | 13pt, 12.5pt | bold, regular | ink |
-| Page number | 9.5pt | regular | light gray |
+| Page number | 9.5pt | regular | faint |
 
 ## Block markup
 
@@ -72,7 +78,7 @@ Logos and symbols are image files embedded as data URLs: PNG, JPG or SVG. A word
 - **profiles**: a grid of `cols` white cards (0.14in radius, 0.36in by 0.45in padding). The head is a 0.8in ring (2pt ink) with the initial at 22pt, then the name at 21pt and the title in small muted type with letter spacing. Each row is a 0.85in label column and a lines column; every line has a 1.5pt light rule at its left and 0.16in of padding.
 - **timeline**: one column per phase with a 3.5pt rail in pale at its left; each entry has a navy disc on the rail, the `when` line in steel, the title in navy and plain tick lines below.
 - **stack**: a grid of three columns (3in label, 5.6in description, the rest for the aside, or the block's own `cols`). Labels take, from the first step down, tint, pale, steel, navy; text is white on steel and navy. The aside spans every row.
-- **cards**, **banner**, **stats**, **bullets** (ticks), **qa**, **split**, **shots**, **note**: as in 1.0; a card may carry an icon disc above or beside its title, a banner an icon disc at its left, a stat tile an icon disc, a value and a label. These are the blocks the design floor limits.
+- **cards**, **banner**, **stats**, **bullets** (ticks), **qa**, **split**, **shots**, **note**: as deck-spec.md "Blocks" defines them; a card may carry an icon disc above or beside its title, a banner an icon disc at its left, a stat tile an icon disc, a value and a label. These are the blocks the design floor limits.
 - **cover**: four rounded stripes rotated 40 degrees at the upper right (centers, widths and lengths in inches: 5.3/0.85 0.9×2.4 tint2, 9.3/2.1 0.85×6.1 line, 8.7/4.2 1.05×6.2 tint, 9.9/4.7 0.75×3.1 steel), the title block 0.75in from the left and 2.05in from the top (50pt, two lines), the tagline 0.35in below it, the logos in a row 0.75in from the left and 5.5in from the top (the client's logo 0.4in tall, a 1px rule, the presenter's logo 0.36in tall, 0.3in apart), and, only with `footer: true`, the client, date and brand line at 6.2in.
 - **closing**: navy page; the title centered at 2.75in from the top; the white logo centered at 5.15in, 0.3in tall; the contact lines centered at 5.65in in a pale blue, 12pt.
 
@@ -83,4 +89,4 @@ Logos and symbols are image files embedded as data URLs: PNG, JPG or SVG. A word
 
 ## Review
 
-Rasterize each page small and tile them into one image, as rendering-html.md "A contact sheet of many pages" says. Look for: cut text at the bottom of a page, a line broken inside a word, a lone word on a second line, a fact value that wraps, a loop whose center touches its nodes, a diagram whose nodes wrap into three lines, a Gantt bar whose text overflows its ends, a brand panel whose marks are recolored or on a dark ground, a profile card whose rows run past the card, and the design-floor defaults (icon card grids, number tiles, kickers). Then open any suspect page at about 85 dpi.
+The helper's `--sheet` tiles the pages three per row at about 55 dpi with PyMuPDF (`pip install pymupdf`); without it, make the sheet as rendering-html.md "A contact sheet of many pages" says. Look for: cut text at the bottom of a page, a line broken inside a word, a lone word on a second line, a fact value that wraps, a loop whose center touches its nodes, a diagram whose nodes wrap into three lines, a Gantt bar whose text overflows its ends, a brand panel whose marks are recolored or on a dark ground, a profile card whose rows run past the card, and the design-floor defaults (icon card grids, number tiles, kickers). Then open any suspect page at about 85 dpi.

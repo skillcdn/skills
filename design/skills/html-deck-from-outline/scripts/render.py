@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Render a deck file (see ../references/deck-spec.md) to one HTML file, and print it to PDF.
 
-Usage:  python render.py <deck.json> <out.html> [--pdf <out.pdf>] [--no-check]
+Usage:  python render.py <deck.json> <out.html> [--pdf <out.pdf>] [--sheet <out.png>] [--no-check]
 
 - One slide is one 13.333in x 7.5in page, on screen and in print.
 - Cover: two title lines, one short tagline, the client's logo and then the presenter's at the lower left, four diagonal stripes at the upper right.
@@ -10,8 +10,11 @@ Usage:  python render.py <deck.json> <out.html> [--pdf <out.pdf>] [--no-check]
 - Structure comes from type, rules and real marks: columns / statement / facts / numbered / loop / brand are the editorial blocks;
   cards / banner / bullets / rows / stats / shots / stack / timeline / qa / split / profiles / steps / diagram / gantt / note are the rest.
 - Line icons (ICONS) exist for the rare item whose meaning a word does not carry; a named product gets its real logo (an image path), never an icon.
-- When meta.external is true, the strings are checked against meta.style before rendering; a failure lists each string.
+- When meta.external is true, the strings of meta and slides are checked against meta.style before rendering; a failure lists each
+  string with its path ($.slides[3].blocks[0].text). --no-check renders anyway, for a look at a draft; a delivery never uses it.
 - The PDF is printed with Playwright's Chromium. Without Playwright the HTML is written and the PDF step is skipped with a message.
+- --sheet tiles the PDF's pages into one PNG with PyMuPDF, for the review. Without PyMuPDF the step is skipped with a message.
+- Logo paths are resolved relative to the deck file; a path that does not exist prints a warning and draws nothing.
 """
 import base64
 import html
@@ -24,6 +27,7 @@ import sys
 DEFAULT_THEME = {
     "navy": "#22408E", "steel": "#7089BF", "ink": "#2A3242", "mute": "#5A6478",
     "tint": "#E7EDFA", "tint2": "#D9E2F6", "line": "#E2E8F5", "pale": "#BFD0EC",
+    "rule": "#C9D1E3", "faint": "#8A94A8",
     "font": "Pretendard",
     "font_css": "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css",
 }
@@ -72,7 +76,8 @@ def check_style(spec):
     style = spec.get("meta", {}).get("style", {})
     forbidden = style.get("forbidden", {})
     problems = []
-    for path, s in _walk_strings(spec["slides"]):
+    checked = {"meta": {k: v for k, v in spec.get("meta", {}).items() if k not in ("style", "theme")}, "slides": spec["slides"]}
+    for path, s in _walk_strings(checked):
         for ch, name in forbidden.items():
             if ch in s:
                 problems.append(f"{path}: {name} ({ch}) in: {s[:60]}")
@@ -85,12 +90,19 @@ def _e(s):
     return html.escape("" if s is None else str(s), quote=False)
 
 
+BASE_DIR = ""  # the deck file's folder: logo paths are resolved relative to it
+
+
 def _img_data(path):
-    if not path or not os.path.exists(path):
+    if not path:
+        return None
+    full = path if os.path.isabs(path) else os.path.join(BASE_DIR, path)
+    if not os.path.exists(full):
+        print(f"warning: mark not found, nothing drawn: {path}", file=sys.stderr)
         return None
     ext = os.path.splitext(path)[1].lower().lstrip(".")
     mime = {"svg": "image/svg+xml", "jpg": "image/jpeg", "jpeg": "image/jpeg"}.get(ext, "image/png")
-    with open(path, "rb") as f:
+    with open(full, "rb") as f:
         return f"data:{mime};base64," + base64.b64encode(f.read()).decode()
 
 
@@ -120,7 +132,7 @@ CSS_T = """
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: #9aa3b5; }
 body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; color: @INK; -webkit-print-color-adjust: exact; print-color-adjust: exact; word-break: keep-all; overflow-wrap: break-word; }
-.slide { position: relative; width: 13.333in; height: 7.5in; overflow: hidden; margin: 0 auto 0.25in auto; background: linear-gradient(155deg, #FFFFFF 0%, #ECF0F9 100%); page-break-after: always; break-after: page; }
+.slide { position: relative; width: 13.333in; height: 7.5in; overflow: hidden; margin: 0 auto 0.25in auto; background: linear-gradient(155deg, #FFFFFF 0%, @TINT 100%); page-break-after: always; break-after: page; }
 .slide:last-child { margin-bottom: 0; }
 @media print { body { background: none; } .slide { margin: 0; } }
 .content { position: absolute; left: 0.55in; right: 0.55in; top: 0.42in; bottom: 0.45in; display: flex; flex-direction: column; }
@@ -133,7 +145,7 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .body { flex: 1; display: flex; flex-direction: column; gap: 0.26in; min-height: 0; }
 .body.center { justify-content: center; padding-bottom: 0.3in; }
 .note { position: absolute; left: 0.55in; right: 0.55in; bottom: 0.12in; font-size: 10.5pt; color: @MUTE; line-height: 1.35; }
-.pageno { position: absolute; right: 0.5in; bottom: 0.26in; font-size: 9.5pt; color: #8A94A8; letter-spacing: 0.05em; }
+.pageno { position: absolute; right: 0.5in; bottom: 0.26in; font-size: 9.5pt; color: @FAINT; letter-spacing: 0.05em; }
 .ic { display: block; flex: none; }
 .idisc { flex: none; width: 0.52in; height: 0.52in; border-radius: 50%; background: @TINT; color: @NAVY; display: flex; align-items: center; justify-content: center; }
 
@@ -148,11 +160,11 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 
 /* facts (definition list) */
 .facts { display: grid; }
-.facts .f { display: grid; column-gap: 0.2in; padding: 0.13in 0; border-top: 1px solid #C9D1E3; }
-.facts .f:last-child { border-bottom: 1px solid #C9D1E3; }
+.facts .f { display: grid; column-gap: 0.2in; padding: 0.13in 0; border-top: 1px solid @RULE; }
+.facts .f:last-child { border-bottom: 1px solid @RULE; }
 .facts dt { margin: 0; font-size: 11.5pt; color: @MUTE; padding-top: 0.03in; }
 .facts dd { margin: 0; font-size: 14pt; font-weight: 600; color: @INK; line-height: 1.4; }
-.facts.inline { grid-auto-flow: column; column-gap: 0.4in; border-top: 1px solid #C9D1E3; padding-top: 0.14in; }
+.facts.inline { grid-auto-flow: column; column-gap: 0.4in; border-top: 1px solid @RULE; padding-top: 0.14in; }
 .facts.inline .f { display: block; border: 0; padding: 0; }
 .facts.inline dt { margin-bottom: 0.05in; }
 .facts.inline dd { font-size: 12pt; font-weight: 500; line-height: 1.45; }
@@ -168,7 +180,7 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 /* loop */
 .loop { position: relative; }
 .loop svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
-.loop .ln { position: absolute; transform: translate(-50%, -50%); background: #fff; border: 1px solid #C9D1E3; border-radius: 0.1in; padding: 0.1in 0.14in; text-align: center; }
+.loop .ln { position: absolute; transform: translate(-50%, -50%); background: #fff; border: 1px solid @RULE; border-radius: 0.1in; padding: 0.1in 0.14in; text-align: center; }
 .loop .ln b { display: block; font-size: 12.5pt; color: @NAVY; }
 .loop .ln span { display: block; font-size: 10pt; color: @MUTE; line-height: 1.35; margin-top: 0.03in; }
 .loop .lc { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); text-align: center; }
@@ -260,7 +272,7 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .profile .role { font-size: 10.5pt; color: @MUTE; letter-spacing: 0.06em; margin-top: 0.05in; }
 .profile .pr { display: grid; grid-template-columns: 0.85in 1fr; column-gap: 0.1in; margin-top: 0.18in; align-items: start; }
 .profile .pr .k { font-size: 13pt; font-weight: 700; color: @INK; padding-top: 0.02in; }
-.profile .pr .v div { border-left: 1.5pt solid #C9D1E3; padding-left: 0.16in; font-size: 12.5pt; line-height: 1.35; margin-bottom: 0.07in; }
+.profile .pr .v div { border-left: 1.5pt solid @RULE; padding-left: 0.16in; font-size: 12.5pt; line-height: 1.35; margin-bottom: 0.07in; }
 
 /* steps */
 .steps { display: flex; align-items: center; gap: 0.07in; }
@@ -303,7 +315,7 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 
 /* gantt */
 .gantt { display: grid; grid-template-columns: 2.9in 1fr; row-gap: 0.1in; align-content: start; }
-.gantt .gmonths { display: grid; border-bottom: 1px solid #C9D1E3; }
+.gantt .gmonths { display: grid; border-bottom: 1px solid @RULE; }
 .gantt .gmonths div { font-size: 11.5pt; font-weight: 700; color: @NAVY; padding: 0 0 0.08in 0.1in; border-left: 1px solid @LINE; }
 .gantt .gl { font-size: 13pt; font-weight: 700; color: @INK; display: flex; align-items: center; height: 0.6in; padding-right: 0.2in; }
 .gantt .gt { position: relative; height: 0.6in; background-image: linear-gradient(to right, @LINE 1px, transparent 1px); }
@@ -320,20 +332,21 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .cover .logos { position: absolute; left: 0.75in; top: 5.5in; display: flex; align-items: center; gap: 0.3in; }
 .cover .logos img { height: 0.36in; display: block; }
 .cover .logos img.client { height: 0.4in; }
-.cover .logos .sep { width: 1px; height: 0.42in; background: #B9C3D6; }
+.cover .logos .sep { width: 1px; height: 0.42in; background: @PALE; }
 .cover .foot { position: absolute; left: 0.75in; top: 6.2in; font-size: 12pt; font-weight: 700; color: @MUTE; }
 
 /* closing */
 .closing { background: @NAVY; }
 .closing h1 { position: absolute; left: 0; right: 0; top: 2.75in; margin: 0; text-align: center; font-size: 44pt; font-weight: 700; color: #fff; }
 .closing .logo { position: absolute; left: 50%; transform: translateX(-50%); top: 5.15in; height: 0.3in; }
-.closing .contact { position: absolute; left: 0; right: 0; top: 5.65in; text-align: center; font-size: 12pt; color: #C9D4EE; line-height: 1.6; }
+.closing .brandname { height: auto; white-space: nowrap; color: #fff; font-size: 16pt; font-weight: 700; letter-spacing: 0.04em; }
+.closing .contact { position: absolute; left: 0; right: 0; top: 5.65in; text-align: center; font-size: 12pt; color: @PALE; line-height: 1.6; }
 """
 
 
 def css(t):
     out = CSS_T.replace("@FONT_IMPORT", f"@import url('{t['font_css']}');" if t.get("font_css") else "")
-    for key in ("navy", "steel", "ink", "mute", "tint2", "tint", "line", "pale", "font"):
+    for key in ("navy", "steel", "ink", "mute", "tint2", "tint", "line", "pale", "rule", "faint", "font"):
         out = out.replace("@" + key.upper(), t[key])
     return out
 
@@ -450,7 +463,7 @@ class Renderer:
         rows = []
         for i, it in enumerate(blk["items"]):
             tag = it.get("tag")
-            basic = blk.get("basic_tag", "기본")
+            basic = blk.get("basic_tag")
             opt = " opt" if tag and tag != basic else ""
             chip = f'<span class="chip{" basic" if tag == basic else ""}">{_e(tag)}</span>' if tag else "<span></span>"
             lead = _disc(it["icon"], 0.26) if it.get("icon") else f'<div class="no{opt}">{it.get("no", i + 1)}</div>'
@@ -638,7 +651,7 @@ class Renderer:
         if t == "closing":
             logo = _img_data(meta.get("logo_white"))
             return (f'<section class="slide closing"><h1>{_e(s.get("title", "Thank you"))}</h1>'
-                    + (f'<img class="logo" src="{logo}">' if logo else "")
+                    + (f'<img class="logo" src="{logo}">' if logo else (f'<div class="logo brandname">{_e(meta["brand"])}</div>' if meta.get("brand") else ""))
                     + f'<div class="contact">{"<br>".join(_e(c) for c in s.get("contact", []))}</div></section>')
         blocks = s.get("blocks", [])
         notes = [b["text"] for b in blocks if b["kind"] == "note"]
@@ -679,11 +692,38 @@ def to_pdf(html_path, pdf_path):
     print("pdf:", pdf_path)
 
 
+def contact_sheet(pdf_path, png_path, cols=3, dpi=55):
+    """Tiles every page of the PDF into one PNG, cols per row, at a small size, for the review."""
+    try:
+        import fitz  # PyMuPDF
+    except ImportError:
+        print("sheet: skipped (PyMuPDF is not installed: pip install pymupdf; or screenshot each page in a browser and tile them)")
+        return
+    src = fitz.open(pdf_path)
+    n = src.page_count
+    if not n:
+        return
+    pw, ph = src[0].rect.width, src[0].rect.height
+    gap = 12  # points between tiles
+    rows = -(-n // cols)
+    sheet = fitz.open()
+    page = sheet.new_page(width=cols * pw + (cols + 1) * gap, height=rows * ph + (rows + 1) * gap)
+    for i in range(n):
+        r, c = divmod(i, cols)
+        x, y = gap + c * (pw + gap), gap + r * (ph + gap)
+        page.show_pdf_page(fitz.Rect(x, y, x + pw, y + ph), src, i)
+    page.get_pixmap(dpi=dpi).save(png_path)
+    print("sheet:", png_path, f"({n} pages, {cols} per row)")
+
+
 def main(argv):
+    global BASE_DIR
+    sys.stdout.reconfigure(encoding="utf-8")  # a Windows console otherwise stops at the first character it cannot encode
     if len(argv) < 3:
         print(__doc__)
         return 2
     spec = json.load(open(argv[1], encoding="utf-8"))
+    BASE_DIR = os.path.dirname(os.path.abspath(argv[1]))
     meta = spec.get("meta", {})
     if meta.get("external") and "--no-check" not in argv:
         probs = check_style(spec)
@@ -699,7 +739,12 @@ def main(argv):
         f.write(Renderer(theme).html(spec))
     print("html:", out_html, f"({len(spec['slides'])} slides)")
     if "--pdf" in argv:
-        to_pdf(out_html, argv[argv.index("--pdf") + 1])
+        pdf = argv[argv.index("--pdf") + 1]
+        to_pdf(out_html, pdf)
+        if "--sheet" in argv:
+            contact_sheet(pdf, argv[argv.index("--sheet") + 1])
+    elif "--sheet" in argv:
+        print("sheet: skipped (--sheet needs --pdf; the sheet is made from the PDF's pages)")
     return 0
 
 
