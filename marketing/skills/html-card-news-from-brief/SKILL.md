@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js and a Chromium-family browser that playwright-core can launch (an installed Chrome, Edge or Chromium, or playwright-core's own), a network for web fonts, and a way to show a local page to the user (the host's browser or preview pane) or to attach images. Works in any agent that can run a shell and attach files.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: browser
 skillcdn:
   include:
