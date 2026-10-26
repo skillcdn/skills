@@ -8,11 +8,11 @@ A profile shows its bio, its counts and about a dozen recent posts; older posts 
 
 ## The platform's documented size
 
-The platform's help page on post sizes, found by searching its help site for the photo or post size, gave a maximum width of 1080 pixels and supported ratios from 1.91:1 to 3:4, not a fixed portrait size (checked 2026-10-23); the height is the width divided by the measured ratio (1350 for 4:5). A fetch tool that converts pages to text returned nothing from the help site, which renders by script; the driven browser read it.
+The platform's help page on post sizes, found by searching its help site for the photo or post size, gave a maximum width of 1080 pixels and supported ratios from 1.91:1 to 3:4, not a fixed portrait size (checked 2026-10-23); the height is the width divided by the measured ratio (1350 for 4:5). A fetch tool that converts pages to text returned nothing from the help site, which renders by script; a driven browser read it, and so did a headless one (2026-10).
 
 ## The sign-in prompt
 
-A modal asking to sign up or log in covers the page a moment after a profile or a post loads, and again after some navigations. Close it with its close control at the top right of the modal, found on a screenshot; its coordinates depend on the viewport, so take the screenshot first. In a viewport narrower than about 768 pixels the site serves its mobile layout and the prompt is an "open in the app" sheet, closed by the X at its top right; a reel's page becomes an interstitial with a "continue on web" link, which is clicked. Never sign in and never fill the form (driven-browser.md "Prompts and walls").
+A modal asking to sign up or log in covers the page a moment after a profile or a post loads, and again after some navigations. Close it with its close control at the top right of the modal, found on a screenshot; its coordinates depend on the viewport, so take the screenshot first. In a viewport narrower than about 768 pixels the site serves its mobile layout and the prompt is an "open in the app" sheet, closed by the X at its top right; a reel's page becomes an interstitial with a "continue on web" link, which is clicked. A headless browser at 720 by 1050 got the modal instead of the sheet, its close control just past the viewport's right edge, where no click lands; a script that pressed that control and nothing else closed it (checked 2026-10). Never sign in and never fill the form (driven-browser.md "Prompts and walls").
 
 ## The viewport
 
@@ -20,11 +20,11 @@ The site serves its mobile layout in a viewport narrower than about 768 pixels; 
 
 ## The page's data
 
-Each post page carries a `script` element of type `application/json` that holds the post object; the one whose `code` equals the post's id in the URL is the post. It gives `taken_at` (the post's time as a Unix timestamp), `carousel_media_count`, each slide's media type and pixel size, and the whole `caption.text` with no entities to decode (checked 2026-10). Read it with a script run in the page, as driven-browser.md "Data embedded in a page" says. It does not carry the slides' text, which is in the images, so every slide is still stepped to and read at zoom. The grid's alt text also carries a date, in a time zone that can put it a day off; take dates from `taken_at`.
+Each post page carries a `script` element of type `application/json` that holds the post object; the one whose `code` equals the post's id in the URL is the post. It gives `taken_at` (the post's time as a Unix timestamp), the slide count as `carousel_media_count` or, on a post that lacks that key, as the length of `carousel_media` (checked 2026-10), each slide's media type and pixel size, and the whole `caption.text` with no entities to decode (checked 2026-10). Read it with a script run in the page, as driven-browser.md "Data embedded in a page" says. It does not carry the slides' text, which is in the images, so every slide is still stepped to and read at zoom. The grid's alt text also carries a date, in a time zone that can put it a day off; take dates from `taken_at`.
 
 ## Stepping a carousel
 
-The next control is at the right edge of the post's image box, vertically centered, and appears on hover. A real pointer click at its coordinates advances the carousel and the page's URL, as the browser reports it after the click, gains the slide index (`?img_index=<n>`), which confirms the step (checked 2026-10); a click dispatched from a script on the control's element does not advance it (driven-browser.md "Clicks that script cannot make"). On a video post the control sits a little inward and a click on the middle of the box toggles playback; find the control on that post's screenshot before stepping.
+The next control is at the right edge of the post's image box, vertically centered, and appears on hover. The box follows the post's ratio: on a square post at 720 wide it is 720 by 720 and the control sits higher than on a 4:5 post, so a click at a 4:5 post's coordinates does not step a square one; find the control on the first screenshot of each post of another ratio (checked 2026-10). A real pointer click at its coordinates advances the carousel and the page's URL, as the browser reports it after the click, gains the slide index (`?img_index=<n>`), which confirms the step (checked 2026-10); a click dispatched from a script on the control's element does not advance it (driven-browser.md "Clicks that script cannot make"). On a video post the control sits a little inward and a click on the middle of the box toggles playback; find the control on that post's screenshot before stepping.
 
 ## Reading a slide
 
@@ -36,4 +36,4 @@ The page's visible text may cut a long caption; the post object above holds it w
 
 ## The headless route
 
-No run has taken it on this site (2026-10): what the site shows a signed-out headless browser on its first load is known only when a run reads it. A login page or an error box there is a wall (hard rule 1), and the delivery says so.
+A headless Chrome launched by channel, signed out, at 720 by 1050 and a scale of 2, read the profile, every post visible and the help page with no wall, its cookie state carried from run to run (checked 2026-10). Where it differed from a window: the prompt's close control and a square post's next control, above.

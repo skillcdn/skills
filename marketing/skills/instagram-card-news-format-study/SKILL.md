@@ -2,10 +2,10 @@
 name: instagram-card-news-format-study
 description: Studies a reference Instagram account's card news (carousel posts of a magazine, an issue or a humor account alike) and writes its format as a spec a new post can be built in, from the posts visible without signing in. Use when a user says "look at this account's posts and make ours the same way", "analyze this account's card-news format", "what are this account's categories and format", or wants a reference for a card-news series. The post itself is built by html-card-news-from-brief. Reads the profile for its categories and cadence, opens every visible post slide by slide with a driven browser, and measures what repeats, with the canvas and slide count, each slide type's anatomy and how it treats its photo (cropped, or a broadcast frame kept whole with its marks), which text is the account's own, the text density as counts, the register of slides and of captions as patterns, the caption's parts and credit line, which variant carries which content, and what the account never does, as a JSON spec and notes.
 license: MIT
-compatibility: Needs a browser the agent can drive (navigate and report the URL it is on, set the tab's viewport, take a screenshot, click and hover by coordinates, zoom into a region, read the page's text, run a script in the page), or a shell with Node.js or Python and an installed Chrome, Edge or Chromium that a script of the run's own drives headless the same way; and, optionally, a shell with Node.js for decoding captions and counting characters. No account and no sign-in. Works in any agent with a driven browser, and, by a route no run has taken on the site yet (2026-10), in one with such a shell.
+compatibility: Needs a browser the agent can drive (navigate and report the URL it is on, set the tab's viewport, take a screenshot, click and hover by coordinates, zoom into a region, read the page's text, run a script in the page), or a shell with Node.js or Python and an installed Chrome, Edge or Chromium that a script of the run's own drives headless the same way; and, optionally, a shell with Node.js for decoding captions and counting characters. No account and no sign-in. Works in any agent with a driven browser or such a shell.
 metadata:
   author: skillcdn
-  version: "1.5"
+  version: "1.6"
   tools: instagram
 skillcdn:
   include:
@@ -98,7 +98,7 @@ Reset the browser's viewport to the size recorded before phase 1; a headless bro
 
 ## Hard rules
 
-1. No sign-in and no way around the site's prompts: the posts visible without an account are the sample, and the delivery says so. The site's terms restrict automated collection; this is one person's reading of the dozen or so posts visible without an account, one page at a time with a few seconds between loads, through one browser alone: the one the agent drives, or a headless one launched as it is and opened by the run's own script for one page per run, never for a list of pages or a run left going; a wall either meets ends the reading.
+1. No sign-in and no way around the site's prompts: the posts visible without an account are the sample, and the delivery says so. The site's terms restrict automated collection; this is one person's reading of the dozen or so posts visible without an account, one page at a time with a few seconds between loads, through one browser alone, driven or headless; a wall ends the reading.
 2. The spec carries counts for text, not impressions: sub characters, sentences per slide, characters per sentence, lines, headline characters per line. A spec without them makes a post that looks right and reads wrong, which is what the user notices first. Sizes, weights and colors are estimates and are marked as such.
 3. The register is written as patterns with wrong-sounding counterparts. The account's sentences are not copied as the spec's register examples, and a post built from the spec never reuses its words; the spec may quote a label, a category name or a caption's first line to identify what was read.
 4. Variants are mapped to the content they carried, so that the build chooses a layout by what a slide says and not by the last post's order.
