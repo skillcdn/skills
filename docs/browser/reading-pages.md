@@ -6,11 +6,11 @@ How an article, a help page or a site page is read for its text and its images: 
 
 | Tool | Reads | Does not |
 |---|---|---|
-| A fetch tool that converts a page to text | An article's text and, usually, its figure images with their captions | The share image in the page's metadata, on one tool (checked 2026-10); a page that renders by script (a help site returned nothing); a page behind a browser check; some outlets' pages, which refused it while a driven browser read them in full (checked 2026-10) |
+| A fetch tool that converts a page to text | An article's text and, usually, its figure images with their captions | The share image in the page's metadata, on one tool (checked 2026-10); a page that renders by script (a help site returned nothing); a page behind a browser check; some outlets' pages, which answer a plain fetch with an error page while a browser reads the article as any visitor's does (checked 2026-10) |
 | A browser the agent drives ([driven-browser.md](driven-browser.md)) | Everything a person sees, the image elements by a script in the page, pages that render by script, pages that answer only a browser engine | A page behind a wall (below) |
-| A shell with `curl` | A page's HTML, sent with a browser user agent and a referer; a media file | A page that answers only a browser engine (an HTTP 403 with a check script): the check is not replayed |
+| A shell with `curl` | A page's HTML as the host serves it to a plain request; a media file the host serves to a plain request | A page that answers only a browser engine (an HTTP 403 with a check script): the check is not replayed, and the request is not dressed up as a browser's |
 
-A search tool's own summary of a page is a lead and never a source: a figure read from a summary and not from the page was wrong once, and the user caught it. Where one tool is refused, the next in the table reads the same page; where none can, the page is not a source and the delivery says so.
+A search tool's own summary of a page is a lead and never a source: a figure read from a summary and not from the page has been wrong. Where one tool returns nothing or an error page, the next in the table is tried, because a fetch tool cannot render what a browser can; a page that needs a sign-in, a subscription, a consent or a check that does not pass by itself is read by none of them ("Walls" below), a browser is never dressed up as something else, and a page none can read is not a source, which the delivery says.
 
 ## Read to the end
 
@@ -18,7 +18,7 @@ A page counts as read in full when its end was reached: the last paragraph, the 
 
 ## Walls
 
-A page that needs a login, a paid subscription, a consent the content cannot be read without, or a browser check that does not pass on its own is not read: no sign-in, no account, no form filled, no replay of a check, no disguised browser. A prompt that only covers the page is closed by its own control and the page read; a prompt that gates the content ends the reading, and another source is read. A page that shows nothing but a request to log in after pages that read fine is a site slowing the reader down: stop, say so, and wait for the user.
+A page that needs a login, a paid subscription, a consent the content cannot be read without, or a browser check that does not pass on its own is not read: no sign-in, no account, no form filled, no replay of a check, no disguised browser. A prompt that only covers the page is closed by its own control and the page read; a prompt that gates the content ends the reading, and another source is read. A page that shows nothing but a request to log in after pages that read fine is the site asking for a pause: stop, say so, and do not go on without the user.
 
 ## Pages that render by script
 
@@ -40,8 +40,8 @@ A help site, a settings page, a profile: the text arrives by script after the lo
 
 ## Downloading a file
 
-- One request at a time, as with pages. Send a browser user agent and the page's address as the referer: some hosts refuse a bare request (checked 2026-10).
-- An address that transforms the image on the way carries a segment or a parameter for it (`/cdn-cgi/image/<options>/`, `/resize/<w>x<h>/`, `w_1200`, `format=webp`): remove it to reach the original where the host allows, and keep the larger file (checked 2026-10).
+- One request at a time, as with pages. Where a browser read the page, download the image through it (the driven browser's save, or a headless browser's request context), which sends the page as the referer and the browser's own identity; from a shell with no browser, a plain request, and a host that answers it with an error is not downloaded from (checked 2026-10). A request is never dressed up as a browser's.
+- An address that transforms the image on the way carries a segment or a parameter for it (`/cdn-cgi/image/<options>/`, `/resize/<w>x<h>/`, `w_1200`, `format=webp`): the address without it is the original where the host serves one to a plain request, and the larger file is kept; an address the host does not answer is left alone (checked 2026-10).
 - Read the pixel size from the file, never from the page or the address: the copies of one story's photographs ranged from a few hundred to over three thousand pixels wide. A few lines that read the JPEG, PNG and WebP headers do it; the card-news research skill carries them as [`image-size.example.mjs`](/marketing/skills/web-cardnews-topic-brief/scripts/image-size.example.mjs).
 - A file copied from a page may carry the page's metadata, a location included; a screenshot carries none.
 - Some sites sign their media addresses, and the signature expires within days: read the media in the run that found it, and cite the page.

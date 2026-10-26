@@ -8,7 +8,7 @@ A browser the agent operates through tools: an assistant's built-in browser or b
 |---|---|---|
 | Navigate to a URL, and report the URL the tab is on | A tool that takes an address; a tool or a result that returns the current address | Every site. The reported address confirms a step a click made (a slide index, a query parameter) |
 | Read the page's text | A tool that returns the page as text or as an accessibility tree | Captions, labels, counts: the fastest read, and the one that keeps working while the window is in the background |
-| Run a script in the page | A tool that evaluates JavaScript in the page and returns its value | Data embedded in the page, image elements, closing a prompt, drawing the frames of a video |
+| Run a script in the page | A tool that evaluates JavaScript in the page and returns its value | Data embedded in the page, image elements, pressing a prompt's own close control, drawing the frames of a video |
 | Take a screenshot | A tool that returns an image of the viewport | Reading type and layout; anything a text read loses |
 | Zoom into a region | A tool that returns a region of the viewport larger | Small type on a slide or a card |
 | Click and hover at coordinates | Tools that take x and y | Controls that script clicks do not move: an arrow that shows on hover, a menu, a player |
@@ -34,9 +34,9 @@ A capability the host lacks is worked around as the sections below say, and the 
 
 ## Prompts and walls
 
-- A modal that asks to sign up or sign in, a cookie or consent banner, an "open in the app" sheet, an interstitial with a "continue on web" link: close or pass it by its own control (the close mark at its top right, the link), found on a screenshot, because its coordinates depend on the viewport. A dialog closed by script takes about a second and a half to go (checked 2026-10). The prompt returns after some navigations: close it again.
+- A modal that asks to sign up or sign in, a cookie or consent banner, an "open in the app" sheet, an interstitial with a "continue on web" link: close or pass it by its own control (the close mark at its top right, the link), found on a screenshot, because its coordinates depend on the viewport, with a real click or a script that presses that control and nothing else; a dialog closed that way takes about a second and a half to go (checked 2026-10). The prompt returns after some navigations: close it again.
 - A wall ends the reading: a login the content needs, a paywall, a consent the page cannot be read without, a browser check or a CAPTCHA that does not pass by itself, an age gate. No sign-in, no form filled, no replay of a check, no disguised or patched browser. Say what stopped the reading and offer another source or the user's own browser.
-- A page that shows nothing but a request to log in, or an error box, after pages that read fine, is a site slowing the reader down rather than a wall: stop, say so, and wait for the user.
+- A page that shows nothing but a request to log in, or an error box, after pages that read fine, is the site asking for a pause: stop, say so, and do not go on without the user.
 - A browser the user already signed in belongs to them: read the page the skill needs and touch nothing else.
 
 ## Data embedded in a page
@@ -47,4 +47,4 @@ A capability the host lacks is worked around as the sections below say, and the 
 
 ## Pace
 
-One page at a time, a few seconds between loads, nothing in parallel. A page load is one navigation to the site, retries included; a skill that reads a site sets a budget and counts against it. These skills read a dozen or a few dozen pages the way a person would, with more patience; bulk or continuous collection is not what they do.
+One page at a time, a few seconds between loads, nothing in parallel. A page load is one navigation to the site, retries included; a skill that reads a site sets a budget and counts against it. These skills read a dozen or a few dozen pages for one user's own purpose; bulk or continuous collection is not what they do.
