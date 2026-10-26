@@ -17,7 +17,7 @@ The user chooses from one sheet, and the sheet is made so that the choice is bet
 
 ## The recommendation and the runner-up
 
-The recommendation is one candidate, argued in the effect brief's terms: which reading it serves best, what prior knowledge it rests on that the audience has, and what it asks of the producer beyond the near candidate. The runner-up is named with what it would give instead, in one line. The far candidate stays on the sheet with one line on why it is there even when it is not recommended: it is where the next request can go. A recommendation without a runner-up, or a sheet without the far candidate, is not shown.
+The recommendation is one candidate, argued in the effect brief's terms: which reading it serves best, what prior knowledge it rests on that the audience has, and what it asks of the producer beyond the near candidate. The runner-up is named with what it would give instead, in one line. The far candidate stays on the sheet with one line on why it is there even when it is not recommended: it is where the next request can go. A recommendation without a runner-up, or a sheet without the far candidate where the request's distance asks for one (axes.md), is not shown.
 
 ## The contact sheet
 
