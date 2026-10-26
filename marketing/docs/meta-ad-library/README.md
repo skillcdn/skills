@@ -7,7 +7,7 @@ The skills that read the Meta Ad Library (`meta-ad-library-…`) share how the l
 | [`ad-library.md`](ad-library.md) | What the library is evidence of, the routes, the URL parameters, what a result carries, counting by age, what needs a click, manners and limits, what to do when no route works. | Before the first page is loaded; included with each skill. |
 | [`record.md`](record.md) | The record every route yields per creative group: its fields, where each comes from in the page's JSON and on a card, how long its media addresses last. | With the route's page. |
 | [`page-dump.md`](page-dump.md) | The shell route: one headless browser run per URL, the site's browser check, and the script that builds addresses, prints short lines, keeps the full records and counts the loads. | When the agent has a shell; the script finds the browser. |
-| [`driven-browser.md`](driven-browser.md) | The driven-browser route: what a driven browser does and does not do on the site, the in-page readers for the embedded results and for cards that arrived by scrolling, and the script that reads reach in the EU and the UK. | When the agent drives a browser. |
+| [`driven-browser.md`](driven-browser.md) | The driven-browser route: what a driven browser does and does not do on the site, the in-page readers for the embedded results and for cards that arrived by scrolling, and the script that reads reach in the EU and the UK. | When the agent drives a browser, or a script drives a headless one. |
 
 ## Who reads this
 
