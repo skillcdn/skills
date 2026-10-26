@@ -71,6 +71,22 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - Also asked as: "a presentation from this outline", "slides for the kickoff from the meeting plan", "a proposal deck as PDF", "a status report deck".
 - Not this one when: the slides go into an existing Figma deck in its design (the Figma skill above).
 
+### "Show me four looks for this."
+
+- You get: four looks for one design (a page's first screen, a deck's cover with a body slide, a post's cover) as HTML rendered in a browser and tiled on one contact sheet, each judged for the AI feel at desktop and phone size before you see it, with a recommendation and a runner-up, and your pick's tokens handed to the skill that builds the thing.
+- Skill: [`design/skills/html-design-variations/`](/design/skills/html-design-variations/SKILL.md)
+- Also asked as: "design directions for this landing page", "variations of this cover", "how else could this deck look", "alternatives to this layout".
+- Not this one when: you want the idea behind the piece varied rather than its look (the concept directions under Product), or a still a generative tool must make.
+
+## Product
+
+### "Show me five different ways to get this reference's effect."
+
+- You get: four to six concept directions that keep a reference's mechanism and change what the viewer would recognize, each a position on the concept axes with its opening lines, judged for the AI feel before you see it, on one sheet with a recommendation and a runner-up, and your pick written for the skill that makes the thing.
+- Skill: [`product/skills/web-concept-variations/`](/product/skills/web-concept-variations/SKILL.md)
+- Also asked as: "concept directions for this product", "alternatives to this idea that still work the same way", "variations on this reference", "directions before we make the post or the deck".
+- Not this one when: you want the looks of one direction (the looks under Design), or the thing itself made (the producing skill, which the handoff names).
+
 ## Engineering
 
 ### "Make what we just did into a skill."
@@ -138,4 +154,4 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ## Jobs with no skill yet
 
-Concept directions and alternatives from a reference, a set of looks for one design, and an answer from a pack of documents with its citations verified are the next skills planned, in product, design and engineering; what the pack plans is kept in its guide on the git host, which the mount does not serve. Until a skill exists, the agent says so and names the nearest one above.
+An answer from a pack of documents with every citation verified is the next skill planned, in engineering; what the pack plans is kept in its guide on the git host, which the mount does not serve. Until a skill exists, the agent says so and names the nearest one above.
