@@ -108,14 +108,21 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - You get: your PDFs, Word files, slides and exports as a pack of documents in your own repository: one file per document or chapter with a title and a description, a map per set, figures described and scans transcribed, checked and committed; an agent then finds a section by its words and reads it in one call.
 - Skill: [`engineering/skills/skillcdn-document-pack/`](/engineering/skills/skillcdn-document-pack/SKILL.md)
 - Also asked as: "turn these files into a pack", "a handbook our agents can search", "add these documents to the pack", "make the manual readable by agents".
-- Not this one when: the pack exists and you have a question for it (the research below).
+- Not this one when: the pack exists and you have a question for it (the question and the research below).
 
 ### "What does the handbook say about this?"
 
-- You get: the answer quoted from the sections that say it, with the path and the heading of each, what the pack does not say stated plainly, and a research note kept in the pack for the next time.
+- You get: the answer now, in two or three sentences, then the quotes that support it, each with the path, the heading and the offset of its section, every quote read once more before it is sent so that a reader who opens the citation finds the words, and what the pack does not say stated plainly with the nearest passage. Nothing is written into the pack and nothing is spent.
+- Skill: [`engineering/skills/skillcdn-doc-qa/`](/engineering/skills/skillcdn-doc-qa/SKILL.md)
+- Also asked as: "answer this from our documents", "is this true according to the manual", "which document covers this", "what do our documents say about this".
+- Not this one when: the answer is to be kept in the pack as a note, or a reference compiled across many documents (the research below); the documents are not in a pack yet (the document pack above).
+
+### "Research this in our documents and keep the note."
+
+- You get: a question answered, a reference compiled or a claim checked from a large pack, quoted from the sections that say it with the path and the heading of each, what the pack does not say stated plainly, and a research note kept in the pack for the next time.
 - Skill: [`engineering/skills/skillcdn-document-research/`](/engineering/skills/skillcdn-document-research/SKILL.md)
-- Also asked as: "answer this from the documents", "check this claim against the manual", "compile a reference from the archive", "what do our documents say about this".
-- Not this one when: the documents are not in a pack yet (the document pack above).
+- Also asked as: "compile a reference from the archive", "check this claim against the manual and keep the result", "research this across our documents", "write up what the handbook says about this".
+- Not this one when: you want the answer now and nothing kept (the question above); the documents are not in a pack yet (the document pack above).
 
 ### "Build me an app for this and put it online."
 
@@ -154,4 +161,4 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ## Jobs with no skill yet
 
-An answer from a pack of documents with every citation verified is the next skill planned, in engineering; what the pack plans is kept in its guide on the git host, which the mount does not serve. Until a skill exists, the agent says so and names the nearest one above.
+What the pack plans next is kept in its guide on the git host, which the mount does not serve. For a job no section above covers, the agent says so and names the nearest one above.

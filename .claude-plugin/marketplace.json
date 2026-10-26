@@ -22,7 +22,7 @@
     {
       "name": "engineering",
       "source": "./engineering",
-      "description": "Software development and the tooling an agent works with: code, a codebase's documents, apps, testing, debugging. A skill written from work already done with an agent and a skill verified again from a fresh session; documents turned into a pack an agent searches through SkillCDN, and research in such a pack; a new web app built and put live on Cloudflare; payments with Stripe from a sandbox to live money; Meta ads from the pixel to running campaigns; the operator's dashboard as a separate Worker behind Cloudflare Access.",
+      "description": "Software development and the tooling an agent works with: code, a codebase's documents, apps, testing, debugging. A skill written from work already done with an agent and a skill verified again from a fresh session; documents turned into a pack an agent searches through SkillCDN, research in such a pack and an answer from it with every citation checked; a new web app built and put live on Cloudflare; payments with Stripe from a sandbox to live money; Meta ads from the pixel to running campaigns; the operator's dashboard as a separate Worker behind Cloudflare Access.",
       "license": "MIT"
     },
     {
