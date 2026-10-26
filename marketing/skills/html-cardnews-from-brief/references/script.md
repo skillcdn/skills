@@ -4,11 +4,11 @@ How the slides' text is written from the brief in the spec's format, and the che
 
 ## The thesis
 
-One sentence, the brief's `angle` in the post's language. It is not the headline; the headline is made from it in the spec's headline style (a news title states the fact or the claim in two lines of the spec's characters per line). A post whose brief has no angle is a report: its thesis is its leading fact.
+One sentence, the brief's `angle` in the post's language. It is not the headline; the headline is made from it in the spec's headline style (a news title states the fact or the claim in two lines of the spec's characters per line). A post whose brief has no angle is a report: its thesis is the brief's `headline`, which the research wrote from the leading fact.
 
 ## The thread
 
-The beats in the order that carries the thesis, one per slide, from the spec's typical count. Two shapes cover most posts:
+The beats in the order that carries the thesis, one per slide, in the count the plan derived (SKILL.md "Inputs"). Two shapes cover most posts:
 
 | The post is | The thread |
 |---|---|

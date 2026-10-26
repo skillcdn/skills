@@ -1,7 +1,7 @@
 {
   "post": "example-story",
-  "spec": "<path to format-spec.json>",
-  "brief": "<path to topic-brief.json>",
+  "spec": "../../example-account/format-spec.json",
+  "brief": "../topic-brief.json",
   "build": "<the build in the spec's kinds this post follows, and why it fits>",
   "thesis": "<one sentence from the brief's angle>",
   "headline": ["<line one>", "<line two>"],

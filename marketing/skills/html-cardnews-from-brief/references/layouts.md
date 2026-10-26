@@ -23,21 +23,21 @@ The type's `anatomy.photo` decides how an image is placed (with `frames_per_slid
 |---|---|
 | Full-bleed, cropped to the canvas | `object-fit: cover` at the object position that keeps the subject; a mark, a logo or a credit at an edge cropped out by a scale transform with its origin away from the mark, by only as much as the mark needs, checked on the PNG; the type's gradient or dim over it |
 | Whole, with its marks (a captured frame of a broadcast or a post with the broadcaster's logo, labels and captions, in the margins the spec measured) | At its own ratio, uncropped, at the spec's edges; its marks stay, because the account keeps them; nothing of the account's is drawn over the material's own text |
-| Two images | Stacked where the type stacks them, side by side where it sets them beside each other; each treated as above |
+| Two images | Stacked where the type stacks them, side by side where it sets them beside each other, exactly as many as the type holds; a frame left over goes on a one-frame type the spec has, else into the caption's sources, said at the checkpoint; each treated as above |
 | Flat color or none | The spec's color |
 
 An image whose licence forbids modification takes no crop, overlay or gradient whatever the type: whole at its own ratio on the spec's `background` color, else its darkest measured color (its dim or gradient value), else black, said at the checkpoint, or not at all. An image whose terms are unknown is treated as the type treats its photos, with its credit.
 
 ## Choosing a type for a beat
 
-1. The build: in the spec's `kinds`, the kind of post first; among its builds, the one whose `text_on` matches what the brief's images carry (captioned frames take the build told by the material's captions, photographs with nothing written take a build of the account's sentences); where two still fit, the one whose slide range holds the beats. Its `typical_order` is the starting sequence.
-2. The cover is the spec's cover, in the variant the post's kind takes.
+1. The build: in the spec's `kinds`, the kind of post first, read from the brief (SKILL.md "Inputs"); among its builds, the one whose `text_on` matches what the brief's images carry (captioned frames take the build told by the material's captions, photographs with nothing written take a build of the account's sentences); where two still fit, the one whose slide range holds the beats. Its `typical_order` is the starting sequence.
+2. The cover is the spec's cover, in the variant whose `for` names the post's kind or build, else the plain cover.
 3. Each other beat takes the type whose `carries` names what the beat is (one step in sentences, a photo with nothing to add, two related photos, a list, a date, a quote, a captured frame whose own caption is the beat), `variants_by_content` deciding where the account uses a particular type or element for that content.
 4. A beat the spec has no type for takes the nearest type the account has for content of that shape, said at the checkpoint; never a type the account does not use. Where the nearest type carries text of the account's and the beat has none, the beat is that type's photo alone.
 
 ## Variation
 
-Variation is the account's, read from the spec. Where the build's `order` is `varies`, the plan differs from each `post/slide-plan.json` of the brief folders beside this one that names the same spec in at least two slides. Where the account's build repeats one type slide after slide (a stack of captured frames), the plan repeats it the same way, and nothing is varied to look less repetitive: the repetition is the format. A type repeated where the account varies, or varied where the account repeats, is the review's first verdict.
+Variation is the account's, read from the spec. Where the build's `order` is `varies`, its `typical_order` is a starting sequence and not a rule: the plan stays within the build's set of types and its count, and differs from each `post/slide-plan.json` of the brief folders beside this one that names the same spec in at least two slots, compared by position, a slide past the shorter plan's count counting as a difference. Where `order` is `fixed`, the sequence is the `typical_order`. Where the account's build repeats one type slide after slide (a stack of captured frames), the plan repeats it the same way, and nothing is varied to look less repetitive: the repetition is the format. A type repeated where the account varies, or varied where the account repeats, is the review's first verdict.
 
 ## With no spec
 
