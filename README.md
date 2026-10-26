@@ -51,7 +51,7 @@ One folder per area of work. Each carries a `SKILLCDN.md` that says who its skil
 
 | Area | For | Skills |
 |---|---|---|
-| [`marketing/`](marketing/) | Ads, ad and product research, promotional video, content, campaigns, social posts. | 3 |
+| [`marketing/`](marketing/) | Ads, ad and product research, promotional video, content, campaigns, social posts. | 6 |
 | [`product/`](product/) | Discovery, research synthesis, requirements, specifications, roadmaps, prioritization. | none yet |
 | [`engineering/`](engineering/) | Software development and the tooling an agent works with: writing and changing code, keeping a codebase's documents true, building apps, taking payments, connecting ads, the operator's dashboard, testing, debugging, making skills from work done, documents into packs and research in them. | 9 |
 | [`media/`](media/) | Original video and audio content: scripted short dramas, series episodes, story-driven shorts. | 1 |
