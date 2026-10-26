@@ -1,7 +1,7 @@
 {
-  "audience": { "scope": "domestic", "market": "<country or region>", "language": "<language tag>" },
+  "audience": { "scope": "domestic", "market": "<country or region>", "language": "<language tag>", "readers": "<who the post is for, in the request's words, where it says more than a market>" },
   "topic": { "line": "<the story in one line>", "picked_on": "0000-00-00" },
-  "canvas": { "platform": "<platform>", "size": { "w": 1080, "h": 1350 }, "source": "<the format spec, or the platform's help page>", "looked_up": "0000-00-00" },
+  "canvas": { "platform": "<platform>", "size": { "width": 1080, "height": 1350 }, "source": "<the format spec, or the platform's help page>", "looked_up": "0000-00-00" },
   "angle": {
     "text": "<the interpretation in one sentence>",
     "source": { "outlet": "example-outlet", "date": "0000-00-00", "url": "https://example-outlet.example/article", "sentence": "<the article's sentence, quoted>" },
