@@ -16,10 +16,11 @@ The spec needs every slide type the account uses, and a type is only known from 
 | An information or visit post | A place, a product or an event; prices, dates or a location somewhere | Boxed captions, tags, an information slide at the end |
 | A list or weekly post | A number in the headline, a series label | The lead slide: a two-line sub, a small body, a source tag |
 | An event or sponsored post | A sponsor's name as the label, a date range | The poster slide: large type, a date, little else |
+| A report on broadcast or captured material | Frames of a broadcast, or screenshots of a post, stacked whole with their logos, labels and subtitles kept; no text of the account's after the cover | Whether the account keeps the material's marks and captions and adds nothing of its own; the margins around the frames; how many frames a slide holds and how they are stacked |
 | A single image | No dots under the post | What the account does when there is one slide |
 | A video | A play badge | Whether video slides mix into carousels |
 
-Three kinds at least, and two posts of the kind the user's own post will be (the account's most common kind when the request names none), because what the account never does on a kind is only said of a kind read twice. A post the user names is read whatever its kind.
+Read every carousel visible without signing in, slide by slide (about a dozen posts at the time of writing): a type seen once stays tentative, what the account never does on a kind is only said of a kind read twice, and a spec written from half the visible posts missed the build the account used most, which the user noticed when they asked whether every post had been read. Only when the user limits the reading is the floor three kinds and two posts of the kind the user's own post will be (the account's most common kind when the request names none). A post the user names is read whatever its kind.
 
 An account often builds one kind several ways: a story as a long feature of sentences over photos, as a photo story carried by short boxed lines, or as a short news post of a cover and one or two photos with the facts in the caption. Name each build by its slide count and what carries the text, record the builds as `kinds` in the spec, and apply "two of the user's kind" to the build when the posts allow it. A video post is read at three frames (the start, the middle, the end) for its text and layout; its motion is not part of the card format.
 
@@ -40,7 +41,7 @@ One row per slide, before stepping on:
 | Column | What goes in |
 |---|---|
 | `post`, `kind`, `slide`, `of` | The post id, its kind, the slide's number and the slide count. |
-| `photo` | Full-bleed photo, two photos stacked or side by side, video, flat color; the gradient (bottom, top, none) and how dark; a dim overlay. |
+| `photo` | Full-bleed photo cropped to the canvas; a frame of a broadcast or a screenshot of a post kept whole at its own ratio, with the marks it keeps (a logo, a label, subtitles) and the margins above and below it as percentages of the box; two photos or frames stacked or side by side; video; flat color; the gradient (bottom, top, none) and how dark; a dim overlay. Whether the text on the slide is the account's own or the material's. |
 | `label` | The small label above the headline or sub: its words' kind (a series name, a sponsor), color, weight, italic, position. |
 | `headline`, `sub` | Lines, characters per line, size (estimate), weight, color, position; whether it is a news title, a question, a fragment, a noun phrase, a quote. |
 | `body` | Sentences, characters per sentence, lines, size and line height (estimates), weight, color, position; the ending of each sentence (declarative, a sentence-final noun phrase, a quote); one fact per sentence or not. |

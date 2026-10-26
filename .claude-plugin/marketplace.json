@@ -10,7 +10,7 @@
     {
       "name": "marketing",
       "source": "./marketing",
-      "description": "Marketing and growth: ads, ad and product research, promotional video, content, campaigns, social posts. A short-form AI ad from a reference video and a product link, research in the Meta Ad Library for ad creatives and for rising products, and card news for a magazine-style account: a reference account's format measured into a spec, a sourced topic brief with credited photos, and the carousel built from both as HTML rendered to PNG.",
+      "description": "Marketing and growth: ads, ad and product research, promotional video, content, campaigns, social posts. A short-form AI ad from a reference video and a product link, research in the Meta Ad Library for ad creatives and for rising products, and card news in a reference account's format: the account's format measured into a spec, a sourced topic brief with credited images from where the articles point, and the carousel built from both in the account's own slide types as HTML rendered to PNG.",
       "license": "MIT"
     },
     {

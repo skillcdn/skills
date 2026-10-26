@@ -1,6 +1,6 @@
 # Card-news skills
 
-How the skills that make card news for a magazine-style social account (`instagram-cardnews-format-study`, `web-cardnews-topic-brief`, `html-cardnews-from-brief`) are written and kept in step, for authors. They drive three tool families (a website read with a driven browser, the open web, HTML rendered by a headless browser), so what they share is not a tool but two artifacts: the document set [`marketing/docs/cardnews/`](../../marketing/docs/cardnews/README.md) holds the shape of each, and this page says what goes there, what stays in a skill, and how the three are tested together.
+How the skills that make card news in a reference account's format (`instagram-cardnews-format-study`, `web-cardnews-topic-brief`, `html-cardnews-from-brief`) are written and kept in step, for authors. They drive three tool families (a website read with a driven browser, the open web, HTML rendered by a headless browser), so what they share is not a tool but two artifacts: the document set [`marketing/docs/cardnews/`](../../marketing/docs/cardnews/README.md) holds the shape of each, and this page says what goes there, what stays in a skill, and how the three are tested together.
 
 ## Three skills, two seams
 
@@ -9,18 +9,18 @@ The run these skills come from was one job in the user's words ("make a card-new
 | In `marketing/docs/cardnews/` | In the skill |
 |---|---|
 | `format-spec.md`: the fields of the spec, how each is measured and how the build reads it | How posts are read on the site, which posts, the slide log, the verdicts of the study |
-| `topic-brief.md`: the fields of the brief, how each is obtained and how the build reads it | How candidates are searched and ranked, the facts table, the angle test, image sourcing |
-| | The script's checks, the layout catalogue, the page, the server and export scripts, the review |
+| `topic-brief.md`: the fields of the brief, how each is obtained and how the build reads it | How candidates are searched and ranked, the facts table, the angle test, image sourcing from where the articles point (their photos, a cited clip's frames, the subject's pages, a search last), legibility |
+| | The script's checks, how the spec's slide types become the page's classes (the build has no catalogue of its own), the page, the server and export scripts, the review |
 
 The test for a sentence: would the next skill that writes or reads a spec or a brief need it? Then it belongs in the set. Everything about one skill's method stays in that skill, because each may be mounted alone or copied.
 
 ## What the user corrected, and where it went
 
-The run was sent back five times, and each correction is a rule in the skill whose phase it bears on, with the reason beside it: the density of a slide (counts, not impressions; the study measures them, the build keeps them), the thread (one thesis, text only where needed), the sourcing (every sentence to an article sentence; the angle published and quoted), the register (patterns with wrong-sounding counterparts, checked sentence by sentence), and the layouts (chosen by content, never a sequence repeated). A future run that meets a correction of the same kind sharpens that sentence rather than adding a note.
+The run was sent back five times, and each correction is a rule in the skill whose phase it bears on, with the reason beside it: the density of a slide (counts, not impressions; the study measures them, the build keeps them), the thread (one thesis, text only where needed), the sourcing (every sentence to an article sentence; the angle published and quoted), the register (patterns with wrong-sounding counterparts, checked sentence by sentence), and the layouts (chosen by content, never a sequence repeated where the account varies). A later run on an account that stacks broadcast frames whole added three more: the layouts are the spec's own slide types and nothing of the skill's (a build composed from a catalogue of the skill's own, with the spec only adjusting it, was sent back twice as "not the format", so the catalogue went and the spec's types became the only classes); the images show the story, from where the articles point (the articles' photographs showed nothing of it, the broadcaster's clip they cited showed all of it); and every image is judged legible at phone size before it is placed (slides on blurred frames came back as "this cannot be seen"). A future run that meets a correction of the same kind sharpens that sentence rather than adding a note.
 
 ## Facts are dated, and instance material stays out
 
-The site a study reads has no changelog: a statement about what is visible without signing in, how a carousel is stepped, or how a host's browser behaves carries the day it was checked and the way to find it again (`instagram-cardnews-format-study/references/tool-notes.md`). The layout defaults in the build skill are one account's measurements, marked illustrative; the spec wins over them. No account, outlet, story, person or photo from a run is named anywhere in these skills or in the set: examples use placeholders, numbers quoted from runs are shapes.
+The site a study reads has no changelog: a statement about what is visible without signing in, how a carousel is stepped, or how a host's browser behaves carries the day it was checked and the way to find it again (`instagram-cardnews-format-study/references/tool-notes.md`). The build skill carries no layouts of its own: the spec's slide types are its classes, and its one stand-in page for a build with no spec (`no-spec.md`, not included, read only then) is said to be a stand-in at every checkpoint. No account, outlet, story, person or photo from a run is named anywhere in these skills or in the set: examples use placeholders, numbers quoted from runs are shapes.
 
 ## Testing
 

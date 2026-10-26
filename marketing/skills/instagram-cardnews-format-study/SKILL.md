@@ -1,11 +1,11 @@
 ---
 name: instagram-cardnews-format-study
-description: Studies a reference Instagram account's card news (the carousel posts of a magazine-style account) and writes its format down as a spec a new post can be built in, from the posts visible without signing in. Reads the profile for its categories and cadence, opens several posts of different kinds and steps through every slide with a driven browser, and measures what repeats rather than describing it, with the canvas and slide count, each slide type's anatomy, the text density (sub length, sentences per slide, characters per sentence), the register of slides and of captions as patterns, the caption's parts and credit line, which variant carries which kind of content, and what the account never does, delivered as a JSON spec and a notes page. Use when a user says "look at this account's posts and make ours the same way", "analyze this account's card-news format", "what are this account's categories and format", or wants a reference for a card-news series. The post itself is built by html-cardnews-from-brief.
+description: Studies a reference Instagram account's card news (the carousel posts of a magazine, an issue or a humor account alike) and writes its format as a spec a new post can be built in, from the posts visible without signing in. Reads the profile for its categories and cadence, opens every visible post and steps through every slide with a driven browser, and measures what repeats rather than describing it, with the canvas and slide count, each slide type's anatomy and how it treats its photo (cropped, or a broadcast frame kept whole with its marks), which text is the account's own, the text density as counts, the register of slides and of captions as patterns, the caption's parts and credit line, which variant carries which content, and what the account never does, as a JSON spec and notes. Use when a user says "look at this account's posts and make ours the same way", "analyze this account's card-news format", or wants a reference for a card-news series. The post itself is built by html-cardnews-from-brief.
 license: MIT
 compatibility: Needs a browser the agent can drive (navigate, click by coordinates, take a screenshot, zoom into a region, read the page's text) and, optionally, a shell with Node.js for decoding captions from page JSON. No account and no sign-in. Works in any agent with a driven browser.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: instagram
 skillcdn:
   include:
@@ -16,7 +16,7 @@ skillcdn:
   translations:
     ko:
       title: 레퍼런스 계정의 카드뉴스 포맷 분석
-      description: 매거진형 인스타그램 계정의 카드뉴스(캐러셀 게시물)를 로그인 없이 읽어 그 포맷을 새 게시물을 만들 수 있는 스펙으로 적습니다. 프로필에서 카테고리와 게시 주기를 읽고, 종류가 다른 게시물 여러 개를 열어 에이전트가 모는 브라우저로 슬라이드를 한 장씩 넘기며, 설명 대신 반복되는 것을 잽니다. 캔버스와 장수, 슬라이드 유형별 구조, 글 밀도(소제목 길이, 장당 문장 수, 문장당 글자 수), 슬라이드와 캡션의 어투 패턴, 캡션의 구성과 출처 표기, 어떤 내용에 어떤 변형을 쓰는지, 하지 않는 것까지 JSON 스펙과 노트로 냅니다. "이 계정 게시물 보고 똑같이 만들 거야", "이 계정 카드뉴스 포맷 분석해줘", "이 계정 카테고리랑 포맷이 뭐야"라고 할 때 쓰세요. 게시물 자체는 html-cardnews-from-brief가 만듭니다.
+      description: 카드뉴스를 올리는 인스타그램 계정(매거진형, 이슈형, 유머형 모두)의 캐러셀 게시물을 로그인 없이 읽어 그 포맷을 새 게시물을 만들 수 있는 스펙으로 적습니다. 프로필에서 카테고리와 게시 주기를 읽고, 보이는 게시물을 모두 열어 에이전트가 모는 브라우저로 슬라이드를 한 장씩 넘기며, 설명 대신 반복되는 것을 잽니다. 캔버스와 장수, 슬라이드 유형별 구조와 사진 처리(잘라 채우는지, 방송 화면을 로고째 그대로 두는지), 어느 글이 계정의 것인지, 글 밀도(소제목 길이, 장당 문장 수, 문장당 글자 수), 슬라이드와 캡션의 어투 패턴, 캡션의 구성과 출처 표기, 어떤 내용에 어떤 변형을 쓰는지, 하지 않는 것까지 JSON 스펙과 노트로 냅니다. "이 계정 게시물 보고 똑같이 만들 거야", "이 계정 카드뉴스 포맷 분석해줘", "이 계정 카테고리랑 포맷이 뭐야"라고 할 때 쓰세요. 게시물 자체는 html-cardnews-from-brief가 만듭니다.
 ---
 # A card-news format spec from a reference account
 
@@ -45,7 +45,7 @@ Check the browser before the first message; without one, stop and say that the a
 | The account | A handle or a profile URL in the request. Asked when missing: "Which account? Its handle or profile link." |
 | The purpose | Derived: a post is to be built in this format unless the user says the categories alone are wanted. |
 | The user's kind of post | Derived: the kind the request names ("a story about", "a list of", "an event"); with none, every kind visible is read and the spec covers them all. |
-| Which posts | Derived: every post visible without signing in is listed; at least three of different kinds are read slide by slide, and two of the kind the user's post will be (the account's most common kind when none is named), as [reading-posts.md](references/reading-posts.md) "Which posts to read" says. A post the user names is always read. |
+| Which posts | Derived: every post visible without signing in is listed and every carousel among them is read slide by slide, as [reading-posts.md](references/reading-posts.md) "Which posts to read" says; a spec from half the visible posts missed the build the account used most, and the user asked whether every post had been read. Only when the user limits the reading is the floor three kinds and two posts of the user's kind. A post the user names is always read. |
 | Where the spec goes | Derived: the folder the user names, else `cardnews/<handle>/` under the host's scratch or working folder, outside any git checkout; said in the first message. |
 
 ## Workflow
@@ -60,7 +60,7 @@ Produces the **profile record** (`profile.md`): the account's name line and bio,
 
 Produces the **slide log** (`slide-log.md`, a table by [reading-posts.md](references/reading-posts.md) "What to record"): one row per slide of every post read, with the post's kind, the slide's number, its photo treatment, every text element with its position, size, weight, color, lines and character count, and anything the slide does that the others do not.
 
-1. Choose the posts by reading-posts.md "Which posts to read": a story about a person or an issue, an information or visit post, a list or weekly post, an event or sponsored post, a single image, and a video where the account posts them; at least three kinds, and two posts of the user's kind.
+1. Read every carousel visible without signing in, by reading-posts.md "Which posts to read", and note which kind each is (a story about a person or an issue, an information or visit post, a list or weekly post, an event or sponsored post, a report on broadcast or captured material, a single image, a video); where the user limits the reading, at least three kinds and two posts of the user's kind.
 2. Open each post, close the prompt, and step the carousel with real pointer clicks on its next arrow; zoom into the post's region on every slide to read the type (reading-posts.md "Stepping and reading"). A dispatched click does not advance the carousel (tool-notes.md).
 3. Record the row before stepping on. Count characters in the account's own script; a count is the row, not an impression. Sizes, weights and colors are estimates taken as reading-posts.md "Measuring sizes and colors" says, and the row marks them so.
 4. Read the caption whole (reading-posts.md "The caption") and record its parts in order, its endings, its mentions and its credit line.
@@ -69,7 +69,7 @@ Produces the **slide log** (`slide-log.md`, a table by [reading-posts.md](refere
 
 Produces the **format spec** (`format-spec.json`, by [format-spec.md](/marketing/docs/cardnews/format-spec.md); placeholder shape in [format-spec.example.json](assets/format-spec.example.json)) and the **style notes** (`style-notes.md`).
 
-1. Group the slide log's rows by what repeats: the same elements in the same places are one slide type. The cover is described in the spec's `cover` field, with its variants; every other type goes in `slide_types`, named by what it carries (story, photo only, lead, poster, collage), with its anatomy from the rows and the posts it appeared in; an element that rides on other slides (a serif note, an inset, a talk box, a source card) goes in `elements`; the builds of each kind go in `kinds`. The example JSON is the shape; format-spec.md says what each field means, and a field the account needs and the shape lacks is added and named in the delivery.
+1. Group the slide log's rows by what repeats: the same elements in the same places are one slide type. The cover is described in the spec's `cover` field, with its variants; every other type goes in `slide_types`, named by what it carries (story, photo only, lead, poster, collage, a stack of captured frames), with its anatomy from the rows (how it treats its photo, which marks of the material it keeps, which text is the account's own and which the material's, each block's edges) and the posts it appeared in; an element that rides on other slides (a serif note, an inset, a talk box, a source card) goes in `elements`; the builds of each kind go in `kinds`. The example JSON is the shape; format-spec.md says what each field means, and a field the account needs and the shape lacks is added and named in the delivery.
 2. Count the density per type from the rows: the sub's characters, the sentences per slide, the characters per sentence, the lines, and the cover's headline characters. For counts (sentences, lines) give the most common value and the range; for lengths (characters) give the median, the middle half and the range. One fact per sentence or not. Where the detail goes when a slide stays short.
 3. Write the register as patterns in English, never as the account's sentences: how a headline is made (a news title, a question, a fragment), what a sub is (a noun phrase, a quote), how body sentences end, how the caption differs from the slides, how a note and a talk box sound, and what would not appear (explanatory closers, hedges, a call to action on a story post). The patterns name the devices of the account's language (in a language with speech levels, which level the slides and the caption each use and whether sentence-final noun phrases are mixed in; in one without, the person, the contractions, the punctuation that set the two apart); a fresh agent writes from these patterns, so each one names what sounds wrong beside what sounds right. Where posts of one kind differ (two in one level, one in another), record both with their counts and the content each went with, and make the majority the default.
 4. Map variants to content: for every slide type other than cover and story, what it carried (a list of places, a date, a quote, a number, a mood shot) and so what content it fits.
@@ -105,10 +105,10 @@ One message: the spec folder's path with `format-spec.json` and `style-notes.md`
 
 | Term | Meaning |
 |---|---|
-| Kind of post | What a post is about and how it is built: a story, an information or visit post, a list, an event, a single image, a video. |
+| Kind of post | What a post is about and how it is built: a story, an information or visit post, a list, an event, a report on broadcast or captured material, a single image, a video. |
 | Slide type | A repeated arrangement of elements on a slide, named by what it carries. |
 | Element | Something that rides on a slide of another type: a serif note, an inset, a talk box, a source card, a source tag. |
-| Build | One way an account makes a kind of post, by slide count and by what carries the text (a feature, a photo story, a short news post). |
+| Build | One way an account makes a kind of post, by slide count and by what carries the text (a feature, a photo story, a short news post, a stack of frames whose own captions carry it). |
 | Anatomy | The elements of a slide type with their positions, weights, colors and sizes relative to the canvas. |
 | Density | The counts of a slide type's text: sub characters, sentences, characters per sentence, lines. |
 | Register | How the text is written, as patterns: endings, headline style, voice, what does not appear. |

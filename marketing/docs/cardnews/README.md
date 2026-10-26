@@ -1,6 +1,6 @@
 # Card news: what its skills share
 
-The skills that make card news for a magazine-style social account (`instagram-cardnews-format-study`, `web-cardnews-topic-brief`, `html-cardnews-from-brief`) pass two artifacts between them: a **format spec**, measured from a reference account's posts, and a **topic brief**, the sourced facts and the images of one story. The shape of each lives here once, so that the skill that writes it and the skill that reads it agree without restating each other. Each skill carries its own method (how posts are read, how facts are sourced, how slides are composed and rendered) and its own rules.
+The skills that make card news in a reference account's format (`instagram-cardnews-format-study`, `web-cardnews-topic-brief`, `html-cardnews-from-brief`) pass two artifacts between them: a **format spec**, measured from a reference account's posts, and a **topic brief**, the sourced facts and the images of one story. The shape of each lives here once, so that the skill that writes it and the skill that reads it agree without restating each other. Each skill carries its own method (how posts are read, how facts are sourced, how slides are composed and rendered) and its own rules.
 
 | Document | Holds | Read |
 |---|---|---|
@@ -13,9 +13,9 @@ The skills that make card news for a magazine-style social account (`instagram-c
 
 ## What every card-news skill does the same way
 
-- **The reference account is studied, never copied.** Its layout, density and register are measured and reproduced; its photos, its copy and its name never enter a result.
+- **The reference account is studied, never copied, and it is the only design.** Its slide types, density and register are measured and reproduced; the build composes from those types alone and carries no layouts of its own; its photos, its copy and its name never enter a result.
 - **Every sentence on a slide traces to a published sentence.** A number, a date, a quote or an interpretation comes from an article the agent read in full, cross-checked where two articles carry it; what cannot be sourced is dropped or listed as unverified.
-- **Every image carries a credit.** Agency, photographer where named, the outlet it appeared in, the date; and its licence terms where the publisher states them. An image under a "no modification" licence is not cropped, dimmed or overlaid. News photographs are the outlets' and agencies' material: the skills collect them with their credits for the user's decision and say so at every delivery, and a user who prefers their own images supplies them.
+- **Every image shows the story and carries a credit.** Images come from where the articles point, in order: their own photographs, the clip or footage or post they cite, the subject's public pages, and an image search last; each is judged legible at phone size. The credit is the agency or the broadcaster and program, the photographer where named, the outlet or channel it appeared in, the date; and its licence terms where the publisher states them. An image under a "no modification" licence is not cropped, dimmed or overlaid. The images are the outlets', agencies', broadcasters' and subjects' material: the skills collect them with their credits for the user's decision and say so at every delivery, and a user who prefers their own images supplies them.
 - **Nothing is posted.** The skills deliver files and text; publishing is the user's act.
 - **Nothing is spent.** No paid tool; a shell, a browser and the open web.
 
