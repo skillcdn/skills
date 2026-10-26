@@ -27,10 +27,17 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Look at this account's posts and make ours the same way."
 
-- You get: a reference account's card news format measured into a spec from the posts visible without signing in: the canvas, every slide type's anatomy, the text density as counts, the register as patterns, the caption's parts, what the account never does.
+- You get: a card news format measured into a spec, from a reference account, one reference post or a few accounts of a genre, read without signing in: the canvas, every slide type's anatomy, the text density as counts, the register as patterns, the caption's parts, what the account never does.
 - Skill: [`marketing/skills/instagram-card-news-format-study/`](/marketing/skills/instagram-card-news-format-study/SKILL.md)
-- Also asked as: "analyze this account's card news format", "what are this account's categories and format", "a reference for a card-news series", "study these carousel posts".
-- Not this one when: you want the post itself built (the build below) or the story researched (the brief below); a request for the whole post in an account's way starts with the brief.
+- Also asked as: "analyze this account's card news format", "make ours like this post", "what are this account's categories and format", "what do card news in this genre look like", "a reference for a card-news series", "study these carousel posts".
+- Not this one when: you want the post itself built (the build below), the story researched (the brief below), or a format of your own rather than a reference's (the next section); a request for the whole post starts with the build, which runs this study first.
+
+### "Make our card news in a format of our own."
+
+- You get: four looks for a card news format (each a cover and a body slide), from a reference measured as it is or from the genre's card news, near the reference or far from it as you ask, on one contact sheet with a recommendation, and your pick written as a format spec the card news build follows slide by slide.
+- Skill: [`design/skills/html-design-variations/`](/design/skills/html-design-variations/SKILL.md)
+- Also asked as: "a card news format for our new magazine", "like this account's card news but a little different", "something new from this account's format", "design our card news look from references".
+- Not this one when: you want a reference's format as it is (the study above); the build below offers this route itself when it has no spec.
 
 ### "Find some hot issues in these categories and I will pick one."
 
@@ -41,10 +48,10 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Make the card news and show it here."
 
-- You get: the carousel of a card news post as PNG slides built in the reference account's own slide types from a sourced brief, previewed, reviewed slide by slide at phone size, delivered with the caption, the credits and a pre-publish checklist.
+- You get: the carousel of a card news post as PNG slides built in the format spec's slide types (a reference's, or a format of your own) from a sourced brief, previewed, reviewed slide by slide at phone size, delivered with the caption, the credits and a pre-publish checklist.
 - Skill: [`marketing/skills/html-card-news-from-brief/`](/marketing/skills/html-card-news-from-brief/SKILL.md)
 - Also asked as: "build the finished post from this brief", "make this one the same way as the last", "the slides of this post as images", "a card news carousel from these facts".
-- Not this one when: there is no brief yet (the brief above) or no format spec (the study above); the skill says what to run first. A request for the whole post ("make a card news post about this, the way that account does it") runs the three in order: the study once per account, then the brief, then this build.
+- Not this one when: there is no brief yet (the brief above) or no format spec (the study, or a format of your own, above); the skill offers the routes to a spec and says what to run first. A request for the whole post ("make a card news post about this, the way that account does it") runs them in order: the study (once per account or genre), the brief, the variations where a format of your own is wanted, then this build.
 
 ## Media
 
@@ -73,7 +80,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Show me four looks for this."
 
-- You get: four looks for one design (a page's first screen, a deck's cover with a body slide, a post's cover) as HTML rendered in a browser and tiled on one contact sheet, each judged for the AI feel at desktop and phone size before you see it, with a recommendation and a runner-up, and your pick's tokens handed to the skill that builds the thing.
+- You get: four looks for one design (a page's first screen, a deck's cover with a body slide, a post's cover, a card news format's cover and body slide) as HTML rendered in a browser and tiled on one contact sheet, each judged for the AI feel at desktop and phone size (a post at feed width) before you see it, with a recommendation and a runner-up, and your pick's tokens handed to the skill that builds the thing.
 - Skill: [`design/skills/html-design-variations/`](/design/skills/html-design-variations/SKILL.md)
 - Also asked as: "design directions for this landing page", "variations of this cover", "how else could this deck look", "alternatives to this layout".
 - Not this one when: you want the idea behind the piece varied rather than its look (the concept directions under Product), or a still a generative tool must make.
