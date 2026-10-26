@@ -7,6 +7,7 @@ The route of [ad-library.md](ad-library.md) "Routes" for a browser the agent ope
 - One navigation to a library page is one page load of the budget. Nothing carries a record from the page to a file except the agent itself: the short lines the embedded-results reader returns are the record of the pool (kept in a file where the agent has file tools), and full records with their media addresses are taken only for the ads that reach the shortlist, with `pick` on a page that still lists them (the advertiser view loaded for the shortlist, or the ad's own `id` page).
 - The filter dialog exposes no names or roles to the accessibility tree, and synthetic clicks from script do not open its menus: URL parameters do everything, as [ad-library.md](ad-library.md) "URLs" says.
 - The site's header is an element with the role of a dialog that contains `Log in` on every page: it is not a login wall.
+- In a headless browser a script drives, wait for the results by reading the page every second or two until the embedded results are there: Playwright's wait for a function in the page timed out on every load of the library in one run, while that polling read each page (checked 2026-10).
 - Reading reach costs no page load; six shortlisted ads' reach has been read from their advertiser views without one. Two screenshots per video read its frames (the frame script is the creative research skill's own).
 
 ## The embedded results
