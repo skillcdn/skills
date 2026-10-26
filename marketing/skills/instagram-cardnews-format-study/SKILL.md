@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a browser the agent can drive (navigate, click by coordinates, take a screenshot, zoom into a region, read the page's text) and, optionally, a shell with Node.js for decoding captions from page JSON. No account and no sign-in. Works in any agent with a driven browser.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: instagram
 skillcdn:
   include:
@@ -13,6 +13,7 @@ skillcdn:
     - references/tool-notes.md
     - assets/format-spec.example.json
     - /marketing/docs/cardnews/format-spec.md
+    - /docs/browser/driven-browser.md
   translations:
     ko:
       title: 레퍼런스 계정의 카드뉴스 포맷 분석
@@ -36,7 +37,7 @@ An account handle goes in; a format spec comes out: the canvas and slide count, 
 | A browser the agent drives: it can navigate to a URL, report the URL it is on, set the tab's viewport, take a screenshot, click and hover at coordinates, zoom into a region, read the page's text and run a short script in the page | The profile and the post pages on Instagram (`instagram.com`), stepping through each carousel, reading each slide at zoom, taking a caption out of the page. Recognize it by those actions, whatever the host names the tools. |
 | Optional: a shell with Node.js | Decoding HTML entities in a caption the browser handed over, counting characters, writing the spec files. Nothing is requested from the site by the shell; the browser is the only thing that touches it. Without a shell, captions are read as the page displays them and the spec is written with the host's file tools. |
 
-Check the browser before the first message; without one, stop and say that the account's posts cannot be read. No sign-in: the posts visible without an account are the sample, and the delivery says how many that was. What the card-news skills share is in the area's document set [`marketing/docs/cardnews/`](/marketing/docs/cardnews/README.md); [format-spec.md](/marketing/docs/cardnews/format-spec.md), the fields of what this skill writes, is included and arrives with this skill wherever SkillCDN serves it. A copy of this directory lacks it: say so, fetch it from `marketing/docs/cardnews/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`), and otherwise write the spec by the shape of [format-spec.example.json](assets/format-spec.example.json). How the site behaved in runs of this skill is in [tool-notes.md](references/tool-notes.md); read it before phase 1, because the sign-in prompt is met on the first page.
+Check the browser before the first message; without one, stop and say that the account's posts cannot be read. No sign-in: the posts visible without an account are the sample, and the delivery says how many that was. What the card-news skills share is in the area's document set [`marketing/docs/cardnews/`](/marketing/docs/cardnews/README.md); [format-spec.md](/marketing/docs/cardnews/format-spec.md), the fields of what this skill writes, is included and arrives with this skill wherever SkillCDN serves it. What any skill that drives a browser shares (the capabilities to look for and how to recognize them, the window and the viewport, real clicks against script clicks, prompts and walls, data embedded in a page) is in the repository's document set [`docs/browser/`](/docs/browser/README.md); [driven-browser.md](/docs/browser/driven-browser.md) is included too. A copy of this directory lacks both pages, and the area's plugin lacks the browser page: say so, fetch them from `marketing/docs/cardnews/` and `docs/browser/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`), and otherwise write the spec by the shape of [format-spec.example.json](assets/format-spec.example.json). How this site behaved in runs of this skill is in [tool-notes.md](references/tool-notes.md); read it before phase 1, because the sign-in prompt is met on the first page.
 
 ## Inputs
 
