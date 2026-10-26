@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a real browser engine to load facebook.com/ads/library, either a shell with a Chromium-family browser on the same machine or a browser the agent can drive (a built-in browser, a browser extension, a Playwright or Chrome DevTools server). Plain fetch and search tools cannot load the site. Any agent with one of the two can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: meta-ad-library
 skillcdn:
   include:
@@ -33,7 +33,7 @@ Capabilities, not product names: the tools that provide them differ by assistant
 
 | Need | Any one of | When missing |
 |---|---|---|
-| Load the library | A shell with a Chromium-family browser on the same machine (the page-dump route); a browser the agent drives (the driven-browser route); what each is and how to recognize it, in the repository's [`docs/browser/`](/docs/browser/README.md) | Stop and tell the user what to add, as [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
+| Load the library | A shell with a Chromium-family browser on the same machine, which gives both machine routes: the page dump, and a headless browser a script of the run's own drives; a browser the agent drives (the driven-browser route, which the scripted headless browser also is); what each is and how to recognize it, in the repository's [`docs/browser/`](/docs/browser/README.md) | Stop and tell the user what to add, as [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
 | Write the report | A file tool; or the client's document surface | Put the whole report in the reply, and the snapshot as a code block to save. |
 
 Optional: a web-reading tool for a landing page's price. Nothing here costs money; a paid service (a scraping service, an "ad spy" subscription) is used only when the user asks for it and agrees to its cost.
