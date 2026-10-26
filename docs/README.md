@@ -8,4 +8,4 @@ Document sets that serve every area: directories of Markdown with no `SKILL.md`.
 
 Handbooks and playbooks an area's people work from, written so that an agent finds and reads them without a skill, will join them.
 
-Every document carries a front-matter `title` and `description`, or starts with a level-one heading followed by one summary paragraph, because that is what search shows. Links stay within what an agent can reach through the mount: skills, manifests, document directories, and the README of a served folder.
+Every document carries a front-matter `title` and `description`, or starts with a level-one heading followed by one summary paragraph, because that is what search shows, and headings that name its parts, because a search result names the sections that matched and `browse_repo` outlines a file by them. Links stay within what an agent can reach through the mount: skills, manifests, document directories, and the README of a served folder.

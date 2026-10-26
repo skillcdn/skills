@@ -4,7 +4,7 @@ The skills that work on a repository in the SkillCDN Format (`skillcdn-…`) sha
 
 | Document | Holds | Read |
 |---|---|---|
-| [`serving.md`](serving.md) | From a push to what an agent gets: the default branch, which commit an agent is served and how to see it, how long serving takes and why nothing is pushed while an agent loads, what each way of receiving a skill brings, the two checks. | Before a push, and before a fresh agent loads what was pushed; included with each skill. |
+| [`serving.md`](serving.md) | From a push to what an agent gets: the default branch, which commit an agent is served (the last indexed one while a newer is indexed) and how to see it, how long serving takes and why nothing is pushed while an agent loads, what each way of receiving a skill brings, the two checks. | Before a push, and before a fresh agent loads what was pushed; included with each skill. |
 | [`fresh-agents.md`](fresh-agents.md) | Starting an agent with none of the session's context: what still reaches it, a subagent with a directory of its own, a second session the user starts, how its stops come back and how an answer resumes it. | Before a dry read or a fresh run; included with each skill. |
 | [`transcripts.md`](transcripts.md) | Where a host keeps a session's transcript, a subagent's and the memory notes, their shape, and how to read them as data. | Before reading an earlier session or a fresh run's record. |
 

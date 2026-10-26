@@ -4,7 +4,7 @@ How the skills that work on a repository in the SkillCDN Format (`skillcdn-…`)
 
 ## The tool is the repository and its service
 
-The skills drive a checkout (git, Node.js and the repository's own check), the SkillCDN connection to the same repository, and a way to start an agent with none of the session's context. They name the connection's tools by their exact names (`browse_repo`, `search_repo`, `load_skill`, `read_repo_file`) and the rest as capabilities (a shell, a subagent tool, a second session the user starts), because every host names its subagent and shell tools differently and changes them; a host's tool name appears only as a dated example.
+The skills drive a checkout (git, Node.js and the repository's own check), the SkillCDN connection to the same repository, and a way to start an agent with none of the session's context. They name the connection's tools by their exact names (`browse_repo`, `search_repo`, `load_skill`, `read_repo_file`, and `search_packs` at a deployment's root) and the rest as capabilities (a shell, a subagent tool, a second session the user starts), because every host names its subagent and shell tools differently and changes them; a host's tool name appears only as a dated example.
 
 ## What is shared and what stays in the skill
 

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git and Node.js in a checkout of the target repository, and whatever converts the user's formats on this machine, found at run time; a vision model of the agent for figures and scanned pages. Works in any agent that can read files, run a shell and look at an image.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: skillcdn
 skillcdn:
   include:
@@ -68,9 +68,9 @@ Produces the **layout plan** by [layout.md](references/layout.md): the document 
 
 1. Group the sources into document sets by what they are about and who reads them, one folder each under the document roots, with a `README.md` as the set's map.
 2. One file per document or chapter, never per page ([layout.md](references/layout.md), "One file per document or chapter"): a chapter long enough to carry a title and a summary, short enough to read by sections, and under the per-file indexing limit the check prints.
-3. A manifest at the root with the document roots and the language; a manifest of its own in a folder written in another language.
+3. A manifest at the root with the document roots and the language; a manifest of its own in a folder written in another language; and, offered for a pack whose text should stay out of the deployment's embedding model or out of its search across packs, the `search` field that keeps it out ([layout.md](references/layout.md), "Manifests").
 
-Checkpoint, in plain words: the sets and what each holds, how many files, which documents are split and where, the maps, the language of each folder, what stays out and why. "OK" converts.
+Checkpoint, in plain words: the sets and what each holds, how many files, which documents are split and where, the maps, the language of each folder, whether the documents stay out of the search by meaning or of the search across packs, what stays out and why. "OK" converts.
 
 ### Phase 3: Convert
 
@@ -88,7 +88,7 @@ Produces the **described pack**: every file with its front-matter, every set wit
 1. Front-matter on every file: `title`, the document's own title; `description`, one or two sentences of what the document holds and who reads it, in the words a reader would search with; `source`, where it came from (the file name, the export, the date), without anything private.
 2. Headings that name the parts: where the source had none, add the headings the text supports and no more; a heading a search names should tell a reader what the section holds.
 3. The map of each set: `README.md` with one line per document, as [layout.md](references/layout.md), "Maps" shows.
-4. The manifests: `documents` listing the roots, `language` the language, `description` who the pack is for ([layout.md](references/layout.md), "Manifests").
+4. The manifests: `documents` listing the roots, `language` the language, `description` who the pack is for, and `search` where the user chose at the layout checkpoint to keep the documents out of the search by meaning or of the search across packs ([layout.md](references/layout.md), "Manifests").
 
 ### Phase 5: Check
 

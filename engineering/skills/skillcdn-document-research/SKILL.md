@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory; a shell with git in a checkout of the pack's repository to keep notes. Works in any agent that can call MCP tools or run a shell.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: skillcdn
 skillcdn:
   include:
@@ -41,7 +41,7 @@ Check these before the first message. Without a connection or the command, stop 
 | Input | Source |
 |---|---|
 | The question | The user's words. A reference to compile (everything the pack says about one subject) and a claim to check (is this true according to the pack) are questions too. |
-| The pack | The connection the request names, or the only one connected; the mounted folder when the connection is to a folder. |
+| The pack | The connection the request names, or the only one connected; the mounted folder when the connection is to a folder. Where the agent is connected to a deployment's root rather than to a pack, its one tool, `search_packs`, searches every public pack the deployment serves and names the address of each pack that matched; the pack is the one whose address the user then connects, for the four tools. |
 | The language | What the connection's instructions say the pack is written in (`Written in ko`), else the language of the maps; the search is in that language. |
 | Everything else | Derived: which document sets the question concerns, how many results to read, what the note is called. |
 
@@ -68,7 +68,7 @@ Produces the **map reading**: the document sets the question concerns, and the d
 
 Produces the **candidate sections**: the sections a search named, with their path, heading, offset and limit.
 
-1. `search_repo` with the words of the frame, in the pack's language, scoped with `path` to the document set the map named when the pack is large. Each document result names the sections that matched, best first, each with its heading path, its offset and limit, and an excerpt.
+1. `search_repo` with the words of the frame, in the pack's language, scoped with `path` to the document set the map named when the pack is large. Where the connection's instructions say the pack is searched by meaning as well as by words, search once more in the frame's own words ([searching.md](references/searching.md), "What a search does"). Each document result names the sections that matched, best first, each with its heading path, its offset and limit, and an excerpt.
 2. Search again with other words when the first search misses ([searching.md](references/searching.md), "When a search finds nothing"): the pack's words for the thing, a particle or an inflection dropped, the heading a map promised. Three searches that find nothing mean the pack does not say it, and the answer says so.
 3. Keep the candidates in order of the search; read them in that order.
 

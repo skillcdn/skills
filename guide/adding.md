@@ -41,7 +41,7 @@ The first skill for a tool that the repository does not cover yet also needs:
 A document set is a directory of Markdown without a `SKILL.md`, under a document directory: `docs/` at the root for what serves every area (a handbook, or what the skills of one tool family share, as `docs/<family>/`), `<area>/docs/` for what serves one. SkillCDN lists and searches it through `browse_repo` and `search_repo` and serves it through `read_repo_file`; no skill is needed.
 
 1. Create `<docs>/<name>/` with a `README.md` that says what the set is and how it is organized. For the first set of an area, create `<area>/docs/README.md` as the area's document catalog as well.
-2. Give each document a front-matter `title` and `description`, or a level-one heading followed by one summary paragraph, because that is what search shows.
+2. Give each document a front-matter `title` and `description`, or a level-one heading followed by one summary paragraph, because that is what search shows; and headings that name its parts, because a search result names the sections that matched and `browse_repo` outlines a file by them.
 3. Link only to what an agent can reach through the mount: skills, manifests, document directories, and the README of a served folder. The check rejects a link to anything else.
 4. Add one row to the `README.md` of that `docs/` and one to the root `README.md`.
 5. Run `node scripts/check.mjs`.

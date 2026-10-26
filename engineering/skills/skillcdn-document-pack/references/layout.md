@@ -102,6 +102,8 @@ A folder in another language carries a manifest with `language` and a descriptio
 
 The `license` decides what a deployment may pass on: a permissive license serves the documents in full; without one the pack is served with a provenance notice; a restrictive one has the documents described only, with a link to the source ([licenses](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md#licenses)). The user chooses; the manifest says.
 
+`search` keeps the documents out of a search the user does not want them in: `search: { meaning: false }` in a manifest keeps the documents it governs to the search by words, so that their text is never sent to the embedding model a deployment runs, and `search: { hub: false }` in the root manifest keeps the pack out of the search across every pack of the deployment, found at its own address alone; by default a pack is searched by meaning where the deployment offers it and found across packs. Offer both at the layout checkpoint for a pack whose text should stay out of a model's hands or out of the deployment's common search, and write what the user chose.
+
 ## What stays out
 
 - Secrets, credentials, personal data, customer material: the pack is served to whoever holds the address.

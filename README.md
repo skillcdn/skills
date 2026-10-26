@@ -163,7 +163,7 @@ scripts/          check.mjs, the validation CI runs
 .claude-plugin/   the Claude Code marketplace: one plugin per area with skills
 ```
 
-What an agent connected through SkillCDN gets: the skills, the manifests and the document sets are discoverable with `browse_repo` and `search_repo`, and the skills are listed through the MCP skills extension; this README, an area's README and the pages they link are readable on demand with `read_repo_file`; everything else stays on the git host.
+What an agent connected through SkillCDN gets: the skills, the manifests and the document sets are discoverable with `browse_repo` and `search_repo` (a search names the sections of a document that matched, and `browse_repo` outlines a file by its headings), and the skills are listed through the MCP skills extension; this README, an area's README and the pages they link are readable on demand with `read_repo_file`; everything else stays on the git host.
 
 ```sh
 node scripts/check.mjs    # validates manifests, front-matter, catalogs, links and text; needs Node.js 24, no install
