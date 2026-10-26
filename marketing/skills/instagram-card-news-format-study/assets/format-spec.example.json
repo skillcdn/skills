@@ -1,4 +1,5 @@
 {
+  "source": { "kind": "measured", "read": "account" },
   "account": { "handle": "example-account", "read_on": "0000-00-00", "visible_posts": 12, "posts_read": 12 },
   "categories": [
     { "name": "<category in the account's words>", "share": 0.5, "example": "<a caption's first line, to identify the post>" }
