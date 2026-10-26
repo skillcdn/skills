@@ -51,7 +51,7 @@ with sync_playwright() as p:
     tiles = "".join(f'<figure><img src="out/{n}-desktop.png"><figcaption>{n}</figcaption></figure>' for n in names)
     sheet = os.path.join(folder, "sheet.html")
     with open(sheet, "w", encoding="utf-8") as f:
-        f.write("<!doctype html><meta charset='utf-8'><style>body{margin:0;background:#111;padding:16px;font:14px sans-serif;color:#ddd}"
+        f.write("<!doctype html><meta charset='utf-8'><style>body{margin:0;background:#777;padding:16px;font:14px sans-serif;color:#eee}"
                 f".g{{display:grid;grid-template-columns:repeat(2,{tile_w}px);gap:16px}}figure{{margin:0}}img{{display:block;width:{tile_w}px;height:{tile_h}px;object-fit:cover}}"
                 "figcaption{padding:6px 0}</style><div class='g'>" + tiles + "</div>")
     page = browser.new_page(viewport={"width": tile_w * 2 + 48, "height": 400}, device_scale_factor=1)

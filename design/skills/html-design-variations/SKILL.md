@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Python or Node.js and a Chromium-family browser a headless driver can launch, or a browser the agent drives that can screenshot a local page; a way to look at an image (the host's image reader or a browser pane); a file tool. Without a browser or a way to look at a screen the skill stops before the first message and says what to add.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: browser
 skillcdn:
   include:
@@ -49,7 +49,7 @@ Check the shell, the browser and the image reader before the first message: the 
 | The start | A reference (a link, a file, a screenshot), a concept handoff from the concept skill (its effect brief, mechanism line and sample lines), or the design as it is (its address or a screenshot); from the request. With none of the three, the design as the user describes it, and the brief is written from their words and the crowd. The start's positions are the first row of the candidates, which "holds" refers to; with no start, that row is the crowd's positions where the request wants the genre, else the skeleton's own tokens and layout, said so. |
 | The words on it | From the concept handoff or the request: the headline, the one line, the ask, the subject's name where the request gives one, and a navigation of the subject's own sections where it has any; asked when neither gives them. The words are the same on every look, so that the sheet compares looks; the material a look shows (a document, a transcript, a diagram) carries its own words, the same across the looks that show it, and a look whose still cannot be rendered carries its position as a note where the still would be, marked as a note. |
 | The brand's tokens | Read from the subject's brand file, site or previous piece where there is one; the request says whether the looks may leave them. Without any, the looks set their own and say so. |
-| The medium's size | Derived: a page at a desktop width and a phone width; a slide at its page size; a post at its canvas; a frame at its aspect. Said in the first message. |
+| The medium's size | Derived: a page at a desktop width and a phone width; a slide at its page size; a post at its canvas, and since a post has no narrow screen of its own, judged on a copy at the feed's width (about a third of the canvas) with no type under about a thirtieth of the canvas's width; a frame at its aspect. Said in the first message. |
 | Where the run goes | Derived: the folder the user names, else `variations/<the subject in a few words>/looks/` under the working folder, under the host's scratch folder when the working folder is a git checkout, and beside the working folder when there is no scratch folder, so that the handoff lasts for the producing skill's later run; said in the first message. The run's files never enter a repository. |
 
 ## Workflow
