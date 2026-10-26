@@ -19,11 +19,15 @@ metadata:
 
 **Ask only what cannot be derived.** A skill asks for the inputs it cannot get from the request, in one short message, and derives everything else from those inputs and sensible defaults. What was derived is stated at the next step and changed when the user asks. The user need not know the tool or the craft; an answer stands for the rest of the run.
 
-**Show every step, briefly.** Each phase ends with its result in front of the user in plain words: what was made, and what comes next. Where the skill stops for the user, the message also gives the recommendation, and one word continues; elsewhere the run goes on. When the user says to go ahead alone, the stops end; consent to spend never does.
+**Show every step, briefly.** Each phase ends with its result in front of the user in plain words: what was made, and what comes next. Where the skill stops for the user, the message also gives the recommendation, and one word continues; elsewhere the run goes on. When the user says to go ahead alone, the stops end; consent to spend never does, nor the confirmation of what leaves.
 
 **Request missing tools.** Before starting, confirm the tools a skill names are reachable. If one is missing, stop and tell the user exactly what to add and why. Do not substitute something that changes the result or the cost, and do not pretend the step happened.
 
 **Spend only with consent.** Anything that costs the user money or credits is estimated first and started only after they agree. Keep a running record against the estimate and stop to ask before exceeding it. Use the cheapest setting that answers the question; draft quality is for drafts.
+
+**Nothing leaves in passing.** Posting, publishing, deploying, sending and deleting are explicit steps the user confirms one by one; a skill never does them on the way to something else.
+
+**Skills chain.** One person runs the skills of every area together: when a skill needs what another skill of this pack makes (a format, a brief, a pick, a reference), it names that skill, runs it first on the user's word, at that skill's own stops, and takes its result as if the user had supplied it; `docs/pack/jobs.md` says which skill makes what, and a page another area documents is read where the work meets it.
 
 **Deliver something the user can hold.** The result is a file, a link or a document, never only a description of it. Say what was made, how, and what was left out. Inputs stay untouched.
 
