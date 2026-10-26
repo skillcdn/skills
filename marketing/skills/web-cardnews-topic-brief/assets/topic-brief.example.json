@@ -28,16 +28,34 @@
   "images": [
     {
       "file": "img/example-outlet_subject.jpg",
+      "source_kind": "article-figure",
+      "shows": "<what the image shows, in the post's language>",
       "caption": "<as printed>",
       "credit": { "agency": "<agency>", "photographer": "", "outlet": "example-outlet", "date": "0000-00-00" },
       "url": "https://example-outlet.example/path/to/image.jpg",
       "px": { "w": 1200, "h": 800 },
+      "legibility": "clear",
       "watermark": "none seen",
       "licence": { "terms": "none stated", "modification_allowed": "unknown" },
       "role": "cover",
       "notes": ""
+    },
+    {
+      "file": "img/example-clip_t00120.jpg",
+      "source_kind": "video-frame",
+      "shows": "<the scene, and what the frame's own caption states>",
+      "caption": "<the text printed on the frame>",
+      "credit": { "agency": "<broadcaster and program>", "photographer": "", "outlet": "<the channel>", "date": "0000-00-00" },
+      "url": "https://example-video.example/watch?v=<id>&t=12s",
+      "px": { "w": 1920, "h": 1080 },
+      "legibility": "soft",
+      "watermark": "broadcaster's logo, top right",
+      "licence": { "terms": "none stated", "modification_allowed": "unknown" },
+      "role": "subject",
+      "notes": "faces blurred by the broadcaster; the clip credits the footage to the subject's own channel"
     }
   ],
+  "images_searched_for": ["<a beat the articles and the cited material left unshown, and what was looked for first>"],
   "candidates": {
     "shown": [{ "rank": 1, "line": "<what happened>", "angle": "<one line>", "why_now": "<movement>", "articles": ["example-outlet 0000-00-00"], "images": "<note>", "recommended": true }],
     "excluded": ["<a story the account already posted, or none>"]
