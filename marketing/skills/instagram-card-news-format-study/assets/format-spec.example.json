@@ -8,7 +8,10 @@
     "ratio": "4:5",
     "documented": { "max_width": 1080, "ratios": "<as the help page gives them>", "looked_up": "0000-00-00" },
     "size": { "width": 1080, "height": 1350 },
-    "slides_per_post": { "min": 1, "max": 10, "typical": 7 }
+    "slides_per_post": { "min": 1, "max": 10, "typical": 7 },
+    "other_ratios": [
+      { "ratio": "1:1", "size": { "width": 1080, "height": 1080 }, "for": ["<kind>"], "seen_in": ["<post id>"] }
+    ]
   },
   "kinds": {
     "story": {
@@ -30,6 +33,7 @@
     "photo": "full-bleed, gradient over the lower part (estimate)",
     "label": { "kind": "the account's series name; never reused", "color": "#RRGGBB", "weight": 700, "italic": false, "width": "normal", "size_px": 30, "x": "7-45%", "y": "70-73%", "estimate": true },
     "headline": { "lines": 2, "weight": 800, "size_px": 72, "color": "#FFFFFF", "style": "news title, the subject in the first line", "estimate": true },
+    "mark": { "kind": "the account's logo; its place and size only, never reused", "x": "45-55%", "y": "92-96%", "height_px": 45, "estimate": true },
     "variants": [
       { "name": "list cover", "differs": "a two-line label at the top, centered headline", "for": ["list"], "seen_in": ["<post id>"] },
       { "name": "sponsored cover", "differs": "the sponsor's name in a white box where the label sits, three lines", "for": ["event/sponsored"], "seen_in": ["<post id>"] }

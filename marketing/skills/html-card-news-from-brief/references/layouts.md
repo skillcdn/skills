@@ -6,8 +6,8 @@ A post is composed from the reference account's own slide types, as the format s
 
 | Spec field | Becomes |
 |---|---|
-| `canvas.size` | The slide box |
-| `cover` | The `.cover` class: the photo treatment; the label's position, color, weight and italic where the cover has one (its words are the user's own label or a category word, never the account's series name); the headline's lines, size, weight, color, stroke or shadow where the spec records one, and its top and bottom edges; the cover `variants` as modifier classes |
+| `canvas.size`, or the `other_ratios` entry whose `for` names the post's kind | The slide box |
+| `cover` | The `.cover` class: the photo treatment; the label's position, color, weight and italic where the cover has one (its words are the user's own label or a category word, never the account's series name); the headline's lines, size, weight, color, stroke or shadow where the spec records one, and its top and bottom edges; the user's own mark at `cover.mark` where they give one, else nothing there; the cover `variants` as modifier classes |
 | `slide_types[]` | One class per type, named as the spec names it: the photo treatment (full-bleed and cropped; whole with its marks and the margins the spec measured around it; two photos stacked or side by side; flat color), the gradient or dim overlay with its darkness, each text block at its measured edges with its size, weight, color and line height, and which text on the slide is the account's own and which belongs to the material shown |
 | `elements[]` | A class that rides on the types the spec names: a note, an inset, a talk box, a source tag, a source card, at its measured place, in the corner or the area the spec gives it and away from text inside the photo |
 | `fonts`, `colors` | The stylesheet links or `@font-face` rules and the CSS variables; a font the spec marks `guess` is the closest free face it names, loaded from the path it gives |
