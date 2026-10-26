@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory. Works in any agent that can call MCP tools or run a shell; no file tool is needed, since the answer is the delivery.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: skillcdn
 skillcdn:
   include:
@@ -24,7 +24,7 @@ A question goes in, with a pack of documents served through SkillCDN; an answer 
 
 - **Questions:** one at most, at the start and only when the request leaves it open: which pack, when more than one is connected and the question does not say, asked as "Which pack is this for: <the connected packs, by name>?".
 - **Checkpoints:** none; nothing waits for a reply. Each phase ends with one line in the chat, as the rules served with this skill ask: the frame, the sets the maps named, the candidates by path and heading, the sections read, the quotes that held and any dropped; then the answer. A scope the pack cannot settle (two documents contradict each other, the question is wider than the pack) is said in the answer, with both readings quoted.
-- **Several questions:** a request that holds two (a rule, and a claim about it) gets a frame per question in the order asked, each with its own searches, and one answer that takes them in that order; a question that comes later is answered as it comes. The sections read for an earlier question are candidates for the next, and a citation reused says so.
+- **Several questions:** a request that holds two (a rule, and a claim about it) gets a frame per question in the order asked, each with its own searches, and one answer that takes them in that order; a question that comes later is answered as it comes. The sections read for an earlier question are candidates for the next, and a citation reused says so; a section read for a later question that answers what an earlier answer called not stated corrects that answer in one line.
 - **A question the pack does not cover:** said after three searches and an outline, with the nearest passage read, checked and quoted so that the user sees where the pack stops, and where else to look when the pack names it.
 
 ## Requirements
@@ -54,7 +54,7 @@ Produces the **frame**: the question in one line, the shape of its answer (a num
 
 ### Phase 2: Map
 
-Produces the **map reading**: the document sets the connection's instructions name, or `browse_repo` on the root lists, and the `README.md` of each set the question could concern, read whole (the folder's overview that `browse_repo` names; a set without one is listed with `browse_repo`); a document of many sections that the question is about is outlined with `browse_repo` on its path. The frame's words are revised with the terms the maps use (the heading a map promised, the term a description defines). The first search takes one set, with `path`, when the maps put the question in one set, and the whole pack when they do not; a scoped search that finds nothing is run again over the whole pack with the same words before anything else, and that run is not one of the three searches.
+Produces the **map reading**: the document sets the connection's instructions name, or `browse_repo` on the root lists, and the `README.md` of each set the question could concern, read whole (the folder's overview that `browse_repo` names; a set without one is listed with `browse_repo`, and the pack's root `README.md`, where the connection names one, is read as its map); a document of many sections that the question is about is outlined with `browse_repo` on its path. The frame's words are revised with the terms the maps use (the heading a map promised, the term a description defines). The first search takes one set, with `path`, when the maps put the question in one set, and the whole pack when they do not; a scoped search that finds nothing is run again over the whole pack with the same words before anything else, and that run is not one of the three searches.
 
 ### Phase 3: Search
 
