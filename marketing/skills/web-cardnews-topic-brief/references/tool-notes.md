@@ -8,7 +8,7 @@ A search tool's own summary of its results is a lead and nothing more: a run tha
 
 ## Page readers
 
-A fetch tool that converts a page to text returned the figure images with their captions but not the page's metadata share image (checked 2026-10); where an article has one photo and the reader returns none, a driven browser reads the page's `img` elements. Several articles on one story differ in small facts (a count given as three in one outlet and four in another, a figure present in one outlet only): read them all and cross-check, as [sourcing.md](sourcing.md) says.
+A fetch tool that converts a page to text returned the figure images with their captions but not the page's metadata share image (checked 2026-10); where an article has one photo and the reader returns none, a driven browser reads the page's `img` elements. A fetch tool was refused by some outlets' pages, while a driven browser read the same pages in full (checked 2026-10-26). Several articles on one story differ in small facts (a count given as three in one outlet and four in another, a figure present in one outlet only): read them all and cross-check, as [sourcing.md](sourcing.md) says.
 
 ## Downloading images
 

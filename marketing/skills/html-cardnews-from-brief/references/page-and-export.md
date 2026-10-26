@@ -56,6 +56,8 @@ Open every PNG at its native size (the host's image reader at full resolution, o
 | A note or a tag over a bright or busy area | A top gradient under the note; the tag moved to the other corner |
 | Text in the photo colliding with the slide's text | Reposition the image, or move the text block |
 | A subject lost in a portrait crop | Shift the object position; swap for a vertical image of the same role |
+| A photo of other people, another production or another year than the slide's text names | An image of what the text names from the brief; else a type without a photo, or a line that says what the photo shows |
+| A block off the spec's top or bottom edge by more than about a twentieth of the canvas, or an empty band the reference's slide does not have | Measure the block's edges on the PNG in pixel rows and place it by the spec's; with no vertical edges in the spec, center it in the space its slide type leaves |
 | A photo visibly soft from upscaling | Swap for a larger image of the same role; else note the factor in the checklist |
 | A poster's figures or list rows touching the margins | Fewer rows on the slide, or the figures reduced by about a tenth, within the spec |
 

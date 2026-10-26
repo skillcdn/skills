@@ -23,7 +23,7 @@
   },
   "cover": {
     "photo": "full-bleed, gradient over the lower part (estimate)",
-    "label": { "kind": "the account's series name; never reused", "color": "#RRGGBB", "weight": 800, "italic": true, "width": "expanded", "size_px": 36, "position": "left, about 69% down", "estimate": true },
+    "label": { "kind": "the account's series name; never reused", "color": "#RRGGBB", "weight": 800, "italic": true, "width": "expanded", "size_px": 36, "x": "6-40%", "y": "68-71%", "estimate": true },
     "headline": { "lines": 2, "weight": 800, "size_px": 72, "color": "#FFFFFF", "style": "news title, the subject in the first line", "estimate": true },
     "variants": [
       { "name": "list cover", "differs": "a two-line label at the top, centered headline", "seen_in": ["<post id>"] },
@@ -39,7 +39,7 @@
     },
     { "name": "photo-only", "anatomy": { "photo": "full-bleed, no text" }, "carries": "a photo with nothing to add", "seen_in": ["<post id>"] },
     { "name": "collage", "anatomy": { "photo": "two photos stacked", "sub_and_body": "as story" }, "carries": "two related photos with one step", "seen_in": ["<post id>"], "tentative": true },
-    { "name": "lead", "anatomy": { "sub": { "lines": 2 }, "body": { "lines": 2 }, "tag": "source, top-right, small" }, "carries": "one item of a list, with its source", "seen_in": ["<post id>"], "tentative": true },
+    { "name": "lead", "anatomy": { "sub": { "lines": 2, "y": "70-79%" }, "body": { "lines": 2, "y": "81-88%" }, "tag": "source, top-right, small" }, "carries": "one item of a list, with its source", "seen_in": ["<post id>"], "tentative": true },
     { "name": "poster", "anatomy": { "type": "event name small, the date range large", "estimate": true }, "carries": "an event's name and dates", "seen_in": ["<post id>"], "tentative": true }
   ],
   "elements": [

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a browser the agent can drive (navigate, click by coordinates, take a screenshot, zoom into a region, read the page's text) and, optionally, a shell with Node.js for decoding captions from page JSON. No account and no sign-in. Works in any agent with a driven browser.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: instagram
 skillcdn:
   include:
