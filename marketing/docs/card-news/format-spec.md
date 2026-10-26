@@ -28,4 +28,4 @@ The build takes `canvas.size` and the build of `kinds` that fits the post (its `
 
 ## Example
 
-The study skill ships [`format-spec.example.json`](../../skills/instagram-cardnews-format-study/assets/format-spec.example.json) with placeholder values in this shape.
+The study skill ships [`format-spec.example.json`](../../skills/instagram-card-news-format-study/assets/format-spec.example.json) with placeholder values in this shape.

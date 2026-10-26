@@ -1,6 +1,6 @@
 # Card news: what its skills share
 
-The skills that make card news in a reference account's format (`instagram-cardnews-format-study`, `web-cardnews-topic-brief`, `html-cardnews-from-brief`) pass two artifacts between them: a **format spec**, measured from a reference account's posts, and a **topic brief**, the sourced facts and the images of one story. The shape of each lives here once, so that the skill that writes it and the skill that reads it agree without restating each other. Each skill carries its own method (how posts are read, how facts are sourced, how slides are composed and rendered) and its own rules.
+The skills that make card news in a reference account's format (`instagram-card-news-format-study`, `web-card-news-topic-brief`, `html-card-news-from-brief`) pass two artifacts between them: a **format spec**, measured from a reference account's posts, and a **topic brief**, the sourced facts and the images of one story. The shape of each lives here once, so that the skill that writes it and the skill that reads it agree without restating each other. Each skill carries its own method (how posts are read, how facts are sourced, how slides are composed and rendered) and its own rules.
 
 | Document | Holds | Read |
 |---|---|---|
@@ -9,7 +9,7 @@ The skills that make card news in a reference account's format (`instagram-cardn
 
 ## Who reads this
 
-[`instagram-cardnews-format-study`](../../skills/instagram-cardnews-format-study/SKILL.md) includes `format-spec.md`; [`web-cardnews-topic-brief`](../../skills/web-cardnews-topic-brief/SKILL.md) includes `topic-brief.md`; [`html-cardnews-from-brief`](../../skills/html-cardnews-from-brief/SKILL.md) includes both. Every page is declared in the skill's `skillcdn.include` by its root-relative path, so that it arrives with the skill wherever SkillCDN serves it, and ships with the `marketing` plugin at `docs/cardnews/`. A copy of a skill taken into another agent has neither page: its Requirements say so and name this directory in the repository as the place to fetch them.
+[`instagram-card-news-format-study`](../../skills/instagram-card-news-format-study/SKILL.md) includes `format-spec.md`; [`web-card-news-topic-brief`](../../skills/web-card-news-topic-brief/SKILL.md) includes `topic-brief.md`; [`html-card-news-from-brief`](../../skills/html-card-news-from-brief/SKILL.md) includes both. Every page is declared in the skill's `skillcdn.include` by its root-relative path, so that it arrives with the skill wherever SkillCDN serves it, and ships with the `marketing` plugin at `docs/card-news/`. A copy of a skill taken into another agent has neither page: its Requirements say so and name this directory in the repository as the place to fetch them.
 
 ## What every card-news skill does the same way
 

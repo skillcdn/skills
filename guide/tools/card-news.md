@@ -1,12 +1,12 @@
 # Card-news skills
 
-How the skills that make card news in a reference account's format (`instagram-cardnews-format-study`, `web-cardnews-topic-brief`, `html-cardnews-from-brief`) are written and kept in step, for authors. They drive three tool families (a website read with a driven browser, the open web, HTML rendered by a headless browser), so what they share is not a tool but two artifacts: the document set [`marketing/docs/cardnews/`](../../marketing/docs/cardnews/README.md) holds the shape of each, and this page says what goes there, what stays in a skill, and how the three are tested together.
+How the skills that make card news in a reference account's format (`instagram-card-news-format-study`, `web-card-news-topic-brief`, `html-card-news-from-brief`) are written and kept in step, for authors. They drive three tool families (a website read with a driven browser, the open web, HTML rendered by a headless browser), so what they share is not a tool but two artifacts: the document set [`marketing/docs/card-news/`](../../marketing/docs/card-news/README.md) holds the shape of each, and this page says what goes there, what stays in a skill, and how the three are tested together.
 
 ## Three skills, two seams
 
 The run these skills come from was one job in the user's words ("make a card-news post the way that account does it") and three jobs in the evidence: a study of the account, a research of the story, a build of the slides. Each is written as a skill that is complete alone and useful alone (a study of an account's format, a sourced brief for any post, a build from any brief), and the seams are written in the skill that needs the other's result: the build says where its spec and its brief come from and what it does with neither; the study and the research stay general.
 
-| In `marketing/docs/cardnews/` | In the skill |
+| In `marketing/docs/card-news/` | In the skill |
 |---|---|
 | `format-spec.md`: the fields of the spec, how each is measured and how the build reads it | How posts are read on the site, which posts, the slide log, the verdicts of the study |
 | `topic-brief.md`: the fields of the brief, how each is obtained and how the build reads it | How candidates are searched and ranked, the facts table, the angle test, image sourcing from where the articles point (their photos, a cited clip's frames, the subject's pages, a search last), legibility |
@@ -20,7 +20,7 @@ The run was sent back five times, and each correction is a rule in the skill who
 
 ## Facts are dated, and instance material stays out
 
-The site a study reads has no changelog: a statement about what is visible without signing in, how a carousel is stepped, or how a host's browser behaves carries the day it was checked and the way to find it again (`instagram-cardnews-format-study/references/tool-notes.md`). The build skill carries no layouts of its own: the spec's slide types are its classes, and its one stand-in page for a build with no spec (`no-spec.md`, not included, read only then) is said to be a stand-in at every checkpoint. No account, outlet, story, person or photo from a run is named anywhere in these skills or in the set: examples use placeholders, numbers quoted from runs are shapes.
+The site a study reads has no changelog: a statement about what is visible without signing in, how a carousel is stepped, or how a host's browser behaves carries the day it was checked and the way to find it again (`instagram-card-news-format-study/references/tool-notes.md`). The build skill carries no layouts of its own: the spec's slide types are its classes, and its one stand-in page for a build with no spec (`no-spec.md`, not included, read only then) is said to be a stand-in at every checkpoint. No account, outlet, story, person or photo from a run is named anywhere in these skills or in the set: examples use placeholders, numbers quoted from runs are shapes.
 
 ## Testing
 
