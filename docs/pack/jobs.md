@@ -113,7 +113,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 ### "What does the handbook say about this?"
 
 - You get: the answer now, in two or three sentences, then the quotes that support it, each with the path, the heading and the offset of its section, every quote read once more before it is sent so that a reader who opens the citation finds the words, and what the pack does not say stated plainly with the nearest passage. Nothing is written into the pack and nothing is spent.
-- Skill: [`engineering/skills/skillcdn-doc-qa/`](/engineering/skills/skillcdn-doc-qa/SKILL.md)
+- Skill: [`engineering/skills/skillcdn-document-answer/`](/engineering/skills/skillcdn-document-answer/SKILL.md)
 - Also asked as: "answer this from our documents", "is this true according to the manual", "which document covers this", "what do our documents say about this".
 - Not this one when: the answer is to be kept in the pack as a note, or a reference compiled across many documents (the research below); the documents are not in a pack yet (the document pack above).
 

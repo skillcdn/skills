@@ -1,11 +1,11 @@
 ---
-name: skillcdn-doc-qa
+name: skillcdn-document-answer
 description: Answers a question from a pack of documents served through SkillCDN (a handbook, a manual, a policy set, an archive), with every citation verified against the section it quotes, and says plainly what the pack does not say. Use when a user asks "what does the handbook say about this", "answer this from our documents", "is this true according to the manual", "which document covers this", or puts a question to any document pack, and wants the answer now with its sources rather than a note kept for later. Frames the question in the pack's words, reads the maps, searches by words and by meaning where the deployment does, reads the sections a result names by their offset and limit, drafts the answer, re-reads every cited section to check each quote word for word and drops what does not hold, and answers with the path, the heading, the offset and the limit of each citation. To keep the answer as a note in the pack, or compile a reference, use skillcdn-document-research. Nothing is spent.
 license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory. Works in any agent that can call MCP tools or run a shell; no file tool is needed, since the answer is the delivery.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: skillcdn
 skillcdn:
   include:

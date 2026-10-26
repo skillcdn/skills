@@ -36,7 +36,7 @@ Checked 2026-10-26, on the commit that added this set, with the deployment ranki
 | "card news post" | the build (`html-card-news-from-brief`) | the study (`instagram-card-news-format-study`): a card news skill, not the one that makes the post |
 | "slides from notes" | the deck (`html-deck-from-outline`) | the Figma skill, whose name holds "slides" and whose files hold "notes" |
 | "ad from a reference video" | the ad (`higgsfield-shorts-ad`) | a Meta ads document; the ad skill second |
-| "answer from the handbook" | the question (`skillcdn-doc-qa`), as the first result's first section, with the research as the same result's second section (checked again on the day the question skill was added) | the question, then the research |
+| "answer from the handbook" | the question (`skillcdn-document-answer`), as the first result's first section, with the research as the same result's second section (checked again on the day the question skill was added; renamed since, with the request's word in its name) | the question, then the research |
 | "four looks for this landing" | the looks (`html-design-variations`), as the second result's first section; the first result was this set's README (checked again on the day the skill was added) | a document research skill: the looks skill has two files, and a skill takes the place of its best-ranked file, so a skill with ten files outranks it whatever the words |
 | "analyze this account's card news format" (from 이 계정 카드뉴스 포맷 분석) | the study | a payments document, where "account" is a word of every page; the study third |
 | "build an app and put it online" (from 앱 만들어서 올려줘) | the new app (`cloudflare-new-app`) | the new app |
