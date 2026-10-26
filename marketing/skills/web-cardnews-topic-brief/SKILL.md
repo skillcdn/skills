@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a web search tool, a way to read a page's full text and its image elements (a fetch tool, a driven browser, or a shell with curl), and a shell with Node.js for downloading images and reading their pixel size; for frames of a clip the articles cite, a Chromium-family browser that playwright-core can launch. Works in any agent that can search the web and run a shell; without a shell, image URLs are listed instead of downloaded.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: web
 skillcdn:
   include:
@@ -15,6 +15,7 @@ skillcdn:
     - references/tool-notes.md
     - assets/topic-brief.example.json
     - /marketing/docs/cardnews/topic-brief.md
+    - /docs/browser/reading-pages.md
   translations:
     ko:
       title: 출처가 붙은 카드뉴스 소재 브리프
@@ -36,11 +37,11 @@ The categories an account covers go in, with who the post is for; a ranked list 
 | What | Used for |
 |---|---|
 | A web search tool | The candidates of the week; the articles that carry a story. Recognize it by its action: a query in, titles and links out. |
-| A way to read a page in full: a fetch tool that returns the article's text and its image elements, a browser the agent drives, or a shell with curl | The article bodies the facts come from; the figure images and their captions ([images.md](references/images.md) "Finding the images in an article"). |
+| A way to read a page in full: a fetch tool that returns the article's text and its image elements, a browser the agent drives, or a shell with curl | The article bodies the facts come from; the figure images and their captions ([images.md](references/images.md) "Finding the images in an article"). Which tool reads what, and where a reading stops, is in [reading-pages.md](/docs/browser/reading-pages.md), included with this skill. |
 | A shell with Node.js | Downloading images with the article as referer and reading their pixel size; writing the brief. Without a shell the brief lists image URLs and the delivery says they were not downloaded. |
-| Optional: a Chromium-family browser playwright-core can launch, or a driven browser that saves a screenshot to a file | Frames of a public video clip the articles cite, saved with their time codes ([images.md](references/images.md) "Frames from a clip the articles cite"). `playwright-core` is borrowed from a neighbouring project's install (`PLAYWRIGHT_FROM` as the path of its `package.json`) or installed into the brief folder with `npm install playwright-core`, a download said to the user first; check it with a `require` from the shell. Without either, the clip is listed as a source by its address, and the delivery says the frames were not taken. |
+| Optional: a Chromium-family browser playwright-core can launch, or a driven browser that saves a screenshot to a file | Frames of a public video clip the articles cite, saved with their time codes ([images.md](references/images.md) "Frames from a clip the articles cite"; the routes in [video-frames.md](/docs/browser/video-frames.md)). `playwright-core` is borrowed from a neighbouring project's install or installed into the brief folder, and a browser download is asked first, as [headless.md](/docs/browser/headless.md) says; check it with a `require` from the shell. Without either, the clip is listed as a source by its address, and the delivery says the frames were not taken. |
 
-Check these before the first message. Without search, stop and say what to add; without a page reader, facts cannot be sourced and the run stops at the candidate list. No paywall is bypassed and no account is signed in to: an article that cannot be read in full is not a source. What the card-news skills share is in the area's document set [`marketing/docs/cardnews/`](/marketing/docs/cardnews/README.md); [topic-brief.md](/marketing/docs/cardnews/topic-brief.md), the fields of what this skill writes, is included and arrives with this skill wherever SkillCDN serves it. A copy of this directory lacks it: say so, fetch it from `marketing/docs/cardnews/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`), and otherwise write the brief by the example in [topic-brief.example.json](assets/topic-brief.example.json), which is the shape. How the tools behaved in runs of this skill is in [tool-notes.md](references/tool-notes.md); read it before phase 1.
+Check these before the first message. Without search, stop and say what to add; without a page reader, facts cannot be sourced and the run stops at the candidate list. No paywall is bypassed and no account is signed in to: an article that cannot be read in full is not a source. What the card-news skills share is in the area's document set [`marketing/docs/cardnews/`](/marketing/docs/cardnews/README.md); [topic-brief.md](/marketing/docs/cardnews/topic-brief.md), the fields of what this skill writes, is included and arrives with this skill wherever SkillCDN serves it, and so is [reading-pages.md](/docs/browser/reading-pages.md) from the repository's document set [`docs/browser/`](/docs/browser/README.md), whose [video-frames.md](/docs/browser/video-frames.md) and [headless.md](/docs/browser/headless.md) phase 3 reads when a clip is a source. A copy of this directory lacks the included pages, and a mount of one area or one skill cannot read the linked ones: say so, fetch them from `marketing/docs/cardnews/` and `docs/browser/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`), and otherwise write the brief by the example in [topic-brief.example.json](assets/topic-brief.example.json), which is the shape. How the tools behaved in runs of this skill is in [tool-notes.md](references/tool-notes.md); read it before phase 1.
 
 The area's rule that claims and assets come from the brand takes this form for a news post: the user is the brand, the claims are the articles', and the images are the outlets', agencies', broadcasters' and subjects' material, used as the account itself uses such material, with their credits. The skill records each image's source, credit and terms and leaves the use to the user, who is told so at every delivery; a user who prefers their own images supplies them, and the entries then carry the user's files.
 
