@@ -101,7 +101,7 @@ async function prepare(from) {
 let end = Number(endArg) || Infinity;
 let from = start;
 let next = start;
-let stalls = 0;
+let reloaded = false;
 let frames = 0;
 while (from < end) {
   const duration = await prepare(from);
@@ -129,9 +129,11 @@ while (from < end) {
     }
     await page.waitForTimeout(100);
   }
-  if (reached) { from = stop; stalls = 0; }
-  else if (lastTime > from + 1) { from = lastTime; stalls = 0; }
-  else if (++stalls >= 2) { console.log("stalled again at", from, "- the frames taken so far are kept"); break; }
+  if (reached) break;
+  if (reloaded) { console.log("stalled again at", lastTime.toFixed(1), "- the frames taken so far are kept"); break; }
+  reloaded = true;  // one reload, as a viewer would; a second stall ends the capture
+  from = Math.max(lastTime, from);
+  console.log("reloading once at", from.toFixed(1));
 }
 console.log("frames", frames, "in", outDir);
 await browser.close();
