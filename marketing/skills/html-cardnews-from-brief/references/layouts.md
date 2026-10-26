@@ -9,7 +9,7 @@ A post is composed from the reference account's own slide types, as the format s
 | `canvas.size` | The slide box |
 | `cover` | The `.cover` class: the photo treatment; the label's position, color, weight and italic where the cover has one (its words are the user's own label or a category word, never the account's series name); the headline's lines, size, weight, color, stroke or shadow where the spec records one, and its top and bottom edges; the cover `variants` as modifier classes |
 | `slide_types[]` | One class per type, named as the spec names it: the photo treatment (full-bleed and cropped; whole with its marks and the margins the spec measured around it; two photos stacked or side by side; flat color), the gradient or dim overlay with its darkness, each text block at its measured edges with its size, weight, color and line height, and which text on the slide is the account's own and which belongs to the material shown |
-| `elements[]` | A class that rides on the types the spec names: a note, an inset, a talk box, a source tag, a source card, at its measured place |
+| `elements[]` | A class that rides on the types the spec names: a note, an inset, a talk box, a source tag, a source card, at its measured place, in the corner or the area the spec gives it and away from text inside the photo |
 | `fonts`, `colors` | The stylesheet links or `@font-face` rules and the CSS variables; a font the spec marks `guess` is the closest free face it names, loaded from the path it gives |
 | `density` | The counts each block of the account's own text is written to (script.md) |
 
@@ -17,7 +17,7 @@ A value the spec marks `estimate` may move where the render shows text unreadabl
 
 ## Photo treatment
 
-The spec's `photo` for a type decides how an image is placed, and the licence decides what may be done to it:
+The type's `anatomy.photo` decides how an image is placed (with `frames_per_slide`, `frame_edges`, `marks_kept` and `background` where the type keeps frames whole), and the licence decides what may be done to it:
 
 | The type's photo is | The image is placed |
 |---|---|
@@ -26,18 +26,18 @@ The spec's `photo` for a type decides how an image is placed, and the licence de
 | Two images | Stacked where the type stacks them, side by side where it sets them beside each other; each treated as above |
 | Flat color or none | The spec's color |
 
-An image whose licence forbids modification takes no crop, overlay or gradient whatever the type: whole at its own ratio on the spec's dark color, or not at all. An image whose terms are unknown is treated as the type treats its photos, with its credit.
+An image whose licence forbids modification takes no crop, overlay or gradient whatever the type: whole at its own ratio on the spec's `background` color, else its darkest measured color (its dim or gradient value), else black, said at the checkpoint, or not at all. An image whose terms are unknown is treated as the type treats its photos, with its credit.
 
 ## Choosing a type for a beat
 
-1. The build: the one in the spec's `kinds` that fits the post (the kind of story, the number of beats, whether the brief's material carries the story itself), and its `typical_order` as the starting sequence.
+1. The build: in the spec's `kinds`, the kind of post first; among its builds, the one whose `text_on` matches what the brief's images carry (captioned frames take the build told by the material's captions, photographs with nothing written take a build of the account's sentences); where two still fit, the one whose slide range holds the beats. Its `typical_order` is the starting sequence.
 2. The cover is the spec's cover, in the variant the post's kind takes.
 3. Each other beat takes the type whose `carries` names what the beat is (one step in sentences, a photo with nothing to add, two related photos, a list, a date, a quote, a captured frame whose own caption is the beat), `variants_by_content` deciding where the account uses a particular type or element for that content.
 4. A beat the spec has no type for takes the nearest type the account has for content of that shape, said at the checkpoint; never a type the account does not use. Where the nearest type carries text of the account's and the beat has none, the beat is that type's photo alone.
 
 ## Variation
 
-Variation is the account's, read from the spec. Where `kinds` shows the account varying the order of its types between posts of one kind, the plan differs from each `post/slide-plan.json` of the brief folders beside this one in at least two slides. Where the account's build repeats one type slide after slide (a stack of captured frames), the plan repeats it the same way, and nothing is varied to look less repetitive: the repetition is the format. A type repeated where the account varies, or varied where the account repeats, is the review's first verdict.
+Variation is the account's, read from the spec. Where the build's `order` is `varies`, the plan differs from each `post/slide-plan.json` of the brief folders beside this one that names the same spec in at least two slides. Where the account's build repeats one type slide after slide (a stack of captured frames), the plan repeats it the same way, and nothing is varied to look less repetitive: the repetition is the format. A type repeated where the account varies, or varied where the account repeats, is the review's first verdict.
 
 ## With no spec
 
