@@ -4,7 +4,7 @@ How the profile and the posts are read with a driven browser, which posts to rea
 
 ## The profile
 
-Open the profile at `https://www.instagram.com/<handle>/`. A sign-in prompt covers the page a moment after it loads; close it by its close control (tool-notes.md "The sign-in prompt"). The grid shows the posts visible without an account, a dozen or so at the time of writing; each tile links to a post page at `/<handle>/p/<id>/` (a video at `/<handle>/reel/<id>/`). The grid shows neither dates nor captions: open each visible post's page in turn, one at a time with a few seconds between loads, and read there its date, the first line of its caption and whether it is a carousel, a single image or a video (the grid's badges and the post page's dots say which). Write them into `profile.md` as a table. The bio, the name line and the link in bio say what the account calls itself and who runs it; record them as the account's own words.
+Set the tab's viewport to about 720 by 1050 first, so that slides read at zoom (tool-notes.md "The viewport"). Open the profile at `https://www.instagram.com/<handle>/`. A sign-in prompt covers the page a moment after it loads; close it by its close control (tool-notes.md "The sign-in prompt"). The grid shows the posts visible without an account, a dozen or so at the time of writing; each tile links to a post page at `/<handle>/p/<id>/` (a video at `/<handle>/reel/<id>/`). Open each visible post's page in turn, one at a time with a few seconds between loads, and read its post object (tool-notes.md "The page's data"): the time from `taken_at`, the slide count and each slide's media type, the caption whole. Write into `profile.md` a table of id, date and time in the user's time zone, kind, slide count and the caption's first line. The bio, the name line and the link in bio say what the account calls itself and who runs it; record them as the account's own words, leaving out a personal contact such as an e-mail address.
 
 ## Which posts to read
 
@@ -20,6 +20,8 @@ The spec needs every slide type the account uses, and a type is only known from 
 | A video | A play badge | Whether video slides mix into carousels |
 
 Three kinds at least, and two posts of the kind the user's own post will be (the account's most common kind when the request names none), because what the account never does on a kind is only said of a kind read twice. A post the user names is read whatever its kind.
+
+An account often builds one kind several ways: a story as a long feature of sentences over photos, as a photo story carried by short boxed lines, or as a short news post of a cover and one or two photos with the facts in the caption. Name each build by its slide count and what carries the text, record the builds as `kinds` in the spec, and apply "two of the user's kind" to the build when the posts allow it. A video post is read at three frames (the start, the middle, the end) for its text and layout; its motion is not part of the card format.
 
 ## Stepping and reading
 
@@ -46,8 +48,12 @@ One row per slide, before stepping on:
 | `tags`, `boxes` | A source tag in a corner; a boxed caption with its colors; a price or location tag. |
 | `other` | Anything this slide does that the others do not. |
 
-Count characters in the account's own script, spaces included, from the zoomed image; a count is the row. A slide with no text is a row with `photo` and `note` empty or not, and that absence is a measurement too. The rows go into `slide-log.md` as one table.
+Count characters in the account's own script, spaces included, from the zoomed image; a count is the row. A slide with no text is a row with `photo` and `note` empty or not, and that absence is a measurement too. The rows go into `slide-log.md` as one table; the log may hold a slide's ending or first words where they are needed to count or to classify, and it stays in the user's folder.
+
+Some elements ride on a slide of another type rather than being a slide of their own: a serif note on a story slide, an inset (an album cover, a poster, an archive photo placed as a rectangle on the photo), a talk box (a white box of one or two short lines), a source card (a screenshot of the original post), a source tag. Record them in `other` and in the spec's `elements`, each with the slide types it rides on.
+
+A slide log from an earlier, interrupted run of the same request is kept: check its rows against the post objects (dates, slide counts, media types), re-split its columns into the ones above without changing a measurement, and read on from the first post it lacks.
 
 ## The caption
 
-Read the caption whole: from the page's text where the host shows it entire; else run a short script in the page that returns the document's HTML, search it for the caption's first words as shown on the page, and take the whole text from there to its closing quote, with the HTML entities decoded (a shell with Node.js decodes them; the browser is the only thing that touched the site). Record its parts in order (facts with a date and an outlet, context, a closing line, mentions, a credit line), its endings against the slides' endings, the exact pattern of its credit line, and any phrase the voice repeats across captions. The caption's words are data about the account's register, described in the spec as patterns; a first line may be quoted in `profile.md` and in `categories` to identify the post, and nothing of the caption is copied beyond that.
+Read the caption whole from the post object (tool-notes.md "The page's data"). Where the host cannot run a script in the page, read it from the page's text and say that a long one may be cut. Record its parts in order (facts with a date and an outlet, context, a closing line, mentions, a credit line), its endings against the slides' endings, the exact pattern of its credit line, and any phrase the voice repeats across captions. The caption's words are data about the account's register, described in the spec as patterns; a first line may be quoted in `profile.md` and in `categories` to identify the post, and nothing of the caption is copied beyond that.

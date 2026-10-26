@@ -1,84 +1,90 @@
 {
-  "account": { "handle": "example-account", "read_on": "0000-00-00", "visible_posts": 12, "posts_read": 4 },
+  "account": { "handle": "example-account", "read_on": "0000-00-00", "visible_posts": 12, "posts_read": 12 },
   "categories": [
     { "name": "<category in the account's words>", "share": 0.5, "example": "<a caption's first line, to identify the post>" }
   ],
-  "cadence": "<posts per day or week, counted>",
+  "cadence": { "per_day": "<counted>", "hours": "<first to last, in the user's time zone>", "pinned_left_out": ["<post id>"] },
   "canvas": {
     "ratio": "4:5",
-    "documented_size": { "width": 1080, "height": 1350, "looked_up": "0000-00-00" },
-    "slides_per_post": { "min": 5, "max": 8, "typical": 7 }
+    "documented": { "max_width": 1080, "ratios": "<as the help page gives them>", "looked_up": "0000-00-00" },
+    "size": { "width": 1080, "height": 1350 },
+    "slides_per_post": { "min": 1, "max": 10, "typical": 7 }
+  },
+  "kinds": {
+    "story": {
+      "builds": [
+        { "name": "feature", "slides": { "min": 7, "max": 10 }, "text_on": "sentences on photos", "typical_order": ["cover", "story", "story", "photo-only", "story", "story", "story"], "seen_in": ["<post id>", "<post id>"] },
+        { "name": "photo story", "slides": { "min": 5, "max": 9 }, "text_on": "talk boxes on photos", "seen_in": ["<post id>"] },
+        { "name": "short news", "slides": { "min": 2, "max": 3 }, "text_on": "the caption; the cover only on slides", "seen_in": ["<post id>"] }
+      ]
+    },
+    "list": { "builds": [{ "name": "weekly picks", "slides": { "min": 8, "max": 10 }, "text_on": "lead slides", "seen_in": ["<post id>"], "tentative": true }] },
+    "event": { "builds": [{ "name": "sponsored", "slides": { "min": 4, "max": 6 }, "text_on": "story slides and a poster", "seen_in": ["<post id>"], "tentative": true }] }
   },
   "cover": {
-    "photo": "full-bleed, gradient over the lower part to about 80% black (estimate)",
-    "label": { "kind": "<a series label, a sponsor>", "color": "#RRGGBB", "weight": 800, "italic": true, "size_px": 30, "position": "bottom-left above the headline", "estimate": true },
-    "headline": { "lines": 2, "chars_per_line": { "typical": 10, "range": [7, 13] }, "weight": 800, "size_px": 72, "color": "#RRGGBB", "style": "news title", "estimate": true }
+    "photo": "full-bleed, gradient over the lower part (estimate)",
+    "label": { "kind": "the account's series name; never reused", "color": "#RRGGBB", "weight": 800, "italic": true, "width": "expanded", "size_px": 36, "position": "left, about 69% down", "estimate": true },
+    "headline": { "lines": 2, "weight": 800, "size_px": 72, "color": "#FFFFFF", "style": "news title, the subject in the first line", "estimate": true },
+    "variants": [
+      { "name": "list cover", "differs": "a two-line label at the top, centered headline", "seen_in": ["<post id>"] },
+      { "name": "sponsored cover", "differs": "the sponsor's name in a white box where the label sits, three lines", "seen_in": ["<post id>"] }
+    ]
   },
   "slide_types": [
     {
       "name": "story",
-      "anatomy": { "photo": "full-bleed, gradient at the bottom", "sub": { "lines": 1, "size_px": 46, "weight": 800 }, "body": { "size_px": 31, "weight": 400, "line_height": 1.62 }, "position": "bottom-left", "estimate": true },
-      "carries": "one beat of the story in three sentences",
+      "anatomy": { "photo": "full-bleed, gradient at the bottom", "sub": { "lines": 1, "size_px": 40, "weight": 700, "y": "74-78%" }, "body": { "lines": 3, "size_px": 30, "weight": 400, "line_height": 1.5, "y": "81-92%", "width": "condensed to about 88% in some posts" }, "estimate": true },
+      "carries": "one step of the story: a fact, its background, a turn, what it means",
       "seen_in": ["<post id>", "<post id>"]
     },
-    {
-      "name": "note",
-      "anatomy": { "photo": "full-bleed, gradient at the top when the photo is bright there", "note": { "face": "serif", "lines": { "min": 2, "max": 4 }, "size_px": 34, "position": "top-right, right-aligned" }, "estimate": true },
-      "carries": "a mood or a quote, no fact",
-      "seen_in": ["<post id>"],
-      "tentative": true
-    },
-    {
-      "name": "lead",
-      "anatomy": { "sub": { "lines": 2, "size_px": 54 }, "body": { "lines": { "min": 1, "max": 2 }, "size_px": 28 }, "tag": "source, top-right, small", "estimate": true },
-      "carries": "one item of a list, with its source",
-      "seen_in": ["<post id>"],
-      "tentative": true
-    },
-    {
-      "name": "poster",
-      "anatomy": { "type": "large display type on a dim photo", "carries_date": true, "estimate": true },
-      "carries": "a date range or a list of places",
-      "seen_in": ["<post id>"],
-      "tentative": true
-    },
-    {
-      "name": "collage",
-      "anatomy": { "photo": "two photos stacked", "sub_and_body": "as story" },
-      "carries": "two related images with one beat",
-      "seen_in": ["<post id>"],
-      "tentative": true
-    }
+    { "name": "photo-only", "anatomy": { "photo": "full-bleed, no text" }, "carries": "a photo with nothing to add", "seen_in": ["<post id>"] },
+    { "name": "collage", "anatomy": { "photo": "two photos stacked", "sub_and_body": "as story" }, "carries": "two related photos with one step", "seen_in": ["<post id>"], "tentative": true },
+    { "name": "lead", "anatomy": { "sub": { "lines": 2 }, "body": { "lines": 2 }, "tag": "source, top-right, small" }, "carries": "one item of a list, with its source", "seen_in": ["<post id>"], "tentative": true },
+    { "name": "poster", "anatomy": { "type": "event name small, the date range large", "estimate": true }, "carries": "an event's name and dates", "seen_in": ["<post id>"], "tentative": true }
+  ],
+  "elements": [
+    { "name": "serif note", "rides_on": ["story"], "anatomy": { "face": "serif", "lines": { "min": 3, "max": 4 }, "position": "the photo's empty area, mostly top-right" }, "carries": "a side fact, a person's introduction, the account's aside", "seen_in": ["<post id>", "<post id>"] },
+    { "name": "inset", "rides_on": ["story"], "anatomy": { "shape": "a rectangle on the photo" }, "carries": "the thing a sentence names (a cover, a poster, an archive photo)", "seen_in": ["<post id>"] },
+    { "name": "talk box", "rides_on": ["photo-only"], "anatomy": { "box": "white, black text", "lines": 2, "count": { "min": 1, "max": 2 }, "placement": "staggered" }, "carries": "a reaction, a fan's view, a date and a place", "seen_in": ["<post id>"] }
   ],
   "density": {
-    "story": { "sub_chars": { "typical": 8, "range": [6, 10] }, "sentences": { "typical": 3, "range": [3, 4] }, "chars_per_sentence": { "typical": 30, "range": [28, 32] }, "lines": { "typical": 3, "range": [3, 4] }, "one_fact_per_sentence": true, "detail_goes_to": "caption" },
-    "note": { "lines": { "typical": 3, "range": [2, 4] }, "chars_per_line": { "typical": 17, "range": [12, 20] } }
+    "cover": { "headline_chars_per_line": { "median": 10, "middle_half": [8, 12], "range": [5, 15] } },
+    "story": { "sub_chars": { "median": 11, "range": [5, 16] }, "lines": { "typical": 3, "range": [3, 3] }, "sentences": { "typical": 2, "range": [2, 4] }, "chars_per_line": { "median": 41, "middle_half": [37, 45] }, "chars_per_sentence": { "median": 44, "middle_half": [38, 54] }, "one_fact_per_sentence": false, "detail_goes_to": "caption" },
+    "serif note": { "lines": { "typical": 3, "range": [3, 4] }, "chars_per_line": { "median": 18, "range": [12, 22] } },
+    "talk box": { "lines": 2, "chars_per_line": { "median": 20 } }
   },
   "register": {
-    "headline": { "right": "a news title that states the fact or the claim", "wrong": "a question that withholds, a teaser" },
-    "sub": { "right": "a noun phrase", "wrong": "a full sentence, an explanation" },
-    "body": { "right": "<the slides' speech level or voice>, with sentence-final noun phrases mixed in about one in three", "wrong": "explanatory closers that tell the reader what the slide meant, hedges, the caption's voice" },
-    "caption": { "right": "<the caption's speech level or voice>, a connective the voice favors between facts, a first-person closer", "wrong": "the slides' voice" }
+    "headline": { "right": "a news title with the subject in the first line", "wrong": "a teaser that withholds the subject" },
+    "sub": { "right": "a noun phrase without a period, or a short declarative", "wrong": "an explanation of the slide" },
+    "body": { "right": "<the slides' speech level>, one level per post, sentence-final noun phrases about one in six", "wrong": "explanatory closers, emoji, exclamation marks, a call to action", "split": { "default": "<level used in most posts>", "other": "<level> in <n> post(s), when it ends on a question to the reader" } },
+    "note": { "right": "<voice of the note>", "wrong": "<what would sound wrong>" },
+    "talk_box": { "right": "<voice of the boxes>", "wrong": "<what would sound wrong>" },
+    "caption": { "right": "<the caption's speech level>, a connective the voice favors between facts", "wrong": "the slides' voice" }
   },
   "caption": {
-    "parts": ["facts with the date and the outlet", "context", "a closing line or a question", "mentions", "credit line"],
-    "credit_line_pattern": "<the exact pattern: a marker, the word for photo, a separator, then the agencies>"
+    "parts": ["facts with the date and the outlet", "context", "a closing line", "credit line", "mentions, one per line", "information block for an event"],
+    "credit_line_pattern": "<the exact pattern: a marker, the word for photo, a separator, then the sources>",
+    "info_block_pattern": "<name | value, three lines>",
+    "hashtags": false
   },
   "variants_by_content": {
-    "a list of places or items": "poster or lead",
-    "a date, a time, a route": "poster",
-    "a quote or a mood": "note",
-    "two related images": "collage",
-    "one beat of a story": "story"
+    "one step of the story": "story",
+    "a side fact or a person's introduction": "serif note",
+    "the thing a sentence names": "inset",
+    "two related photos": "collage",
+    "a reaction, a date and a place": "talk box",
+    "an event's name and dates": "poster",
+    "a photo with nothing to add": "photo-only"
   },
   "never": [
-    { "statement": "no call to action on a story post", "kind": "story", "posts_read": 2 },
-    { "statement": "no number as an overlay; numbers sit in sentences", "kind": "story", "posts_read": 2 }
+    { "statement": "no call to action on a story slide", "kind": "story", "posts_read": 8 },
+    { "statement": "no number as a large overlay", "kind": "story/feature", "posts_read": 3 }
   ],
   "fonts": {
-    "display": { "closest_free": "<sans family>", "load": "<the distributor's documented CDN URL>", "weights": [400, 800], "guess": false },
-    "serif": { "closest_free": "<serif family>", "load": "<the distributor's documented CDN URL>", "weights": [500], "guess": true }
+    "display": { "closest_free": "<sans family>", "load": "<the family's documented CDN URL>", "weights": [400, 700, 800], "guess": false },
+    "serif": { "closest_free": "<serif family>", "load": "<css2 API URL>", "weights": [500], "guess": true },
+    "label": { "closest_free": "<expanded italic family>", "load": "<css2 API URL>", "weights": [800], "guess": true }
   },
-  "colors": { "label": "#RRGGBB", "text": "#FFFFFF", "gradient_bottom": "rgba(0,0,0,0.8)", "dim": "rgba(0,0,0,0.62)", "estimate": true },
-  "posts_read": [{ "id": "<post id>", "kind": "story", "slides": 7 }]
+  "colors": { "label": "#RRGGBB", "text": "#FFFFFF", "gradient_bottom": "rgba(0,0,0,0.45)", "dim": "rgba(0,0,0,0.4)", "estimate": true },
+  "posts_read": [{ "id": "<post id>", "kind": "story", "build": "feature", "slides": 7 }]
 }

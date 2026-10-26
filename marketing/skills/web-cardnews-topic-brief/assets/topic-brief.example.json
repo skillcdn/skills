@@ -4,7 +4,8 @@
   "angle": {
     "text": "<the interpretation in one sentence>",
     "source": { "outlet": "example-outlet", "date": "0000-00-00", "url": "https://example-outlet.example/article", "sentence": "<the article's sentence, quoted>" },
-    "also_in": [{ "outlet": "example-outlet-2", "date": "0000-00-00" }]
+    "also_in": [{ "outlet": "example-outlet-2", "date": "0000-00-00" }],
+    "alternatives": [{ "text": "<a second published reading>", "source": { "outlet": "example-outlet-3", "date": "0000-00-00", "sentence": "<quoted>" } }]
   },
   "headline": "<a working headline in the angle's words, or from the leading fact>",
   "facts": [
@@ -14,7 +15,8 @@
       "kind": "number",
       "source": { "outlet": "example-outlet", "date": "0000-00-00", "url": "https://example-outlet.example/article", "sentence": "<the article's sentence>" },
       "also_in": [{ "outlet": "example-outlet-2", "date": "0000-00-00" }],
-      "single_source": false
+      "single_source": false,
+      "note": ""
     }
   ],
   "disagreements": [

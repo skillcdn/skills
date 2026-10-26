@@ -21,9 +21,9 @@ Each beat names the fact ids from the brief it carries. A note's lines come from
 
 ## Density
 
-From the spec's `density` per slide type, as counts: the sub's characters, the sentences, the characters per sentence, the lines. A sentence over the count wraps at the canvas, and a wrapped sentence is the first thing a reader of the format sees. One fact per sentence. What does not fit goes to the caption, which carries the detail in the format's own posts.
+From the spec's `density` per slide type, as counts: the sub's characters, the lines, the sentences, the characters per line. The line is the unit on the slide: where the spec's sentences are longer than a line (two sentences over three lines), the plan places each break by hand at a clause or phrase end within the characters per line, and no line is left for the renderer to break. A line the renderer broke on its own is the first thing a reader of the format sees. One fact per sentence where the spec says so. What does not fit goes to the caption, which carries the detail in the format's own posts.
 
-Count before setting: characters in the post's script, spaces included, against the spec's range. A sentence at the top of the range is a candidate to shorten.
+Count before setting: characters in the post's script, spaces included, against the spec's range for each line. A line at the top of the range is a candidate to shorten. A note keeps the length its source gives it, within the spec's range or below it, never padded.
 
 ## Register
 
@@ -43,7 +43,7 @@ A sentence that fails a check is rewritten, not softened. Read the finished slid
 
 ## The caption
 
-The spec's `caption.parts` in order, in the spec's caption register: the leading facts with their dates and outlets (from the brief's sources), the context, a closing line in the voice the spec describes, the mentions (only a handle the brief carries as a fact with its source; an unverified handle goes to the checklist, not the caption), and the credit line from the brief's `credits.md` rewritten in the spec's pattern, or built from `images[].credit` when the brief has no credits file. The caption is where the numbers and the detail the slides left out live; a reader who wants the whole story reads it there. It is written into `caption.txt` with the plan and finished at the delivery.
+The spec's `caption.parts` in their order, in the spec's caption register: the leading facts with their dates and outlets (from the brief's sources), the context, a closing line in the voice the spec describes, the credit line from the brief's `credits.md` rewritten in the spec's pattern (the outlet with the photographer where the brief names one), or built from `images[].credit` when the brief has no credits file, the mentions (only a handle the brief carries as a fact with its source; an unverified handle goes to the checklist, not the caption), and for an event the spec's information block. Where the spec gives no order for a part, the credit line comes after the closing line and the information block last; no hashtags unless the spec shows them. The caption is where the numbers and the detail the slides left out live; a reader who wants the whole story reads it there. It is written into `caption.txt` with the plan and finished at the delivery.
 
 ## The plan's text block
 

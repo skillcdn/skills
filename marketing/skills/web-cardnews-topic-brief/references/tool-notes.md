@@ -4,7 +4,7 @@ What runs of this skill met in a search tool, a page reader and a shell, by topi
 
 ## Search
 
-A search tool's own summary of its results is a lead and nothing more: a run that wrote a slide from a summary put a figure on it that no article body carried, and the user caught it. A thorough mode, where the tool offers one, found the week's domestic stories that the quick mode missed; use it for the first pass of each category (checked 2026-10). A photo query ("photos of <event>") returned little; the photographs came from reading the articles already found.
+A search tool's own summary of its results is a lead and nothing more: a run that wrote a slide from a summary put a figure on it that no article body carried, and the user caught it. A thorough mode, where the tool offers one, found the week's domestic stories that the quick mode missed; use it for the first pass of each category (checked 2026-10). A photo query ("photos of <event>") returned little; the photographs came from reading the articles already found. A search for the platform's documented post size did not surface the platform's own help page (checked 2026-10); the size then comes from a guide that cites it, and the brief records which source gave it.
 
 ## Page readers
 

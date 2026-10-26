@@ -4,7 +4,9 @@ How facts are taken from articles so that every sentence of a post can be traced
 
 ## Reading
 
-Three or more articles from different outlets, each read in full: the body, the captions, the dates. A search result's summary is a lead to an article, never a source. Where a page reader returns the article as text, read all of it; where only a driven browser reaches it, read it there. An article is read in full when its end was reached: the last paragraph followed by what closes an article on that site (a byline or date line, a copyright line, the related-articles block); a text that ends mid-sentence or without that closing was cut by the reader and is read again in the driven browser. An article that stops at a paywall, a login or a consent wall that cannot be declined is not a source; find the story in another outlet.
+Three or more articles from different outlets, each read in full: the body, the captions, the dates. A search result's summary is a lead to an article, never a source. Where a page reader returns the article as text, read all of it; where only a driven browser reaches it, read it there. An article is read in full when its end was reached: the last paragraph followed by what closes an article on that site (a byline or date line, the reporter's e-mail, the tags, a copyright line, the related-articles block); a text that ends mid-sentence or without that closing was cut by the reader and is read again in the driven browser. A text extraction that strips the page's footer hides the copyright line: look for the closing in the raw HTML, and where the footer is loaded by script, the reporter's e-mail or the tags are the close. An article that stops at a paywall, a login or a consent wall that cannot be declined is not a source; find the story in another outlet.
+
+An outlet's article is a news organization's report, analysis or interview under a byline or a desk. An influencer's post hosted on a portal, a listing or aggregator site, a blog and a wiki are not articles: they are leads, and a detail only they carry (an exact address, a last-entry time) goes to the unverified list. An article that reprints an organizer's release (the release's wording before the event, the photos credited to the organizer) counts as the official release for the cross-check, and the brief marks that reading as an inference.
 
 Record per article, in the brief's `articles_read`: outlet, author where named, date and time of publication, URL, and whether it is a report, an analysis or an interview.
 
@@ -14,12 +16,13 @@ One row per fact the post could use:
 
 | Column | What goes in |
 |---|---|
-| `id` | `f1`, `f2`, ... in reading order. |
+| `id` | `f1`, `f2`, ... in the order of the story; an id never changes once a checkpoint has shown it. |
 | `text` | The fact as one sentence in the post's language, with absolute dates (a "yesterday" in an article dated the 22nd is the 21st) and the unit. |
 | `kind` | number, date, place, quote, event, claim. |
 | `source` | Outlet, date, URL, and the article's own sentence, quoted exactly. |
 | `also_in` | Other articles read that carry the same fact, as outlet and date. |
 | `single_source` | True when no other article read carries it. |
+| `note` | Optional: a caveat the build must keep (a market figure an outlet quotes from a third party, which needs that party named if used). |
 
 A quote keeps who said it and in what capacity, as the article gives it. A claim (an analysis, an expert's reading) keeps who made it; it is a fact about what was said, not about the world.
 
@@ -35,7 +38,7 @@ A number seen only in a search summary, a headline or a caption and not in a bod
 
 ## The angle
 
-The angle is what the post says the story means, and it must already have been said in print: the sentence of an article that interprets the story, quoted with its outlet and date, and shared in substance by at least one other article. An expert quoted in an article gives an angle; a reporter's framing in the lead gives an angle; the agent's own sense of why the story matters does not. Where the articles carry no interpretation, the brief says the story has no angle yet and the post stays a report.
+The angle is what the post says the story means, and it must already have been said in print: the sentence of an article that interprets the story, quoted with its outlet and date, and shared in substance by at least one other article. An expert quoted in an article gives an angle; a reporter's framing in the lead gives an angle; an organizer's quoted words support one but are not one alone; the agent's own sense of why the story matters does not. Where the articles carry no interpretation, the brief says the story has no angle yet and the post stays a report. A second published reading that also qualifies goes in `angle.alternatives` with its own sources, and the checkpoint offers it.
 
 The run that this skill is written from lost a draft to this: a thesis that sounded right was challenged, and it held only because two outlets had printed it. Quote the sentence in the brief so that the next reader need not take the agent's word; in chat, where a long quotation does not belong, point to the fact's id and the outlet, and let the file carry the sentence.
 

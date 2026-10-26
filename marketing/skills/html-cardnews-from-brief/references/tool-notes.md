@@ -4,7 +4,11 @@ What runs of this skill met in the host's preview, in Node.js and in the headles
 
 ## The host's preview
 
-A page opened as a file in one host's browser pane rendered as a static snapshot: the layout showed, the relative images did not (checked 2026-10). A page with its images inlined as data URLs grew past four megabytes and did not open at all. Serving the folder with a small static server fixed both; the host's preview tool started the server from its launch configuration and assigned a port of its own, which the server reads from the environment.
+A page opened as a file in one host's browser pane rendered as a static snapshot: the layout showed, the relative images did not (checked 2026-10). A page with its images inlined as data URLs grew past four megabytes and did not open at all. Serving the folder with a small static server fixed both. The host's preview tool started the server from its launch configuration; in one run it passed the entry's port in the environment and in another it passed none, so the server takes the port as an argument from the entry (checked 2026-10). A subagent in one host had no tool to attach files to its messages; it gave the `out/` path and the preview, and the session that started it attached the PNGs.
+
+## Reading the PNGs
+
+One host's image reader showed a PNG rewritten at the same path as it was before the rewrite (checked 2026-10); a change was confirmed on the browser pane or by measuring the pixels. Images copied from articles may carry their outlet's metadata, including a location; the exported PNGs are screenshots and carry none.
 
 ## Node.js
 
@@ -13,6 +17,10 @@ A project whose `package.json` declares `"type": "module"` runs a `.js` file as 
 ## playwright-core
 
 `playwright-core` was required from a neighbouring project's `node_modules` through `createRequire` of that project's `package.json`, which avoids an install; it launched the installed Chrome by channel (checked 2026-10). Waiting for `document.fonts.ready` after the network went idle was enough for CDN fonts to render; a short pause after it let the photos finish decoding. A screenshot clipped to the canvas at device scale 1 gives a PNG of exactly the canvas size.
+
+## Fonts
+
+A Korean sans with no italic for Hangul renders a synthetic slant where italic is asked for, which reads as a mistake; the kicker and the label were set upright in the accent color unless the face has a true italic (checked 2026-10). A condensed width the spec measured was reached with `font-stretch` where the face supports it, else a horizontal `transform: scaleX()` on the text block.
 
 ## Rendering
 

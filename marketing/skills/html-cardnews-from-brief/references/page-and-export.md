@@ -15,7 +15,7 @@ One `index.html` in the post folder, with `img/` beside it (the brief's images c
 
 ## Preview
 
-A page opened from the file system shows, in some hosts' browser panes, a static snapshot without its relative images (checked 2026-10): serve it instead. Copy [server.example.mjs](../scripts/server.example.mjs) into the post folder; it serves its own folder on the port in `PORT` or 8787, with `Cache-Control: no-store` so that a re-export shows at once. Where the host has a preview tool that starts a server from a launch configuration and opens it in a pane, add an entry for `node <post folder>/server.example.mjs` there (the configuration file lives where the host reads it, which may be the working directory) and start it that way; a host that assigns a port passes it in `PORT`, and one that does not gets the same port in its entry and in the server's default. Reload the pane after each export.
+A page opened from the file system shows, in some hosts' browser panes, a static snapshot without its relative images (checked 2026-10): serve it instead. Copy [server.example.mjs](../scripts/server.example.mjs) into the post folder; it serves its own folder on the port given as its first argument, else the one in `PORT`, else 8787, with `Cache-Control: no-store` so that a re-export shows at once. Pick a free port. Where the host has a preview tool that starts a server from a launch configuration and opens it in a pane, add an entry that runs `node <post folder>/server.example.mjs <port>` with the same port as the entry's own (the configuration file lives where the host reads it, which may be the working directory) and start it that way. Reload the pane after each export.
 
 The server and the export script are ES modules and run whatever the project's module type; a CommonJS file named `.js` fails under a `package.json` with `"type": "module"`.
 
@@ -30,11 +30,27 @@ Copy [export.example.mjs](../scripts/export.example.mjs) into the post folder an
 
 ## The review
 
-Open every PNG at its native size (the host's image reader at full resolution, or the browser pane at 100%) and read it as the user will on a phone. The verdicts in SKILL.md govern; this is the same list in the order a reviewer meets it:
+### The line check
+
+Before looking, count the lines the browser actually set, in the served page (not in export mode), with a script run in the page that compares each text block's rendered lines with the lines the plan placed:
+
+```js
+[...document.querySelectorAll(".slide [data-lines]")].map((el) => {
+  const r = document.createRange(); r.selectNodeContents(el);
+  const tops = new Set([...r.getClientRects()].map((x) => Math.round(x.top)));
+  return { slide: el.closest(".card")?.dataset.n, want: +el.dataset.lines, got: tops.size, text: el.innerText.slice(0, 30) };
+}).filter((x) => x.got !== x.want);
+```
+
+Give every text block a `data-lines` attribute with the count the plan placed; an empty result means no line was broken by the renderer. A line mixing type sizes (a date with a small arrow) can count one extra; read those on the PNG.
+
+### Looking
+
+Open every PNG at its native size (the host's image reader at full resolution, or the browser pane at 100%) and read it as the user will on a phone. An image reader may show a cached copy of a file rewritten at the same path: confirm a fix on the PNG in the browser pane, or by measuring the pixels that changed. The verdicts in SKILL.md govern; this is the same list in the order a reviewer meets it:
 
 | Look for | Fix |
 |---|---|
-| A body sentence on two lines | Shorten the sentence to the spec's count; the type size does not shrink |
+| A line broken by the renderer | Shorten, or move the hand-placed break to a clause end; the type size does not shrink |
 | A sub or a headline line wrapped | Rephrase |
 | An agency mark, a logo, a watermark in the frame | A scale crop with the origin away from it, checked on the PNG; a "no modification" image is swapped for another of its role, or left whole with the mark in view and said so |
 | A note or a tag over a bright or busy area | A top gradient under the note; the tag moved to the other corner |

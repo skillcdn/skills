@@ -51,7 +51,9 @@ The area's rule that claims and assets come from the brand takes this form here:
 |---|---|
 | Format spec | `format-spec.json` and `style-notes.md` from a study of the account (in this collection, `instagram-cardnews-format-study`). Named in the request, or found beside the run. The JSON is what the build reads; the notes qualify it (the register's wrong-sounding counterparts, what was tentative) and the JSON wins where they differ. With none: build on the defaults in [layouts.md](references/layouts.md), say so in the first message and at the plan checkpoint, and offer the study at the delivery. |
 | Topic brief | `topic-brief.json` and `img/` from a research of the story (in this collection, `web-cardnews-topic-brief`), with `credits.md` where the research wrote one; without it, the credit line is built from `images[].credit`. With none: say that the slides are written only from a brief and offer to run the research on the user's topic. A topic and a handful of links are not a brief. |
-| Slide count | Derived: the spec's typical count; fewer when the brief carries fewer beats. |
+| Build | Derived: the build in the spec's `kinds` that fits the post (a feature for a story with many facts, a short news post when the caption can carry them), said at the plan checkpoint. |
+| Slide count | Derived: the build's typical count; fewer when the brief carries fewer beats. |
+| Series label | The user's own series label when the request or the user's spec names one; else a word for the post's category in the label's style, said at the plan checkpoint. The reference account's label is its name and is never used. |
 | Fonts and colors | Derived: the spec's `fonts` and `colors`, loaded from their CDN; the defaults in layouts.md "Defaults" when the spec has none. |
 | Where the post goes | Derived: the folder the user names, else `post/` inside the brief folder, with the page, `img/` copied from the brief, and `out/` for the PNGs; the previous posts of the same account are the other brief folders beside it, each with its own `post/slide-plan.json`. Said in the first message. |
 
@@ -65,7 +67,7 @@ Produces the **slide plan** (`slide-plan.json` and `caption.txt`, by [script.md]
 
 1. The thesis: the brief's `angle` as one sentence, or its `headline` when the story has no angle; the headline from it in the spec's headline style.
 2. The thread: the brief's `beats` as the starting order, reshaped by script.md "The thread", one beat per slide, with text on only the slides that need it; a photo-only slide is a beat too.
-3. Each slide's layout by script.md and layouts.md "Choosing a layout": what the beat carries (a fact in sentences, a list, a date and a time, numbers, a quote or a mood, two related images) decides the type; the spec's `variants_by_content` wins where it says. The catalogue's names are the classes; the spec's `poster` is one of list, time or stat by what the beat carries, and the spec's anatomy overrides the defaults of that class. Read the `post/slide-plan.json` of the brief folders beside this one and keep this plan's sequence of types different from each of theirs in at least two slides.
+3. Each slide's layout by script.md and layouts.md "Choosing a layout": what the beat carries (a fact in sentences, a list, a date and a time, numbers, a quote or a mood, two related images) decides the type; the spec's `variants_by_content` wins where it says, and its `elements` ride on slides as the spec places them (a serif note on a story slide where the spec has it so, rather than a slide of its own). The catalogue's names are the classes; the spec's `poster` is one of list, time or stat by what the beat carries, and the spec's anatomy overrides the defaults of that class. Content the spec has no type for (a list in an account that runs none) takes the catalogue's type with its defaults, said at the checkpoint. A variant the spec maps to a content wins over a `never` for that content only, and is placed so that the build still ends as the spec's build ends (a poster before a closing story slide). Read the `post/slide-plan.json` of the brief folders beside this one and keep this plan's sequence of types different from each of theirs in at least two slides.
 4. The text of every text slide by script.md "Density" and "Register": the sub, the sentences, each naming the fact ids it rests on; the note lines, each naming the image caption or the quoted source sentence it comes from; the poster's parts. A sentence that no fact carries is not written: the beat is dropped or kept as a photo, said at the checkpoint with the offer to extend the brief with the research skill; the skill does not add the fact itself.
 5. The image per slide by role from the brief's entries: a cover that reads at portrait, a subject under a story or a lead, a mood under a note, a dim photo under a poster or a stat; two images of one beat as a collage, stacked when both are landscape and side by side when both are portrait; the crop that avoids each image's marks. An image whose licence forbids modification is used whole, letterboxed on the spec's dark color on a note slide with the note clear of it, or not at all; one whose terms are unknown is used as the account uses news photographs, cropped and dimmed as the layout needs, with its credit.
 6. The caption by script.md "The caption", in the spec's caption parts and register, with the credit line from `credits.md` (or built from `images[].credit`) in the spec's pattern, and mentions only from a fact that carries a handle with its source.
@@ -74,7 +76,7 @@ Checkpoint, in plain words: the thesis and the headline; the slides in a numbere
 
 ### Phase 2: Build the page
 
-Produces the **page** (`index.html` with `img/`), by [page-and-export.md](references/page-and-export.md) "The page": one file with the slides as native-size boxes scaled into a grid, a lightbox, an export mode that renders one slide at its native size, the caption and the credits below; the CSS tokens from the spec; one class per layout type of the catalogue; each image placed with its crop; gradients and overlays as the layout says. Copy the two scripts into the post folder with it.
+Produces the **page** (`index.html` with `img/`), by [page-and-export.md](references/page-and-export.md) "The page": one file with the slides as native-size boxes scaled into a grid, a lightbox, an export mode that renders one slide at its native size, the caption and the credits below; the CSS tokens from the spec; one class per layout type of the catalogue; each image placed with its crop; gradients and overlays as the layout says. Copy into `img/` only the images the plan uses, and the two scripts into the post folder.
 
 ### Phase 3: Preview
 
@@ -86,11 +88,11 @@ Produces the **PNGs** in `out/`, one per slide at the canvas size, by the export
 
 ### Phase 5: Review
 
-Produces the **review notes** (`review.md`, one line per slide per pass) and the second checkpoint. Open every PNG at its native size (the host's image reader at full resolution, or the browser pane at 100%) and judge it by the verdicts below; fix in the page and export again, all slides, until nothing fails. Attach every PNG to the checkpoint message with one line each on what changed. A correction from the user is applied to every slide it concerns and the review runs again.
+Produces the **review notes** (`review.md`, one line per slide per pass) and the second checkpoint. Run the line check in the page (page-and-export.md "The line check"), then open every PNG at its native size (the host's image reader at full resolution, or the browser pane at 100%) and judge it by the verdicts below; fix in the page and export again, all slides, until nothing fails. A color the spec marks as an estimate may be adjusted where the render shows text unreadable, and the checkpoint says by how much. Attach every PNG to the checkpoint message with one line each on what changed; where the host gives no way to attach files, give the `out/` path and the preview instead.
 
 ### Phase 6: Deliver
 
-One message: the post folder with `out/`, `index.html`, `slide-plan.json`, `caption.txt`, `credits.md` and `review.md`; the PNGs attached; the caption as text; the credits as text; what was derived; what the review changed; and the pre-publish checklist: the brief's unverified items, the images that upscaled and by how much (the larger of canvas width over image width and canvas height over image height, times any crop scale), any image under a licence that forbids modification and how it was used, and that the images are the outlets' and agencies' material, used with credit at the user's discretion. Publishing is the user's act.
+One message: the post folder with `out/`, `index.html`, `slide-plan.json`, `caption.txt`, `credits.md` and `review.md`; the PNGs attached; the caption as text; the credits as text; what was derived; what the review changed; and the pre-publish checklist: the brief's unverified items, the single-source facts the slides use, the images that upscaled and by how much (the larger of canvas width over image width and canvas height over image height, times any crop scale), any image under terms that forbid modification or allow only non-commercial use and how it was used, the rights in the subjects of the photos (a character, an artwork) where the brief names them, and that the images are the outlets' and agencies' material, used with credit at the user's discretion. Publishing is the user's act.
 
 ## Verdicts
 
@@ -98,9 +100,10 @@ Read before every export. The review page's table ([page-and-export.md](referenc
 
 | Result | Verdict |
 |---|---|
-| A body sentence wraps to a second line | Redo: shorten the sentence to the spec's characters per sentence; never a smaller type |
+| A line the renderer broke on its own (a wrap the plan did not place) | Redo: shorten, or place the break by hand at a clause end within the spec's characters per line; never a smaller type |
 | A sub wraps, or a headline line exceeds the spec's characters per line | Redo: rephrase |
-| More sentences on a slide than the spec's range | Redo: the surplus goes to the caption or to another beat |
+| More lines or sentences on a slide than the spec's range | Redo: the surplus goes to the caption or to another beat |
+| A note shorter than the spec's range because its source holds no more | Accept: a note is never padded beyond its source |
 | Two consecutive slides of one layout type other than the story type, or three story slides in a row in a post that carries a list, a time or numbers | Redo: the beat that is a list, a time or a number takes its own layout |
 | The same sequence of layout types as a previous post of the account built by this skill | Redo: at least two slides change type |
 | An agency mark, a logo or a credit mark visible on a slide | Redo: crop around it with the image's position or a scaled crop; where the licence forbids modification, another image of the same role, and where the brief has none, the image whole with the mark in view and said so |
@@ -115,7 +118,7 @@ Read before every export. The review page's table ([page-and-export.md](referenc
 ## Hard rules
 
 1. The slides say only what the brief carries. Every sentence names its fact ids, every note line its caption or source sentence; the thesis is the brief's published angle. A fact the post needs goes back to the research, never onto a slide from memory: a deck built without this put two invented claims on slides, and the user caught them.
-2. Density is the spec's counts: the sub's characters, the sentences per slide, the characters per sentence. A draft that put five facts and a paragraph on each slide read as an explainer; the detail goes to the caption.
+2. Density is the spec's counts: the sub's characters, the lines and sentences per slide, the characters per line. A draft that put five facts and a paragraph on each slide read as an explainer; the detail goes to the caption.
 3. One thesis, one thread, and text on only the slides that need it. A deck that distributes facts across slides without a line through them reads as nothing.
 4. The register is the spec's patterns, checked sentence by sentence by script.md "Register": a news-title headline, noun-phrase subs, the slides' own voice with sentence-final noun phrases mixed in, no explanatory closers. The user's word for what this prevents is "sounds like AI".
 5. A slide's layout follows what it says, by the catalogue and the spec's variants, and no two posts repeat a sequence. A deck that reused the previous deck's sequence slide for slide was sent back.

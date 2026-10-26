@@ -52,7 +52,7 @@ The area's rule that claims and assets come from the brand takes this form for a
 | Exclusions | Derived: what the account has already posted, from the spec's `posts_read`; with no spec, nothing is excluded and the list says so. |
 | The pick | The user's: a number from the list at the candidate checkpoint, or a story named there or in the request, which goes through phases 2 to 4 like a pick. |
 | Canvas | Derived: the spec's documented size when a spec exists, else the platform's documented portrait size looked up at run time (1080 by 1350 for 4:5 at the time of writing, illustrative); it decides what [images.md](references/images.md) "Choosing" says about each image's size. |
-| Where the brief goes | Derived: the folder the user names, else `cardnews/<story>/` under the host's scratch or working folder, outside any git checkout, created after the pick and named after the story in a few words; `img/` inside it. Until the pick, the candidate list lives in the checkpoint message and is written into the folder as `candidates.md` once it exists. Said in the message that creates it. |
+| Where the brief goes | Derived: the folder the user names, else `cardnews/<story>/` under the host's scratch or working folder, outside any git checkout, created after the pick and named after the story in a few words; `img/` inside it. The candidate list is written as `cardnews/candidates-<day>.md` when the checkpoint is shown, so that a run cut off before the pick keeps it, and moved into the brief folder as `candidates.md` once the folder exists. Said in the message that creates it. |
 
 ## Workflow
 
@@ -84,7 +84,7 @@ Produces the **image set** in `img/` and the image entries ([images.md](referenc
 
 1. From the articles read, take every figure image with its printed caption and its credit (agency, photographer, the outlet), by images.md "Finding the images"; the article's share image where it is the only one, with the outlet as its credit, marked so.
 2. Download each with the article as referer and a browser user agent; read its pixel size with the size script ([image-size.example.mjs](scripts/image-size.example.mjs)) or a few lines like it; note any agency mark or logo and where it sits; note the licence terms the publisher states, and whether they allow modification.
-3. Keep what a post can use: at least one image that works as a portrait cover (vertical, or horizontal with its subject central enough to crop), subject shots, and a mood shot; images.md "Choosing" gives, against the canvas, which sizes render clean and what to do below them.
+3. Keep what a post can use, two or three images per suggested beat and a few spares: at least one image that works as a portrait cover (vertical, or horizontal with its subject central enough to crop), subject shots, and a mood shot; images.md "Choosing" gives, against the canvas, which sizes render clean and what to do below them. Downloads not kept go to `img-unused/` in the brief folder with one line each in `credits.md` on why (a duplicate, smaller, a large mark, no credit), so that the user or the build can swap one in.
 4. Write the entries with `role`, `px`, `watermark`, `licence` and `credit`.
 
 ### Phase 4: Brief
@@ -109,6 +109,8 @@ One message: the brief folder with `topic-brief.json`, `img/`, `credits.md`, `fa
 | Two articles disagree on a number | Both recorded; the one with the primary source (an official release, the outlet that first reported) used, the reason written |
 | An interpretation the agent arrived at and no article states | Not the angle; the angle is the one the outlets share, or the brief says the story has none yet |
 | A superlative or a comparison with no source ("the fastest", "the first") | Dropped |
+| A superlative the outlets printed that an earlier article contradicts (a "first" that happened before) | Dropped, with both in `disagreements` |
+| A page that is not an outlet's article: an influencer's post on a portal, a listing or aggregator site, a blog | Not a source; what only it says goes to `unverified` |
 | An image without a readable credit, other than a share image credited to its outlet | Not in the set |
 | An image under terms that forbid modification | Kept with `modification_allowed` false and flagged; the build uses it whole or not at all |
 | An image smaller than the canvas | Kept with its size and the upscale factor noted; below 700 pixels on its short side, marked as usable only darkened under type or in a collage half |
