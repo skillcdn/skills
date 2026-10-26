@@ -3,7 +3,7 @@
   "categories": [
     { "name": "<category in the account's words>", "share": 0.5, "example": "<a caption's first line, to identify the post>" }
   ],
-  "cadence": { "per_day": "<counted>", "hours": "<first to last, in the user's time zone>", "pinned_left_out": ["<post id>"] },
+  "cadence": { "per_day": "<counted>", "hours": "<first to last, in the account's market's time zone>", "pinned_left_out": ["<post id>"] },
   "canvas": {
     "ratio": "4:5",
     "documented": { "max_width": 1080, "ratios": "<as the help page gives them>", "looked_up": "0000-00-00" },
@@ -28,17 +28,17 @@
   },
   "cover": {
     "photo": "full-bleed, gradient over the lower part (estimate)",
-    "label": { "kind": "the account's series name; never reused", "color": "#RRGGBB", "weight": 800, "italic": true, "width": "expanded", "size_px": 36, "x": "6-40%", "y": "68-71%", "estimate": true },
+    "label": { "kind": "the account's series name; never reused", "color": "#RRGGBB", "weight": 700, "italic": false, "width": "normal", "size_px": 30, "x": "7-45%", "y": "70-73%", "estimate": true },
     "headline": { "lines": 2, "weight": 800, "size_px": 72, "color": "#FFFFFF", "style": "news title, the subject in the first line", "estimate": true },
     "variants": [
-      { "name": "list cover", "differs": "a two-line label at the top, centered headline", "seen_in": ["<post id>"] },
-      { "name": "sponsored cover", "differs": "the sponsor's name in a white box where the label sits, three lines", "seen_in": ["<post id>"] }
+      { "name": "list cover", "differs": "a two-line label at the top, centered headline", "for": ["list"], "seen_in": ["<post id>"] },
+      { "name": "sponsored cover", "differs": "the sponsor's name in a white box where the label sits, three lines", "for": ["event/sponsored"], "seen_in": ["<post id>"] }
     ]
   },
   "slide_types": [
     {
       "name": "story",
-      "anatomy": { "photo": "full-bleed, gradient at the bottom", "sub": { "lines": 1, "size_px": 40, "weight": 700, "y": "74-78%" }, "body": { "lines": 3, "size_px": 30, "weight": 400, "line_height": 1.5, "y": "81-92%", "width": "condensed to about 88% in some posts" }, "estimate": true },
+      "anatomy": { "photo": "full-bleed, gradient at the bottom", "sub": { "lines": 1, "size_px": 40, "weight": 700, "y": "74-78%" }, "body": { "lines": 3, "size_px": 30, "weight": 400, "line_height": 1.5, "y": "81-92%", "width": "<a condensed width where measured, as a percentage>" }, "estimate": true },
       "carries": "one step of the story: a fact, its background, a turn, what it means",
       "seen_in": ["<post id>", "<post id>"]
     },
@@ -51,25 +51,25 @@
     },
     { "name": "collage", "anatomy": { "photo": "two photos stacked", "sub_and_body": "as story" }, "carries": "two related photos with one step", "seen_in": ["<post id>"], "tentative": true },
     { "name": "lead", "anatomy": { "sub": { "lines": 2, "y": "70-79%" }, "body": { "lines": 2, "y": "81-88%" }, "tag": "source, top-right, small" }, "carries": "one item of a list, with its source", "seen_in": ["<post id>"], "tentative": true },
-    { "name": "poster", "anatomy": { "type": "event name small, the date range large", "estimate": true }, "carries": "an event's name and dates", "seen_in": ["<post id>"], "tentative": true }
+    { "name": "poster", "anatomy": { "photo": "full-bleed, dim overlay", "name": { "lines": 1, "size_px": 30, "weight": 700, "y": "40-44%" }, "dates": { "lines": 1, "size_px": 96, "weight": 800, "y": "48-58%" }, "estimate": true }, "carries": "an event's name and dates", "seen_in": ["<post id>"], "tentative": true }
   ],
   "elements": [
     { "name": "serif note", "rides_on": ["story"], "anatomy": { "face": "serif", "lines": { "min": 3, "max": 4 }, "position": "the photo's empty area, mostly top-right" }, "carries": "a side fact, a person's introduction, the account's aside", "seen_in": ["<post id>", "<post id>"] },
     { "name": "inset", "rides_on": ["story"], "anatomy": { "shape": "a rectangle on the photo" }, "carries": "the thing a sentence names (a cover, a poster, an archive photo)", "seen_in": ["<post id>"] },
-    { "name": "talk box", "rides_on": ["photo-only"], "anatomy": { "box": "white, black text", "lines": 2, "count": { "min": 1, "max": 2 }, "placement": "staggered" }, "carries": "a reaction, a fan's view, a date and a place", "seen_in": ["<post id>"] }
+    { "name": "talk box", "rides_on": ["photo-only"], "anatomy": { "box": "white, black text", "lines": 2, "count": { "min": 1, "max": 2 }, "placement": "staggered" }, "carries": "a reaction, a reader's view, a date and a place", "seen_in": ["<post id>"] }
   ],
   "density": {
     "cover": { "headline_chars_per_line": { "median": 10, "middle_half": [8, 12], "range": [5, 15] } },
-    "story": { "sub_chars": { "median": 11, "range": [5, 16] }, "lines": { "typical": 3, "range": [3, 3] }, "sentences": { "typical": 2, "range": [2, 4] }, "chars_per_line": { "median": 41, "middle_half": [37, 45] }, "chars_per_sentence": { "median": 44, "middle_half": [38, 54] }, "one_fact_per_sentence": false, "detail_goes_to": "caption" },
+    "story": { "sub_chars": { "median": 12, "range": [6, 16] }, "lines": { "typical": 3, "range": [3, 3] }, "sentences": { "typical": 2, "range": [2, 4] }, "chars_per_line": { "median": 40, "middle_half": [36, 44] }, "chars_per_sentence": { "median": 45, "middle_half": [38, 55] }, "one_fact_per_sentence": false, "detail_goes_to": "caption" },
     "serif note": { "lines": { "typical": 3, "range": [3, 4] }, "chars_per_line": { "median": 18, "range": [12, 22] } },
     "talk box": { "lines": 2, "chars_per_line": { "median": 20 } }
   },
   "register": {
     "headline": { "right": "a news title with the subject in the first line", "wrong": "a teaser that withholds the subject" },
     "sub": { "right": "a noun phrase without a period, or a short declarative", "wrong": "an explanation of the slide" },
-    "body": { "right": "<the slides' speech level>, one level per post, sentence-final noun phrases about one in six", "wrong": "explanatory closers, emoji, exclamation marks, a call to action", "split": { "default": "<level used in most posts>", "other": "<level> in <n> post(s), when it ends on a question to the reader" } },
-    "note": { "right": "<voice of the note>", "wrong": "<what would sound wrong>" },
-    "talk_box": { "right": "<voice of the boxes>", "wrong": "<what would sound wrong>" },
+    "body": { "right": "<the slides' speech level>, one level per post, <the share of sentence-final noun phrases>", "wrong": "explanatory closers, emoji, exclamation marks, a call to action", "split": { "default": "<level used in most posts>", "other": "<level> in <n> post(s), when it ends on a question to the reader" } },
+    "serif note": { "right": "<voice of the note>", "wrong": "<what would sound wrong>" },
+    "talk box": { "right": "<voice of the boxes>", "wrong": "<what would sound wrong>" },
     "caption": { "right": "<the caption's speech level>, a connective the voice favors between facts", "wrong": "the slides' voice" }
   },
   "caption": {
@@ -89,14 +89,14 @@
     "moments of a report or footage, as aired": "frame stack"
   },
   "never": [
-    { "statement": "no call to action on a story slide", "kind": "story", "posts_read": 8 },
+    { "statement": "no call to action on a story slide", "kind": "story", "posts_read": 6 },
     { "statement": "no number as a large overlay", "kind": "story/feature", "posts_read": 3 },
     { "statement": "no text of the account's after the cover, and no frame cropped", "kind": "report/frame stack", "posts_read": 2 }
   ],
   "fonts": {
     "display": { "closest_free": "<sans family>", "load": "<the family's documented CDN URL>", "weights": [400, 700, 800], "guess": false },
     "serif": { "closest_free": "<serif family>", "load": "<css2 API URL>", "weights": [500], "guess": true },
-    "label": { "closest_free": "<expanded italic family>", "load": "<css2 API URL>", "weights": [800], "guess": true }
+    "label": { "closest_free": "<label family>", "load": "<css2 API URL>", "weights": [700], "guess": true }
   },
   "colors": { "label": "#RRGGBB", "text": "#FFFFFF", "background": "#000000", "gradient_bottom": "rgba(0,0,0,0.45)", "dim": "rgba(0,0,0,0.4)", "estimate": true },
   "posts_read": [{ "id": "<post id>", "kind": "story", "build": "feature", "slides": 7 }, { "id": "<post id>", "kind": "report", "build": "frame stack", "slides": 4 }]
