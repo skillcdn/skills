@@ -8,7 +8,7 @@ How skills in this layout are written, for whoever maintains this repository or 
 | [`adding.md`](adding.md) | Step by step: a new skill, a new area, a new tool family, a new document set, and changing an existing skill. |
 | [`roadmap.md`](roadmap.md) | What the repository plans to add, stage by stage of a product's life: one row per job, with its area, its likely tool family and its status. |
 | [`variation.md`](variation.md) | The variation skills: where the method of `docs/variation/` came from, what is duplicated with the ad skill on purpose and until when, what stays in a skill, what the first runs taught, testing. |
-| `tools/<family>.md` | Conventions shared by every skill of one tool family. Created when the second skill for a family appears. |
+| `tools/<family>.md` | Conventions shared by every skill of one tool family. Created when a second skill for a family appears or is planned. |
 | [`tools/higgsfield.md`](tools/higgsfield.md) | The Higgsfield skills: named tools, what every skill of the family does the same way, what lives in the shared document set `docs/higgsfield/` and what stays in a skill, where a run's findings go, testing. |
 | [`tools/meta-ad-library.md`](tools/meta-ad-library.md) | The Meta Ad Library skills: a website as the tool, capabilities named in place of tool names, what lives in the shared document set `marketing/docs/meta-ad-library/` and what stays in a skill, dated and rediscoverable facts, manners, testing. |
 | [`tools/skillcdn.md`](tools/skillcdn.md) | The SkillCDN skills: the repository and its service as the tool, what lives in the shared document set `engineering/docs/skillcdn/` and what stays in a skill, the testing method both skills carry, dated facts, testing. |
