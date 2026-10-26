@@ -25,9 +25,9 @@ metadata:
 
 **Spend only with consent.** Anything that costs the user money or credits is estimated first and started only after they agree. Keep a running record against the estimate and stop to ask before exceeding it. Use the cheapest setting that answers the question; draft quality is for drafts.
 
-**Nothing leaves in passing.** Posting, publishing, deploying, sending and deleting are explicit steps the user confirms one by one; a skill never does them on the way to something else.
+**Nothing leaves in passing.** Posting, publishing, deploying, sending anything to anyone outside the run, and deleting what the user or a third party holds are explicit steps the user confirms one by one; a skill never does them on the way to something else. A run's own working files are removed as the skill says.
 
-**Skills chain.** One person runs the skills of every area together: when a skill needs what another skill of this pack makes (a format, a brief, a pick, a reference), it names that skill, runs it first on the user's word, at that skill's own stops, and takes its result as if the user had supplied it; `docs/pack/jobs.md` says which skill makes what, and a page another area documents is read where the work meets it.
+**Skills chain.** One person runs the skills of every area together: a skill that needs what another skill of this pack makes (a format, a brief, a pick, a reference) names that skill and runs it first, at that skill's own stops, on the user's word where the choice is theirs and saying so in a line where it is not, or says to run it and come back where it cannot run it itself; what comes back is taken as the user's own input, chosen among as the skill says. `docs/pack/jobs.md`, read through the repository connection, says which skill makes what, and a page another area documents is read where the work meets it.
 
 **Deliver something the user can hold.** The result is a file, a link or a document, never only a description of it. Say what was made, how, and what was left out. Inputs stay untouched.
 

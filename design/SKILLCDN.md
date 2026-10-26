@@ -13,6 +13,6 @@ metadata:
 
 These add to the rules of the repository.
 
-**Match what exists.** New work in an existing file, or in a format a reference sets, takes its type, colors, spacing and element specs from what is there, measured, and invents only what it lacks.
+**Match what exists.** New work in an existing file, or in a format the user chose (a reference's, measured, or one designed from it), takes its type, colors, spacing and element specs from what is there, measured, and invents only what it lacks; a variation moves the axes it names and holds the rest.
 
 **Check the render.** A visual result is judged on a render of it before it is shown, never on coordinates alone.

@@ -2,7 +2,7 @@
 
 How the skills that make card news (`instagram-card-news-format-study` and `html-card-news-from-brief` in the design area, `web-card-news-topic-brief` in the product area, and `html-design-variations` for a format of the user's own) are written and kept in step, for authors. They drive three tool families (a website read with a driven browser, the open web, HTML rendered by a headless browser), so what they share is not a tool but two artifacts: the document set [`design/docs/card-news/`](../../design/docs/card-news/README.md) holds the shape of each, and this page says what goes there, what stays in a skill, and how the three are tested together.
 
-## Three skills, two seams
+## Four skills and the seams between them
 
 The run these skills come from was one job in the user's words ("make a card-news post the way that account does it") and three jobs in the evidence: a study of the account, a research of the story, a build of the slides. Each is written as a skill that is complete alone and useful alone (a study of an account's format, a sourced brief for any post, a build from any brief), and the seams are written in the skill that needs the other's result: the build says where its spec and its brief come from and what it does with neither; the study and the research stay general. The study and the build are design skills, because a format is measured and followed and a render is checked, and the research is a product skill, because a brief keeps evidence apart from inference; the set sits in `design/docs/`, included by the two design skills and linked by the research, since the format serves no include across areas.
 

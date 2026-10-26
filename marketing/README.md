@@ -7,7 +7,7 @@
   <a href="../LICENSE.md"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-3a6dd4"></a>
 </p>
 
-Skills for marketing and growth work: ads, ad and product research, promotional video, content, campaigns, social posts. The area manifest next to this file ([SKILLCDN.md](SKILLCDN.md)) says who these skills are for and adds the rules every marketing skill follows on top of the repository's. The area mounts alone at `skillcdn.ai/gh/skillcdn/skills/marketing` and installs as the `marketing` plugin of the repository's Claude Code marketplace.
+Skills for marketing and growth work: ads, ad and product research, promotional video, content, campaigns, posting to social accounts. The area manifest next to this file ([SKILLCDN.md](SKILLCDN.md)) says who these skills are for and adds the rules every marketing skill follows on top of the repository's. The area mounts alone at `skillcdn.ai/gh/skillcdn/skills/marketing` and installs as the `marketing` plugin of the repository's Claude Code marketplace.
 
 | Skill | Tool family | What it does |
 |---|---|---|

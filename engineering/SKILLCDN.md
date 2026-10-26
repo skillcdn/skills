@@ -15,6 +15,6 @@ These add to the rules of the repository.
 
 **Show a change before it lands.** A change to the user's code, configuration or data is shown as a diff or a plan and applied after they agree, unless they said to go ahead alone.
 
-**A commit follows the repository's agreement.** A commit or a push lands as the agreement of the repository it lands in says (its `AGENTS.md` or `CLAUDE.md`), and on the user's word where it has none.
+**A commit follows the repository's agreement.** A commit or a push lands as the agreement of the repository it lands in says (its `AGENTS.md` or `CLAUDE.md`), and on the user's word where it has none; a push that publishes or deploys is confirmed as the pack's rule on what leaves says, unless that agreement settles it.
 
 **Prove what is claimed.** A skill that says a change works shows the check it ran (tests, build, lint) and the result. A check that did not run is reported as not run.
