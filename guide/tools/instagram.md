@@ -1,6 +1,6 @@
 # Instagram skills
 
-How the skills that read Instagram are written and kept in step, for authors. What they share at run time is the document set [`marketing/docs/instagram/`](../../marketing/docs/instagram/README.md), which agents read; this page says what goes there, what stays in a skill, and how the site's facts are kept true. Today one skill reads the site, the card-news format study; the set was made before the second, because more Instagram skills are planned ([roadmap.md](../roadmap.md)).
+How the skills that read Instagram are written and kept in step, for authors. What they share at run time is the document set [`docs/instagram/`](../../docs/instagram/README.md), which agents read; this page says what goes there, what stays in a skill, and how the site's facts are kept true. Today one skill reads the site, the card-news format study; the set was made before the second, because more Instagram skills are planned ([roadmap.md](../roadmap.md)).
 
 ## The tool is a website
 
@@ -8,12 +8,12 @@ There is no MCP server and no account to connect for reading: the skills read th
 
 ## What is shared and what stays in the skill
 
-| In `marketing/docs/instagram/` | In the skill |
+| In `docs/instagram/` | In the skill |
 |---|---|
 | `signed-out.md`: what a signed-out visitor sees, the routes, the sign-in prompt in each layout, the viewport, the documented sizes | Which accounts and posts are read, the page budget, the checkpoint |
 | `posts.md`: the post object and its keys, the date and the slide count, stepping a carousel at each ratio, reading a slide, a video post, the caption | What is measured on a slide and how, what a row of the log records, what the delivery holds (the format study's `reading-posts.md`) |
 
-The test for a sentence: would the next skill that reads Instagram meet it too? Then it belongs in the set. The set sits in the area's `docs/` because the skills that read Instagram are marketing skills; it travels with the marketing mount and plugin. A skill includes the pages every run of it reads by their root-relative paths; a change to an included page changes the served digest of every skill that includes it, as a manifest change does.
+The test for a sentence: would the next skill that reads Instagram meet it too? Then it belongs in the set. The set sits at the root because the skills that read Instagram are of more than one area: the format study in `design/` includes its pages, and a skill that posts to an account, planned in `marketing/`, will read them; it travels with every mount, and a plugin lacks it. A skill includes the pages every run of it reads by their root-relative paths; a change to an included page changes the served digest of every skill that includes it, as a manifest change does.
 
 ## Facts are dated
 

@@ -25,4 +25,4 @@ Every sentence the build writes names the fact ids it rests on; an element's lin
 
 ## Example
 
-The research skill ships [`topic-brief.example.json`](../../skills/web-card-news-topic-brief/assets/topic-brief.example.json) with placeholder values in this shape.
+The research skill ships [`topic-brief.example.json`](/product/skills/web-card-news-topic-brief/assets/topic-brief.example.json) with placeholder values in this shape.

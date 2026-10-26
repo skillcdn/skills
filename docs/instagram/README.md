@@ -9,7 +9,7 @@ The skills that read Instagram's public pages (today the card-news format study)
 
 ## Who reads this
 
-[`instagram-card-news-format-study`](../../skills/instagram-card-news-format-study/SKILL.md), in this area, includes both pages by their root-relative paths, so that they arrive with the skill wherever SkillCDN serves it; the marketing plugin ships them as files at `docs/instagram/`, two levels above the skill's folder. A copy of the skill taken into another agent has none of them: its Requirements say so and name this directory in the repository, which is where to fetch them. What a skill cannot work without (its workflow, its checkpoints, its verdicts, its hard rules) stays in the skill.
+[`instagram-card-news-format-study`](/design/skills/instagram-card-news-format-study/SKILL.md), in the design area, includes both pages by their root-relative paths, so that they arrive with the skill wherever SkillCDN serves it; a skill that posts to an account, planned in the marketing area, will read them too, which is why the set sits at the root and not in an area's `docs/`. The design plugin and a copy of the skill taken into another agent have none of them: the skill's Requirements say so and name this directory in the repository, which is where to fetch them. What a skill cannot work without (its workflow, its checkpoints, its verdicts, its hard rules) stays in the skill.
 
 ## What every skill that reads Instagram does the same way
 

@@ -22,7 +22,7 @@ The watch page of a public video platform answers a headless browser and a drive
 - Choose the highest quality the player's own menu offers (its API sets the same) and record what was served: 1080p asked, 720p served on a short clip (checked 2026-10). The served width by height, read from the element, is the frame's size for any judgement of legibility, not the file's.
 - Name each frame by its time in tenths of a second (`t00120.jpg` is 12.0 seconds, so `t=12s` in the citation) and append one line per frame (seconds, served size, file) to a table beside them; a rerun gets an empty folder.
 - "frames 0" with no other output means the player never readied: a consent page, a check, an age gate. List the clip as a source and stop.
-- The card-news research skill carries all of this, written against the largest video platform's watch page, as [`video-frames.example.mjs`](/marketing/skills/web-card-news-topic-brief/scripts/video-frames.example.mjs); for another platform's player, port its logic (pin, capture, reload on a stall) and not its selectors.
+- The card-news research skill carries all of this, written against the largest video platform's watch page, as [`video-frames.example.mjs`](/product/skills/web-card-news-topic-brief/scripts/video-frames.example.mjs); for another platform's player, port its logic (pin, capture, reload on a stall) and not its selectors.
 
 ## A direct media address with ffmpeg
 

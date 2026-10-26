@@ -12,9 +12,9 @@ The skills that read a website or render a page with a browser (the card-news st
 
 ## Who reads this
 
-- [`instagram-card-news-format-study`](/marketing/skills/instagram-card-news-format-study/SKILL.md) (marketing) includes `driven-browser.md`: every run steps carousels in a driven browser, and links `headless.md` for a host with a shell and no browser tool, where a script of the run's own drives a headless browser the same way; what Instagram itself does is in the area's set [`marketing/docs/instagram/`](/marketing/docs/instagram/README.md).
-- [`web-card-news-topic-brief`](/marketing/skills/web-card-news-topic-brief/SKILL.md) (marketing) includes `reading-pages.md` and links `video-frames.md` and `headless.md` from the phase that captures a clip.
-- [`html-card-news-from-brief`](/marketing/skills/html-card-news-from-brief/SKILL.md) (marketing) includes `rendering-html.md` and links `headless.md` from the export.
+- [`instagram-card-news-format-study`](/design/skills/instagram-card-news-format-study/SKILL.md) (design) includes `driven-browser.md`: every run steps carousels in a driven browser, and links `headless.md` for a host with a shell and no browser tool, where a script of the run's own drives a headless browser the same way; what Instagram itself does is in the repository's set [`docs/instagram/`](/docs/instagram/README.md).
+- [`web-card-news-topic-brief`](/product/skills/web-card-news-topic-brief/SKILL.md) (product) includes `reading-pages.md` and links `video-frames.md` and `headless.md` from the phase that captures a clip.
+- [`html-card-news-from-brief`](/design/skills/html-card-news-from-brief/SKILL.md) (design) includes `rendering-html.md` and links `headless.md` from the export.
 - [`html-deck-from-outline`](/design/skills/html-deck-from-outline/SKILL.md) (design) links `rendering-html.md` and `headless.md` from the print and the review.
 - [`meta-ad-library-creative-research`](/marketing/skills/meta-ad-library-creative-research/SKILL.md) and [`meta-ad-library-rising-products`](/marketing/skills/meta-ad-library-rising-products/SKILL.md) (marketing) reach these pages through their own set, [`marketing/docs/meta-ad-library/`](/marketing/docs/meta-ad-library/README.md), which keeps what the library's site does and links here for what any browser does.
 

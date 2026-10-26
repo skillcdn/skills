@@ -44,4 +44,4 @@ The build takes `canvas.size`, or the size of the `other_ratios` entry whose `fo
 
 ## Example
 
-The study skill ships [`format-spec.example.json`](../../skills/instagram-card-news-format-study/assets/format-spec.example.json) with placeholder values in this shape.
+The study skill ships [`format-spec.example.json`](/design/skills/instagram-card-news-format-study/assets/format-spec.example.json) with placeholder values in this shape.
