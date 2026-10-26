@@ -26,7 +26,7 @@ Before looking, run [review.example.mjs](../scripts/review.example.mjs) from the
 
 ### Looking
 
-Open every PNG at its native size and its copy in `out/phone/`, which is how a phone shows it, and read a file rewritten at the same path under a new name, as rendering-html.md "Looking at a render" says: what cannot be made out at phone size is what the user sees first. The verdicts in SKILL.md govern; this is the same list in the order a reviewer meets it:
+Open every PNG at its native size and its copy in `out/phone/`, which is how a phone shows it, and read a file rewritten at the same path under a new name, as rendering-html.md "Looking at a render" says: what cannot be made out at phone size is what the user sees first. The verdicts in SKILL.md govern; this is the same list in the order a reviewer meets it, and what any medium's reader calls the AI feel, beyond the spec's register and types, is listed in the repository's [not-ai.md](/docs/variation/not-ai.md), read when a slide passes every row below and still reads wrong:
 
 | Look for | Fix |
 |---|---|
