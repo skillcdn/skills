@@ -5,8 +5,8 @@ license: MIT
 compatibility: Needs a shell with Node.js and a Chromium-family browser that playwright-core can launch (an installed Chrome, Edge or Chromium, or playwright-core's own), a network for web fonts, and a way to show a local page to the user (the host's browser or preview pane) or to attach images. Works in any agent that can run a shell and attach files.
 metadata:
   author: skillcdn
-  version: "1.2"
-  tools: html
+  version: "1.3"
+  tools: browser
 skillcdn:
   include:
     - references/script.md
@@ -16,6 +16,7 @@ skillcdn:
     - assets/slide-plan.example.json
     - /marketing/docs/cardnews/format-spec.md
     - /marketing/docs/cardnews/topic-brief.md
+    - /docs/browser/rendering-html.md
   translations:
     ko:
       title: 브리프로 만드는 카드뉴스 (HTML 조판, PNG 내보내기)
@@ -37,11 +38,11 @@ A format spec and a topic brief go in; a carousel of PNG slides comes out, with 
 | What | Used for |
 |---|---|
 | A shell with Node.js | The static server, the export script, image sizes. |
-| A Chromium-family browser playwright-core can launch | Rendering each slide at its native size to PNG ([page-and-export.md](references/page-and-export.md) "Export"). `playwright-core` from a local install, borrowed from a neighbouring project or installed into the scratch folder; it finds an installed Chrome or Edge by channel, else its own Chromium. |
-| A way to show the page: the host's browser or preview pane pointed at a local server, or the PNGs attached to a message | The review checkpoint. A page opened as a file shows a static snapshot without its images in some hosts; serve it (page-and-export.md "Preview"). |
+| A Chromium-family browser playwright-core can launch | Rendering each slide at its native size to PNG ([page-and-export.md](references/page-and-export.md) "Export"). `playwright-core` borrowed from a neighbouring project or installed into the post folder, the browser found by channel, a browser download asked first, as [headless.md](/docs/browser/headless.md) says. |
+| A way to show the page: the host's browser or preview pane pointed at a local server, or the PNGs attached to a message | The review checkpoint. A page opened as a file shows a static snapshot without its images in some hosts; serve it ([rendering-html.md](/docs/browser/rendering-html.md) "Serving the page"). |
 | A network | Web fonts from a CDN, the spec's or the closest free ones it names. |
 
-Check Node.js, the network and a Chromium-family browser (an installed Chrome or Edge, or playwright-core's own Chromium) before the first message; without Node.js or a browser, stop and say what to install. `playwright-core` itself is borrowed or installed where phase 4 launches it (page-and-export.md "Export"), and a launch that still fails stops there with the install line. What the card-news skills share is in the area's document set [`marketing/docs/cardnews/`](/marketing/docs/cardnews/README.md); the two pages this skill reads from it, [format-spec.md](/marketing/docs/cardnews/format-spec.md) and [topic-brief.md](/marketing/docs/cardnews/topic-brief.md), are included and arrive with this skill wherever SkillCDN serves it. A copy of this directory lacks them: say so, fetch them from `marketing/docs/cardnews/` of the repository this skill comes from (for this collection, `github.com/skillcdn/skills`), and otherwise read the spec and the brief as the files are. How the tools behaved in runs of this skill is in [tool-notes.md](references/tool-notes.md); read it before phase 1.
+Check Node.js, the network and a Chromium-family browser (an installed Chrome or Edge, or playwright-core's own Chromium) before the first message, as [headless.md](/docs/browser/headless.md) "The check before the first message" says; without Node.js or a browser, stop and say what to install. `playwright-core` itself is borrowed or installed where phase 4 launches it, and a launch that still fails stops there with the install line. What the card-news skills share is in the area's document set [`marketing/docs/cardnews/`](/marketing/docs/cardnews/README.md); the two pages this skill reads from it, [format-spec.md](/marketing/docs/cardnews/format-spec.md) and [topic-brief.md](/marketing/docs/cardnews/topic-brief.md), are included and arrive with this skill wherever SkillCDN serves it, and so is [rendering-html.md](/docs/browser/rendering-html.md) from the repository's document set [`docs/browser/`](/docs/browser/README.md), which holds how any page the agent writes is served, exported and looked at; its headless.md is linked from the export. A copy of this directory lacks the included pages, and a mount of one area or one skill cannot read the linked one: say so, fetch them from `marketing/docs/cardnews/` and `docs/browser/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`), and otherwise read the spec and the brief as the files are. How the tools behaved in runs of this skill is in [tool-notes.md](references/tool-notes.md); read it before phase 1.
 
 The area's rule that claims and assets come from the brand takes this form here: the user is the brand, the brief is what they supply, its facts are the articles' and its images come from where the articles point (their photographs, the clip or footage they cite, the subject's public pages), each with the credit the brief records, used as the account itself publishes such material. The canvas, the slide types and the caption's form come from the spec, which measured them on the account and looked up the platform's documented size.
 
