@@ -419,9 +419,11 @@ const isReachable = (abs) => isDiscoverable(abs) || isOverview(abs) || (isDirect
 
 // The document directories a skill may include a page from: the repository's and its own area's, which the
 // indexer inlines with the skill (a sibling area's page it drops). A link may go into any document directory;
-// a skill mounted alone, installed as a plugin or copied says in its Requirements where its pages are.
+// a skill mounted alone, installed as a plugin or copied says in its Requirements where its pages are, and a
+// link into another area's documents is noted at the end of the run, as the indexer's check prints shared pages.
 const sharedDocumentDirs = (skillRoot) =>
   manifests.filter((m) => m.dir === root || inside(skillRoot, m.dir)).flatMap((m) => m.documentDirs);
+const crossAreaLinks = [];
 
 function checkLinks(file, text) {
   const dir = dirname(file);
@@ -444,6 +446,9 @@ function checkLinks(file, text) {
       // A skill may be mounted alone: its workflow and rules stay inside its directory, and only documents are
       // linked from outside, from any area, by the phase that reads them.
       fail(file, `link leaves the skill and the document directories (its own directory, docs/ of the repository or of any area): ${target}`);
+    } else if (skillRoot && !inside(abs, skillRoot) && exists(abs) && !sharedDocumentDirs(skillRoot).some((d) => inside(abs, d))) {
+      // A page of another area's documents: read through the repository connection only, never included.
+      crossAreaLinks.push(`${toPosix(file.slice(root.length + 1))} -> ${target}`);
     } else if (servedDocument && !isReachable(abs)) {
       fail(file, `link leaves what an agent can reach through the mount (skills, manifests, document directories, the README of a served folder): ${target}`);
     } else if (!exists(abs)) {
@@ -565,5 +570,8 @@ checkMarketplace();
 if (errors.length) {
   console.error(`${errors.length} problem(s):\n${errors.map((e) => `  - ${e}`).join("\n")}`);
   process.exit(1);
+}
+if (crossAreaLinks.length) {
+  console.log(`note: ${crossAreaLinks.length} link(s) from a skill into another area's documents, read through the repository connection only:\n${crossAreaLinks.map((l) => `  - ${l}`).join("\n")}`);
 }
 console.log(`ok: ${areaDirs.length} area(s), ${skillDirs.length} skill(s), ${documentSets} document set(s), ${files.length} file(s) checked`);
