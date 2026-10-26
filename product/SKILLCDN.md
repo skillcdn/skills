@@ -1,11 +1,11 @@
 ---
 name: Product
-description: Skills for product planning and management, such as discovery, research synthesis, requirements, specifications, roadmaps and prioritization. Use when the task is to decide what to build and to describe it clearly enough to build.
+description: Skills for product planning and management, such as discovery, research synthesis, concept directions and alternatives, requirements, specifications, roadmaps and prioritization. Use when the task is to decide what to build and to describe it clearly enough to build.
 license: MIT
 translations:
   ko:
     name: 기획
-    description: 디스커버리, 리서치 정리, 요구사항, 명세, 로드맵, 우선순위 등 제품 기획과 관리 업무를 위한 스킬입니다. 무엇을 만들지 정하고 만들 수 있을 만큼 분명하게 설명하는 일에 쓰세요.
+    description: 디스커버리, 리서치 정리, 컨셉 방향과 대안, 요구사항, 명세, 로드맵, 우선순위 등 제품 기획과 관리 업무를 위한 스킬입니다. 무엇을 만들지 정하고 만들 수 있을 만큼 분명하게 설명하는 일에 쓰세요.
 metadata:
   author: skillcdn
 ---
