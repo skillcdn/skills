@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git and Node.js in a checkout of the target repository, and the host's transcripts and memory where the user points to earlier sessions. The tool the new skill drives is needed for the test run. The example script needs Python; a transcript can be read without it. Works in any agent that can read files and run a shell.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: skillcdn
 skillcdn:
   include:
@@ -135,7 +135,7 @@ The user has run a skill of the repository and wants what the run taught in it, 
 2. Instance material never enters the skill, its notes or its examples: the product, the people, the lines, the references, the customers, the prices paid, the secrets. Behavior goes in; words stay out.
 3. A value is replaced by how to find it today; a value that must stand names its source and the month it was checked.
 4. The format is the specification's and the conventions are the checkout's; neither is restated in the skill, and the checkout's win where they differ from this skill.
-5. The rules of the repository and of the area are not restated; what the skill cannot work without is inside its directory, and only a shared page of the repository's or the area's document sets is reached outside it.
+5. The rules of the repository and of the area are not restated; what the skill cannot work without is inside its directory, and outside it only documents are reached: a shared page included from the repository's or its own area's document sets, or a page of any area's sets linked from the phase that reads it.
 6. A rule comes from a correction the user made more than once or with emphasis, or from a spend or a safety fact. A single slip of one run goes to the maintainer list, not into the skill.
 7. The design is approved before anything is written; the draft is shown before it is committed; every push and any spend are confirmed in every mode.
 8. A skill is delivered as done only after a fresh agent followed the files alone; until then its roadmap row says `next`, and what no run verified is said so. One rerun at most without being asked.

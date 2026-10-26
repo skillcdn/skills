@@ -77,7 +77,7 @@ Everything the skill cannot work without lives in its directory, because it may 
 | Anything longer than a paragraph that one phase reads | `references/<topic>.md`, linked from that phase | Read when the phase comes; no page of the load |
 | A reference every run reads | Also in `skillcdn.include` | Arrives with the skill instead of costing a read per run |
 | How the tool behaved in this skill's own phases | `references/tool-notes.md`, by topic, dated where a fact can go stale | Found where an agent looks for it, not where it was learned |
-| What would be true word for word in the next skill of the family | The family's document set (`docs/<family>/` at the root, or the area's `docs/` when one area holds every skill of the family), once a second skill exists or is planned; the page every run needs included by its root-relative path, the rest linked | Written once, kept current in one place |
+| What would be true word for word in the next skill of the family | The family's document set (`docs/<family>/` at the root, or an area's `docs/` when every skill that includes its pages is in that area), once a second skill exists or is planned; the page every run needs included by its root-relative path, the rest linked | Written once, kept current in one place |
 | A handover from another skill: which result it takes, how it chooses | This skill, in a sentence that names the other | The skill that is used stays general |
 | An example of a data file the skill reads or writes | `assets/<name>.example.json`, placeholder values | Small JSON is indexed and read; outputs are not committed |
 | A helper an agent may run locally | `scripts/<name>.example.<ext>`, optional | Served as text, never run by the service; the skill works without it |
@@ -96,7 +96,7 @@ Read the draft as a fresh agent, and fix:
 - Instance material: a product, a person, a line, a reference, a customer, a number that was paid.
 - A sentence that restates the repository's or the area's manifest.
 - A tool name that is one product's and will not carry over to another host, where a capability was meant.
-- A link that leaves the skill's directory for anything but a shared page of the repository's or the area's document sets, or a link to a page that does not exist.
+- A link that leaves the skill's directory for anything but a page of the repository's document sets (the root's or any area's), an include of a page outside the root's and the skill's own area's sets, or a link to a page that does not exist.
 - A step a fresh agent must guess: an artifact used before it is named, a choice without its rule, a question without its wording.
 - A checkpoint that stops for nothing, or a spend without one.
 - A rule without its why, or in capitals.
