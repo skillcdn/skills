@@ -4,7 +4,7 @@ How the candidate list is searched, ranked and written. The list is what the use
 
 ## Searching
 
-- One search per category, in the market's language, for the last seven days: the category's words plus the week ("this week", the month) or a dated event. Where the search tool offers a thorough mode, use it for the first pass of each category and the quick mode for follow-ups; thin results on a category get a second phrasing before the category is dropped.
+- One search per category, in the market's language, for the last seven days: the category's words plus the week ("this week", the month) or a dated event. Where the search tool offers a thorough mode, use it for the first pass of each category and the quick mode for follow-ups; thin results on a category get a second phrasing before the category is dropped. A category whose words could be read two ways (a place's name: its events this week, or everything about it) is read the broader way, and the first message says how it was read.
 - A domestic audience: the market's outlets first; a global story only where the market's reader is part of it (a visit, a release there, a rule that changes there). A global audience: the international outlets, and the market's angle noted where there is one.
 - Read enough of each result to know what happened, when, and whether it moved this week (a release, a ruling, a number published, a date set). A story with no movement this week is not timely. Open the one or two article pages a card cites, no more, to see what they show; the articles are read in full only after the pick.
 - Exclude what the account already posted: the stories in the format spec's `posts_read`, matched by subject against each post's first line. A new development this week of a story the account posted is a candidate, and its card says the account covered the story before. With no spec, nothing is excluded, and the list says so.
@@ -14,12 +14,12 @@ How the candidate list is searched, ranked and written. The list is what the use
 | Criterion | What counts |
 |---|---|
 | Fit | The story belongs in one of the categories (as the account's own posts define them when a spec exists, as the user's words define them otherwise), and it is the audience's story. |
-| Timeliness | It moved this week; the newest movement is the hook. A date still to come (an event this weekend) ranks above one already past. |
+| Timeliness | It moved this week, the last seven days whatever the weekday; the newest movement is the hook. A date still to come (an event this weekend) ranks above one already past. For an exhibition or a performance that runs for months, the movement is its opening, its closing, an extension or a ticket release this week. |
 | Save and share | A reader would save it (a rule that changes, a guide to a day, a list of places) or share it (a surprise, a number that reframes something). |
 | Images | The articles carry photographs of the subject, or cite a public clip or footage that shows it; a story with only logos or stock imagery costs a cover. |
-| Breadth | Two or more outlets carry it, so facts can be cross-checked. |
+| Breadth | Two or more outlets carry it, so facts can be cross-checked; a story one outlet carries is not a card, and is named in one line under its category as a lead. |
 
-The criteria are in order of weight: fit first, then timeliness, then save and share; images and breadth break ties. Five to eight candidates in all, at most three per category. A category with nothing timely this week is said so rather than filled.
+The criteria are in order of weight: fit first, then timeliness, then save and share; images break ties, and breadth is the floor. Five to eight candidates in all, at most three per category. A category with nothing timely this week is said so rather than filled.
 
 ## The candidate card
 

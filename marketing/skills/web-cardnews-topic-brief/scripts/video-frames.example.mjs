@@ -1,13 +1,15 @@
 // Saves frames of a public video clip as JPEGs, one every few seconds of video, named by time code, so that
 // the frames of a report or footage the articles cite can be chosen for the brief. Reads the public watch
 // page only, in a headless browser; no sign-in, nothing downloaded but screenshots.
-// Usage: node video-frames.example.mjs <watch URL or video id> <outDir> [interval=3] [rate=2] [start=0] [end]
-//   interval  seconds of video between frames      rate   playback rate (2 halves the wall time)
+// Usage: node video-frames.example.mjs <watch URL or video id> <outDir> [interval=3] [rate=1] [start=0] [end]
+//   interval  seconds of video between frames      rate   playback rate, 1 by default
 //   start/end seconds of video to cover            PLAYWRIGHT_FROM  a package.json of a project that has
 //             playwright-core installed, to borrow it; else playwright-core is resolved from this folder.
 // Written against the watch page of the largest video platform (its t= parameter, its player API and
-// its advertisement class names, which drift; checked 2026-10). Playback stalled after about a minute
-// at a raised rate, so the page is reloaded at the next time code every CHUNK seconds of video. Frames
+// the class name it marks an advertisement with, which drift; checked 2026-10); an advertisement is waited
+// out, never skipped. A stall (no progress for fifteen seconds while no
+// advertisement shows) is met by one reload at the time reached, as a viewer would; a clip that stalls
+// again keeps the frames taken so far. Frames
 // are 1280 by 720 CSS pixels at device scale 1.5, which gives 1920 by 1080 files whatever was served;
 // frames.tsv beside them holds, per frame, the seconds, the served width by height (the entry's px)
 // and the file, appended on every run. File names are tenths of a second: t00120.jpg is 12.0 s.
@@ -29,9 +31,8 @@ if (!target || !outDir) {
   process.exit(1);
 }
 const interval = Number(intervalArg) || 3;
-const rate = Number(rateArg) || 2;
+const rate = Number(rateArg) || 1;
 const start = Number(startArg) || 0;
-const CHUNK = 50;
 const W = 1280, H = 720;
 const id = /^[\w-]{6,}$/.test(target) ? target : new URL(target).searchParams.get("v") || new URL(target).pathname.split("/").pop();
 const watch = (t) => `https://www.youtube.com/watch?v=${id}&t=${Math.floor(t)}s`;
@@ -74,8 +75,6 @@ async function prepare(from) {
       const v = document.querySelector("video");
       v.muted = true;
       v.play().catch(() => {});
-      const skip = document.querySelector(".ytp-skip-ad-button, .ytp-ad-skip-button, .ytp-ad-skip-button-modern");
-      if (skip) skip.click();
       return { ad: !!document.querySelector(".ad-showing"), duration: v.duration, ready: v.readyState };
     });
     if (!state.ad && isFinite(state.duration) && state.duration > 0 && state.ready >= 3) break;
@@ -107,7 +106,7 @@ let frames = 0;
 while (from < end) {
   const duration = await prepare(from);
   if (end === Infinity) { end = duration; console.log("duration", duration); }
-  const stop = Math.min(from + CHUNK, end);
+  const stop = end;
   let lastTime = -1, lastMove = Date.now(), reached = false;
   while (true) {
     const state = await page.evaluate(() => {
@@ -132,7 +131,7 @@ while (from < end) {
   }
   if (reached) { from = stop; stalls = 0; }
   else if (lastTime > from + 1) { from = lastTime; stalls = 0; }
-  else if (++stalls >= 3) { console.log("gave up at", from); break; }
+  else if (++stalls >= 2) { console.log("stalled again at", from, "- the frames taken so far are kept"); break; }
 }
 console.log("frames", frames, "in", outDir);
 await browser.close();

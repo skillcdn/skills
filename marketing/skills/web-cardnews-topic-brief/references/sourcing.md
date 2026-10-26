@@ -6,7 +6,7 @@ How facts are taken from articles so that every sentence of a post can be traced
 
 Three or more articles from different outlets, each read in full: the body, the captions, the dates. A search result's summary is a lead to an article, never a source. Where a page reader returns the article as text, read all of it; where only a driven browser reaches it, read it there. An article is read in full when its end was reached: the last paragraph followed by what closes an article on that site (a byline or date line, the reporter's e-mail, the tags, a copyright line, the related-articles block); a text that ends mid-sentence or without that closing was cut by the reader and is read again in the driven browser. A text extraction that strips the page's footer hides the copyright line: look for the closing in the raw HTML, and where the footer is loaded by script, the reporter's e-mail or the tags are the close. An article that stops at a paywall, a login or a consent wall that cannot be declined is not a source; find the story in another outlet.
 
-An outlet's article is a news organization's report, analysis or interview under a byline or a desk. An influencer's post hosted on a portal, a listing or aggregator site, a blog and a wiki are not articles: they are leads, and a detail only they carry (an exact address, a last-entry time) goes to the unverified list. An article that reprints an organizer's release (the release's wording before the event, the photos credited to the organizer) counts as the official release for the cross-check, and the brief marks that reading as an inference.
+An outlet's article is a news organization's report, analysis or interview under a byline or a desk. An influencer's post hosted on a portal, a listing or aggregator site, a blog and a wiki are not articles: they are leads, and a detail only they carry (an exact address, a last-entry time) goes to the unverified list. An article that reprints an organizer's release (the release's wording before the event, the photos credited to the organizer) counts as the official release for the cross-check, and the fact's `note` says `organizer's release reprinted`. An organizer's, a venue's or an institution's own page is a source for a schedule, a price, an address or an opening and for nothing else: the fact's `source.kind` is `official` and `single_source` is true, and the story itself still needs an outlet's article.
 
 Record per article, in the brief's `articles_read`: outlet, author where named, date and time of publication, URL, and whether it is a report, an analysis or an interview.
 
@@ -19,7 +19,7 @@ One row per fact the post could use:
 | `id` | `f1`, `f2`, ... in the order of the story; an id never changes once a checkpoint has shown it. |
 | `text` | The fact as one sentence in the post's language, with absolute dates (a "yesterday" in an article dated the 22nd is the 21st) and the unit. |
 | `kind` | number, date, place, quote, event, claim. |
-| `source` | Outlet, date, URL, and the article's own sentence, quoted exactly. |
+| `source` | Outlet, date, URL, the article's own sentence, quoted exactly, and `kind`: `article`, or `official` for an organizer's or a venue's own page. |
 | `also_in` | Other articles read that carry the same fact, as outlet and date. |
 | `single_source` | True when no other article read carries it. |
 | `note` | Optional: a caveat the build must keep (a market figure an outlet quotes from a third party, which needs that party named if used). |
