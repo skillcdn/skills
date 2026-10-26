@@ -60,6 +60,7 @@ const MANIFEST_MAX = 262_144;
 const DESCRIPTION_MAX = 1024;
 const SKILL_NAME_MAX = 64;
 const SKILL_TITLE_MAX = 200;
+const COMPATIBILITY_MAX = 500;
 const REPO_NAME_MAX = 100;
 const DOCUMENTS_MAX = 20;
 const EXCLUDE_MAX = 100;
@@ -356,6 +357,11 @@ function checkSkill(file, text) {
     if (dir !== root && name !== basename(dir)) fail(file, `name "${name}" differs from its directory`);
   }
   checkDescription(file, fields.description);
+  // The indexer ignores a `compatibility` it cannot take (the Agent Skills limit), and says so only in its own check.
+  const { compatibility } = fields;
+  if (compatibility !== undefined && (typeof compatibility !== "string" || !compatibility.trim() || compatibility.length > COMPATIBILITY_MAX)) {
+    fail(file, `compatibility: 1 to ${COMPATIBILITY_MAX} characters of text; the indexer ignores anything else`);
+  }
   checkSkillcdnBlock(file, fields.skillcdn);
   if (!/^\s*# /.test(body)) fail(file, "body should start with a level-one heading");
 }
