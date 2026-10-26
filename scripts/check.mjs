@@ -17,8 +17,9 @@
 //      skills, manifests, document directories, and the README of a served folder. A link or an include that
 //      starts with `/` is resolved from the repository root, as the indexer resolves it.
 //   5. No rendered media or binaries; JSON parses; text carries no control or invisible characters.
-//   6. Every area, skill and document set is listed in its catalog README and in the root README, and every
-//      area with skills is one plugin in .claude-plugin/marketplace.json.
+//   6. Every area, skill and document set is listed in its catalog README and in the root README, every
+//      area with skills is one plugin in .claude-plugin/marketplace.json, and, where docs/pack/jobs.md
+//      exists, every skill has a section in it (the jobs index an agent searches first).
 // Hidden entries (any path segment starting with a dot) are ignored, as the indexer ignores them; the
 // marketplace is the one hidden file this repository maintains by hand, so it is checked on its own.
 //
@@ -396,6 +397,7 @@ const documentDirs = manifests.flatMap((m) => m.documentDirs);
 const excluded = manifests.flatMap((m) => m.excluded);
 const skillDirs = files.filter((f) => basename(f) === "SKILL.md").map(dirname);
 const rootReadme = join(root, "README.md");
+const jobsIndex = join(root, "docs", "pack", "jobs.md");
 
 const isExcluded = (abs) => excluded.some((e) => inside(abs, e));
 // Discoverable through browse_repo and search_repo: the manifests, the skills and the declared document directories.
@@ -486,6 +488,7 @@ for (const area of areaDirs) {
     if (!exists(join(item, "SKILL.md"))) fail(item, "skill directory without SKILL.md");
     if (!listedIn(join(area, "README.md"), `${entry.name}/`)) fail(item, `skill not listed in ${toPosix(area)}/README.md`);
     if (!listedIn(rootReadme, `${entry.name}/`)) fail(item, "skill not listed in the root README.md catalog");
+    if (exists(jobsIndex) && !listedIn(jobsIndex, `${entry.name}/`)) fail(item, "skill has no section in docs/pack/jobs.md, the jobs index");
   }
 }
 let documentSets = 0;
