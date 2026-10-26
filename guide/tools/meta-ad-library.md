@@ -4,7 +4,7 @@ How the skills that read the Meta Ad Library (`meta-ad-library-…`) are written
 
 ## The tool is a website
 
-There is no MCP server and no account to connect. A skill's "Requirements" name capabilities and how to recognize them (a shell with a Chromium-family browser on the same machine, a browser the agent drives), never one product's tool names: every assistant names its browsing tools differently and replaces them within months. A named product is a dated illustration at most.
+There is no MCP server and no account to connect. A skill's "Requirements" name capabilities and how to recognize them (a shell with a Chromium-family browser on the same machine, a browser the agent drives), never one product's tool names: every assistant names its browsing tools differently and replaces them within months. A named product is a dated illustration at most. The browser itself, as a capability any skill may need, has its own set and its own page: `docs/browser/` and [`browser.md`](browser.md); this family's set keeps what the library's site does.
 
 ## What is shared and what stays in the skill
 
@@ -12,8 +12,8 @@ There is no MCP server and no account to connect. A skill's "Requirements" name 
 |---|---|
 | `ad-library.md`: what the library is evidence of, the routes, the URL parameters, what a result carries, counting by age, what needs a click, manners and limits, when no route works | What to search (the terms and the views), the page-load budget, the cleaning, what counts as proof or as an item, the classes, the checkpoint, the report and its data file |
 | `record.md`: the record every route yields, where each field comes from, how long media addresses last | The fields the skill adds to its own data file (`assets/*.example.json`) |
-| `page-dump.md`: the shell route and `adlib.py` | |
-| `driven-browser.md`: what a driven browser does on the site, the in-page readers, the reach script | The frame script of the creative research skill |
+| `page-dump.md`: the shell route on this site (its check and the flags that pass it) and `adlib.py`; what holds for any headless run is in `docs/browser/headless.md` | |
+| `driven-browser.md`: what a driven browser does on this site, the in-page readers, the reach script; what any driven browser does is in `docs/browser/driven-browser.md` | The frame script of the creative research skill |
 
 The set sits in the area's `docs/` rather than the repository's because both skills are marketing skills: it travels with the marketing mount and the marketing plugin; a skill mounted alone cannot read the linked pages there, and a copy lacks the set, which its Requirements say. The test for a sentence: would it be true in the next skill that reads the library? Then it belongs in the set. A page of the set is reached by a root-relative path. Each skill includes its own method page and `ad-library.md`, which every run reads before its first page load, so that both arrive with the skill wherever SkillCDN serves it; `record.md` and the route pages are linked from phase 2 and cost one `read_repo_file` each when it comes. A change to `ad-library.md` changes the served digest of both skills, as a change to a manifest does: edit it deliberately.
 

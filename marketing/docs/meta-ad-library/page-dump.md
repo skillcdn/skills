@@ -1,6 +1,6 @@
 # The page dump
 
-The shell route of [ad-library.md](ad-library.md) "Routes": one headless run of a Chromium-family browser per URL prints the page as the browser built it, and the results are JSON inside it. No window opens, and a dump takes two to nine seconds. The code below ran on the live site on 2026-10-02; port it to whatever the agent has, the logic matters and not the language. It yields the record of [record.md](record.md).
+The shell route of [ad-library.md](ad-library.md) "Routes": one headless run of a Chromium-family browser per URL prints the page as the browser built it, and the results are JSON inside it. No window opens, and a dump takes two to nine seconds. The code below ran on the live site on 2026-10-02; port it to whatever the agent has, the logic matters and not the language. It yields the record of [record.md](record.md). What holds for any headless run (the window that opens without `--headless=new`, the profile folder, the timeout, which browsers print the page) is in the repository's [headless.md](/docs/browser/headless.md) "The bare browser with --dump-dom"; below is what this site does.
 
 ## One run per page
 
@@ -10,10 +10,8 @@ The shell route of [ad-library.md](ad-library.md) "Routes": one headless run of 
 
 - Keep the same `--user-data-dir` for every call: it holds the cookie of the site's browser check.
 - The site answers some loads with that check, a fresh profile's first load most often: an empty dump, or a page of about 500 bytes whose script posts to `/__rd_verify…` and reloads. A plain dump leaves before the script finishes, so the check comes back on every load. Give that one load time with `--virtual-time-budget=15000`: the browser finishes the check by itself, the cookie (`rd_challenge`) lands in the profile, and plain loads print results again. When both patient loads hang to the timeout, the cookie may have landed all the same: one plain load of the same address then prints results (checked 2026-10). The check returns from time to time during a run.
-- Never start the browser without `--headless=new` and that folder, not even to ask its version: on Windows the bare command, `--version` included, opens a window in the user's own browser session.
 - Do not add `--virtual-time-budget` to every load: the results are in the first HTML, and on ordinary pages that flag made three runs in twenty hang until killed, against none in a hundred without it.
-- Give each run a timeout of about a minute. Quote the URL: it contains `&` and brackets.
-- Chrome and Chromium print the page. On Windows, Edge printed nothing in the same test; when the output is empty for every URL, the patient load included, try another browser or the driven-browser route.
+- When the output is empty for every URL, the patient load included, try another browser (headless.md says which printed the page) or the driven-browser route.
 
 ## The script
 

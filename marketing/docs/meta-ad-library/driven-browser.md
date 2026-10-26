@@ -1,13 +1,12 @@
 # The driven browser
 
-The route of [ad-library.md](ad-library.md) "Routes" for a browser the agent operates: navigate to a URL, then read the embedded results with a script in the page, else the cards, else the page text or a screenshot. It reaches what the page dump cannot (more results, the ad details, the advertiser's About tab, video frames) and yields the record of [record.md](record.md). The code below ran on the live site on 2026-10-02; the readers hold on to the JSON keys in the page and to the visible English labels, which is why every URL carries `locale=en_US`, and never on a class name, which the site generates. When a label changes, read one card's text and adjust the pattern.
+The route of [ad-library.md](ad-library.md) "Routes" for a browser the agent operates: navigate to a URL, then read the embedded results with a script in the page, else the cards, else the page text or a screenshot. It reaches what the page dump cannot (more results, the ad details, the advertiser's About tab, video frames) and yields the record of [record.md](record.md). The code below ran on the live site on 2026-10-02; the readers hold on to the JSON keys in the page and to the visible English labels, which is why every URL carries `locale=en_US`, and never on a class name, which the site generates. When a label changes, read one card's text and adjust the pattern. What any driven browser does and does not do (a window in the background, zoom, script clicks against real clicks, dialogs, data embedded in a page) is in the repository's [driven-browser.md](/docs/browser/driven-browser.md); below is what it does on this site.
 
 ## What a driven browser does on the site
 
 - One navigation to a library page is one page load of the budget. Nothing carries a record from the page to a file except the agent itself: the short lines the embedded-results reader returns are the record of the pool (kept in a file where the agent has file tools), and full records with their media addresses are taken only for the ads that reach the shortlist, with `pick` on a page that still lists them (the advertiser view loaded for the shortlist, or the ad's own `id` page).
 - The filter dialog exposes no names or roles to the accessibility tree, and synthetic clicks from script do not open its menus: URL parameters do everything, as [ad-library.md](ad-library.md) "URLs" says.
-- Screenshots time out while the browser window is in the background; page text and script keep working.
-- The site's header is an element with the role of a dialog that contains `Log in` on every page: it is not a login wall. A dialog closed by script takes about a second and a half to go.
+- The site's header is an element with the role of a dialog that contains `Log in` on every page: it is not a login wall.
 - Reading reach costs no page load; six shortlisted ads' reach has been read from their advertiser views without one. Two screenshots per video read its frames (the frame script is the creative research skill's own).
 
 ## The embedded results

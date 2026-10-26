@@ -33,8 +33,8 @@ Capabilities, not product names: the tools that provide them differ by assistant
 
 | Need | Any one of | When missing |
 |---|---|---|
-| Load the library | A shell with a Chromium-family browser on the same machine (the page-dump route); a browser the agent drives (the driven-browser route) | Stop and tell the user what to add, as [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
-| See a video's frames | `ffmpeg` and `ffprobe` in the shell; or the driven browser | Stop before the deep read and say so: an `ffmpeg` install is free and takes a minute, and without it every video is read from its poster and copy alone, with its length unknown. Go on poster-only on the user's word, marking each such breakdown "poster only". |
+| Load the library | A shell with a Chromium-family browser on the same machine (the page-dump route); a browser the agent drives (the driven-browser route); what each is and how to recognize it, in the repository's [`docs/browser/`](/docs/browser/README.md) | Stop and tell the user what to add, as [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
+| See a video's frames | `ffmpeg` and `ffprobe` in the shell; or the driven browser (the routes in [video-frames.md](/docs/browser/video-frames.md)) | Stop before the deep read and say so: an `ffmpeg` install is free and takes a minute, and without it every video is read from its poster and copy alone, with its length unknown. Go on poster-only on the user's word, marking each such breakdown "poster only". |
 | Write the report | A file tool; or the client's document surface | Put the whole report in the reply. |
 
 Optional: a speech-to-text tool for the audio, a web-reading tool for the user's product page. Nothing here costs money; a paid service (a scraping service, a paid analysis tool) is used only when the user asks for it and agrees to its cost.
