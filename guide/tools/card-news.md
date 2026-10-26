@@ -20,7 +20,7 @@ The run was sent back five times, and each correction is a rule in the skill who
 
 ## Facts are dated, and instance material stays out
 
-The site a study reads has no changelog: a statement about what is visible without signing in, how a carousel is stepped, or how a host's browser behaves carries the day it was checked and the way to find it again (`instagram-card-news-format-study/references/tool-notes.md`). The build skill carries no layouts of its own: the spec's slide types are its classes, and its one stand-in page for a build with no spec (`no-spec.md`, not included, read only then) is said to be a stand-in at every checkpoint. No account, outlet, story, person or photo from a run is named anywhere in these skills or in the set: examples use placeholders, numbers quoted from runs are shapes.
+The site a study reads has no changelog: a statement about what is visible without signing in, how a carousel is stepped, or how a host's browser behaves carries the day it was checked and the way to find it again (what the site does in `marketing/docs/instagram/`, what a host's browser does in `docs/browser/`). The build skill carries no layouts of its own: the spec's slide types are its classes, and its one stand-in page for a build with no spec (`no-spec.md`, not included, read only then) is said to be a stand-in at every checkpoint. No account, outlet, story, person or photo from a run is named anywhere in these skills or in the set: examples use placeholders, numbers quoted from runs are shapes.
 
 ## Testing
 
