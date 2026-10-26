@@ -1,6 +1,6 @@
 # Layouts: the spec's slide types as the page's classes
 
-A post is composed from the reference account's own slide types, as the format spec measured them, and from nothing else: this skill carries no layouts of its own. The spec's `cover`, `slide_types` and `elements` are the classes of the page, their anatomy the CSS, the spec's `kinds` the sequence, `variants_by_content` the choice by content and `never` the limits. A build that composed slides from a catalogue of the skill's own, with the spec only adjusting its defaults, was sent back twice as "not the format": the user holds the result against the account's posts, and a type the account does not use is the first thing they see, before any sentence is read.
+A post is composed from the format spec's slide types, measured on a reference or designed from one at the user's pick, and from nothing else: this skill carries no layouts of its own. The spec's `cover`, `slide_types` and `elements` are the classes of the page, their anatomy the CSS, the spec's `kinds` the sequence, `variants_by_content` the choice by content and `never` the limits. A build that composed slides from a catalogue of the skill's own, with the spec only adjusting its defaults, was sent back twice as "not the format": the user holds the result against the format they chose, and a type the format does not use is the first thing they see, before any sentence is read.
 
 ## From the spec to classes
 
@@ -41,4 +41,4 @@ Variation is the account's, read from the spec. Where the build's `order` is `va
 
 ## With no spec
 
-The build needs the study first; say so and offer it. A user who wants slides anyway, with no account to follow, gets the stand-in in [no-spec.md](no-spec.md), said to be one at every checkpoint and in the delivery.
+The build needs a spec first; say so and offer the routes to one (SKILL.md "Inputs"; format-spec.md "Where a spec comes from"). A user who wants slides before any format gets the stand-in in [no-spec.md](no-spec.md), said to be one at every checkpoint and in the delivery.
