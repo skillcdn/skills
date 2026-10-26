@@ -11,9 +11,9 @@
 //      outside the skill is a shared page: a document under docs/ of the repository or of the skill's own
 //      area, named from the repository root, which the indexer inlines with the skill on every mount.
 //   3. Every skill lives at <area>/skills/<name>, under an area manifest; none at the root.
-//   4. A skill links inside its own directory, or into a document directory of the repository or of its own
-//      area, where what the skills of one tool family share lives; it may be mounted alone, so its workflow
-//      and rules stay inside. A served document links only to what an agent can reach through the mount:
+//   4. A skill links inside its own directory, or into any document directory of the repository, the root's
+//      or an area's, because one person runs the skills of every area together; it may be mounted alone, so
+//      its workflow and rules stay inside. A served document links only to what an agent can reach through the mount:
 //      skills, manifests, document directories, and the README of a served folder. A link or an include that
 //      starts with `/` is resolved from the repository root, as the indexer resolves it.
 //   5. No rendered media or binaries; JSON parses; text carries no control or invisible characters.
@@ -411,9 +411,9 @@ const isExposedDir = (dir) =>
 const isOverview = (abs) => README_RE.test(basename(abs)) && isExposedDir(dirname(abs));
 const isReachable = (abs) => isDiscoverable(abs) || isOverview(abs) || (isDirectory(abs) && isExposedDir(abs));
 
-// The document directories a skill may link into: the repository's and its own area's. They travel with the
-// root connection and the area connection, and the area's with its plugin; a skill mounted alone or copied
-// says in its Requirements where they are.
+// The document directories a skill may include a page from: the repository's and its own area's, which the
+// indexer inlines with the skill (a sibling area's page it drops). A link may go into any document directory;
+// a skill mounted alone, installed as a plugin or copied says in its Requirements where its pages are.
 const sharedDocumentDirs = (skillRoot) =>
   manifests.filter((m) => m.dir === root || inside(skillRoot, m.dir)).flatMap((m) => m.documentDirs);
 
@@ -434,10 +434,10 @@ function checkLinks(file, text) {
     const abs = decoded.startsWith("/") ? resolve(root, decoded.slice(1)) : resolve(dir, decoded);
     if (!inside(abs, root)) {
       fail(file, `link escapes the repository: ${target}`);
-    } else if (skillRoot && !inside(abs, skillRoot) && !sharedDocumentDirs(skillRoot).some((d) => inside(abs, d))) {
-      // A skill may be mounted alone: its workflow and rules stay inside its directory, and only the shared
-      // documents of the repository or of its area are linked from outside, by the phase that reads them.
-      fail(file, `link leaves the skill and the document directories it may share (its own directory, docs/ of the repository or of its area): ${target}`);
+    } else if (skillRoot && !inside(abs, skillRoot) && !documentDirs.some((d) => inside(abs, d))) {
+      // A skill may be mounted alone: its workflow and rules stay inside its directory, and only documents are
+      // linked from outside, from any area, by the phase that reads them.
+      fail(file, `link leaves the skill and the document directories (its own directory, docs/ of the repository or of any area): ${target}`);
     } else if (servedDocument && !isReachable(abs)) {
       fail(file, `link leaves what an agent can reach through the mount (skills, manifests, document directories, the README of a served folder): ${target}`);
     } else if (!exists(abs)) {
