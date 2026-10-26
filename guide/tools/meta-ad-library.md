@@ -1,6 +1,6 @@
 # Meta Ad Library skills
 
-How the skills that read the Meta Ad Library (`meta-ad-library-…`) are written and kept in step, for authors. What the skills share at run time is the document set [`marketing/docs/meta-ad-library/`](../../marketing/docs/meta-ad-library/README.md), which agents read; this page says what goes there, what stays in a skill, how the site's facts are kept true, and how the family is tested.
+How the skills that read the Meta Ad Library (`meta-ad-library-…`) are written and kept in step, for authors. What the skills share at run time is the document set [`docs/meta-ad-library/`](../../docs/meta-ad-library/README.md), which agents read; this page says what goes there, what stays in a skill, how the site's facts are kept true, and how the family is tested.
 
 ## The tool is a website
 
@@ -8,14 +8,14 @@ There is no MCP server and no account to connect. A skill's "Requirements" name 
 
 ## What is shared and what stays in the skill
 
-| In `marketing/docs/meta-ad-library/` | In the skill |
+| In `docs/meta-ad-library/` | In the skill |
 |---|---|
 | `ad-library.md`: what the library is evidence of, the routes, the URL parameters, what a result carries, counting by age, what needs a click, manners and limits, when no route works | What to search (the terms and the views), the page-load budget, the cleaning, what counts as proof or as an item, the classes, the checkpoint, the report and its data file |
 | `record.md`: the record every route yields, where each field comes from, how long media addresses last | The fields the skill adds to its own data file (`assets/*.example.json`) |
 | `page-dump.md`: the shell route on this site (its check and the flags that pass it) and `adlib.py`; what holds for any headless run is in `docs/browser/headless.md` | |
 | `driven-browser.md`: what a driven browser does on this site, the in-page readers, the reach script; what any driven browser does is in `docs/browser/driven-browser.md` | The frame script of the creative research skill |
 
-The set sits in the area's `docs/` rather than the repository's because both skills are marketing skills: it travels with the marketing mount and the marketing plugin; a skill mounted alone cannot read the linked pages there, and a copy lacks the set, which its Requirements say. The test for a sentence: would it be true in the next skill that reads the library? Then it belongs in the set. A page of the set is reached by a root-relative path. Each skill includes its own method page and `ad-library.md`, which every run reads before its first page load, so that both arrive with the skill wherever SkillCDN serves it; `record.md` and the route pages are linked from phase 2 and cost one `read_repo_file` each when it comes. A change to `ad-library.md` changes the served digest of both skills, as a change to a manifest does: edit it deliberately.
+The set sits at the root because its two skills are of two areas, the creative research in `marketing/` and the rising products in `product/`: its included page travels with every mount, a skill mounted alone or with its area cannot read the linked pages there, and a plugin and a copy lack the set, which each skill's Requirements say. The test for a sentence: would it be true in the next skill that reads the library? Then it belongs in the set. A page of the set is reached by a root-relative path. Each skill includes its own method page and `ad-library.md`, which every run reads before its first page load, so that both arrive with the skill wherever SkillCDN serves it; `record.md` and the route pages are linked from phase 2 and cost one `read_repo_file` each when it comes. A change to `ad-library.md` changes the served digest of both skills, as a change to a manifest does: edit it deliberately.
 
 ## Facts are dated, and rediscoverable
 

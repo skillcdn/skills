@@ -5,12 +5,12 @@ license: MIT
 compatibility: Needs a real browser engine to load facebook.com/ads/library, either a shell with a Chromium-family browser on the same machine or a browser the agent can drive (a built-in browser, a browser extension, a Playwright or Chrome DevTools server). Plain fetch and search tools cannot load the site. Any agent with one of the two can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.5"
+  version: "1.6"
   tools: meta-ad-library
 skillcdn:
   include:
     - references/rising-signals.md
-    - /marketing/docs/meta-ad-library/ad-library.md
+    - /docs/meta-ad-library/ad-library.md
   translations:
     ko:
       title: 메타 광고 라이브러리 급상승 아이템 탐색
@@ -33,12 +33,12 @@ Capabilities, not product names: the tools that provide them differ by assistant
 
 | Need | Any one of | When missing |
 |---|---|---|
-| Load the library | A shell with a Chromium-family browser on the same machine, which gives both machine routes: the page dump, and a headless browser a script of the run's own drives; a browser the agent drives (the driven-browser route, which the scripted headless browser also is); what each is and how to recognize it, in the repository's [`docs/browser/`](/docs/browser/README.md) | Stop and tell the user what to add, as [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
+| Load the library | A shell with a Chromium-family browser on the same machine, which gives both machine routes: the page dump, and a headless browser a script of the run's own drives; a browser the agent drives (the driven-browser route, which the scripted headless browser also is); what each is and how to recognize it, in the repository's [`docs/browser/`](/docs/browser/README.md) | Stop and tell the user what to add, as [ad-library.md](/docs/meta-ad-library/ad-library.md) "When no route works" says. A fetch tool or a search engine is not a substitute. |
 | Write the report | A file tool; or the client's document surface | Put the whole report in the reply, and the snapshot as a code block to save. |
 
 Optional: a web-reading tool for a landing page's price. Nothing here costs money; a paid service (a scraping service, an "ad spy" subscription) is used only when the user asks for it and agrees to its cost.
 
-[rising-signals.md](references/rising-signals.md), the method, comes with this skill. How the library is reached and read is in the pages the skills of this family share, under [`marketing/docs/meta-ad-library/`](/marketing/docs/meta-ad-library/README.md). [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md), read before phase 1, which is before the seed terms are chosen and the first page is loaded, is included too and arrives with this skill wherever SkillCDN serves it. [record.md](/marketing/docs/meta-ad-library/record.md) and the page of the route the agent has, [page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) or [driven-browser.md](/marketing/docs/meta-ad-library/driven-browser.md), are read when phase 2 comes, with `read_repo_file` at those paths through the repository or the marketing connection, or as files of the marketing plugin, two levels above this skill's folder (`../../docs/meta-ad-library/`). A mount of this skill alone, or a host that takes skills through the skills extension and has no `read_repo_file`, cannot read those pages there, and a copy of this directory has none of the pages: say so in the first message and fetch what is missing before phase 2 from `marketing/docs/meta-ad-library/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`); without them the record's fields, the script and the readers are unknown.
+[rising-signals.md](references/rising-signals.md), the method, comes with this skill. How the library is reached and read is in the pages the skills of this family share, under [`docs/meta-ad-library/`](/docs/meta-ad-library/README.md). [ad-library.md](/docs/meta-ad-library/ad-library.md), read before phase 1, which is before the seed terms are chosen and the first page is loaded, is included too and arrives with this skill wherever SkillCDN serves it. [record.md](/docs/meta-ad-library/record.md) and the page of the route the agent has, [page-dump.md](/docs/meta-ad-library/page-dump.md) or [driven-browser.md](/docs/meta-ad-library/driven-browser.md), are read when phase 2 comes, with `read_repo_file` at those paths through the repository or the marketing connection, or as files of the marketing plugin, two levels above this skill's folder (`../../docs/meta-ad-library/`). A mount of this skill alone or of its area, a host that takes skills through the skills extension and has no `read_repo_file`, and the area's plugin cannot read those pages there, and a copy of this directory has none of the pages: say so in the first message and fetch what is missing before phase 2 from `docs/meta-ad-library/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`); without them the record's fields, the script and the readers are unknown.
 
 ## Inputs
 
@@ -57,11 +57,11 @@ Produces the **scope**: the sector or the broad sweep, what counts as an item in
 
 ### Phase 2: Access
 
-Produces the **route**. Take the first route of [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "Routes" that the agent has and prove it by running the first seed's first view: a count and at least one Library ID. That load is the view itself, written to the pool and counted in the budget. With a shell, that means saving the script of [page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script" and running it, not checking the machine first; with a driven browser, navigating and running the reader of [driven-browser.md](/marketing/docs/meta-ad-library/driven-browser.md) "The embedded results". Either yields the record of [record.md](/marketing/docs/meta-ad-library/record.md). When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every count by age depends on it.
+Produces the **route**. Take the first route of [ad-library.md](/docs/meta-ad-library/ad-library.md) "Routes" that the agent has and prove it by running the first seed's first view: a count and at least one Library ID. That load is the view itself, written to the pool and counted in the budget. With a shell, that means saving the script of [page-dump.md](/docs/meta-ad-library/page-dump.md) "The script" and running it, not checking the machine first; with a driven browser, navigating and running the reader of [driven-browser.md](/docs/meta-ad-library/driven-browser.md) "The embedded results". Either yields the record of [record.md](/docs/meta-ad-library/record.md). When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every count by age depends on it.
 
 ### Phase 3: Sweep
 
-Produces the **pool** and the **candidates**. Load two views per seed term, one page at a time, inside the budget of 80 page loads for the run, with `locale=en_US` on every URL. Keep the full records ([record.md](/marketing/docs/meta-ad-library/record.md)) in a file and only short lines in context; on the driven-browser route the short lines are the record. Turn ads into items and themes and tally them by "Items" and "Themes", duplicates removed by creative group; choose candidates by "Candidates and checkpoint". Checkpoint: the message that section describes.
+Produces the **pool** and the **candidates**. Load two views per seed term, one page at a time, inside the budget of 80 page loads for the run, with `locale=en_US` on every URL. Keep the full records ([record.md](/docs/meta-ad-library/record.md)) in a file and only short lines in context; on the driven-browser route the short lines are the record. Turn ads into items and themes and tally them by "Items" and "Themes", duplicates removed by creative group; choose candidates by "Candidates and checkpoint". Checkpoint: the message that section describes.
 
 ### Phase 4: Count
 
@@ -77,7 +77,7 @@ Produces one **profile** per reported item or theme, by "Profiles": what it is, 
 
 ### Phase 7: Deliver
 
-The run's folder by "Report and snapshot": `report.md` in the user's language and `snapshot.json`. A request that asked more than a ranking (what to build, what to stock, what to write about) is answered in the section the report keeps for it, from the ranking. Remove the browser profile the page dump left behind, with the script's `clean` ([page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script"). One message: where the files are, the three or four entries that matter most and why, the answer to what was asked, what was left out, and that running again in a week or two turns this snapshot into measured growth. For an item the user wants to enter, the creative research skill of this family reads its ads in depth.
+The run's folder by "Report and snapshot": `report.md` in the user's language and `snapshot.json`. A request that asked more than a ranking (what to build, what to stock, what to write about) is answered in the section the report keeps for it, from the ranking. Remove the browser profile the page dump left behind, with the script's `clean` ([page-dump.md](/docs/meta-ad-library/page-dump.md) "The script"). One message: where the files are, the three or four entries that matter most and why, the answer to what was asked, what was left out, and that running again in a week or two turns this snapshot into measured growth. For an item the user wants to enter, the creative research skill of this family reads its ads in depth.
 
 ## Hard rules
 

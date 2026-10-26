@@ -14,7 +14,7 @@ Advertisers keep paying only for what returns, so an item whose ads multiply and
 
 ## Seeds
 
-Views and counts are written here as the page-dump script's specs ([page-dump.md](/marketing/docs/meta-ad-library/page-dump.md) "The script"). On another route each key maps to a parameter of [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "URLs": `sort=recent` to the most-recent sort, `before` and `after` to the date bounds, `exact=1` to the exact phrase, `page` to the advertiser view, `status=all` to `active_status=all`; `lines` only shortens what the script prints.
+Views and counts are written here as the page-dump script's specs ([page-dump.md](/docs/meta-ad-library/page-dump.md) "The script"). On another route each key maps to a parameter of [ad-library.md](/docs/meta-ad-library/ad-library.md) "URLs": `sort=recent` to the most-recent sort, `before` and `after` to the date bounds, `exact=1` to the exact phrase, `page` to the advertiser view, `status=all` to `active_status=all`; `lines` only shortens what the script prints.
 
 - **Terms**, six to eight, in the market's language as its sellers write them, searched as `keyword_unordered`. For a sector: two or three category words, two or three problem or desire phrases, and two purchase cues joined to a category word. For a broad sweep: purchase cues alone. Purchase cues are the phrases of direct-response ads: free shipping, today only, selling out, special price, official store, back in stock; where the sector sells software, services or learning, free trial, start free, sign up, enroll. Use cues made of words: the search drops signs, so "1+1" finds nothing useful.
 - **Views per term**, one page load each: most recent, and impressions order, both with all media. When a term's first view fits on one page (`more` is false), the second would repeat the same ads: skip it. A term that returns fewer than about twenty ads is replaced once.
@@ -51,7 +51,7 @@ What the request is after decides how many of the twelve candidates are themes, 
 A request that fits both rows is decided by the word for what the user wants: products, items, things to sell or stock take the first row, a sector named with no more said included; a field, a trend, what people do or pay for takes the second. Say which row was taken at the checkpoint.
 
 - **Find.** In the pool's titles and first lines: a phrase of one to three words that three or more sellers use for the same thing. A seed term that is what sellers call the thing is itself a theme.
-- **Key.** The phrase, counted as an exact phrase. The count spans every seller that uses it and is never one seller's number. A phrase whose count sits at the library's ceiling ([ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "What a result carries") is too broad to be a theme.
+- **Key.** The phrase, counted as an exact phrase. The count spans every seller that uses it and is never one seller's number. A phrase whose count sits at the library's ceiling ([ad-library.md](/docs/meta-ad-library/ad-library.md) "What a result carries") is too broad to be a theme.
 - **Check** on the first page of the first count. An exact phrase still matches strays: when under about two thirds of the page is on the theme, tighten the phrase once (one load) or drop it; a dropped theme is not replaced, the ranking may be shorter than twelve, and the report says what was dropped and why. A language that writes the phrase two ways (spaced or joined, a loanword spelled twice) hides the ads of the other spelling: count the one more of the pool's sellers use and name the other as a flag.
 - **Tally** as for items, with sellers in place of Pages: creative groups, sellers, the youngest and the oldest `days`.
 
@@ -68,7 +68,7 @@ The checkpoint is one message in the user's language: the sector, what counts as
 
 ## Counts
 
-Four counts per candidate, by [ad-library.md](/marketing/docs/meta-ad-library/ad-library.md) "Counting by age". The query is the key as an exact phrase (an item's site, a theme's phrase), or the advertiser view when the key is a Page.
+Four counts per candidate, by [ad-library.md](/docs/meta-ad-library/ad-library.md) "Counting by age". The query is the key as an exact phrase (an item's site, a theme's phrase), or the advertiser view when the key is a Page.
 
 | Count | Spec adds | Gives |
 |---|---|---|

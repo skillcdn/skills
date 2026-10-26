@@ -16,14 +16,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - You get: the creatives that show proof of working in the Meta Ad Library, each broken down into hook, angle, structure and offer, the patterns across them, and directions for your own ads.
 - Skill: [`marketing/skills/meta-ad-library-creative-research/`](/marketing/skills/meta-ad-library-creative-research/SKILL.md)
 - Also asked as: "competitor ad research", "ad references or a swipe file for this product", "what hooks are working in Facebook and Instagram ads for this".
-- Not this one when: you want to know which products or services are being advertised more and more (rising products below), or to make the ad itself (the ad above).
-
-### "What is taking off in this market?"
-
-- You get: a ranked report of what advertisers are putting new money behind in a sector, item by item and theme by theme, with the ads, the sellers, the offers and the risks, and a snapshot the next run measures growth against.
-- Skill: [`marketing/skills/meta-ad-library-rising-products/`](/marketing/skills/meta-ad-library-rising-products/SKILL.md)
-- Also asked as: "winning or trending products", "what is hot in this field right now", "new product ideas from what people are buying", "which AI tools are being pushed".
-- Not this one when: you want the creatives of one keyword or competitor studied (the creative research above).
+- Not this one when: you want to know which products or services are being advertised more and more (rising products under Product), or to make the ad itself (the ad above).
 
 ## Media
 
@@ -79,6 +72,13 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - Not this one when: there is no brief yet (the brief under Product) or no format spec (the study, or a format of your own, above); the skill offers the routes to a spec and says what to run first. A request for the whole post ("make a card news post about this, the way that account does it") runs them in order: the study (once per account or genre), the brief, the variations where a format of your own is wanted, then this build.
 
 ## Product
+
+### "What is taking off in this market?"
+
+- You get: a ranked report of what advertisers are putting new money behind in a sector, item by item and theme by theme, with the ads, the sellers, the offers and the risks, and a snapshot the next run measures growth against.
+- Skill: [`product/skills/meta-ad-library-rising-products/`](/product/skills/meta-ad-library-rising-products/SKILL.md)
+- Also asked as: "winning or trending products", "what is hot in this field right now", "new product ideas from what people are buying", "which AI tools are being pushed".
+- Not this one when: you want the creatives of one keyword or competitor studied (the creative research under Marketing).
 
 ### "Show me five different ways to get this reference's effect."
 
@@ -157,7 +157,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - You get: the site measuring leads, checkouts and purchases without sending anything private, the datasets and the domain set up, and campaigns built from finished creatives the way a working account runs them, turned on only after the budget is confirmed, with the rules by which they are watched and changed.
 - Skill: [`engineering/skills/meta-ads-setup/`](/engineering/skills/meta-ads-setup/SKILL.md)
 - Also asked as: "set up the Meta pixel and the Conversions API", "run Facebook and Instagram ads for the site", "launch campaigns from these creatives".
-- Not this one when: you want to research other advertisers' ads (the Meta Ad Library skills under Marketing) or make the creative (the ad under Marketing).
+- Not this one when: you want to research other advertisers' ads (the Meta Ad Library skills under Marketing and Product) or make the creative (the ad under Marketing).
 
 ### "Give me an admin to watch sales and ads."
 
