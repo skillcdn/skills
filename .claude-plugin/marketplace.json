@@ -28,7 +28,13 @@
     {
       "name": "design",
       "source": "./design",
-      "description": "Design work in the team's design tool: slides and decks, brand assets, icons and store graphics. A document moved into an existing Figma Slides deck as new slides in the deck's own measured design system, audited by numbers and zoomed renders; and a first-draft deck as HTML and PDF from an outline, in the organization's own tokens, before any design tool.",
+      "description": "Design work in the team's design tool: slides and decks, brand assets, icons and store graphics. A document moved into an existing Figma Slides deck as new slides in the deck's own measured design system, audited by numbers and zoomed renders; a first-draft deck as HTML and PDF from an outline, in the organization's own tokens, before any design tool; and four looks for one design, rendered as HTML and compared on a contact sheet, judged for the AI feel before they are shown.",
+      "license": "MIT"
+    },
+    {
+      "name": "product",
+      "source": "./product",
+      "description": "Product planning and management: discovery, research synthesis, concept directions and alternatives, requirements, specifications, roadmaps, prioritization. Four to six concept directions that get a reference's effect by other means, from a reference the user gives or one found among what is working now, placed on the axes a concept can move on, judged for the AI feel and compared with a recommendation and a runner-up, then handed to the skill that produces.",
       "license": "MIT"
     }
   ]
