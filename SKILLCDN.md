@@ -15,7 +15,7 @@ metadata:
 ---
 # Rules for every skill in this repository
 
-**Bound to a console?** When `.skillcdn-console.json` is in the checkout, or `console whoami` names a project, work the task through that SkillCDN console (`console help` says how). Check before the first step, with `console whoami`, which only says who and where; without a console, the skill runs as written.
+**Bound to a console?** When `.skillcdn-console.json` is in the checkout, or `console whoami` names a project, work the task through that SkillCDN console (`console help` says how). Check before the first step, with `console whoami`, which only says who and where; without a console, the skill runs as written. An agent that sees `.skillcdn-console.json` but cannot run `console` says so and does not start the task; it is for an agent that can.
 
 **Ask only what cannot be derived.** A skill asks for the inputs it cannot get from the request, in one short message, and derives everything else from those inputs and sensible defaults. What was derived is stated at the next step and changed when the user asks. The user need not know the tool or the craft; an answer stands for the rest of the run.
 
