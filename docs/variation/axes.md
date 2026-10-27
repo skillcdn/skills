@@ -30,6 +30,7 @@ For a look: a slide, a post, a page, a cover, a frame.
 | Shape and surface | One radius everywhere or none; borders or no borders; flat or shadowed; cards or no cards; rules and type instead of boxes. | How much the structure is drawn and how much is set. |
 | Rhythm | Static; one motion that settles; a cut on every line; a loop; a pause where the reference has none. | Tempo, and what reads as alive against what reads as busy. |
 | Tone of the copy on it | Two or three words for the voice, and what the copy never does. | Whether the look and the words agree. |
+| Density, for a format | The start's counts; fewer sentences per slide with the rest in the caption; shorter lines; one fact per slide over more slides. | How much a reader takes in at a glance. Moved only when the request asks for less or more text: a measured format's density is what it is until the user says otherwise. |
 
 ## The near and the far candidate
 
