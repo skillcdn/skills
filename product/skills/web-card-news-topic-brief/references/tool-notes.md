@@ -8,7 +8,7 @@ A search tool's own summary of its results is a lead and nothing more: a run tha
 
 ## Page readers
 
-Which tool reads what, and what a fetch tool returned or refused, is in reading-pages.md "Which tool reads a page". Several articles on one story differ in small facts (a count given as three in one outlet and four in another, a figure present in one outlet only): read them all and cross-check, as [sourcing.md](sourcing.md) says.
+Which tool reads what, and what a fetch tool returned or refused, is in reading-pages.md "Which tool reads a page". A fetch tool of one host returned a summary of the article rather than its text (checked 2026-10): a lead and not a reading, so the article was read from its HTML by a plain request, as that page says. Several articles on one story differ in small facts (a count given as three in one outlet and four in another, a figure present in one outlet only): read them all and cross-check, as [sourcing.md](sourcing.md) says.
 
 ## Downloading images
 

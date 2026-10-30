@@ -32,7 +32,7 @@ Capture the whole clip once into a capture folder of its own in the brief folder
 
 ## Finding by search
 
-For a beat 1 to 3 left unshown, an image search of the subject's name with the event: open the page each result sits on and take the image only from a page that prints a credit or is itself the rights holder (the subject's own account, an official site); the credit is that page's. Say at the checkpoint which beats needed a search and what was looked for first. A search is never the first source, because the articles' and the material's images are what the account would show and what a reader recognizes.
+For a beat 1 to 3 left unshown, an image search of the subject's name with the event: open the page each result sits on and take the image only from a page that prints a credit or is itself the rights holder (the subject's own account, an official site); the credit is that page's. Say at the checkpoint which beats needed a search and what was looked for first. A search is never the first source, because the articles' and the material's images are what the account would show and what a reader recognizes. Where the host's search tool returns text results only, an image search engine's results page opened in the browser at hand, driven or headless, lists the images with the page each sits on (checked 2026-10); the image is still taken from its page, never from the thumbnail.
 
 ## Downloading
 
@@ -52,7 +52,7 @@ The canvas is the spec's documented size when a spec exists, else the platform's
 | Smaller, down to 700 pixels on its short side | Upscaled up to two times; acceptable on a phone, soft on a tablet; the entry says the factor (the larger of canvas width over image width and canvas height over image height) |
 | Under 700 pixels on its short side | Usable only darkened under type, in a collage half, or not at all; the entry says so |
 
-Keep at least one legible image that works as a cover, the subject shots the facts need, a mood shot, and, where the account's format keeps frames whole, the frames whose captions state the facts, one per beat. Note where a logo, a watermark or a credit mark sits (a corner, the lower edge), because the build crops around it where the account crops and the licence allows, and keeps it where the account keeps it.
+Keep at least one legible image that works as a cover, the subject shots the facts need, a mood shot, and, where the account's format keeps frames whole, the frames whose captions state the facts, one per beat. Where no image of a beat reaches the canvas, look for the same photograph's larger copy in other outlets' articles, which its agency credit names, before accepting an upscale above two: a set of small copies alone was upscaled two to four times, and the slides read soft (2026-10). Note where a logo, a watermark or a credit mark sits (a corner, the lower edge), because the build crops around it where the account crops and the licence allows, and keeps it where the account keeps it.
 
 ### Legibility and what an image is
 
