@@ -112,7 +112,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Make these documents searchable for our agents."
 
-- You get: your PDFs, Word files, slides and exports as a pack of documents in your own repository: one file per document or chapter with a title and a description, a map per set, figures described and scans transcribed, checked and committed; an agent then finds a section by its words and reads it in one call.
+- You get: your PDFs, Word files, slides and exports as a pack of documents in your own repository: one file per document or chapter with a title and a description, each original kept beside its chapters, a map per set, figures kept with their words and scans transcribed, checked and committed; an agent then finds a section by its words, reads it in one call and reaches the original behind it.
 - Skill: [`engineering/skills/skillcdn-document-pack/`](/engineering/skills/skillcdn-document-pack/SKILL.md)
 - Also asked as: "turn these files into a pack", "a handbook our agents can search", "add these documents to the pack", "make the manual readable by agents".
 - Not this one when: the pack exists and you have a question for it (the question and the research below).
