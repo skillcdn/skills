@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory; a shell with git in a checkout of the pack's repository to keep notes. Works in any agent that can call MCP tools or run a shell.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: skillcdn
 skillcdn:
   include:
@@ -61,8 +61,8 @@ Produces the **frame**: the question in one line, what would answer it (a number
 
 Produces the **map reading**: the document sets the question concerns, and the documents in them that are likely to answer.
 
-1. Read the connection's instructions, then the map of each document set the question may concern: the `README.md` of the folder, named as the folder's overview by `browse_repo`. A pack of thousands of pages has many sets; the maps say which to search.
-2. Where a document is long and the question is about one part of it, outline it: `browse_repo` with the file's path lists its headings with the offset and limit that read each section.
+1. Read the connection's instructions, then the map of each document set the question may concern: the `README.md` of the folder, named as the folder's overview by `browse_repo`. A pack of thousands of pages has many sets; the maps say which to search. A question about the pack itself (what it was made from, when, for whom) is answered from its manifest, which the instructions name (`SKILLCDN.md`), read with `read_repo_file`.
+2. Where a document is long and the question is about one part of it, outline it: `browse_repo` with the file's path lists its headings with the offset and limit that read each section; its first page also names the original the document was made from, with where its bytes are, and its pictures with their words ([searching.md](/engineering/docs/skillcdn/searching.md), "Reading what was found").
 
 ### Phase 3: Search
 
@@ -79,6 +79,7 @@ Produces the **evidence**: the passages read, quoted with their path and heading
 1. Read a candidate section with `read_repo_file`, the path and the offset and limit the result gave. Read the neighbouring section when the passage refers to it, and the whole document when the question is about the document rather than a passage.
 2. Follow a link in the passage to another document of the pack when the passage defers to it; the link is a repository-root path when it starts with `/`.
 3. Stop reading when the frame is answered and a second section confirms it, or when the candidates are exhausted. A rule about money, access or safety is quoted, never paraphrased.
+4. A passage that describes a figure or transcribes a scanned page is the converting agent's words, not the original's: where the answer hangs on it (a value read off a chart, a character of a transcription), say so in the answer and name the original the document's outline gives, with where its bytes are and the place in words ("page 12 of the original"); the original itself is a download the tools do not read.
 
 ### Phase 5: Answer
 

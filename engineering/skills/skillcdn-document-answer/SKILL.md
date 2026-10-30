@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory. Works in any agent that can call MCP tools or run a shell; no file tool is needed, since the answer is the delivery.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: skillcdn
 skillcdn:
   include:
@@ -54,7 +54,7 @@ Produces the **frame**: the question in one line, the shape of its answer (a num
 
 ### Phase 2: Map
 
-Produces the **map reading**: the document sets the connection's instructions name, or `browse_repo` on the root lists, and the `README.md` of each set the question could concern, read whole (the folder's overview that `browse_repo` names; a set without one is listed with `browse_repo`, and the pack's root `README.md`, where the connection names one, is read as its map); a document of many sections that the question is about is outlined with `browse_repo` on its path. The frame's words are revised with the terms the maps use (the heading a map promised, the term a description defines). The first search takes one set, with `path`, when the maps put the question in one set, and the whole pack when they do not; a scoped search that finds nothing is run again over the whole pack with the same words before anything else, and that run is not one of the three searches.
+Produces the **map reading**: the document sets the connection's instructions name, or `browse_repo` on the root lists, and the `README.md` of each set the question could concern, read whole (the folder's overview that `browse_repo` names; a set without one is listed with `browse_repo`, and the pack's root `README.md`, where the connection names one, is read as its map); a document of many sections that the question is about is outlined with `browse_repo` on its path, whose first page also names the original the document was made from and its pictures with their words; a question about the pack itself is answered from its manifest, which the connection's instructions name. The frame's words are revised with the terms the maps use (the heading a map promised, the term a description defines). The first search takes one set, with `path`, when the maps put the question in one set, and the whole pack when they do not; a scoped search that finds nothing is run again over the whole pack with the same words before anything else, and that run is not one of the three searches.
 
 ### Phase 3: Search
 
@@ -70,6 +70,7 @@ Produces the **evidence**: the passages read, each quoted with its path, heading
 
 1. Read each candidate with `read_repo_file` at its offset and limit; read the neighbouring section where the passage defers to it, and follow a link to another document of the pack where the passage points there.
 2. Stop when a section answers the frame and a second section says the same or defers to it, or when every candidate is read. A frame one section alone answers is answered from it, and the answer says that no other section read says the same; candidates all read with no answer send the search back to phase 3 for its next change. A rule about money, access or safety is quoted, never only paraphrased: the lead may say it in its own words, and the quote beneath carries the rule's own numbers, names and conditions.
+3. A passage that describes a figure or transcribes a scanned page is the converting agent's words: where the answer hangs on it, the answer says so and names the original the document's outline gives, with where its bytes are and the place in words ("page 12 of the original"), since the original is a download the tools do not read ([searching.md](/engineering/docs/skillcdn/searching.md), "Reading what was found").
 
 ### Phase 5: Draft and verify
 
