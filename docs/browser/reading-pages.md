@@ -7,6 +7,7 @@ How an article, a help page or a site page is read for its text and its images: 
 | Tool | Reads | Does not |
 |---|---|---|
 | A fetch tool that converts a page to text | An article's text and, usually, its figure images with their captions | The share image in the page's metadata, on one tool (checked 2026-10); a page that renders by script (a help site returned nothing); a page behind a browser check; some outlets' pages, which answer a plain fetch with an error page while a browser reads the article as any visitor's does (checked 2026-10) |
+| A fetch tool that summarizes a page (an account of it, or an answer about it, rather than its text; one host's, checked 2026-10) | A lead to what the page holds | The page: nothing it returns is a source sentence; the text comes from the HTML by a plain request, or from a browser |
 | A browser the agent drives ([driven-browser.md](driven-browser.md)) | Everything a person sees, the image elements by a script in the page, pages that render by script, pages that answer only a browser engine | A page behind a wall (below) |
 | A shell with `curl` | A page's HTML as the host serves it to a plain request; a media file the host serves to a plain request | A page that answers only a browser engine (an HTTP 403 with a check script): the check is not replayed, and the request is not dressed up as a browser's |
 
