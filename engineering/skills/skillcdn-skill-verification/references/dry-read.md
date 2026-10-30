@@ -16,6 +16,8 @@ Start the fresh agent as [fresh-agents.md](/engineering/docs/skillcdn/fresh-agen
 
 For a change to the skill or to a page it reads, the brief also gives the old text (`git show <commit before the change>:<path>` for each file) and asks, under these headings: lost facts, every fact an agent needs in the old text that the new text no longer holds, quoting the old sentence; contradictions between the skill and a shared page; dangling references, a link, a section name or a "the shared page" that points to nothing; self-containment, anything an agent must do to run safely that now lives only in a shared page; public hygiene, a run's subject, people, lines or references, a secret or a private hostname; and whether the catalogs and the guide agree with what is on disk. Each finding with its file and line and a one-line fix, "none found" under a heading with nothing, and the three that matter most at the end.
 
+For a release review, the brief gives the release's changelog entries and the spec diff as text, beside the files, and asks one more heading first: stale statements, every sentence of the files that states how the service behaves and that the release contradicts, dates or extends, quoting the sentence and the changelog entry it bears on; a fresh reader finds these better than the author, who remembers the service as it was.
+
 ## Checking the report
 
 - Look up every quoted sentence in its file before using it, and record its line. A quote that does not match word for word is set aside: a fix aimed at a misquote changes the wrong sentence.

@@ -1,11 +1,11 @@
 ---
 name: skillcdn-skill-verification
-description: Verifies a skill in a repository of the SkillCDN Format the way a user's agent will meet it. Use when the user says to verify, test, dry-read or try a skill from a fresh session, to check that a skill still works after a change, or to see whether a fix holds. To make a new skill from work already done, use skillcdn-skill-authoring, which verifies its own draft. A fresh agent reads its files for every place it would have to guess, a fresh agent runs the served skill with its checkpoints answered as the user would, and what both find is folded into the sentences it bears on. Reads what is served, or a local change before it is pushed; compares old and new text after a tool, a model or a shared page changed; checks every quote; keeps the run's subject, lines and outputs out of the repository; pushes only with the user's word and reruns at most once unasked.
+description: Verifies a skill in a repository of the SkillCDN Format the way a user's agent will meet it. Use when the user says to verify, test, dry-read or try a skill from a fresh session, to check that a skill still works after a change, to see whether a fix holds, or to bring the skills up to date after a release of SkillCDN or the console. To make a new skill from work already done, use skillcdn-skill-authoring, which verifies its own draft. A fresh agent dry-reads its files for every place it would have to guess, another runs the served skill with its checkpoints answered as the user would, and what both find is folded into the sentences it bears on. Reads what is served, or a local change before it is pushed; compares old and new text after a tool, a model or a shared page changed, and reads a release's changelog and spec against every sentence about the service; checks every quote; keeps the run's subject, lines and outputs out of the repository; pushes only on the user's word and reruns at most once unasked.
 license: MIT
 compatibility: Needs a checkout of the repository the skill lives in, with git and Node.js, the SkillCDN connection to that repository, and a way to start a fresh agent (a subagent tool, or a second session the user starts). The run of the skill under test needs that skill's own tools. Works in any agent that can read files, run a shell and call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: skillcdn
 skillcdn:
   include:
@@ -16,7 +16,7 @@ skillcdn:
   translations:
     ko:
       title: 새 세션으로 하는 스킬 검증
-      description: SkillCDN 포맷 저장소의 스킬을 사용자의 에이전트가 만나는 그대로 검증합니다. 새 에이전트가 파일만 읽고 추측해야 할 곳을 찾고, 새 에이전트가 서빙된 스킬을 실제로 실행하며 체크포인트는 사용자처럼 한 줄로 답하고, 둘에서 나온 발견을 해당 문장에 반영합니다. 서빙된 버전도, 푸시 전의 로컬 변경도, 도구·모델·공유 문서가 바뀐 뒤의 변경 전후도 확인하고, 인용은 원문과 대조하며, 실행의 대상·대사·결과물은 저장소에 넣지 않고, 푸시는 사용자 승인 뒤에만 하며, 요청 없는 재실행은 한 번까지만 합니다. 스킬을 검증·테스트·드라이 리드하거나 새 세션으로 돌려 볼 때, 변경 뒤에도 스킬이 잘 되는지 확인할 때, 수정이 먹혔는지 볼 때 쓰세요. 이미 한 일로 새 스킬을 만들 때는 skillcdn-skill-authoring을 쓰세요.
+      description: SkillCDN 포맷 저장소의 스킬을 사용자의 에이전트가 만나는 그대로 검증합니다. 새 에이전트가 파일만 읽고 추측해야 할 곳을 찾고, 새 에이전트가 서빙된 스킬을 실제로 실행하며 체크포인트는 사용자처럼 한 줄로 답하고, 둘에서 나온 발견을 해당 문장에 반영합니다. 서빙된 버전도, 푸시 전의 로컬 변경도, 도구·모델·공유 문서가 바뀐 뒤의 변경 전후도 확인하고, SkillCDN이나 콘솔의 새 릴리스는 체인지로그와 명세를 서비스의 동작을 적은 모든 문장과 대조하며, 인용은 원문과 대조하고, 실행의 대상·대사·결과물은 저장소에 넣지 않고, 푸시는 사용자 승인 뒤에만 하며, 요청 없는 재실행은 한 번까지만 합니다. 스킬을 검증·테스트·드라이 리드하거나 새 세션으로 돌려 볼 때, 변경 뒤에도 스킬이 잘 되는지 확인할 때, 수정이 먹혔는지 볼 때, 릴리스 뒤에 스킬들을 최신으로 맞출 때 쓰세요. 이미 한 일로 새 스킬을 만들 때는 skillcdn-skill-authoring을 쓰세요.
 ---
 # Verifying a skill from a fresh session
 
@@ -51,7 +51,7 @@ The checkout's own conventions decide how a fix is written and where it goes: it
 | Input | Source |
 |---|---|
 | The skill | Required: a path (`<area>/skills/<name>`), a name, or "this skill" in a session that has just worked on one. Asked only when missing or ambiguous: "Which skill should I verify? A path like `<area>/skills/<name>`, or its name." |
-| The mode | Derived from the request: a dry read alone when only that is asked; otherwise a full verification (dry read, fresh run, fold-in). It is also a change review when the checkout holds an unpushed change to the skill or to a page it reads, or the user says a tool, a model or a shared page changed under it. |
+| The mode | Derived from the request: a dry read alone when only that is asked; otherwise a full verification (dry read, fresh run, fold-in). It is also a change review when the checkout holds an unpushed change to the skill or to a page it reads, or the user says a tool, a model or a shared page changed under it; and a release review when the user says SkillCDN, the console or another service the skills state facts about shipped a version: then the change under the skills is the service's own, read in phase 1 from its release notes, and the review covers every skill and shared page that states how the service behaves, the fresh run going to the skill the release changes most. |
 | The request for the run | Optional: the user's own words for what the skill under test should be asked. Derived otherwise in phase 1. |
 | Everything else | Derived and shown at the plan checkpoint: the order, the answers, how far the run goes, the runner, the outputs folder, the time and the spend, any rerun. |
 
@@ -64,7 +64,7 @@ Each phase produces a named artifact. The findings, the plan and the run record 
 Produces the **frame**: the skill, its address, the served commit against the checkout, what changed, the mode, the order and the request for the run.
 
 1. Find the skill: its directory, its `SKILL.md`, the manifests above it, the files its `skillcdn.include` lists and the pages its phases link. Its address is the repository's (`skillcdn.ai/gh/<owner>/<repo>`, from the root README or the git remote). Check the tools its Requirements name.
-2. Compare what is served with the checkout, as [serving.md](/engineering/docs/skillcdn/serving.md) "Which commit an agent gets" says, for the skill's directory, the manifests above it and every page it includes or links. Read what changed since the skill was last verified: the git log of those paths, and the **coverage notes**, wherever the checkout records what no run has reached (in this repository, the skill's row in `guide/roadmap.md` and its tool notes).
+2. Compare what is served with the checkout, as [serving.md](/engineering/docs/skillcdn/serving.md) "Which commit an agent gets" says, for the skill's directory, the manifests above it and every page it includes or links. Read what changed since the skill was last verified: the git log of those paths, and the **coverage notes**, wherever the checkout records what no run has reached (in this repository, the skill's row in `guide/roadmap.md` and its tool notes). For a release review, read the release first: the changelog entries between the two versions and the diff of the specifications and the author guides (for SkillCDN, `packages/*/CHANGELOG.md` and `docs/specs/*.md` of its repository between the two tags, or the release notes on the git host; for the console, its package's changelog and `docs/specs/*.md`), then find every sentence in the shared pages and the skills that states how the service behaves (what a tool answers, what a check prints, what a route returns, a rule of the format the skills restate in their own form) and list each the release contradicts, dates or extends, with the version; those sentences are the findings of this mode, folded in by phase 5 with the version and the month, and the one the release changes most names the skill the fresh run exercises.
 3. Derive the order. Served and unchanged: the dry read and the run both read the served commit, and one fold-in follows them. A local change to the skill or to a page it reads: the change is dry-read first, its fixes are pushed with it on the plan's word, and the run reads the pushed commit.
 4. Derive the request for the run, as [fresh-run.md](references/fresh-run.md) "The plan" says; the dry read uses it, and the plan shows it, where the user may change it.
 
@@ -109,6 +109,7 @@ Deliver in one message: the skill's address and the served commit; what the dry 
 | The files answer it on this agent's second read, and one reader alone missed it | No change | Listed as resolved |
 | The run improvised a step, or asked what the skill derives | Fix | The phase, or the derivation rule |
 | The tool or the service behaved differently from a sentence | Fix | The skill's `tool-notes.md`, or the family's page, with the source and the month |
+| A release changed what a sentence states of the service, or made a rule of the format the skill restates in its own form stale | Fix | The sentence, with the version and the month; a rule of the format changed in the skill's own form, and the manifests reported to the user where the release moves a rule of theirs |
 | A one-time slip of the run, or an answer in another language | No change | The maintainer list |
 | A rule of the format or of a manifest | No change | Reported to the user |
 | A fix that fits only the run's subject, or tightens a near miss no user would notice | Not made | Generalized, or dropped |

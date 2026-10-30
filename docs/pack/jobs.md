@@ -107,7 +107,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 - You get: what a fresh agent had to guess in the skill's files, a run of the served skill with its checkpoints answered as you would, and the findings folded back into it.
 - Skill: [`engineering/skills/skillcdn-skill-verification/`](/engineering/skills/skillcdn-skill-verification/SKILL.md)
-- Also asked as: "dry-read this skill", "test the skill from a fresh session", "does the fix hold", "check the skill after the tool changed".
+- Also asked as: "dry-read this skill", "test the skill from a fresh session", "does the fix hold", "check the skill after the tool changed", "bring the skills up to date after the new release".
 - Not this one when: the skill is not written yet (the authoring above).
 
 ### "Make these documents searchable for our agents."

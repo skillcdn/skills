@@ -4,7 +4,7 @@ How the evidence becomes a skill a fresh agent can run alone: what to ask, what 
 
 ## The description
 
-Search ranks the description first, and search and browse results show its first 200 characters. Write it as the user would say the job, then what comes out, then "Use when ..." with the phrases the user actually used, formal and casual. Name the tool, but open with the job: "Makes a vertical ad from a reference video and a product link" before "on Higgsfield". Say when another skill of the repository is the better choice, so that two skills with a shared word do not compete. Before the draft is shown, write five sentences a user would say that must reach this skill and three that sound alike and must not, and read the description against each.
+Search ranks the description first, and it is the whole of what a client sees of a skill before it loads it: the connection's instructions quote none of it (only the pack's and each area's), a folder listing shows its first 240 characters and a search result its first 360 (SkillCDN 0.4.1, checked 2026-10). Write it in this order, as the newest skills of the pack do: what comes out from what, in the nouns the user said (the job, the input, the result, with their common synonyms), the tool named but the job first ("Makes a vertical ad from a reference video and a product link" before "on Higgsfield"); then "Use when a user says ..." with three to five of the phrases the user actually used, formal and casual, quoted; then the seam, which skill of the pack its input comes from and which takes its result, and when a neighbouring skill is the better choice, so that two skills with a shared word do not compete; then how, in a clause or two; then what it costs where that is nothing ("Nothing is spent."). The `translations` description says the same in the user's language, in the same order, and changes in the same edit. Before the draft is shown, write five sentences a user would say that must reach this skill and three that sound alike and must not, and read the description against each.
 
 ## Asked or derived
 
@@ -35,9 +35,11 @@ A phase consumes an artifact and produces a named one, in the order the run met 
 
 A go-ahead ends the stops of taste and of reporting, never the stops of spend or of irreversible acts. "Takes are reported, not approved one by one" is the pattern: the unit the user judges is the plan and the result, not every intermediate.
 
+What this table decides is written as the skill's "How the user is involved" section, four bullets in a fixed order: *Questions* (each question in the words it is asked, and the condition under which it is asked at all), *Checkpoints* (each stop with what its message holds), *Go-ahead* (what "go ahead alone" skips and what it never skips: a spend, what leaves, a pick that is the user's), *Changes mid-run* (which phase a correction re-enters at, written from the corrections of the run: "too much text" re-enters at the plan and applies to every slide, not the one named). A fresh agent reads this section before the workflow, so a stop the workflow names and this section does not is a finding.
+
 ## Verdicts
 
-From every draft the run set aside and every retry: the condition that made it fail, the condition that would have passed it, and how many tries the run allowed. Write them as a table (accept, accept with a change, redo) that the agent reads before the costly step, with the retry budget and who pays for a second retry. Name what is close enough: a verdict that redoes everything imperfect spends without end, and one that accepts everything teaches nothing.
+From every draft the run set aside and every retry: the condition that made it fail, the condition that would have passed it, and how many tries the run allowed. Write them as a table (accept, accept with a change, redo) in a "Verdicts" section of their own between the workflow and the hard rules, which the agent reads before the costly step or the review, with the retry budget and who pays for a second retry. Name what is close enough: a verdict that redoes everything imperfect spends without end, and one that accepts everything teaches nothing. A result the user sent back is a row whose "redo" names what the run changed to pass.
 
 ## Hard rules
 
@@ -79,6 +81,12 @@ Everything the skill cannot work without lives in its directory, because it may 
 | How the tool behaved in this skill's own phases | `references/tool-notes.md`, by topic, dated where a fact can go stale | Found where an agent looks for it, not where it was learned |
 | What would be true word for word in the next skill of the family | The family's document set (`docs/<family>/` at the root, or an area's `docs/` when every skill that includes its pages is in that area), once a second skill exists or is planned; the page every run needs included by its root-relative path, the rest linked | Written once, kept current in one place |
 | A handover from another skill: which result it takes, how it chooses | This skill, in a sentence that names the other | The skill that is used stays general |
+| Which shared pages arrive with the skill and which are only linked, what a copy, an area plugin or a mount below the root lacks and where to fetch it | The last paragraph of the Requirements, naming the repository | A fresh agent on any mount knows what it is missing before it starts |
+| The specific form a rule of the area takes in this skill (what "match what exists" or "evidence apart from inference" means here) | One sentence after the Requirements | The area's rule arrives with the skill; its form here does not |
+| What the tools did in this skill's own phases, read before phase 1 | `references/tool-notes.md`, linked from the Requirements | A run meets the tool's edges before it meets them again |
+| The sentence a user says, what comes back, the other phrasings, the look-alike skill | A section of `docs/pack/jobs.md` | The index an agent searches first; the check fails without it |
+| What a run reached and what stays untried, at which version | The skill's row in `guide/roadmap.md` | The next maintainer's coverage notes |
+| The title and the description in the user's language | `skillcdn.translations` in the front-matter | For people reading the page in that language; never searched |
 | An example of a data file the skill reads or writes | `assets/<name>.example.json`, placeholder values | Small JSON is indexed and read; outputs are not committed |
 | A helper an agent may run locally | `scripts/<name>.example.<ext>`, optional | Served as text, never run by the service; the skill works without it |
 
@@ -86,7 +94,7 @@ Budget: the body and the includes together around 16 KiB before the inherited ru
 
 ## Folding a run in
 
-A finding changes the sentence it bears on; nothing is appended as a log. A step the fresh agent guessed: the phase gains the sentence it lacked. A tool that behaved differently: the sentence in `tool-notes.md` or the family page changes, with the source and month where the fact can go stale. A word the agent did not understand: the term joins the terminology. A correction the user made for the second time: a rule. The run's product, persona, lines and references stay out; the behavior goes in.
+A finding changes the sentence it bears on; nothing is appended as a log. A step the fresh agent guessed: the phase gains the sentence it lacked. A tool that behaved differently: the sentence in `tool-notes.md` or the family page changes, with the source and month where the fact can go stale. A word the agent did not understand: the term joins the terminology. A correction the user made for the second time: a rule. The run's product, persona, lines and references stay out; the behavior goes in. With the change: the minor version raised when a run would go differently (a step, a stop, a verdict, a rule, a value) and left for wording; the `translations` changed where the description changed; the catalog rows and the jobs section only where the one-line summary changed; the roadmap row's coverage notes saying what this run reached and what stays untried.
 
 ## Before the draft is shown
 
@@ -100,7 +108,10 @@ Read the draft as a fresh agent, and fix:
 - A step a fresh agent must guess: an artifact used before it is named, a choice without its rule, a question without its wording.
 - A checkpoint that stops for nothing, or a spend without one.
 - A rule without its why, or in capitals.
-- The description's first 200 characters without the job, or "Use when" missing anywhere in it.
+- The description's first 240 characters without the job, "Use when" missing anywhere in it, or a `translations` description that says something else.
+- A section of the skeleton missing: "How the user is involved" with its four bullets, "Verdicts" where the run set anything aside, a phase whose artifact is not named, a checkpoint whose message is not written.
+- The Requirements without the paragraph that says which shared pages arrive and what a copy, a plugin or a mount below the root lacks.
+- No section in `docs/pack/jobs.md`, or a roadmap row without what stays untried.
 - The size of the body and the includes against the target; what one phase needs, linked instead.
 
 ## What not to do
