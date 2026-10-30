@@ -1,27 +1,27 @@
 ---
 name: SkillCDN Pack
-description: SkillCDN's own pack. Skills for an AI agent to do real company work, from marketing to design, engineering and customer support. docs/pack/finding-a-skill.md says how to find the skill for a job.
-image: https://raw.githubusercontent.com/skillcdn/skillcdn/main/apps/web/public/brand/banner.png
+description: Your marketer, designer and developer in the AI you already use, making the short ad, the card news, the deck, the web app and the meeting minutes itself, checked before you see them. docs/pack/finding-a-skill.md says how to find a skill.
+image: https://raw.githubusercontent.com/skillcdn/skillcdn/main/packages/brand/banner.png
 documents:
   - docs
 language: en
 translations:
   ko:
     name: SkillCDN 팩
-    description: SkillCDN의 팩. AI 에이전트가 실제 회사 업무를 하기 위한 스킬. 마케팅부터 디자인, 엔지니어링, 고객지원까지. 일에 맞는 스킬을 찾는 법은 docs/pack/finding-a-skill.md에 있습니다.
+    description: 이미 쓰는 AI 안의 마케터, 디자이너, 개발자. 숏폼 광고, 카드뉴스, 발표 덱, 웹 앱, 회의록을 직접 만들고, 보여 드리기 전에 검토합니다. 일에 맞는 스킬을 찾는 법은 docs/pack/finding-a-skill.md에 있습니다.
 license: MIT
 metadata:
   author: skillcdn
 ---
 # Rules for every skill in this repository
 
-**Bound to a console?** When `.skillcdn-console.json` is in the checkout, or `console whoami` names a project, work the task through that SkillCDN console (`console help` says how). Check before the first step, with `console whoami`, which only says who and where; without a console, the skill runs as written. An agent that sees `.skillcdn-console.json` but cannot run `console` says so and does not start the task; it is for an agent that can.
+**Bound to a console?** When `.skillcdn-console.json` is in the checkout, or `console whoami` names a project, work the task through that SkillCDN console (`console help` says how). Check before the first step, with `console whoami`, which only says who and where; without a console, the skill runs as written. An agent that sees `.skillcdn-console.json` but cannot run `console` says so and does not start the task; it is for an agent that can. A `whoami` the console refuses because its person is out (`auth.deactivated`, `auth.not_admitted`) is reported the same way, and the task is not started as if there were no console.
 
 **Ask only what cannot be derived.** A skill asks for the inputs it cannot get from the request, in one short message, and derives everything else from those inputs and sensible defaults. What was derived is stated at the next step and changed when the user asks. The user need not know the tool or the craft; an answer stands for the rest of the run.
 
 **Show every step, briefly.** Each phase ends with its result in front of the user in plain words: what was made, and what comes next. Where the skill stops for the user, the message also gives the recommendation, and one word continues; elsewhere the run goes on. When the user says to go ahead alone, the stops end; consent to spend never does, nor the confirmation of what leaves.
 
-**Request missing tools.** Before starting, confirm the tools a skill names are reachable. If one is missing, stop and tell the user exactly what to add and why. Do not substitute something that changes the result or the cost, and do not pretend the step happened.
+**Request missing tools.** Before starting, confirm the tools a skill names are reachable. If one is missing, stop and tell the user exactly what to add and why. Do not substitute something that changes the result or the cost unless the skill names it as the alternative, and never pretend the step happened. A site, a page or a service a step needs that cannot be reached from where the agent runs is a missing tool too: say so when it happens, take the alternative the skill names where it has one, and say in that step's message and in the delivery which way was taken and what differs in the result because of it.
 
 **Spend only with consent.** Anything that costs the user money or credits is estimated first and started only after they agree. Keep a running record against the estimate and stop to ask before exceeding it. Use the cheapest setting that answers the question; draft quality is for drafts.
 

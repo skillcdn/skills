@@ -1,11 +1,11 @@
 ---
 name: Media
-description: Skills for making original video and audio content, such as scripted short dramas, series episodes and other story-driven shorts for vertical platforms. Use when the task is to write and produce a story as video, not to promote a product.
+description: An episode of an original vertical short drama from a premise or a series bible, every line spoken by the model and verified, the subtitles in code. Use when the task is to write and produce a story as video, not to promote a product.
 license: MIT
 translations:
   ko:
     name: 미디어
-    description: 숏폼 드라마, 시리즈 회차, 이야기 중심의 세로 영상처럼 창작 영상·오디오 콘텐츠를 만드는 스킬입니다. 제품을 알리는 영상이 아니라 이야기를 쓰고 영상으로 제작할 때 쓰세요.
+    description: 프리미스나 시리즈 바이블로 만드는 세로 숏폼 드라마 한 회. 모든 대사를 모델이 말하고 검증하며, 자막은 코드로 넣습니다. 제품을 알리는 영상이 아니라 이야기를 쓰고 영상으로 제작할 때 쓰세요.
 metadata:
   author: skillcdn
 ---

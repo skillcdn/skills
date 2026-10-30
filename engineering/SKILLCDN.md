@@ -1,11 +1,12 @@
 ---
 name: Engineering
-description: Skills for software development, for the tooling an agent works with, and for packs of documents. Use when the task is to build or change software (writing and changing code, building apps and taking them live, keeping a codebase's documents true to it, testing, debugging), to turn a job into a skill, to make a pack of documents an agent searches through SkillCDN, or to answer a question from one.
+description: A web app built and put live, payments taken, ads connected and run, an operator dashboard, documents made searchable and answered from, skills made from work done. Use when the task is to build or change software, to turn a job into a skill, to make a pack of documents an agent searches through SkillCDN, or to answer a question from one.
+image: https://skillcdn.ai/media/16bfa5222b73f1ba1ee66b59d5ae98f4635868514dc60c7384b39c5e4ebbfbbe
 license: MIT
 translations:
   ko:
     name: 개발
-    description: 소프트웨어 개발, 에이전트가 쓰는 도구, 그리고 문서 팩을 위한 스킬입니다. 소프트웨어를 만들거나 고칠 때(코드 작성과 수정, 앱 개발과 출시, 코드베이스 문서를 사실에 맞게 유지하기, 테스트, 디버깅), 일을 스킬로 만들 때, 에이전트가 SkillCDN으로 검색하는 문서 팩을 만들 때, 또는 팩에서 질문에 답할 때 쓰세요.
+    description: 웹 앱을 만들어 배포하고, 결제를 붙이고, 광고를 연결해 운영하고, 운영자 대시보드를 만들고, 문서를 검색 가능한 팩으로 만들어 답하고, 한 일을 스킬로 만듭니다. 소프트웨어를 만들거나 고칠 때, 일을 스킬로 만들 때, 에이전트가 SkillCDN으로 검색하는 문서 팩을 만들거나 팩에서 질문에 답할 때 쓰세요.
 metadata:
   author: skillcdn
 ---
