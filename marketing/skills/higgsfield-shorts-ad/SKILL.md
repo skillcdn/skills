@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Higgsfield MCP server with video generation, image generation, video analysis, media upload and the cloud sandbox (ffmpeg and Whisper). Works in any agent that can call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.9"
+  version: "1.10"
   tools: higgsfield
 skillcdn:
   include:
@@ -31,7 +31,7 @@ One reference video and one product (a link is enough) go in; a captioned vertic
 ## How the user is involved
 
 - **Questions:** only for the product, and for the reference video when the request has none and nothing at hand can find one. Nothing else is ever asked; it is derived. A missing reference is found, not asked for, wherever a skill that researches running ads is at hand ([analysis-brief.md](references/analysis-brief.md) "When there is no reference").
-- **Checkpoints:** the research skill's own shortlist checkpoint when the reference is found, then the plan with its cost, the portraits, the first frames, the clean master, the finished ad. Each is one message in plain words, as short as its content allows: what was made, the recommendation, and that one word ("OK" in the user's language) continues. Anything can be changed at a checkpoint. Takes are reported, not approved one by one.
+- **Checkpoints:** the research skill's own shortlist checkpoint when the reference is found, the concept directions' sheet from the variations skill when it is at hand (phase 3), then the plan with its cost, the portraits, the first frames, the clean master, the finished ad. Each is one message in plain words, as short as its content allows: what was made, the recommendation, and that one word ("OK" in the user's language) continues. Anything can be changed at a checkpoint. Takes are reported, not approved one by one.
 - **Go-ahead:** when the user says to go ahead alone, the checkpoints after the cost are skipped; the cost is confirmed in every mode.
 - **Changes mid-run:** applied from that point on; reported at the next checkpoint when within the accepted budget, re-quoted first when beyond it.
 
@@ -87,6 +87,8 @@ Produces the **analysis brief** ([template](references/analysis-brief.md)).
 ### Phase 3: Concept and plan
 
 Produces the **concept**, the **cast list**, the **shot list** ([example](assets/shot-list.example.json)) and the **edit plan**.
+
+Before the story, the directions: by the repository's rule on starting from a reference, the pack's `web-concept-variations` runs on the reference where it is at hand (the mechanism as the analysis brief reads it, the product as the subject), stopping at its own sheet, and the user's pick is the story's rule, device, figure and hook as the variation set's [handoff.md](/docs/variation/handoff.md) "By producing skill" says; the reference's own mechanism carried straight is the second offer, taken when the user says so or when that skill is not at hand, said so in the plan. On a go-ahead the recommended direction is taken. Nothing is spent here: the directions are text.
 
 1. **Story.** By [story.md](references/story.md) "Writing the new story": the rule of the world taken from what the product itself claims to know or do, in its own vocabulary; a device from the product's world; the figure (the site's own persona when it has one); five hooks scored against the table and one kept, with the runner-up; the signature line in the figure's voice; the reveal as one flat fact with the sentence the viewer thinks next; the lines in order, each adding one fact, at the reference's measured density. This is the concept: a different situation, setting, cast and lines that deliver the same mechanism in the reference's medium and look. The reference's surface (its scenes, its device, its wording, its cast) is not reused, and a story that would work for any product in the category is rewritten. Write one alternative (another rule or device) in one line for the checkpoint. Only when the user asks for a close remake is the reference followed scene by scene, and the plan says so.
 2. **Style line.** One sentence from the brief's medium and look that fixes the style for every image and take prompt: the medium, line, color and shading, backgrounds, light, camera. Repeated verbatim in every portrait, frame and take prompt, so they match ([cast.md](references/cast.md)); a portrait prompt may leave out its scene clauses (background, camera).
