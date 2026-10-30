@@ -10,8 +10,9 @@ Usage:  python render.py <minutes.json> [--out <folder>] [--png] [--sheet] [--ch
   a bracketed head stops the render and is reported with the string's path in the file
   ($.sections[2].items[0].body) and the character's name. --check-only runs the check and stops;
   --no-check renders anyway, for a look at a draft; a delivery never uses it.
-- Writes <out>/<file>.html, the stylesheet inline and the logos embedded as data URLs (paths relative
-  to the minutes file; a missing file is reported and draws nothing), then prints <out>/<file>.pdf at
+- Writes <out>/<file>.html, the stylesheet inline, the type Pretendard from its documented stylesheet
+  unless `theme` names another font (the system's sans as the fallback), and the logos embedded as data
+  URLs (paths relative to the minutes file; a missing file is reported and draws nothing), then prints <out>/<file>.pdf at
   A4 with the page number in the foot, with Playwright from Python and the Chrome or Edge already
   installed (the channel "chrome", then "msedge", then Playwright's own Chromium), and says how many
   pages it has. Without Playwright the PDF is skipped with a message. --out defaults to the folder of
@@ -40,6 +41,13 @@ USUAL_FORBIDDEN = {
 for _i in range(20):
     USUAL_FORBIDDEN[chr(0x2460 + _i)] = "circled number"
 SKIP_KEYS = ("file", "lang", "logos", "theme", "style", "external")  # paths, codes and the style itself
+# The type: Pretendard, loaded from its documented stylesheet so that the print is the same on any machine with the
+# network, with the system's sans that has the script's letters as the fallback; an organization's own font goes in
+# theme.font and theme.font_css. The same default as the deck skill's helper.
+DEFAULT_THEME = {
+    "font": "Pretendard",
+    "font_css": "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css",
+}
 FONT_FALLBACK = "'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Noto Sans CJK KR', sans-serif"
 SECTION_TYPES = ("text", "list", "table", "kv")
 CHANNELS = ("chrome", "msedge", None)  # the installed browsers first, Playwright's own Chromium last
@@ -56,7 +64,7 @@ body { font-family: @FONT; color: #1b1b1b; margin: 0; font-size: 10.5pt; line-he
 .top .logos .sep { width: 0.6px; height: 4.5mm; background: #bbb; }
 .top .org { font-size: 9.5pt; color: #555; letter-spacing: 0.5px; }
 .top .kind { font-size: 9.5pt; color: #555; }
-h1 { font-size: 18pt; margin: 0 0 5mm; letter-spacing: -0.2px; color: #111; }
+h1 { font-size: 18pt; margin: 0 0 1.5mm; letter-spacing: -0.2px; color: #111; }
 table { width: 100%; border-collapse: collapse; }
 table.meta { margin-bottom: 7mm; font-size: 10pt; }
 table.meta th { width: 22mm; text-align: left; background: #f2f2f2; color: #333; font-weight: 600;
@@ -216,7 +224,7 @@ def render_section(sec):
 
 
 def render_html(spec, base_dir):
-    theme = spec.get("theme") or {}
+    theme = {**DEFAULT_THEME, **(spec.get("theme") or {})}
     font = theme.get("font")
     stack = (f"'{font}', " if font else "") + FONT_FALLBACK
     font_import = f"<style>@import url('{html.escape(theme['font_css'])}');</style>" if theme.get("font_css") else ""

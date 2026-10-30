@@ -13,6 +13,10 @@ How `scripts/render.py` and the browser behaved in this skill's own phases, by t
 - The page count is read from the PDF's own page objects by a regular expression; Chromium wrote them in the clear, so the count matched the pages (checked 2026-10). When it reads zero, the helper prints no count, and the pages are counted in the PDF reader.
 - The preview is a full-page screenshot of the HTML at A4 width, 794 pixels, before the print: it shows the content and the composition, not the page breaks, which the PDF shows.
 
+## The type
+
+- Without Pretendard on the machine, the system fallback (Malgun Gothic on Windows) set the same minutes wider and heavier, and a reader who knew the organization's minutes saw them as less finished than the originals (checked 2026-10). The helper therefore loads Pretendard from its documented stylesheet by default, which needs the network at print time; offline, the fallback prints and the delivery says so.
+
 ## The style check
 
 - The check walks every string of the file except the skipped keys and reports each offending string with its path, so that the fix is one edit in the minutes file; a file whose `style` lists only a few characters replaces the usual set, which is why `style` is left out when the usual set is meant, or starts with `usual: true`.
