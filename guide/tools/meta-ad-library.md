@@ -35,7 +35,7 @@ The in-page readers of `driven-browser.md` and the frame script of the creative 
 
 ## Manners are part of the skill
 
-Page-load budgets, two seconds between loads, one page at a time, no sign-in, and no way around a browser check, a login wall or a block. Meta's terms restrict automated collection; these skills stay at the scale of one person's research and say so in their rules. Do not add bulk collection, scheduled crawling, or anything that disguises the browser.
+Page-load budgets, two seconds between loads, one page at a time, no sign-in, and no way around a browser check, a login wall or a block. Meta's terms restrict automated collection; these skills stay at the scale of one person's research and say so in their rules. Do not add bulk collection, scheduled crawling, or anything that disguises the browser. When no route works, `ad-library.md` offers the ways in the order of the browser set's `walls.md`, in this site's terms (a route added, pages hand-carried, the API where the market has it).
 
 ## Examples name no one
 

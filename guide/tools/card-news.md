@@ -8,7 +8,7 @@ The run these skills come from was one job in the user's words ("make a card-new
 
 | In `docs/card-news/` | In the skill |
 |---|---|
-| `format-spec.md`: the fields of the spec, how each is measured and how the build reads it | How posts are read on the site, which posts, the slide log, the verdicts of the study |
+| `format-spec.md`: the fields of the spec, how each is measured and how the build reads it, and the ways to a spec when the reference's site is walled from the host, which apply the browser set's `walls.md` to a format | How posts are read on the site, which posts, the slide log, the verdicts of the study |
 | `topic-brief.md`: the fields of the brief, how each is obtained and how the build reads it | How candidates are searched and ranked, the facts table, the angle test, image sourcing from where the articles point (their photos, a cited clip's frames, the subject's pages, a search last), legibility |
 | | The script's checks, how the spec's slide types become the page's classes (the build has no catalogue of its own), the page, the server and export scripts, the review |
 
