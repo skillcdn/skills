@@ -98,11 +98,12 @@ Keeping a codebase one that an agent can keep working in: its documents true to 
 
 ## M7: Operations, support and data
 
-The `support`, `operations` and `data` areas are created with their first skills.
+The `operations` area was created with its first skill; `support` and `data` are created with theirs.
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
 | "Give me an admin to watch sales and ads." A separate Worker only the operator can open, behind Cloudflare Access, with the funnel, the orders, the campaigns and their controls, the costs, the system's health, an audit log and a daily digest. [`cloudflare-admin-dashboard`](../engineering/skills/cloudflare-admin-dashboard/). A fresh run built and deployed the admin locked on a stand-in app (2026-10): the guard, the audit log, confirmations, the funnel with a cookie-free visit counter, the payments panel with a capped refund proven in the sandbox, the syncs and the digest, then Access enabled by the person on the Worker's Access tab, the secrets set and the operator's sign-in seen in the audit log; untried: restricted live keys, the ads panel with a token, chat alerts. | engineering | Cloudflare | done |
+| "Write up today's client meeting from my notes and make the minutes to send." The minutes as one HTML file and an A4 PDF from notes: the notes split into decisions, questions and answers, items to confirm, actions and the next meeting, with what stays internal listed at a checkpoint; one minutes file rendered in grayscale with the client's logo first, checked against the house style, printed with a browser, looked at page by page. [`html-meeting-minutes-from-notes`](../operations/skills/html-meeting-minutes-from-notes/). Written from a run of six revision rounds on the minutes of a kickoff meeting (2026-10); a fresh run is untried. | operations | Browser | next |
 | "Give me this week's numbers." A readout from the product's analytics and the stores against last week, with what moved and why it might have. | data | GA4 or PostHog, App Store Connect, Google Play Console | candidate |
 | "Answer the store reviews." Replies in the product's voice, grouped by what they report, with the bugs filed. | support | App Store Connect and Google Play Console | candidate |
 | "Write the support macros." From the tickets that repeat. | support | Intercom or Zendesk | candidate |

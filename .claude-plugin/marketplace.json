@@ -36,6 +36,12 @@
       "source": "./product",
       "description": "Product planning and research: discovery, research synthesis, a sourced brief of a story, concept directions and alternatives, requirements, specifications, roadmaps, prioritization. Four to six concept directions that get a reference's effect by other means, placed on the axes a concept can move on, judged for the AI feel and compared with a recommendation and a runner-up, then handed to the skill that produces; and this week's candidate stories in the categories an account covers, the user's pick turned into a topic brief with every fact traced to an article sentence and the images that show the story collected with their credits; and what is taking off in a market, read from where advertisers put new money in the Meta Ad Library, ranked item by item with a snapshot the next run measures growth against.",
       "license": "MIT"
+    },
+    {
+      "name": "operations",
+      "source": "./operations",
+      "description": "Running the company's and its clients' work day to day: the minutes of a meeting sent the same day, status reports, visit logs, handovers, the records an engagement keeps. The minutes of a client meeting as one HTML file and an A4 PDF from the notes a person brings back, split into decisions, questions and answers, items to confirm and actions with what stays internal kept out, rendered in grayscale with the client's logo first, checked against the house style and looked at before delivery.",
+      "license": "MIT"
     }
   ]
 }

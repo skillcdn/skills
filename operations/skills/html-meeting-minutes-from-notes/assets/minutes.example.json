@@ -1,0 +1,85 @@
+{
+  "file": "260101 Example Project Minutes",
+  "lang": "en",
+  "kind": "Minutes",
+  "title": "Example Project kickoff meeting minutes",
+  "org": "<organization>",
+  "logos": [
+    {"src": "<path to the client's logo, relative to this file>", "alt": "<client>"},
+    {"src": "<path to the organization's wordmark>", "alt": "<organization>"}
+  ],
+  "external": true,
+  "style": {"usual": true},
+  "meta": [
+    ["Date and time", "<weekday>, <date>, <time>"],
+    ["Place", "<the client's office, by its official name>, <room>"],
+    ["Attendees", "<client> <name>, <title>; <name>, <title>; and others\n<organization> <name>, <title>"],
+    ["Author", "<organization> <name>"]
+  ],
+  "sections": [
+    {
+      "heading": "1. Overview",
+      "type": "text",
+      "paragraphs": [
+        "The meeting went through the kickoff materials, the scope and goals, the method, the schedule, the people and the items to confirm, and discussed the details."
+      ]
+    },
+    {
+      "heading": "2. Decisions",
+      "type": "list",
+      "items": [
+        {"title": "Scope", "body": "The work proceeds as the kickoff materials set out: the public site's page types, the content migration and the launch in <month>."},
+        {"title": "Deliverables and ownership", "body": "The site's source, the design files and the migrated content are delivered to <client> and are <client>'s."},
+        {"title": "Minutes", "body": "<organization> writes the minutes of every meeting with decisions and shares them by email."}
+      ]
+    },
+    {
+      "heading": "3. Questions and answers",
+      "type": "list",
+      "items": [
+        {"title": "Search on the new site", "body": "Whether the current site's search can be kept was asked; the new site is expected to use its own search, with the index rebuilt from the migrated content."},
+        {"title": "Staging server", "body": "Two ways of hosting the staging site were described, in the reference table below; the choice is <client>'s."}
+      ]
+    },
+    {
+      "heading": "Reference. Staging server options",
+      "type": "table",
+      "columns": ["Option", "Specification", "Reference price", "Remarks"],
+      "widths": ["34%", "30%", "14%", "22%"],
+      "rows": [
+        ["A second instance at the current provider", "<size>", "<amount> a month", "No setup needed"],
+        ["A managed instance at another provider", "<size>", "<amount> a month", "Migration at launch"]
+      ],
+      "note": "List prices; the provider's quote to be confirmed"
+    },
+    {
+      "heading": "4. Items to confirm",
+      "type": "list",
+      "items": [
+        {"title": "Content owners", "body": "Who at <client> signs off the content of each page type is not yet set."},
+        {"title": "Domain access", "body": "Whether <organization> gets access to the domain's DNS before the launch week."}
+      ]
+    },
+    {
+      "heading": "5. Actions",
+      "type": "table",
+      "columns": ["Item", "Owner", "Planned"],
+      "widths": ["56%", "24%", "20%"],
+      "rows": [
+        ["Share the minutes by email", "<organization>", "<date>"],
+        ["Name the content owner of each page type", "<client>", "Next meeting"],
+        ["Send the brand files and access to the current site's analytics", "<client>", "<date>"],
+        ["Set up the staging server", "<organization>", "On the choice above"]
+      ]
+    },
+    {
+      "heading": "6. Next meeting",
+      "type": "kv",
+      "rows": [
+        ["Date and time", "<weekday>, <date>, <time>"],
+        ["Place", "<the client's office>, <room>"],
+        ["Agenda", "First working session. The items to confirm are checked against the current site and the brand files."]
+      ]
+    }
+  ]
+}

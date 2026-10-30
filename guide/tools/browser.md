@@ -1,6 +1,6 @@
 # Browser skills
 
-How the skills that read a website or render a page with a browser are written and kept in step, for authors. What the skills share at run time is the document set [`docs/browser/`](../../docs/browser/README.md), which agents read; this page says what goes there, what stays in a skill or in a site's own family set, how the facts are dated, and how the family is tested. The family spans areas (marketing's card-news skills and Meta Ad Library skills, design's deck draft, engineering skills that look at a page they built), which is why the set sits at the root.
+How the skills that read a website or render a page with a browser are written and kept in step, for authors. What the skills share at run time is the document set [`docs/browser/`](../../docs/browser/README.md), which agents read; this page says what goes there, what stays in a skill or in a site's own family set, how the facts are dated, and how the family is tested. The family spans areas (marketing's card-news skills and Meta Ad Library skills, design's deck draft, operations' minutes draft, engineering skills that look at a page they built), which is why the set sits at the root.
 
 ## The tool is a capability
 

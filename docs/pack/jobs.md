@@ -166,6 +166,15 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - Also asked as: "an operator dashboard for orders and campaigns", "an admin panel behind a login", "a back office for the site".
 - Not this one when: payments or ads are not wired yet (the payments and the Meta ads above).
 
+## Operations
+
+### "Write up today's client meeting from my notes and make the minutes to send."
+
+- You get: the minutes as one HTML file and an A4 PDF from your notes: decisions, questions and answers, items to confirm, actions with owners and planned dates, and the next meeting, each in one plain sentence, in grayscale with the client's logo first, checked against your house style and looked at page by page before you see them, with what stayed internal and what to confirm before you send them. Sending is your own step.
+- Skill: [`operations/skills/html-meeting-minutes-from-notes/`](/operations/skills/html-meeting-minutes-from-notes/SKILL.md)
+- Also asked as: "meeting minutes for the client", "a 회의록 to send today", "write up the kickoff meeting", "turn these meeting notes into minutes as a PDF", "a meeting record for the partner".
+- Not this one when: you want slides from the meeting (the deck under Design), or a note for your own team that need not leave the organization.
+
 ## Jobs with no skill yet
 
 What the pack plans next is kept in its guide on the git host, which the mount does not serve. For a job no section above covers, the agent says so and names the nearest one above.
