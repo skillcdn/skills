@@ -4,7 +4,7 @@ How the skills that read Instagram are written and kept in step, for authors. Wh
 
 ## The tool is a website
 
-There is no MCP server and no account to connect for reading: the skills read the pages a visitor without an account sees, with a browser the agent drives or a headless browser a script of the run's own drives. A skill's Requirements name those capabilities, never a product's tool names. The browser itself has its own set and page, `docs/browser/` and [`browser.md`](browser.md); this family's set keeps what Instagram does. A skill that posts to an account works signed in, with the account the user provides, and brings its own rules and pages for that; the reading pages stay signed out.
+There is no MCP server and no account to connect for reading: the skills read the pages a visitor without an account sees, with a browser the agent drives or a headless browser a script of the run's own drives. A skill's Requirements name those capabilities, never a product's tool names. The site is not reachable from every host (a chat assistant's sandbox was refused, 2026-10): the set says how that is recognized and what still reads the site, and each skill names its own alternative (supplied slides, search samples for a genre) with what the result then lacks, since the root rule says a missing route is reported and the way taken is said. The browser itself has its own set and page, `docs/browser/` and [`browser.md`](browser.md); this family's set keeps what Instagram does. A skill that posts to an account works signed in, with the account the user provides, and brings its own rules and pages for that; the reading pages stay signed out.
 
 ## What is shared and what stays in the skill
 

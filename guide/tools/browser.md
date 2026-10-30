@@ -24,7 +24,7 @@ A host's browser behaves differently from one month to the next and a site chang
 
 ## Manners are part of the skill
 
-No sign-in, nothing past a wall, no disguised browser, one page at a time, a download only with consent, no window on the user's screen. The set states them once for agents; each skill states what applies to it in its hard rules, because a copied or installed skill has only those.
+No sign-in, nothing past a wall, no disguised browser, one page at a time, a download only with consent, no window on the user's screen. A wall of the host (a site that refuses the host's network from its first page, as some do to the sandboxes of chat assistants) is said so and never proxied; the skill names its own alternative, and the root rule has the agent say which way was taken. The set states them once for agents; each skill states what applies to it in its hard rules, because a copied or installed skill has only those.
 
 ## Testing
 
