@@ -32,7 +32,7 @@
 
 | Signal | The fix |
 |---|---|
-| Same-size cards of icon, heading and text as the structure; nested cards; a card per item. | Structure from type, rules and real marks: a statement beside a list, numbered rows, one dominant and the rest small. |
+| Same-size cards of icon, heading and text as the structure; nested cards; a card per item. | Structure from type, rules and real marks: a statement beside a list, rows numbered where the order or the count is the information, one dominant and the rest small. |
 | Big-number tiles with small labels; a kicker or label above every heading; section numbers where the order carries nothing. | Figures in a definition list or inline; the heading carries its own weight. |
 | A gradient of purple to blue on white; gradient text; decorative blur; a thick colored left border; a glow. | One accent on tinted neutrals, or the material's own colors; flat surfaces. |
 | Emoji or glyphs as icons; a generic icon for a named thing; one icon per item. | A named thing by its real mark; an icon only for the rare item a word does not carry; most items with none. |
