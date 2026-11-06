@@ -31,5 +31,6 @@ Thumbs.db
 
 # Agent tooling: personal overrides stay local
 .claude/settings.local.json
+.skillcdn-console.json
 .claude/worktrees/
 CLAUDE.local.md
