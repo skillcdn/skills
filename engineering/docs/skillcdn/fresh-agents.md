@@ -22,7 +22,7 @@ Where the host has a tool that starts a subagent (Claude Code's `Agent` tool, ch
 - Set the model and the effort on the call. Run it in the background when the session has other work, in the foreground when the next step waits on it.
 - It returns at each stop with its report, which is the message the stop asks for. A message sent to the same agent (Claude Code's `SendMessage`, by the agent's id or name) resumes it with its context intact; a new start would begin without it. A host that gives the subagent a hand-back tool allows one call of it per resume: a second stop in the same turn comes back as the subagent's final message instead, and a stop it also sends with a message tool arrives twice (Claude Code, checked 2026-10); the brief says to end the turn with the message, which works on both paths.
 - Claude Code refuses a subagent's write of a Markdown report file ("Subagents should return findings as text, not write report files", checked 2026-10), while its data files are written as usual. A skill whose delivery is a report file delivers it in the subagent's final message, and the session that started it saves the text where the run's outputs are.
-- Whether a subagent may start subagents of its own is the host's to allow. Where a run needs one and the host refuses it, the user starts that run from a second session, and the refusal is reported.
+- Whether a subagent may start subagents of its own is the host's to allow; Claude Code's `Agent` tool allows it, and a verification run as a subagent started its dry read and its fresh run as subagents of its own (checked 2026-11). Where a host refuses it, the user starts that run from a second session, and the refusal is reported.
 
 ## A second session
 
