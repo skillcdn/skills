@@ -32,7 +32,7 @@ What goes in: documents a person has, in whatever formats, and a repository they
 
 | What | Used for |
 |---|---|
-| A shell with git and Node.js in a checkout of the target repository; Node.js 24 or newer for the check, which asks for it (checked 2026-10) | The layout, the files, `npx @skillcdn/cli check`, the commit. |
+| A shell with git and Node.js in a checkout of the target repository; Node.js 24 or newer for the check, which asks for it and runs on 22 with a warning (0.4.1, checked 2026-11) | The layout, the files, `npx @skillcdn/cli check`, the commit. |
 | What converts each format on this machine, found at run time ([conversion.md](references/conversion.md) says how to look) | Turning each source into Markdown. A format nothing converts is reported, never guessed at. |
 | The agent's own vision model | Describing a figure and reading a scanned page, written as text beside the image. |
 | Optional: Git LFS (`git lfs version`) | An original over what the host takes as a file as it is (100 MB at GitHub, checked 2026-10; another host's limit from its documentation, found by searching the host's name with "file size limit"), kept in the pack as a pointer the host serves the file for. LFS storage and bandwidth are metered by the host (GitHub gives an account a free quota and sells more; the account's billing page, which the owner opens, says what is left; checked 2026-10), so the layout checkpoint names each such file's size against it, and nothing is tracked before the user's word. |
