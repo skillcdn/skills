@@ -1,7 +1,7 @@
 ---
 name: SkillCDN Pack
 description: Your marketer, designer and developer in the AI you already use, making the short ad, the card news, the deck, the web app and the meeting minutes itself, checked before you see them. docs/pack/finding-a-skill.md says how to find a skill.
-image: https://raw.githubusercontent.com/skillcdn/skillcdn/main/packages/brand/banner.png
+image: assets/banner.webp
 documents:
   - docs
 language: en

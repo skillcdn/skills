@@ -79,6 +79,10 @@ const TEXT_RE = /\.(md|markdown|mdx|json|ya?ml|mjs|txt)$/i;
 const MARKDOWN_RE = /\.(md|markdown|mdx)$/i;
 const INCLUDABLE_RE = /\.(md|markdown|mdx|json)$/i;
 const MEDIA_RE = /\.(mp4|mov|mkv|webm|wav|mp3|m4a|aac|flac|png|jpe?g|gif|webp)$/i;
+// The one rendered file: the pack's own picture, named by the root manifest's `image` and shown at the top of the
+// root README (CLAUDE.md, rule 3). Kept small, since every clone and every page load carries it.
+const PACK_PICTURE = "assets/banner.webp";
+const PACK_PICTURE_MAX_BYTES = 200 * 1024;
 const SECRET_RE = /(^|\/)(\.env(\..*)?|.*\.(pem|key|p12|pfx))$/;
 
 function walk(dir, out = []) {
@@ -459,7 +463,13 @@ function checkLinks(file, text) {
 
 for (const file of files) {
   const rel = toPosix(file);
-  if (MEDIA_RE.test(rel)) fail(file, "rendered media and images must not be committed");
+  if (MEDIA_RE.test(rel)) {
+    if (toPosix(file.slice(root.length + 1)) !== PACK_PICTURE) {
+      fail(file, `rendered media and images must not be committed (the pack's own picture is ${PACK_PICTURE} alone)`);
+    } else if (statSync(file).size > PACK_PICTURE_MAX_BYTES) {
+      fail(file, `the pack's picture must be at most ${PACK_PICTURE_MAX_BYTES / 1024} KiB`);
+    }
+  }
   if (SECRET_RE.test(rel)) fail(file, "looks like a secret or environment file");
   if (!TEXT_RE.test(rel)) continue;
   const text = readFileSync(file, "utf8");
