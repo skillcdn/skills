@@ -193,6 +193,8 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 /* columns */
 .cols { display: grid; align-items: start; }
 .cols.stretch { align-items: stretch; }
+.cols.stretch > .kpiw { display: flex; flex-direction: column; }
+.cols.stretch > .kpiw > .kpis { flex: 1; }
 
 /* statement */
 .statement .st { margin: 0; font-weight: 700; color: @NAVY; line-height: 1.42; letter-spacing: -0.01em; }
@@ -525,9 +527,11 @@ class Renderer:
 
     def facts(self, blk):
         rows = []
+        lw = blk.get("label_w", 1.3)
+        lw = f"{lw}in" if isinstance(lw, (int, float)) else lw  # inches as a number, or a CSS length
         for label, value in blk["items"]:
             v = "<br>".join(_e(x) for x in value) if isinstance(value, list) else _e(value)
-            rows.append(f'<div class="f" style="grid-template-columns:{blk.get("label_w", "1.3in")} 1fr"><dt>{_e(label)}</dt><dd>{v}</dd></div>')
+            rows.append(f'<div class="f" style="grid-template-columns:{lw} 1fr"><dt>{_e(label)}</dt><dd>{v}</dd></div>')
         cls = " inline" if blk.get("inline") else ""
         return f'<dl class="facts{cls}">{"".join(rows)}</dl>'
 
@@ -554,7 +558,8 @@ class Renderer:
 
     def table(self, blk):
         widths = blk.get("widths")
-        colgroup = ("<colgroup>" + "".join(f'<col style="width:{w}">' for w in widths) + "</colgroup>") if widths else ""
+        colgroup = ("<colgroup>" + "".join(f'<col style="width:{w}in">' if isinstance(w, (int, float)) else f'<col style="width:{w}">'
+                                           for w in widths) + "</colgroup>") if widths else ""
         head = "".join(f"<th>{_e(c)}</th>" for c in blk["columns"])
         body = "".join("<tr>" + "".join(f"<td>{_e(c)}</td>" for c in row) + "</tr>" for row in blk["rows"])
         cls = " firstbold" if blk.get("first_col") == "bold" else ""
@@ -1031,7 +1036,7 @@ import fs from "node:fs";
 import path from "node:path";
 const require = createRequire(process.env.PLAYWRIGHT_FROM);
 const { chromium } = require("playwright-core");
-const [cmd, input, out, extra, extra2] = process.argv.slice(2);
+const [cmd, input, out, extra, extra2, extra3] = process.argv.slice(2);
 async function launch() {
   for (const channel of ["chrome", "msedge", "chromium"]) {
     try { return await chromium.launch(channel === "chromium" ? {} : { channel }); } catch {}
@@ -1040,7 +1045,7 @@ async function launch() {
 }
 const browser = await launch();
 try {
-  const ctx = await browser.newContext({ viewport: { width: Number(extra2) || 1300, height: 900 }, deviceScaleFactor: 1 });
+  const ctx = await browser.newContext({ viewport: { width: Number(extra2) || 1300, height: Number(extra3) || 900 }, deviceScaleFactor: 1 });
   const page = await ctx.newPage();
   await page.goto("file:///" + path.resolve(input).replace(/\\/g, "/"), { waitUntil: "networkidle" });
   await page.evaluate("document.fonts.ready");
@@ -1173,7 +1178,7 @@ def browser_task(route, info, cmd, html_path, out_path, fill=0.55, width=1300, h
                     continue
             if b is None:
                 raise RuntimeError("no Chromium-family browser found: install Chrome or Edge, or run playwright install chromium")
-            ctx = b.new_context(viewport={"width": width, "height": 900}, device_scale_factor=1)
+            ctx = b.new_context(viewport={"width": width, "height": height}, device_scale_factor=1)
             pg = ctx.new_page()
             pg.goto(_url(html_path), wait_until="networkidle")
             pg.evaluate("document.fonts.ready")
@@ -1198,7 +1203,7 @@ def browser_task(route, info, cmd, html_path, out_path, fill=0.55, width=1300, h
         with open(measure, "w", encoding="utf-8") as f:
             f.write(MEASURE_JS)
         env = {**os.environ, "PLAYWRIGHT_FROM": info, "DECK_MEASURE": measure}
-        subprocess.run(["node", script, cmd, os.path.abspath(html_path), os.path.abspath(out_path), str(fill), str(width)], check=True, env=env, timeout=300)
+        subprocess.run(["node", script, cmd, os.path.abspath(html_path), os.path.abspath(out_path), str(fill), str(width), str(height)], check=True, env=env, timeout=300)
         return os.path.exists(out_path)
     if route == "bare":
         if cmd == "report":
@@ -1366,7 +1371,7 @@ def main(argv):
         print("house-style check passed")
     theme = {**DEFAULT_THEME, **meta.get("theme", {})}
     out_html = args[1]
-    needs_browser = any(k in args for k in ("--pdf", "--report", "--sheet", "--look"))
+    needs_browser = any(k in args for k in ("--pdf", "--report", "--sheet", "--look", "--page"))
     route, info = (choose_route(opt("--route")) if needs_browser else (None, None))
     if needs_browser:
         print("browser:", describe_route(route, info))

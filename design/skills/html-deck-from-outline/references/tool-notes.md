@@ -21,7 +21,7 @@ How the helper and the browsers behaved in runs of this skill, by topic. A fact 
 
 ## Reading the helper through SkillCDN
 
-- The helper is read with `read_repo_file` at its path, in sections by offset (it is about 80 KB, 2026-11), and saved beside the deck file; the same file at the git host's raw address is an alternative where the connection pages slowly.
+- The helper is read with `read_repo_file` at its path, in sections by offset (it is about 80 KB, 2026-11), and saved beside the deck file; the same file at the git host's raw address of the served commit (for a GitHub repository, `https://raw.githubusercontent.com/<owner>/<repo>/<commit>/<path>`, the commit from the connection's `Source` line) is an alternative where the connection pages slowly: a run took it after one section of about 23,000 characters, and its length matched the connection's count of 82,633 (2026-11).
 - `load_skill` returns SKILL.md with its included page in two pages of 16 KiB (checked 2026-11); layout.md, registers.md and this page are linked from their phases and read when the phase comes.
 
 ## Fonts and colors
