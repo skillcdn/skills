@@ -2,10 +2,10 @@
 name: cloudflare-deploy
 description: Puts a web project live on Cloudflare Workers and makes it deploy itself from then on. Use when the user says to deploy, put live, host, go to production, connect a domain, set up Cloudflare, set the production keys or make deploys automatic for a project on Workers, including a Next.js app. Building the app itself is cloudflare-new-app, which hands over here at its launch phase. Gets access with the user's API token (the exact steps of the day for creating it), creates the database, bucket and namespace the code binds, applies the schema, sets the secrets (signing keys it generates, provider keys the user supplies), deploys, attaches the domain (one the user owns and moves to Cloudflare, a new one bought through the Registrar API with the price confirmed, or a free workers.dev address), connects the repository so that every push to main deploys and every branch gets a preview, turns on logs and analytics, and writes DEPLOY.md into the project.
 license: MIT
-compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project, network access to the Cloudflare API and to the git host, and a Cloudflare API token the user creates (or a wrangler login). Works in any agent that can run a shell.
+compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project, network access to the Cloudflare API and to the git host, and a Cloudflare API token the user creates (or a sign-in of the project's CLI, Wrangler or cf). Works in any agent that can run a shell.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: cloudflare
 skillcdn:
   include:
@@ -18,7 +18,7 @@ skillcdn:
 ---
 # Put a project live on Cloudflare
 
-What goes in: a project in a checkout, with a Wrangler configuration or a framework the platform page knows, a Cloudflare account the user can create a token for, the values of the secrets only they hold, and a decision about the domain. What comes out: the project serving at its address on Workers, its database, bucket and namespace created and bound, its schema applied, its secrets set, its domain attached with a certificate, its repository connected so that a push to `main` deploys and a branch gets a preview, logs and analytics on, and a `DEPLOY.md` in the project that says what exists and how to run it, every step shown as it happens and every spend confirmed before it is made.
+What goes in: a project in a checkout, with a Cloudflare configuration of either generation (the typed `cloudflare.config.ts`, or a Wrangler file) or a framework the platform page knows, a Cloudflare account the user can create a token for, the values of the secrets only they hold, and a decision about the domain. What comes out: the project serving at its address on Workers, its database, bucket and namespace created and bound, its schema applied, its secrets set, its domain attached with a certificate, its repository connected so that a push to `main` deploys and a branch gets a preview, logs and analytics on, and a `DEPLOY.md` in the project that says what exists and how to run it, every step shown as it happens and every spend confirmed before it is made.
 
 ## How the user is involved
 
@@ -31,13 +31,13 @@ What goes in: a project in a checkout, with a Wrangler configuration or a framew
 
 | What | Used for |
 |---|---|
-| A shell with Node.js (the major the project pins in `.node-version` or `engines`, else the current LTS), npm, git and curl, in a checkout of the project with its dependencies installed (`npm ci` when `node_modules` is missing) | Wrangler through `npx`, the build, the API calls, the commit of the deploy record |
-| The Cloudflare API token, or a `wrangler login` | Everything the first table of [automation.md](/engineering/docs/cloudflare/automation.md) lists |
+| A shell with Node.js (the major the project pins in `.node-version` or `engines`, else the current LTS; a project with the typed `cloudflare.config.ts` also needs the floor of its `cf` package, 22.18 or later when checked, 2026-11, below which no `cf` command runs inside it), npm, git and curl, in a checkout of the project with its dependencies installed (`npm ci` when `node_modules` is missing) | The project's CLI through `npx` (Wrangler on a Wrangler file, `cf` on the typed configuration: [platform.md](/engineering/docs/cloudflare/platform.md) "The configuration file" says which a project has), the build, the API calls, the commit of the deploy record |
+| The Cloudflare API token, or a sign-in of the project's CLI (`wrangler login`, or `cf auth login`) | Everything the first table of [automation.md](/engineering/docs/cloudflare/automation.md) lists |
 | Network access to `api.cloudflare.com` and the git host | Resources, deploys, the repository connection |
 | Optional: the `gh` CLI signed in | Creating the repository and pushing without the user's hands |
 | The user, with a browser on any device | The few dashboard steps in automation.md's second table |
 
-Check these before the first message. Without the token, give the steps of [tokens.md](/engineering/docs/cloudflare/tokens.md); when the user cannot create one, `npx wrangler login` (`--device` when the shell has no browser) covers phases 3 to 6 and the dashboard steps replace the Builds and analytics calls. Without network, stop and say so; without `gh`, the user creates the repository and gives its address.
+Check these before the first message. Without the token, give the steps of [tokens.md](/engineering/docs/cloudflare/tokens.md); when the user cannot create one, the project's CLI signs in (`npx wrangler login`, `--device` when the shell has no browser; `npx cf auth login`, `--no-browser`), which covers that CLI's own commands in phases 3 to 6; the REST calls (the subdomain, zones, the Registrar, Builds, analytics) then take `npx wrangler auth token` as their bearer on a Wrangler project and fall to the dashboard steps on a typed one, and the Wrangler-only commands of a typed project (`tail`, a single secret) are skipped or need a `wrangler login` as well, since the two CLIs share no login. Below the Node.js floor, stop and give the upgrade as the user's step (resources.md "Access"). Without network, stop and say so; without `gh`, the user creates the repository and gives its address.
 
 The Cloudflare skills share the area's document set [`engineering/docs/cloudflare/`](/engineering/docs/cloudflare/README.md): [tokens.md](/engineering/docs/cloudflare/tokens.md) (access) and [automation.md](/engineering/docs/cloudflare/automation.md) (what the token does, what a person does once, the command for each) are included and arrive with this skill wherever SkillCDN serves it; [platform.md](/engineering/docs/cloudflare/platform.md) (the runtime, the configuration keys, the framework paths, the plans) is linked from phase 2 and read with `read_repo_file` through the repository or engineering connection, from the engineering plugin's `docs/cloudflare/`, or from a checkout of this repository. A mount of this skill alone lacks the linked page and a copy of its directory lacks all three: say so in the first message, fetch them from `engineering/docs/cloudflare/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules. The procedure of each phase, with its checks and failures, is [resources.md](references/resources.md); what the tools did in runs is [tool-notes.md](references/tool-notes.md).
 
@@ -45,7 +45,7 @@ The Cloudflare skills share the area's document set [`engineering/docs/cloudflar
 
 | Input | Source |
 |---|---|
-| The project | The current directory, or the path the user names. Its `wrangler.jsonc` (or `.toml`), `package.json` scripts, `migrations/`, `db/seed.sql` when there is one, `.dev.vars.example` and `secrets.required` say what it needs; a project without a configuration gets one written from the framework guide, as platform.md says. |
+| The project | The current directory, or the path the user names. Its configuration, which decides the CLI (`cloudflare.config.ts` and `cf`, or `wrangler.jsonc`, `.json` or `.toml` and Wrangler; platform.md), `package.json` scripts, `migrations/`, `db/seed.sql` when there is one, `.dev.vars.example` and the declared secrets (`secrets.required`, or the `bindings.secret()` entries) say what it needs; a project without a configuration gets one as resources.md "Inventory" says. |
 | Access | The token, asked; its account id, derived with the accounts call. |
 | The domain | Asked: one they own, one to buy, or none yet. |
 | The repository | Asked: the GitHub address, or none yet; the owner, when `gh` creates it, is the one the user names, else the signed-in `gh` user; its name is the Worker's name. |
@@ -54,7 +54,7 @@ The Cloudflare skills share the area's document set [`engineering/docs/cloudflar
 
 The questions, in one message at the start, each only when the answer is not already in the request, the project, or the handover from `cloudflare-new-app`:
 
-- "To work on your Cloudflare account I need an API token. It takes a minute: [the steps of tokens.md, as the dashboard shows them today, with the rows of its second table that the configuration's bindings and the request need]. Save it in a file named `.cf-token` in the project folder and tell me; that keeps it out of this chat. If you paste it here instead, I move it into that file and never repeat it."
+- "To work on your Cloudflare account I need an API token. It takes a minute: [the steps of tokens.md, as the dashboard shows them today, with the rows of its "When the plan needs it" table that the configuration's bindings and the request need]. Save it in a file named `.cf-token` in the project folder and tell me; that keeps it out of this chat. If you paste it here instead, I move it into that file and never repeat it."
 - "Do you already have a domain for this, should I find and buy one (I show the price before buying), or do we start on a free address (`<name>.<subdomain>.workers.dev`) and add a domain later?"
 - "Where does the code live on GitHub? If nowhere yet, I can create a private repository for it, under your account or an organization you name."
 
@@ -66,11 +66,11 @@ Each phase produces a named artifact and ends with one line to the user; the rec
 
 ### Phase 1: Access
 
-Produces the **access record**: the token's kind, the account id and name, the `workers.dev` subdomain, what the token can do. Export the token from its file (never print it), run the verify call, the accounts call and the subdomain call, then `npx wrangler whoami`; when the token sees several accounts, take the one that holds the zone of the domain the user named, else the one they name, else ask, and set `CLOUDFLARE_ACCOUNT_ID`. Probe each permission the project's bindings and the request will need with the harmless reads resources.md lists, and report a missing one now, with the row of tokens.md to add, not at the step that fails.
+Produces the **access record**: the project's configuration file and CLI, the token's kind, the account id and name, the `workers.dev` subdomain, what the token can do. First the project itself (resources.md "Access"): which configuration file it has, its dependencies installed so that the CLI called next is the project's own copy, and `node -v` against the project's floor, since a typed configuration refuses to load below it and the fix is an upgrade the user makes. Export the token from its file (never print it), run the accounts call, then the verify call that fits the token's kind, and the subdomain call, then the CLI's own check (`npx wrangler whoami`, or `npx cf auth whoami` on a typed project); when the token sees several accounts, take the one that holds the zone of the domain the user named, else the one they name, else ask, and set `CLOUDFLARE_ACCOUNT_ID`. Probe each permission the project's bindings and the request will need with the harmless reads resources.md lists, and report a missing one now, with the row of tokens.md to add, not at the step that fails.
 
 ### Phase 2: Inventory and plan
 
-Produces the **deploy plan**, shown at the checkpoint. Read the project: the configuration's bindings and their ids, `secrets.required` and the example file, the migrations, the framework and its scripts ([platform.md](/engineering/docs/cloudflare/platform.md) for what each key means), the `NEXT_PUBLIC_*` names, the Node.js version. Derive the address, what will be created, what will be set, which code edits the launch needs (the analytics beacon when the address is a `workers.dev` one or a hostname under a zone shared with other sites, a redirect for `www`), which dashboard steps the user owes and when, and what it costs: the plan's included usage from platform.md's table with its month, and the live price of a domain from the check call. Then stop: "I will create <resources>, apply <n> migrations <and load the sample data>, set <n> secrets (<generated>; <asked>: here is where each comes from), deploy to <address>, <attach domain / buy domain at price / stay on workers.dev>, connect <repository> so that pushes deploy, and <edits>. On the Free plan this costs nothing; <the domain costs X per year>. You do once: <dashboard steps>. OK?"
+Produces the **deploy plan**, shown at the checkpoint. Read the project: the configuration's bindings and their ids, the declared secrets (`secrets.required`, or the `bindings.secret()` entries of a typed configuration) and the example file, the migrations, the framework and its scripts ([platform.md](/engineering/docs/cloudflare/platform.md) for what each key means in either generation), the `NEXT_PUBLIC_*` names, the Node.js version. Derive the address, what will be created, what will be set, which code edits the launch needs (the analytics beacon when the address is a `workers.dev` one or a hostname under a zone shared with other sites, a redirect for `www`), which dashboard steps the user owes and when, and what it costs: the plan's included usage from platform.md's table with its month, and the live price of a domain from the check call. Then stop: "I will create <resources>, apply <n> migrations <and load the sample data>, set <n> secrets (<generated>; <asked>: here is where each comes from), deploy to <address>, <attach domain / buy domain at price / stay on workers.dev>, connect <repository> so that pushes deploy, and <edits>. On the Free plan this costs nothing; <the domain costs X per year>. You do once: <dashboard steps>. OK?"
 
 ### Phase 3: Resources
 
@@ -82,7 +82,7 @@ Produces the **secrets file**: fresh generated values for production (the local 
 
 ### Phase 5: First deploy
 
-Produces the **live address**. Build with the project's script (resources.md "Inventory" says which pair of commands), confirm ("Deploying makes `<address>` public. OK?"), deploy with the secrets file on a first deploy (`--secrets-file`) or after a bulk call on a Worker that exists, delete the file, then verify: `secret list` names every required secret; the public pages answer 200 (following a redirect) with the app's title; a minute of `wrangler tail` while they are fetched; the deployment status. Report the address.
+Produces the **live address**. Build with the project's script (resources.md "Inventory" says which pair of commands), confirm ("Deploying makes `<address>` public. OK?"), deploy with the secrets file (`--secrets-file`: on a first deploy, and on any `cf` deploy that carries secrets) or after a bulk call on a Wrangler Worker that exists, delete the file, then verify: the secrets list names every declared secret but the "later" ones; the public pages answer 200 (following a redirect) with the app's title; a minute of `wrangler tail` while they are fetched; the deployments list shows the new version live. Report the address.
 
 ### Phase 6: Domain
 
@@ -90,7 +90,7 @@ Produces the **domain record**. None yet: the `workers.dev` address stays, the d
 
 ### Phase 7: Deploys on push
 
-Produces the **build connection**. First the commit of everything the launch changed (the configuration with its ids, the types, the migrations), with the ignore list checked; then the repository on the git host (created empty with `gh` after the user's word, or the address the user gave). The user installs the GitHub App once; the agent makes the connection, the production and preview triggers, the build variables and the Node.js version through the API; then the push, after the user's word, which triggers the first build; it reads the log and verifies that the active deployment is that build and that build is `HEAD`. When the API refuses, the dashboard steps replace it, as resources.md gives them. From here on, a push to `main` is a deploy and a push to a branch is a preview; say so.
+Produces the **build connection**. First the commit of everything the launch changed (the configuration with its ids, the migrations, and the types on a Wrangler project), with the ignore list checked; then the repository on the git host (created empty with `gh` after the user's word, or the address the user gave). The user installs the GitHub App once; the agent makes the connection, the production and preview triggers, the build variables and the Node.js version through the API; then the push, after the user's word, which triggers the first build; it reads the log and verifies that the active deployment is that build and that build is `HEAD`. When the API refuses, the dashboard steps replace it, as resources.md gives them. From here on, a push to `main` is a deploy and a push to a branch is a preview; say so.
 
 ### Phase 8: Observe and record
 
@@ -100,7 +100,7 @@ Produces **`DEPLOY.md`** in the project (the template in resources.md) and the d
 
 | Result | Verdict |
 |---|---|
-| The public pages answer 200 over HTTPS with the app's title, the deployment status shows the build of `HEAD`, every required secret is listed, no migration is unapplied | Accepted |
+| The public pages answer 200 over HTTPS with the app's title, the deployment status shows the build of `HEAD`, every declared secret but a "later" one is listed, no migration is unapplied | Accepted |
 | The site serves but a secret is "later", or the domain waits on nameservers | Accepted with the gap named in `DEPLOY.md` and the delivery |
 | A build fails, a page answers 5xx, the certificate is pending after an hour | Redone from the phase that failed, with resources.md's failure notes; the user is told what was tried |
 
@@ -111,8 +111,9 @@ Produces **`DEPLOY.md`** in the project (the template in resources.md) and the d
 3. The first production deploy and every push are confirmed, unless the user's own words covered this run's pushes. After the repository is connected, a push is a deploy, which the user chose at the plan checkpoint; a change they want kept off production goes to a branch, which previews.
 4. The agent never asks the user to do what the token can do, and gives every dashboard step as the exact clicks of the day in one message, so that the user can do them while the run goes on.
 5. A schema change reaches the remote database before the code that needs it is deployed, because a connected repository deploys on push and a page that meets a missing table answers 500.
-6. After a secret is changed from the CLI on a Worker that builds deploy, the active deployment is checked against the latest build and the build is rerun when they differ; a sister project once found its live code reverted by that path.
-7. Names and ids go into the configuration and `DEPLOY.md`; a value a secret scanner would flag (a key, a token) never does. Every edit to the project's files is shown as a diff before it lands, including the ignore list and `secrets.required`.
+6. After a secret is changed from the CLI on a Worker that builds deploy, the active deployment is checked against the latest build and the build is rerun when they differ; a sister project once found its live code reverted by that path. On a typed project a later secret change is `cf workers secrets bulk`, never a local `cf deploy`, which would put the machine's build live past Builds.
+7. Names and ids go into the configuration and `DEPLOY.md`; a value a secret scanner would flag (a key, a token) never does. Every edit to the project's files is shown as a diff before it lands, including the ignore list and the declared secrets.
+8. The CLI follows the configuration file: `cf dev`, `cf build` and `cf deploy` never run on a project that has only a Wrangler file (they write a configuration that ignores it), and a Wrangler command on a typed project is only one `cf` lacks, with the Worker's name passed to it.
 
 ## Terminology
 
@@ -122,8 +123,9 @@ Produces **`DEPLOY.md`** in the project (the template in resources.md) and the d
 | Account id | The 32-character id of the Cloudflare account the resources go in. |
 | Subdomain | The account's `workers.dev` name; a Worker's free address is `<name>.<subdomain>.workers.dev`. |
 | Zone | A domain managed by Cloudflare DNS; a custom domain for a Worker lives in one. |
-| Binding | The name the code uses for a resource (`DB`, `BUCKET`, `KV`, `EMAIL`), declared in the Wrangler configuration. |
-| Secret | A value the Worker reads at run time and nobody can read back; set with Wrangler, mirrored in the local `.dev.vars`. |
+| Binding | The name the code uses for a resource (`DB`, `BUCKET`, `KV`, `EMAIL`), declared in the configuration (a Wrangler file's binding arrays, or `worker.env` of `cloudflare.config.ts`). |
+| Secret | A value the Worker reads at run time and nobody can read back; set with the project's CLI, declared in a typed configuration as `bindings.secret()`, mirrored in the local `.dev.vars`. |
+| Typed configuration | `cloudflare.config.ts`, the TypeScript configuration whose CLI is `cf`; its Build Output is `.cloudflare/output/v0/`. A Wrangler file (`wrangler.jsonc`, `.json`, `.toml`) is the other generation, whose CLI is Wrangler. |
 | Secrets file | The JSON file outside the repository that carries every secret to the Worker in one call, deleted afterwards. |
 | Custom domain | A hostname attached to the Worker with its DNS record and certificate made by Cloudflare. |
 | Builds, trigger | Workers Builds, the service that builds and deploys the repository on push; a trigger is its rule for one branch set. |
