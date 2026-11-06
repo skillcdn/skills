@@ -12,6 +12,7 @@ How the helper and the browsers behaved in runs of this skill, by topic. A fact 
 
 - The report runs a script in the page, so it needs a driver: Playwright from Python or `playwright-core` from Node. With the bare browser alone it is skipped with a message, and the review relies on the sheet; the delivery says so.
 - A fill under the threshold on a slide with `valign: "center"` measures the blocks' own height, not their position: a centered short list is still a thin slide.
+- The fill spans the outermost block edges and says nothing of the lower part of the page: slides measured 0.63 to 0.77 (a stack of three rows at `row_h` 1.25in beside one line each, a statement beside five facts) read as half-used on the sheet, and a run's first fix was to center them (2026-11). The sheet decides, and the fix is content.
 - The lone-word check compares the last line's width with the last word's; a line that mixes type sizes can be reported once too often, and the sheet decides.
 
 ## The contact sheet
