@@ -77,7 +77,7 @@ One run per URL prints the page as the browser built it, with the page's embedde
 
 ## PDF
 
-`page.pdf({ path, width: "13.333in", height: "7.5in", printBackground: true, preferCSSPageSize: true })` in Node.js, `page.pdf(path=..., width=..., height=..., print_background=True, prefer_css_page_size=True)` in Python, after the waits above. The CSS declares `@page { size: <w> <h>; margin: 0 }` and gives every page element that size with `break-after: page`. Background graphics are off by default: set them on, or every tint disappears.
+`page.pdf({ path, width: "13.333in", height: "7.5in", printBackground: true, preferCSSPageSize: true })` in Node.js, `page.pdf(path=..., width=..., height=..., print_background=True, prefer_css_page_size=True)` in Python, after the waits above. The CSS declares `@page { size: <w> <h>; margin: 0 }` and gives every page element that size with `break-after: page`. Background graphics are off by default: set them on, or every tint disappears. Without a driver, the bare browser prints too: `"<browser>" --headless=new --disable-gpu --no-first-run --user-data-dir="<a folder kept for the run>" --no-pdf-header-footer --print-to-pdf="<file>" "<file url>"` honors the CSS page size (Chrome and Edge on Windows printed 13.333in by 7.5in pages at 960 by 540 points; checked 2026-11), and `--screenshot="<file>" --window-size=<w>,<h> --hide-scrollbars` takes the page at that window size; neither runs a script in the page, so a measurement of the layout needs one of the drivers above. A skill that prints takes the first route its host has, in this order: Playwright from Python, playwright-core from Node.js, the bare browser, and says which it took.
 
 ## Long runs
 

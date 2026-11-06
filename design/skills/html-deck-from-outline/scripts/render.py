@@ -1,37 +1,54 @@
 # -*- coding: utf-8 -*-
-"""Render a deck file (see ../references/deck-spec.md) to one HTML file, and print it to PDF.
+"""Render a deck file (see ../references/deck-spec.md) to one HTML file, print it to PDF, measure it, tile it.
 
-Usage:  python render.py <deck.json> <out.html> [--pdf <out.pdf>] [--sheet <out.png>] [--no-check]
+Usage:
+  python render.py <deck.json> <out.html> [--pdf <out.pdf>] [--report <out.json>] [--sheet <out.png>]
+                   [--page <n> <page.png>] [--fill <ratio>] [--route python|node|bare] [--no-check]
+  python render.py <deck.json> <look.html> --look <look.png> [--look-slide <index>] [--route ...]
 
-- One slide is one 13.333in x 7.5in page, on screen and in print.
-- Cover: two title lines, one short tagline, the client's logo and then the presenter's at the lower left, four diagonal stripes at the upper right.
-  Closing: a dark page with the thanks line, the white logo and the contact lines, all centered.
-- Content: the title (a subtitle and a header logo only when the slide declares them), one to three blocks, a page number at the lower right.
-- Structure comes from type, rules and real marks: columns / statement / facts / numbered / loop / brand are the editorial blocks;
-  cards / banner / bullets / rows / stats / shots / stack / timeline / qa / split / profiles / steps / diagram / gantt / note are the rest.
-- Line icons (ICONS) exist for the rare item whose meaning a word does not carry; a named product gets its real logo (an image path), never an icon.
-- When meta.external is true, the strings of meta and slides are checked against meta.style before rendering; a failure lists each
-  string with its path ($.slides[3].blocks[0].text). --no-check renders anyway, for a look at a draft; a delivery never uses it.
-- The PDF is printed with Playwright's Chromium. Without Playwright the HTML is written and the PDF step is skipped with a message.
-- --sheet tiles the PDF's pages into one PNG with PyMuPDF, for the review. Without PyMuPDF the step is skipped with a message.
-- Logo paths are resolved relative to the deck file; a path that does not exist prints a warning and draws nothing.
+- One slide is one 13.333in x 7.5in page, on screen and in print. meta.register picks the frame: "proposal" (a light
+  gradient, an accent bar beside the title, a page number) or "report" (white pages, a section label above the title,
+  a rule under the header, a footer with the brand, the document name, the date and the page number).
+- Cover: proposal, two title lines, a tagline, the client's and the presenter's logos, four stripes; report, a navy
+  panel with the kind label, the title, the tagline and the meta rows, a supplied photograph or the stripes at the right.
+  Closing: a dark page with the thanks line, the white logo and the contact lines.
+- Blocks: columns / statement / facts / numbered / toc / table / kpi / photo / loop / brand / rows / steps / diagram /
+  gantt / profiles / timeline / stack / cards / banner / stats / bullets / qa / shots / split / note. Every block's root
+  carries data-path ($.slides[3].blocks[0]) and every slide data-slide, which the layout report names findings by.
+- Line icons (ICONS) exist for the rare item whose meaning a word does not carry; a named product gets its real logo.
+- When meta.external is true, the strings of meta and slides are checked against meta.style before rendering; a failure
+  lists each string with its path. --no-check renders anyway, for a look at a draft; a delivery never uses it.
+- The browser route is the first the host has: Playwright from Python; Node.js with playwright-core (PLAYWRIGHT_FROM,
+  or a tools folder in the user's cache, installed there once); the installed browser's own --print-to-pdf and
+  --screenshot (no layout report on that route). --route forces one. The route taken is printed.
+- --report measures the rendered pages in the browser: overflow, cut text, overlapping texts, a lone word on a last line,
+  wrapped values, and a content slide filled under --fill (0.5). --sheet tiles the pages three per row, from the PDF
+  with PyMuPDF where it is installed, else from the HTML through the browser. --look prints the cover and one body
+  slide in both registers on one image, for the plan checkpoint.
+- Image paths are resolved relative to the deck file; a path that does not exist prints a warning and draws nothing.
 """
 import base64
 import html
 import json
 import math
 import os
+import pathlib
 import re
+import shutil
+import stat
+import subprocess
 import sys
+import tempfile
 
 DEFAULT_THEME = {
-    "navy": "#22408E", "steel": "#7089BF", "ink": "#2A3242", "mute": "#5A6478",
+    "navy": "#22408E", "steel": "#7089BF", "accent": None, "ink": "#2A3242", "mute": "#5A6478",
     "tint": "#E7EDFA", "tint2": "#D9E2F6", "line": "#E2E8F5", "pale": "#BFD0EC",
     "rule": "#C9D1E3", "faint": "#8A94A8",
     "font": "Pretendard",
-    "font_css": "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css",
+    "font_css": "https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css",
 }
-SKIP_KEYS = ("logo", "logo_white", "client_logo", "logos", "symbol", "center_logos", "id", "icon", "font_css")
+SKIP_KEYS = ("logo", "logo_white", "client_logo", "logos", "symbol", "center_logos", "photo", "src", "id", "icon", "font_css")
+PAGE_W, PAGE_H = 13.333, 7.5
 
 # Line icons (24x24, stroke = currentColor), for the rare item whose meaning a word does not carry.
 ICONS = {
@@ -78,9 +95,11 @@ def check_style(spec):
     problems = []
     checked = {"meta": {k: v for k, v in spec.get("meta", {}).items() if k not in ("style", "theme")}, "slides": spec["slides"]}
     for path, s in _walk_strings(checked):
-        for ch, name in forbidden.items():
-            if ch in s:
-                problems.append(f"{path}: {name} ({ch}) in: {s[:60]}")
+        for chars, name in forbidden.items():
+            for ch in chars:  # a key of several characters is a set, each checked
+                if ch in s:
+                    problems.append(f"{path}: {name} ({ch}) in: {s[:60]}")
+                    break
         if style.get("no_bracket_heads") and re.match(r"^\s*\[[^\]]+\]", s):
             problems.append(f"{path}: bracket head in: {s[:60]}")
     return problems
@@ -90,7 +109,20 @@ def _e(s):
     return html.escape("" if s is None else str(s), quote=False)
 
 
-BASE_DIR = ""  # the deck file's folder: logo paths are resolved relative to it
+def _luma(hex_color):
+    """Relative luminance of a #rrggbb color, 0 (black) to 1 (white)."""
+    h = (hex_color or "").lstrip("#")
+    if len(h) == 3:
+        h = "".join(c * 2 for c in h)
+    try:
+        r, g, b = (int(h[i:i + 2], 16) / 255 for i in (0, 2, 4))
+    except ValueError:
+        return 0.5
+    lin = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in (r, g, b)]
+    return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2]
+
+
+BASE_DIR = ""  # the deck file's folder: image paths are resolved relative to it
 
 
 def _img_data(path):
@@ -98,10 +130,10 @@ def _img_data(path):
         return None
     full = path if os.path.isabs(path) else os.path.join(BASE_DIR, path)
     if not os.path.exists(full):
-        print(f"warning: mark not found, nothing drawn: {path}", file=sys.stderr)
+        print(f"warning: image not found, nothing drawn: {path}", file=sys.stderr)
         return None
     ext = os.path.splitext(path)[1].lower().lstrip(".")
-    mime = {"svg": "image/svg+xml", "jpg": "image/jpeg", "jpeg": "image/jpeg"}.get(ext, "image/png")
+    mime = {"svg": "image/svg+xml", "jpg": "image/jpeg", "jpeg": "image/jpeg", "webp": "image/webp"}.get(ext, "image/png")
     with open(full, "rb") as f:
         return f"data:{mime};base64," + base64.b64encode(f.read()).decode()
 
@@ -133,21 +165,30 @@ CSS_T = """
 html, body { margin: 0; padding: 0; background: #9aa3b5; }
 body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; color: @INK; -webkit-print-color-adjust: exact; print-color-adjust: exact; word-break: keep-all; overflow-wrap: break-word; }
 .slide { position: relative; width: 13.333in; height: 7.5in; overflow: hidden; margin: 0 auto 0.25in auto; background: linear-gradient(155deg, #FFFFFF 0%, @TINT 100%); page-break-after: always; break-after: page; }
+.slide.report { background: #fff; }
 .slide:last-child { margin-bottom: 0; }
 @media print { body { background: none; } .slide { margin: 0; } }
 .content { position: absolute; left: 0.55in; right: 0.55in; top: 0.42in; bottom: 0.45in; display: flex; flex-direction: column; }
+.report .content { bottom: 0.55in; }
 .header { position: relative; padding-left: 0.18in; margin-bottom: 0.3in; }
-.header::before { content: ""; position: absolute; left: 0; top: 0.08in; width: 5.5pt; height: 0.5in; background: @STEEL; }
+.header::before { content: ""; position: absolute; left: 0; top: 0.08in; width: 5.5pt; height: 0.5in; background: @ACCENT; }
 .header h1 { margin: 0; font-size: 26pt; font-weight: 700; color: @NAVY; line-height: 1.2; }
 .header h2 { margin: 0.1in 0 0 0.02in; font-size: 14pt; font-weight: 400; color: @MUTE; }
+.header.rep { padding-left: 0; padding-bottom: 0.14in; border-bottom: 1.5pt solid @NAVY; margin-bottom: 0.28in; }
+.header.rep::before { display: none; }
+.header.rep .sec { font-size: 10.5pt; font-weight: 700; color: @ACCENT; letter-spacing: 0.08em; margin-bottom: 0.08in; }
+.header.rep h1 { font-size: 24pt; }
 .hlogo { position: absolute; right: 0; top: 0.06in; height: 0.46in; }
 .tag { position: absolute; right: 0; top: 0.1in; background: @NAVY; color: #fff; font-size: 12pt; font-weight: 700; padding: 0.06in 0.3in; border-radius: 999px; }
 .body { flex: 1; display: flex; flex-direction: column; gap: 0.26in; min-height: 0; }
 .body.center { justify-content: center; padding-bottom: 0.3in; }
 .note { position: absolute; left: 0.55in; right: 0.55in; bottom: 0.12in; font-size: 10.5pt; color: @MUTE; line-height: 1.35; }
 .pageno { position: absolute; right: 0.5in; bottom: 0.26in; font-size: 9.5pt; color: @FAINT; letter-spacing: 0.05em; }
+.footer { position: absolute; left: 0.55in; right: 0.55in; bottom: 0.22in; display: flex; justify-content: space-between; align-items: baseline; font-size: 9pt; color: @FAINT; letter-spacing: 0.03em; }
+.footer .fl span + span::before { content: "  |  "; white-space: pre; }
 .ic { display: block; flex: none; }
 .idisc { flex: none; width: 0.52in; height: 0.52in; border-radius: 50%; background: @TINT; color: @NAVY; display: flex; align-items: center; justify-content: center; }
+.tnote { font-size: 9.5pt; color: @MUTE; margin-top: 0.1in; line-height: 1.4; }
 
 /* columns */
 .cols { display: grid; align-items: start; }
@@ -155,11 +196,11 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 
 /* statement */
 .statement .st { margin: 0; font-weight: 700; color: @NAVY; line-height: 1.42; letter-spacing: -0.01em; }
-.statement .st b { color: @STEEL; margin-right: 0.16in; }
+.statement .st b { color: @ACCENT; margin-right: 0.16in; }
 .statement .sb { margin: 0.24in 0 0; font-size: 13.5pt; color: @INK; line-height: 1.6; }
 
 /* facts (definition list) */
-.facts { display: grid; }
+.facts { display: grid; margin: 0; }
 .facts .f { display: grid; column-gap: 0.2in; padding: 0.13in 0; border-top: 1px solid @RULE; }
 .facts .f:last-child { border-bottom: 1px solid @RULE; }
 .facts dt { margin: 0; font-size: 11.5pt; color: @MUTE; padding-top: 0.03in; }
@@ -176,6 +217,42 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .numbered .nn { width: 0.3in; height: 0.3in; border-radius: 50%; background: @NAVY; color: #fff; font-size: 10.5pt; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 0.02in; }
 .numbered .nt { font-size: 13.5pt; font-weight: 700; color: @INK; line-height: 1.3; }
 .numbered .nd { font-size: 11.5pt; color: @MUTE; line-height: 1.4; margin-top: 0.03in; }
+
+/* contents */
+.toc { display: grid; column-gap: 0.6in; align-content: start; }
+.toc .ti { display: grid; grid-template-columns: 0.75in 1fr; column-gap: 0.15in; padding: 0.14in 0; border-bottom: 1px solid @RULE; align-items: start; }
+.toc .ti.first { border-top: 1px solid @RULE; }
+.toc .tn { font-size: 20pt; font-weight: 700; color: @ACCENT; line-height: 1.1; }
+.toc .tt { font-size: 14.5pt; font-weight: 700; color: @INK; line-height: 1.3; }
+.toc .ts { font-size: 11.5pt; color: @MUTE; margin-top: 0.03in; line-height: 1.4; }
+
+/* table */
+.table { width: 100%; border-collapse: collapse; }
+.table th { background: @TINT; color: @NAVY; font-weight: 700; text-align: left; padding: 0.1in 0.14in; border-bottom: 1px solid @RULE; line-height: 1.3; }
+.table td { padding: 0.1in 0.14in; border-bottom: 1px solid @LINE; vertical-align: top; line-height: 1.4; color: @INK; }
+.table.firstbold td:first-child { font-weight: 700; }
+
+/* kpi */
+.kpis { display: grid; gap: 0.25in; }
+.kpi { background: #fff; border: 1px solid @LINE; border-radius: 0.12in; padding: 0.26in 0.3in; display: flex; flex-direction: column; gap: 0.08in; }
+.kpi .kv { font-size: 30pt; font-weight: 700; color: @NAVY; line-height: 1.1; letter-spacing: -0.01em; }
+.kpi .kv small { font-size: 14pt; font-weight: 600; margin-left: 0.06in; }
+.kpi .kl { font-size: 12pt; color: @INK; line-height: 1.45; }
+.kpi .kt { align-self: flex-start; font-size: 9.5pt; font-weight: 700; color: @MUTE; background: @TINT; border-radius: 999px; padding: 0.03in 0.14in; }
+.kpi .kb { height: 0.09in; background: @LINE; border-radius: 999px; overflow: hidden; margin-top: 0.06in; }
+.kpi .kb i { display: block; height: 100%; background: @ACCENT; }
+.kpi.navy { background: @NAVY; border-color: @NAVY; }
+.kpi.navy .kv, .kpi.navy .kl { color: #fff; }
+.kpi.navy .kt { background: rgba(255,255,255,0.18); color: #fff; }
+.kpi.navy .kb { background: rgba(255,255,255,0.25); }
+.kpi.navy .kb i { background: #fff; }
+
+/* photo */
+.photo { display: flex; flex-direction: column; gap: 0.08in; }
+.photo .pf { border-radius: 0.12in; overflow: hidden; background: @TINT; }
+.photo .pf img { display: block; width: 100%; height: 100%; }
+.photo .pc { font-size: 11pt; color: @MUTE; line-height: 1.4; }
+.photo .pcr { font-size: 9pt; color: @FAINT; }
 
 /* loop */
 .loop { position: relative; }
@@ -203,6 +280,7 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .cards { display: grid; gap: 0.25in; }
 .card { background: #fff; border: 1px solid @LINE; border-radius: 0.1in; padding: 0.26in 0.3in; }
 .card .idisc { margin-bottom: 0.16in; }
+.card .num { width: 0.42in; height: 0.42in; border-radius: 50%; background: @NAVY; color: #fff; font-weight: 700; font-size: 13pt; display: flex; align-items: center; justify-content: center; margin-bottom: 0.14in; }
 .card .ch { display: flex; align-items: center; gap: 0.14in; margin-bottom: 0.12in; }
 .card .ch .idisc { width: 0.44in; height: 0.44in; margin: 0; }
 .card .ch h3 { margin: 0; }
@@ -216,8 +294,10 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 
 .rows { display: flex; flex-direction: column; gap: 0.12in; }
 .row { display: grid; grid-template-columns: 0.72in 3.1in 1fr auto; align-items: center; background: #fff; border: 1px solid @LINE; border-radius: 0.14in; padding: 0.1in 0.18in 0.1in 0; }
+.row.plain { grid-template-columns: 0.46in 3.1in 1fr auto; }
 .row .no { width: 0.34in; height: 0.34in; border-radius: 50%; background: @NAVY; color: #fff; font-weight: 700; font-size: 12pt; display: flex; align-items: center; justify-content: center; margin-left: 0.18in; }
 .row .no.opt { background: @STEEL; }
+.row .dot { width: 0.09in; height: 0.09in; border-radius: 50%; background: @ACCENT; margin-left: 0.2in; }
 .row .idisc { width: 0.44in; height: 0.44in; margin-left: 0.14in; }
 .row .t { font-size: 13.5pt; font-weight: 700; padding-right: 0.2in; }
 .row .d { font-size: 12pt; color: @MUTE; line-height: 1.4; }
@@ -226,7 +306,7 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 
 .ticks { list-style: none; margin: 0; padding: 0; }
 .ticks li { line-height: 1.45; }
-.ticks li::before { content: "|  "; color: @STEEL; font-weight: 700; }
+.ticks li::before { content: "|  "; color: @ACCENT; font-weight: 700; }
 .ticks b { color: @NAVY; }
 
 .stats { display: grid; gap: 0.2in; }
@@ -250,7 +330,7 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .tentry { position: relative; margin-bottom: 0.25in; }
 .tentry::before { content: ""; position: absolute; left: -0.3in; top: 0.1in; width: 0.2in; height: 0.2in; border-radius: 50%; background: @NAVY; margin-left: 0.03in; }
 .tentry.opt::before { background: @STEEL; }
-.tentry .when { font-size: 12pt; font-weight: 700; color: @STEEL; }
+.tentry .when { font-size: 12pt; font-weight: 700; color: @ACCENT; }
 .tentry .ttl { font-size: 16pt; font-weight: 700; color: @NAVY; margin: 0.03in 0 0.12in 0; }
 .tentry .ticks li { font-size: 12.5pt; margin-bottom: 0.06in; }
 
@@ -259,8 +339,8 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 
 .split { flex: 1; display: grid; column-gap: 0.25in; min-height: 0; }
 .shots { display: flex; flex-direction: column; gap: 0.2in; height: 100%; }
-.shot { flex: 1; background: #F4F6FB; border: 1.1pt solid @STEEL; border-radius: 0.06in; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0.2in; }
-.shot .lb { font-size: 12pt; font-weight: 700; color: @STEEL; }
+.shot { flex: 1; background: #F4F6FB; border: 1.1pt solid @ACCENT; border-radius: 0.06in; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0.2in; }
+.shot .lb { font-size: 12pt; font-weight: 700; color: @ACCENT; }
 .shot .cap { font-size: 11pt; color: @MUTE; margin-top: 0.05in; }
 
 /* profiles */
@@ -278,11 +358,19 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .steps { display: flex; align-items: center; gap: 0.07in; }
 .step { flex: 1; display: flex; align-items: center; gap: 0.09in; background: #fff; border: 1px solid @LINE; border-radius: 999px; padding: 0.1in 0.14in; font-size: 11pt; font-weight: 700; color: @INK; line-height: 1.2; }
 .step .n { flex: none; width: 0.3in; height: 0.3in; border-radius: 50%; background: @NAVY; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 10.5pt; }
-.step .ic { color: @STEEL; }
-.sa { color: @STEEL; font-size: 15pt; line-height: 1; flex: none; }
+.step .ic { color: @ACCENT; }
+.sa { color: @ACCENT; font-size: 15pt; line-height: 1; flex: none; }
 .steps.tiles .step { flex-direction: column; border-radius: 0.14in; padding: 0.12in 0.1in; text-align: center; gap: 0.07in; align-self: stretch; justify-content: flex-start; }
 .steps.tiles .sh { display: flex; align-items: center; gap: 0.08in; }
 .steps.tiles .sl { font-size: 11pt; line-height: 1.25; }
+.steps.detail { align-items: stretch; }
+.steps.detail .step { flex-direction: column; align-items: stretch; border-radius: 0.14in; padding: 0.18in 0.22in; gap: 0.05in; text-align: left; font-weight: 400; }
+.steps.detail .sk { font-size: 9.5pt; font-weight: 700; letter-spacing: 0.08em; color: @ACCENT; }
+.steps.detail .sw { font-size: 10.5pt; color: @MUTE; }
+.steps.detail .st2 { font-size: 13.5pt; font-weight: 700; color: @NAVY; line-height: 1.3; margin-top: 0.03in; }
+.steps.detail .sd { font-size: 10.5pt; color: @INK; line-height: 1.4; margin-top: 0.04in; }
+.steps.detail .sa { align-self: center; }
+.stepsw .facts.inline { margin-top: 0.26in; }
 
 /* diagram */
 .diagram { height: 100%; background: #fff; border: 1px solid @LINE; border-radius: 0.1in; padding: 0.3in 0.25in; display: grid; grid-template-columns: 1.35in 0.45in 1fr 0.45in 1.35in; grid-template-rows: auto 0.4in auto 0.4in auto; column-gap: 0.08in; align-items: center; align-content: center; }
@@ -290,7 +378,7 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .dn.accent { background: @NAVY; color: #fff; border-color: @NAVY; }
 .dn.strong { background: #fff; border: 2pt solid @NAVY; }
 .dn h4 { margin: 0 0 0.05in 0; font-size: 12.5pt; display: flex; align-items: center; justify-content: center; gap: 0.08in; }
-.dn h4 .ic { color: @STEEL; }
+.dn h4 .ic { color: @ACCENT; }
 .dn.accent h4 .ic { color: #fff; }
 .dn p { margin: 0; font-size: 10.5pt; line-height: 1.35; color: inherit; opacity: 0.9; }
 .dn .chips { display: flex; justify-content: center; gap: 0.05in; margin-bottom: 0.08in; }
@@ -299,7 +387,7 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .dn .nl { display: flex; justify-content: center; align-items: center; gap: 0.14in; margin-bottom: 0.08in; }
 .dn .nl img { height: 0.34in; }
 .arrow { text-align: center; font-size: 10pt; color: @MUTE; line-height: 1.1; }
-.arrow span { display: block; font-size: 18pt; color: @STEEL; line-height: 1; }
+.arrow span { display: block; font-size: 18pt; color: @ACCENT; line-height: 1; }
 .arrow.v { display: flex; align-items: center; justify-content: center; gap: 0.08in; }
 .arrow.v span { display: inline; }
 .diag { display: flex; flex-direction: column; }
@@ -317,12 +405,14 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .gantt { display: grid; grid-template-columns: 2.9in 1fr; row-gap: 0.1in; align-content: start; }
 .gantt .gmonths { display: grid; border-bottom: 1px solid @RULE; }
 .gantt .gmonths div { font-size: 11.5pt; font-weight: 700; color: @NAVY; padding: 0 0 0.08in 0.1in; border-left: 1px solid @LINE; }
-.gantt .gl { font-size: 13pt; font-weight: 700; color: @INK; display: flex; align-items: center; height: 0.6in; padding-right: 0.2in; }
+.gantt .gl { font-size: 13pt; font-weight: 700; color: @INK; display: flex; flex-direction: column; justify-content: center; height: 0.6in; padding-right: 0.2in; line-height: 1.25; }
+.gantt .gl .sub { font-size: 10.5pt; font-weight: 400; color: @MUTE; margin-top: 0.02in; }
 .gantt .gt { position: relative; height: 0.6in; background-image: linear-gradient(to right, @LINE 1px, transparent 1px); }
 .gantt .gbar { position: absolute; top: 0.12in; height: 0.36in; border-radius: 0.18in; display: flex; align-items: center; padding: 0 0.16in; font-size: 11pt; white-space: nowrap; overflow: hidden; }
 .gantt .gms { position: absolute; top: 0; height: 100%; }
 .gantt .gms i { position: absolute; top: 0.19in; left: -0.11in; width: 0.22in; height: 0.22in; background: @NAVY; transform: rotate(45deg); }
 .gantt .gms span { position: absolute; right: 0.2in; top: 0.16in; font-size: 12pt; font-weight: 700; color: @NAVY; white-space: nowrap; }
+.gantt .gms.right span { right: auto; left: 0.2in; }
 
 /* cover */
 .cover .stripe { position: absolute; border-radius: 999px; transform: rotate(40deg); }
@@ -334,6 +424,18 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 .cover .logos img.client { height: 0.4in; }
 .cover .logos .sep { width: 1px; height: 0.42in; background: @PALE; }
 .cover .foot { position: absolute; left: 0.75in; top: 6.2in; font-size: 12pt; font-weight: 700; color: @MUTE; }
+.cover.report { background: linear-gradient(155deg, #FFFFFF 0%, @TINT 100%); }
+.cover.report .panel { position: absolute; left: 0; top: 0; width: 7.4in; height: 100%; background: @NAVY; color: #fff; padding: 0.75in; }
+.cover.report .plogo { height: 0.36in; display: block; }
+.cover.report .pbrand { color: #fff; font-size: 16pt; font-weight: 700; letter-spacing: 0.04em; }
+.cover.report .kind { margin-top: 1.1in; font-size: 12pt; font-weight: 700; letter-spacing: 0.12em; color: @PALE; }
+.cover.report .ttl { position: static; width: auto; margin-top: 0.25in; }
+.cover.report .ttl h1 { color: #fff; font-size: 40pt; line-height: 1.2; }
+.cover.report .tagline { color: @PALE; margin-top: 0.3in; }
+.cover.report .meta { position: absolute; left: 0.75in; right: 0.75in; bottom: 0.75in; margin: 0; display: grid; grid-template-columns: 1.2in 1fr; row-gap: 0.08in; font-size: 11pt; }
+.cover.report .meta dt { margin: 0; color: @PALE; }
+.cover.report .meta dd { margin: 0; color: #fff; font-weight: 600; }
+.cover.report .pimg { position: absolute; left: 7.4in; top: 0; width: 5.933in; height: 100%; object-fit: cover; }
 
 /* closing */
 .closing { background: @NAVY; }
@@ -346,16 +448,44 @@ body { font-family: @FONT, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; c
 
 def css(t):
     out = CSS_T.replace("@FONT_IMPORT", f"@import url('{t['font_css']}');" if t.get("font_css") else "")
+    out = out.replace("@ACCENT", t.get("accent") or t["steel"])
     for key in ("navy", "steel", "ink", "mute", "tint2", "tint", "line", "pale", "rule", "faint", "font"):
         out = out.replace("@" + key.upper(), t[key])
     return out
 
 
+def sections_of(slides):
+    """The contents a report derives from its slides: one [no, title, sub] per distinct `section`, in order."""
+    out, seen = [], {}
+    for s in slides:
+        if s.get("type", "content") != "content" or not s.get("section"):
+            continue
+        sec = str(s["section"]).strip()
+        if sec in seen:
+            if not seen[sec][2] and s.get("toc_sub"):
+                seen[sec][2] = s["toc_sub"]
+            continue
+        m = re.match(r"^(\d+[.)]?)\s+(.*)$", sec)
+        entry = [m.group(1), m.group(2), s.get("toc_sub", "")] if m else ["", sec, s.get("toc_sub", "")]
+        seen[sec] = entry
+        out.append(entry)
+    return out
+
+
+def _with_path(markup, path):
+    """Mark the block's root element with its path in the deck file, for the layout report."""
+    return re.sub(r"^(<\w+)", lambda m: f'{m.group(1)} data-path="{path}"', markup, count=1)
+
+
 class Renderer:
-    def __init__(self, theme):
+    def __init__(self, theme, register="proposal"):
         self.t = theme
+        self.reg = "report" if register == "report" else "proposal"
         self.css = css(theme)
         self.step = [theme["tint"], theme["pale"], theme["steel"], theme["navy"]]
+        self.sections = []
+        self.labels = {"step": "STEP", "q": "Q."}
+        self.doc_name = ""
         # cover stripes: (center x, center y, width, length, color) in inches
         self.stripes = [
             (5.3, 0.85, 0.9, 2.4, theme["tint2"]),
@@ -363,6 +493,9 @@ class Renderer:
             (8.7, 4.2, 1.05, 6.2, theme["tint"]),
             (9.9, 4.7, 0.75, 3.1, theme["steel"]),
         ]
+
+    def fg_on(self, bg):
+        return "#fff" if _luma(bg) < 0.45 else self.t["navy"]
 
     def ticks(self, items, size=None, gap=None):
         """[head, body] renders a bold head and its sentence; [text] or "text" renders plain text."""
@@ -380,8 +513,8 @@ class Renderer:
         out.append("</ul>")
         return "".join(out)
 
-    def columns(self, blk):
-        inner = "".join(f'<div class="col">{self.block(b)}</div>' for b in blk["blocks"])
+    def columns(self, blk, path):
+        inner = "".join(f'<div class="col">{self.block(b, f"{path}.blocks[{i}]")}</div>' for i, b in enumerate(blk["blocks"]))
         cls = " stretch" if blk.get("stretch") else ""
         return f'<div class="cols{cls}" style="grid-template-columns:{blk.get("widths", "1fr 1fr")};column-gap:{blk.get("gap", 0.4)}in">{inner}</div>'
 
@@ -404,16 +537,65 @@ class Renderer:
                         for i, it in enumerate(blk["items"]))
         return f'<div class="numbered" style="grid-template-columns:repeat({blk.get("cols", 1)},1fr);column-gap:0.4in">{items}</div>'
 
+    def toc(self, blk):
+        """The contents: entries of [no, title, sub], given or derived from the slides' `section` fields."""
+        items = blk.get("items") or self.sections
+        cols = max(1, int(blk.get("cols", 2)))
+        n = max(1, len(items))
+        rows = -(-n // cols)
+        cells = []
+        for i, it in enumerate(items):
+            no, title, sub = (list(it) + ["", "", ""])[:3]
+            first = " first" if i % rows == 0 else ""
+            subh = f'<div class="ts">{_e(sub)}</div>' if sub else ""
+            cells.append(f'<div class="ti{first}"><div class="tn">{_e(no)}</div><div><div class="tt">{_e(title)}</div>{subh}</div></div>')
+        return (f'<div class="toc" style="grid-template-columns:repeat({cols},1fr);grid-template-rows:repeat({rows},auto);'
+                f'grid-auto-flow:column">{"".join(cells)}</div>')
+
+    def table(self, blk):
+        widths = blk.get("widths")
+        colgroup = ("<colgroup>" + "".join(f'<col style="width:{w}">' for w in widths) + "</colgroup>") if widths else ""
+        head = "".join(f"<th>{_e(c)}</th>" for c in blk["columns"])
+        body = "".join("<tr>" + "".join(f"<td>{_e(c)}</td>" for c in row) + "</tr>" for row in blk["rows"])
+        cls = " firstbold" if blk.get("first_col") == "bold" else ""
+        note = f'<div class="tnote">{_e(blk["note"])}</div>' if blk.get("note") else ""
+        return (f'<div class="tablew"><table class="table{cls}" style="font-size:{blk.get("size", 11.5)}pt">{colgroup}'
+                f'<thead><tr>{head}</tr></thead><tbody>{body}</tbody></table>{note}</div>')
+
+    def kpi(self, blk):
+        n = blk.get("cols", len(blk["items"]))
+        panels = []
+        for it in blk["items"]:
+            tone = " navy" if it.get("tone") == "navy" else ""
+            unit = f'<small>{_e(it["unit"])}</small>' if it.get("unit") else ""
+            tag = f'<div class="kt">{_e(it["tag"])}</div>' if it.get("tag") else ""
+            bar = ""
+            if it.get("bar") is not None:
+                pct = min(max(float(it["bar"]), 0.0), 1.0) * 100
+                bar = f'<div class="kb"><i style="width:{pct:.1f}%"></i></div>'
+            panels.append(f'<div class="kpi{tone}"><div class="kv">{_e(it["value"])}{unit}</div>'
+                          f'<div class="kl">{_e(it.get("label", ""))}</div>{bar}{tag}</div>')
+        note = f'<div class="tnote">{_e(blk["note"])}</div>' if blk.get("note") else ""
+        return f'<div class="kpiw"><div class="kpis" style="grid-template-columns:repeat({n},1fr)">{"".join(panels)}</div>{note}</div>'
+
+    def photo(self, blk):
+        img = _img_data(blk.get("src"))
+        fit = blk.get("fit", "cover")
+        frame = f'<div class="pf" style="height:{blk.get("h", 3.6)}in">' + (f'<img src="{img}" style="object-fit:{fit}">' if img else "") + "</div>"
+        cap = f'<div class="pc">{_e(blk["caption"])}</div>' if blk.get("caption") else ""
+        cr = f'<div class="pcr">{_e(blk["credit"])}</div>' if blk.get("credit") else ""
+        return f'<div class="photo">{frame}{cap}{cr}</div>'
+
     def loop(self, blk):
-        """Four nodes (top, right, bottom, left) joined clockwise by a ring; logos and a caption at the center.
-        width, height and r (ring radius) are inches; node_w and center_w are the node and caption widths."""
+        """Four nodes (top, right, bottom, left) joined clockwise by a ring; logos and a caption at the center."""
         w, h, r = blk.get("width", 4.6), blk.get("height", 4.0), blk.get("r", 1.45)
         cx, cy, sc = w / 2, h / 2, 100
+        accent = self.t.get("accent") or self.t["steel"]
         heads = []
         for deg in (-45, 45, 135, 225):
             th = math.radians(deg)
             x, y = (cx + r * math.cos(th)) * sc, (cy + r * math.sin(th)) * sc
-            heads.append(f'<path d="M-9,-6 L9,0 L-9,6 Z" fill="{self.t["steel"]}" transform="translate({x:.1f},{y:.1f}) rotate({deg + 90})"/>')
+            heads.append(f'<path d="M-9,-6 L9,0 L-9,6 Z" fill="{accent}" transform="translate({x:.1f},{y:.1f}) rotate({deg + 90})"/>')
         svg = (f'<svg viewBox="0 0 {w * sc:.0f} {h * sc:.0f}"><circle cx="{cx * sc:.1f}" cy="{cy * sc:.1f}" r="{r * sc:.1f}" '
                f'fill="none" stroke="{self.t["pale"]}" stroke-width="3"/>{"".join(heads)}</svg>')
         pos = [(cx, cy - r), (cx + r, cy), (cx, cy + r), (cx - r, cy)]
@@ -442,11 +624,13 @@ class Renderer:
         n = blk.get("cols", len(blk["items"]))
         hs = f"min-height:{blk['h']}in;" if blk.get("h") else ""
         cards = []
-        for it in blk["items"]:
+        for i, it in enumerate(blk["items"]):
             inner = f'<p>{_e(it["body"])}</p>' if it.get("body") else ""
             if it.get("items"):
                 inner += self.ticks(it["items"])
-            if blk.get("icon_pos") == "inline":
+            if blk.get("numbered"):
+                head = f'<div class="num">{it.get("no", i + 1)}</div><h3>{_e(it["title"])}</h3>'
+            elif blk.get("icon_pos") == "inline":
                 head = f'<div class="ch">{_disc(it.get("icon"), 0.26)}<h3>{_e(it["title"])}</h3></div>'
             else:
                 head = f'{_disc(it.get("icon"))}<h3>{_e(it["title"])}</h3>'
@@ -460,14 +644,20 @@ class Renderer:
 
     def rows(self, blk):
         rh = blk.get("row_h", 0.78)
+        plain = blk.get("numbered") is False
         rows = []
         for i, it in enumerate(blk["items"]):
             tag = it.get("tag")
             basic = blk.get("basic_tag")
             opt = " opt" if tag and tag != basic else ""
             chip = f'<span class="chip{" basic" if tag == basic else ""}">{_e(tag)}</span>' if tag else "<span></span>"
-            lead = _disc(it["icon"], 0.26) if it.get("icon") else f'<div class="no{opt}">{it.get("no", i + 1)}</div>'
-            rows.append(f'<div class="row" style="min-height:{rh}in">{lead}'
+            if it.get("icon"):
+                lead = _disc(it["icon"], 0.26)
+            elif plain:
+                lead = '<div class="dot"></div>'
+            else:
+                lead = f'<div class="no{opt}">{it.get("no", i + 1)}</div>'
+            rows.append(f'<div class="row{" plain" if plain else ""}" style="min-height:{rh}in">{lead}'
                         f'<div class="t">{_e(it["title"])}</div><div class="d">{_e(it["desc"])}</div>{chip}</div>')
         return f'<div class="rows">{"".join(rows)}</div>'
 
@@ -490,8 +680,7 @@ class Renderer:
         cells = []
         for i, it in enumerate(items):
             c = self.step[min(i, len(self.step) - 1)] if len(items) > 2 else [self.t["steel"], self.t["navy"]][i % 2]
-            fg = "#fff" if c in (self.t["steel"], self.t["navy"]) else self.t["navy"]
-            cells.append(f'<div class="lab" style="background:{c};color:{fg};min-height:{rh}in;grid-row:{i + 1}">{_e(it["label"])}</div>'
+            cells.append(f'<div class="lab" style="background:{c};color:{self.fg_on(c)};min-height:{rh}in;grid-row:{i + 1}">{_e(it["label"])}</div>'
                          f'<div class="desc" style="grid-row:{i + 1}">{_e(it["desc"])}</div>')
         aside = blk.get("aside")
         if aside:
@@ -512,7 +701,7 @@ class Renderer:
         return "".join(out)
 
     def qa(self, blk):
-        return '<div class="qa">' + "".join(f'<p class="q">Q. {_e(it["q"])}</p><p class="a">{_e(it["a"])}</p>' for it in blk["items"]) + "</div>"
+        return '<div class="qa">' + "".join(f'<p class="q">{_e(self.labels["q"])} {_e(it["q"])}</p><p class="a">{_e(it["a"])}</p>' for it in blk["items"]) + "</div>"
 
     def profiles(self, blk):
         cards = []
@@ -525,28 +714,43 @@ class Renderer:
         return f'<div class="profiles" style="grid-template-columns:repeat({blk.get("cols", len(cards))},1fr)">{"".join(cards)}</div>'
 
     def steps(self, blk):
-        """Strings render as pills in one line; items with icons, or style: tiles, render as tiles (number above the label)."""
-        tiles = blk.get("style") == "tiles" or any(isinstance(s, dict) and s.get("icon") for s in blk["items"])
+        """Strings render as pills in one line; items with icons, or style: tiles, as tiles (number above the label);
+        items with `when` or `desc` as detail tiles (STEP n, when, the label, the sentence), with the block's facts under the strip."""
+        items = blk["items"]
+        detail = any(isinstance(s, dict) and (s.get("desc") or s.get("when")) for s in items)
+        tiles = not detail and (blk.get("style") == "tiles" or any(isinstance(s, dict) and s.get("icon") for s in items))
         parts = []
-        for i, s in enumerate(blk["items"]):
+        for i, s in enumerate(items):
             if i:
                 parts.append('<div class="sa">&#8594;</div>')
-            label, icon = (s, None) if isinstance(s, str) else (s["label"], s.get("icon"))
-            if tiles:
+            if isinstance(s, str):
+                label, icon, when, desc = s, None, "", ""
+            else:
+                label, icon, when, desc = s.get("label", s.get("title", "")), s.get("icon"), s.get("when", ""), s.get("desc", "")
+            if detail:
+                whenh = f'<div class="sw">{_e(when)}</div>' if when else ""
+                desch = f'<div class="sd">{_e(desc)}</div>' if desc else ""
+                parts.append(f'<div class="step"><div class="sk">{_e(self.labels["step"])} {i + 1}</div>{whenh}<div class="st2">{_e(label)}</div>{desch}</div>')
+            elif tiles:
                 parts.append(f'<div class="step"><div class="sh"><span class="n">{i + 1}</span>{_icon(icon, 0.28)}</div><span class="sl">{_e(label)}</span></div>')
             else:
                 parts.append(f'<div class="step"><span class="n">{i + 1}</span>{_icon(icon, 0.26)}<span>{_e(label)}</span></div>')
-        return f'<div class="steps{" tiles" if tiles else ""}">{"".join(parts)}</div>'
+        cls = " detail" if detail else (" tiles" if tiles else "")
+        strip = f'<div class="steps{cls}">{"".join(parts)}</div>'
+        if blk.get("facts"):
+            return f'<div class="stepsw">{strip}{self.facts({"items": blk["facts"], "inline": True})}</div>'
+        return strip
 
     def gantt(self, blk):
         months = blk["months"]
         n = len(months)
         t = self.t
-        tones = {"tint": (t["tint"], t["navy"]), "pale": (t["pale"], t["navy"]), "steel": (t["steel"], "#fff"), "navy": (t["navy"], "#fff")}
+        tones = {"tint": (t["tint"], t["navy"]), "pale": (t["pale"], t["navy"]), "steel": (t["steel"], self.fg_on(t["steel"])), "navy": (t["navy"], "#fff")}
         head = "".join(f"<div>{_e(m)}</div>" for m in months)
         out = [f'<div class="gantt"><div></div><div class="gmonths" style="grid-template-columns:repeat({n},1fr)">{head}</div>']
         for r in blk["rows"]:
-            out.append(f'<div class="gl">{_e(r["label"])}</div>')
+            sub = f'<div class="sub">{_e(r["sub"])}</div>' if r.get("sub") else ""
+            out.append(f'<div class="gl"><div>{_e(r["label"])}</div>{sub}</div>')
             track = ""
             if "start" in r:
                 bg, fg = tones.get(r.get("tone", "navy"), tones["navy"])
@@ -554,17 +758,18 @@ class Renderer:
                 width = (r["end"] - r["start"]) / n * 100
                 track += f'<div class="gbar" style="left:{left:.3f}%;width:{width:.3f}%;background:{bg};color:{fg}">{_e(r.get("text", ""))}</div>'
             if "milestone" in r:
-                pct = r["milestone"] / n * 100
+                ms = r["milestone"]
+                pct = ms / n * 100
                 mtext = r.get("mtext", "" if "start" in r else r.get("text", ""))
-                track += f'<div class="gms" style="left:{pct:.3f}%"><i></i><span>{_e(mtext)}</span></div>'
+                # the label sits at the diamond's left, unless the row's bar reaches the date: then at its right
+                right = "start" in r and r["end"] >= ms - 0.05 and r["start"] <= ms + 0.05
+                track += f'<div class="gms{" right" if right else ""}" style="left:{pct:.3f}%"><i></i><span>{_e(mtext)}</span></div>'
             out.append(f'<div class="gt" style="background-size:calc(100% / {n}) 100%;">{track}</div>')
         out.append("</div>")
         return "".join(out)
 
     def diagram(self, d, full=False):
-        """Five nodes in a fixed arrangement: source (left), center, service (above), output (right), update (below).
-        A node's `logos` (image paths) are drawn above its title. full=True draws it at page width: the top three rows
-        inside a dashed frame, the update node below the frame."""
+        """Five nodes in a fixed arrangement: source (left), center, service (above), output (right), update (below)."""
         nodes = {n["id"]: n for n in d["nodes"]}
         order = [n["id"] for n in d["nodes"]]
         labels = {(a, b): l for a, b, l in d["edges"]}
@@ -616,116 +821,542 @@ class Renderer:
         rhtml = self.diagram(right["diagram"]) if right.get("diagram") else self.shots(right["items"])
         return f'<div class="split" style="grid-template-columns:{blk.get("left_w", 6.0)}in 1fr"><div>{lhtml}</div><div>{rhtml}</div></div>'
 
-    def block(self, blk):
+    def block(self, blk, path="$"):
         k = blk["kind"]
         if k == "bullets":
-            return self.ticks(blk["items"], blk.get("size", 13), blk.get("gap", 10))
-        if k == "shots":
-            return self.shots(blk["items"])
-        if k == "diagram":
-            return self.diagram(blk, full=True)
-        if k == "note":
+            out = self.ticks(blk["items"], blk.get("size", 13), blk.get("gap", 10))
+        elif k == "shots":
+            out = self.shots(blk["items"])
+        elif k == "diagram":
+            out = self.diagram(blk, full=True)
+        elif k == "note":
             return ""
-        fn = getattr(self, k, None)
-        if fn is None or k in ("block", "slide", "html", "ticks"):
-            raise ValueError(f"unknown block kind: {k}")
-        return fn(blk)
+        elif k == "columns":
+            out = self.columns(blk, path)
+        else:
+            fn = getattr(self, k, None)
+            if fn is None or k in ("block", "slide", "html", "ticks", "fg_on"):
+                raise ValueError(f"unknown block kind: {k}")
+            out = fn(blk)
+        return _with_path(out, path)
 
-    def slide(self, s, meta, idx):
-        t = s.get("type", "content")
-        if t == "cover":
-            logo = _img_data(meta.get("logo"))
-            clogo = _img_data(meta.get("client_logo"))
-            stripes = "".join(
-                f'<div class="stripe" style="left:{cx - w / 2:.2f}in;top:{cy - l / 2:.2f}in;width:{w}in;height:{l}in;background:{c}"></div>'
-                for cx, cy, w, l, c in self.stripes)
-            tag = s.get("tagline") or s.get("subtitle") or ""
-            logos = (f'<img class="client" src="{clogo}"><span class="sep"></span>' if clogo else "") + (f'<img src="{logo}">' if logo else "")
-            foot = ""
-            if s.get("footer"):
-                foot = '<div class="foot">' + "&nbsp;&nbsp;|&nbsp;&nbsp;".join(_e(v) for v in [meta.get("client"), meta.get("date"), meta.get("brand")] if v) + "</div>"
-            return (f'<section class="slide cover">{stripes}'
+    def cover(self, s, meta, idx, label=None):
+        tag = s.get("tagline") or s.get("subtitle") or ""
+        stripes = "".join(
+            f'<div class="stripe" style="left:{cx - w / 2:.2f}in;top:{cy - l / 2:.2f}in;width:{w}in;height:{l}in;background:{c}"></div>'
+            for cx, cy, w, l, c in self.stripes)
+        lab = f' data-label="{_e(label)}"' if label else ""
+        if self.reg == "report":
+            photo = _img_data(s.get("photo"))
+            right = f'<img class="pimg" src="{photo}">' if photo else stripes
+            wl = _img_data(meta.get("logo_white"))
+            mark = f'<img class="plogo" src="{wl}">' if wl else (f'<div class="pbrand">{_e(meta["brand"])}</div>' if meta.get("brand") else "")
+            kind = f'<div class="kind">{_e(s["kind"])}</div>' if s.get("kind") else ""
+            rows = "".join(f"<dt>{_e(k)}</dt><dd>{_e(v)}</dd>" for k, v in s.get("meta_rows", []))
+            metah = f'<dl class="meta">{rows}</dl>' if rows else ""
+            return (f'<section class="slide cover report" data-slide="{idx + 1}"{lab}>{right}<div class="panel">{mark}{kind}'
                     f'<div class="ttl"><h1>{"<br>".join(_e(x) for x in s["title_lines"])}</h1>'
-                    + (f'<p class="tagline">{_e(tag)}</p>' if tag else "") + "</div>"
-                    + (f'<div class="logos">{logos}</div>' if logos else "") + foot + "</section>")
+                    + (f'<p class="tagline">{_e(tag)}</p>' if tag else "") + f"</div>{metah}</div></section>")
+        logo = _img_data(meta.get("logo"))
+        clogo = _img_data(meta.get("client_logo"))
+        logos = (f'<img class="client" src="{clogo}"><span class="sep"></span>' if clogo else "") + (f'<img src="{logo}">' if logo else "")
+        foot = ""
+        if isinstance(s.get("footer"), str):
+            foot = f'<div class="foot">{_e(s["footer"])}</div>'
+        elif s.get("footer"):
+            foot = '<div class="foot">' + "&nbsp;&nbsp;|&nbsp;&nbsp;".join(_e(v) for v in [meta.get("client"), meta.get("date"), meta.get("brand")] if v) + "</div>"
+        return (f'<section class="slide cover" data-slide="{idx + 1}"{lab}>{stripes}'
+                f'<div class="ttl"><h1>{"<br>".join(_e(x) for x in s["title_lines"])}</h1>'
+                + (f'<p class="tagline">{_e(tag)}</p>' if tag else "") + "</div>"
+                + (f'<div class="logos">{logos}</div>' if logos else "") + foot + "</section>")
+
+    def slide(self, s, meta, idx, label=None):
+        t = s.get("type", "content")
+        lab = f' data-label="{_e(label)}"' if label else ""
+        if t == "cover":
+            return self.cover(s, meta, idx, label)
         if t == "closing":
             logo = _img_data(meta.get("logo_white"))
-            return (f'<section class="slide closing"><h1>{_e(s.get("title", "Thank you"))}</h1>'
+            return (f'<section class="slide closing" data-slide="{idx + 1}"{lab}><h1>{_e(s.get("title", "Thank you"))}</h1>'
                     + (f'<img class="logo" src="{logo}">' if logo else (f'<div class="logo brandname">{_e(meta["brand"])}</div>' if meta.get("brand") else ""))
                     + f'<div class="contact">{"<br>".join(_e(c) for c in s.get("contact", []))}</div></section>')
         blocks = s.get("blocks", [])
         notes = [b["text"] for b in blocks if b["kind"] == "note"]
-        body = "".join(self.block(b) for b in blocks if b["kind"] != "note")
+        body = "".join(self.block(b, f"$.slides[{idx}].blocks[{i}]") for i, b in enumerate(blocks) if b["kind"] != "note")
         tag = f'<div class="tag">{_e(s["tag"])}</div>' if s.get("tag") else ""
         hlogo = _img_data(s.get("logo"))
         hlogo = f'<img class="hlogo" src="{hlogo}">' if hlogo else ""
         sub = f'<h2>{_e(s["subtitle"])}</h2>' if s.get("subtitle") else ""
         note = f'<div class="note">{"<br>".join(_e(n) for n in notes)}</div>' if notes else ""
         cls = " center" if s.get("valign") == "center" else ""
-        pageno = f'<div class="pageno">{idx + 1:02d}</div>' if meta.get("page_numbers", True) else ""
-        return (f'<section class="slide"><div class="content"><div class="header">{tag}{hlogo}<h1>{_e(s["title"])}</h1>{sub}</div>'
+        numbered = meta.get("page_numbers", True)
+        if self.reg == "report":
+            sec = f'<div class="sec">{_e(s["section"])}</div>' if s.get("section") else ""
+            header = f'<div class="header rep">{tag}{hlogo}{sec}<h1>{_e(s["title"])}</h1>{sub}</div>'
+            foot = ""
+            if meta.get("footer", True):
+                parts = [meta.get("brand"), meta.get("doc_name") or self.doc_name, meta.get("date")]
+                left = "".join(f"<span>{_e(p)}</span>" for p in parts if p)
+                right = f"{idx + 1:02d}" if numbered else ""
+                foot = f'<div class="footer"><div class="fl">{left}</div><div class="fr">{right}</div></div>'
+            return (f'<section class="slide report" data-slide="{idx + 1}"{lab}><div class="content">{header}'
+                    f'<div class="body{cls}">{body}</div></div>{note}{foot}</section>')
+        pageno = f'<div class="pageno">{idx + 1:02d}</div>' if numbered else ""
+        return (f'<section class="slide" data-slide="{idx + 1}"{lab}><div class="content"><div class="header">{tag}{hlogo}<h1>{_e(s["title"])}</h1>{sub}</div>'
                 f'<div class="body{cls}">{body}</div></div>{note}{pageno}</section>')
+
+    def prepare(self, spec):
+        slides = spec["slides"]
+        self.sections = sections_of(slides)
+        self.labels = {"step": "STEP", "q": "Q.", **spec.get("meta", {}).get("labels", {})}
+        lines = slides[0].get("title_lines", []) if slides and slides[0].get("type") == "cover" else []
+        self.doc_name = lines[0] if lines else ""
 
     def html(self, spec):
         meta = spec.get("meta", {})
         slides = spec["slides"]
+        self.prepare(spec)
         title = " ".join(slides[0].get("title_lines", ["deck"])) if slides else "deck"
         pages = "\n".join(self.slide(s, meta, i) for i, s in enumerate(slides))
-        return (f'<!doctype html><html><head><meta charset="utf-8"><title>{_e(title)}</title>'
-                f"<style>{self.css}</style></head><body>\n{pages}\n</body></html>")
+        return document(title, self.css, pages)
 
 
-def to_pdf(html_path, pdf_path):
+def document(title, style, pages, extra_css=""):
+    return (f'<!doctype html><html><head><meta charset="utf-8"><title>{_e(title)}</title>'
+            f"<style>{style}</style>{('<style>' + extra_css + '</style>') if extra_css else ''}</head><body>\n{pages}\n</body></html>")
+
+
+SHEET_CSS = """
+@page { size: auto; margin: 0; }
+body { background: #e9edf3; display: grid; grid-template-columns: repeat(@COLS, max-content); gap: 0.12in; padding: 0.12in; width: max-content; margin: 0; counter-reset: s; }
+.slide { zoom: @ZOOM; margin: 0 !important; counter-increment: s; box-shadow: 0 0 0 1px #c5ccd8; }
+.slide::after { content: counter(s, decimal-leading-zero); position: absolute; right: 0.14in; top: 0.1in; font: 700 26pt sans-serif; color: rgba(34,64,142,0.5); z-index: 9; }
+.slide[data-label]::after { content: attr(data-label); font-size: 20pt; }
+"""
+
+
+def sheet_page(deck_html, cols, zoom):
+    """The deck's HTML laid out cols per row at the given zoom, for a screenshot."""
+    extra = SHEET_CSS.replace("@COLS", str(cols)).replace("@ZOOM", str(zoom))
+    return deck_html.replace("</head>", f"<style>{extra}</style></head>", 1)
+
+
+# ---------------------------------------------------------------- browser routes
+
+MEASURE_JS = r"""
+(() => {
+  const FILL = window.__fill || 0.5;
+  const out = { fill_threshold: FILL, findings: 0, slides: [] };
+  const rect = (el) => el.getBoundingClientRect();
+  const pathOf = (el) => { const p = el.closest("[data-path]"); return p ? p.dataset.path : ""; };
+  const textLeaves = (root) => [...root.querySelectorAll("*")].filter((el) => {
+    if (el.tagName === "SCRIPT" || el.tagName === "STYLE") return false;
+    for (const n of el.childNodes) if (n.nodeType === 3 && n.textContent.trim()) return true;
+    return false;
+  });
+  // the line boxes of an element's text: rects that overlap vertically are one line, whatever their type size
+  const lineBoxes = (el) => {
+    const rects = []; const walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    for (let n; (n = walk.nextNode()); ) { const rg = document.createRange(); rg.selectNodeContents(n); for (const b of rg.getClientRects()) if (b.width > 0.5 && b.height > 0.5) rects.push({ top: b.top, bottom: b.bottom, width: b.width }); }
+    rects.sort((a, b) => a.top - b.top);
+    const lines = [];
+    for (const r of rects) {
+      const L = lines[lines.length - 1];
+      if (L && Math.min(L.bottom, r.bottom) - Math.max(L.top, r.top) > 0.5 * Math.min(L.bottom - L.top, r.bottom - r.top)) { L.width += r.width; L.top = Math.min(L.top, r.top); L.bottom = Math.max(L.bottom, r.bottom); }
+      else lines.push({ top: r.top, bottom: r.bottom, width: r.width });
+    }
+    return lines;
+  };
+  document.querySelectorAll("section.slide").forEach((s, i) => {
+    const r = { n: i + 1, kind: s.classList.contains("cover") ? "cover" : s.classList.contains("closing") ? "closing" : "content",
+      overflow: [], cut: [], overlaps: [], lone_words: [], wrapped_values: [] };
+    const sr = rect(s);
+    const content = s.querySelector(".content");
+    const body = s.querySelector(".body");
+    const cr = content ? rect(content) : null;
+    for (const el of s.querySelectorAll("[data-path], .header, .footer, .pageno")) {
+      const er = rect(el); if (er.width === 0 && er.height === 0) continue;
+      const path = el.dataset.path || pathOf(el) || el.className;
+      if (er.right > sr.right + 2 || er.bottom > sr.bottom + 2 || er.left < sr.left - 2 || er.top < sr.top - 2)
+        r.overflow.push({ path, where: "beyond the page", by: Math.round(Math.max(er.right - sr.right, er.bottom - sr.bottom)) });
+      else if (cr && el.dataset.path && er.bottom > cr.bottom + 2)
+        r.overflow.push({ path, where: "below the content frame", by: Math.round(er.bottom - cr.bottom) });
+    }
+    for (const el of s.querySelectorAll("*")) {
+      const cs = getComputedStyle(el);
+      if ((cs.overflowX === "hidden" || cs.overflowY === "hidden") && el.tagName !== "SECTION" && el.innerText && el.innerText.trim()) {
+        if (el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2)
+          r.cut.push({ path: pathOf(el), text: el.innerText.trim().slice(0, 30), by: Math.max(el.scrollHeight - el.clientHeight, el.scrollWidth - el.clientWidth) });
+      }
+    }
+    const leaves = textLeaves(s).map((el) => ({ el, r: rect(el) })).filter((x) => x.r.width > 0 && x.r.height > 0);
+    for (let a = 0; a < leaves.length; a++) for (let b = a + 1; b < leaves.length; b++) {
+      const A = leaves[a], B = leaves[b];
+      if (A.el.contains(B.el) || B.el.contains(A.el)) continue;
+      const w = Math.min(A.r.right, B.r.right) - Math.max(A.r.left, B.r.left), h = Math.min(A.r.bottom, B.r.bottom) - Math.max(A.r.top, B.r.top);
+      if (w > 2 && h > 2) r.overlaps.push({ path: pathOf(A.el) || pathOf(B.el), a: A.el.innerText.trim().slice(0, 30), b: B.el.innerText.trim().slice(0, 30) });
+    }
+    if (body && r.kind === "content") {
+      const br = rect(body); let low = br.top, high = br.bottom;
+      for (const el of body.children) { const e = rect(el); if (e.height === 0) continue; low = Math.max(low, e.bottom); high = Math.min(high, e.top); }
+      r.fill = br.height > 0 && low > high ? Math.round(((low - high) / br.height) * 100) / 100 : 0;
+      if (r.fill < FILL && !body.querySelector(".toc")) r.under_filled = true;  // the contents slide is exempt
+    }
+    for (const el of s.querySelectorAll(".facts dd, .row .t, .nt, .st, .header h1, .kpi .kv, .gantt .gbar, .toc .tt, .stack .lab, .card h3, .steps .st2")) {
+      const lines = lineBoxes(el); if (lines.length < 2) continue;
+      if (el.matches(".facts dd, .row .t, .kpi .kv, .gantt .gbar, .stack .lab")) {
+        if (!el.matches(".facts dd") || !el.querySelector("br")) r.wrapped_values.push({ path: pathOf(el), text: el.innerText.trim().slice(0, 30), lines: lines.length });
+        continue;
+      }
+      const text = el.innerText.trim(); const words = text.split(/\s+/); if (words.length < 2) continue;
+      const last = words[words.length - 1];
+      let lastNode = null; const walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      for (let n; (n = walk.nextNode()); ) if (n.textContent.trim()) lastNode = n;
+      if (!lastNode) continue; const idx = lastNode.textContent.lastIndexOf(last); if (idx < 0) continue;
+      const rg = document.createRange(); rg.setStart(lastNode, idx); rg.setEnd(lastNode, idx + last.length);
+      const wr = rg.getBoundingClientRect(); const lw = lines[lines.length - 1].width;
+      if (lw > 0 && Math.abs(lw - wr.width) < 3) r.lone_words.push({ path: pathOf(el), text: text.slice(0, 30), word: last });
+    }
+    r.findings = r.overflow.length + r.cut.length + r.overlaps.length + r.lone_words.length + r.wrapped_values.length + (r.under_filled ? 1 : 0);
+    out.findings += r.findings;
+    out.slides.push(r);
+  });
+  return out;
+})()
+"""
+
+NODE_SCRIPT = r"""// Written by render.py: pdf | report | shot with playwright-core and an installed browser.
+import { createRequire } from "node:module";
+import fs from "node:fs";
+import path from "node:path";
+const require = createRequire(process.env.PLAYWRIGHT_FROM);
+const { chromium } = require("playwright-core");
+const [cmd, input, out, extra, extra2] = process.argv.slice(2);
+async function launch() {
+  for (const channel of ["chrome", "msedge", "chromium"]) {
+    try { return await chromium.launch(channel === "chromium" ? {} : { channel }); } catch {}
+  }
+  throw new Error("no Chromium-family browser found: install Chrome or Edge, or run npx playwright install chromium");
+}
+const browser = await launch();
+try {
+  const ctx = await browser.newContext({ viewport: { width: Number(extra2) || 1300, height: 900 }, deviceScaleFactor: 1 });
+  const page = await ctx.newPage();
+  await page.goto("file:///" + path.resolve(input).replace(/\\/g, "/"), { waitUntil: "networkidle" });
+  await page.evaluate("document.fonts.ready");
+  await page.waitForTimeout(300);
+  if (cmd === "pdf") {
+    await page.pdf({ path: out, width: "13.333in", height: "7.5in", printBackground: true, preferCSSPageSize: true });
+  } else if (cmd === "report") {
+    await page.evaluate(`window.__fill = ${Number(extra) || 0.5}`);
+    const result = await page.evaluate(fs.readFileSync(process.env.DECK_MEASURE, "utf8"));
+    fs.writeFileSync(out, JSON.stringify(result, null, 1));
+  } else if (cmd === "shot") {
+    await page.screenshot({ path: out, fullPage: true });
+  } else {
+    throw new Error("unknown command " + cmd);
+  }
+} finally {
+  await browser.close();
+}
+"""
+
+
+def _tools_dir():
+    base = os.environ.get("DECK_TOOLS")
+    if not base:
+        if sys.platform.startswith("win"):
+            base = os.path.join(os.environ.get("LOCALAPPDATA") or tempfile.gettempdir(), "html-deck-tools")
+        else:
+            base = os.path.join(os.environ.get("XDG_CACHE_HOME") or os.path.join(os.path.expanduser("~"), ".cache"), "html-deck-tools")
+    os.makedirs(base, exist_ok=True)
+    return base
+
+
+def _playwright_core():
+    """The package.json of a project that has playwright-core, for createRequire; installs one into the tools folder when none."""
+    pf = os.environ.get("PLAYWRIGHT_FROM")
+    if pf and os.path.exists(os.path.join(os.path.dirname(pf), "node_modules", "playwright-core")):
+        return pf
+    tools = _tools_dir()
+    pkg = os.path.join(tools, "package.json")
+    if os.path.exists(os.path.join(tools, "node_modules", "playwright-core")):
+        return pkg
+    npm = shutil.which("npm") or shutil.which("npm.cmd")
+    if not npm:
+        return None
+    if not os.path.exists(pkg):
+        with open(pkg, "w", encoding="utf-8") as f:
+            f.write('{"name": "html-deck-tools", "private": true}\n')
+    print(f"browser: installing playwright-core into {tools} (no browser download)")
     try:
+        subprocess.run([npm, "install", "playwright-core", "--no-fund", "--no-audit", "--loglevel=error"], cwd=tools, check=True, timeout=300)
+    except (subprocess.SubprocessError, OSError) as exc:
+        print(f"browser: playwright-core install failed ({exc})")
+        return None
+    return pkg if os.path.exists(os.path.join(tools, "node_modules", "playwright-core")) else None
+
+
+def find_browser():
+    env = os.environ.get("CHROME")
+    if env and os.path.exists(env):
+        return env
+    for name in ("google-chrome", "google-chrome-stable", "chrome", "chromium", "chromium-browser", "msedge", "microsoft-edge"):
+        p = shutil.which(name)
+        if p:
+            return p
+    cands = []
+    if sys.platform.startswith("win"):
+        for root in (os.environ.get("ProgramFiles"), os.environ.get("ProgramFiles(x86)"), os.environ.get("LocalAppData")):
+            if root:
+                cands += [os.path.join(root, "Google", "Chrome", "Application", "chrome.exe"),
+                          os.path.join(root, "Microsoft", "Edge", "Application", "msedge.exe")]
+    elif sys.platform == "darwin":
+        cands += ["/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                  "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge",
+                  "/Applications/Chromium.app/Contents/MacOS/Chromium"]
+    return next((c for c in cands if os.path.exists(c)), None)
+
+
+def choose_route(prefer=None):
+    """The first browser route the host has: ("python", None), ("node", package.json), ("bare", browser path), or (None, None)."""
+    order = [prefer] if prefer else ["python", "node", "bare"]
+    for r in order:
+        if r == "python":
+            try:
+                import playwright.sync_api  # noqa: F401
+                return "python", None
+            except ImportError:
+                continue
+        if r == "node":
+            if shutil.which("node"):
+                pf = _playwright_core()
+                if pf:
+                    return "node", pf
+            continue
+        if r == "bare":
+            b = find_browser()
+            if b:
+                return "bare", b
+    return None, None
+
+
+def describe_route(route, info):
+    return {"python": "python-playwright", "node": f"node playwright-core from {os.path.dirname(info)}", "bare": f"{info} (bare: no layout report)"}.get(route, "none")
+
+
+def _rmtree(path):
+    def onerr(fn, p, exc):
+        try:
+            os.chmod(p, stat.S_IWRITE)
+            fn(p)
+        except OSError:
+            pass
+    shutil.rmtree(path, onerror=onerr)
+
+
+def _url(path):
+    return pathlib.Path(path).resolve().as_uri()
+
+
+def browser_task(route, info, cmd, html_path, out_path, fill=0.55, width=1300, height=900):
+    """cmd: pdf | report | shot. Returns True when the file was written."""
+    if route == "python":
         from playwright.sync_api import sync_playwright
-    except ImportError:
-        print("pdf: skipped (Playwright is not installed; print the HTML from a browser at 13.333in x 7.5in with backgrounds on)")
-        return
-    with sync_playwright() as p:
-        b = p.chromium.launch()
-        pg = b.new_page()
-        pg.goto("file:///" + os.path.abspath(html_path).replace("\\", "/"))
-        pg.wait_for_load_state("networkidle")
-        pg.evaluate("document.fonts.ready")
-        pg.pdf(path=pdf_path, width="13.333in", height="7.5in", print_background=True, prefer_css_page_size=True)
-        b.close()
-    print("pdf:", pdf_path)
+        with sync_playwright() as p:
+            b = None
+            for channel in ("chrome", "msedge", None):
+                try:
+                    b = p.chromium.launch(channel=channel) if channel else p.chromium.launch()
+                    break
+                except Exception:
+                    continue
+            if b is None:
+                raise RuntimeError("no Chromium-family browser found: install Chrome or Edge, or run playwright install chromium")
+            ctx = b.new_context(viewport={"width": width, "height": 900}, device_scale_factor=1)
+            pg = ctx.new_page()
+            pg.goto(_url(html_path), wait_until="networkidle")
+            pg.evaluate("document.fonts.ready")
+            pg.wait_for_timeout(300)
+            if cmd == "pdf":
+                pg.pdf(path=out_path, width="13.333in", height="7.5in", print_background=True, prefer_css_page_size=True)
+            elif cmd == "report":
+                pg.evaluate(f"window.__fill = {fill}")
+                data = pg.evaluate(MEASURE_JS)
+                with open(out_path, "w", encoding="utf-8") as f:
+                    json.dump(data, f, ensure_ascii=False, indent=1)
+            else:
+                pg.screenshot(path=out_path, full_page=True)
+            b.close()
+        return os.path.exists(out_path)
+    if route == "node":
+        tools = _tools_dir()
+        script = os.path.join(tools, "deck-browser.mjs")
+        measure = os.path.join(tools, "measure.js")
+        with open(script, "w", encoding="utf-8") as f:
+            f.write(NODE_SCRIPT)
+        with open(measure, "w", encoding="utf-8") as f:
+            f.write(MEASURE_JS)
+        env = {**os.environ, "PLAYWRIGHT_FROM": info, "DECK_MEASURE": measure}
+        subprocess.run(["node", script, cmd, os.path.abspath(html_path), os.path.abspath(out_path), str(fill), str(width)], check=True, env=env, timeout=300)
+        return os.path.exists(out_path)
+    if route == "bare":
+        if cmd == "report":
+            return False
+        profile = tempfile.mkdtemp(prefix="deck-")
+        args = [info, "--headless=new", "--disable-gpu", "--no-first-run", f"--user-data-dir={profile}", "--hide-scrollbars"]
+        if cmd == "pdf":
+            args += ["--no-pdf-header-footer", f"--print-to-pdf={os.path.abspath(out_path)}"]
+        else:
+            args += [f"--window-size={width},{height}", f"--screenshot={os.path.abspath(out_path)}"]
+        try:
+            subprocess.run(args + [_url(html_path)], check=False, timeout=180, capture_output=True)
+        finally:
+            _rmtree(profile)
+        return os.path.exists(out_path)
+    return False
 
 
-def contact_sheet(pdf_path, png_path, cols=3, dpi=55):
-    """Tiles every page of the PDF into one PNG, cols per row, at a small size, for the review."""
-    try:
-        import fitz  # PyMuPDF
-    except ImportError:
-        print("sheet: skipped (PyMuPDF is not installed: pip install pymupdf; or screenshot each page in a browser and tile them)")
-        return
-    src = fitz.open(pdf_path)
-    n = src.page_count
-    if not n:
-        return
-    pw, ph = src[0].rect.width, src[0].rect.height
-    gap = 12  # points between tiles
-    rows = -(-n // cols)
-    sheet = fitz.open()
-    page = sheet.new_page(width=cols * pw + (cols + 1) * gap, height=rows * ph + (rows + 1) * gap)
-    for i in range(n):
-        r, c = divmod(i, cols)
-        x, y = gap + c * (pw + gap), gap + r * (ph + gap)
-        page.show_pdf_page(fitz.Rect(x, y, x + pw, y + ph), src, i)
-    page.get_pixmap(dpi=dpi).save(png_path)
-    print("sheet:", png_path, f"({n} pages, {cols} per row)")
+def print_pdf(route, info, html_path, pdf_path):
+    if not route:
+        print("pdf: skipped (no browser route: install Chrome or Edge, or Playwright; or print the HTML from a browser at 13.333in x 7.5in with backgrounds on)")
+        return False
+    ok = browser_task(route, info, "pdf", html_path, pdf_path)
+    print("pdf:", pdf_path if ok else "failed")
+    return ok
+
+
+def layout_report(route, info, html_path, json_path, fill):
+    if route not in ("python", "node"):
+        print("report: skipped (the layout report needs Playwright from Python or playwright-core from Node; the review relies on the sheet)")
+        return None
+    browser_task(route, info, "report", html_path, json_path, fill=fill)
+    with open(json_path, encoding="utf-8") as f:
+        data = json.load(f)
+    print(f"report: {data['findings']} finding(s) -> {json_path}")
+    for s in data["slides"]:
+        for o in s["overflow"]:
+            print(f"  - slide {s['n']} {o['path']}: {o['where']} by {o['by']}px")
+        for c in s["cut"]:
+            print(f"  - slide {s['n']} {c['path']}: text cut inside its box by {c['by']}px: {c['text']}")
+        for o in s["overlaps"]:
+            print(f"  - slide {s['n']} {o['path']}: overlap: {o['a']} / {o['b']}")
+        for w in s["lone_words"]:
+            print(f"  - slide {s['n']} {w['path']}: lone word on the last line: {w['word']} in: {w['text']}")
+        for w in s["wrapped_values"]:
+            print(f"  - slide {s['n']} {w['path']}: wraps to {w['lines']} lines: {w['text']}")
+        if s.get("under_filled"):
+            print(f"  - slide {s['n']}: filled {s['fill']:.2f} of the body, under {data['fill_threshold']}")
+    return data
+
+
+def contact_sheet(route, info, html_path, pdf_path, png_path, cols=3, zoom=0.315):
+    """From the PDF with PyMuPDF where it is installed, else from the HTML through the browser route."""
+    if pdf_path and os.path.exists(pdf_path):
+        try:
+            import fitz  # PyMuPDF
+            src = fitz.open(pdf_path)
+            n = src.page_count
+            pw, ph = src[0].rect.width, src[0].rect.height
+            gap = 12
+            rows = -(-n // cols)
+            sheet = fitz.open()
+            page = sheet.new_page(width=cols * pw + (cols + 1) * gap, height=rows * ph + (rows + 1) * gap)
+            for i in range(n):
+                r, c = divmod(i, cols)
+                x, y = gap + c * (pw + gap), gap + r * (ph + gap)
+                page.show_pdf_page(fitz.Rect(x, y, x + pw, y + ph), src, i)
+            page.get_pixmap(dpi=55).save(png_path)
+            print("sheet:", png_path, f"({n} pages, {cols} per row, from the pdf)")
+            return True
+        except ImportError:
+            pass
+    if not route:
+        print("sheet: skipped (no PyMuPDF and no browser route)")
+        return False
+    with open(html_path, encoding="utf-8") as f:
+        deck = f.read()
+    n = deck.count('<section class="slide')
+    sheet_html = os.path.splitext(png_path)[0] + ".html"
+    with open(sheet_html, "w", encoding="utf-8") as f:
+        f.write(sheet_page(deck, cols, zoom))
+    rows = -(-max(n, 1) // cols)
+    width = int(cols * PAGE_W * zoom * 96 + (cols + 1) * 12) + 20
+    height = int(rows * PAGE_H * zoom * 96 + (rows + 1) * 12) + 20
+    ok = browser_task(route, info, "shot", sheet_html, png_path, width=width, height=height)
+    print("sheet:", png_path if ok else "failed", f"({n} pages, {cols} per row, from the html)")
+    return ok
+
+
+def single_page(route, info, html_path, n, png_path):
+    """One slide at full size (1280 by 720 pixels), for a closer look at a suspect page."""
+    if not route:
+        print("page: skipped (no browser route)")
+        return False
+    with open(html_path, encoding="utf-8") as f:
+        deck = f.read()
+    extra = (f'@page {{ size: auto; margin: 0; }} body {{ margin: 0; padding: 0; background: #fff; width: 13.333in; }} '
+             f'.slide {{ margin: 0 !important; }} .slide:not([data-slide="{n}"]) {{ display: none; }}')
+    page_html = os.path.splitext(png_path)[0] + ".html"
+    with open(page_html, "w", encoding="utf-8") as f:
+        f.write(deck.replace("</head>", f"<style>{extra}</style></head>", 1))
+    ok = browser_task(route, info, "shot", page_html, png_path, width=1280, height=720)
+    print("page:", png_path if ok else "failed", f"(slide {n})")
+    return ok
+
+
+def look_sheet(spec, theme, out_html, out_png, route, info, body_index=None):
+    """The cover and one body slide in the recommended register and in the other, two per row."""
+    meta = spec.get("meta", {})
+    slides = spec["slides"]
+    rec = "report" if meta.get("register") == "report" else "proposal"
+    other = "proposal" if rec == "report" else "report"
+    cover_i = next((i for i, s in enumerate(slides) if s.get("type") == "cover"), None)
+    if body_index is None:
+        rich = ("table", "gantt", "kpi", "facts", "timeline", "columns")
+        body_index = next((i for i, s in enumerate(slides) if s.get("type", "content") == "content"
+                           and any(b.get("kind") in rich for b in s.get("blocks", []))), None)
+        if body_index is None:
+            body_index = next((i for i, s in enumerate(slides) if s.get("type", "content") == "content"), None)
+    pages = []
+    for reg, label in ((rec, f"{rec} (recommended)"), (other, other)):
+        rd = Renderer(theme, reg)
+        rd.prepare(spec)
+        m = {**meta, "register": reg}
+        if cover_i is not None:
+            pages.append(rd.slide(slides[cover_i], m, cover_i, label))
+        if body_index is not None:
+            pages.append(rd.slide(slides[body_index], m, body_index, label))
+    doc = sheet_page(document("look", Renderer(theme, rec).css, "\n".join(pages)), 2, 0.47)
+    with open(out_html, "w", encoding="utf-8") as f:
+        f.write(doc)
+    print("look html:", out_html, f"(register {rec} recommended, body slide {body_index})")
+    if not route:
+        print("look: skipped (no browser route); open the look html in a browser instead")
+        return False
+    rows = -(-len(pages) // 2)
+    width = int(2 * PAGE_W * 0.47 * 96 + 3 * 12) + 20
+    height = int(rows * PAGE_H * 0.47 * 96 + (rows + 1) * 12) + 20
+    ok = browser_task(route, info, "shot", out_html, out_png, width=width, height=height)
+    print("look:", out_png if ok else "failed")
+    return ok
 
 
 def main(argv):
     global BASE_DIR
     sys.stdout.reconfigure(encoding="utf-8")  # a Windows console otherwise stops at the first character it cannot encode
-    if len(argv) < 3:
+    args = argv[1:]
+    if len(args) < 2:
         print(__doc__)
         return 2
-    spec = json.load(open(argv[1], encoding="utf-8"))
-    BASE_DIR = os.path.dirname(os.path.abspath(argv[1]))
+
+    def opt(name, default=None):
+        return args[args.index(name) + 1] if name in args else default
+
+    spec = json.load(open(args[0], encoding="utf-8"))
+    BASE_DIR = os.path.dirname(os.path.abspath(args[0]))
     meta = spec.get("meta", {})
-    if meta.get("external") and "--no-check" not in argv:
+    if meta.get("external") and "--no-check" not in args and "--look" not in args:
         probs = check_style(spec)
         if probs:
             print("house-style check failed:")
@@ -734,17 +1365,29 @@ def main(argv):
             return 1
         print("house-style check passed")
     theme = {**DEFAULT_THEME, **meta.get("theme", {})}
-    out_html = argv[2]
+    out_html = args[1]
+    needs_browser = any(k in args for k in ("--pdf", "--report", "--sheet", "--look"))
+    route, info = (choose_route(opt("--route")) if needs_browser else (None, None))
+    if needs_browser:
+        print("browser:", describe_route(route, info))
+    if "--look" in args:
+        bi = opt("--look-slide")
+        return 0 if look_sheet(spec, theme, out_html, opt("--look"), route, info, int(bi) if bi is not None else None) else 1
+    register = meta.get("register", "proposal")
     with open(out_html, "w", encoding="utf-8") as f:
-        f.write(Renderer(theme).html(spec))
-    print("html:", out_html, f"({len(spec['slides'])} slides)")
-    if "--pdf" in argv:
-        pdf = argv[argv.index("--pdf") + 1]
-        to_pdf(out_html, pdf)
-        if "--sheet" in argv:
-            contact_sheet(pdf, argv[argv.index("--sheet") + 1])
-    elif "--sheet" in argv:
-        print("sheet: skipped (--sheet needs --pdf; the sheet is made from the PDF's pages)")
+        f.write(Renderer(theme, register).html(spec))
+    print("html:", out_html, f"({len(spec['slides'])} slides, register {register})")
+    pdf = opt("--pdf")
+    if "--report" in args:
+        layout_report(route, info, out_html, opt("--report"), float(opt("--fill", 0.5)))
+    if pdf:
+        print_pdf(route, info, out_html, pdf)
+    if "--sheet" in args:
+        contact_sheet(route, info, out_html, pdf, opt("--sheet"))
+    if "--page" in args:
+        n = int(opt("--page"))
+        png = args[args.index("--page") + 2]
+        single_page(route, info, out_html, n, png)
     return 0
 
 

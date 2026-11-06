@@ -1,145 +1,128 @@
 ---
 name: html-deck-from-outline
-description: Drafts a slide deck as an HTML file and a PDF from notes, a meeting plan or a content outline, for a designer to polish a finished structure. Use when a user asks for a draft deck, presentation or slides from notes or a meeting plan, or wants slides in HTML or PDF rather than in a design tool. Slides added inside an existing Figma deck in its design are figma-slides-from-content, not this skill. Turns the outline into one deck file in which every slide is a type and a list of blocks (a statement beside a definition list, numbered rows, a loop, a Gantt-style schedule, a system diagram with a process strip, brand panels with real logos, team profiles), renders it to self-contained HTML at a fixed 16:9 page size in the organization's own tokens, prints it to PDF with a Chromium-family browser, checks the wording against the declared house style, and reviews a contact sheet of every page before delivery. Structure from type, rules and real marks, with no icon card grids.
+description: Drafts a slide deck as one HTML file and a PDF from notes, a meeting plan or an idea, as a corporate report (a business plan, a plan for investors, a company presentation, an internal report) or an external proposal (a kickoff, a proposal, a status report), each register with its own cover, page frame and blocks. Use when a user asks for a deck, a presentation, slides or "a proper PPT" from notes, a plan or an idea, or wants slides as HTML or PDF. Slides added inside an existing Figma deck in its design are figma-slides-from-content. Turns the outline into one deck file (every slide a type and its blocks, a statement beside facts, a table, sourced figures, a schedule, a diagram, brand panels, profiles), confirms the register on the cover and one body slide, renders at 16:9 in the organization's tokens, prints the PDF with a Chromium-family browser, measures the layout for overlaps, cuts and empty pages, checks the house style and reviews a contact sheet before delivery. Nothing is spent.
 license: MIT
-compatibility: Needs a shell with Python 3 and a Chromium-family browser the agent can drive for the PDF (Playwright with Chromium is what the helper script uses); without a browser the HTML is still delivered and the PDF is printed by the user. Image rendering of PDF pages for the review needs a PDF rasterizer (PyMuPDF or a browser screenshot). Works in any agent that can write files and run a shell.
+compatibility: Needs a shell with Python 3 for the helper and a Chromium-family browser (an installed Chrome or Edge, or Playwright's) for the PDF, the layout report and the contact sheet; the helper prints with Playwright from Python, with Node.js and playwright-core, or with the browser's own print, whichever the host has, and says which. Without any browser the HTML is still delivered and the PDF is printed by the user. Works in any agent that can write files, run a shell and look at an image.
 metadata:
   author: skillcdn
-  version: "1.3"
+  version: "1.4"
   tools: browser
 skillcdn:
   include:
     - references/deck-spec.md
-    - references/layout.md
   translations:
     ko:
-      title: 내용 개요에서 HTML과 PDF 발표자료 초안
-      description: 착수회의 발표, 제안서, 현황 보고 같은 슬라이드 덱의 첫 초안을 내용 개요에서 HTML 파일과 PDF로 만듭니다. 디자이너가 빈 페이지가 아니라 완성된 구조 위에서 다듬게 하는 것이 목적입니다. 개요를 슬라이드마다 유형과 블록 목록(한 문장 강조와 정의 목록, 번호 행, 순환 구성도, 간트형 일정, 절차 띠가 붙은 구성도, 실제 로고를 쓰는 브랜드 패널, 인력 소개)으로 적은 덱 파일 하나로 옮기고, 조직의 디자인 토큰으로 16:9 고정 크기의 단일 HTML로 렌더링한 뒤 크로미움 계열 브라우저로 PDF를 찍고, 덱 파일에 선언한 문안 규칙(대외 문서에서 쓰지 않는 글자와 머리말)을 검사하고, 사용자에게 보이기 전에 전체 페이지 축소판을 검토합니다. 구조는 글자, 괘선, 실제 로고로 만듭니다. 아이콘 카드 격자, 하단 단서, 페이지별 요약은 넣지 않습니다. 메모, 안건, 회의 계획에서 발표자료나 슬라이드 초안을 만들어 달라고 할 때, 디자인 도구가 아니라 HTML이나 PDF로 슬라이드가 필요할 때 쓰세요. 기존 Figma 덱 안에 그 덱의 디자인으로 슬라이드를 추가하는 일은 figma-slides-from-content의 몫입니다.
+      title: 내용 개요에서 HTML과 PDF 발표자료
+      description: 사업 기획안, 투자용 기획안, 회사 소개 PT, 내부 보고 같은 기업 보고서형과 착수회의 발표, 제안서, 현황 보고 같은 외부 제안형, 두 형식 중 하나로 메모, 회의 계획, 아이디어, 내용 개요에서 슬라이드 덱을 HTML 파일 하나와 PDF로 만듭니다. 개요를 슬라이드마다 유형과 블록 목록(한 문장 강조와 정의 목록, 표, 출처가 붙은 수치 패널, 일정, 절차 띠가 붙은 구성도, 실제 로고를 쓰는 브랜드 패널, 인력 소개)으로 적은 덱 파일 하나로 옮기고, 전체를 렌더하기 전에 표지와 본문 한 장을 두 형식으로 보여 형식을 확인받고, 조직의 디자인 토큰으로 16:9 고정 크기로 렌더링해 크로미움 계열 브라우저로 PDF를 찍고, 글자 겹침, 잘림, 빈 페이지를 재서 보고하고, 덱 파일에 선언한 문안 규칙을 검사하고, 전체 페이지 축소판을 검토한 뒤 전달합니다. 메모, 기획안, 아이디어에서 발표자료, 슬라이드, "퀄리티 높은 PPT"를 만들어 달라고 할 때, 디자인 도구가 아니라 HTML이나 PDF로 슬라이드가 필요할 때 쓰세요. 기존 Figma 덱 안에 그 덱의 디자인으로 슬라이드를 추가하는 일은 figma-slides-from-content의 몫입니다. 비용은 들지 않습니다.
 ---
-# A first-draft deck in HTML and PDF from an outline
+# A deck in HTML and PDF from an outline
 
-A content outline goes in: the slides the deck should have, with the words that go on each, in any shape the user has them (a meeting plan, a document with a section per slide, notes in chat). Out come one deck file (JSON, one slide after another, each a type and its blocks), one self-contained HTML file in which every slide is one 16:9 page, one PDF printed from it, and a contact sheet the agent has looked at. The HTML and the PDF are both always delivered: the HTML opens anywhere and is what the next edit is checked against, the PDF is what gets sent. The deck is a draft for a designer or for the user to present as is: the structure, the wording and the order are final, the visual polish is not. Nothing is generated by a model and nothing is spent; the only tool beyond the shell is a browser that prints to PDF.
+A content outline goes in (a meeting plan, a document, notes in chat, an idea in a few lines); out come one deck file (JSON, one slide after another, each a type and its blocks), one self-contained HTML file in which every slide is one 16:9 page, one PDF printed from it, a layout report that is empty, and a contact sheet the agent has looked at. The deck takes one of two registers ([registers.md](references/registers.md)): a proposal, spoken over in a room and left to a designer to polish or presented as it is, or a report, read as a document and written to be sent as it is, its figures sourced and its pages measured. Nothing is generated by a model and nothing is spent; the only tool beyond the shell is a browser.
 
 ## How the user is involved
 
-- **Questions:** only for the outline and, when the deck is for people outside the organization, for the house style when neither the request nor the organization's files say, asked once as "Does your organization ban any characters or heading forms in external documents? The usual set is middle dots, em and en dashes, circled numbers and bracketed heads; one word keeps that set." The usual set is the default. Everything else (the slide types, the blocks, the tokens, the file names) is derived and stated.
-- **Checkpoints:** the slide plan (one line per slide: its title and its block types; for an external deck, also what the outline said for the room's own ears and the deck leaves out) before rendering, and the contact sheet after. Each is one short message; "OK" continues. The plan checkpoint is skipped when the outline already names a block per slide.
-- **Go-ahead:** when the user says to go ahead alone, both checkpoints are skipped; the delivery still shows the contact sheet and names what the agent fixed after looking at it.
-- **Feedback rounds:** a round of notes on a draft is applied the same way as the first run: every note goes into the deck file, the renderer grows a block only when no existing block carries the note, and the whole deck is rendered, reviewed on the contact sheet and delivered again as HTML and PDF. The HTML and the PDF are never edited by hand. A note that says the layout is predictable or the icons are too many is a note on the whole deck, not on one slide: the agent re-reads the design floor below and rebuilds the slides that break it.
+- **Questions:** one first message, only for what nothing at hand answers: the outline, when the request has nothing to draw on (an idea in a few lines is an outline); what the register's slides need that the outline lacks or leaves ambiguous (the problem, the features, the figures and their sources, who pays whom, the team, the amount asked, the months, the author and the organization), listed so that "to be confirmed" answers any item; a finished deck of the organization's to match, where the request names none ("Is there a finished deck of yours to match, a PDF or a Figma file?"); the house style, when the deck goes outside the organization and nothing says ("Does your organization ban any characters or heading forms in external documents? The usual set is middle dots, em and en dashes, circled numbers and bracketed heads; one word keeps that set."), the usual set being the default; a photograph, where a report's cover calls for one and the organization's files hold none. Everything else is derived and stated.
+- **Checkpoints:** the plan with the look sheet, before the deck renders: one line per slide (title, section, block types; for an external deck, what the outline said for the room's own ears and the deck leaves out) and one image with the cover and one body slide in the recommended register and in the other. "OK" takes the recommendation, the other register's name takes it instead. Then the contact sheet, with the layout report's count. One short message each.
+- **Go-ahead:** both checkpoints skipped, the recommended register taken; the delivery still shows the sheet and names what was fixed after looking at it.
+- **Changes mid-run:** a note on the whole deck's look or register re-enters at the register (registers.md "Mid-run notes"), a note on composition at the design floor for every slide, a note on one slide at its entry in the deck file. Every round edits the deck file, renders the whole deck, measures it, reviews the sheet and delivers HTML and PDF again; neither is ever edited by hand.
 
 ## Requirements
 
 | What | Used for |
 |---|---|
-| A shell with Python 3 | The helper `scripts/render.py` in this directory renders the deck file to HTML and prints the PDF. The skill works without it: [layout.md](references/layout.md) gives the page geometry and the markup of every block, enough to write the HTML by hand. |
-| A Chromium-family browser the agent can drive | Printing the HTML to PDF at the page size the CSS declares. The helper uses Playwright's Chromium; any browser the agent can drive with a print-to-PDF call does the same, as [rendering-html.md](/docs/browser/rendering-html.md) "PDF at a declared page size" and [headless.md](/docs/browser/headless.md) say (a browser download is asked first). Without one, deliver the HTML and say the PDF is printed from the browser's print dialog with background graphics on. |
-| A PDF rasterizer or a page screenshot | The contact sheet for the review: the helper's `--sheet` tiles the pages with PyMuPDF (`pip install pymupdf`); without it, a browser screenshot of each page, tiled as [rendering-html.md](/docs/browser/rendering-html.md) "A contact sheet of many pages" says. |
-| The organization's design tokens and logos | Colors, the font family and the wordmark files, read from the organization's brand file, a previous deck or its website, and written into the deck file's `theme` and logo paths. Without any, the neutral defaults in [layout.md](references/layout.md) apply and the delivery says so. |
+| A shell with Python 3 | The helper `scripts/render.py` in this directory: HTML, PDF, the layout report, the sheets. Without it, [layout.md](references/layout.md) gives the geometry, the markup of every block and the measurements, enough to write the HTML by hand and check it. |
+| A Chromium-family browser | The PDF, the report and the sheets, through the first route the host has: Playwright from Python; Node.js with `playwright-core`, through `PLAYWRIGHT_FROM` from a project that has it, else installed by the helper on its first run into a tools folder in the user's cache (npm and the network, said in the first message); the installed browser's own print and screenshot, which gives no layout report, said in the delivery. Without any browser, deliver the HTML and say the PDF is printed from the browser's print dialog with background graphics on. |
+| A way to look at an image | The look sheet and the contact sheet are looked at by the agent; without an image reader or a browser it drives, stop and say so. |
+| The organization's tokens and logos | From its brand file, a previous deck or its site, written into the deck file; the defaults in layout.md otherwise, said in the delivery. |
+| Photographs, for a report | Only files the organization or the user holds, with the credit their source requires. None is generated. |
 
-Check the shell and the browser before the first message. Nothing here costs money. What any skill that renders a page with a browser shares (serving, printing, fonts, looking at a render, a contact sheet) is in the repository's document set [`docs/browser/`](/docs/browser/README.md), read through the repository connection when phases 3 and 4 link it; a copy of this directory, the area's plugin and a mount of one area or one skill cannot read it, and the helper and [layout.md](references/layout.md) carry what the PDF and the review need.
+Check the shell, the browser and the image reader before the first message. Nothing here costs money. What any skill that renders a page with a browser shares is in the repository's [`docs/browser/`](/docs/browser/README.md), read through the repository connection where phases 3 and 4 link it; a copy, the area's plugin or a mount of one skill cannot read it, and the helper and layout.md carry what the PDF and the review need. How the helper and the browsers behaved in runs is in [tool-notes.md](references/tool-notes.md), read before phase 1.
 
 ## Inputs
 
 | Input | Source |
 |---|---|
-| Outline | The user's content: a document, a meeting plan, notes. Asked only when the request has nothing to draw on. |
-| Audience | Derived from the outline: internal or external. External turns the house-style check on. |
-| House style | The characters and patterns banned in the organization's external documents, from the request or the organization's own documents; asked once when the deck is external and nothing says, with the usual set (the example in deck-spec.md) as the default. Written into the deck file's `style`. |
-| Theme and logos | Colors, font, the presenter's logo (light and dark versions) and, for a deck made for a client, the client's logo: from the organization's files (a brand folder, the website's partner assets) or a previous deck. Defaults otherwise. |
-| Tool marks | The logos of the products, registries, hosts and editors a slide names (a platform's wordmark and symbol, a package registry, a code host, an editor, an agent), as SVG or PNG from the product's own brand or press page (found by searching the product's name with "brand assets") or from a public brand-icon set, used to refer to them; the delivery names where each came from. A named product is shown by its mark, never by a generic icon; where no mark can be found, by its name in type. A white version is used only where the product publishes one; none is made by inverting a mark. |
-| A finished deck to match | When the organization has a finished deck (a designed Figma Slides file, an exported PDF), its cover, its closing and one body page are read first and the new deck matches their composition: what the cover carries, where the logos sit, whether body pages have subtitles and page numbers. A design tool's MCP can screenshot the pages and list their text; a PDF is rasterized. |
-| A platform the work stands on | When the work runs on a product or platform of the organization's own, its facts come from its repository and site: the one-line description, the license, how it is distributed, who maintains it, and its logo files. |
-| Cover and closing | Title lines, one tagline, client name, date, brand: from the outline or the organization's files. Contact lines: what the organization's own finished decks carry, from its records or the outline; without either, the closing carries the thanks line and the mark alone, and nothing is added. |
-| People | For a team slide, the organization's own profile cards or people records: the role in this work, education, history. Nothing is written about a person that the organization's records do not say. Without records, the card carries the name and the role the outline gives, and its other rows say that they are to be confirmed; nothing is asked and nothing is recalled. |
-| Output names | Derived: `YYYY-MM-DD-<client>-<subject>` for all three files, the date the meeting's, the client and the subject as short lowercase ASCII slugs with hyphens (a name in another script transliterated, or the organization's short name for the client), in the folder where the organization keeps proposals, or next to the outline. |
+| Outline | The user's content; an idea in a few lines is one. Figures come from it or from the user's answers: this skill does no research, and a figure the user wants found is a research skill's job first, on their word. |
+| Register | Derived from the request's and the outline's words (registers.md "Which register"), recommended on the look sheet, written into `meta.register`. |
+| Audience, house style | Internal or external, from the outline; external turns the style check on, with the organization's banned characters from the request or its documents, else asked once, into `meta.style`. |
+| A finished deck to match | The reference: the organization's finished deck (a Figma Slides file, an exported PDF), its cover, closing and one body page read first and matched; asked where the request names none. A look of the user's own beyond the two registers is `html-design-variations` on the cover and a body slide, run before phase 2 on the user's word, its pick written into `meta.theme` and the blocks. |
+| Theme and logos | From the organization's files or the matched deck; a second brand color is `accent`; the client's logo only from an asset the organization holds. |
+| Tool marks | A named product's mark from its brand page (search its name with "brand assets") or a public brand-icon set, named in the delivery; never a generic icon; where none is found or the request forbids it, the name in type. |
+| Photographs | For a report's cover or a slide: files the organization or the user holds; asked once where the register calls for one and none is at hand; a slide without one takes a definition list. |
+| Cover, closing, footer | Title lines, one tagline; a report's kind label, meta rows (the author and the organization from the first message, today's date in the deck's language, the classification from the audience) and document name; contact lines as the organization's decks carry them, else the thanks line and the mark. A product without a name is named by what it does. |
+| People | The organization's own profile cards; nothing a record does not say; without records, the name and the role from the outline, the rest marked to be confirmed. |
+| Output names | `YYYY-MM-DD-<client>-<subject>` for the three files, short lowercase ASCII slugs, `<client>` dropped where there is none; where the organization keeps such documents, else next to the outline, else a folder named for the subject under the working directory. |
+| Everything else | Derived and shown at the plan checkpoint: the sections, the slide types and blocks, the file names, what was left out. |
 
 ## Workflow
 
 ### Phase 1: Read the outline into slides
 
-Read the whole outline. For each slide the outline implies, decide its type and its blocks with the table in [deck-spec.md](references/deck-spec.md) "Choosing a block": a goal and its facts are a statement beside a definition list, four to six numbered things are rows, a method that repeats is a loop beside a numbered list, a schedule is a Gantt chart or a timeline, a system is a diagram with its process strip, the tools the work stands on are brand panels, a team is profiles. A slide holds one to three blocks, so that nothing has to shrink, and no two consecutive slides share a layout. Keep the outline's own words; do not add claims that the outline does not make.
+Read the whole outline. Derive the register and plan the slides with that register's composition rules and block table in registers.md: every slide a type and one to three blocks, so that nothing has to shrink; no two consecutive slides share a layout; a report opens with its contents (that slide carries no section label) and carries a section label on every other body slide. A section the outline gives nothing for is one slide that says what is to be confirmed, or is dropped and listed at the checkpoint. Keep the outline's own words; add no claim it does not make. Apply the design floor while planning.
 
-Apply the composition rules and the design floor below while planning, then produce the slide plan: one line per slide, title and block types, and show it (checkpoint).
+Produce the **slide plan** (one line per slide: title, section, block types) and the **look sheet**: write the deck file of phase 2 far enough for the cover and the body slide that carries a table, a schedule or the figures, and run the helper's `--look` (phase 3 says how; `--look-slide <index>` picks another body slide; the look skips the style check), which prints the two slides in each register's frame, the blocks the recommended register's in both. Show both (checkpoint).
 
 ### Phase 2: Write the deck file
 
-Write the deck file as [deck-spec.md](references/deck-spec.md) defines it: `meta` (client, date, brand, logo paths, `external`, `style`, `theme`), then `slides`. The cover and the closing are their own types. Every string in the file is final presentation text: full sentences where the slide speaks, short labels where it names. Where a slide names a product, registry, host, editor or agent, give it the mark's path. When the deck is external, write with the house style from the start; the check in phase 3 is a net, not the editor. An external deck carries nothing the outline said for the room's own ears (pricing logic, staffing, remarks about the client, open doubts); what was left out is listed at the plan checkpoint.
+Write the deck file as [deck-spec.md](references/deck-spec.md) defines it: `meta` (register, client, date, brand, document name, logos, `external`, `style`, `theme`), then `slides`; the cover and the closing are their own types, a report's contents is a `toc` block. Every string is final presentation text: full sentences where the slide speaks, short labels where it names, a figure with its source or its tag. An external deck is written within the house style from the start, the outline's own words included (a middle dot joining two nouns becomes "and" or a comma, said in the delivery), and carries nothing the outline said for the room's own ears.
 
 ### Phase 3: Render and check
 
-Run the helper, or write the HTML by hand from [layout.md](references/layout.md). The helper is `scripts/render.py` in this skill's directory: on disk in a copy or a plugin, and through SkillCDN read with `read_repo_file` at its path and saved beside the deck file. Run it with `python` (`python3` where `python` is not Python 3):
+Run the helper, or write the HTML by hand from [layout.md](references/layout.md). The helper is `scripts/render.py` in this skill's directory, through SkillCDN read in sections with `read_repo_file` and saved beside the deck file. Run it with `python` (`python3` where `python` is not Python 3):
 
 ```
-python render.py <deck.json> <out.html> --pdf <out.pdf> --sheet <out.png>
+python render.py <deck.json> <out.html> --pdf <out.pdf> --report <out.report.json> --sheet <out.sheet.png>
+python render.py <deck.json> <look.html> --look <look.png>
 ```
 
-The helper refuses to render an external deck that fails the style check and lists each offending string with its path in the file (`$.slides[3].blocks[0].text`, `$.meta.client`); fix the deck file and run again (`--no-check` renders it anyway, for a look at a draft, and the delivery never uses it). It prints one HTML file with every slide as a page of the declared size, the theme inlined and the logos embedded (paths relative to the deck file; a missing file is reported and renders no mark), prints the PDF with the browser at that size with backgrounds on ([headless.md](/docs/browser/headless.md)), and tiles the pages into the contact sheet.
+It refuses an external deck that fails the style check and lists each offending string with its path: fix the deck file and run again (`--no-check` renders anyway for a look at a draft; a delivery never uses it). It writes the HTML with the images embedded, prints the PDF through the first browser route the host has and says which, writes the layout report when a driver is there, and tiles the sheet (layout.md "Printing, the layout report and the contact sheet").
 
-### Phase 4: Review the contact sheet
+### Phase 4: Review
 
-Look at the contact sheet the helper made (`--sheet`), or make one as [rendering-html.md](/docs/browser/rendering-html.md) "A contact sheet of many pages" says, then at any page that looks wrong at full size. Fix in the deck file and render again until these hold:
+Read the layout report first: every finding (a block beyond the page, text cut in its box, two texts that overlap, a lone word on a last line, a value that wraps, a slide filled under the threshold) is fixed in the deck file and rendered again until the report is empty. Then look at the contact sheet, and at any page that looks wrong at full size (the helper's `--page <n> <png>`), for what the report does not measure (layout.md "Review"): a line broken inside a word, elements that touch, a mark recolored, a section label that is not the contents' entry, a figure without its source or tag, the design-floor defaults; the titles, the cover, the closing and the count as planned. What a reader calls the AI feel beyond this floor is in [not-ai.md](/docs/variation/not-ai.md), read when a slide passes the floor and still reads as a default.
 
-- No block overflows its page and no text is cut; a slide that overflows loses words or a block, never its margins.
-- No line breaks inside a word in a language that breaks at spaces (Korean with `keep-all`); no line that wraps with one word alone; no value in a definition list or a tile that wraps.
-- The design floor holds: no slide is a grid of same-size cards of icon, heading and text; no big-number tiles with small labels; no label above a heading; a named product carries its mark; a loop's center and its nodes do not overlap.
-- Every slide has the title the plan gave it, the cover and the closing are present, the page count matches the plan.
-- The diagram's arrows point from the sources to the center and from the center to the outputs; the labels are readable; the step chips on the nodes match the process strip.
-- The Gantt bars sit in the months the outline gives; a milestone sits on its date.
-- Nothing on the slides is a placeholder, except a screenshot frame the outline asked for.
-- What any medium's reader calls the AI feel, beyond this floor, is listed in the repository's [not-ai.md](/docs/variation/not-ai.md), read when a slide passes the floor and still reads as a default.
-
-Show the contact sheet, by its path or attached where the host attaches files (checkpoint).
+Show the contact sheet, by its path or attached where the host attaches files, with the report's count (checkpoint).
 
 ### Phase 5: Deliver
 
-Deliver the HTML and the PDF by path, the deck file beside them, the slide count, and the house-style verdict. Say what was derived (theme source, slide types chosen, what was matched to the finished deck, which marks were used) and what the designer would take over (the diagram, the loop, the Gantt shapes, the cover). List what the user should confirm: a name, version or license taken from the request as spoken or read from a repository, a split of a phase that the outline left open, a line left out on purpose, a date that differs between the request and a contract. Leave the deck file with the outputs: the next change is made there.
+Deliver the HTML and the PDF by path, the deck file beside them, the slide count, the register, the house-style and layout-report verdicts, and which browser route printed. Say what was derived (theme source, slide types, what was matched, which marks and photographs were used and where from) and, for a proposal, what the designer would take over. List what the user should confirm: a figure tagged to be confirmed, a name or version taken as spoken, a split the outline left open, a line left out on purpose. The report and the sheet stay beside the deck file as the review's record; the look files and the sheet's page are removed. The next change is made in the deck file.
 
-## Composition rules
+## Verdicts
 
-These are what a reviewer sends a draft back for. Apply them in phase 1, not after. Each was learned from a review round; [reviewer-notes.md](references/reviewer-notes.md) keeps the notes in their general form with the move that answers each, read when a draft comes back with notes, so that the same note on a new draft is recognized before it is made.
-
-- **Cover:** the title in one or two lines, one tagline, the logos. The tagline names the technical substance of the work in the audience's own terms (the task, the technology, the result), not a generic phrase and not a sentence. When the deck is for a client, the client's logo comes first, then the presenter's. No client, date or brand footer unless the organization's own decks carry one (`footer: true`).
-- **Closing:** the thanks line, the logo and the contact lines, centered on a dark page. Contact lines carry what the organization's finished decks carry; a phone number is not added on the agent's initiative.
-- **A content slide is its title and its blocks.** A subtitle only where the slide needs its one sentence; most slides have none. No note at the foot of a page and no summary banner: a caveat is said in the meeting, and a block that restates the slide is a block the slide loses. A sentence about who signs off is said in the meeting, not written on the quality slide.
-- **Structure from type, rules and real marks, not from boxes.** The overview is a statement in large type beside a definition list with thin rules. A quality bar is one sentence in bold with its lead inline. Sequence is carried by numbers only where the order is the information (steps, a schedule). A real logo or symbol (the client's, the platform's, the registry's, the editor's, the agent's) stands for a named thing; a line icon is used only for the rare item whose meaning a word does not carry, never one per item.
-- **Layout variety.** No two consecutive slides share a layout. The set to draw from: statement beside facts, numbered rows, a loop beside a numbered list, two brand panels, a process strip above a diagram, a Gantt chart, profiles. Same-size cards are the last resort, never the page structure.
-- **Cut what the room already knows.** The name of the project on the overview, the boundaries nobody will contest, the appendix of figures: out, unless the outline asks for them. A figure the audience needs goes into the definition list or the inline facts on the slide it belongs to.
-- **Nothing said for the room's own ears.** An external deck carries none of the outline's pricing logic, staffing situation, remarks about the client or open doubts; the plan checkpoint lists what was left out.
-- **A method that repeats** is a loop with the tools' marks at its center, beside the numbered steps; the facts that go with it (volumes, durations) sit under both as inline facts. The preparation the outline implies (what is set up before the cycle runs) is in the steps. Durations that are alternatives per item are stated as alternatives with what decides the total, never summed.
-- **The tools the work stands on** get one slide of brand panels: each panel its real wordmark or symbol and name, one line on what it is, the marks of where it lives (registry, host, editor) with a fact beside each, and what it does in this work. Two products that are easily confused (a tool and the service it runs on, an agent and a model) are told apart: which one the work uses, and what it talks to.
-- **A system** is a full-width diagram with a numbered process strip above it; each step's number appears as a chip on the node where the step happens; the node that holds the tools carries their marks. The boundary that matters is the dashed frame, and what crosses it sits outside the frame with its arrow across the line.
-- **A schedule** whose phases differ in length is a Gantt chart: one row per phase, bars in the months the outline gives, equal bars for items the outline gives equal time, the delivery period as a bar and the deadline as a diamond. Phases of equal weight with bullets under each are a timeline. The deck carries only the schedule the outline gives: no meeting cadence, no interim review date, no "weekly" that the outline does not say. Where the outline gives a range for several items in sequence, the agent splits the range and says in the delivery that the split is its own.
-- **A team** is profiles: an initial, the name, the role in this work, then rows for the role, education and history, in the words of the organization's own profile cards.
-- **Length:** eight to ten pages for a fifteen-minute talk. A page cut is a page cut; the content moves into a block on another page only when it is a fact the audience needs.
+| Result | Verdict |
+|---|---|
+| The layout report is empty and the sheet shows no design-floor default | Delivered |
+| A slide in the default look that reads flat: a title and a short list on the gradient | The register's blocks applied, the slide rebuilt |
+| A business plan or a report composed as a poster: one photograph, big type, no figures | Rebuilt in the report register |
+| A report slide whose table, figures or schedule fills the page, every figure with its source or tag | Pass |
+| The report names an overflow, a cut, an overlap, a lone word or a wrapped value | Fixed in the deck file (fewer words, a split slide, a wider column, a shorter label), rendered again; never in the CSS, never by hand |
+| A content slide filled under the threshold | A second block joins it, or a block grows (a larger statement `size`, a taller `row_h` or `h`); `valign: "center"` only moves it and does not count; rendered again |
+| A figure in a report without its source or its tag | Tagged before the render |
+| A note on the whole deck's look after a register change | The other register, or its rules re-read, every slide rebuilt, once; a second such note goes to the user with both look sheets |
 
 ## Design floor
 
-The defaults a reviewer rejects on sight, whatever the outline says. They are checked on the contact sheet in phase 4.
+Rejected on sight in both registers; registers.md adds each register's own. Checked on the sheet in phase 4.
 
 - Same-size cards of icon plus heading plus text as the page structure, and nested cards.
-- Big-number tiles with small labels as the way to show figures.
-- A kicker or label above a heading. The heading carries its own weight.
-- Section numbers where the sequence carries no information.
+- Big-number tiles with small labels as the way to show figures; a report's `kpi` carries its source or tag and a sentence, one to three per deck.
+- A label above a heading other than a report's section label from its contents; section numbers where the sequence carries no information.
 - Gradient text, decorative blur, thick colored left borders, emoji or glyphs standing in for icons, a generic icon standing in for a named product.
-- Line breaks inside words, a lone word on a second line, a value that wraps in a list or a tile.
-- A page whose blocks sit in its upper half or one corner and leave the rest empty: a statement with a short list is sized to the page or joined by a second block (the dates beside the steps, the facts beside the statement) before it ships.
+- Line breaks inside words, a lone word on a second line, a value that wraps in a list, a tile or a cell.
+- A page whose blocks sit in its upper half or one corner and leave the rest empty, which the layout report measures as the fill.
 
 ## Hard rules
 
-- Content comes from the outline. No figures, names, prices or promises that the outline does not contain; where the outline is silent, the slide stays silent or says what is still to be confirmed; a milestone the outline names by an event without a date (a holiday, a launch) sits after the last dated step with the outline's words, and the delivery says it is undated rather than placing it from memory. A license, a version or a package name is read from the repository, not recalled.
-- A deck for people outside the organization passes the declared house-style check before it is delivered, and never carries another party's document text, screenshots or prices unless the outline supplies them for that purpose. A client's logo is used only when the organization already holds it as an asset; a tool's mark is used to refer to the tool, from its official assets.
-- The HTML and the PDF are rendered from the deck file, never edited by hand; every change goes through the deck file, and both files are delivered every time.
-- The contact sheet is looked at before the delivery. A render the agent has not seen is not delivered.
-- Nothing is generated by a model and nothing is spent.
+- Content comes from the outline and the user's answers. No figures, names, prices or promises they do not contain; where they are silent, the slide stays silent or says what is to be confirmed; an undated milestone sits after the last dated step, said to be undated. A license, a version or a package name is read from the repository, not recalled.
+- An external deck passes the declared house-style check before delivery, and never carries another party's document text, screenshots or prices unless the outline supplies them for that purpose. A client's logo only from an asset the organization holds; a tool's mark from its official assets.
+- The HTML and the PDF are rendered from the deck file, never edited by hand; every change goes through the deck file, and both files are delivered every time. A note on the look re-enters at the register, not at the markup.
+- The layout report is read and the contact sheet is looked at before the delivery. A deck with findings on the report, or a render the agent has not seen, is not delivered.
+- A photograph comes from the organization or the user. Nothing is generated by a model and nothing is spent.
 
 ## Terminology
 
-- **Deck file**: the JSON that holds the whole deck, `meta` and `slides`; the single source the files are rendered from.
-- **Block**: one unit of a content slide's body: columns, statement, facts, numbered, loop, brand, cards, banner, bullets, rows, stats, stack, timeline, gantt, qa, split, diagram, steps, profiles, note.
-- **Process strip**: the `steps` block, a row of numbered pills or tiles joined by arrows, placed above a diagram whose nodes carry the same numbers as chips.
-- **Loop**: the `loop` block, four nodes on a ring with arrowheads, the tools' marks at the center, for a method that repeats.
-- **Brand panel**: the `brand` block, a product's mark, one line, the marks of where it lives with a fact each, and what it does in this work.
-- **Design floor**: the defaults a reviewer rejects on sight, listed above and checked on the contact sheet.
-- **House style**: the characters and patterns the organization bans in external documents, declared in `meta.style` and checked before rendering.
-- **Contact sheet**: one image tiling every page of the PDF at a small size, for the review.
-- **Theme**: the colors, font and logos the renderer uses, declared in `meta.theme` and the logo paths.
+- **Register**: the shape a deck takes for its readers, `proposal` or `report`, with its own cover, page frame, blocks and composition rules (registers.md).
+- **Look sheet**: one image of the cover and one body slide in each register's frame, shown at the plan checkpoint.
+- **Section label**: in a report, the number and the name of the section a slide belongs to, above its title, the same as its entry in the contents.
+- **Layout report**: the helper's measurement of the rendered pages, one entry per finding with the block's path; empty before a delivery.
+- **Contact sheet**: one image tiling every page at a small size, for the review.

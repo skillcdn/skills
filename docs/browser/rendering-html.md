@@ -22,7 +22,7 @@ For each unit: a page with the viewport at the canvas size and `deviceScaleFacto
 
 ## PDF at a declared page size
 
-The CSS declares `@page { size: <w> <h>; margin: 0 }` and gives every page element that size with `break-after: page`; the browser prints at that size with background graphics on and the CSS page size preferred, after the waits above (headless.md "PDF"). A page that overflows prints a cut, and the fix is in the content (fewer words, fewer items, a split page), never in the CSS. Without a browser the agent can run, deliver the HTML and say that the PDF is printed from the browser's print dialog at the page size with background graphics on. The deck skill's helper, [`render.py`](/design/skills/html-deck-from-outline/scripts/render.py), prints this way with Playwright from Python.
+The CSS declares `@page { size: <w> <h>; margin: 0 }` and gives every page element that size with `break-after: page`; the browser prints at that size with background graphics on and the CSS page size preferred, after the waits above (headless.md "PDF"). A page that overflows prints a cut, and the fix is in the content (fewer words, fewer items, a split page), never in the CSS. Without a browser the agent can run, deliver the HTML and say that the PDF is printed from the browser's print dialog at the page size with background graphics on. The deck skill's helper, [`render.py`](/design/skills/html-deck-from-outline/scripts/render.py), prints this way through the first route its host has (Playwright from Python, playwright-core from Node.js, or the bare browser's own print, headless.md "PDF") and measures the rendered pages before printing where a driver is there.
 
 ## Fonts
 

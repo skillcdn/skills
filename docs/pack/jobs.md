@@ -38,9 +38,9 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Draft the slides for this meeting from these notes."
 
-- You get: a first-draft deck as one HTML file and a PDF: every slide a type and its blocks from your notes, in your own colors and font, the wording checked against your house style, every page looked at before you see it; a designer polishes the structure instead of starting blank.
+- You get: a deck as one HTML file and a PDF, in one of two registers, an external proposal or a corporate report: every slide a type and its blocks from your notes, in your own colors and font, the register confirmed on the cover and one body slide before the rest renders, the layout measured for overlaps, cuts and empty pages, the wording checked against your house style, every page looked at before you see it; a proposal is a structure a designer polishes, a report is written to be sent as it is.
 - Skill: [`design/skills/html-deck-from-outline/`](/design/skills/html-deck-from-outline/SKILL.md)
-- Also asked as: "a presentation from this outline", "slides for the kickoff from the meeting plan", "a proposal deck as PDF", "a status report deck".
+- Also asked as: "a presentation from this outline", "slides for the kickoff from the meeting plan", "a proposal deck as PDF", "a status report deck", "a business plan deck from this idea", "a plan for investors", "a company presentation", "a proper PPT from this".
 - Not this one when: the slides go into an existing Figma deck in its design (the Figma skill above).
 
 ### "Show me four looks for this."
