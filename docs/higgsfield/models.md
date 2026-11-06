@@ -12,7 +12,7 @@ How a Higgsfield skill finds the models it needs in the catalog at run time, loc
 
 Within a family keep the latest general model: the highest generation number, a text-to-video or image-to-video model, not a turbo, edit, extension or legacy variant and not a product wrapper around one. Then read its parameters with `action: get`: `medias[].roles` (a start-frame role such as `start_image`, a reference role such as `image_references`), the audio parameter, `aspect_ratios`, the duration range or options, and how quality is selected. `get` may return nothing beyond what `search` carried; read the roles from whichever answer has them, each run.
 
-Roles seen so far (checked 2026-10): Seedance 2.5 takes `image_references`, up to eleven labeled in the prompt, and folds a `start_image` sent with them into that list as its first entry, while the take still opens on the frame's composition (read the echoed parameters of the first take, and number the portraits from 2 in every mapping when the frame is reference image 1); a `medias` entry sent with the role `image` is coerced to the reference role. Kling 3.0 exposes `start_image` and `end_image` only, no identity role. Wan 3.0 lists `start_image` and `image_references` and refuses them together.
+Roles seen so far (checked 2026-10): Seedance 2.5 takes `image_references`, up to eleven labeled in the prompt, and folds a `start_image` sent with them into that list as its first entry, while the take still opens on the frame's composition (read the echoed parameters of the first take, and number the portraits from 2 in every mapping when the frame is reference image 1); a `medias` entry sent with the role `image` is coerced to the reference role. Kling 3.0 exposes `start_image` and `end_image` only, no identity role. Wan 3.0 lists `start_image` and `image_references` and refuses them together. Kling 4.0 rendered a portrait sheet sent as `image_references` as the last scene of the take rather than as a reference, and adds ambient sound with no audio parameter to set (checked 2026-10).
 
 **A role list is not proof that two roles combine in one call.** The preflight accepts what the generation may refuse: a model has priced a preflight with a start frame and reference images and refused the generation with 422 ("start_image/end_image cannot be combined with reference media"), without charge. The first real take is the test, and a skill names its fallback at the cost checkpoint.
 
@@ -26,7 +26,7 @@ Roles seen so far (checked 2026-10): Seedance 2.5 takes `image_references`, up t
 | Several of these | All of them at their lowest. |
 | None | The default; say so in the estimate. |
 
-Never a higher tier for drafts, however small the difference looks; a higher resolution is a separate step after the delivery (below). A 1k image is more than a video model needs. Audio stays on for every take with a line or a sound tied to an action. Turning it off is cheaper on some models and changes nothing on others (cheaper on Kling 3.0, a flat per-second price on Seedance 2.5, checked 2026-09), and a take generated with audio off has no audio stream at all, not a silent one ([`sandbox.md`](sandbox.md)).
+The lowest tier of one model can cost a sixth of another's (Kling 4.0 at 720p against Seedance 2.5 at 480p, 2026-10): compare the candidates' preflights, not the names of their tiers. Never a higher tier for drafts, however small the difference looks; a higher resolution is a separate step after the delivery (below). A 1k image is more than a video model needs. Audio stays on for every take with a line or a sound tied to an action. Turning it off is cheaper on some models and changes nothing on others (cheaper on Kling 3.0, a flat per-second price on Seedance 2.5, checked 2026-09), and a take generated with audio off has no audio stream at all, not a silent one ([`sandbox.md`](sandbox.md)).
 
 ## Preflight
 
@@ -60,7 +60,7 @@ Write dialogue in the language's own script, directly: a line typed as Unicode e
 
 ## Refused and failed jobs
 
-A job the server refuses (moderation, an invalid parameter, two roles that do not combine) or that fails without a result is not a take and not a retry: fix what it names (a fight described by its sound and the reaction on a face rather than the blow; a parameter read again from the catalog; the fallback model named at the cost checkpoint) and submit again. Check `transactions` when a charge is in doubt; a charge for a job that gave nothing is a ledger row with its reason and counts against the accepted estimate. After two refusals of one shot, stop and show the user the shot with what was refused. On a transport timeout the job may still have been submitted: read `show_generations` before submitting again.
+A job the server refuses (moderation, an invalid parameter, two roles that do not combine) or that fails without a result is not a take and not a retry: fix what it names (a fight described by its sound and the reaction on a face rather than the blow; a parameter read again from the catalog; the fallback model named at the cost checkpoint) and submit again. Check `transactions` when a charge is in doubt; a charge for a job that gave nothing is a ledger row with its reason and counts against the accepted estimate. After two refusals of one shot, stop and show the user the shot with what was refused. On a transport timeout the job may still have been submitted: read `show_generations` before submitting again. A plan's daily generation limit refuses a job with a message that names the grace period ("You've reached the daily generation limit for your grace period") while the balance call still reports credits: it is the plan's day, not the balance. Stop the production, say when the day resets where the message says, and offer to resume then; a retry before that gets the same refusal and spends nothing (2026-10).
 
 ## A higher resolution
 
@@ -77,6 +77,7 @@ Illustrative: the preflight of the run is the number. A take is priced by the se
 |---|---|---|---|
 | Seedance 2.5, 480p draft, audio on | 3 credits per second of take; the finalize at 1080p 12 per second, within seven days | A 10- or 12-second take in two to five minutes; a 4-second take in about three and a half | 2026-10 |
 | Kling 3.0, std, sound on | 2 credits per second | | 2026-09 |
+| Kling 4.0, 720p | 0.5 credits per second | A 5-second take in a few minutes | 2026-10 |
 | The reference-capable image model (Nano Banana Pro) at its lowest setting, 9:16 or 3:4 | 0.25 per image, with or without a reference input | | 2026-09 |
 | The reference-capable image model the recommendation named a month later (GPT Image 2.5, low, 1k) | 0.25 per image; the 2026-09 model's 1k setting then priced at 2 | | 2026-10 |
 | The identity portrait model (Soul Cast) | 0.12 per portrait, shown as a rounded 1 by the preflight | | 2026-09 |
