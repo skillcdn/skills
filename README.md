@@ -9,7 +9,6 @@
   <p>
   <a href="https://skillcdn.ai">skillcdn.ai</a> · <a href="https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md">SkillCDN Format</a> · <a href="#skills">Skills</a> · <a href="#make-it-yours">Make it yours</a> · <a href="guide/skill-authoring.md">Authoring guide</a>
   </p>
-  <img alt="A desk with what the pack makes: a short ad in the editor, a sales dashboard, card news, meeting minutes and a sketched app" src="assets/banner.webp" width="800">
 </div>
 
 What you can ask for, in your own words, and which skill does it, is one page: [docs/pack/jobs.md](docs/pack/jobs.md), a section per job with the sentence you say, what comes back and the skill. How an agent finds a skill here, from the folder names and the search, is [docs/pack/finding-a-skill.md](docs/pack/finding-a-skill.md).
@@ -134,7 +133,7 @@ This repository takes no pull requests. It is meant to be forked: the layout, th
 3. Keep a license SkillCDN can pass on. It serves a skill in full only under a license it recognizes as permissive, taken from the skill's directory, its `license` field, the manifests above it or the repository's license file; under a restrictive or unrecognized license the skill is only described, with a link to its source.
 4. Keep the areas you need and delete the others. A new area is a folder with a `SKILLCDN.md` and a `README.md`; the steps are in [guide/adding.md](guide/adding.md).
 5. Write your skills at `<area>/skills/<name>/`, following [guide/skill-authoring.md](guide/skill-authoring.md), or have an agent write them from work already done with the authoring skill in [`engineering/`](engineering/); put what the skills of one tool share in `docs/<tool>/`, or in the area's `docs/` when every skill that includes its pages is in that area. Run `node scripts/check.mjs`; CI runs it on every push. Replace [guide/roadmap.md](guide/roadmap.md) with your own plan, or delete it.
-6. Rewrite this README and each area's README for your repository, their tops first. The lockup and the symbol are SkillCDN's marks, so put your own there or none ([trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md)); keep the badge and give it your address, in its link and in its picture's URL (`https://skillcdn.ai/badge/gh/<you>/<repo>`), so that a reader sees where SkillCDN serves your pack and how many skills it has. The `image` of `SKILLCDN.md` and of the area manifests is the picture the explorer shows for the folder; here it is the pack's own picture at the root, `assets/banner.webp`, which this README also shows, and a result of the pack's own showcase on three areas, so put a picture of yours there, as a file of your repository (`scripts/check.mjs` allows that one path, under 200 KiB) or an `https` URL, or leave the field out. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place its shared pages come from, put yours.
+6. Rewrite this README and each area's README for your repository, their tops first. The lockup and the symbol are SkillCDN's marks, so put your own there or none ([trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md)); keep the badge and give it your address, in its link and in its picture's URL (`https://skillcdn.ai/badge/gh/<you>/<repo>`), so that a reader sees where SkillCDN serves your pack and how many skills it has. The `image` of `SKILLCDN.md` and of the area manifests is the picture the explorer shows for the folder; here it is the pack's own picture at the root, `assets/banner.webp`, and a result of the pack's own showcase on three areas, so put a picture of yours there, as a file of your repository (`scripts/check.mjs` allows that one path, under 200 KiB) or an `https` URL, or leave the field out. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place its shared pages come from, put yours.
 7. Connect it at `skillcdn.ai/gh/<you>/<repo>`. A public repository needs no setup.
 
 The rules for changing anything, for people and agents alike, are in [CLAUDE.md](CLAUDE.md); a fork keeps them or changes them. A skill here that no longer works can be reported in an issue.
@@ -144,7 +143,7 @@ The rules for changing anything, for people and agents alike, are in [CLAUDE.md]
 ```
 SKILLCDN.md       the repository manifest: the pack's name, description, document roots, the rules for every skill
 README.md         this introduction
-assets/           banner.webp, the pack's own picture: the root manifest's image, shown at the top of this README
+assets/           banner.webp, the pack's own picture: the root manifest's image, shown by the explorer and the page of the address
 <area>/           one folder per area of work: marketing/, media/, product/, engineering/, ...
   SKILLCDN.md     the area manifest: who its skills are for, the rules its skills add
   README.md       the area's catalog
