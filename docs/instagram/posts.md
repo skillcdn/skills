@@ -16,7 +16,7 @@ Zoom into the post's image region on every slide; the region is the same for eve
 
 ## A video post
 
-A video is read at three frames for its text and layout: a screenshot as it starts, after a click on the middle of the box where it does not start by itself, then two more as it plays, a few seconds apart; the player's own controls are not relied on. On a video post the next control sits a little inward and a click on the middle of the box toggles playback instead of stepping: find the control on that post's screenshot before stepping.
+A video is read at three frames for its text and layout: a screenshot as it starts, after a click on the middle of the box where it does not start by itself, then two more as it plays, a few seconds apart; the player's own controls are not relied on. In a headless browser driven from a script a reel did not play at all (checked 2026-11): its cover and its caption are read, and the delivery says the frames are missing. On a video post the next control sits a little inward and a click on the middle of the box toggles playback instead of stepping: find the control on that post's screenshot before stepping.
 
 ## The caption
 

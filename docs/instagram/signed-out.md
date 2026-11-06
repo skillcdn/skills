@@ -22,7 +22,7 @@ A modal asking to sign up or log in covers the page a moment after a profile or 
 
 ## The viewport
 
-At about 720 by 1050 the post's image box is 720 pixels wide and every line of a slide reads at zoom (checked 2026-10). Set the viewport before the first page and reset it at the end of the run; why a narrower viewport serves better than zoom at a desktop one, and what to do where the viewport cannot be set, is in driven-browser.md "The window and the viewport".
+At about 720 by 1050 the post's image box is 720 pixels wide and every line of a slide reads at zoom (checked 2026-10). At that height the image box of a 3:4 post does not fit whole under the site's fixed header, which hides about 26 pixels of it: use about 720 by 1100, or read each slide from the box's own rectangle rather than from the viewport (checked 2026-10). Set the viewport before the first page and reset it at the end of the run; why a narrower viewport serves better than zoom at a desktop one, and what to do where the viewport cannot be set, is in driven-browser.md "The window and the viewport".
 
 ## The documented sizes
 
