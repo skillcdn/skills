@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a browser the agent can drive (navigate and report its URL, set the viewport, take a screenshot, click and hover at coordinates, zoom into a region, read the page's text, run a script in the page), or a shell with Node.js or Python and an installed Chrome, Edge or Chromium that a script of the run's own drives headless the same way; optionally a web search tool, to find a genre's accounts. No account and no sign-in. Works in any agent with a driven browser or such a shell.
 metadata:
   author: skillcdn
-  version: "1.14"
+  version: "1.15"
   tools: instagram
 skillcdn:
   include:
