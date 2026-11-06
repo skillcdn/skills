@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a checkout of the repository the skill lives in, with git and Node.js, the SkillCDN connection to that repository, and a way to start a fresh agent (a subagent tool, or a second session the user starts). The run of the skill under test needs that skill's own tools. Works in any agent that can read files, run a shell and call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.3"
+  version: "1.4"
   tools: skillcdn
 skillcdn:
   include:
@@ -90,7 +90,7 @@ Produces the **fold-in** and the **maintainer list**, by fresh-run.md "Reading t
 
 1. Read the run against the skill, phase by phase, and mark for each dry-read finding whether the run met it. What the user finds when they review the result themselves is a finding too.
 2. Give each finding its verdict (below) and change the sentence it bears on, in the shape the checkout's guide gives; a fact that can go stale carries its source and the month. Update the coverage notes to say what no run reached. Then read the whole diff for anything of the run.
-3. `node scripts/check.mjs` until it reports no problem; `npx @skillcdn/cli check` until it prints `ok: no index diagnostics`, or say why it did not run. Raise the skill's minor version when a change alters what an agent does in a run (a step, a stop, a verdict, a rule, a value it uses); leave it when the same agent would do the same with the new wording.
+3. `node scripts/check.mjs` until it reports no problem; `npx @skillcdn/cli check` until it prints `ok: no index diagnostics`, or say why it did not run; then read the skill's bytes as served in that check against the size the checkout's guide gives (about 16 KiB of body and included pages, or the page budget a task set), and trim or move text to a linked reference before the push: neither check flags a fold-in that carries a skill past a page line. Raise the skill's minor version when a change alters what an agent does in a run (a step, a stop, a verdict, a rule, a value it uses); leave it when the same agent would do the same with the new wording.
 
 Checkpoint, in every mode for the push: one line per change and where it went, the coverage notes included, then "Committing and pushing publishes <the files> at <address>. OK?" On a go-ahead the changes are already made, and only the push waits.
 
