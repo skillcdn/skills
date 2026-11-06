@@ -24,6 +24,7 @@ tmp/
 # Editors and OS
 .DS_Store
 Thumbs.db
+*.stackdump
 .idea/
 .vscode/*
 !.vscode/extensions.json
