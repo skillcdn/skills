@@ -28,6 +28,7 @@ The CSS declares `@page { size: <w> <h>; margin: 0 }` and gives every page eleme
 
 - Load a web font in the head from the family's documented path: for a family on Google Fonts its `css2` URL with the weights, checked to return `@font-face` rules; otherwise the path in the family's own README. A face served as a single `.woff` file takes an `@font-face` rule, and a static server that serves a local copy must know the `.woff` type (checked 2026-10). Every stack ends in a system fallback that has the script's letters (a Korean-capable sans for Korean).
 - `document.fonts.ready` after the network went idle was enough for CDN fonts to render (checked 2026-10).
+- A monospaced face with no Korean glyphs falls back for the Korean syllables alone and keeps its own wide spaces between the words, which read as gaps: tighten with `word-spacing: -0.3em` on that block, or give it a Korean-capable face (checked 2026-10).
 - A Korean sans with no italic renders a synthetic slant where italic is asked for, which reads as a mistake: set the text upright unless the face has a true italic (checked 2026-10). A condensed width is `font-stretch` where the face supports it, else `transform: scaleX()` on the block. A heavy outline around display type is `-webkit-text-stroke` with `paint-order: stroke fill`, so that the stroke sits behind the fill and does not thin the letters.
 
 ## The line check
@@ -51,7 +52,7 @@ An empty result means no line was broken by the renderer. The rectangles are tak
 ## Looking at a render
 
 - Open every PNG at its native size (the host's image reader at full resolution, or the browser pane at 100%), then at the size its reader will see it: a phone shows a post at about a third of the canvas width (a copy at a third of the width, made by showing the PNG in a headless page at that width and screenshotting it, since Node.js has no image resize of its own; or the grid card at that width in the browser pane); a deck page is read as it projects. What cannot be made out at that size is what the user sees first: a render judged at native size alone passed, and failed at phone size.
-- An image reader may show a cached copy of a file rewritten at the same path (checked 2026-10): copy the PNG to a new name outside the output folder before reading it, confirm the fix in the browser pane, or measure the pixels that changed.
+- An image reader may show a cached copy of a file rewritten at the same path (checked 2026-10): copy the PNG under a new name into a subfolder of the run's own, not into the folder that is delivered, before reading it, confirm the fix in the browser pane, or measure the pixels that changed.
 - A render that was made and not looked at was not reviewed: the review says which file it read.
 - Every change is made in the page or in the source file and exported again; a PNG or a PDF is never edited by hand.
 
