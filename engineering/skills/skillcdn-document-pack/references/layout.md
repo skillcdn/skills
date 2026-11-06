@@ -112,5 +112,6 @@ The `license` decides what a deployment may pass on: a permissive license serves
 
 - The repository's visibility decides who reads the pack: the host shows a private repository to its people alone, and SkillCDN serves it to them alone. Material that is not for everyone (a secret, personal data, a customer's material) goes in a private repository, with its originals, and nothing is stripped from the text on the agent's own judgment; what looks secret or personal is pointed out at the layout checkpoint for the user to decide: keep it, leave it out of the text (the original keeps it), or make the repository private.
 - Drafts and older versions of a document that exists in a final form, unless the history is the point.
+- The front matter of a specification (its change history, its distribution list) where it would answer every search for an identifier first, since a change-history table names every one: offered at the layout checkpoint as a file of its own or left out, the original keeping it.
 - Page furniture: running headers and footers, page numbers, tables of contents the maps replace.
 - Files that are not text an agent can read (binaries, rendered media), other than the originals in `sources/` and the pictures of the documents in `images/`, which are listed, never searched, and reached through the link a result gives.

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git and Node.js in a checkout of the target repository, and whatever converts the user's formats on this machine, found at run time; a vision model of the agent for figures and scanned pages. Works in any agent that can read files, run a shell and look at an image.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: skillcdn
 skillcdn:
   include:
