@@ -30,12 +30,12 @@ A content outline goes in (a meeting plan, a document, notes in chat, an idea in
 
 | What | Used for |
 |---|---|
-| A shell with Python 3 | The helper `scripts/render.py` in this directory: HTML, PDF, the layout report, the sheets. Without it, [layout.md](references/layout.md) gives the geometry, the markup of every block and the measurements, enough to write the HTML by hand and check it. |
+| A shell with Python 3 | The helper `scripts/render.py` in this directory: HTML, PDF, the layout report, the sheets. Without it, [layout.md](references/layout.md) gives the geometry and the markup of every block, enough to write the HTML by hand. |
 | A Chromium-family browser | The PDF, the report and the sheets, through the first route the host has: Playwright from Python; Node.js with `playwright-core`, through `PLAYWRIGHT_FROM` from a project that has it, else installed by the helper on its first run into a tools folder in the user's cache (said in the first message); the installed browser's own print and screenshot, which gives no layout report, said in the delivery. Without any browser, deliver the HTML and say the PDF is printed from the browser's print dialog with background graphics on. |
-| A way to look at an image | The look sheet and the contact sheet are looked at by the agent; without an image reader or a browser it drives, stop and say so. |
+| A way to look at an image | The look sheet and the contact sheet are looked at by the agent; without an image reader, stop and say so. |
 | The organization's tokens and logos | From its brand file, a previous deck or its site, written into the deck file; the defaults in layout.md otherwise, said in the delivery. |
 
-Check the shell, the browser and the image reader before the first message. Nothing here costs money. What any skill that renders a page with a browser shares is in the repository's [`docs/browser/`](/docs/browser/README.md), read through the repository connection where layout.md and tool-notes.md link it; a copy, the area's plugin or a mount of one skill cannot read it, and the helper and layout.md carry what the PDF and the review need. How the helper and the browsers behaved in runs is in [tool-notes.md](references/tool-notes.md), read before phase 1.
+Check the shell, the browser and the image reader before the first message. Nothing here costs money. What any skill that renders a page with a browser shares is in the repository's [`docs/browser/`](/docs/browser/README.md), linked from layout.md and tool-notes.md; a copy, the area's plugin or a mount of one skill cannot read it, and the helper and layout.md carry what the PDF and the review need. How the helper and the browsers behaved in runs: [tool-notes.md](references/tool-notes.md), read before phase 1.
 
 ## Inputs
 
@@ -59,7 +59,7 @@ Check the shell, the browser and the image reader before the first message. Noth
 
 Read the whole outline. Derive the register and plan the slides with that register's composition rules and block table in registers.md: every slide a type and one to three blocks, so that nothing has to shrink; no two consecutive slides share a layout; a report opens with its contents (that slide carries no section label) and carries a section label on every other body slide. A section the outline gives nothing for is one slide that says what is to be confirmed, or is dropped and listed at the checkpoint. Keep the outline's own words; add no claim it does not make. Apply the design floor while planning.
 
-Produce the **slide plan** (one line per slide: title, section, block types) and the **look sheet**: write the deck file of phase 2 far enough for the cover and the body slide that carries a table, a schedule or the figures, and run the helper's `--look` (phase 3 says how; `--look-slide <index>` picks another body slide, 0 being the cover, while `--page` counts from 1; the look skips the style check), which prints the two slides in each register's frame, the blocks the recommended register's in both. Show both (checkpoint).
+Produce the **slide plan** (one line per slide: title, section, block types) and the **look sheet**: write the deck file of phase 2 far enough for the cover and the body slide that carries a table, a schedule or the figures, and run the helper's `--look` (`--look-slide <index>` picks another body slide, 0 being the cover, while `--page` counts from 1; no style check), which prints the two slides in each register's frame, the blocks the recommended register's in both. Show both (checkpoint).
 
 ### Phase 2: Write the deck file
 
@@ -74,13 +74,13 @@ python render.py <deck.json> <out.html> --pdf <out.pdf> --report <out.report.jso
 python render.py <deck.json> <look.html> --look <look.png>
 ```
 
-It refuses an external deck that fails the style check and lists each offending string with its path: fix the deck file and run again (`--no-check` renders anyway for a look at a draft; a delivery never uses it). It writes the HTML with the images embedded, prints the PDF through the first browser route the host has and says which, writes the layout report when a driver is there, and tiles the sheet (layout.md "Printing, the layout report and the contact sheet").
+It refuses an external deck that fails the style check and lists each offending string with its path: fix the deck file and run again (`--no-check` renders a draft anyway; never a delivery). It writes the HTML with the images embedded, prints the PDF through the first browser route the host has and says which, writes the layout report when a driver is there, and tiles the sheet (layout.md "Printing, the layout report and the contact sheet").
 
 ### Phase 4: Review
 
-Read the layout report first: every finding (a block beyond the page, text cut in its box, two texts that overlap, a lone word on a last line, a value that wraps, a slide filled under the threshold) is fixed in the deck file and rendered again until the report is empty. Then look at the contact sheet, and at any page that looks wrong at full size (the helper's `--page <n> <png>`), for what the report does not measure (layout.md "Review"): a line broken inside a word, elements that touch, a mark recolored, a section label that is not the contents' entry, a figure without its source or tag, the design-floor defaults; the titles, the cover, the closing and the count as planned. What a reader calls the AI feel beyond this floor is in [not-ai.md](/docs/variation/not-ai.md), read when a slide passes the floor and still reads as a default.
+Read the layout report first: every finding (a block beyond the page, text cut in its box, two texts that overlap, a lone word on a last line, a value that wraps, a box four times taller than its text, a slide filled under the threshold) is fixed in the deck file and rendered again until the report is empty. Then look at the contact sheet, and at any suspect page at full size (`--page <n> <png>`), for what the report does not measure (layout.md "Review"): a line broken inside a word, elements that touch, a mark recolored, a section label that is not the contents' entry, a figure without its source or tag, the design-floor defaults; the titles, the cover, the closing and the count as planned. What a reader calls the AI feel beyond this floor is in [not-ai.md](/docs/variation/not-ai.md), read when a slide passes the floor and still reads as a default.
 
-Show the contact sheet, by its path or attached where the host attaches files, with the report's count (checkpoint).
+Show the contact sheet, by its path or attached, with the report's count (checkpoint).
 
 ### Phase 5: Deliver
 
@@ -94,7 +94,7 @@ Deliver the HTML and the PDF by path, the deck file beside them, the slide count
 | A slide in the default look that reads flat: a title and a short list on the gradient | The register's blocks applied, the slide rebuilt |
 | A business plan or a report composed as a poster: one photograph, big type, no figures | Rebuilt in the report register |
 | A report slide whose table, figures or schedule fills the page, every figure with its source or tag | Pass |
-| The report names an overflow, a cut, an overlap, a lone word or a wrapped value | Fixed in the deck file (fewer words, a split slide, a wider column, a shorter label), rendered again; never in the CSS, never by hand |
+| The report names an overflow, a cut, an overlap, a lone word, a wrapped value or a padded box | Fixed in the deck file (fewer words, a split slide, a wider column, a shorter label, a block the content fits or a smaller `row_h`), rendered again; never in the CSS, never by hand |
 | A content slide filled under the threshold, or one whose blocks end in the upper half though the report passed it | A second block joins it, or a block grows (a larger statement `size`, a taller `row_h` or `h`), with content from the outline, the answers or the research; `valign: "center"` only moves it, counts for neither, and is for a slide that is one statement; rendered again |
 | A figure in a report without its source or its tag | Tagged before the render |
 | A note on the whole deck's look | The register chosen again from its words (a company presentation is a report), the look sheet shown, every slide rebuilt; a second such note goes to the user with both look sheets |
@@ -109,6 +109,7 @@ Rejected on sight in both registers; registers.md adds each register's own. Chec
 - Gradient text, decorative blur, thick colored left borders, emoji or glyphs standing in for icons, a generic icon standing in for a named product.
 - Line breaks inside words, a lone word on a second line, a value that wraps in a list, a tile or a cell.
 - A page whose blocks sit in its upper half or one corner and leave the rest empty, whatever fill the layout report measured.
+- A box far taller than its text (one sentence centered in a tall tile): a block the content fits, or a smaller height.
 
 ## Hard rules
 
@@ -121,4 +122,4 @@ Rejected on sight in both registers; registers.md adds each register's own. Chec
 ## Terminology
 
 - **Register**: `proposal` or `report`, each with its own cover, page frame, blocks and rules (registers.md).
-- **Section label**: in a report, the number and name of a slide's section above its title, as in the contents.
+- **Section label**: a report slide's section number and name above its title, as in the contents.

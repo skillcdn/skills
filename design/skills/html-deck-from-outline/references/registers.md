@@ -16,6 +16,7 @@ The look sheet (SKILL.md, phase 1) shows the cover and one body slide, the one t
 
 - **Content from the outline and the user's answers.** A figure the outline gives is tagged with where it comes from (the organization's own count, a pilot's result); one the outline does not source, and anything the user left open, is "to be confirmed", in the deck's language. A section the outline gives nothing for is one slide that says what is to be confirmed, or is dropped and listed at the plan checkpoint; the length rules below bend before this rule.
 - **A schedule only as the outline gives it.** Months make a Gantt chart; a horizon without months ("the first year") makes `steps` in stages or a `timeline` by quarter, the split said to be the agent's in the delivery; no cadence, no interim date, no "weekly" the outline does not say. A range given for several items in sequence is split, and the delivery says the split is the agent's.
+- **The block the content fits, then the order.** Where "no two consecutive slides share a layout" would take a block the register's table does not give the content (three definitions as a `stack`), the slides are reordered or two are merged; the table wins over variety.
 - **Durations** that are alternatives per item are stated as alternatives with what decides the total, never summed.
 - **Two products easily confused** (a tool and the service it runs on) are told apart: which one the work uses, what it talks to.
 

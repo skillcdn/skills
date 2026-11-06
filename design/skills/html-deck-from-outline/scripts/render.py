@@ -974,7 +974,7 @@ MEASURE_JS = r"""
   };
   document.querySelectorAll("section.slide").forEach((s, i) => {
     const r = { n: i + 1, kind: s.classList.contains("cover") ? "cover" : s.classList.contains("closing") ? "closing" : "content",
-      overflow: [], cut: [], overlaps: [], lone_words: [], wrapped_values: [] };
+      overflow: [], cut: [], overlaps: [], lone_words: [], wrapped_values: [], padded: [] };
     const sr = rect(s);
     const content = s.querySelector(".content");
     const body = s.querySelector(".body");
@@ -1006,6 +1006,17 @@ MEASURE_JS = r"""
       for (const el of body.children) { const e = rect(el); if (e.height === 0) continue; low = Math.max(low, e.bottom); high = Math.min(high, e.top); }
       r.fill = br.height > 0 && low > high ? Math.round(((low - high) / br.height) * 100) / 100 : 0;
       if (r.fill < FILL && !body.querySelector(".toc")) r.under_filled = true;  // the contents slide is exempt
+      // a box four times taller than the text in it: a sentence centered in a tall tile reads as padding, not structure
+      for (const el of body.querySelectorAll("*")) {
+        const cs = getComputedStyle(el);
+        const boxed = (cs.backgroundColor !== "rgba(0, 0, 0, 0)" && cs.backgroundColor !== "transparent") || parseFloat(cs.borderTopWidth) > 0;
+        if (!boxed || el.querySelector("img, svg") || el.matches(".stack .aside")) continue;  // the aside spans the rows by design
+        const er = rect(el); if (er.height < 72) continue;
+        const text = (el.innerText || "").trim(); if (text.length < 12) continue;
+        const lines = lineBoxes(el); if (!lines.length) continue;
+        const th = lines[lines.length - 1].bottom - lines[0].top;
+        if (th * 4 < er.height) r.padded.push({ path: pathOf(el), text: text.slice(0, 30), box: Math.round(er.height), text_h: Math.round(th) });
+      }
     }
     for (const el of s.querySelectorAll(".facts dd, .row .t, .nt, .st, .header h1, .kpi .kv, .gantt .gbar, .toc .tt, .stack .lab, .card h3, .steps .st2")) {
       const lines = lineBoxes(el); if (lines.length < 2) continue;
@@ -1022,7 +1033,7 @@ MEASURE_JS = r"""
       const wr = rg.getBoundingClientRect(); const lw = lines[lines.length - 1].width;
       if (lw > 0 && Math.abs(lw - wr.width) < 3) r.lone_words.push({ path: pathOf(el), text: text.slice(0, 30), word: last });
     }
-    r.findings = r.overflow.length + r.cut.length + r.overlaps.length + r.lone_words.length + r.wrapped_values.length + (r.under_filled ? 1 : 0);
+    r.findings = r.overflow.length + r.cut.length + r.overlaps.length + r.lone_words.length + r.wrapped_values.length + r.padded.length + (r.under_filled ? 1 : 0);
     out.findings += r.findings;
     out.slides.push(r);
   });
@@ -1250,6 +1261,8 @@ def layout_report(route, info, html_path, json_path, fill):
             print(f"  - slide {s['n']} {w['path']}: lone word on the last line: {w['word']} in: {w['text']}")
         for w in s["wrapped_values"]:
             print(f"  - slide {s['n']} {w['path']}: wraps to {w['lines']} lines: {w['text']}")
+        for p in s.get("padded", []):
+            print(f"  - slide {s['n']} {p['path']}: box {p['box']}px tall around {p['text_h']}px of text: {p['text']}")
         if s.get("under_filled"):
             print(f"  - slide {s['n']}: filled {s['fill']:.2f} of the body, under {data['fill_threshold']}")
     return data
