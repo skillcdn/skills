@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Python 3 for the helper and a Chromium-family browser (an installed Chrome or Edge, or Playwright's) for the PDF, the layout report and the contact sheet; the helper prints with Playwright from Python, with Node.js and playwright-core, or with the browser's own print, whichever the host has, and says which. Without any browser the HTML is still delivered and the PDF is printed by the user. Works in any agent that can write files, run a shell and look at an image.
 metadata:
   author: skillcdn
-  version: "1.5"
+  version: "1.6"
   tools: browser
 skillcdn:
   include:
