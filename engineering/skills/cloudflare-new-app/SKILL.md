@@ -1,11 +1,11 @@
 ---
 name: cloudflare-new-app
-description: Builds a new web app from an idea and puts it live on Cloudflare. Use when the user wants a new app, site, service or landing page made and put online, with no expertise needed. For a project that exists and only needs to go live, cloudflare-deploy is the skill. Asks a few plain questions anyone can answer (what it does and for whom, which languages, whether people sign in, a domain or not, the look), plans it, proposes a look, then builds a TypeScript app on the path Cloudflare's framework guide recommends that day (Next.js by default), mobile-first, every language designed in from the first commit, ready for search engines and AI engines (metadata, sitemap, hreflang, structured data, llms.txt), with a share image and favicon set made from its brand, sign-in, a database, analytics, tests and one check, and writes the working agreement a team of developers, planners and designers keeps working under (CLAUDE.md, AGENTS.md, README, status, decisions). Hands over to cloudflare-deploy for the launch.
+description: Builds a new web app from an idea and puts it live on Cloudflare. Use when the user wants a new app, site, service or landing page made and put online, with no expertise needed. For a project that exists and only needs to go live, cloudflare-deploy is the skill. Asks a few plain questions anyone can answer (what it does and for whom, which languages, whether people sign in, a domain or not, the look), plans it, proposes a look, then builds a TypeScript app on the path Cloudflare's framework guide recommends that day (Next.js by default), mobile-first, every language designed in from the first commit, ready for search engines and AI engines (metadata, sitemap, hreflang, structured data, llms.txt), with a share image and favicon set made from its brand, sign-in, a database, analytics, tests and one check, and sets its repository up for a team with git-repo-setup (AGENTS.md, README, docs, a console project). Hands over to cloudflare-deploy for the launch.
 license: MIT
 compatibility: Needs a shell with Node.js (the current LTS; at least 22.18 for the typed Cloudflare configuration the scaffold writes), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.10"
+  version: "1.11"
   tools: cloudflare
 skillcdn:
   include:
@@ -14,7 +14,7 @@ skillcdn:
   translations:
     ko:
       title: 아이디어에서 Cloudflare 위의 새 웹앱까지
-      description: 아이디어 하나로 새 웹앱을 만들어 Cloudflare에 올립니다. 누구나 답할 수 있는 몇 가지 쉬운 질문(무엇을 하는 앱인지와 누가 쓰는지, 어떤 언어들인지, 로그인이 필요한지, 도메인이 있는지, 어떤 느낌인지)을 묻고, 계획을 세우고, 디자인을 제안한 뒤, 그날 Cloudflare 프레임워크 가이드가 권하는 방식(기본은 Next.js)으로 TypeScript 앱을 만듭니다. 모바일 우선, 첫 커밋부터 모든 언어를 설계에 넣고, 검색엔진과 AI 엔진을 위한 준비(메타데이터, 사이트맵, hreflang, 구조화 데이터, llms.txt), 브랜드로 만든 공유 이미지와 파비콘 세트, 로그인, 데이터베이스, 분석, 테스트와 하나의 검사 명령까지 갖추고, 개발자·기획자·디자이너가 계속 함께 일할 작업 약속(CLAUDE.md, AGENTS.md, README, 상태, 결정 기록)을 씁니다. 출시는 cloudflare-deploy에 넘깁니다. 새 앱·사이트·서비스·랜딩페이지를 만들어 온라인에 올려 달라고 할 때 쓰세요. 이미 있는 프로젝트를 올리기만 할 때는 cloudflare-deploy가 맞습니다.
+      description: 아이디어 하나로 새 웹앱을 만들어 Cloudflare에 올립니다. 누구나 답할 수 있는 몇 가지 쉬운 질문(무엇을 하는 앱인지와 누가 쓰는지, 어떤 언어들인지, 로그인이 필요한지, 도메인이 있는지, 어떤 느낌인지)을 묻고, 계획을 세우고, 디자인을 제안한 뒤, 그날 Cloudflare 프레임워크 가이드가 권하는 방식(기본은 Next.js)으로 TypeScript 앱을 만듭니다. 모바일 우선, 첫 커밋부터 모든 언어를 설계에 넣고, 검색엔진과 AI 엔진을 위한 준비(메타데이터, 사이트맵, hreflang, 구조화 데이터, llms.txt), 브랜드로 만든 공유 이미지와 파비콘 세트, 로그인, 데이터베이스, 분석, 테스트와 하나의 검사 명령까지 갖추고, 개발자·기획자·디자이너가 계속 함께 일하도록 git-repo-setup으로 저장소를 구성합니다(AGENTS.md, README, docs, 콘솔 프로젝트). 출시는 cloudflare-deploy에 넘깁니다. 새 앱·사이트·서비스·랜딩페이지를 만들어 온라인에 올려 달라고 할 때 쓰세요. 이미 있는 프로젝트를 올리기만 할 때는 cloudflare-deploy가 맞습니다.
 ---
 # A new web app, from an idea to live
 
@@ -40,7 +40,7 @@ What goes in: an idea in the user's words and the answers to a few plain questio
 
 Check these before the first message. Without Node.js or git, stop and say what to install. Without network, stop: nothing can be scaffolded.
 
-The Cloudflare skills share the area's document set [`engineering/docs/cloudflare/`](/engineering/docs/cloudflare/README.md): [platform.md](/engineering/docs/cloudflare/platform.md) (the runtime, the configuration, bindings and secrets, the framework paths, the plans) is included and arrives with this skill wherever SkillCDN serves it; [tokens.md](/engineering/docs/cloudflare/tokens.md) (the token steps) is linked from the intake and [automation.md](/engineering/docs/cloudflare/automation.md) from the launch, read with `read_repo_file` through the repository or engineering connection, from the engineering plugin's `docs/cloudflare/`, or from a checkout of this repository. A mount of this skill alone lacks the two linked pages and a copy of its directory lacks all three: say so in the first message, fetch them from `engineering/docs/cloudflare/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules. The launch is `cloudflare-deploy` of the same area; where it cannot be loaded, the delivery says so and gives the user its name and address. [tool-notes.md](references/tool-notes.md) holds what the tools did in runs, read before the build and when a tool misbehaves.
+The Cloudflare skills share the area's document set [`engineering/docs/cloudflare/`](/engineering/docs/cloudflare/README.md): [platform.md](/engineering/docs/cloudflare/platform.md) (the runtime, the configuration, bindings and secrets, the framework paths, the plans) is included and arrives with this skill wherever SkillCDN serves it; [tokens.md](/engineering/docs/cloudflare/tokens.md) (the token steps) is linked from the intake and [automation.md](/engineering/docs/cloudflare/automation.md) from the launch, read with `read_repo_file` through the repository or engineering connection, from the engineering plugin's `docs/cloudflare/`, or from a checkout of this repository. A mount of this skill alone lacks the two linked pages and a copy of its directory lacks all three: say so in the first message, fetch them from `engineering/docs/cloudflare/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules. The repository's layout, agreement and console project are `git-repo-setup` of the same area, run at phase 5, with the shared set [`engineering/docs/git/`](/engineering/docs/git/README.md) it reads; the launch is `cloudflare-deploy`. Where either cannot be loaded, the delivery says so and gives the user its name and address. [tool-notes.md](references/tool-notes.md) holds what the tools did in runs, read before the build and when a tool misbehaves.
 
 ## Inputs
 
@@ -87,7 +87,7 @@ Produces the **app**. In this order, each step reported in a line and verified b
 
 ### Phase 5: Agreement
 
-Produces the **working agreement**: `CLAUDE.md`, `AGENTS.md`, `README.md`, `docs/status.md`, `docs/decisions.md`, and the skills connection files (`.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml`, at the address this skill was loaded from), as [working-agreement.md](references/working-agreement.md) says, written for the people the brief names and in the team's language. Then the first commit of the skill's work on top of the scaffold's, with everything above and nothing secret. Nothing is pushed here: pushing is the deploy skill's stop.
+Produces the **working agreement**. Run `git-repo-setup` on the project folder with what this run already has, as [working-agreement.md](references/working-agreement.md) "Running the setup skill" says: it lays the repository out (`AGENTS.md` with `CLAUDE.md` importing it, `README.md` in the readers' language, `docs/`, the check's continuous integration, the skills connection at the address this skill was loaded from) and binds it to a console project with the setup task taken, at its own stop for the project. Then add the web app's part of working-agreement.md (`docs/brand.md`, `.dev.vars.example`, what `AGENTS.md` says for a web app, what is open as tasks), and make the first commit of the skill's work on top of the scaffold's, with everything above and nothing secret. Nothing is pushed here: pushing is the deploy skill's stop.
 
 ### Phase 6: Launch
 
@@ -95,14 +95,14 @@ Hands over to **`cloudflare-deploy`** with: the project path, the token file the
 
 ### Phase 7: Delivery
 
-One message: the address (or the local one, when the launch waits on the user), what was built in the user's words, what the check verified and what was not run (a layout verdict without a browser), what is placeholder or waiting (a key, nameservers, the owner's details, content marked in `docs/status.md`), and how the team continues: open the repository, approve the skills connection when the tool asks, read `CLAUDE.md`, and the loop it describes.
+One message: the address (or the local one, when the launch waits on the user), what was built in the user's words, what the check verified and what was not run (a layout verdict without a browser), what is placeholder or waiting (a key, nameservers, the owner's details, marked content), each a task on the console project or a line of `docs/status.md`, and how the team continues: open the repository, sign in to the console, approve the skills connection when the tool asks, read `AGENTS.md`, and the loop it describes.
 
 ### Verdicts
 
 | Result | Verdict |
 |---|---|
 | `npm run check` passes (types, lint, tests, build); every public page answers 200 in every locale; canonical, hreflang, the share image URL and the favicon files resolve on the local address; the sitemap lists every locale | Accepted |
-| Sign-in cannot be tried because its keys are "later"; a page carries marked placeholder content; a layout verdict could not run without a browser | Accepted, with the gap named in `docs/status.md` and the delivery |
+| Sign-in cannot be tried because its keys are "later"; a page carries marked placeholder content; a layout verdict could not run without a browser | Accepted, with the gap written as a task on the console project (or in `docs/status.md`) and named in the delivery |
 | A page in one locale shows another language or an empty string; the home page scrolls sideways at 360 px wide; a tap target is under 44 px | Redone: the dictionary, the layout |
 
 ## Hard rules
@@ -112,9 +112,9 @@ One message: the address (or the local one, when the launch waits on the user), 
 3. Secrets never enter the repository or the agent's own words: `.dev.vars`, `.env*` and `.cf-token` are ignored from the first commit; example files carry names and comments only; a generated value is written to `.dev.vars` and never shown in a message (a password the user must know goes to a file outside the project); a token the user pastes is moved to its file and not repeated.
 4. Every language is in from the first commit: one locale list, dictionaries complete by type, metadata per locale on every public page, no money or date formatted by hand. Adding a language touches the configuration and the dictionaries and nothing else.
 5. Discover, do not remember: package versions from the registry, the adapter from the framework guide of the day, the scaffold's prompts from the tool, the CLI from the configuration file the scaffold wrote; the files written say what was found and when.
-6. Whatever the next person needs is in the repository: the brief, the look, the agreement, the status, the decisions. Chat and the agent's own memory are not where the project lives.
+6. Whatever the next person needs is in the repository or on its console project: the brief, the look, the agreement and the decisions in the repository, what is open as tasks. Chat and the agent's own memory are not where the project lives.
 7. Pushing, deploying and buying are the deploy skill's stops; this skill never pushes on the way to something else.
-8. Nothing invented in the pages: no testimonials, counts, logos, partner names, or an owner's details that are not true; a placeholder is marked as one and listed in `docs/status.md` for the user to replace.
+8. Nothing invented in the pages: no testimonials, counts, logos, partner names, or an owner's details that are not true; a placeholder is marked as one and listed as a task (or in `docs/status.md`) for the user to replace.
 
 ## Terminology
 
@@ -128,7 +128,7 @@ One message: the address (or the local one, when the launch waits on the user), 
 | Public page | A page anyone can open without signing in; the sitemap lists them. |
 | Guest path | The core action working on one device before sign-in, claimed by the account on sign-in. |
 | Check | `npm run check`: typecheck, lint, tests and build, in one command; green before every commit. |
-| Agreement | `CLAUDE.md` and what it links: how the team and its agents work in the repository. |
-| Status | `docs/status.md`: what is done, what is next, what is open; the handover between sessions. |
+| Agreement | `AGENTS.md` and what it links: how the team and its agents work in the repository; `CLAUDE.md` imports it. |
+| What is open | The tasks of the repository's console project; `docs/status.md` where the repository has no console. |
 | Placeholder | Content marked for the user to replace; never passed off as real. |
 | Launch | The deploy skill's run: token, resources, secrets, deploy, domain, builds. |
