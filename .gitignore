@@ -18,6 +18,10 @@ secrets/
 tmp/
 .data/
 
+# Python bytecode, written when a skill's helper script is run locally
+__pycache__/
+*.pyc
+
 # Logs
 *.log
 
