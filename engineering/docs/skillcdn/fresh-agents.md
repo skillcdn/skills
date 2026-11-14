@@ -30,6 +30,7 @@ Where there is no subagent tool, or the run must be a separate process: a sessio
 
 - A runner script that starts a headless session works with a tool allowlist scoped to the run: the connection's tools, the tools of the server the skill drives, and the shell commands the skill names. A blanket permission bypass is refused by the host, and a command outside the allowlist is denied and reported by the session; that is the runner's scope, not a fault of the skill (Claude Code, checked 2026-10).
 - A scoped allowlist also refuses a directory change chained with a command, and variables inside a command; the session goes on with full paths (Claude Code, checked 2026-10).
+- A headless session cannot write `.claude/settings.json` or `.mcp.json` in its folder, even with `Write` allowed and with a rule naming the path, because the host asks a person before those writes and nobody is there to answer; the session shows the content and waits, and the person writes the files (Claude Code, checked 2026-11). A run whose skill writes them expects that stop.
 - A prompt in Korean or another non-ASCII script reaches a child process intact when it is read from a UTF-8 file; passed inline from a shell it can arrive as question marks, and the session then asks what was meant.
 - The readable record of the run is its transcript ([transcripts.md](transcripts.md)); a log piped through the shell can garble non-ASCII text.
 - Wait for a run with a background command or the session's own completion notice; a foreground sleep is blocked in Claude Code (checked 2026-10).
