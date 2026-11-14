@@ -57,6 +57,8 @@ A file is added when its first content exists, never as an empty placeholder:
 | `docs/brand.md` | The product has a look and a tone | `cloudflare-new-app`, or the person who sets it |
 | `DEPLOY.md` | The product is deployed | `cloudflare-deploy` |
 | `docs/payments.md` | The product takes payments | `stripe-payments` |
+| `docs/ads.md` | The product runs ads on Meta | `meta-ads-setup` |
+| `docs/admin.md` | The product has an operator dashboard | `cloudflare-admin-dashboard` |
 | `docs/specs/<name>.md` | A contract has a caller outside the repository (a public API, a file format, a protocol) | Whoever publishes the contract |
 | `docs/guides/<topic>.md` | A procedure was done once and will be done again | Whoever did it |
 | A folder's own `README.md` | A folder has rules of its own (a package of a monorepo, a generated folder) | Whoever creates the folder |
