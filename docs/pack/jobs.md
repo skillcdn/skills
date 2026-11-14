@@ -131,9 +131,16 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - Also asked as: "compile a reference from the archive", "check this claim against the manual and keep the result", "research this across our documents", "write up what the handbook says about this".
 - Not this one when: you want the answer now and nothing kept (the question above); the documents are not in a pack yet (the document pack above).
 
+### "Set up a new repository for this project."
+
+- You get: a git repository in the layout every repository of this pack shares, committed and pushed: `AGENTS.md` as the working agreement with `CLAUDE.md` importing it, a README in your language, `docs/` for the brief, the architecture and the decisions, one check with a first test and continuous integration, the skills connection, and a console project the repository is bound to, with its rules, its first goal and its tasks.
+- Skill: [`engineering/skills/git-repo-setup/`](/engineering/skills/git-repo-setup/SKILL.md)
+- Also asked as: "start a repo for this", "make this repo ready for the team and agents", "connect this repository to the console", "write the AGENTS.md for this new project".
+- Not this one when: the app itself is to be built and put live (the new app below, which runs this skill for its repository).
+
 ### "Build me an app for this and put it online."
 
-- You get: a TypeScript web app in a repository with its working agreement: mobile-first, every language in from the first commit, ready for search and AI engines, with a share image and favicon set, sign-in, a database, analytics, tests and one check; then live on Cloudflare.
+- You get: a TypeScript web app in a repository set up for a team, with its console project: mobile-first, every language in from the first commit, ready for search and AI engines, with a share image and favicon set, sign-in, a database, analytics, tests and one check; then live on Cloudflare.
 - Skill: [`engineering/skills/cloudflare-new-app/`](/engineering/skills/cloudflare-new-app/SKILL.md)
 - Also asked as: "make a website for this idea", "a new web app with sign-in and a database", "build and launch this service".
 - Not this one when: the project exists and only needs to go live (the deploy below).

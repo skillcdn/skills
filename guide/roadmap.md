@@ -61,6 +61,7 @@ Keeping a codebase one that an agent can keep working in: its documents true to 
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
+| "Set up a new repository for this project." A git repository laid out the way every repository of the pack is: `AGENTS.md` as the working agreement with `CLAUDE.md` importing it, the README in the readers' language, `docs/` for the brief, the architecture and the decisions, one check with a first test and continuous integration, the skills connection, and a console project the checkout is bound to, with its rules, its first goal and its tasks; the shape lives in the set `engineering/docs/git/`, which the new-app skill follows by running this one. [`git-repo-setup`](../engineering/skills/git-repo-setup/). | engineering | Git | next |
 | "Write the working agreement for this codebase." `CLAUDE.md` or `AGENTS.md` and `README.md`, written or refreshed from the code as it is: how to build, check and run it, what a change must update, the gotchas, so that a fresh agent works in it without being told. | engineering | git and the codebase | candidate |
 | "Keep the docs true after this change." The pages a change touches, found and updated under a documentation protocol like this repository's, in the same commit. | engineering | git | candidate |
 | "Hand over to the next session." What was decided and why, what is open, what the next session must know, recorded where the next agent looks first. | engineering | git | candidate |

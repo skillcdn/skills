@@ -1,0 +1,30 @@
+# Git skills
+
+How the skills that set up or build a repository are written and kept in step, for authors. What every repository of the pack shares at run time is the document set [`engineering/docs/git/`](../../engineering/docs/git/README.md), which agents read; this page says what goes there, what stays in a skill, and how the family is tested.
+
+## The tool is git, the git host and the console
+
+The skills drive git in a shell, the git host's command for what only the host does (`gh` for GitHub: creating the remote, watching a run of continuous integration), and the SkillCDN Console's `console` command for the board the repository is worked through. They name git's commands exactly, because those are stable; they name `gh` and `console` commands with the version and the month they were checked, and point at `<command> help` as the reference at run time, because both move. A stack's tools (a test runner, a linter) are named as defaults with the way to find the current version; a framework's own choices win.
+
+## What is shared and what stays in the skill
+
+| In `engineering/docs/git/` | In the skill |
+|---|---|
+| `layout.md`: the tree, who reads what, the languages, what other skills add later | What the skill asks, in which words, and what it derives |
+| `agreement.md`: `AGENTS.md` section by section, the binding sentence, the skills section, the agents' settings | The order of the phases, its stops, its verdicts |
+| `console.md`: the project, the binding, the project's rules, the first goal and tasks, what lives where | How the setup task is written and taken, and what is handed in |
+| `readme-guide.md`, `testing.md`: the README and the test structure | What a skill that builds adds to them (a web app's sections, its rules, its secret files) |
+
+The test for a sentence: would it hold for every repository the pack makes, whatever it holds? Then it belongs in the set. A sentence that holds for one kind of product (a web app's localization section, a deploy record) stays in the skill that builds that product, in the reference that says what it adds to the shared shape, as `cloudflare-new-app`'s `references/working-agreement.md` does.
+
+The set sits in the area's `docs/` because the skills that include its pages are engineering skills. A skill of another area that writes into a repository (a document, a design file kept in git) reads `layout.md` through the repository connection before it adds a file, and adds its file to the layout's "What grows later" table in the same change.
+
+## Keeping every repository the same
+
+- One layout. A skill that adds a file to a repository (`DEPLOY.md`, `docs/payments.md`) names it in `layout.md` "What grows later", so that the map of every repository can say what each file is.
+- One agreement. A skill never writes a rule into `CLAUDE.md`; it adds to the section of `AGENTS.md` that agreement.md names, in English.
+- One console shape. The binding sentence is the console's, copied as it is from `skills/working-the-board/references/the-sentence.md` of the console's repository; a release that changes it changes `console.md` and `agreement.md` in the same review, and the setup skill's version.
+
+## Testing the family
+
+The setup skill is exercised from a fresh session on an empty folder, with a console the run may write to: a throwaway project on a console where the tester is an administrator, deleted or archived afterwards, and no remote, or a private remote deleted afterwards. The run is read for the files against the layout, the check's result, the binding (`console whoami` in the new checkout), the project's rules, goal and tasks as written, the setup task's reports, hand-in and finish, and the language of every file. A run on a fresh scaffold, and the new-app skill's phase 5 running it, are the second and third cases. What a run taught about a command goes into the sentence of the set it bears on, with the version and the month.
