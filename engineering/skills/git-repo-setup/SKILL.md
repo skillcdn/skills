@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: git
 skillcdn:
   include:
@@ -37,7 +37,7 @@ What goes in: a folder (empty, freshly scaffolded, or holding code with no agree
 | The `console` command, signed in (`console whoami` says as whom, at which console, in which project) | The console project, the binding, the rules, the goal and the tasks ([console.md](/engineering/docs/git/console.md)) |
 | The git host's command, signed in (`gh auth status` for GitHub) | Creating the remote, the collaborators, watching continuous integration; without it, the user creates an empty repository and gives its address |
 
-Check before the first message: `git --version`; the runtime of a stack the folder or the request names; `console whoami`; `gh auth status`. Without git, stop and say what to install. Without the `console` command, say what it is for and how to get it (console.md "Without a console") and offer the route without a console, taken only on the user's word; a `whoami` that names no project is the usual start for a new repository, not a missing console. A `whoami` refused, or one that names a project because the folder sits inside another bound checkout, is said in a line: a repository is not set up inside another.
+Check before the first message: `git --version`; the runtime of a stack the folder or the request names; `console whoami`; `gh auth status`. Without git, stop and say what to install. Without the `console` command, say what it is for and how to get it (console.md "Without a console") and offer the route without a console, taken only on the user's word; a `whoami` that names no project is the usual start for a new repository, not a missing console. A `whoami` refused, or one that names a project because the folder sits inside another bound checkout, is said in a line: a repository is not set up inside another. A console the user names that is not the one `whoami` talks to is looked up in `console logins`, which lists every console this machine is signed in to: one listed is used with `--url <origin>` on each command until `console use <key> --url <origin>` binds the checkout to it, and a new sign-in is the person's, only for a console the list lacks (console.md "Which console").
 
 What every repository of this pack shares is in the area's document set [`engineering/docs/git/`](/engineering/docs/git/README.md): [layout.md](/engineering/docs/git/layout.md) (the tree, who reads what, the languages), [agreement.md](/engineering/docs/git/agreement.md) (`AGENTS.md` section by section) and [console.md](/engineering/docs/git/console.md) (the console project, its commands, the binding) are included and arrive with this skill wherever SkillCDN serves it; [testing.md](/engineering/docs/git/testing.md) (the check, the tests, the versions of the toolchain and of continuous integration) is linked from phases 2 and 4, and [readme-guide.md](/engineering/docs/git/readme-guide.md) (the README) from phase 4, read with `read_repo_file` through the repository or the engineering connection, from `docs/git/` of the engineering plugin, or from a checkout of this repository. A mount of this skill alone lacks the two linked pages and a copy of its directory lacks all five: say so in the first message, fetch them from `engineering/docs/git/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules.
 
@@ -97,7 +97,9 @@ Produces the **repository**, in this order, each step a line to the user and, at
 5. `AGENTS.md` by [agreement.md](/engineering/docs/git/agreement.md), section by section, with the binding sentence at the head of its workflow, and `CLAUDE.md` importing it.
 6. `README.md` by [readme-guide.md](/engineering/docs/git/readme-guide.md), in the readers' language.
 7. The skills connection files, at the address this skill was loaded from.
-8. A last read: every link resolves; every command the README and the agreement give runs as written, apart from those that need the remote; nothing is a placeholder or a fact nobody gave; nothing secret is staged (`git status`, `git diff --cached --stat`).
+8. A last read: every link resolves; every command the README and the agreement give runs as written, apart from those that need the remote; nothing is a placeholder or a fact nobody gave; every item of the brief's "Open" list names its task (`#<number>`); nothing secret is staged (`git status`, `git diff --cached --stat`).
+
+Claude Code asks the person before an agent writes `.claude/settings.json` or `.mcp.json`, since both change what agents may do in the folder; the plan says the tool will ask. A session that cannot ask (a headless or scheduled run) is refused the write: the agent shows the person each file's content and the path, goes on with the rest, and commits once the person says the files are there; it never writes them by another route.
 
 ### Phase 5: Commit and push
 
@@ -107,6 +109,8 @@ Produces the **pushed repository**.
 2. Try the quick start from a clean clone of that commit (`git clone <folder> <temporary folder>`, then the README's install and check), and fix what it finds before anything leaves.
 3. Create the remote as the plan approved (`gh repo create <owner>/<name> --private --source . --remote origin`), add each collaborator (`gh api -X PUT repos/<owner>/<name>/collaborators/<login> -f permission=push`, which sends them an invitation), push.
 4. Watch the first run of continuous integration to its result: `gh run list --workflow check.yml --limit 1 --json databaseId,status` until it appears, then `gh run watch <id> --exit-status`, whose exit status says green or red. A red run is fixed and pushed before the delivery.
+
+Where the user keeps the remote for later, steps 3 and 4 wait: the remote is one of the next tasks, continuous integration is named as not run, and phase 6 hands nothing in, its last report naming the local commit by its hash.
 
 ### Phase 6: Hand in
 

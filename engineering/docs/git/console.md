@@ -1,6 +1,11 @@
 # The repository and its console project
 
-How a repository of this pack is worked through a SkillCDN Console: the project it works in, the people in it, how every checkout is bound to that project and never another, the rules the project carries for its agents, the first goal and tasks, what lives on the board and what in the repository, and the mistakes this shape prevents. The console's own skill working-the-board, shipped with the command (`console whoami` prints where), says how a task is worked; this page says what a repository adds. Read when a repository is set up or bound, and when a team wonders where something belongs. The commands are the console's 0.5 line (checked 2026-11); `console help <command>` is the reference at run time, and every id and task number is read from what a command prints, never assumed, since other agents write on the same board.
+How a repository of this pack is worked through a SkillCDN Console: the console and the project it works in, the people in it, how every checkout is bound to that project and never another, the rules the project carries for its agents, the first goal and tasks, what lives on the board and what in the repository, and the mistakes this shape prevents. The console's own skill working-the-board, shipped with the command (`console whoami` prints where), says how a task is worked; this page says what a repository adds. Read when a repository is set up or bound, and when a team wonders where something belongs. The commands are the console's 0.5 line (checked 2026-11); `console help <command>` is the reference at run time, and every id and task number is read from what a command prints, never assumed, since other agents write on the same board.
+
+## Which console
+
+- A machine may be signed in to several consoles, one of them the default. `console whoami` says which one a command in this folder talks to; `console logins` lists every console signed in here, with the account and the default, never a token.
+- The repository works in the console the user names, else the one `whoami` talks to. One that `console logins` lists is used with `--url <origin>` on each command until `console use <key> --url <origin>` binds the checkout; from then on the binding file names it, and no flag is needed. Only a console the list lacks takes a sign-in (`console login --url <origin>`), which the person approves on the console's own pages ("Without a console").
 
 ## Which project
 
