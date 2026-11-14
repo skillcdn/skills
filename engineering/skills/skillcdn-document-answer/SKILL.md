@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory. Works in any agent that can call MCP tools or run a shell; no file tool is needed, since the answer is the delivery.
 metadata:
   author: skillcdn
-  version: "1.3"
+  version: "1.4"
   tools: skillcdn
 skillcdn:
   include:
@@ -32,6 +32,7 @@ A question goes in, with a pack of documents served through SkillCDN; an answer 
 | What | Used for |
 |---|---|
 | The SkillCDN connection to the pack, or the `skillcdn` command (`skillcdn browse`, `skillcdn find`, `skillcdn file` with the pack's address or directory) | Reading the maps, searching, reading sections by offset and limit, re-reading a cited section. The connection's instructions name the pack and its language. |
+| A pack token, where a deployment reads its own directory with a token only | The operator's token, presented as `Authorization: Bearer <token>`; without it the pack answers as absent (SkillCDN 0.5.0). |
 
 Check it before the first message. Without a connection or the command, stop and say what to connect: the pack's address at a deployment, or the command on a directory. How a search over a pack behaves, and how to ask it so that it answers, is in the area's document set [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md): [searching.md](/engineering/docs/skillcdn/searching.md) is included and arrives with this skill wherever SkillCDN serves it; a copy of this directory lacks it, and fetches it from `engineering/docs/skillcdn/` of the repository this skill comes from (`github.com/skillcdn/skills`, which is not the pack the question is put to) or reads it as a file at `docs/skillcdn/` of the engineering plugin. The pack under question is its own connection: `read_repo_file` on it reads that pack, and this skill's pages are read only through the connection that served the skill. The shape of an answer is in [answer.example.md](assets/answer.example.md), which comes with the skill.
 
@@ -40,7 +41,7 @@ Check it before the first message. Without a connection or the command, stop and
 | Input | Source |
 |---|---|
 | The question | The user's words. A claim to check ("is it true that ...") is answered true where a section states it or a rule of the pack covers the case in the pack's own words, false where a section states the contrary (another and only another, or the case excluded), true with the condition where a section adds one to the case asked (a second approver above a limit), and not stated otherwise; a section about the case outranks a general rule, and both are quoted. A term the user uses that the pack names differently is read as the pack's term only where the pack itself equates them, and the answer says which reading it took. |
-| The pack | The connection the request names, or the only one connected; the folder the connection mounts, when it is to one folder of a repository rather than to its root. Connected to a deployment's root (an address with no pack in it) rather than to a pack, `search_packs` names the packs that match, and the pack is the one the user then connects. |
+| The pack | The connection the request names, or the only one connected; the folder the connection mounts, when it is to one folder of a repository rather than to its root. Connected to a deployment's root (an address with no pack in it) rather than to a pack, `search_packs` names the packs that match and the document that speaks of the thing, and the pack is the one the user then connects, where the search inside it finds the passage; a result ending `Ranked by meaning alone this time` is asked again. Without a connection, `npx @skillcdn/cli search <words>` does the same (SkillCDN 0.5.1). |
 | The language of the pack | What the connection's instructions say (`Written in ko`), else the language of the maps; the search and the quotes are in that language. |
 | Everything else | Derived: which document sets the question concerns, how many sections to read, whether an earlier question's sections serve. |
 
@@ -60,7 +61,7 @@ Produces the **map reading**: the document sets the connection's instructions na
 
 Produces the **candidates**: the sections a search named, with their path, heading path, offset and limit, in the order of the search.
 
-1. `search_repo` with the frame's words, at the scope phase 2 set. Where the result's last line says the ranking was by words and meaning, search once more in the agent's own words for the thing, a short phrase rather than the pack's terms, since a search by meaning finds a section near in meaning without the pack's word; where it says by words alone this time, search once more with other words of the pack's ([searching.md](/engineering/docs/skillcdn/searching.md) "What a search does"). These are two of the three searches.
+1. `search_repo` with the frame's words, at the scope phase 2 set. Where the result's last line says the ranking was by words and meaning, search once more in the agent's own words for the thing, a short phrase rather than the pack's terms, since a search by meaning finds a section near in meaning without the pack's word; where it says by words alone this time, or counts the documents embedded so far, search once more with other words of the pack's; where it says a query of numbers and names was matched as written, the document whose heading names them stands first, and the second search is in the agent's own words for what the number names (SkillCDN 0.5.0; [searching.md](/engineering/docs/skillcdn/searching.md) "What a search does"). These are two of the three searches.
 2. A search finds nothing when no section it names bears on the frame: a search ranked by meaning always returns its nearest sections, so the heading path and the excerpt say so for a section far from the frame, and a section near it is read (phase 4's read of it) before it is dismissed; a search whose sections were read and gave no answer has found nothing. A search that finds nothing changes one thing at a time, in the order searching.md "When a search finds nothing" gives. Three searches, counting the two of step 1, and the outline of the document that should hold it, that find nothing mean the pack does not say it: the nearest passage any search returned becomes the candidate, is read in phase 4 and checked in phase 5 like any citation, and phase 6 says what was tried.
 3. The sections an earlier question of the session already read are candidates too, named as such.
 
@@ -68,7 +69,7 @@ Produces the **candidates**: the sections a search named, with their path, headi
 
 Produces the **evidence**: the passages read, each quoted with its path, heading path, offset and limit.
 
-1. Read each candidate with `read_repo_file` at its offset and limit; read the neighbouring section where the passage defers to it, and follow a link to another document of the pack where the passage points there.
+1. Read each candidate with `read_repo_file` at its offset and limit; read the neighbouring section where the passage defers to it, and follow a link to another document of the pack where the passage points there, by the section the references after the page name for it, at its offset and limit, rather than the file (SkillCDN 0.5.0). A result marked `(made from other documents: quote what it points to)` is a note or a glossary: the sections its quotes link to are the candidates, read and cited in its place.
 2. Stop when a section answers the frame and a second section says the same or defers to it, or when every candidate is read. A frame one section alone answers is answered from it, and the answer says that no other section read says the same; candidates all read with no answer send the search back to phase 3 for its next change. A rule about money, access or safety is quoted, never only paraphrased: the lead may say it in its own words, and the quote beneath carries the rule's own numbers, names and conditions.
 3. A passage that describes a figure or transcribes a scanned page is the converting agent's words: where the answer hangs on it, the answer says so and names the original the document's outline gives, with where its bytes are and the place in words ("page 12 of the original"), since the original is a download the tools do not read ([searching.md](/engineering/docs/skillcdn/searching.md), "Reading what was found").
 
@@ -90,6 +91,7 @@ Produces the **answer**, as [answer.example.md](assets/answer.example.md) shapes
 | A quote that the re-read does not find word for word | Corrected to the section's words, or dropped with its claim; never sent as it was |
 | A citation whose offset returns another section | Re-cited from the document's outline by its heading |
 | A finding from a result's excerpt that no section was read for | Not evidence; the section is read or the finding dropped |
+| A result marked as made from other documents | A pointer: the section its quote links to is read and cited; the note itself is never cited |
 | Two documents that answer differently | Both quoted, the difference said; no choice made without saying so |
 | Three searches and an outline that find nothing | The pack does not say it; the nearest passage read, checked and quoted, what was tried listed |
 | A question wider than the pack | The part the pack answers, answered; the rest named as not in the pack |
