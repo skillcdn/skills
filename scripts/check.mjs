@@ -429,6 +429,27 @@ const sharedDocumentDirs = (skillRoot) =>
   manifests.filter((m) => m.dir === root || inside(skillRoot, m.dir)).flatMap((m) => m.documentDirs);
 const crossAreaLinks = [];
 
+// A fenced code block is code, not links, for the indexer as for a renderer: a template of a file another
+// repository holds shows its links there. The fence closes on a run of the same marker at least as long.
+function withoutFencedCode(text) {
+  let fence;
+  return text
+    .split("\n")
+    .map((line) => {
+      const opening = /^ {0,3}(`{3,}|~{3,})/.exec(line);
+      if (fence) {
+        if (opening && opening[1][0] === fence[0] && opening[1].length >= fence.length && !line.slice(opening[0].length).trim()) fence = undefined;
+        return "";
+      }
+      if (opening) {
+        fence = opening[1];
+        return "";
+      }
+      return line;
+    })
+    .join("\n");
+}
+
 function checkLinks(file, text) {
   const dir = dirname(file);
   const skillRoot = skillRootOf(file);
@@ -436,7 +457,7 @@ function checkLinks(file, text) {
   // served can be followed. READMEs and guide pages are for the git host and may link anywhere inside.
   const servedDocument = !skillRoot && isDiscoverable(file);
   const re = /\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
-  for (const m of text.matchAll(re)) {
+  for (const m of withoutFencedCode(text).matchAll(re)) {
     const target = m[1];
     if (/^([a-z][a-z0-9+.-]*:|#)/i.test(target)) continue;
     const path = target.split("#")[0];
