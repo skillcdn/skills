@@ -8,13 +8,17 @@ A document set named `notes` under the pack's document roots (`docs/notes/` wher
 
 ## The shape of a note
 
-One file per question, named by the question in a few words (`refund-timing.md`), with the front-matter every document carries and five parts:
+One file per question, named by the question in a few words (`refund-timing.md`), with the front-matter every document carries, `derived` naming what it was made from (the format's derived documents, SkillCDN 0.5.0), and five parts:
 
 ```markdown
 ---
 title: How long a refund takes
 description: What the handbook says about when a refunded card payment reaches the customer, and what it does not say about bank transfers. Answered 2026-10.
-source: research note, 2026-10
+derived:
+  kind: note
+  from: /docs/invoicing.md
+  by: skillcdn-document-research
+  at: 2026-10
 ---
 
 # How long a refund takes
@@ -25,7 +29,9 @@ source: research note, 2026-10
 
 **Evidence.**
 
-- `docs/invoicing.md`, Invoicing > Refunds and credit notes: "the refund reaches the customer within five to ten business days, depending on their bank."
+> the refund reaches the customer within five to ten business days, depending on their bank.
+>
+> — [Invoicing > Refunds and credit notes](/docs/invoicing.md#refunds-and-credit-notes)
 
 **Not found.** No time is given for a refund of a bank transfer or cash.
 
@@ -33,14 +39,14 @@ source: research note, 2026-10
 ```
 
 - The description says what the note answers, in the words someone would ask with: it is what a search ranks.
-- Every quote carries its path and heading path, so that the next reader opens the section and sees whether the pack still says it.
+- Every quote is a block quote of the section's own words, `…` for words left out, its last line a link to the section: the root-relative path and a fragment, the heading's first words in lower case joined by hyphens. The check holds each quote against that section word for word, so a note the pack changed under is found (SkillCDN 0.5.0).
 - A question asked again updates its note: the answer, the evidence and the date change; the file does not multiply.
 
 ## What stays out
 
 - Anything the question or the user's context carried that is not about the pack: names, customers, the matter the question served.
 - Guesses: a note holds what the pack says and what it does not, never what the agent supposes.
-- Offsets and limits: they change with every edit of the document; the path and the heading path hold.
+- Offsets and limits: they change with every edit of the document; the link's fragment names the section, and a read resolves it to the offset and limit of the commit it reads.
 
 ## The map and the manifest
 

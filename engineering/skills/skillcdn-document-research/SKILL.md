@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory; a shell with git in a checkout of the pack's repository to keep notes. Works in any agent that can call MCP tools or run a shell.
 metadata:
   author: skillcdn
-  version: "1.3"
+  version: "1.4"
   tools: skillcdn
 skillcdn:
   include:
@@ -33,6 +33,7 @@ What goes in: a question, a reference to compile or a claim to check, and a pack
 |---|---|
 | The SkillCDN connection to the pack, or the `skillcdn` command (`skillcdn browse`, `skillcdn find`, `skillcdn file` with the pack's address or directory) | Reading the maps, searching, reading sections, outlining a document. The connection's instructions name the pack and its language. |
 | Optional: a shell with git in a checkout of the pack's repository | Keeping the note ([notes.md](references/notes.md)). Without it, the note is text in the delivery. |
+| A pack token, where a deployment reads its own directory with a token only | The operator's token, presented as `Authorization: Bearer <token>`; without it the pack answers as absent (SkillCDN 0.5.0). |
 
 Check these before the first message. Without a connection or the command, stop and say what to connect: the pack's address at a deployment, or the command on a directory. How a search over a pack behaves, and how to ask it so that it answers, is in the area's document set [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md): [searching.md](/engineering/docs/skillcdn/searching.md) is included and arrives with this skill wherever SkillCDN serves it; a copy of this directory lacks it, and fetches it from `engineering/docs/skillcdn/` of the repository this skill comes from (`github.com/skillcdn/skills`, which is not the pack the question is put to) or reads it as a file at `docs/skillcdn/` of the engineering plugin.
 
@@ -41,7 +42,7 @@ Check these before the first message. Without a connection or the command, stop 
 | Input | Source |
 |---|---|
 | The question | The user's words. A reference to compile (everything the pack says about one subject) and a claim to check (is this true according to the pack) are questions too. |
-| The pack | The connection the request names, or the only one connected; the mounted folder when the connection is to a folder. Where the agent is connected to a deployment's root rather than to a pack, its one tool, `search_packs`, searches every public pack the deployment serves and names the address of each pack that matched; the pack is the one whose address the user then connects, for the four tools. |
+| The pack | The connection the request names, or the only one connected; the mounted folder when the connection is to a folder. Where the agent is connected to a deployment's root rather than to a pack, its one tool, `search_packs`, searches every public pack the deployment serves and names the address of each pack that matched; the pack is the one whose address the user then connects, for the four tools. It finds the pack and the document, and the search inside the pack the passage; a result ending `Ranked by meaning alone this time` is asked again. Without a connection, `npx @skillcdn/cli search <words>` does the same (SkillCDN 0.5.1). |
 | The language | What the connection's instructions say the pack is written in (`Written in ko`), else the language of the maps; the search is in that language. |
 | Everything else | Derived: which document sets the question concerns, how many results to read, what the note is called. |
 
@@ -55,7 +56,7 @@ Produces the **frame**: the question in one line, what would answer it (a number
 
 1. Say what kind of answer the question wants, so that a section is recognized as the answer when it is read.
 2. Where the user's words and the pack's language differ, translate the words the pack would use; where the question uses a synonym or an abbreviation, note the words the pack might use instead ([searching.md](/engineering/docs/skillcdn/searching.md), "Words").
-3. Where a research note on the question exists in the pack ([notes.md](references/notes.md), "Where notes live"), read it first: the answer may be there, with its sources to check.
+3. Where a research note on the question exists in the pack ([notes.md](references/notes.md), "Where notes live"), read it first: the answer may be there, with its sources to check. A note is a pointer: the section each quote links to is read and quoted in its place.
 
 ### Phase 2: Map
 
@@ -77,7 +78,7 @@ Produces the **candidate sections**: the sections a search named, with their pat
 Produces the **evidence**: the passages read, quoted with their path and heading path.
 
 1. Read a candidate section with `read_repo_file`, the path and the offset and limit the result gave. Read the neighbouring section when the passage refers to it, and the whole document when the question is about the document rather than a passage.
-2. Follow a link in the passage to another document of the pack when the passage defers to it; the link is a repository-root path when it starts with `/`.
+2. Follow a link in the passage to another document of the pack when the passage defers to it; the link is a repository-root path when it starts with `/`. A link that names a section (`#4.2.7`) is listed after the page with that section's offset and limit: read the section, not the file (SkillCDN 0.5.0).
 3. Stop reading when the frame is answered and a second section confirms it, or when the candidates are exhausted. A rule about money, access or safety is quoted, never paraphrased.
 4. A passage that describes a figure or transcribes a scanned page is the converting agent's words, not the original's: where the answer hangs on it (a value read off a chart, a character of a transcription), say so in the answer and name the original the document's outline gives, with where its bytes are and the place in words ("page 12 of the original"); the original itself is a download the tools do not read.
 
@@ -93,9 +94,9 @@ Produces the **answer**: the finding, the quotes that support it, each with its 
 
 Produces the **note**, when the user owns the repository ([notes.md](references/notes.md)).
 
-1. Write the note in the notes document set: the question, the date, the answer, the quotes with their sources, and what was not found. One note per question; a question asked again updates its note.
+1. Write the note in the notes document set, marked `derived` in its front-matter, each quote a block quote of the section's own words whose last line links to that section ([notes.md](references/notes.md)): the question, the date, the answer, the quotes, and what was not found. One note per question; a question asked again updates its note.
 2. Add the note's line to the set's map, and the set to the manifest's roots when it is new.
-3. Checkpoint, skipped on a go-ahead: the note as it will be committed. Commit as the repository's agreement says, and push only as it allows; once served, the next run's phase 1 finds the note by its words.
+3. Where the shell has npm, `npx @skillcdn/cli check` until it reports no `quote_not_in_source`, `quote_without_link` or `derived_from_missing` (SkillCDN 0.5.0). Checkpoint, skipped on a go-ahead: the note as it will be committed. Commit as the repository's agreement says, and push only as it allows; once served, the next run's phase 1 finds the note by its words.
 
 ## Hard rules
 
