@@ -17,7 +17,7 @@ What a desk's pages are, how they are built, served, checked and looked at, how 
 
 ## Serving them, checking them, stopping the server
 
-- Serve with the line the shell's page gives, which names the build and the desk's records (`console serve dist --records ../records`, run in `web/`). It runs until it is stopped, so start it as a process of its own, and read the address it prints, a loopback address (`http://127.0.0.1:<port>/`).
+- Serve with the line the shell's page gives (`npm run serve` in `web/`, which is `console serve dist --records ../records`: the build, with the desk's records beside it). It runs until it is stopped, so start it as a process of its own, and read the address it prints, a loopback address (`http://127.0.0.1:<port>/`).
 - The check an agent can make: the address answers with the page; `<address>api/v1/me`, which `console serve` carries to the console, answers with the member as `console whoami` names them; and `console desk check` finds the desk's records right. A refusal is read from what the server printed and reported, never guessed around. A desk with no record yet shows none: that is right on the first day.
 - What the pages draw is the member's to confirm. Open the address in their browser, or give it to them, and ask in one line: "Your desk's pages are open at <address>: do you see what you expected there?"
 - Say how the server is stopped and started again: Ctrl+C in the terminal that holds it, or ending the process that listens on its port; the shell's serve line starts it again. Promise nothing about the session it was started in: it may outlive it or end with it. Whether it starts with the machine is the member's to arrange; the setup registers nothing.
