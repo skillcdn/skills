@@ -37,13 +37,13 @@ The requests of the round, with the skill each must find:
 | "우리 사이트 매출이랑 광고 성과를 한눈에 보는 관리자 페이지 만들어줘." (an admin page with our site's sales and ad results at a glance) | `cloudflare-admin-dashboard` |
 | "회사 정책 문서들이 PDF로 잔뜩 있는데, 에이전트가 검색해서 쓸 수 있게 만들어줘." (make our policy PDFs searchable for agents) | `skillcdn-document-pack` |
 
-All eleven found what they must on commit 00e0d5d under SkillCDN 0.5.2 (2026-11-16), before `finding-a-skill.md` lost its list of what each area holds and its table of examples to this page.
+All eleven found what they must under SkillCDN 0.5.2 (2026-11-16), on commit 00e0d5d and again on commit cd13d10, before and after `finding-a-skill.md` lost its list of what each area holds and its table of examples to this page, with three to five reads of the pack before the skill both times; the session with no skill to find read the jobs index's section on jobs with no skill before it said so.
 
 ## Search examples
 
-What `search_repo` returned for eleven requests, five said in English and five translated from Korean to English words first, and one for the newest skill, scoped to `docs/pack` and then unscoped, and what `browse_repo` showed for two areas, on the day named.
+What `search_repo` returned for twelve requests, five said in English, five translated from Korean to English words first, and one for each of the two newest skills, scoped to `docs/pack` and then unscoped, and what `browse_repo` showed for two areas, on the day named.
 
-Checked 2026-11-15, on commit 4cf4176 under SkillCDN 0.5.1, with the deployment's meaning index complete and every result ranked by words and meaning. "Index" is the first section of the first result with `path` set to `docs/pack`, which was the jobs index every time; "whole pack" is the first result without a path.
+Checked 2026-11-16, on commit cd13d10 under SkillCDN 0.5.2, with the deployment's meaning index complete and every result ranked by words and meaning. "Index" is the first section of the first result with `path` set to `docs/pack`, which was the jobs index every time; "whole pack" is the first result without a path.
 
 | Request, as words | Index | Whole pack |
 |---|---|---|
@@ -58,5 +58,6 @@ Checked 2026-11-15, on commit 4cf4176 under SkillCDN 0.5.1, with the deployment'
 | "competitor ad research" (from 경쟁사 광고 조사) | the creative research (`meta-ad-library-creative-research`), found by its section's other phrasings | the creative research |
 | "make documents searchable for agents" (from 문서를 에이전트가 검색하게) | the document pack (`skillcdn-document-pack`) | the document pack |
 | "set up a new repository" | the setup (`git-repo-setup`) | the setup, the new app second |
+| "set up my desk" | the desk (`git-desk-setup`) | the desk, the repository setup second |
 
-Eleven of eleven requests found their skill as the first section of the index, and ten of eleven first in the whole pack; the one miss is a sibling skill of the same job sharing its words, not a reference file or a document, and the jobs index stood second in six of the whole-pack searches. That is why the index comes first and a whole-pack search is read to its third result where several skills share a job's words; the distinctive noun of the job still matters most, and a section's other phrasings find a request said another way. `browse_repo` on `marketing/skills` and `design/skills` listed every skill with the first lines of its description, enough to tell the ad from the ad research, and the study, the brief, the build, the deck and the looks apart.
+Twelve of twelve requests found their skill as the first section of the index, and eleven of twelve first in the whole pack; the one miss is a sibling skill of the same job sharing its words, not a reference file or a document, and the jobs index stood second in six of the whole-pack searches. The eleven requests checked before, on commit 4cf4176 under SkillCDN 0.5.1 (2026-11-15), returned the same, while `finding-a-skill.md` still held this table. That is why the index comes first and a whole-pack search is read to its third result where several skills share a job's words; the distinctive noun of the job still matters most, and a section's other phrasings find a request said another way. `browse_repo` on `marketing/skills` and `design/skills` listed every skill with the first lines of its description, enough to tell the ad from the ad research, and the study, the brief, the build, the deck and the looks apart.
