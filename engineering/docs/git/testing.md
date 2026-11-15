@@ -25,7 +25,7 @@ The repository's framework decides first: when a scaffold or the framework's own
 
 | Stack | Unit and integration | Lint and format | Types | End-to-end |
 |---|---|---|---|---|
-| TypeScript on Node.js | Vitest | Biome, or ESLint and Prettier where the framework scaffolds them | `tsc --noEmit` | Playwright |
+| TypeScript on Node.js | Vitest | Biome, or ESLint and Prettier where the framework scaffolds them; Biome formats Markdown and JSON too, so the documents the setup writes are formatted with it once before the first check | `tsc --noEmit` | Playwright |
 | Python | pytest | Ruff (`ruff check`, `ruff format --check`) | Pyright or mypy | Playwright for Python |
 | Go | `go test ./...` | `gofmt -l` (empty output), `go vet ./...` | The compiler | A test binary against the running service |
 | Rust | `cargo test` | `cargo fmt --check`, `cargo clippy -- -D warnings` | The compiler | A test binary against the running service |
