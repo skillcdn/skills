@@ -80,7 +80,7 @@ const MARKDOWN_RE = /\.(md|markdown|mdx)$/i;
 const INCLUDABLE_RE = /\.(md|markdown|mdx|json)$/i;
 const MEDIA_RE = /\.(mp4|mov|mkv|webm|wav|mp3|m4a|aac|flac|png|jpe?g|gif|webp)$/i;
 // The one rendered file: the pack's own picture, named by the root manifest's `image` and shown by the explorer and
-// the page of the address (CLAUDE.md, rule 3). Kept small, since every clone and every page load carries it.
+// the page of the address (AGENTS.md, rule 3). Kept small, since every clone and every page load carries it.
 const PACK_PICTURE = "assets/banner.webp";
 const PACK_PICTURE_MAX_BYTES = 200 * 1024;
 const SECRET_RE = /(^|\/)(\.env(\..*)?|.*\.(pem|key|p12|pfx))$/;

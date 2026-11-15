@@ -9,7 +9,7 @@ A fresh agent has none of the session's context: not the evidence, not the findi
 What can still reach it:
 
 - A session the user starts in another directory gets none of the memory the first one kept, because Claude Code keys its memory store on the working directory ([transcripts.md](transcripts.md)).
-- A subagent is handed what the host gives every subagent: in Claude Code, the memory index and the working agreement (`CLAUDE.md`) of the session that started it, even when it runs in a worktree of its own (checked 2026-10).
+- A subagent is handed what the host gives every subagent: in Claude Code, the memory index and the working agreement (`CLAUDE.md`, with the `AGENTS.md` it imports) of the session that started it, even when it runs in a worktree of its own (checked 2026-10).
 - A subagent that starts in a copy of the checkout can read every file of it.
 
 Its brief therefore tells it to use none of these for the task, to use nothing it remembers, and to read skills only through the connection.

@@ -34,7 +34,7 @@ The notes an agent kept across sessions carry rules the user gave and context th
 | Source | Where | On the sheet |
 |---|---|---|
 | Claude Code auto-memory | An index and one note per file, each with its type, where [transcripts.md](/engineering/docs/skillcdn/transcripts.md) says | `feedback`: a `correction` with the note's "why", counted as made with emphasis. `project`: context for the design, never a rule. `reference`: a location (an outputs folder, a dashboard), instance unless the skill needs that kind of place. `user`: who the user is, which stays out of the skill. |
-| The project's `CLAUDE.md` or `AGENTS.md` where the work was done | The working directory of the run | Rules the user set for that project: a `correction` when it concerns the job, otherwise context. When the run happened in the skills checkout itself, that file is the repository's working agreement and is context only. |
+| The project's `AGENTS.md` or `CLAUDE.md` where the work was done | The working directory of the run | Rules the user set for that project: a `correction` when it concerns the job, otherwise context. When the run happened in the skills checkout itself, that file is the repository's working agreement and is context only. |
 | Another agent's memory export | What the user provides | As auto-memory, by what each note says |
 
 A memory note the user pointed to, or one in the context that concerns the job, is the user's standing instruction, not a one-time slip: a `feedback` note about the job is a rule candidate in the design even when the session showed the correction once. A note about another job, or one the user did not point to, is not read into the skill.

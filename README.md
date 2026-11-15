@@ -140,7 +140,7 @@ This repository takes no pull requests. It is meant to be forked: the layout, th
 6. Rewrite this README and each area's README for your repository, their tops first. The lockup and the symbol are SkillCDN's marks, so put your own there or none ([trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md)); keep the badge and give it your address, in its link and in its picture's URL (`https://skillcdn.ai/badge/gh/<you>/<repo>`), so that a reader sees where SkillCDN serves your pack and how many skills it has. The `image` of `SKILLCDN.md` and of the area manifests is the picture the explorer shows for the folder; here it is the pack's own picture at the root, `assets/banner.webp`, and a result of the pack's own showcase on three areas, so put a picture of yours there, as a file of your repository (`scripts/check.mjs` allows that one path, under 200 KiB) or an `https` URL, or leave the field out. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place its shared pages come from, put yours.
 7. Connect it at `skillcdn.ai/gh/<you>/<repo>`. A public repository needs no setup.
 
-The rules for changing anything, for people and agents alike, are in [CLAUDE.md](CLAUDE.md); a fork keeps them or changes them. A skill here that no longer works can be reported in an issue.
+The rules for changing anything, for people and agents alike, are in [AGENTS.md](AGENTS.md); a fork keeps them or changes them. A skill here that no longer works can be reported in an issue.
 
 ## Repository layout
 

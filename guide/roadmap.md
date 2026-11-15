@@ -10,7 +10,7 @@ Jobs and tools only. No product, no market and no plan of any business is named 
 | next | Being built, or the next to build. |
 | candidate | The job is known. The tool is chosen when the job is first done with it. |
 
-A row changes in the commit that ships, changes or retires its skill (the documentation protocol in [CLAUDE.md](../CLAUDE.md)).
+A row changes in the commit that ships, changes or retires its skill (the documentation protocol in [AGENTS.md](../AGENTS.md)).
 
 ## M0: Making skills
 
