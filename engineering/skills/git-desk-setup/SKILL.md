@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the console command (npm install -g @skillcdn/console, Node.js 24 or newer) signed in as the member whose desk it is. The git host's command (gh for GitHub), signed in as that member, to create the remote; without it the member creates an empty private repository and gives its address. git-lfs where the desk keeps pictures or video. For the desk's pages, npm and a browser on the same machine. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.3"
+  version: "1.4"
   tools: git
 skillcdn:
   translations:
@@ -37,12 +37,12 @@ The tools of the compatibility line. Before the first message: `console whoami` 
 | Input | Source |
 |---|---|
 | Whose desk | `console whoami` says who the command acts as. A desk that holds `runner.json`, whose `AGENTS.md` says it is an agent account's: go to "An agent account's desk". Anyone else is a person |
-| The folder | The current one when it holds a desk (its `AGENTS.md` says whose desk it is) or is empty; otherwise `<handle>-desk`, which `console desk` makes in the current one. A folder inside another repository (`git rev-parse --show-toplevel` answers a folder above this one) is not used: say so and ask where the desk should be |
-| The git host account | Asked: "Which account at your git host should hold your desk? `gh` is signed in as `<login>`, so it would be the private repository `<login>/<folder name>`. Say another account or organization, that the desk is already there, with its address, or that the remote can wait." Before the plan, `gh repo view <account>/<name>` answers not found for a new one; a taken name gets another, shown in the plan |
+| The folder | The current one when it holds a desk (its `AGENTS.md` says whose desk it is) or is empty; otherwise `desk`, which `console desk` makes in the current one. A folder inside another repository (`git rev-parse --show-toplevel` answers a folder above this one) is not used: say so and ask where the desk should be |
+| The git host account | Asked: "Which account at your git host should hold your desk? `gh` is signed in as `<login>`, so it would be the private repository `<login>/desk`. Say another account, organization or name, that the desk is already there, or that the remote can wait." Before the plan, `gh repo view <account>/desk` answers not found for a new one; where it is there, ask whether it is their desk, to be cloned, or whether this one takes another name |
 | What the desk keeps | Asked with the others, and skippable: "Is there a kind of thing you make that you want collected here, with whether it was used and how it did: ad creatives, documents, designs? Say none and it can be added any day." Where what they name is pictures or video, the desk keeps the files themselves through git LFS (`git lfs version` says whether it is installed; without it, say how it is had, and the large files wait) |
 | The repositories to check out | Asked: "Which repositories should I clone under `work/` now? Give each by its address or as `<owner>/<name>`. None is fine: one can be cloned when its first task comes." Where the user names a project and no repository, its rules list its repositories under where the work lives (`console rules --project <key>`); where they list none, ask. Nothing is guessed from a task's words |
 | The pages | Built where the request asks for the dashboard or the pages (the sentence `console desk --web` prints does) or `web/` is there already. Otherwise asked of a person with the other questions: "Do you want your desk's pages, your own pages on the console's UI on this machine, which show what the desk keeps?" Never built on a go-ahead that says nothing of them: the delivery then names them as one request away |
-| Everything else | Derived and shown in the plan: the repository's name (the folder's), the branch (`main`), the line `AGENTS.md` gains for the git host account the desk goes to |
+| Everything else | Derived and shown in the plan: the repository's name (`desk`, as an agent account's is, unless the user gave another), the branch (`main`), the line `AGENTS.md` gains for the git host account the desk goes to |
 
 ## Workflow
 
@@ -54,16 +54,16 @@ Produces the **frame**: the tools found, who the desk is for, and the folder's s
 
 ### Phase 2: Plan
 
-Produces the **plan**. Ask the questions of Inputs that remain, in one message, then show, one line each: the folder; the files `console desk` will write and those that are there; the remote (`<account>/<name>`, private), the one to clone, or that it waits; what the desk keeps, as the line `AGENTS.md` gains in the member's words and its first collection; git LFS, with the kinds of file it takes and what the git host's own page says of its LFS storage (a quota, a price), so that nothing large is pushed before the member knows; each repository to clone and where; the pages or none.
+Produces the **plan**. Ask the questions of Inputs that remain, in one message, then show, one line each: the folder; the files `console desk` will write and those that are there; the remote (`<account>/desk`, private), the one to clone, or that it waits; what the desk keeps, as the line `AGENTS.md` gains in the member's words and its first collection; git LFS, with the kinds of file it takes and what the git host's own page says of its LFS storage (a quota, a price), so that nothing large is pushed before the member knows; each repository to clone and where; the pages or none.
 
-Checkpoint: "Here is the plan. Outside this machine, I will: create the private repository `<account>/<name>`; push the desk to it. OK?" One word proceeds.
+Checkpoint: "Here is the plan. Outside this machine, I will: create the private repository `<account>/desk`; push the desk to it. OK?" One word proceeds.
 
 ### Phase 3: Desk
 
 Produces the **desk's files**.
 
 1. A desk that is at the git host already is cloned into an empty folder. Where the current folder holds files `console desk` just wrote, clone beside it, say so, and go on in the clone.
-2. Where the folder holds no desk yet, `console desk`: with no argument in the folder's parent, where it makes `<handle>-desk`; as `console desk .` inside an empty or cloned folder. It writes the desk's files, each only where no file of that name is there, and says which.
+2. Where the folder holds no desk yet, `console desk`: with no argument in the folder's parent, where it makes `desk`; as `console desk .` inside an empty or cloned folder. It writes the desk's files, each only where no file of that name is there, and says which.
 3. With the pages in the plan, `console desk . --web` in the desk also writes their shell under `web/`, where that holds nothing; where it ends with `1` because the command carries no shell, nothing was written, and the pages are left out, said so. Then install and build the shell (pages.md "Building them") before the first commit, so that one commit carries the shell with its lockfile.
 4. Read `AGENTS.md` and `README.md` back against `console whoami`. A line that is untrue for this member is changed, and the phase's line shows it, old and new; the line for the git host account is added where the file says who the member is.
 5. Where the member named something to keep: a line in `AGENTS.md`, in their words, where the file says what the desk keeps, and the first collection under `records/`, made as the desk's `records/README.md` says, which is the form. `console desk check` must find it right. Nothing else is written into the desk's files.
@@ -75,7 +75,7 @@ Produces the **pushed desk**.
 1. `git init -b main` where the folder is no repository yet. With LFS in the plan, `git lfs install` in the repository and the patterns of the kinds of file in `.gitattributes`. Then stage everything.
 2. In a command of its own, before any command that commits, read the staged list (`git status --short`): `git check-ignore -q work/` succeeds; no `.skillcdn-console.json` is in the desk's root; nothing secret, no `node_modules/` and no build folder is in the list.
 3. Commit as `chore(desk): set up the desk`.
-4. Create the remote as the plan approved (`gh repo create <account>/<name> --private --source . --remote origin`), or add the address of the empty private repository the member made. A remote that exists is checked before anything is pushed to it: `gh repo view <account>/<name> --json visibility`, which takes an address too, must say `PRIVATE`. Without `gh` the member's word stands, and the delivery names the privacy as not verified.
+4. Create the remote as the plan approved (`gh repo create <account>/desk --private --source . --remote origin`), or add the address of the empty private repository the member made. A remote that exists is checked before anything is pushed to it: `gh repo view <account>/desk --json visibility`, which takes an address too, must say `PRIVATE`. Without `gh` the member's word stands, and the delivery names the privacy as not verified.
 5. Push, and see that nothing is left ahead. A push refused for credentials is the git host command's to mend (`gh auth setup-git`), on the member's word.
 
 Where the remote waits, steps 4 and 5 do too, and the delivery names the local commit by its hash.
