@@ -55,6 +55,8 @@ Node.js 24. No install step; the script has no dependencies. Do not add a packag
 
 **Bound to a console?** Before the first step, run `console whoami`: when it names a project, or `.skillcdn-console.json` is in this checkout, work the task through that SkillCDN console (its answer says how).
 
+**The binding file is never committed.** This repository is public and `.skillcdn-console.json` names an organization's console, so `.gitignore` lists it, and whoever works here through a console runs `console use <key>` once in their own checkout.
+
 **Before you start.** Read the spec, [guide/skill-authoring.md](guide/skill-authoring.md), the rules in [SKILLCDN.md](SKILLCDN.md) and the manifest of the area you are adding to. Read the existing skill closest to what you are adding. Read the tool's own documentation for the tool family you are writing for; the skill must reflect how the tool behaves today. An agent adds a skill with the authoring skill, `engineering/skills/skillcdn-skill-authoring/`, which does the steps below from the work already done; what is planned next is in [guide/roadmap.md](guide/roadmap.md).
 
 **While working.**
