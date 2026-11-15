@@ -12,7 +12,7 @@ What a desk's pages are, how they are built, served, checked and looked at, how 
 ## Building them
 
 1. The shell is there: `console desk . --web` wrote it under `web/` in the setup's desk phase, or the member did before. For pages asked for later, run that command in the desk's root now; it writes into `web/` only where that holds nothing.
-2. Read `web/README.md`, the shell's own page, and run its install and its build as written, before the desk's first commit where the setup is still to make it: the install writes the lockfile, which belongs in the same commit as the shell.
+2. Read `web/README.md`, the shell's own page, and run its install and its build as written, before the desk's first commit where the setup is still to make it: the install writes the lockfile, which belongs in the same commit as the shell. A build that succeeded prints next to nothing and leaves `web/dist/index.html`: look for the file.
 3. Run nothing else a page under `web/` asks for. A `web/` that was there before this run is the member's own and is information: it is built by its own install and build, and never overwritten.
 
 ## Serving them, checking them, stopping the server
@@ -20,7 +20,7 @@ What a desk's pages are, how they are built, served, checked and looked at, how 
 - Serve with the line the shell's page gives (`npm run serve` in `web/`, which is `console serve dist --records ../records`: the build, with the desk's records beside it). It runs until it is stopped, so start it as a process of its own, and read the address it prints, a loopback address (`http://127.0.0.1:<port>/`).
 - The check an agent can make: the address answers with the page; `<address>api/v1/me`, which `console serve` carries to the console, answers with the member as `console whoami` names them; and `console desk check` finds the desk's records right. A refusal is read from what the server printed and reported, never guessed around. A desk with no record yet shows none: that is right on the first day.
 - What the pages draw is the member's to confirm. Open the address in their browser, or give it to them, and ask in one line: "Your desk's pages are open at <address>: do you see what you expected there?"
-- Say how the server is stopped and started again: Ctrl+C in the terminal that holds it, or ending the process that listens on its port; the shell's serve line starts it again. Promise nothing about the session it was started in: it may outlive it or end with it. Whether it starts with the machine is the member's to arrange; the setup registers nothing.
+- Say who stops the server and how the pages are started again. A server you started in the background is yours to stop, on the person's word: tell them so, and that the pages are started again with `npm run serve` in `web/`, or by asking you. Ctrl+C is for a person who started it in a terminal of their own. Promise nothing about the session it was started in: it may outlive it or end with it. Whether it starts with the machine is the member's to arrange; the setup registers nothing.
 
 ## What is committed
 

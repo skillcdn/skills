@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the console command (npm install -g @skillcdn/console, Node.js 24 or newer) signed in as the member whose desk it is. The git host's command (gh for GitHub), signed in as that member, to create the remote; without it the member creates an empty private repository and gives its address. git-lfs where the desk keeps pictures or video. For the desk's pages, npm and a browser on the same machine. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.6"
+  version: "1.7"
   tools: git
 skillcdn:
   translations:
@@ -90,7 +90,7 @@ Produces the **pages, served and looked at**, as pages.md says: the build served
 
 ### Phase 7: Deliver
 
-Produces the **delivery**, one message: the desk's folder and its remote, private; what changed in `AGENTS.md`; what the desk keeps, with its first collection, or that nothing was named and that saying what to keep adds it any day; git LFS where it was set up, and what the host says of its storage; the checkouts under `work/`; the pages' address, how their server is started again and how it is stopped, or that there are none and that they are one request away; how to go on (open the agent in the desk, whose `AGENTS.md` says the rest); and what was not verified, said so.
+Produces the **delivery**, one message: the desk's folder and its remote, private; what changed in `AGENTS.md`; what the desk keeps, with its first collection, or that nothing was named and that saying what to keep adds it any day; git LFS where it was set up, and what the host says of its storage; the checkouts under `work/`; the pages' address, who stops their server and how they are started again (pages.md), or that there are none and that they are one request away; how to go on (open the agent in the desk, whose `AGENTS.md` says the rest); and what was not verified, said so.
 
 ## An agent account's desk
 
