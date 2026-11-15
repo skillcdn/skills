@@ -140,10 +140,10 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Set up my desk."
 
-- You get: your own desk as a private git repository at your git host account: the folder `console desk` writes for you (your agent's instructions, the records of what you keep, your projects under `work/`), committed and pushed, with what you want collected there set up, the repositories you ask for cloned under `work/`, and, where you ask for them, your desk's pages, a dashboard of your own on the console's UI, served on your own machine.
+- You get: your own desk as a private git repository at your git host account: the folder `console desk` writes for you, committed and pushed as `<account>/desk`, with git LFS where you will keep large files and, where you ask for them, your desk's pages built and served on your own machine. What the desk keeps and shows comes next, from the console's own skill keeping-a-desk.
 - Skill: [`engineering/skills/git-desk-setup/`](/engineering/skills/git-desk-setup/SKILL.md)
-- Also asked as: "desk setup", "make my desk a repository", "show me a dashboard of my work", "set up the desk of this agent account".
-- Not this one when: the repository is a project's, for a team (the new repository above); the desk's pages are to be changed, or a console built for the organization (the console's own skill building-a-console, shipped with its command).
+- Also asked as: "desk setup", "set this desk up as a repository of mine", "bring its pages up", "set up the desk of this agent account".
+- Not this one when: the repository is a project's, for a team (the new repository above); something is to be kept on the desk or shown on its pages (the console's own skill keeping-a-desk, shipped with its command), or a console built for the organization (building-a-console, beside it).
 
 ### "Build me an app for this and put it online."
 
