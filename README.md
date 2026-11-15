@@ -41,7 +41,7 @@ One folder per area of work. Each carries a `SKILLCDN.md` that says who its skil
 | [`design/`](design/) | Slides and decks, card news posts and the formats they are built in, brand assets, icons and store graphics, made in the team's design tool, drafted as HTML and PDF before the tool, or varied as looks on a contact sheet. | 5 |
 | [`operations/`](operations/) | Running the company's and its clients' work day to day: the minutes of a meeting sent the same day, status reports, visit logs, handovers, the records an engagement keeps. | 1 |
 
-Areas to come, each with its first skill: sales, support, operations, data, finance, legal, people. The naming rule and the steps are in [guide/adding.md](guide/adding.md); what is planned, stage by stage of a product's life, is in [guide/roadmap.md](guide/roadmap.md).
+Areas to come, each with its first skill: sales, support, data, finance, legal, people. The naming rule and the steps are in [guide/adding.md](guide/adding.md); what is planned, stage by stage of a product's life, is in [guide/roadmap.md](guide/roadmap.md); how an agent finds a skill as the pack grows, and how that is checked, is in [guide/finding.md](guide/finding.md).
 
 ## Skills
 
@@ -79,7 +79,7 @@ Directories of Markdown without a `SKILL.md`, read by an agent through `search_r
 | Document set | What it holds |
 |---|---|
 | [`docs/higgsfield/`](docs/higgsfield/) | What the skills that drive Higgsfield share, whichever area they are in: how the sandbox behaves, how models and credits are found and quoted, how portraits and first frames are made, how a take is decoded, and what the video models do with the sounds of each language, as real runs showed it. One file per topic, organized by what holds now; each skill includes `pronunciation.md` and links the rest from the phase that reads it. |
-| [`docs/pack/`](docs/pack/) | How an agent finds its way in this pack: how the pack is laid out, the three ways to find a skill (the jobs index, browsing an area, searching with English words), how a result is read, what to do when no skill fits, with dated examples; and the jobs index, one section per job in the words a user says, with what comes back and the skill's path. An agent searches `docs/pack` first. |
+| [`docs/pack/`](docs/pack/) | How an agent finds its way in this pack: how the pack is laid out, the three ways to find a skill (the jobs index, browsing an area, searching with English words), how a result is read, what to do when no skill fits; and the jobs index, one section per job in the words a user says, with what comes back and the skill's path. An agent searches `docs/pack` first. |
 | [`docs/variation/`](docs/variation/) | What the skills that make variations share, whichever area they are in: the effect brief that reads a reference for its intent, effect, aesthetics, fun, expected effect and prior knowledge before its surface; the axes a concept or a look can move on, with a near and a far candidate; the AI feel's signals, bundles and positive tests; the comparison sheet with a recommendation and a runner-up; and the handoff to the skill that produces. Method only, with no tool's name or price; the two variation skills include four pages, and the skills that produce link the AI-feel page from their review. |
 | [`docs/browser/`](docs/browser/) | What the skills that read a website or render a page with a browser share, whichever area they are in: what a browser the agent drives can do and how hosts differ (the viewport, zoom, real clicks, prompts, embedded data), how a headless Chromium-family browser is launched from a shell (`playwright-core` borrowed or installed, a download asked first, `--dump-dom`, waits, PDF), how a page is read in full and its images taken, how an HTML page the agent wrote becomes PNG or PDF and is looked at, and how frames of a public clip are captured. The card-news study includes `driven-browser.md`, the research `reading-pages.md`, the build `rendering-html.md`; the deck, the minutes and the Meta Ad Library skills link the pages they need. |
 | [`docs/instagram/`](docs/instagram/) | What the skills that read Instagram share: what a visitor without an account sees and the routes a browser takes to it, the sign-in prompt, the viewport, the documented sizes, a post page's data, stepping a carousel, reading a slide, the caption. At the root, because the format study in `design/` includes both pages and the skill that will post to an account, planned in `marketing/`, reads the site too. |
@@ -154,7 +154,7 @@ assets/           banner.webp, the pack's own picture: the root manifest's image
   skills/<name>/  one directory per skill: SKILL.md, references/, assets/, optional scripts/
   docs/           the area's document sets, <area>/docs/<family>/ for what a tool family's skills share when all are here
 docs/             document sets that serve every area, docs/<family>/ for what a tool family's skills share across areas
-guide/            how skills in this layout are written, how to add to a repository like this one, and what is planned
+guide/            how skills in this layout are written, how to add to a repository like this one, how an agent finds a skill, and what is planned
 scripts/          check.mjs, the validation CI runs
 .claude-plugin/   the Claude Code marketplace: one plugin per area with skills
 ```

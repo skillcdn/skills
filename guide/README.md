@@ -1,11 +1,12 @@
 # Authoring guide
 
-How skills in this layout are written, for whoever maintains this repository or a fork of it. Nothing here is discoverable through SkillCDN: the manifests declare only `docs/` directories as documents, so these pages never appear in an agent's `browse_repo` or `search_repo` results. An agent can still read the pages the root `README.md` links (`skill-authoring.md`, `adding.md`, `roadmap.md`) on demand, which is why they say nothing that an agent running a skill should not see.
+How skills in this layout are written, for whoever maintains this repository or a fork of it. Nothing here is discoverable through SkillCDN: the manifests declare only `docs/` directories as documents, so these pages never appear in an agent's `browse_repo` or `search_repo` results. An agent can still read the pages the root `README.md` links (`skill-authoring.md`, `adding.md`, `finding.md`, `roadmap.md`) on demand, which is why they say nothing that an agent running a skill should not see.
 
 | Document | Purpose |
 |---|---|
 | [`skill-authoring.md`](skill-authoring.md) | What this layout asks on top of the SkillCDN Format, the body skeleton of a `SKILL.md`, and the style. |
 | [`adding.md`](adding.md) | Step by step: a new skill, a new area, a new tool family, a new document set, and changing an existing skill. |
+| [`finding.md`](finding.md) | How an agent that has just connected finds the skill for a request, what bounds that as the pack grows (the connection's 2,000 characters, the page every session reads whole), and how it is checked: the search examples and the fresh-agent round, with their latest results. |
 | [`roadmap.md`](roadmap.md) | What the repository plans to add, stage by stage of a product's life: one row per job, with its area, its likely tool family and its status. |
 | [`variation.md`](variation.md) | The variation skills: where the method of `docs/variation/` came from, what is duplicated with the ad skill on purpose and until when, what stays in a skill, what the first runs taught, testing. |
 | `tools/<family>.md` | Conventions shared by every skill of one tool family. Created when a second skill for a family appears or is planned. |
