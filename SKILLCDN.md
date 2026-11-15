@@ -15,7 +15,7 @@ metadata:
 ---
 # Rules for every skill in this repository
 
-**Bound to a console?** When `.skillcdn-console.json` is in the checkout, or `console whoami` names a project, work the task through that SkillCDN console (`console help` says how). Check before the first step with `console whoami`, which only reads: it says who, at which console, in which project and what named it. Where it names no project, or there is neither a `console` command nor a `.skillcdn-console.json`, the skill runs as written. Where it is refused (the project is not there for this person, the person is out, nobody is signed in, the console cannot be reached), say what it printed, and where the file is there with no `console` command to read it, say so: either way the task is not started, never as if there were no console. Exit `4` means the command and the console do not go together: where it prints an update of the command, run it and check once more; where that fails, `whoami` still ends with `4`, or the update is the console's, say so and do not start (console 0.5).
+**Bound to a console?** Before the first step, run `console whoami`: when it names a project, or `.skillcdn-console.json` is in the checkout, work the task through that SkillCDN console (`console help` says how). The command only reads: it says who, at which console, in which project and what named it. Where it names no project, or there is neither a `console` command nor a `.skillcdn-console.json`, the skill runs as written. Where it is refused (the project is not there for this person, the person is out, nobody is signed in, the console cannot be reached), say what it printed, and where the file is there with no `console` command to read it, say so: either way the task is not started, never as if there were no console. Exit `4` means the command and the console do not go together: where it prints an update of the command, run it and check once more; where that fails, `whoami` still ends with `4`, or the update is the console's, say so and do not start (console 0.5).
 
 **Ask only what cannot be derived.** A skill asks for the inputs it cannot get from the request, in one short message, and derives everything else from those inputs and sensible defaults. What was derived is stated at the next step and changed when the user asks. The user need not know the tool or the craft; an answer stands for the rest of the run.
 
@@ -31,7 +31,7 @@ metadata:
 
 **Start from a reference.** A skill that makes something in a style starts from a reference and offers, in this order: the reference changed by the pack's variation skill at the user's pick, the reference as it is, and a design from nothing only where no reference can be had, said so at every step. A request that names no reference is asked for one before any route is offered, and where the user has none the skill finds candidates and the user picks.
 
-**Deliver something the user can hold.** The result is a file, a link or a document, never only a description of it. Say what was made, how, and what was left out. Inputs stay untouched.
+**Deliver something the user can hold.** The result is a file, a link or a document, never only a description of it. Say what was made, how, and what was left out. Inputs stay untouched. In a member's desk, what the run made is recorded as the desk's `records/README.md` says.
 
 **Speak the user's language.** Messages to the user are in the language they wrote in. The skill's own language is for the agent.
 
