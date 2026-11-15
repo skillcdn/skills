@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Higgsfield MCP server with video generation, image generation, video analysis, media upload and the cloud sandbox (ffmpeg and Whisper). Works in any agent that can call MCP tools.
 metadata:
   author: skillcdn
-  version: "1.11"
+  version: "1.10"
   tools: higgsfield
 skillcdn:
   include:
@@ -135,8 +135,6 @@ Produces the **captioned master** ([captions.md](references/captions.md)): word 
 [regeneration.md](references/regeneration.md) decides during phase 7 and at the clean-master checkpoint: ambiguous, broken, flat, drifted or dragging takes only, same frame and portrait, one retry from the reserve, an ordinary word that failed said another way and a key word respelled, one bad line of a long take as a short pickup, a second retry only with consent.
 
 ### Phase 11: Deliver
-
-In a member's desk, record the ad before the message, as the desk's `records/README.md` says: the creative, with a still of it as its preview and the link to its master, and, once the user says so, whether it was used and where. The message names the record.
 
 One message in plain words: the captioned master and the clean master as links; the portraits and frames for reuse; the lines as captioned; the ledger, estimated versus spent, per item, retries called out; the words accepted as close enough or left unsettled, each with what was heard; what was generated, edited in code, and left out of the reference and why; that the imported reference stays in the user's Higgsfield library, where they may remove it; a higher resolution as a separate step, not started: the finalize of the accepted takes at its quoted price where the model's draft tier offers one, and an upscale of the master, a spend the tool will not price first, as [/docs/higgsfield/models.md](/docs/higgsfield/models.md) "A higher resolution" says; and, in a short list at the end for whoever maintains the skill, what the tools did differently from the shared Higgsfield pages or [tool-notes.md](references/tool-notes.md), and any new sound pattern for [/docs/higgsfield/pronunciation.md](/docs/higgsfield/pronunciation.md). When the cast is generated people in live action, say that they are not real people and that the platform's label for AI-made content is the user's to set when the ad is published.
 
