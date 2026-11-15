@@ -53,32 +53,45 @@ The project reads the organization's pack unless it names a skills address of it
 
 ## The project's rules
 
-Before the plan, `console rules --project <key>` is read to its end: a project's own rules stand after the workspace's, and a project that has some gains a line, never a new set. For a new project, its owner writes them from the bound checkout, `console rules write --file <path>`, because the user asked for the setup and the checkpoint listed them; they add to the workspace's rules for every agent at work in the project, which reads them with each task it takes. They are in English, like everything agents read, short, and hold nothing secret. Never `--workspace`: those rules are the whole organization's. An existing project's rules are its owner's: the repository's line under "Where the work lives" is added to what is there, shown in the plan, and written only on that owner's word, the user's own where they are the owner, from the version `console rules` printed and with `--base <version>`, so that nothing else changes.
+A project's rules hold what differs in that project from the workspace's rules and nothing else, in at most five things, a section only where it has something to say: where its work lives, the skills to load first, its pages' folders, who decides what, and its language. So a project set up by this pack and one set up by hand read alike.
+
+Before the plan, `console rules --project <key>` is read to its end: a project's own rules stand after the workspace's, and a project that has some gains a line, never a new set. For a new project, its owner writes them from the bound checkout, `console rules write --file <path>`, because the user asked for the setup and the checkpoint listed them; every agent at work in the project reads them with each task it takes. They are in English, like everything agents read, and hold nothing secret. Never `--workspace`: those rules are the whole organization's. An existing project's rules are its owner's: the repository's line under "Where the work lives", and one under "Skills to load first" where a skill is named for it, are added to what is there, shown in the plan, and written only on that owner's word, the user's own where they are the owner, from the version `console rules` printed and with `--base <version>`, so that nothing else changes.
 
 ```markdown
 # Rules of this project
 
-Adds to the workspace's rules, for the agents at work here.
+What differs here from the workspace's rules, and nothing else.
 
 ## Where the work lives
 
-- The repository <owner>/<name> on <git host>: <what it holds, in a few words>. Its AGENTS.md holds inside it: how a change is checked, committed and pushed. `<check command>` before every hand-in; the commits handed in as links.
+- The repository <owner>/<name> on <git host>: <what it holds, in a few words>.
 
 ## Skills to load first
 
-- For a task in a repository: the skills its AGENTS.md names in its Skills section, each by its path in this project's pack (`console skill <path>`).
+- `<path of a SKILL.md in the project's pack>`, for <which tasks, in which repository>.
 
 ## The pages
 
-- What the code needs to be built, run and changed lives in the repository's docs/, never on a page. `guides/` here is for how a thing outside the code is done (an account, a service's console, a release announced); `notes/` for what was found and will be needed again. A page links to a file of the repository rather than copying it.
+- `<folder>/`: <what goes there>.
 
-## Decide alone, or ask
+## Who decides what
 
-- Alone: anything inside the task and the repository's agreement.
-- Ask: a new dependency that costs money or changes the license; a change to live data; anything users would see that the task does not describe.
+- <a kind of question>: <login>.
+
+## Language
+
+- <the language of what people read in this project>.
 ```
 
-The repository's own lines replace the placeholders; a line that has nothing to say for this repository is dropped, never left as a placeholder. What the workspace's rules already say is not said again: which repository a task is for, how work found on the way is followed up, and the language of what people read on the board. A `## Reports` section is written only to name a language where the workspace's rules name none, or another for this project.
+What a setup writes of the five:
+
+- **Where the work lives**, always: this repository's line.
+- **Skills to load first**, where a skill is named for the repository's work: by its path in the pack, with what it is for and in which repository. A skill that built product code in the repository hands its own line; the setup names none for itself.
+- **The pages**, only where the project's folders are other than the workspace's.
+- **Who decides what**, only where the user said who decides a kind of question.
+- **Language**, only where it is another than the workspace's.
+
+What the workspace's rules and the repository's agreement own is not said again: how a change is checked, committed and pushed, when to report, what an agent decides alone, which repository a task is for, how work found on the way is followed up.
 
 ## The goal and the tasks
 
