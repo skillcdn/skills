@@ -136,7 +136,14 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - You get: a git repository in the layout every repository of this pack shares, committed and pushed: `AGENTS.md` as the working agreement with `CLAUDE.md` importing it, a README in your language, `docs/` for the brief, the architecture and the decisions, one check with a first test and continuous integration, and a console project the repository is bound to, with its rules, its first goal and its tasks, whose pack the repository's skills are read from.
 - Skill: [`engineering/skills/git-repo-setup/`](/engineering/skills/git-repo-setup/SKILL.md)
 - Also asked as: "start a repo for this", "make this repo ready for the team and agents", "connect this repository to the console", "write the AGENTS.md for this new project".
-- Not this one when: the app itself is to be built and put live (the new app below, which runs this skill for its repository).
+- Not this one when: the app itself is to be built and put live (the new app below, which runs this skill for its repository); the repository is your own desk (the desk below).
+
+### "Set up my desk."
+
+- You get: your own desk as a private git repository at your git host account: the folder `console desk` writes for you (your agent's instructions, your projects under `work/`), committed and pushed, the repositories you ask for cloned under `work/`, and, where you want it, a dashboard of your open work, your figures and what you finished, served on your own machine from the console.
+- Skill: [`engineering/skills/git-desk-setup/`](/engineering/skills/git-desk-setup/SKILL.md)
+- Also asked as: "desk setup", "make my desk a repository", "show me a dashboard of my work", "set up the desk of this agent account".
+- Not this one when: the repository is a project's, for a team (the new repository above); the dashboard's pages are to be changed, or a console built for the organization (the console's own skill building-a-console, shipped with its command).
 
 ### "Build me an app for this and put it online."
 
