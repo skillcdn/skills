@@ -1,12 +1,12 @@
 ---
 name: Engineering
-description: A web app built and put live, a new repository set up for a team, payments taken, ads connected and run, an operator dashboard, documents made searchable and answered from, skills made from work done. Use when the task is to build or change software, to set up a repository, to turn a job into a skill, to make a pack of documents an agent searches through SkillCDN, or to answer a question from one.
+description: Web apps put live with payments, ads and an admin; repositories set up; documents made searchable and answered from; skills made from work done. Use when the task is to build or change software, to set up a repository, to turn a job into a skill, to make a pack of documents an agent searches through SkillCDN, or to answer a question from one.
 image: https://skillcdn.ai/media/16bfa5222b73f1ba1ee66b59d5ae98f4635868514dc60c7384b39c5e4ebbfbbe
 license: MIT
 translations:
   ko:
     name: 개발
-    description: 웹 앱을 만들어 배포하고, 팀이 쓸 새 저장소를 구성하고, 결제를 붙이고, 광고를 연결해 운영하고, 운영자 대시보드를 만들고, 문서를 검색 가능한 팩으로 만들어 답하고, 한 일을 스킬로 만듭니다. 소프트웨어를 만들거나 고칠 때, 저장소를 구성할 때, 일을 스킬로 만들 때, 에이전트가 SkillCDN으로 검색하는 문서 팩을 만들거나 팩에서 질문에 답할 때 쓰세요.
+    description: 웹 앱을 결제, 광고, 관리자 화면과 함께 배포하고, 저장소를 구성하고, 문서를 검색 가능한 팩으로 만들어 답하고, 한 일을 스킬로 만듭니다. 소프트웨어를 만들거나 고칠 때, 저장소를 구성할 때, 일을 스킬로 만들 때, 에이전트가 SkillCDN으로 검색하는 문서 팩을 만들거나 팩에서 질문에 답할 때 쓰세요.
 metadata:
   author: skillcdn
 ---
