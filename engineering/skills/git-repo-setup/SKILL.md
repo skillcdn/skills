@@ -145,4 +145,4 @@ A skill that builds the product (`cloudflare-new-app`) runs this one on its proj
 | Term | Meaning |
 |---|---|
 | Binding | The checkout's link to a console project: the project's key and the console's address in `.skillcdn-console.json`, written by `console use`. |
-| Desk | A member's own folder for their agent's work, written by `console desk`; a repository made from it lives under its `work/`. |
+| Desk | A member's own repository, private and wholly theirs, whose files `console desk` writes; a project's repository set up from it lives under its `work/`. |
