@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project, network access to graph.facebook.com, a Meta business portfolio with an ad account, a Page and the system user tokens the user creates, the project deployed with cloudflare-deploy (its address, its token file) for the live events and the domain, and finished creative files for the campaign phase. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: meta-marketing-api
 skillcdn:
   include:
@@ -96,7 +96,7 @@ Produces the rest of **`docs/ads.md`** and the **sync and review code**, as [opt
 
 ### Phase 7: Delivery
 
-One message: what the site now measures and how to see it (Events Manager, the test event), the datasets and accounts, the campaign and its budget and when its first review is, the rules in plain words, what the person still owes (the domain click, a token, the Page or payment method, revoking the admin token when the campaign work from this machine ends), what was verified and what was not, and how the operator sees and steers the campaigns.
+One message: what the site now measures and how to see it (Events Manager, the test event), the datasets and accounts, the campaign and its budget and when its first review is, the rules in plain words, what the person still owes (the domain click, a token, the Page or payment method, revoking the admin token when the campaign work from this machine ends), what was verified and what was not, and how the operator sees and steers the campaigns. In a member's desk, record the campaign as the desk's `records/README.md` says: where each creative is used, and, at each review from the first on, its figures by day from the spend table. The message names the record.
 
 ### Verdicts
 
