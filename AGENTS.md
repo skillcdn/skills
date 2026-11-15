@@ -78,7 +78,7 @@ Node.js 24. No install step; the script has no dependencies. Do not add a packag
 
 - [Conventional Commits](https://www.conventionalcommits.org/): `type(scope): summary`, imperative, 72 characters or fewer. Types: `feat fix docs chore ci`. Scopes: `repo docs guide`, an area name for a change to one area (`feat(engineering): ...`), or a skill name for a change to one skill (`fix(higgsfield-shorts-ad): ...`). The body says why.
 - Commit and push directly to `main` after `node scripts/check.mjs` passes and `git pull --rebase`. This repository takes no pull requests: it is forked, and a fork sets its own process. Do not create branches or pull requests unless asked.
-- Never force-push or rewrite `main`. Keep the `Co-Authored-By` trailer your agent adds.
+- Never force-push or rewrite `main`. Keep the `Co-Authored-By` trailer your agent's own product adds; where it adds none, write none.
 
 ## Documentation protocol
 

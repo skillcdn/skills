@@ -45,11 +45,11 @@ It opens with the binding sentence: the one `console use` printed when the check
 - **Start.** "`console whoami`; `git pull --rebase`; read the task; read the documents its area touches."
 - **During.** "One task, small commits. The check green before every commit. The documentation protocol in the same commit."
 - **End.** "Push as below; hand the commits in on the task as links; finish the run with what is left. Nothing the next person needs stays in chat or in an agent's memory."
-- **A git command the host refuses.** "A host may keep an agent from writing under `.git`, so that a pull, a commit or a push is refused. The work and the check go on all the same: report what is changed and not committed, with the check's result, tell the person the commands left to run, in order, and call nothing done that is not pushed."
+- **A git command the host refuses.** "A host may keep an agent from writing under `.git`, so that a pull, a commit or a push is refused. The work and the check go on all the same: report what is changed and not committed, with the check's result, write out for the person, in the chat, the commands left to run, in order, and call nothing done that is not pushed."
 
 **Definition of done**, as a list: the check passes; new behavior has tests and a fix starts with a failing one; the documents the protocol names are updated in the same change; nothing secret is committed.
 
-**Commits and pushes**, as a list: Conventional Commits, the body saying why; one logical change per commit, each passing the check; who pushes to the main branch and how, as the team decided at setup (directly, in this order: the commit after a green check; `git pull --rebase`, run as a command of its own and its answer read; the check again where it brought commits; then the push; or through a branch and a pull request); never a force-push to the main branch, never a skipped hook; the trailer the agent adds kept.
+**Commits and pushes**, as a list: Conventional Commits, the body saying why; one logical change per commit, each passing the check; who pushes to the main branch and how, as the team decided at setup (directly, in this order: the commit after a green check; `git pull --rebase`, run as a command of its own and its answer read; the check again where it brought commits; then the push; or through a branch and a pull request); never a force-push to the main branch, never a skipped hook; a trailer the agent's own product adds is kept, and an agent whose product adds none writes none.
 
 ## Code that arrives later
 
