@@ -38,7 +38,7 @@ Under 300 lines, always: when it nears the limit a rule is merged or a gotcha re
 
 ## The workflow section
 
-It opens with the sentence that binds every checkout to the console, copied as it is (console.md "The sentence"):
+It opens with the sentence that binds every checkout to the console, copied as it is (console.md "The right project, in every checkout"):
 
 > **Bound to a console?** When `.skillcdn-console.json` is in this checkout, or `console whoami` names a project, work the task through that SkillCDN console (`console help` says how).
 
