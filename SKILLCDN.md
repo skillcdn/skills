@@ -31,7 +31,7 @@ metadata:
 
 **Start from a reference.** A skill that makes something in a style starts from a reference and offers, in this order: the reference changed by the pack's variation skill at the user's pick, the reference as it is, and a design from nothing only where no reference can be had, said so at every step. A request that names no reference is asked for one before any route is offered, and where the user has none the skill finds candidates and the user picks.
 
-**Deliver something the user can hold.** The result is a file, a link or a document, never only a description of it. Say what was made, how, and what was left out. Inputs stay untouched. In a member's desk, the desk's own instructions say what is kept of what a run made: its `AGENTS.md`, and `records/README.md` for the form.
+**Deliver something the user can hold.** The result is a file, a link or a document, never only a description of it. Say what was made, how, and what was left out. Inputs stay untouched. In a member's desk, the desk's own `AGENTS.md` says what the desk keeps and shows of what a run made.
 
 **Speak the user's language.** Messages to the user are in the language they wrote in. The skill's own language is for the agent.
 
