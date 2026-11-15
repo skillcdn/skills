@@ -133,7 +133,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Set up a new repository for this project."
 
-- You get: a git repository in the layout every repository of this pack shares, committed and pushed: `AGENTS.md` as the working agreement with `CLAUDE.md` importing it, a README in your language, `docs/` for the brief, the architecture and the decisions, one check with a first test and continuous integration, the skills connection, and a console project the repository is bound to, with its rules, its first goal and its tasks.
+- You get: a git repository in the layout every repository of this pack shares, committed and pushed: `AGENTS.md` as the working agreement with `CLAUDE.md` importing it, a README in your language, `docs/` for the brief, the architecture and the decisions, one check with a first test and continuous integration, and a console project the repository is bound to, with its rules, its first goal and its tasks, whose pack the repository's skills are read from.
 - Skill: [`engineering/skills/git-repo-setup/`](/engineering/skills/git-repo-setup/SKILL.md)
 - Also asked as: "start a repo for this", "make this repo ready for the team and agents", "connect this repository to the console", "write the AGENTS.md for this new project".
 - Not this one when: the app itself is to be built and put live (the new app below, which runs this skill for its repository).

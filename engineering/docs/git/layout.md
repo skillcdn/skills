@@ -20,9 +20,8 @@ tests/ or beside code  per testing.md
 e2e/                   end-to-end journeys, where the product has a screen or a client
 .github/workflows/check.yml    the check on every push and pull request
 .claude/settings.json  secret files denied to agents; the check and read-only commands allowed
-.mcp.json  .cursor/mcp.json  .codex/config.toml    the skills connection
 .gitignore  .gitattributes  .editorconfig  .env.example  <runtime version file>  <the stack's configuration files>
-.skillcdn-console.json the console binding (console.md says when it is committed)
+.skillcdn-console.json the console binding: the project's key and the console's address (console.md says when it is committed)
 ```
 
 Everything in `docs/` is in English. `docs/assets/`, `e2e/` and `docs/guides/` appear when their first file does; git keeps no empty folder.
@@ -62,6 +61,7 @@ A file is added when its first content exists, never as an empty placeholder:
 | `docs/specs/<name>.md` | A contract has a caller outside the repository (a public API, a file format, a protocol) | Whoever publishes the contract |
 | `docs/guides/<topic>.md` | A procedure was done once and will be done again | Whoever did it |
 | A folder's own `README.md` | A folder has rules of its own (a package of a monorepo, a generated folder) | Whoever creates the folder |
+| `.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml` | The user asks for the skills in their tools through a connection of the host's own (agreement.md "The skills section") | `git-repo-setup`, on request |
 
 Each addition gets a row in `docs/README.md` and, when it changes how work is done, a line in the agreement's documentation protocol, in the same commit.
 

@@ -1,30 +1,28 @@
 ---
 name: git-repo-setup
-description: "Sets up a new git repository so a team and its agents keep developing in it: the working agreement (AGENTS.md, CLAUDE.md), a README in the team's language, the documents under docs/, one check with tests and CI, the skills connection, and a SkillCDN console project the repository is bound to, with its rules, first goal and tasks. Use when a user says \"set up a new repo\", \"start a repository for this project\", \"make this repo ready for the team and agents\", \"connect this repo to the console\", \"레포 초기 세팅해줘\". The structure only, no app: for a new web app built and put live, cloudflare-new-app, which runs this skill for its repository. Asks what the repository is for and who works in it, shows the plan, creates the console project, the remote and the teammates' access on the user's word, commits, pushes and hands the commit in on the board. Nothing is bought."
+description: "Sets up a new git repository so a team and its agents keep developing in it: the working agreement (AGENTS.md, CLAUDE.md), a README in the team's language, the documents under docs/, one check with tests and CI, and a SkillCDN console project the repository is bound to, with its rules, first goal and tasks. Use when a user says \"set up a new repo\", \"start a repository for this project\", \"make this repo ready for the team and agents\", \"connect this repo to the console\", \"레포 초기 세팅해줘\". The structure only, no app: for a new web app built and put live, cloudflare-new-app, which runs this skill for its repository; for a member's own desk, git-desk-setup. Asks what the repository is for and who works in it, shows the plan, creates the console project, the remote and the teammates' access on the user's word, commits, pushes and hands the commit in on the board. Nothing is bought."
 license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: git
 skillcdn:
   include:
     - /engineering/docs/git/layout.md
-    - /engineering/docs/git/agreement.md
-    - /engineering/docs/git/console.md
   translations:
     ko:
       title: 팀과 에이전트가 계속 개발하는 깃 저장소 초기 구성
-      description: "팀과 에이전트가 세션이 바뀌어도 계속 개발할 수 있게 새 깃 저장소를 구성합니다. 작업 합의(AGENTS.md, CLAUDE.md), 팀의 언어로 쓴 README, docs/ 아래 문서, 테스트와 CI를 갖춘 하나의 검사 명령, 스킬 연결, 그리고 저장소가 묶이는 SkillCDN 콘솔 프로젝트와 그 규칙·첫 목표·작업까지 만듭니다. '새 레포 세팅해줘', '이 프로젝트 저장소 시작해줘', '팀이랑 에이전트가 쓰게 레포 잡아줘', '이 레포 콘솔에 연결해줘'라고 할 때 쓰세요. 앱은 만들지 않고 구조만 잡습니다. 새 웹앱을 만들어 올리는 일은 cloudflare-new-app이 하고, 그 스킬이 저장소 구성에 이 스킬을 씁니다. 저장소의 용도와 함께 일할 사람을 묻고, 계획을 보여 주고, 사용자의 승인으로 콘솔 프로젝트·원격 저장소·팀원 접근을 만들고, 커밋·푸시하고, 커밋을 보드에 제출합니다. 구매는 없습니다."
+      description: "팀과 에이전트가 세션이 바뀌어도 계속 개발할 수 있게 새 깃 저장소를 구성합니다. 작업 합의(AGENTS.md, CLAUDE.md), 팀의 언어로 쓴 README, docs/ 아래 문서, 테스트와 CI를 갖춘 하나의 검사 명령, 그리고 저장소가 묶이는 SkillCDN 콘솔 프로젝트와 그 규칙·첫 목표·작업까지 만듭니다. '새 레포 세팅해줘', '이 프로젝트 저장소 시작해줘', '팀이랑 에이전트가 쓰게 레포 잡아줘', '이 레포 콘솔에 연결해줘'라고 할 때 쓰세요. 앱은 만들지 않고 구조만 잡습니다. 새 웹앱을 만들어 올리는 일은 cloudflare-new-app이 하고, 그 스킬이 저장소 구성에 이 스킬을 씁니다. 구성원 자신의 데스크는 git-desk-setup이 만듭니다. 저장소의 용도와 함께 일할 사람을 묻고, 계획을 보여 주고, 사용자의 승인으로 콘솔 프로젝트·원격 저장소·팀원 접근을 만들고, 커밋·푸시하고, 커밋을 보드에 제출합니다. 구매는 없습니다."
 ---
 # A new repository, set up for a team and its agents
 
-What goes in: a folder (empty, freshly scaffolded, or holding code with no agreement yet) and a sentence on what the repository is for. What comes out: the repository in the layout every repository of this pack shares, committed and pushed: `AGENTS.md` as the working agreement with `CLAUDE.md` importing it, a `README.md` in the readers' language that is good to look at, the documents under `docs/` that let a session pick up where the last one ended, one check run by continuous integration, the skills connection, the teammates' access, and a console project the checkout is bound to, holding the repository's rules, its first goal and its tasks, so that the work is tracked on the board from the first commit. No product is built: code that is there stays as it is, and nothing is written that nobody said.
+What goes in: a folder (empty, freshly scaffolded, or holding code with no agreement yet) and a sentence on what the repository is for. What comes out: the repository in the layout every repository of this pack shares, committed and pushed: `AGENTS.md` as the working agreement with `CLAUDE.md` importing it, a `README.md` in the readers' language that is good to look at, the documents under `docs/` that let a session pick up where the last one ended, one check run by continuous integration, the teammates' access, and a console project the checkout is bound to, holding the repository's rules, its first goal and its tasks, so that the work is tracked on the board from the first commit and every agent reads the same skills through it. No product is built: code that is there stays as it is, and nothing is written that nobody said.
 
 ## How the user is involved
 
 - **Questions:** one message, only what the request and the folder leave open (Inputs). Everything else is derived and shown in the plan.
-- **Checkpoints:** the plan, before any file is written or anything is created outside the machine. It lists each outside action on a line of its own (the console project, each person added to it, the remote, each collaborator, the first push), and the word on the plan confirms each line it lists. A public remote is confirmed on its own, after the files exist. The delivery.
+- **Checkpoints:** the plan, before any file is written or anything is created outside the machine. It lists each outside action on a line of its own (the console project, a change to its skills address, each person added to it, the remote, each collaborator, the first push), and the word on the plan confirms each line it lists. A public remote is confirmed on its own, after the files exist. The delivery.
 - **Go-ahead:** the questions with defaults are not asked and the defaults are shown in the plan; the plan still waits, because it creates things others see.
 - **Changes mid-run:** a change before the files are written rewrites the plan; after, it changes the files it touches and the commit says so. A project or a remote already created is changed, not created again; a project's key never changes.
 
@@ -34,27 +32,35 @@ What goes in: a folder (empty, freshly scaffolded, or holding code with no agree
 |---|---|
 | A shell with git | The repository, the commit, the push |
 | The stack's runtime and package manager, where the repository holds code | The skeleton, the check |
-| The `console` command, signed in (`console whoami` says as whom, at which console, in which project) | The console project, the binding, the rules, the goal and the tasks ([console.md](/engineering/docs/git/console.md)) |
+| The `console` command, signed in | The console project, the binding, the rules, the goal and the tasks |
 | The git host's command, signed in (`gh auth status` for GitHub) | Creating the remote, the collaborators, watching continuous integration; without it, the user creates an empty repository and gives its address |
 
-Check before the first message: `git --version`; the runtime of a stack the folder or the request names; `console whoami`; `gh auth status`. Without git, stop and say what to install. Without the `console` command, say what it is for and how to get it (console.md "Without a console") and offer the route without a console, taken only on the user's word; a `whoami` that names no project is the usual start for a new repository, not a missing console. A `whoami` refused, or one that names a project because the folder sits inside another bound checkout, is said in a line: a repository is not set up inside another. A console the user names that is not the one `whoami` talks to is looked up in `console logins`, which lists every console this machine is signed in to: one listed is used with `--url <origin>` on each command until `console use <key> --url <origin>` binds the checkout to it, and a new sign-in is the person's, only for a console the list lacks (console.md "Which console").
+Check before the first message: `git --version`; the runtime of a stack the folder or the request names; `console whoami`; `gh auth status`. What `console whoami` says decides how the run starts:
 
-What every repository of this pack shares is in the area's document set [`engineering/docs/git/`](/engineering/docs/git/README.md): [layout.md](/engineering/docs/git/layout.md) (the tree, who reads what, the languages), [agreement.md](/engineering/docs/git/agreement.md) (`AGENTS.md` section by section) and [console.md](/engineering/docs/git/console.md) (the console project, its commands, the binding) are included and arrive with this skill wherever SkillCDN serves it; [testing.md](/engineering/docs/git/testing.md) (the check, the tests, the versions of the toolchain and of continuous integration) is linked from phases 2 and 4, and [readme-guide.md](/engineering/docs/git/readme-guide.md) (the README) from phase 4, read with `read_repo_file` through the repository or the engineering connection, from `docs/git/` of the engineering plugin, or from a checkout of this repository. A mount of this skill alone lacks the two linked pages and a copy of its directory lacks all five: say so in the first message, fetch them from `engineering/docs/git/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules.
+| `console whoami` | The run |
+|---|---|
+| Names no project | The usual start for a new repository: go on |
+| Names a project, named by the folder's own `.skillcdn-console.json` | The folder is bound already: that project is the repository's, shown in the plan instead of asked |
+| Names a project, named by a `.skillcdn-console.json` in a folder above or by `CONSOLE_PROJECT` | Say so in a line and stop: a repository is not set up inside another bound checkout, and the variable would bind the new one's commands |
+| Is refused | As the pack's rule on a console says: say what it printed, and do not start as if there were no console |
+| No `console` command | Say what it is for and how to get it (console.md "Without a console"), and offer the route without a console, taken only on the user's word |
+
+Without git, stop and say what to install. A console the user names that is not the one `whoami` talks to is found in `console logins` (console.md "Which console").
+
+What every repository of this pack shares is the area's document set [`engineering/docs/git/`](/engineering/docs/git/README.md). [layout.md](/engineering/docs/git/layout.md) (the tree, who reads what, the languages) is included and arrives with this skill wherever SkillCDN serves it. The others are read when their phase comes: [console.md](/engineering/docs/git/console.md) (the console project, its commands, the binding) before the plan, and [agreement.md](/engineering/docs/git/agreement.md), [testing.md](/engineering/docs/git/testing.md) and [readme-guide.md](/engineering/docs/git/readme-guide.md) in phase 4. A linked page is read the way this skill was: through a console with `console skill --file <path from the pack's root>`, through a connection of the host's with its file read (`read_repo_file`), as the file at `docs/git/` of the engineering plugin, or as the file in a checkout of the pack. A mount of this skill alone lacks the four linked pages and a copy of its directory all five: say so in the first message, fetch them from `engineering/docs/git/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules.
 
 ## Inputs
 
 | Input | Source |
 |---|---|
-| The folder | The current directory, or one the user names; a new folder named after the repository when the current one holds something else |
+| The folder | In a member's desk (a folder whose `AGENTS.md` says it is their desk; it names no project), a new folder under its `work/`, which the desk keeps out of its own repository. Elsewhere the current directory when it is empty or the one the user names, and a new folder named after the repository when the current one holds something else. Without a desk nothing else differs |
 | What the repository is for, who uses it, and what its first version does and leaves out | The request; what it leaves open is asked: "Who will use it, and what must the first version do (and leave out)? A sentence each is enough; 'not decided yet' is an answer too." What stays open is written as open in `docs/brief.md` and becomes a task |
 | Who works in it | The request; asked when others are named without their accounts: "What are <their> logins on GitHub and on the console? I will give them access when you approve the plan." Nobody named: the user alone |
 | The stack | Derived from the files (`package.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`, a framework's configuration); for an empty folder, asked only when the request does not say: "What will the code be written in? If you have no preference, I suggest <default> for <kind>." |
 | The console project | Asked when a console answers: "Which console project does this repository's work belong to? <the projects `console projects` lists, the one that fits the product first> Or a new one?" Several repositories may share a project; a new one is made only when none fits |
 | Everything else | Derived and shown in the plan: the repository's name and the project's key (below), the board's language, the README's language (the user's), the remote (private, under the git host account `gh` is signed in to), who pushes and how (directly to `main` after the check, or through pull requests when the user says the team reviews), the license (none for a private repository; asked for a public one), the first goal and its tasks, the check |
 
-**The name.** The folder's name when the user opened or named one; otherwise the product's name, or two or three English words of its purpose, as a slug of lowercase letters, digits and hyphens of at most 40 characters. A new project's key is a slug of the product's name, its name the product's name in the board's language. Before the plan, check that what is to be made is free: `gh repo view <owner>/<name>` answers not found, and for a new project `console project <key>` answers `project.not_found`; a taken one gets another slug, shown in the plan.
-
-**The board's language** is the one the workspace's rules name for what people read (`console rules` prints them); where they name none, the user's. Tasks, the goal, the project's name and description, reports and hand-in labels are in it; the project's rules, like every file of the repository an agent reads, are in English.
+**The name.** The folder's name when the user opened or named one; otherwise the product's name, or two or three English words of its purpose, as a slug of lowercase letters, digits and hyphens of at most 40 characters. A new project's key and name are chosen as console.md "Which project" says. Before the plan, check that what is to be made is free: `gh repo view <owner>/<name>` answers not found, and for a new project `console project <key>` answers `project.not_found`; a taken one gets another slug, shown in the plan.
 
 ## Workflow
 
@@ -71,20 +77,21 @@ Produces the **frame**: the tools found, the folder's state, and what the reques
 
 ### Phase 2: Plan
 
-Produces the **plan**. Ask the questions of Inputs that remain, in one message. Derive the rest, run the name checks, and show, one line each where one does:
+Produces the **plan**. Read [console.md](/engineering/docs/git/console.md) where a console answers. Ask the questions of Inputs that remain, in one message. Derive the rest, run the name checks, and show, one line each where one does:
 
 - the repository: the name, the folder, the remote (`<owner>/<name>`, private) or the one that exists, who pushes and how;
 - the people: each teammate, with the access each gets (collaborator on the remote, member of the project);
 - the tree of layout.md, with the files this run writes, those it keeps, and the brief's open items;
 - the check: the command, what it runs, the test it starts with (testing.md "The check"), the continuous integration job;
 - the console project: the existing one the user picked, with the line its rules gain, or a new one (`<key>`, its name) with its rules (console.md "The project's rules"); the goal, where there is one, and the tasks, one line each;
+- the skills: the project's pack, read through the console. Where the repository `console skills --project <key>` names (for a new project, `console skills` in a folder that names none) is the `Source` this skill was loaded under, a line says so; where it is another, the row of agreement.md "The skills section" that holds;
 - what the README says, in its language, in two lines.
 
 Checkpoint: "Here is the plan. Outside this machine, I will: create the console project `<key>` (or: add this repository to the rules of `<key>`); add <login> to it; create the private repository `<owner>/<name>`; add <login> as a collaborator; push the first commit. OK?" One word proceeds. A public remote is asked after the files exist: "Create `<owner>/<name>` as a public repository? Everything committed becomes readable by anyone."
 
 ### Phase 3: Board
 
-Produces the **board**, as [console.md](/engineering/docs/git/console.md) says, with the commands it gives. First the folder: created when new, `git init -b main`. Then: the project made, or the existing one chosen; the teammates added; the checkout bound (`console use <key>`) and `console whoami` checked to name that key; the project's rules written for a new project, or the repository's line added to an existing project's on its owner's word; the goal, for a new project; the setup task written and taken, so that the rest of the run reports on it; the next tasks, each naming the repository. Each id and number is read from the command's output. Without a console, this phase writes nothing and `docs/status.md` takes the board's place in phase 4.
+Produces the **board**, as console.md says, with the commands it gives. First the folder: created when new, `git init -b main`. Then: the project made, or the existing one chosen; the teammates added; the checkout bound (`console use <key>`) and `console whoami` checked to name that key, named by the new folder's own `.skillcdn-console.json`; the project's rules written for a new project, or the repository's line added to an existing project's on its owner's word; the goal, for a new project; the setup task written and taken, so that the rest of the run reports on it; the next tasks, each naming the repository. Each id and number is read from the command's output. Without a console, this phase writes nothing and `docs/status.md` takes the board's place in phase 4.
 
 ### Phase 4: Files
 
@@ -94,12 +101,12 @@ Produces the **repository**, in this order, each step a line to the user and, at
 2. The files of the root: `.gitignore` (the stack's, the secret files, the build output, and `.skillcdn-console.json` for a public repository), `.gitattributes` (`* text=auto eol=lf`), `.editorconfig`, `.env.example` where the code reads an environment, `.claude/settings.json` (agreement.md).
 3. The check as testing.md "The check" says, and `.github/workflows/check.yml`. Run the check until it is green; a step that cannot run on this machine is named.
 4. The documents of layout.md, with content from the answers and the code: `docs/README.md`, `docs/brief.md` (what was answered, and an "Open" list of what was not), `docs/architecture.md` (for an empty folder, the parts the stack implies and "nothing else yet"), `docs/decisions.md` with the setup's choices as its first lines.
-5. `AGENTS.md` by [agreement.md](/engineering/docs/git/agreement.md), section by section, with the binding sentence at the head of its workflow, and `CLAUDE.md` importing it.
+5. `AGENTS.md` by [agreement.md](/engineering/docs/git/agreement.md), section by section, with the binding sentence at the head of its workflow and its Skills section for the project's pack, and `CLAUDE.md` importing it.
 6. `README.md` by [readme-guide.md](/engineering/docs/git/readme-guide.md), in the readers' language.
-7. The skills connection files, at the address this skill was loaded from.
+7. Only where the user asked for the skills in their tools through a connection of the host's, or the plan showed it: the connection files of agreement.md "A host's own connection, on request".
 8. A last read: every link resolves; every command the README and the agreement give runs as written, apart from those that need the remote; nothing is a placeholder or a fact nobody gave; every item of the brief's "Open" list names its task (`#<number>`); nothing secret is staged (`git status`, `git diff --cached --stat`).
 
-Claude Code asks the person before an agent writes `.claude/settings.json` or `.mcp.json`, since both change what agents may do in the folder; the plan says the tool will ask. A session that cannot ask (a headless or scheduled run) is refused the write: the agent shows the person each file's content and the path, goes on with the rest, and commits once the person says the files are there; it never writes them by another route.
+Claude Code asks the person before an agent writes `.claude/settings.json` (and `.mcp.json`, where step 7 writes it), since they change what agents may do in the folder; the plan says the tool will ask. A session that cannot ask (a headless or scheduled run) is refused the write: the agent shows the person each file's content and the path, goes on with the rest, and commits once the person says the files are there; it never writes them by another route.
 
 ### Phase 5: Commit and push
 
@@ -114,17 +121,17 @@ Where the user keeps the remote for later, steps 3 and 4 wait: the remote is one
 
 ### Phase 6: Hand in
 
-Produces the **delivery**. On the board: the commit handed in on the setup task (`console hand-in <commit url> --label "<words>"`), a last report with the check and the continuous integration result, and `console finish --summary "<what was done, what is left>"`. To the user, one message: the repository's address, the tree in a few lines, the check and its result, the console project with its goal and tasks, what each teammate must accept or do (the invitation on the git host, `console login` and, for a public repository, `console use <key>` in their checkout, approving the skills connection when their tool asks), and what was not verified, said so.
+Produces the **delivery**. On the board: the commit handed in on the setup task (`console hand-in <commit url> --label "<words>"`), a last report with the check and the continuous integration result, and `console finish --summary "<what was done, what is left>"`. To the user, one message: the repository's address, the tree in a few lines, the check and its result, the console project with its goal and tasks, what each teammate must accept or do (the invitation on the git host, `console login` and, for a public repository, `console use <key>` in their checkout), and what was not verified, said so.
 
 ## Run by another skill
 
-A skill that builds the product (`cloudflare-new-app`) runs this one on its project folder, as the pack's rule on skills that chain says, and hands it what its own run settled: what the product is and for whom, who works in it, the stack and its check, the README's language, and whether it keeps the remote for a later step of its own. Then nothing it handed is asked again, its plan's word covers what it showed, and the plan here shows only the console project and the teammates. Where the caller keeps the remote, phases 5 and 6 are the caller's: this skill ends after phase 4 with the files written, the check green and the board set, and gives the caller the setup task's number, on which the caller reports, hands in and finishes.
+A skill that builds the product (`cloudflare-new-app`) runs this one on its project folder, as the pack's rule on skills that chain says, and hands it what its own run settled: what the product is and for whom, who works in it, the stack and its check, the README's language, the lines its Skills section gains, and whether it keeps the remote for a later step of its own. Then nothing it handed is asked again, its plan's word covers what it showed, and the plan here shows only the console project and the teammates. Where the caller keeps the remote, phases 5 and 6 are the caller's: this skill ends after phase 4 with the files written, the check green and the board set, and gives the caller the setup task's number, on which the caller reports, hands in and finishes.
 
 ## Verdicts
 
 | Result | Verdict |
 |---|---|
-| The check is green locally, from a clean clone and in continuous integration; every file of the first commit holds what was said or found; the binding sentence and the project's key are in `AGENTS.md`, and `console whoami` in the checkout names that key; the board holds the project with this repository in its rules, the setup task finished and the tasks after it | Delivered |
+| The check is green locally, from a clean clone and in continuous integration; every file of the first commit holds what was said or found; the binding sentence and the project's key are in `AGENTS.md`, and `console whoami` in the checkout names that key, named by the checkout's own file; the board holds the project with this repository in its rules, the setup task finished and the tasks after it | Delivered |
 | Continuous integration could not run (no git host command, a host without it) | Delivered, the run named as not run, its command given |
 | The console was not available and the user chose to go on without it | Delivered with `docs/status.md`, saying how to bind the repository later (console.md "Binding later") |
 | The check is red, or a file holds a fact nobody gave | Not delivered: fixed first |
@@ -132,10 +139,10 @@ A skill that builds the product (`cloudflare-new-app`) runs this one on its proj
 ## Hard rules
 
 1. Every file of the repository an agent reads is in English, and `README.md` in its readers' language: agents read one language, and people read theirs.
-2. The binding sentence is copied word for word, and the agreement names the project's key beside it: the sentence sends every agent to the console, and the key lets it see that the checkout is bound to the right project. A checkout whose `console whoami` names another project does no board work until a person fixes it.
-3. Nothing is created outside the machine (a console project, a member, a remote, a collaborator, a push) unless the plan listed it and the user said yes, and a public remote not without its own yes: others see it and it outlives the run.
+2. The binding sentence is copied word for word, and the agreement names the project's key beside it: the sentence sends every agent to the console, and the key lets it see that the checkout is bound to the right project. A checkout whose `console whoami` names another project, or one named from outside the checkout, does no board work until a person fixes it.
+3. Nothing is created or changed outside the machine (a console project or its skills address, a member, a remote, a collaborator, a push) unless the plan listed it and the user said yes, and a public remote not without its own yes: others see it and it outlives the run.
 4. Nothing is invented: a document says what the user said or the code shows, and what is not known is written as open and becomes a task. An empty template or a guessed fact teaches every later agent to trust it.
-5. A secret is never read, printed or committed: `.env.example` carries names and safe example values only.
+5. A secret is never read, printed or committed: `.env.example` carries names and safe example values only, and the binding file never a token or an account.
 6. Versions come from where testing.md "Versions" says, on the day of setup, never from memory.
 7. The repository does not restate the console's rules or the command's help: they come with every task and change with the console's version.
 
@@ -143,10 +150,8 @@ A skill that builds the product (`cloudflare-new-app`) runs this one on its proj
 
 | Term | Meaning |
 |---|---|
-| Layout | The tree every repository of this pack has (layout.md). |
-| Agreement | `AGENTS.md`: how the work is done in the repository, for agents and people. |
-| Binding | The checkout's link to a console project, in `.skillcdn-console.json`, made with `console use`. |
+| Binding | The checkout's link to a console project: the project's key and the console's address in `.skillcdn-console.json`, written by `console use`. |
 | Binding sentence | The sentence at the head of the agreement's workflow that sends every agent through the console. |
-| The check | The one command that proves a commit. |
 | Setup task | The task on the board that holds this run's reports, its hand-in and its finish. |
-| Board's language | The language of what people read on the console: the workspace's rules name it, else the user's. |
+| Board's language | The language of what people read on the console (tasks, the goal, the project's name and description, reports, hand-in labels): the one the workspace's rules name (`console rules` prints them), else the user's. The project's rules, like every file an agent reads, are in English. |
+| Desk | A member's own folder for their agent's work, written by `console desk`; a repository made from it lives under its `work/`. |

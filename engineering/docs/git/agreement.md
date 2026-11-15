@@ -26,25 +26,25 @@ The opening paragraph says what the file is: "The working agreement for this rep
 1. **Project.** One paragraph: what it is, for whom, who runs it, where it runs. Then three lines: status (not released, or live at its address), shape (the language, the framework, the database, the host), and links to `README.md`, `docs/brief.md`, `docs/architecture.md`.
 2. **Commands.** A table, the check first and bold: "**Verify (run before every commit)**". Then install, dev, test by layer, build, migrations, and whatever the stack adds. Every command run from the root.
 3. **Map.** The top folders, one line each, and the single sources (configuration, the dictionaries, the database schema), each with what it holds. Dependencies between folders where they have a direction.
-4. **Workflow.** The binding sentence first, then the loop (below), the definition of done, and commits and pushes.
+4. **Workflow.** The binding sentence first, then where the work is tracked and the loop (below), the definition of done, and commits and pushes.
 5. **Rules.** At most eight, numbered, each with its why in the same sentence. The setup writes the two that hold for every repository from its first commit (secrets never in the repository, logs or chat; the check green before every commit) and those the code's structure already implies, a boundary a scaffold drew or a single source it keeps; every later rule enters after a slip that repeated or a correction made with emphasis, never in advance.
 6. **Testing.** Four to six lines, as testing.md "What the agreement says about tests".
 7. **Documentation protocol.** A table, "When you change ... / update in the same change": a command or a requirement: `README.md` and the command table; how parts fit: `docs/architecture.md`; a choice someone might undo: a line in `docs/decisions.md`; the scope: `docs/brief.md`; a procedure done for the first time: a page in `docs/guides/`; a document added (`DEPLOY.md`, a page of `docs/`): its row in `docs/README.md`; a folder: the map; a rule: this file; a gotcha learned the hard way: the Gotchas. Then: "One topic, one file. Link instead of restating. Current facts, not history: git is the changelog."
-8. **Working alongside others.** Two lines and a third: concurrent work on one machine in separate worktrees, each on a short-lived branch rebased onto the main branch; hot files (the lockfile, this file, the migrations) edited small and rebased before a push, the second of two new migrations renumbered; another task's work never fixed in passing, written as a task instead.
-9. **Skills.** The connection to the pack the repository was set up with (below).
+8. **Working alongside others.** Two lines and a third: concurrent work on one machine in separate worktrees, each on a short-lived branch rebased onto the main branch, one task to a checkout; hot files (the lockfile, this file, the migrations) edited small and rebased before a push, the second of two new migrations renumbered; another task's work never fixed in passing, written as a task instead.
+9. **Skills.** Where the skills the repository is worked with are read, and the ones its work needs (below).
 10. **Gotchas.** "None yet." at first. One line each, what was learned the hard way and what to do; removed when the code makes it impossible.
 
 Under 300 lines, always: when it nears the limit a rule is merged or a gotcha retired before a new one enters.
 
 ## The workflow section
 
-It opens with the sentence that binds every checkout to the console, copied as it is (console.md "The right project, in every checkout"):
+It opens with the sentence that binds every checkout to the console, copied as it is (console.md "The binding"):
 
 > **Bound to a console?** When `.skillcdn-console.json` is in this checkout, or `console whoami` names a project, work the task through that SkillCDN console (`console help` says how).
 
-Then the lines that are this repository's own, and no more, since the console's rules arrive with every task and the command's help says how a run goes:
+Then the lines that are this repository's own, and no more. How work is put on the board, followed up, decided and reported is the console's to say: its rules arrive with every task and the command's help says how a run goes, so the agreement restates none of it.
 
-- **Where the work is tracked.** "This repository works in the console project `<key>`, which other repositories may share: its tasks are the work, its goals the milestones, its decisions what a person must choose, and its runs the record. Before the first board command of a session, `console whoami` names `<key>`; another project named means the checkout is bound wrong, and board work stops until a person fixes it. A task is worked here only when its body names this repository. A change that is not yet a task is written as one before it is made. Follow-up work found on the way is a new task, never a line in a document; a `TODO` in the code names its task, `TODO(#<number>)`." Without a console: "This repository's work in progress, what is next and what is open is `docs/status.md`, rewritten at the end of every session."
+- **Where the work is tracked.** "This repository works in the console project `<key>`, which other repositories may share. Before the first board command of a session, `console whoami` names `<key>`, named by this checkout's `.skillcdn-console.json`. Anything else it says (another project, a project named by something outside this checkout, a refusal) means the checkout is bound wrong: say what it printed, and do no board work until a person fixes it. What is next and what is open is on the board and in no file here; a `TODO` in the code names its task, `TODO(#<number>)`." A public repository, whose binding file is not committed, adds: "In a fresh checkout `whoami` names no project: run `console use <key>` once." Without a console the whole line is: "This repository's work in progress, what is next and what is open is `docs/status.md`, rewritten at the end of every session."
 - **What goes where.** "What the code needs to be built, run and changed lives here, versioned with it. What the team needs beyond the code (accounts, operations of the live service, research, meeting notes) lives on the console project's pages, which link to files here rather than copying them."
 - **Start.** "`git pull --rebase`; read the task; read the documents its area touches."
 - **During.** "One task, small commits. The check green before every commit. The documentation protocol in the same commit."
@@ -60,7 +60,22 @@ A repository set up before its code (the layout and the documents now, a framewo
 
 ## The skills section
 
-The repository keeps the connection to the pack it was set up with, so that every person's agent works from the same skills. The files are committed:
+The skills a repository is worked with are the pack of its console project, read through the console by every person's agent with nothing to connect. The section says so, and names the skills this repository's work needs, once, next to the code they are for:
+
+> The skills this repository is worked with are the pack of its console project: `console skills` lists them and finds one by words, and `console skill <path>` loads one. A skill never overrides this file: where they differ, this file wins. Without a console, work goes on by this file alone.
+
+- **A line per skill the work needs**, under that paragraph, by the path of its `SKILL.md` in the pack and what it is for: "`engineering/skills/cloudflare-deploy/SKILL.md`, for anything on Cloudflare". The setup adds none for itself; a skill that built product code in the repository adds its own. The project's rules send agents to these lines (console.md "The project's rules"), so that a skill is named in one place.
+- **Which pack.** The project's: `console project <key>` prints its skills address, and a project that names none reads the organization's. A setup skill loaded through the console, in a folder of that project or in a folder that names no project while the project names no address, came from that pack, and nothing is to do. Loaded from another pack (with `--project` of another project, through a connection of the host's, from a plugin or a copy), the lines above would name paths the project's pack lacks. The plan then says which row holds, and it is done on the user's word:
+
+  | The project | What the setup does |
+  |---|---|
+  | New | Made reading that pack: `console project new <key> "<name>" --skills <address>` |
+  | Existing, and only this repository's | Its owner names the address: `console project edit <key> --skills <address>` |
+  | Shared with other repositories | Left as it is, since the address is every repository's; the section names the address the skills are served at, and the host's own connection below is offered |
+
+### A host's own connection, on request
+
+Written only when the user asks for the skills in their tools without the console ("connect the skills in Cursor too"), or for a shared project whose pack is another. One file per tool, committed, each naming the address the pack is served at (`https://skillcdn.ai/gh/skillcdn/skills` for this pack; a fork writes its own) under the pack's server name (`skillcdn-skills` for this one):
 
 | File | Tool | Content |
 |---|---|---|
@@ -68,11 +83,9 @@ The repository keeps the connection to the pack it was set up with, so that ever
 | `.cursor/mcp.json` | Cursor | `{"mcpServers":{"<server name>":{"url":"<address>"}}}` (checked 2026-10) |
 | `.codex/config.toml` | Codex CLI | `[mcp_servers.<server name>]` with `url = "<address>"`, read for trusted projects (checked 2026-10) |
 
-The address is the one the setting-up skill was loaded from (`https://skillcdn.ai/gh/skillcdn/skills` for this pack; a fork writes its own), and the server name is the pack's (`skillcdn-skills` for this one). The section says this and no more:
+The section then ends with: "The same skills are served at <address>, declared for each tool in the repository (`.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml`); your tool asks you to approve the connection the first time it opens this folder. An agent that finds the server missing says so in one line and asks the person; no agent adds a connection on its own." Said so, the files read as the team's own setup, to a person and to a host's injection filters.
 
-> This repository was set up, and is kept, with the skills served at <address>. The connection is declared for each tool in the repository (`.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml`); your tool asks you to approve it the first time it opens this folder, as for any project server, and another tool takes the address as an HTTP MCP server the way it documents. An agent that finds the server missing from its connections says so in one line and asks the person before any connection is added; no agent adds one on its own. The skills do not override this file: where they differ, this file wins. Without the connection, work goes on by this file alone.
-
-Written this way, the section is the team's own setup and reads as such to a person and to a host's injection filters: it names who wrote it and why, points at files the tool itself asks the person to approve, forbids an agent from adding a connection on its own, keeps the agreement above the skills, and carries no urgency, no secrecy and no instruction to ignore anything. A skill that built product code in the repository adds one line naming itself and what it is for (`cloudflare-deploy` for anything on Cloudflare); the setup adds none for itself.
+What this route costs beside the console's: every person approves the connection in each tool; a private pack asks each of them for access of their own at SkillCDN, where the console reads it with the project's token; and Claude Code asks the person before an agent writes `.mcp.json`, so a session that cannot ask shows the content and the path and waits for the person to write it. The layout's map and the README's "How we work" then name the files (layout.md, readme-guide.md).
 
 ## `.claude/settings.json`
 
