@@ -25,7 +25,7 @@ Each page says what holds now, by topic. A fact about a tool that can move (a co
 
 ## The desk skill
 
-`git-desk-setup` makes a member's own desk a repository. The desk's files and its dashboard's shell are the console's, written by `console desk` and `console agent setup`, so the skill carries only its method (what it asks, the checks before the first commit, the private remote) and one reference for the dashboard, which a person's phase links and an agent account's run never reads; it reads none of the set, since a desk has no layout of the pack's and is bound to no project. What the console's command prints and writes changes with its version: the skill names the command and what it is for, and quotes of its output only the sentence it prints for a person to say to their agent, which is how a request for the skill arrives.
+`git-desk-setup` makes a member's own desk a repository. The desk's files, the format of its records (the desk's own `records/README.md`) and its dashboard's shell are the console's, written by `console desk` and `console agent setup`, so the skill carries only its method (what it asks, the checks before the first commit, the private remote) and one reference for the dashboard, which a person's phase links and an agent account's run never reads; it reads none of the set, since a desk has no layout of the pack's and is bound to no project. What the console's command prints and writes changes with its version: the skill names the command and what it is for, and quotes of its output only the sentence it prints for a person to say to their agent, which is how a request for the skill arrives.
 
 ## Keeping every repository the same
 

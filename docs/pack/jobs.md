@@ -140,7 +140,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Set up my desk."
 
-- You get: your own desk as a private git repository at your git host account: the folder `console desk` writes for you (your agent's instructions, your projects under `work/`), committed and pushed, the repositories you ask for cloned under `work/`, and, where you want it, a dashboard of your open work, your figures and what you finished, served on your own machine from the console.
+- You get: your own desk as a private git repository at your git host account: the folder `console desk` writes for you (your agent's instructions, the records of what you made, your projects under `work/`), committed and pushed, the repositories you ask for cloned under `work/`, and, where you ask for it, a dashboard of what you made and how it did, with your work on the board beside it, served on your own machine.
 - Skill: [`engineering/skills/git-desk-setup/`](/engineering/skills/git-desk-setup/SKILL.md)
 - Also asked as: "desk setup", "make my desk a repository", "show me a dashboard of my work", "set up the desk of this agent account".
 - Not this one when: the repository is a project's, for a team (the new repository above); the dashboard's pages are to be changed, or a console built for the organization (the console's own skill building-a-console, shipped with its command).
