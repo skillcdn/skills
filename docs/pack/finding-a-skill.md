@@ -17,7 +17,7 @@ This pack holds skills for an AI agent to do real company work, one area at a ti
 
 ## Through a console
 
-An agent that reads this pack through a SkillCDN Console's command, and not through a connection of its host, has the same four reads as commands, which `console skills` names when it lists the pack: `browse_repo` on a folder is `console skills <folder>`, `search_repo` is `console skills --search <words> [<folder>]`, `load_skill` is `console skill <path>`, and `read_repo_file` is `console skill --file <path>`. A path is the same either way, and everything on this page and in the skills holds as written.
+An agent that reads this pack through a SkillCDN Console's command, and not through a connection of its host, has the same four reads as commands: `search_repo` is `console skills --search <words> --limit 5 [<folder>]`, `load_skill` is `console skill <path>`, `read_repo_file` is `console skill --file <path>`, and `browse_repo` on a folder is `console skills <folder>`. A skill is found by the search, a few hits at a time; `console skills` alone lists the whole pack, which is long, and is for looking around. A path is the same either way, and everything on this page and in the skills holds as written.
 
 ## Reading a result
 
