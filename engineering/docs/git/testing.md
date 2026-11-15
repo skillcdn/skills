@@ -6,7 +6,7 @@ The test structure every repository made with this pack has: one command that pr
 
 - One command runs everything a commit must pass, in the order that fails fastest: the format check, the lint, the type check, the unit tests, and the build where the stack builds. It is named `check` in the stack's task runner (`npm run check`, `pnpm check`, `make check`, `just check`, `uv run poe check`), listed first and in bold in the agreement's command table, and run before every commit.
 - It is green from the first commit. Where code exists, the first commit carries one real test of it, of a pure function or of the entry point starting and answering, so that the check proves something from day one. An empty folder has no code to test, and no code is written to have something to test: its check runs the format check, the lint and the type check over the skeleton, and the test runner with its own option for an empty suite (`vitest run --passWithNoTests`; pytest's exit status 5, no tests collected, taken as a pass by the script), and the agreement's Testing section says that the first feature starts with its test. A repository that holds no code yet runs the content check of "By stack".
-- A check that needs something the machine may lack (a database, a browser) says what to start and fails when it is missing; it never skips silently. A layer that cannot run in the check (end-to-end, below) has its own command and its own job in continuous integration.
+- A check that needs something the machine may lack (a database, a browser) says what to start and fails when it is missing; it never skips silently. Where the machine's runtime is not the one the repository pins, the check is run on what is there and the report names both versions. A layer that cannot run in the check (end-to-end, below) has its own command and its own job in continuous integration.
 - The check never calls a live third-party service and never needs a secret. What a test needs from outside is a recorded or invented fixture.
 
 ## The layers
@@ -17,11 +17,7 @@ The test structure every repository made with this pack has: one command that pr
 | Integration | A module against the real dependency it talks to: the database engine the product uses, a local emulator of the platform, a queue, a file store | Next to the code as `*.int.test.ts`, or `tests/integration/` where the stack keeps tests apart | In the check when the dependency starts locally with one command (a compose file, the platform's local mode), else as `test:int` with its own job |
 | End-to-end | A person's path through the running product: a page opened, a form sent, a result seen, in a real browser or a real client | `e2e/` at the root, one file per journey | `test:e2e`, before a release and as its own job in continuous integration; few, for the paths that earn money or lose data |
 
-- Mock what is outside the product's control (a payment provider, a mail sender, a model's API); never mock the database or swap in another engine, because the bugs live in the difference.
-- A bug fix starts with a test that fails for the bug, then the fix.
-- Every parser of outside input (a request body, an uploaded file, a webhook, what a model returns) has hostile cases: too large, malformed, nested too deep, the wrong encoding.
-- Time, randomness and identifiers are injected, so that a test is the same on every run and every machine. A row a database dates by itself and a value the test's clock dates are never compared.
-- Fixtures are invented: no real customer, person, account or address, so that the tests can be read by anyone the repository is shown to.
+The rules the agreement's Testing section carries: what is outside the product's control is mocked, and the database never, nor swapped for another engine; a bug fix starts with a test that fails for the bug; every parser of outside input has hostile cases; time, randomness and identifiers are injected; fixtures are invented, with no real customer, person, account or address.
 
 ## By stack
 
@@ -47,7 +43,7 @@ Every version the setup writes is found on the day, never remembered:
 
 ## Continuous integration
 
-- `.github/workflows/check.yml` (or the git host's equivalent) runs the check on every push and every pull request, on the runtime version the repository pins (`.node-version`, `.python-version`, `go.mod`, `rust-toolchain.toml`), with the package manager's frozen install (`npm ci`, `pnpm install --frozen-lockfile`, `uv sync --locked`).
+- `.github/workflows/check.yml` (or the git host's equivalent) runs the check on every push and every pull request, on the runtime version the repository pins, with the package manager's frozen install.
 - A layer outside the check is a job of its own in the same workflow, so that a red end-to-end run is seen without blocking the unit tests' signal.
 - A red run on the main branch is the first thing to fix, before new work.
 - Continuous integration holds no secret the check needs; a job that deploys is the deploy skill's, and is added by it.

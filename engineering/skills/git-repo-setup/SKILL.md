@@ -5,11 +5,9 @@ license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: git
 skillcdn:
-  include:
-    - /engineering/docs/git/layout.md
   translations:
     ko:
       title: 팀과 에이전트가 계속 개발하는 깃 저장소 초기 구성
@@ -28,14 +26,7 @@ What goes in: a folder (empty, freshly scaffolded, or holding code with no agree
 
 ## Requirements
 
-| What | Used for |
-|---|---|
-| A shell with git | The repository, the commit, the push |
-| The stack's runtime and package manager, where the repository holds code | The skeleton, the check |
-| The `console` command, signed in | The console project, the binding, the rules, the goal and the tasks |
-| The git host's command, signed in (`gh auth status` for GitHub) | Creating the remote, the collaborators, watching continuous integration; without it, the user creates an empty repository and gives its address |
-
-Check before the first message: `git --version`; the runtime of a stack the folder or the request names; `console whoami`; `gh auth status`. Without git, stop and say what to install. What `console whoami` says decides how the run starts:
+The tools of the compatibility line. Before the first message, `gh auth status` (without the git host's command the user creates an empty repository and gives its address) and `console whoami`, which decides how the run starts:
 
 | `console whoami` | The run |
 |---|---|
@@ -47,15 +38,15 @@ Check before the first message: `git --version`; the runtime of a stack the fold
 
 What every repository of this pack shares is the area's set [`engineering/docs/git/`](/engineering/docs/git/README.md), each page read before the phase that needs it:
 
-| Page | Read | For |
+| Page | Read before | For |
 |---|---|---|
-| [layout.md](/engineering/docs/git/layout.md) | Included: it arrives with this skill | The tree, who reads what, the languages |
-| [console.md](/engineering/docs/git/console.md) | Before the plan, where a console answers | The console and the project, who may do what, the project's pack, the binding, the rules, the goal and the tasks |
-| [testing.md](/engineering/docs/git/testing.md) | Before the plan | The check by stack, the tests, the versions |
-| [agreement.md](/engineering/docs/git/agreement.md) | Before the files | `AGENTS.md` section by section |
-| [readme-guide.md](/engineering/docs/git/readme-guide.md) | Before the files | The README |
+| [layout.md](/engineering/docs/git/layout.md) | The plan | The tree, who reads what, the languages |
+| [console.md](/engineering/docs/git/console.md) | The plan, where a console answers | The console and the project, who may do what, the project's pack, the binding, the rules, the goal and the tasks |
+| [testing.md](/engineering/docs/git/testing.md) | The plan | The check by stack, the tests, the versions |
+| [agreement.md](/engineering/docs/git/agreement.md) | The files | `AGENTS.md` section by section |
+| [readme-guide.md](/engineering/docs/git/readme-guide.md) | The files | The README |
 
-A linked page is read the way this skill was: through a console with `console skill --file <path from the pack's root>`, through a connection of the host's with its file read (`read_repo_file`), as the file at `docs/git/` of the engineering plugin, or in a checkout of the pack. Read it from the folder this skill was loaded in, or before the new folder is bound: a bound checkout reads its own project's pack, which may be another. A mount of this skill alone lacks the four linked pages and a copy of its directory all five: fetch them from `engineering/docs/git/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack). A page that cannot be read stops the phase that needs it, said to the user; nothing of it is written from memory.
+A page is read the way this skill was: through a console with `console skill --file <path from the pack's root>`, through a connection of the host's with its file read, as the file at `docs/git/` of the engineering plugin, or in a checkout of the pack. Read it from the folder this skill was loaded in, or before the new folder is bound: a bound checkout reads its own project's pack, which may be another. A mount of this skill alone, or a copy of its directory, lacks the pages: fetch them from `engineering/docs/git/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack). A page that cannot be read stops the phase that needs it, said to the user; nothing of it is written from memory.
 
 ## Inputs
 
@@ -65,11 +56,9 @@ A linked page is read the way this skill was: through a console with `console sk
 | What the repository is for, who uses it, and what its first version does and leaves out | The request; what it leaves open is asked: "Who will use it, and what must the first version do (and leave out)? A sentence each is enough; 'not decided yet' is an answer too." What stays open is written as open in `docs/brief.md` and becomes a task |
 | The repository alone, or the app too | Asked with the others when the folder is empty and the request is for a product whose code starts from a framework's scaffold: "This is a web app. Shall I set up the repository alone now, with the code scaffolded into it later, or do you want the app built too, which is the job of cloudflare-new-app? I suggest <one of them, and why>." The repository alone: the stack is still asked or derived, no skeleton is made, and the check is the content check of testing.md "By stack" |
 | Who works in it, and who owns the remote | The request; asked when others are named: "What are <their> logins on GitHub and on the console? I will give them access when you approve the plan. Which account or organization at the git host should own the repository? Yours, `<login>`, unless you say another." Nobody named: the user alone, the remote under the account `gh` is signed in to. A teammate `console people` does not list is not of the workspace yet: the plan names letting them in as an administrator's step |
-| The stack | Derived from the files (`package.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`, a framework's configuration); for an empty folder, asked only when the request does not say: "What will the code be written in? If you have no preference, I suggest <default> for <kind>." |
+| The stack | Derived from the files; for an empty folder, asked only when the request does not say: "What will the code be written in? If you have no preference, I suggest <default> for <kind>." |
 | The console project | Asked when a console answers: "Which console project does this repository's work belong to? <the projects `console projects` lists, the one that fits the product first>", with "Or a new one?" only for an administrator; anyone else is told there that a new project is an administrator's to make first. Several repositories may share a project; a new one is made only when none fits |
-| Everything else | Derived and shown in the plan: the repository's name and the project's key (below), the README's language (the user's), the remote (private), who pushes and how (directly to `main` after the check, or through pull requests when the user says the team reviews), the license (none for a private repository; asked for a public one), the goal and the tasks, the check |
-
-**The name.** The folder's name when the user opened or named one; otherwise the product's name, or two or three English words of its purpose, as a slug of lowercase letters, digits and hyphens of at most 40 characters. A new project's key and name are chosen as console.md "Which project" says. Before the plan, check that what is to be made is free: `gh repo view <owner>/<name>` answers not found, and for a new project `console project <key>` answers `project.not_found`; a taken one gets another slug, shown in the plan.
+| Everything else | Derived and shown in the plan: the repository's name (the folder's, else a slug of the product's name) and the project's key (console.md "Which project"), each checked to be free (`gh repo view <owner>/<name>`, `console project <key>`) and changed where it is taken; the README's language (the user's); the remote (private); who pushes and how (directly to `main` after the check, or through pull requests when the user says the team reviews); the license (none for a private repository; asked for a public one); the goal and the tasks; the check |
 
 ## Workflow
 
@@ -77,15 +66,11 @@ Each phase produces a named artifact and ends with one line to the user.
 
 ### Phase 1: Frame
 
-Produces the **frame**: the tools found, the folder's state, and what the request settles.
-
-1. Run the checks of Requirements.
-2. Read the folder: empty or absent; a fresh scaffold (a framework's files, its first commit); code without an agreement; or an agreement already there (`AGENTS.md`, `CLAUDE.md`, `docs/`). Read the stack's manifest, its scripts, its test runner, the remote (`git remote -v`) and the default branch.
-3. When an agreement is there, map it onto the layout: which file becomes which, what moves, what is kept word for word (every rule it holds). Nothing is moved before the plan.
+Produces the **frame**: the tools found, what the request settles, and the folder's state: empty or absent; a fresh scaffold; code without an agreement; or an agreement already there (`AGENTS.md`, `CLAUDE.md`, `docs/`), which is mapped onto the layout in the plan (which file becomes which, what moves, every rule it holds kept word for word). Nothing is moved before the plan.
 
 ### Phase 2: Plan
 
-Produces the **plan**. Read the pages of the plan. Ask the questions of Inputs that remain, in one message. Derive the rest, run the name checks, and show, one line each where one does:
+Produces the **plan**. Read the pages of the plan. Ask the questions of Inputs that remain, in one message. Derive the rest and show, one line each where one does:
 
 - the repository: the name, the folder, the remote (`<owner>/<name>`, private) or the one that exists, who pushes and how;
 - the people: each teammate, with the access each gets (collaborator on the remote, member of the project);
@@ -95,7 +80,7 @@ Produces the **plan**. Read the pages of the plan. Ask the questions of Inputs t
 - the steps that are the project's owner's where the user is not (console.md "Who may do what"), each marked as theirs with its command;
 - what the README says, in its language, in two lines.
 
-Checkpoint: "Here is the plan. Outside this machine, I will: <each line that holds: create the console project `<key>`, or add this repository's line to the rules of `<key>`; change its skills address to <address>; add <login> to it; write the goal and <n> tasks; create the private repository `<owner>/<name>`; add <login> as a collaborator; push the first commit>. OK?" One word proceeds. A public remote is asked after the files exist: "Create `<owner>/<name>` as a public repository? Everything committed becomes readable by anyone."
+Checkpoint: "Here is the plan. Outside this machine, I will:", then each line that holds on a line of its own: create the console project `<key>`, or add this repository's line to the rules of `<key>`; change its skills address to `<address>`; add `<login>` to it; write the goal and `<n>` tasks; write one task for its owner, `<login>`, with the steps I may not do; create the private repository `<owner>/<name>`; add `<login>` as a collaborator; push the first commit. "OK?" One word proceeds. A public remote is asked after the files exist: "Create `<owner>/<name>` as a public repository? Everything committed becomes readable by anyone."
 
 ### Phase 3: Board
 
@@ -105,25 +90,25 @@ Produces the **board**, with console.md's commands in its order. First the folde
 
 Produces the **repository**. Read the pages of the files. Then, in this order, each step a line to the user and, at the end of the phase, one report on the setup task:
 
-1. The stack's skeleton, for an empty folder with a stack: the package manager's own init, the test runner, the linter and the type checker of testing.md "By stack", the runtime version file, each at the version testing.md "Versions" says how to find. A scaffold keeps its own choices, and a file already there is kept and completed, never replaced. The repository alone of a web app skips this step and says so: its code is scaffolded in later (agreement.md "Code that arrives later").
-2. The files of the root: `.gitignore` (the stack's, the secret files, the build output, and `.skillcdn-console.json` for a public repository), `.gitattributes` (`* text=auto eol=lf`), `.editorconfig`, `.env.example` where the code reads an environment, `.claude/settings.json` (agreement.md).
-3. The check as testing.md "The check" says, and `.github/workflows/check.yml`. Run the check until it is green; a step that cannot run on this machine is named.
+1. The stack's skeleton, for an empty folder with a stack: the package manager's own init, and the test runner, the linter, the type checker and the runtime version file of testing.md, each at the version it says how to find. A scaffold keeps its own choices, and a file already there is kept and completed, never replaced. The repository alone of a web app skips this step and says so: its code is scaffolded in later (agreement.md "Code that arrives later").
+2. The files of the root: `.gitignore` (with `.skillcdn-console.json` in it for a public repository), `.gitattributes` (`* text=auto eol=lf`), `.editorconfig`, `.env.example` where the code reads an environment, `.claude/settings.json` (agreement.md).
+3. The check as testing.md "The check" says, and `.github/workflows/check.yml`. Run the check until it is green; a step that cannot run on this machine is named, and so is a runtime here that is not the one the repository pins.
 4. The documents of layout.md, with content from the answers and the code: `docs/README.md`, `docs/brief.md` (what was answered, and an "Open" list of what was not), `docs/architecture.md` (for an empty folder, the parts the stack implies and "nothing else yet"), `docs/decisions.md` with the setup's choices as its first lines.
 5. `AGENTS.md` by agreement.md, section by section, with the binding sentence `console use` printed at the head of its workflow and its Skills section for the project's pack, and `CLAUDE.md` importing it.
 6. `README.md` by readme-guide.md, in the readers' language.
 7. Only where the user asked for the skills in their tools through a connection of the host's, or the plan showed it: the connection files of agreement.md "A host's own connection, on request".
-8. A last read: every link resolves; every command the README and the agreement give runs as written, apart from those that need the remote; nothing is a placeholder or a fact nobody gave; every item of the brief's "Open" list names its task (`#<number>`); nothing secret is staged (`git status`, `git diff --cached --stat`).
+8. A last read: every link resolves; every command the README and the agreement give runs as written, apart from those that need the remote; nothing is a placeholder or a fact nobody gave; every item of the brief's "Open" list names its task (`#<number>`).
 
-Claude Code asks the person before an agent writes `.claude/settings.json` (and `.mcp.json`, where step 7 writes it), since they change what agents may do in the folder; the plan says the tool will ask. A session that cannot ask (a headless or scheduled run) is refused the write: the agent shows the person each file's content and the path, goes on with the rest, and commits once the person says the files are there; it never writes them by another route.
+A host may ask the person before an agent writes `.claude/settings.json` (or `.mcp.json`, where step 7 writes it), since they change what agents may do in the folder. Where it refuses the write, show the person each file's content and its path, go on with the rest, and commit once they say the files are there; never write them by another route.
 
 ### Phase 5: Commit and push
 
 Produces the **pushed repository**.
 
-1. Commit as `chore(repo): set up the repository`, the body naming what the layout holds.
-2. Try the quick start from a clean clone of that commit (`git clone <folder> <temporary folder>`, then the README's install and check), fix what it finds before anything leaves, and remove the clone.
+1. Commit as `chore(repo): set up the repository`.
+2. Try the README's quick start from a clean clone of that commit in a temporary folder, fix what it finds before anything leaves, and remove the clone.
 3. Create the remote as the plan approved (`gh repo create <owner>/<name> --private --source . --remote origin`), add each collaborator (`gh api -X PUT repos/<owner>/<name>/collaborators/<login> -f permission=push`, which sends them an invitation), push.
-4. Watch the first run of continuous integration to its result: `gh run list --workflow check.yml --limit 1 --json databaseId,status` until it appears, then `gh run watch <id> --exit-status`, whose exit status says green or red. A red run is fixed and pushed before the delivery.
+4. Watch the first run of continuous integration to its result (`gh run watch <id> --exit-status`). A red run is fixed and pushed before the delivery.
 
 Where the user keeps the remote for later, steps 3 and 4 wait: the remote is one of the next tasks, continuous integration is named as not run, and phase 6 hands nothing in, its last report naming the local commit by its hash.
 
@@ -151,7 +136,7 @@ A skill that builds the product (`cloudflare-new-app`) runs this one on its proj
 2. The binding sentence is the one `console use` printed, copied from there word for word and never typed from memory or from the pack's rule, and the agreement names the project's key beside it: the sentence sends every agent to the console, and the key lets it see that the checkout is bound to the right project. A checkout is bound right when `console whoami` names that key, named by the checkout's own file; any other does no board work until a person fixes it.
 3. Nothing is created or changed outside the machine unless the checkpoint listed it and the user said yes, and a public remote not without its own yes: others see it and it outlives the run. What the user may not do on the console is never worked around: it is written as a task for whoever may.
 4. Nothing is invented: a document says what the user said or the code shows, and what is not known is written as open and becomes a task. An empty template or a guessed fact teaches every later agent to trust it.
-5. A secret is never read, printed or committed: `.env.example` carries names and safe example values only, and the binding file never a token or an account.
+5. `.env.example` carries names and safe example values only, and the binding file never a token or an account.
 6. Versions come from where testing.md "Versions" says, on the day of setup, never from memory.
 7. The repository does not restate the console's rules or the command's help: they come with every task and change with the console's version.
 

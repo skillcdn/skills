@@ -74,12 +74,10 @@ docs/     how it is built and why
 - **One centered header.** The name as the only level-one heading, the line under it in bold, the badges on one line. On GitHub, Markdown inside `<div align="center">` renders only with a blank line after the opening tag and before the closing one.
 - **Few badges, each true.** The check's status and the license; a version or a live address where there is one. Four at most: a wall of badges reads as noise, and a badge for something the repository does not do is a lie. A private repository's status badge needs a token to show, so it is left out there.
 - **A picture early.** A product with a screen shows it right after the opening sentences, at a real width (720 px or less, so it does not overflow), with words in `alt` that say what it shows. The pictures live in `docs/assets/`. A command-line tool shows a short session as a code block instead.
-- **Headings short and flat.** Level two for sections, level three at most below them, in sentence case. Emoji in headings is a style: all level-two headings carry one, or none does.
-- **Commands in fenced blocks with their language** (`bash`, `powershell`), one command per line, no prompt sign, so that a copy runs. Values a reader fills are written `<like-this>` and explained in a line below.
-- **Tables for what is looked up** (commands, environment variables, ports), prose for what is read once. A long part only some readers need (troubleshooting, a platform's own steps) goes in `<details><summary>…</summary>` or in a page of `docs/`.
+- **Commands that run when copied**: one per line, no prompt sign, and a value the reader fills written `<like-this>`.
 - **Two screens at most.** What is longer belongs in `docs/` and is linked.
-- **Links relative** to the repository (`docs/README.md`, not an address on the git host), so that they work on every branch and in every fork.
-- **The language's own conventions.** The readers' language is written as its readers write it, with its own punctuation and spacing; code, commands, file names and identifiers stay as they are in the code.
+- **Links relative** to the repository, so that they work on every branch and in every fork.
+- **The readers' language as its readers write it**; code, commands, file names and identifiers stay as they are in the code.
 
 ## Keeping it true
 

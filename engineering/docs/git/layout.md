@@ -67,4 +67,4 @@ Each addition gets a row in `docs/README.md` and, when it changes how work is do
 
 ## What stays out
 
-Secrets and real environment files (only `.env.example` with safe example values); generated output and build folders; editor and machine settings other than `.editorconfig`; a personal note or an agent's memory (what the team needs is in the repository or on the board); a second copy of anything that has a home here.
+A personal note or an agent's memory (what the team needs is in the repository or on the board), and a second copy of anything that has a home here.

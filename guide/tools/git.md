@@ -17,7 +17,7 @@ The skills drive git in a shell, the git host's command for what only the host d
 
 The test for a sentence: would it hold for every repository the pack makes, whatever it holds? Then it belongs in the set. A sentence that holds for one kind of product (a web app's localization section, a deploy record) stays in the skill that builds that product, in the reference that says what it adds to the shared shape, as `cloudflare-new-app`'s `references/working-agreement.md` does.
 
-The set sits in the area's `docs/` because the skills that include its pages are engineering skills. A skill of another area that writes into a repository (a document, a design file kept in git) reads `layout.md` through the repository connection before it adds a file, and adds its file to the layout's "What grows later" table in the same change.
+The set sits in the area's `docs/` because the skills that read its pages are engineering skills; neither includes one, so that each stays within what a command prints whole (`guide/skill-authoring.md`, on size). A skill of another area that writes into a repository (a document, a design file kept in git) reads `layout.md` through the repository connection before it adds a file, and adds its file to the layout's "What grows later" table in the same change.
 
 ## How the set's pages are written and kept
 
