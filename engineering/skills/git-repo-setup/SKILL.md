@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.12"
+  version: "1.13"
   tools: git
 skillcdn:
   translations:
@@ -91,7 +91,7 @@ Produces the **board**, with console.md's commands in its order. First the folde
 Produces the **repository**. Read the pages of the files. Then, in this order, each step a line to the user and, at the end of the phase, one report on the setup task:
 
 1. The stack's skeleton, for an empty folder with a stack: the package manager's own init, and the test runner, the linter, the type checker and the runtime version file of testing.md, each at the version it says how to find. A scaffold keeps its own choices, and a file already there is kept and completed, never replaced. The repository alone of a web app skips this step and says so: its code is scaffolded in later (agreement.md "Code that arrives later").
-2. The files of the root: `.gitignore` (with `.skillcdn-console.json` in it for a public repository), `.gitattributes` (`* text=auto eol=lf`), `.editorconfig`, `.env.example` where the code reads an environment, `.claude/settings.json` (agreement.md).
+2. The files of the root: `.gitignore` (with `.skillcdn-console.json` in it for a public repository), `.gitattributes` (`* text=auto eol=lf`), `.editorconfig`, `.env.example` where the code reads an environment.
 3. The check as testing.md "The check" says, and `.github/workflows/check.yml`. Run the check until it is green; a step that cannot run on this machine is named, and so is a runtime here that is not the one the repository pins.
 4. The documents of layout.md, with content from the answers and the code: `docs/README.md`, `docs/brief.md` (what was answered, and an "Open" list of what was not), `docs/architecture.md` (for an empty folder, the parts the stack implies and "nothing else yet"), `docs/decisions.md` with the setup's choices as its first lines.
 5. `AGENTS.md` by agreement.md, section by section, with the binding sentence `console use` printed at the head of its workflow and its Skills section for the project's pack, and `CLAUDE.md` importing it.
@@ -99,7 +99,7 @@ Produces the **repository**. Read the pages of the files. Then, in this order, e
 7. Only where the user asked for the skills in their tools through a connection of the host's, or the plan showed it: the connection files of agreement.md "A host's own connection, on request".
 8. A last read: every link resolves; every command the README and the agreement give runs as written, apart from those that need the remote; nothing is a placeholder or a fact nobody gave; every item of the brief's "Open" list names its task (`#<number>`).
 
-A host may ask the person before an agent writes `.claude/settings.json` (or `.mcp.json`, where step 7 writes it), since they change what agents may do in the folder. Where it refuses the write, show the person each file's content and its path, go on with the rest, and commit once they say the files are there; never write them by another route.
+A host may ask the person before an agent writes `.mcp.json`, where step 7 writes it, since it changes what agents may do in the folder. Where it refuses the write, show the person the file's content and its path, go on with the rest, and commit once they say the file is there; never write it by another route.
 
 ### Phase 5: Commit and push
 

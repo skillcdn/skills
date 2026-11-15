@@ -27,7 +27,7 @@ The opening paragraph says what the file is: "The working agreement for this rep
 2. **Commands.** A table, the check first and bold: "**Verify (run before every commit)**". Then install, dev, test by layer, build, migrations, and whatever the stack adds. Every command run from the root.
 3. **Map.** The top folders, one line each, and the single sources (configuration, the dictionaries, the database schema), each with what it holds. Dependencies between folders where they have a direction.
 4. **Workflow.** The binding sentence first, then where the work is tracked and the loop (below), the definition of done, and commits and pushes.
-5. **Rules.** At most eight, numbered, each with its why in the same sentence. The setup writes the two that hold for every repository from its first commit (secrets never in the repository, logs or chat; the check green before every commit) and those the code's structure already implies, a boundary a scaffold drew or a single source it keeps; every later rule enters after a slip that repeated or a correction made with emphasis, never in advance.
+5. **Rules.** At most eight, numbered, each with its why in the same sentence. The setup writes the two that hold for every repository from its first commit (secrets never in the repository, logs or chat, a secret file never opened or printed, `.env.example` saying what one holds; the check green before every commit) and those the code's structure already implies, a boundary a scaffold drew or a single source it keeps; every later rule enters after a slip that repeated or a correction made with emphasis, never in advance.
 6. **Testing.** Four to six lines, as testing.md "What the agreement says about tests".
 7. **Documentation protocol.** A table, "When you change ... / update in the same change": a command or a requirement: `README.md` and the command table; how parts fit: `docs/architecture.md`; a choice someone might undo: a line in `docs/decisions.md`; the scope: `docs/brief.md`; a procedure done for the first time: a page in `docs/guides/`; a document added (`DEPLOY.md`, a page of `docs/`): its row in `docs/README.md`; a folder: the map; a rule: this file; a gotcha learned the hard way: the Gotchas. Then: "One topic, one file. Link instead of restating. Current facts, not history: git is the changelog."
 8. **Working alongside others.** Two lines and a third: concurrent work on one machine in separate worktrees, each on a short-lived branch rebased onto the main branch, one task to a checkout; hot files (the lockfile, this file, the migrations) edited small and rebased before a push, the second of two new migrations renumbered; another task's work never fixed in passing, written as a task instead.
@@ -76,16 +76,3 @@ Written only when the user asks for the skills in their tools without the consol
 The section then ends with: "The same skills are served at <address>, declared for each tool in the repository (`.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml`); your tool asks you to approve the connection the first time it opens this folder. An agent that finds the server missing says so in one line and asks the person; no agent adds a connection on its own." Said so, the files read as the team's own setup, to a person and to a host's injection filters.
 
 What this route costs beside the console's: every person approves the connection in each tool; a private pack asks each of them for access of their own at SkillCDN, where the console reads it with the project's token; and Claude Code asks the person before an agent writes `.mcp.json`, so a session that cannot ask shows the content and the path and waits for the person to write it. The layout's map and the README's "How we work" then name the files (layout.md, readme-guide.md).
-
-## `.claude/settings.json`
-
-```json
-{
-  "permissions": {
-    "deny": ["Read(**/.env)", "Read(**/.env.local)", "Read(**/.env.*.local)", "Read(**/*.pem)", "Read(**/*.key)"],
-    "allow": ["Bash(<check command>)", "Bash(git status *)", "Bash(git diff *)", "Bash(git log *)", "Bash(console whoami)"]
-  }
-}
-```
-
-The patterns name the secret files exactly, so that `.env.example` stays readable; a skill that adds a secret file adds its pattern here (`.dev.vars`, `.cf-token`). Writes are not denied: an agent writes a generated value through the shell without reading the file back. A host with another settings file gets the same two lists in its own format.

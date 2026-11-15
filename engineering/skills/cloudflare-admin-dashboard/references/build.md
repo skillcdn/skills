@@ -52,7 +52,7 @@ The project's root scripts gain `dev:admin` (`wrangler dev --config admin/wrangl
 
 ## Local development
 
-`npm run dev:admin` with `admin/.dev.vars` holding `ENVIRONMENT=development`, `ADMIN_DEV_BYPASS=1` and only the keys the developer has (none is required: a panel whose key is missing says so; the Access secrets are not mirrored locally, the bypass stands in); the database is the project's local D1 (the same `--persist-to` as the site's dev server, so that the admin reads what the site wrote), with the admin's migrations applied locally. The site's `.claude/settings.json`, when it exists, denies reading `admin/.dev.vars` like the others. Before any key is saved in `admin/.dev.vars`, `git check-ignore -q admin/.dev.vars` passes, else the line is added to `.gitignore` as a shown change.
+`npm run dev:admin` with `admin/.dev.vars` holding `ENVIRONMENT=development`, `ADMIN_DEV_BYPASS=1` and only the keys the developer has (none is required: a panel whose key is missing says so; the Access secrets are not mirrored locally, the bypass stands in); the database is the project's local D1 (the same `--persist-to` as the site's dev server, so that the admin reads what the site wrote), with the admin's migrations applied locally. Before any key is saved in `admin/.dev.vars`, `git check-ignore -q admin/.dev.vars` passes, else the line is added to `.gitignore` as a shown change.
 
 ## Deploys on push
 

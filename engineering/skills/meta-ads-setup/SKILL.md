@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project, network access to graph.facebook.com, a Meta business portfolio with an ad account, a Page and the system user tokens the user creates, the project deployed with cloudflare-deploy (its address, its token file) for the live events and the domain, and finished creative files for the campaign phase. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: meta-marketing-api
 skillcdn:
   include:
@@ -72,7 +72,7 @@ Each phase produces a named artifact and ends with one line to the user. Nothing
 
 ### Phase 1: Access
 
-Produces the **access record**: the token's owner and permissions, the ad accounts with their currency, time zone, status, spend so far and minimum daily budget, the Pages and their Instagram accounts, the datasets that exist, from the read-only probe of access.md; first, as shown changes, `.meta-token` joins `.gitignore` and the host's read-deny list. A missing asset or permission is reported now with the Business settings path, not at the step that fails. Without a token, record "none" and continue with phase 2 and 3; the account and campaign parts of the plan are shown again when the token arrives.
+Produces the **access record**: the token's owner and permissions, the ad accounts with their currency, time zone, status, spend so far and minimum daily budget, the Pages and their Instagram accounts, the datasets that exist, from the read-only probe of access.md; first, as shown changes, `.meta-token` joins `.gitignore`. A missing asset or permission is reported now with the Business settings path, not at the step that fails. Without a token, record "none" and continue with phase 2 and 3; the account and campaign parts of the plan are shown again when the token arrives.
 
 ### Phase 2: Plan
 

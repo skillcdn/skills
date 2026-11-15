@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project with its dependencies installed, a Stripe account the user can create keys for, network access to api.stripe.com, and the Stripe CLI (installed with npm) for local webhook tests. The live phase needs the project deployed with cloudflare-deploy. A browser the agent drives is optional, for the test payments. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: stripe
 skillcdn:
   include:
@@ -72,7 +72,7 @@ Each phase produces a named artifact and ends with one line to the user. Nothing
 
 ### Phase 1: Access
 
-Produces the **access record**, kept at the head of `docs/payments.md` from phase 4 and shown in the plan: the account's id, country and settlement currency, whether charges are enabled, the key's mode, the default payment method configuration's methods that are on, and the account's default API version from the `Stripe-Version` header of the answer. First, as shown changes, the key files' names (`.stripe-live-setup-key`, `.stripe-live-runtime-key`) and the local secrets file join `.gitignore` when missing and the host's read-deny list (`.claude/settings.json` when the project has one), so that no later step can commit or read them. Then read the key from the local secrets file into the environment (never printed), call `GET /v1/account` and `GET /v1/payment_method_configurations` as [access.md](/engineering/docs/stripe/access.md) "Verify" says. A `permission_error` names the row the user must add; say so now. Confirm `stripe --version`. Find where the project loads local secrets (`.dev.vars` or `.env`, [platform.md](/engineering/docs/cloudflare/platform.md) "Bindings and secrets in code") and whether its Wrangler configuration declares `secrets.required`, which would hide a name not listed there.
+Produces the **access record**, kept at the head of `docs/payments.md` from phase 4 and shown in the plan: the account's id, country and settlement currency, whether charges are enabled, the key's mode, the default payment method configuration's methods that are on, and the account's default API version from the `Stripe-Version` header of the answer. First, as shown changes, the key files' names (`.stripe-live-setup-key`, `.stripe-live-runtime-key`) and the local secrets file join `.gitignore` when missing, so that no later step can commit them. Then read the key from the local secrets file into the environment (never printed), call `GET /v1/account` and `GET /v1/payment_method_configurations` as [access.md](/engineering/docs/stripe/access.md) "Verify" says. A `permission_error` names the row the user must add; say so now. Confirm `stripe --version`. Find where the project loads local secrets (`.dev.vars` or `.env`, [platform.md](/engineering/docs/cloudflare/platform.md) "Bindings and secrets in code") and whether its Wrangler configuration declares `secrets.required`, which would hide a name not listed there.
 
 ### Phase 2: Plan
 

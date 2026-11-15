@@ -32,10 +32,6 @@ The sections are agreement.md's; a web app fills them so:
 - **Working alongside others.** The roles: a planner writes in `docs/brief.md` and `docs/`; a designer changes the tokens in the stylesheet, `docs/brand.md` and `public/brand/`; a developer changes `src/`, `migrations/` and the tests. The shared files (`AGENTS.md`, `config/`, `migrations/`, the dictionaries' keys) are changed on purpose and named in the commit message; an agent that finds itself editing one for a side reason stops and asks.
 - **Skills.** Two lines under the shared paragraph, each by the skill's path in the pack: `engineering/skills/cloudflare-deploy/SKILL.md`, for anything on Cloudflare (secrets, the domain, the database, builds, the deploy record); `engineering/skills/cloudflare-new-app/SKILL.md`, whose references are the conventions this code follows.
 
-## `.claude/settings.json` for a web app
-
-The shared file (agreement.md), with the app's secret files added to `deny` (`Read(**/.dev.vars)`, `Read(**/.cf-token)`, `Read(**/.gemini-key)`) and its checks to `allow` (`Bash(npm run check)`, `Bash(npm run typecheck)`, `Bash(npm run lint)`, `Bash(npm test)`, `Bash(npm run build)`). The patterns name the secret files exactly, so that `.dev.vars.example` stays readable.
-
 ## What is open, and placeholders
 
 What the app leaves open (a key the user will supply later, an owner's details, content marked as a placeholder, a check not run) is written where the repository tracks its work: a task on the console project for each, in the shape the setup skill writes tasks, or `docs/status.md` where the repository has no console.

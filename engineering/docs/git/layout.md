@@ -19,7 +19,6 @@ docs/
 tests/ or beside code  per testing.md
 e2e/                   end-to-end journeys, where the product has a screen or a client
 .github/workflows/check.yml    the check on every push and pull request
-.claude/settings.json  secret files denied to agents; the check and read-only commands allowed
 .gitignore  .gitattributes  .editorconfig  .env.example  <runtime version file>  <the stack's configuration files>
 .skillcdn-console.json the console binding (console.md says when it is committed)
 ```
@@ -67,4 +66,4 @@ Each addition gets a row in `docs/README.md` and, when it changes how work is do
 
 ## What stays out
 
-A personal note or an agent's memory (what the team needs is in the repository or on the board), and a second copy of anything that has a home here.
+A personal note or an agent's memory (what the team needs is in the repository or on the board), and a second copy of anything that has a home here. A host's own settings file (`.claude/settings.json` and its kind) is not written either: what an agent may do in a folder without asking is each person's to grant in their host, which asks them before an agent writes such a file, or refuses the write. What keeps a secret out of an agent's context is the agreement's first rule, which every host reads.

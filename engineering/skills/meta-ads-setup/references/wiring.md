@@ -60,7 +60,7 @@ Nothing is sent from a loopback host unless `META_CAPI_TEST_EVENT_CODE` is set i
 
 ## Secrets
 
-The local secrets example file gains `META_CAPI_ACCESS_TOKEN` (and `_<MARKET>` per extra market; the dataset's own token, generated in Events Manager), `META_GRAPH_VERSION` (optional), `META_CAPI_TEST_EVENT_CODE` (verification only), with comments and no values; these are the public Worker's. `META_ADS_ACCESS_TOKEN` (the employee system user's read-only token) and `META_AD_ACCOUNT_IDS` (`<market>:act_<id>[@YYYY-MM-DD],...`) are the spend sync's and the dashboard's: they go into the local secrets file for the script and into the dashboard Worker's secrets, never into the public Worker. `DEPLOY.md`'s secrets section lists them under those two holders. Dataset ids and the verification tag are configuration, not secrets; `.meta-token` is neither, and is in `.gitignore` and the host's read-deny list.
+The local secrets example file gains `META_CAPI_ACCESS_TOKEN` (and `_<MARKET>` per extra market; the dataset's own token, generated in Events Manager), `META_GRAPH_VERSION` (optional), `META_CAPI_TEST_EVENT_CODE` (verification only), with comments and no values; these are the public Worker's. `META_ADS_ACCESS_TOKEN` (the employee system user's read-only token) and `META_AD_ACCOUNT_IDS` (`<market>:act_<id>[@YYYY-MM-DD],...`) are the spend sync's and the dashboard's: they go into the local secrets file for the script and into the dashboard Worker's secrets, never into the public Worker. `DEPLOY.md`'s secrets section lists them under those two holders. Dataset ids and the verification tag are configuration, not secrets; `.meta-token` is neither, and is in `.gitignore`.
 
 ## Tests
 

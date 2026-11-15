@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of a project that runs on Cloudflare Workers with a D1 database, the Cloudflare API token the deploy skill uses, network access to the Cloudflare API, and a person who can enable Cloudflare Access in the dashboard once. The read-only keys of the integrations the admin shows are created by that person; a chat bot token is optional, for alerts. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: cloudflare
 skillcdn:
   include:

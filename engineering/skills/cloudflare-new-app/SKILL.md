@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS; at least 22.18 for the typed Cloudflare configuration the scaffold writes), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.15"
+  version: "1.16"
   tools: cloudflare
 skillcdn:
   include:
@@ -75,7 +75,7 @@ Produces the **look** (`docs/brand.md`, the tokens in the stylesheet, the brand 
 
 Produces the **app**. In this order, each step reported in a line and verified before the next:
 
-1. Scaffold with the path platform.md names, as stack.md "Scaffold" says (the Node.js check, the command and its flags, what it makes, what is moved, the versions pinned, the branch renamed), keep the commit the scaffold makes when it makes one, write `docs/brief.md`, then the project files of stack.md "Files at the root": `.gitignore`, `.gitattributes`, `.editorconfig`, the Node.js version file, `.dev.vars.example`, `.claude/settings.json`, and the scripts `check`, `typecheck`, `lint`, `test`. The user's `.cf-token` moves into the project once `.gitignore` lists it.
+1. Scaffold with the path platform.md names, as stack.md "Scaffold" says (the Node.js check, the command and its flags, what it makes, what is moved, the versions pinned, the branch renamed), keep the commit the scaffold makes when it makes one, write `docs/brief.md`, then the project files of stack.md "Files at the root": `.gitignore`, `.gitattributes`, `.editorconfig`, the Node.js version file, `.dev.vars.example`, and the scripts `check`, `typecheck`, `lint`, `test`. The user's `.cf-token` moves into the project once `.gitignore` lists it.
 2. The structure of stack.md: the single sources (`config/i18n.ts`, `config/site.ts` with the site URL read from the public build variable, `config/features.ts`), the platform access module, the folders, the database binding with its placeholder id and the declared secrets (stack.md "Files at the root").
 3. Localization as [localization.md](references/localization.md) says: the locale list, the dictionaries typed for completeness, the routing, per-locale metadata, formatting, the switcher.
 4. The pages of the brief on the tokens, mobile-first (stack.md "Mobile first"), with the shell (header, footer, switcher, sign-in state).
