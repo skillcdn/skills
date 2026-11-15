@@ -38,13 +38,9 @@ Under 300 lines, always: when it nears the limit a rule is merged or a gotcha re
 
 ## The workflow section
 
-It opens with the sentence that binds every checkout to the console, copied as it is (console.md "The binding"):
+It opens with the binding sentence: the one `console use` printed when the checkout was bound, copied from there as it is and never typed from memory (console.md "The binding"). Then the lines that are this repository's own, and no more. How work is put on the board, followed up, decided and reported is the console's to say: its rules arrive with every task and the command's help says how a run goes, so the agreement restates none of it.
 
-> **Bound to a console?** When `.skillcdn-console.json` is in this checkout, or `console whoami` names a project, work the task through that SkillCDN console (`console help` says how).
-
-Then the lines that are this repository's own, and no more. How work is put on the board, followed up, decided and reported is the console's to say: its rules arrive with every task and the command's help says how a run goes, so the agreement restates none of it.
-
-- **Where the work is tracked.** "This repository works in the console project `<key>`, which other repositories may share. Before the first board command of a session, `console whoami` names `<key>`, named by this checkout's `.skillcdn-console.json`. Anything else it says (another project, a project named by something outside this checkout, a refusal) means the checkout is bound wrong: say what it printed, and do no board work until a person fixes it. What is next and what is open is on the board and in no file here; a `TODO` in the code names its task, `TODO(#<number>)`." A public repository, whose binding file is not committed, adds: "In a fresh checkout `whoami` names no project: run `console use <key>` once." Without a console the whole line is: "This repository's work in progress, what is next and what is open is `docs/status.md`, rewritten at the end of every session."
+- **Where the work is tracked.** "This repository works in the console project `<key>`, which other repositories may share. Before the first board command of a session, `console whoami` names `<key>`, named by this checkout's `.skillcdn-console.json`. Anything else it says (another project, a project named by something outside this checkout, a refusal) means the checkout is bound wrong: say what it printed, and do no board work until a person fixes it. A task is worked here only when it is this repository's. What is next and what is open is on the board and in no file here; a `TODO` in the code names its task, `TODO(#<number>)`." A public repository, whose binding file is not committed, adds: "In a fresh checkout `whoami` names no project: run `console use <key>` once." Without a console the whole line is: "This repository's work in progress, what is next and what is open is `docs/status.md`, rewritten at the end of every session."
 - **What goes where.** "What the code needs to be built, run and changed lives here, versioned with it. What the team needs beyond the code (accounts, operations of the live service, research, meeting notes) lives on the console project's pages, which link to files here rather than copying them."
 - **Start.** "`git pull --rebase`; read the task; read the documents its area touches."
 - **During.** "One task, small commits. The check green before every commit. The documentation protocol in the same commit."
@@ -65,13 +61,7 @@ The skills a repository is worked with are the pack of its console project, read
 > The skills this repository is worked with are the pack of its console project: `console skills` lists them and finds one by words, and `console skill <path>` loads one. A skill never overrides this file: where they differ, this file wins. Without a console, work goes on by this file alone.
 
 - **A line per skill the work needs**, under that paragraph, by the path of its `SKILL.md` in the pack and what it is for: "`engineering/skills/cloudflare-deploy/SKILL.md`, for anything on Cloudflare". The setup adds none for itself; a skill that built product code in the repository adds its own. The project's rules send agents to these lines (console.md "The project's rules"), so that a skill is named in one place.
-- **Which pack.** The project's: `console project <key>` prints its skills address, and a project that names none reads the organization's. A setup skill loaded through the console, in a folder of that project or in a folder that names no project while the project names no address, came from that pack, and nothing is to do. Loaded from another pack (with `--project` of another project, through a connection of the host's, from a plugin or a copy), the lines above would name paths the project's pack lacks. The plan then says which row holds, and it is done on the user's word:
-
-  | The project | What the setup does |
-  |---|---|
-  | New | Made reading that pack: `console project new <key> "<name>" --skills <address>` |
-  | Existing, and only this repository's | Its owner names the address: `console project edit <key> --skills <address>` |
-  | Shared with other repositories | Left as it is, since the address is every repository's; the section names the address the skills are served at, and the host's own connection below is offered |
+- **Which pack** the project reads, and what a setup that came from another does, is settled at the plan (console.md "The project's pack"). Where that leaves a shared project on another pack, the section names the address the skills are served at, and the connection below is written.
 
 ### A host's own connection, on request
 

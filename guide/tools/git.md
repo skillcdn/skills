@@ -19,6 +19,10 @@ The test for a sentence: would it hold for every repository the pack makes, what
 
 The set sits in the area's `docs/` because the skills that include its pages are engineering skills. A skill of another area that writes into a repository (a document, a design file kept in git) reads `layout.md` through the repository connection before it adds a file, and adds its file to the layout's "What grows later" table in the same change.
 
+## How the set's pages are written and kept
+
+Each page says what holds now, by topic. A fact about a tool that can move (a command's flag, a host's file format) carries the month it was checked; a rule of the layout carries none, and changes when a run shows it wrong. The templates use placeholders (`<owner>`, `<key>`, `<check command>`), never a real repository, person or console. What a run taught goes into the sentence it bears on: a layout rule that did not hold in a real repository, a command of the console or of the git host that behaved differently, with the version and the month. What only the setup skill's method learned goes in its own `references/tool-notes.md`. None of this is in the set's own README, which a run may read.
+
 ## The desk skill
 
 `git-desk-setup` makes a member's own desk a repository. The desk's files and its dashboard's shell are the console's, written by `console desk` and `console agent setup`, so the skill carries only its method (what it asks, the checks before the first commit, the private remote) and one reference for the dashboard, which a person's phase links and an agent account's run never reads; it reads none of the set, since a desk has no layout of the pack's and is bound to no project. What the console's command prints and writes changes with its version: the skill names the command and what it is for, and quotes no output.
