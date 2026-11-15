@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS; at least 22.18 for the typed Cloudflare configuration the scaffold writes), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.12"
+  version: "1.13"
   tools: cloudflare
 skillcdn:
   include:
@@ -87,7 +87,7 @@ Produces the **app**. In this order, each step reported in a line and verified b
 
 ### Phase 5: Agreement
 
-Produces the **working agreement**. Run `git-repo-setup` on the project folder with what this run already has, as [working-agreement.md](references/working-agreement.md) "Running the setup skill" says: it lays the repository out (`AGENTS.md` with `CLAUDE.md` importing it, `README.md` in the readers' language, `docs/`, the check's continuous integration, the skills connection at the address this skill was loaded from) and binds it to a console project with the setup task taken, at its own stop for the project. Then add the web app's part of working-agreement.md (`docs/brand.md`, `.dev.vars.example`, what `AGENTS.md` says for a web app, what is open as tasks), and make the first commit of the skill's work on top of the scaffold's, with everything above and nothing secret. Nothing is pushed here: pushing is the deploy skill's stop.
+Produces the **working agreement**. Run `git-repo-setup` on the project folder with what this run already has, as [working-agreement.md](references/working-agreement.md) "Running the setup skill" says: it lays the repository out (`AGENTS.md` with `CLAUDE.md` importing it, `README.md` in the readers' language, `docs/`, the check's continuous integration, the agreement's Skills section for the console project's pack) and binds it to a console project with the setup task taken, at its own stop for the project. Then add the web app's part of working-agreement.md (`docs/brand.md`, `.dev.vars.example`, what `AGENTS.md` says for a web app, what is open as tasks), and make the first commit of the skill's work on top of the scaffold's, with everything above and nothing secret. Nothing is pushed here: pushing is the deploy skill's stop.
 
 ### Phase 6: Launch
 
@@ -95,7 +95,7 @@ Hands over to **`cloudflare-deploy`** with: the project path, the token file the
 
 ### Phase 7: Delivery
 
-One message: the address (or the local one, when the launch waits on the user), what was built in the user's words, what the check verified and what was not run (a layout verdict without a browser), what is placeholder or waiting (a key, nameservers, the owner's details, marked content), each a task on the console project or a line of `docs/status.md`, and how the team continues: open the repository, sign in to the console, approve the skills connection when the tool asks, read `AGENTS.md`, and the loop it describes.
+One message: the address (or the local one, when the launch waits on the user), what was built in the user's words, what the check verified and what was not run (a layout verdict without a browser), what is placeholder or waiting (a key, nameservers, the owner's details, marked content), each a task on the console project or a line of `docs/status.md`, and how the team continues: open the repository, sign in to the console, read `AGENTS.md`, and the loop it describes.
 
 ### Verdicts
 

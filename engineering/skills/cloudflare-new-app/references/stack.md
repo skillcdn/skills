@@ -40,7 +40,7 @@ Then, before anything else is written: move `app/` to `src/app/` and point the a
 | `.env.example` | The public build variables: `NEXT_PUBLIC_SITE_URL` (the dev server's address in development, on the dev server's port, 5173 unless `vite.config.ts` sets one; the deploy skill sets the live one), `NEXT_PUBLIC_CF_BEACON_TOKEN` (empty until the deploy skill creates the analytics site); an example only, no local `.env` is written (Wrangler reads one as secrets next to `.dev.vars`; what the typed scaffold's dev server does with one was not seen, 2026-11), the values come from the shell or the build's variables |
 | `.claude/settings.json` | Denies reads of secret files, allows the check commands and read-only git commands (working-agreement.md) |
 | `AGENTS.md`, `CLAUDE.md`, `README.md`, `docs/`, `.github/workflows/check.yml` | `git-repo-setup` at phase 5, with the app's part of working-agreement.md |
-| `.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml` | The skills connection, one file per tool, at the address this skill was loaded from, written by `git-repo-setup` at phase 5 ([agreement.md](/engineering/docs/git/agreement.md) "The skills section") |
+| `.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml` | Only where the user asked for the skills in their tools through a connection of the host's own: one file per tool, written by `git-repo-setup` at phase 5 ([agreement.md](/engineering/docs/git/agreement.md) "The skills section") |
 
 ## The structure
 
