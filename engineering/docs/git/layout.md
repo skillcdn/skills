@@ -45,7 +45,7 @@ Work in progress, what is next and what is open live on the console project the 
 - Every file of the repository an agent reads is in English: `AGENTS.md`, `CLAUDE.md`, everything in `docs/`, code, comments, identifiers, commit messages, test names; and the console project's rules, which agents read with every task. One language for agents keeps a rule from being read two ways and a search from missing half the documents.
 - `README.md` is in the language of its readers, the user's unless they name another. A second language is a second file (`README.en.md`), linked from the first line of each, and only when asked.
 - What the product says to its users is in their languages, in the product's own dictionaries.
-- What people read on the console (the project's name and description, the goal, tasks, reports, decisions, hand-in labels) is in the board's language: the one the workspace's rules name for what people read (`console rules` prints them), else the user's.
+- What people read on the console (the project's name and description, the goal, tasks, reports, decisions, hand-in labels) is in the board's language: the one the rules' Reporting line names (`console rules` prints it), or the project's own where what the project adds names another.
 
 ## What grows later
 

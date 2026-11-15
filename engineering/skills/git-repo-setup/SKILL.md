@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.8"
+  version: "1.9"
   tools: git
 skillcdn:
   translations:
@@ -133,7 +133,7 @@ A skill that builds the product (`cloudflare-new-app`) runs this one on its proj
 ## Hard rules
 
 1. Every file of the repository an agent reads is in English, and `README.md` in its readers' language: agents read one language, and people read theirs.
-2. The binding sentence is the one `console use` printed, copied from there word for word and never typed from memory or from the pack's rule, and the agreement names the project's key beside it: the sentence sends every agent to the console, and the key lets it see that the checkout is bound to the right project. A checkout is bound right when `console whoami` names that key, named by the checkout's own file; any other does no board work until a person fixes it.
+2. The binding sentence is the one `console use` printed, copied from there word for word and never typed from memory or from the pack's rule, and the agreement names the project's key beside it: the sentence sends every agent to the console, and the key lets it see that the checkout is bound to the right project. A checkout is bound right when `console whoami` names that key, named by the checkout's own file; any other does no board work until a person fixes it or says to bind it to that key, and it is bound to no other.
 3. Nothing is created or changed outside the machine unless the checkpoint listed it and the user said yes, and a public remote not without its own yes: others see it and it outlives the run. What the user may not do on the console is never worked around: it is written as a task for whoever may.
 4. Nothing is invented: a document says what the user said or the code shows, and what is not known is written as open and becomes a task. An empty template or a guessed fact teaches every later agent to trust it.
 5. `.env.example` carries names and safe example values only, and the binding file never a token or an account.
