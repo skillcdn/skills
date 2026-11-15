@@ -4,7 +4,7 @@ Two pages for the agent that has just connected to this pack and must decide whe
 
 | Document | Holds | Read |
 |---|---|---|
-| [`finding-a-skill.md`](finding-a-skill.md) | How the pack is laid out (areas, the name of a skill, the document sets), the three ways to find a skill (the jobs index, browsing an area, searching the whole pack with English words), how a result is read, what to do when no skill fits, and dated examples of what the search returned. | On connecting, before choosing a skill; whenever a request does not name a skill. |
+| [`finding-a-skill.md`](finding-a-skill.md) | How the pack is laid out (areas, the name of a skill, the document sets), the three ways to find a skill (the jobs index, browsing an area, searching the whole pack with English words), which command each read is through a console, how a result is read, what to do when no skill fits, and dated examples of what the search returned. | On connecting, before choosing a skill; whenever a request does not name a skill. |
 | [`jobs.md`](jobs.md) | One section per job: the sentence a user says, what comes back, the skill's path, other ways the job is asked for, and the skill that looks alike but does something else. | First, with `search_repo` scoped to `docs/pack`, or whole. |
 
 ## How these pages are kept

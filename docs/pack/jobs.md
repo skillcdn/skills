@@ -1,6 +1,6 @@
 # Jobs this pack does
 
-What you can ask for, in your own words, and which skill does it. One section per job: the sentence a user says, what comes back, the skill's path (load it with `load_skill` as it is), other ways the job is asked for, and the skill that looks alike but does something else. An agent searches this page first, with `search_repo` scoped to `docs/pack`, then the whole pack; [finding-a-skill.md](finding-a-skill.md) says how. Every skill in the pack has a section here.
+What you can ask for, in your own words, and which skill does it. One section per job: the sentence a user says, what comes back, the skill's path (load it with `load_skill` as it is), other ways the job is asked for, and the skill that looks alike but does something else. An agent searches this page first, with `search_repo` scoped to `docs/pack`, then the whole pack; [finding-a-skill.md](finding-a-skill.md) says how, and which command each read is through a console. Every skill in the pack has a section here.
 
 ## Marketing
 
