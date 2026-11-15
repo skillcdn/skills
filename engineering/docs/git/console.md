@@ -55,7 +55,7 @@ The project reads the organization's pack unless it names a skills address of it
 
 A project's rules hold what differs in that project from the workspace's rules and nothing else, in at most five things, a section only where it has something to say: where its work lives, the skills to load first, its pages' folders, who decides what, and its language. So a project set up by this pack and one set up by hand read alike.
 
-Before the plan, `console rules --project <key>` is read to its end: a project's own rules stand after the workspace's, and a project that has some gains a line, never a new set. For a new project, its owner writes them from the bound checkout, `console rules write --file <path>`, because the user asked for the setup and the checkpoint listed them; every agent at work in the project reads them with each task it takes. They are in English, like everything agents read, and hold nothing secret. Never `--workspace`: those rules are the whole organization's. An existing project's rules are its owner's: the repository's line under "Where the work lives", and one under "Skills to load first" where a skill is named for it, are added to what is there, shown in the plan, and written only on that owner's word, the user's own where they are the owner, from the version `console rules` printed and with `--base <version>`, so that nothing else changes.
+Before the plan, `console rules --project <key>` is read to its end: a project's own rules stand after the workspace's, and a project that has some gains a line, never a new set. For a new project, its owner writes them from the bound checkout, `console rules write --file <path>`, because the user asked for the setup and the checkpoint listed them; every agent at work in the project reads them with each task it takes. They are in English, like everything agents read, and hold nothing secret. Never `--workspace`: those rules are the whole organization's. An existing project's rules are its owner's: the repository's line under "Where the work lives" is added to what is there, shown in the plan, and written only on that owner's word, the user's own where they are the owner, from the version `console rules` printed and with `--base <version>`, so that nothing else changes.
 
 ```markdown
 # Rules of this project
@@ -64,11 +64,11 @@ What differs here from the workspace's rules, and nothing else.
 
 ## Where the work lives
 
-- The repository <owner>/<name> on <git host>: <what it holds, in a few words>.
+- The repository <owner>/<name> on <git host>: <what it holds, in a few words>. Its AGENTS.md names the skills its work needs.
 
 ## Skills to load first
 
-- `<path of a SKILL.md in the project's pack>`, for <which tasks, in which repository>.
+- `<path of a SKILL.md in the project's pack>`, for <which tasks, in every repository of the project>.
 
 ## The pages
 
@@ -86,7 +86,7 @@ What differs here from the workspace's rules, and nothing else.
 What a setup writes of the five:
 
 - **Where the work lives**, always: this repository's line.
-- **Skills to load first**, where a skill is named for the repository's work: by its path in the pack, with what it is for and in which repository. A skill that built product code in the repository hands its own line; the setup names none for itself.
+- **Skills to load first**, only what holds for every repository of the project, which the setup of one repository seldom has to say; the section is left out where there is nothing of that kind. A skill that is this repository's is a line of its agreement (agreement.md "The skills section").
 - **The pages**, only where the project's folders are other than the workspace's.
 - **Who decides what**, only where the user said who decides a kind of question.
 - **Language**, only where it is another than the workspace's.

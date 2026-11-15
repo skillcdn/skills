@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.7"
+  version: "1.8"
   tools: git
 skillcdn:
   translations:
@@ -76,7 +76,7 @@ Produces the **plan**. Read the pages of the plan. Ask the questions of Inputs t
 - the people: each teammate, with the access each gets (collaborator on the remote, member of the project);
 - the tree of layout.md, with the files this run writes, those it keeps, and the brief's open items;
 - the check: the command, what it runs, the test it starts with (testing.md "The check"), the continuous integration job;
-- the console project: the existing one the user picked, with the lines its rules gain, or a new one (`<key>`, its name) with its rules, in the five things console.md gives them; the goal, where there is one, and the tasks, one line each; its pack, where this skill came from another (console.md "The project's pack");
+- the console project: the existing one the user picked, with the line its rules gain, or a new one (`<key>`, its name) with its rules, in the five things console.md gives them; the goal, where there is one, and the tasks, one line each; its pack, where this skill came from another (console.md "The project's pack");
 - the steps that are the project's owner's where the user is not (console.md "Who may do what"), each marked as theirs with its command;
 - what the README says, in its language, in two lines.
 
@@ -84,7 +84,7 @@ Checkpoint: "Here is the plan. Outside this machine, I will:", then each line th
 
 ### Phase 3: Board
 
-Produces the **board**, with console.md's commands in its order. First the folder: created when new, `git init -b main`. Then: the project made, or the existing one chosen; where the user owns it, the teammates added, its rules written or the repository's lines added to them, and the goal for a new project; where they do not, those steps written as one task for its owner; the checkout bound (`console use <key>`) and checked with `console whoami` (hard rule 2); the setup task written and taken, so that the rest of the run reports on it; the next tasks, each naming the repository. Without a console, this phase writes nothing and `docs/status.md` takes the board's place in phase 4.
+Produces the **board**, with console.md's commands in its order. First the folder: created when new, `git init -b main`. Then: the project made, or the existing one chosen; where the user owns it, the teammates added, its rules written or the repository's line added to them, and the goal for a new project; where they do not, those steps written as one task for its owner; the checkout bound (`console use <key>`) and checked with `console whoami` (hard rule 2); the setup task written and taken, so that the rest of the run reports on it; the next tasks, each naming the repository. Without a console, this phase writes nothing and `docs/status.md` takes the board's place in phase 4.
 
 ### Phase 4: Files
 
@@ -118,7 +118,7 @@ Produces the **delivery**. On the board: the commit handed in on the setup task 
 
 ## Run by another skill
 
-A skill that builds the product (`cloudflare-new-app`) runs this one on its project folder and hands it what its own run settled: what the product is and for whom, who works in it, the stack and its check, the README's language, the skills the project's rules are to name for the repository, and whether it keeps the remote. Nothing handed is asked again, and the plan here shows only the console project and the teammates. Where the caller keeps the remote, this skill ends after phase 4 with the files written, the check green and the board set, and gives the caller the setup task's number, on which the caller reports, hands in and finishes.
+A skill that builds the product (`cloudflare-new-app`) runs this one on its project folder and hands it what its own run settled: what the product is and for whom, who works in it, the stack and its check, the README's language, the lines its Skills section gains, and whether it keeps the remote. Nothing handed is asked again, and the plan here shows only the console project and the teammates. Where the caller keeps the remote, this skill ends after phase 4 with the files written, the check green and the board set, and gives the caller the setup task's number, on which the caller reports, hands in and finishes.
 
 ## Verdicts
 

@@ -56,11 +56,11 @@ A repository set up before its code (the layout and the documents now, a framewo
 
 ## The skills section
 
-The skills a repository is worked with are the pack of its console project, read through the console by every person's agent with nothing to connect. The section says so, and no more:
+The skills a repository is worked with are the pack of its console project, read through the console by every person's agent with nothing to connect. The section says so, and names the skills that are this repository's:
 
-> The skills this repository is worked with are the pack of its console project: `console skills --search <words> --limit 5` finds one, and `console skill <path>` loads it. The project's rules name the ones to load first. A skill never overrides this file: where they differ, this file wins. Without a console, work goes on by this file alone.
+> The skills this repository is worked with are the pack of its console project: `console skills --search <words> --limit 5` finds one, and `console skill <path>` loads it. A skill never overrides this file: where they differ, this file wins. Without a console, work goes on by this file alone.
 
-- **The skills the work needs** are named in the project's rules, under "Skills to load first", by the path of each in the pack (console.md "The project's rules"): one place, the same in a project set up by hand. A skill that built product code in the repository hands the setup its line ("`engineering/skills/cloudflare-deploy/SKILL.md`, for anything on Cloudflare in <owner>/<name>"); the setup names none for itself. Without a console the lines stand in this section instead, with the address the pack is served at.
+- **A line per skill that is this repository's** (the one that built it, the one that deploys it), under that paragraph, by the path of its `SKILL.md` in the pack and what it is for: "`engineering/skills/cloudflare-deploy/SKILL.md`, for anything on Cloudflare". The setup adds none for itself; a skill that built product code in the repository adds its own. Its home is the agreement and not the project's rules, for three reasons: the agreement is handed to every session in the checkout before any step, a task taken or not; whoever sets the repository up can write it, while a project's rules are its owner's; and a project may be shared, so that a skill of one repository would need a qualifier there. A project's rules name only the skills that hold for every repository of the project (console.md "The project's rules").
 - **Which pack** the project reads, and what a setup that came from another does, is settled at the plan (console.md "The project's pack"). Where that leaves a shared project on another pack, the section names the address the skills are served at, and the connection below is written.
 
 ### A host's own connection, on request
