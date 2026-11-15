@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.5"
+  version: "1.6"
   tools: git
 skillcdn:
   translations:
@@ -46,7 +46,7 @@ What every repository of this pack shares is the area's set [`engineering/docs/g
 | [agreement.md](/engineering/docs/git/agreement.md) | The files | `AGENTS.md` section by section |
 | [readme-guide.md](/engineering/docs/git/readme-guide.md) | The files | The README |
 
-A page is read the way this skill was: through a console with `console skill --file <path from the pack's root>`, through a connection of the host's with its file read, as the file at `docs/git/` of the engineering plugin, or in a checkout of the pack. Read it from the folder this skill was loaded in, or before the new folder is bound: a bound checkout reads its own project's pack, which may be another. A mount of this skill alone, or a copy of its directory, lacks the pages: fetch them from `engineering/docs/git/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack). A page that cannot be read stops the phase that needs it, said to the user; nothing of it is written from memory.
+A page is read the way this skill was: through a console with `console skill --file <path from the pack's root>`, through a connection of the host's with its file read, as the file at `docs/git/` of the engineering plugin, or in a checkout of the pack; each page in a call of its own, since a host hands on only so much of one call's output. Read it from the folder this skill was loaded in, or before the new folder is bound: a bound checkout reads its own project's pack, which may be another. A mount of this skill alone, or a copy of its directory, lacks the pages: fetch them from `engineering/docs/git/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack). A page that cannot be read stops the phase that needs it, said to the user; nothing of it is written from memory.
 
 ## Inputs
 
