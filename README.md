@@ -40,6 +40,7 @@ One folder per area of work. Each carries a `SKILLCDN.md` that says who its skil
 | [`media/`](media/) | Original video and audio content: scripted short dramas, series episodes, story-driven shorts. | 1 |
 | [`design/`](design/) | Slides and decks, card news posts and the formats they are built in, brand assets, icons and store graphics, made in the team's design tool, drafted as HTML and PDF before the tool, or varied as looks on a contact sheet. | 5 |
 | [`operations/`](operations/) | Running the company's and its clients' work day to day: the minutes of a meeting sent the same day, status reports, visit logs, handovers, the records an engagement keeps. | 1 |
+| [`writing/`](writing/) | Text that is the result itself, read as it is: an article, a report, a self-introduction, a briefing. No skill yet: the kinds planned are in the roadmap, and what every text shares is in `docs/writing/`. | 0 |
 
 Areas to come, each with its first skill: sales, support, data, finance, legal, people. The naming rule and the steps are in [guide/adding.md](guide/adding.md); what is planned, stage by stage of a product's life, is in [guide/roadmap.md](guide/roadmap.md); how an agent finds a skill as the pack grows, and how that is checked, is in [guide/finding.md](guide/finding.md).
 

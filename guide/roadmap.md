@@ -117,3 +117,17 @@ The `operations` area was created with its first skill; `support` and `data` are
 |---|---|---|---|
 | "Make episode one of a short drama from this premise." [`higgsfield-shorts-drama`](../media/skills/higgsfield-shorts-drama/). A fresh run reached the cost checkpoint with the fallback named (2026-10); a production of this version, a second episode and a 150-second episode are untried. | media | Higgsfield | done |
 | "Make an explainer video for this." | media | Higgsfield explainer presets | candidate |
+
+## M9: Writing
+
+Text that is the result itself, read as it is. The `writing` area was created before its first skill, with the document set [`docs/writing/`](../docs/writing/README.md): what every text of the pack shares, generalized from the skills that already write ([writing.md](writing.md)). Every row below starts from that set and adds what its kind of text needs. A text that is one part of another stage's job stays in that stage (the opportunity brief in M1, the launch posts in M6, the support macros in M7) and reads the same set. No existing skill links the set yet: each does when it is next revised, the minutes and the deck first.
+
+| Job | Area | Tool family | Status |
+|---|---|---|---|
+| "Read this draft and fix it." A text someone already wrote, checked against the writing set and the organization's house style: each change shown with its reason, nothing added that the draft does not hold. The first to build, since the set is its method. | writing | Open | candidate |
+| "Write an article on this." A news or a feature article from sourced material: the facts and the angle first, then the lead and the body in the outlet's register, every quote as printed and every claim with who made it. | writing | Web, and the document tool in use | candidate |
+| "Write the report." A report a reader decides from: the question it answers, the findings with their evidence kept apart from the reading, what is not known, in the organization's own form. | writing | The document tool in use | candidate |
+| "Write my self-introduction." A self-introduction or a cover letter for one application, from the person's own record and the posting it answers, in their voice, with nothing the record does not hold. | writing | Open | candidate |
+| "Brief me on this." A briefing for one reader before a meeting or a decision: what is asked of them first, then what they need to know to answer, on one page. | writing | The organization's records and its board | candidate |
+| "Write the press release." The announcement in the form outlets take, from the facts the organization confirms, with the quote its speaker approved. | writing | Open | candidate |
+| "Write the notice." A notice, a formal letter or an email to many readers: what changes for them and what they do, in the organization's register. | writing | Open | candidate |
