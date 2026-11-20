@@ -1158,7 +1158,14 @@ def choose_route(prefer=None):
 
 
 def describe_route(route, info):
-    return {"python": "python-playwright", "node": f"node playwright-core from {os.path.dirname(info)}", "bare": f"{info} (bare: no layout report)"}.get(route, "none")
+    # One branch per route: `info` is None on the Python route and where no route was found.
+    if route == "python":
+        return "python-playwright"
+    if route == "node":
+        return f"node playwright-core from {os.path.dirname(info)}"
+    if route == "bare":
+        return f"{info} (bare: no layout report)"
+    return "none"
 
 
 def _rmtree(path):
