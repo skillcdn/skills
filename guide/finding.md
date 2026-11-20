@@ -36,8 +36,9 @@ The requests of the round, with the skill each must find:
 | "Give me a few different directions for our landing page hero before we build it." | `html-design-variations` |
 | "우리 사이트 매출이랑 광고 성과를 한눈에 보는 관리자 페이지 만들어줘." (an admin page with our site's sales and ad results at a glance) | `cloudflare-admin-dashboard` |
 | "회사 정책 문서들이 PDF로 잔뜩 있는데, 에이전트가 검색해서 쓸 수 있게 만들어줘." (make our policy PDFs searchable for agents) | `skillcdn-document-pack` |
+| "다음 달 신제품 출시 보도자료 써줘." (write the press release for next month's launch) | none: the agent says so, and names `docs/writing/` as what it would write by |
 
-All eleven found what they must under SkillCDN 0.5.2 (2026-11-16), on commit 00e0d5d and again on commit cd13d10, before and after `finding-a-skill.md` lost its list of what each area holds and its table of examples to this page, with three to five reads of the pack before the skill both times; the session with no skill to find read the jobs index's section on jobs with no skill before it said so.
+All eleven found what they must under SkillCDN 0.5.2 (2026-11-16), on commit 00e0d5d and again on commit cd13d10, before and after `finding-a-skill.md` lost its list of what each area holds and its table of examples to this page, with three to five reads of the pack before the skill both times; the session with no skill to find read the jobs index's section on jobs with no skill before it said so. The twelfth request joined the round with the writing set and was run alone, as a subagent with the pack's four read tools and nothing else, on commit 76aad81 under SkillCDN 0.5.3 (2026-11-21): it read the finding page, searched the jobs index and read it whole, searched the whole pack once and read the writing set's index, five reads of the pack, then said that no skill writes a press release, named the three nearest skills with what each does not do, and offered to write by the set's pages.
 
 ## Search examples
 
