@@ -191,4 +191,4 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ## Jobs with no skill yet
 
-What the pack plans next is kept in its guide on the git host, which the mount does not serve. For a job no section above covers, the agent says so and names the nearest one above.
+What the pack plans next is kept in its guide on the git host, which the mount does not serve. For a job no section above covers, the agent says so and names the nearest one above. A text asked for as the result itself (an article, a self-introduction, a briefing, a written report that is neither a deck nor the research a section above delivers) has no skill yet: say so, and where the user wants it written all the same, write it by the pages of [`/docs/writing/`](/docs/writing/README.md), which hold what every text of this pack shares.
