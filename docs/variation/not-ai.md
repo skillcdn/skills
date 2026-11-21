@@ -16,6 +16,7 @@
 | A line that could be any product's: take the product away and it still works. | A rule the product's own world gives; another device. |
 | A hook that needs decoding (a brand term, a coined word, a name that carries nothing yet). | Every word one the viewer knew before; the figure as a title that says their power, the name on the end card. |
 | The summary of what was just said, on the slide after it was said. | Cut it; the detail goes where the medium keeps detail (a caption, a note, the meeting). |
+| A middle dot joining words inside a sentence (`A·B·C`), or a long dash setting off an aside (`the plan — and its cost — came later`). As a separator outside a sentence (a row of links, a label line, a name card, the source after a quote) either may stay. | "And" or a comma between the words (in Korean 와/과 or a comma); a comma, a colon, parentheses or a second sentence for the aside. |
 
 ## Signals in a story or a concept
 
