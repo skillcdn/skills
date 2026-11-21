@@ -10,6 +10,7 @@ The run these skills come from was one job in the user's words ("make a card-new
 |---|---|
 | `format-spec.md`: the fields of the spec, how each is measured and how the build reads it, and the ways to a spec when the reference's site is walled from the host, which apply the browser set's `walls.md` to a format | How posts are read on the site, which posts, the slide log, the verdicts of the study |
 | `topic-brief.md`: the fields of the brief, how each is obtained and how the build reads it | How candidates are searched and ranked, the facts table, the angle test, image sourcing from where the articles point (their photos, a cited clip's frames, the subject's pages, a search last), legibility |
+| `account.md`: what an account that keeps posting holds beside its posts, and where: the policy's headings, a post's record and its states, the ledger and what counts as an overlap | What each skill does with the record: the research's candidates against the policy and the ledger, the states the build writes, the batch's and the posting's writes |
 | | The script's checks, how the spec's slide types become the page's classes (the build has no catalogue of its own), the page, the server and export scripts, the review |
 
 The test for a sentence: would the next skill that writes or reads a spec or a brief need it? Then it belongs in the set. Everything about one skill's method stays in that skill, because each may be mounted alone or copied.
