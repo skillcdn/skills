@@ -70,7 +70,7 @@ Each phase produces a named artifact. Phases stop only at the checkpoints above.
 Produces the **intake record**.
 
 1. Both inputs in the request: ask nothing, say in a line what happens next, go on. The product missing: ask for it as [analysis-brief.md](references/analysis-brief.md) "Intake" shows, and stop.
-2. Read the product page as "Product brief" there: name, what it is, tagline, claims (only these may be spoken), language, images, and its type and colors ([design.md](references/design.md)). The site's assets are the advertiser's and may be used.
+2. Read the product page as "Product brief" there: name, what it is, tagline, claims (only these may be spoken), language, images, and its type and colors ([design.md](references/design.md)).
 3. The reference missing: find one as "When there is no reference" there says, in the market of the ad's language, and say so in a line; ask for it only when no skill at hand can find one.
 4. Derive the rest and record it. The artifacts of every phase are written in the folder the user named for the run, else in a folder named for the ad outside any repository; the delivery says where.
 

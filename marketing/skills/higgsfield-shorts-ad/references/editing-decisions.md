@@ -14,7 +14,7 @@ The reference video itself is never a build material. No frame, clip, still or s
 | Logos and product packshots as overlays | The real asset, pixel-exact, from the product's site or the user's upload. |
 | App screens, search boxes, chat bubbles, phone interfaces | Composed in code from the product's own pages (a mobile-viewport screenshot with the sandbox's Playwright and headless Chromium), or drawn as a still in the style line, then overlaid; models garble interface text. |
 | End cards | Composed as a layout in the brand's type and colors ([design.md](design.md)), lightly animated; no reason to generate. |
-| Music bed | Licensed or user-supplied track, mixed with ducking under speech. |
+| Music bed | A track the user supplies, mixed with ducking under speech. |
 | Freeze frames, speed ramps, zooms on a still frame | Pure post-production. |
 | Transitions between shots (cut, dip to black, whip) | Concatenation and filters. |
 
@@ -38,7 +38,7 @@ The reference video itself is never a build material. No frame, clip, still or s
 | A cut inside a shot of the reference (jump cut for pace) | One generation, then cut in code | Cutting is free. |
 | Picture-in-picture: an inset video playing over the main shot | Generate the inset only if it must be new footage; otherwise use a user-supplied clip or a still, composited in code | The model cannot place an inset accurately. |
 | A sound effect that is comedic or emphatic (record scratch, ding) | Code, from a user-supplied effect or one synthesized in the sandbox with sox (a sine ding, a filtered-noise whoosh) | Models rarely produce it on cue, and the server's audio tool makes speech only. |
-| Music that is heard in the reference | Never from the reference itself (rights). A user-supplied licensed track, mixed in code. The server has no music generation, so without a track the ad runs on native audio and effects, and the plan says so | Rights and control. |
+| Music that is heard in the reference | A track the user supplies, mixed in code; the reference's own is no build material. The server has no music generation, so without a track the ad runs on native audio and effects, and the plan says so | A bed mixed in code is remixed for free. |
 | Ambient sound (street, café) | Model native audio if the shot has it; otherwise a user-supplied bed, or room tone synthesized with sox, in the edit | Native ambience is free with the take. |
 | Speech that is slightly off in a good take | Trim around it, cut to a beat, cover with an effect | Cheaper than a retry; see [regeneration](regeneration.md). |
 | A shot that needs the exact product | Give the model the product image as a reference input where the model supports it; verify against the image; overlay a packshot in the edit if the label is wrong | Identity inputs help but do not guarantee text on packaging. |
