@@ -120,7 +120,7 @@ The `operations` area was created with its first skill; `support` and `data` are
 
 ## M9: Writing
 
-Text that is the result itself, read as it is. The `writing` area was created before its first skill, with the document set [`docs/writing/`](../docs/writing/README.md): what every text of the pack shares, generalized from the skills that already write ([writing.md](writing.md)). Every row below starts from that set and adds what its kind of text needs. A text that is one part of another stage's job stays in that stage (the opportunity brief in M1, the launch posts in M6, the support macros in M7) and reads the same set. No existing skill links the set yet: each does when it is next revised, the minutes and the deck first.
+Text that is the result itself, read as it is. The `writing` area was created before its first skill, with the document set [`docs/writing/`](../docs/writing/README.md): what every text of the pack shares, generalized from the skills that already write ([writing.md](writing.md)). Every row below starts from that set and adds what its kind of text needs. A text that is one part of another stage's job stays in that stage (the opportunity brief in M1, the launch posts in M6, the support macros in M7) and reads the same set. The skills that draft text link the set and read it before they draft.
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|

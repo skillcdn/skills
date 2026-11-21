@@ -13,7 +13,7 @@
 
 What you can ask for, in your own words, and which skill does it, is one page: [docs/pack/jobs.md](docs/pack/jobs.md), a section per job with the sentence you say, what comes back and the skill. How an agent finds a skill here, from the folder names and the search, is [docs/pack/finding-a-skill.md](docs/pack/finding-a-skill.md).
 
-This repository is a SkillCDN pack: what an agent receives whole at one address, with the skills as the units inside. From marketing to design, engineering and customer support, each folder is an area of work with the skills that do it and the documents its people read: marketing, media, engineering, design, product and operations have the first skills, and more areas will follow. It is also the reference pack for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a pack, kept working against real tools. Fork it to publish your own pack in the same shape.
+This repository is a SkillCDN pack: what an agent receives whole at one address, with the skills as the units inside. From marketing to design, engineering and customer support, each folder is an area of work with the skills that do it and the documents its people read: marketing, media, engineering, design, product, operations and writing have the first skills, and more areas will follow. It is also the reference pack for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a pack, kept working against real tools. Fork it to publish your own pack in the same shape.
 
 [SkillCDN](https://github.com/skillcdn/skillcdn) turns a git repository into an MCP server. Point an agent at an address and it gets what the address covers:
 
@@ -36,7 +36,7 @@ One folder per area of work. Each carries a `SKILLCDN.md` that says who its skil
 |---|---|---|
 | [`marketing/`](marketing/) | Ads, ad research, promotional video, content, campaigns, posting to social accounts. | 2 |
 | [`product/`](product/) | Discovery (what is taking off in a market), research synthesis, a sourced brief of a story, concept directions and alternatives, requirements, specifications, roadmaps, prioritization. | 3 |
-| [`engineering/`](engineering/) | Software development and the tooling an agent works with: writing and changing code, keeping a codebase's documents true, building apps, taking payments, connecting ads, the operator's dashboard, testing, debugging, making skills from work done, documents into packs, research in them and answers from them with checked citations. | 10 |
+| [`engineering/`](engineering/) | Software development and the tooling an agent works with: writing and changing code, keeping a codebase's documents true, building apps, taking payments, connecting ads, the operator's dashboard, testing, debugging, making skills from work done, documents into packs, research in them and answers from them with checked citations. | 12 |
 | [`media/`](media/) | Original video and audio content: scripted short dramas, series episodes, story-driven shorts. | 1 |
 | [`design/`](design/) | Slides and decks, card news posts and the formats they are built in, brand assets, icons and store graphics, made in the team's design tool, drafted as HTML and PDF before the tool, or varied as looks on a contact sheet. | 5 |
 | [`operations/`](operations/) | Running the company's and its clients' work day to day: the minutes of a meeting sent the same day, status reports, visit logs, handovers, the records an engagement keeps. | 1 |
@@ -168,7 +168,7 @@ What an agent connected through SkillCDN gets: the skills, the manifests and the
 node scripts/check.mjs    # validates manifests, front-matter, catalogs, links and text; needs Node.js 24, no install
 ```
 
-`npx @skillcdn/cli check` reads the repository with the indexer itself, the same code SkillCDN serves it with, and prints what an agent is told; it needs Node.js 24 or newer and no checkout of SkillCDN.
+`npx @skillcdn/cli@latest check` reads the repository with the indexer itself, the same code SkillCDN serves it with, and prints what an agent is told; it needs Node.js 24 or newer and no checkout of SkillCDN. Name `@latest`: without it `npx` runs whichever copy its cache holds, and an older indexer reads the pack by older rules. CI runs both checks on every push and the indexer's once a week, so that a release of SkillCDN that reads the pack differently shows before an agent meets it.
 
 ## License
 
