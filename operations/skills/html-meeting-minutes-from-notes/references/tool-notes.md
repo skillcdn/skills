@@ -9,7 +9,7 @@ How `scripts/render.py` and the browser behaved in this skill's own phases, by t
 
 ## The files
 
-- A file name with spaces and Hangul, which the output-name pattern produces, loads through the `file:///` URL the helper builds from the absolute path and prints (checked 2026-10).
+- A file name with spaces and Hangul, which the output-name pattern produces, loads through the `file:///` URL the helper builds from the absolute path and prints.
 - The page count is read from the PDF's own page objects by a regular expression; Chromium wrote them in the clear, so the count matched the pages (checked 2026-10). When it reads zero, the helper prints no count, and the pages are counted in the PDF reader.
 - The preview is a full-page screenshot of the HTML at A4 width, 794 pixels, before the print: it shows the content and the composition, not the page breaks, which the PDF shows.
 

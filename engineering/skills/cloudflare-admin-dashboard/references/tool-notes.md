@@ -21,9 +21,9 @@ By topic, in the order a run meets them. A fact that can go stale names where it
 
 ## Dashboards in production
 
-- Figures bucketed by UTC in one place and by the business day in another made two tabs disagree by a day; one zone in one helper used everywhere was the fix (seen 2026-09).
+- Figures bucketed by UTC in one place and by the business day in another made two tabs disagree by a day; one zone in one helper used everywhere was the fix.
 - A chart cut by row count instead of by date hid the empty days and shifted the x axis; filling empty days and cutting by date fixed it.
-- A revenue sync that wrote a partial page cap result zeroed the oldest days; the reader throws at the cap now (seen 2026-08).
+- A revenue sync that wrote a partial result at the page cap zeroed the oldest days, so the reader throws at the cap.
 - A `'use client'` dashboard component that imported a value from a server module threw in production and worked in development; the admin here renders on the server and ships no client component, which removes the class of bug (seen 2026-10).
 - A link from the admin to a customer's own page is a bearer link and can have side effects (work started on the customer's behalf, a locale cookie changed); the admin renders a read-only view instead.
 - A provider that refuses calls (an exhausted balance) can make an app serve fallback content silently, and usage rows at zero tokens and zero cost are the signal; the costs panel flags those rows and the digest counts them.

@@ -12,7 +12,7 @@ How the helper and the browsers behaved in runs of this skill, by topic. A fact 
 
 - The report runs a script in the page, so it needs a driver: Playwright from Python or `playwright-core` from Node. With the bare browser alone it is skipped with a message, and the review relies on the sheet; the delivery says so.
 - A fill under the threshold on a slide with `valign: "center"` measures the blocks' own height, not their position: a centered short list is still a thin slide.
-- The fill spans the outermost block edges and says nothing of the lower part of the page: slides measured 0.63 to 0.77 (a stack of three rows at `row_h` 1.25in beside one line each, a statement beside five facts) read as half-used on the sheet, and a run's first fix was to center them (2026-11). The sheet decides, and the fix is content.
+- The fill spans the outermost block edges and says nothing of the lower part of the page: slides measured 0.63 to 0.77 (a stack of three rows at `row_h` 1.25in beside one line each, a statement beside five facts) read as half-used on the sheet, and a run's first fix was to center them. The sheet decides, and the fix is content.
 - The lone-word check compares the last line's width with the last word's; a line that mixes type sizes can be reported once too often, and the sheet decides.
 
 ## The contact sheet
@@ -22,14 +22,14 @@ How the helper and the browsers behaved in runs of this skill, by topic. A fact 
 
 ## Reading the helper through SkillCDN
 
-- The helper is read with `read_repo_file` at its path, in sections by offset (it is about 80 KB, 2026-11), and saved beside the deck file; the same file at the git host's raw address of the served commit (for a GitHub repository, `https://raw.githubusercontent.com/<owner>/<repo>/<commit>/<path>`, the commit from the connection's `Source` line) is an alternative where the connection pages slowly: a run took it after one section of about 23,000 characters, and its length matched the connection's count of 82,633 (2026-11).
+- The helper is read with `read_repo_file` at its path, in sections by offset (it is about 80 KB), and saved beside the deck file; the same file at the git host's raw address of the served commit (for a GitHub repository, `https://raw.githubusercontent.com/<owner>/<repo>/<commit>/<path>`, the commit from the connection's `Source` line) is an alternative where the connection pages slowly: a run took it after one section of about 23,000 characters, and its length matched the connection's count.
 - `load_skill` returns SKILL.md with its included page in two pages of 16 KiB (checked 2026-11); layout.md, registers.md and this page are linked from their phases and read when the phase comes.
 
 ## Fonts and colors
 
 - A web font that has not loaded prints as a system fallback: the helper waits for the network to go idle, then for `document.fonts.ready`, then 300 milliseconds, the wait [headless.md](/docs/browser/headless.md) gives. A font CDN unreachable from the host falls back to the system's Korean-capable sans, and the delivery names it.
-- A second brand color written into `steel` entered the stack's tone sequence and one cover stripe and read as emphasis where none was meant (2026-10); it is `accent` now, and `steel` stays derived from `navy` (layout.md "Theme").
+- A second brand color goes into `accent`: written into `steel`, it entered the stack's tone sequence and one cover stripe and read as emphasis where none was meant, so `steel` stays derived from `navy` (layout.md "Theme").
 
 ## Gantt labels
 
-- A bar that ends at the milestone's date or spans it collided with the label at the diamond's left (2026-10). The helper places the label at the right where the row's bar reaches the date, and the layout report lists an overlap that remains.
+- A bar that ends at the milestone's date or spans it collides with a label at the diamond's left, so the helper places the label at the right where the row's bar reaches the date, and the layout report lists an overlap that remains.
