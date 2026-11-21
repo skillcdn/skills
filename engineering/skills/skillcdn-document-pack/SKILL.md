@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git and Node.js in a checkout of the target repository, and whatever converts the user's formats on this machine, found at run time; a vision model of the agent for figures and scanned pages. Works in any agent that can read files, run a shell and look at an image.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: skillcdn
 skillcdn:
   include:
@@ -40,7 +40,7 @@ What goes in: documents a person has, in whatever formats, and a repository they
 
 Check these before the first message. Without a checkout, stop: say that the pack is written into a checkout of a repository the user owns, and offer to make one (`git init` in a new directory, or a clone of theirs). Without a converter for a format, convert what can be converted, list the files that could not, and say what would convert them. A private repository is served only by a deployment configured for signing in, to the people the git host shows the repository to, through the deployment's app installed on it: the page of the address says how to sign in and install it, a person's AI app connects with an access token the deployment issues to them once signed in, and an agent with nobody to sign in gets a repository token the owner makes ([permissions](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/permissions.md)); the address and the mount route answer nobody without one. A pack of a deployment's own directory read with a token only takes the operator's pack token (SkillCDN 0.5.0). Say so in the first message for a private repository or such a directory, so that the user knows how their agents will reach the pack.
 
-What the SkillCDN skills share is in [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md); [serving.md](/engineering/docs/skillcdn/serving.md), which says how a push becomes what an agent is served and how to see it, is included and arrives with this skill wherever SkillCDN serves it. A copy of this skill's directory lacks it: say so in the first message and fetch it from `engineering/docs/skillcdn/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`) where the agent can.
+What the SkillCDN skills share is in [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md); [serving.md](/engineering/docs/skillcdn/serving.md), which says how a push becomes what an agent is served and how to see it, is included and arrives with this skill wherever SkillCDN serves it. A copy of this skill's directory lacks it: say so in the first message and fetch it from `engineering/docs/skillcdn/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`) where the agent can. The writing set is [`docs/writing/`](/docs/writing/README.md) of the same repository, linked from phase 3 and read through the repository connection; a plugin install, a copy or a mount below the root lacks it and fetches it from that repository.
 
 ## Inputs
 
@@ -76,7 +76,7 @@ Checkpoint, in plain words: the sets and what each holds, how many files, which 
 
 ### Phase 3: Convert
 
-Produces the **converted files**, one per planned file, as Markdown.
+Produces the **converted files**, one per planned file, as Markdown. The words the agent writes itself, here and in phase 4 (alternative text, captions, the notes on what was lost, titles, descriptions, added headings, maps), follow the writing set's [readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md) and [facts.md](/docs/writing/facts.md), read before the first of them; the text converted from a source keeps the source's words.
 
 1. Copy the originals first, each as it is into `sources/` of its set as the plan says ([conversion.md](references/conversion.md), "The originals"), so that every `source` of phase 4 names a file the check finds; a file over the host's limit is tracked before it is added (`git lfs install` once, then `git lfs track "<path>"`, which writes `.gitattributes`, committed with the pack), on the word the checkpoint took.
 2. Convert each source with the converter found for its format, as [conversion.md](references/conversion.md) says for it: headings kept as headings, tables as tables, lists as lists, footnotes at the end of their section, the text of the body and nothing of the page furniture (headers, footers, page numbers).
