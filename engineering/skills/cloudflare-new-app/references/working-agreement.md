@@ -1,6 +1,6 @@
 # The web app's part of the working agreement
 
-The repository's layout, its `AGENTS.md`, its README, its test structure and its console project are those every repository of this pack has, laid out by `git-repo-setup` as the area's set [`engineering/docs/git/`](/engineering/docs/git/README.md) says. This page says what a web app built by this skill puts into them, so that developers, planners and designers keep working in it, each with their own agent. Everything agents read is in English; the README is in the language of the people who read it.
+The repository's layout, its `AGENTS.md`, its README, its test structure and its console project are those every repository of this pack has, laid out by `git-repo-setup` as the area's set [`engineering/docs/git/`](/engineering/docs/git/README.md) says. This page says what a web app built by this skill puts into them, so that developers, planners and designers keep working in it, each with their own agent.
 
 ## Running the setup skill
 

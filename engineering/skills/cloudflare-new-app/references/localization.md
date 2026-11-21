@@ -14,7 +14,7 @@ How the app speaks every locale the brief names, so that adding one later touche
 ## Dictionaries
 
 - A dictionary lives next to the piece it serves (`components/<feature>/copy.ts`) as a typed object `Dict<{...}>`; strings with variables are functions, so that word order can differ by language.
-- Written in the language, not translated word by word: honorifics and tone per language (Japanese and Korean politeness levels, Chinese variants), no exclamation marks when the tone forbids them, the product's name spelled as each language spells it.
+- Written in each language as [readers.md](/docs/writing/readers.md) "The language" says, with the Japanese or Korean politeness level and the Chinese variant chosen per locale.
 - The dictionary test (`tests/dictionaries.test.ts`): walks every dictionary and fails on an empty string and on a script that does not belong to the locale (the script of one locale in another's dictionary, Latin-only text in the dictionary of a language with its own script); the typecheck catches a missing key, this catches a wrong one. A string that is a URL, a bracketed placeholder (`[owner]`) or a name from a short allowlist of brands and product names in the test passes the script check, so that a brand name in Latin letters is not a failure in the dictionary of another script.
 - AI prompts, when the app uses a model, are a dictionary too: one pack per locale written in that language only, with a test that no other script leaks in.
 
