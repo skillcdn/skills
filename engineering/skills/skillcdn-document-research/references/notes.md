@@ -45,7 +45,6 @@ derived:
 ## What stays out
 
 - Anything the question or the user's context carried that is not about the pack: names, customers, the matter the question served.
-- Guesses: a note holds what the pack says and what it does not, never what the agent supposes.
 - Offsets and limits: they change with every edit of the document; the link's fragment names the section, and a read resolves it to the offset and limit of the commit it reads.
 
 ## The map and the manifest

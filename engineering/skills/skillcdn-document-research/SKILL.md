@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory; a shell with git in a checkout of the pack's repository to keep notes. Works in any agent that can call MCP tools or run a shell.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: skillcdn
 skillcdn:
   include:
@@ -35,7 +35,7 @@ What goes in: a question, a reference to compile or a claim to check, and a pack
 | Optional: a shell with git in a checkout of the pack's repository | Keeping the note ([notes.md](references/notes.md)). Without it, the note is text in the delivery. |
 | A pack token, where a deployment reads its own directory with a token only | The operator's token, presented as `Authorization: Bearer <token>`; without it the pack answers as absent (SkillCDN 0.5.0). |
 
-Check these before the first message. Without a connection or the command, stop and say what to connect: the pack's address at a deployment, or the command on a directory. How a search over a pack behaves, and how to ask it so that it answers, is in the area's document set [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md): [searching.md](/engineering/docs/skillcdn/searching.md) is included and arrives with this skill wherever SkillCDN serves it; a copy of this directory lacks it, and fetches it from `engineering/docs/skillcdn/` of the repository this skill comes from (`github.com/skillcdn/skills`, which is not the pack the question is put to) or reads it as a file at `docs/skillcdn/` of the engineering plugin.
+Check these before the first message. Without a connection or the command, stop and say what to connect: the pack's address at a deployment, or the command on a directory. How a search over a pack behaves, and how to ask it so that it answers, is in the area's document set [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md): [searching.md](/engineering/docs/skillcdn/searching.md) is included and arrives with this skill wherever SkillCDN serves it; a copy of this directory lacks it, and fetches it from `engineering/docs/skillcdn/` of the repository this skill comes from (`github.com/skillcdn/skills`, which is not the pack the question is put to) or reads it as a file at `docs/skillcdn/` of the engineering plugin. The writing set is [`docs/writing/`](/docs/writing/README.md) of the same repository, linked from phase 5 and read through that repository's connection, never the pack's; a plugin install, a copy or a mount below the root lacks it and fetches it from that repository.
 
 ## Inputs
 
@@ -79,12 +79,12 @@ Produces the **evidence**: the passages read, quoted with their path and heading
 
 1. Read a candidate section with `read_repo_file`, the path and the offset and limit the result gave. Read the neighbouring section when the passage refers to it, and the whole document when the question is about the document rather than a passage.
 2. Follow a link in the passage to another document of the pack when the passage defers to it; the link is a repository-root path when it starts with `/`. A link that names a section (`#4.2.7`) is listed after the page with that section's offset and limit: read the section, not the file (SkillCDN 0.5.0).
-3. Stop reading when the frame is answered and a second section confirms it, or when the candidates are exhausted. A rule about money, access or safety is quoted, never paraphrased.
+3. Stop reading when the frame is answered and a second section confirms it, or when the candidates are exhausted.
 4. A passage that describes a figure or transcribes a scanned page is the converting agent's words, not the original's: where the answer hangs on it (a value read off a chart, a character of a transcription), say so in the answer and name the original the document's outline gives, with where its bytes are and the place in words ("page 12 of the original"); the original itself is a download the tools do not read.
 
 ### Phase 5: Answer
 
-Produces the **answer**: the finding, the quotes that support it, each with its path and heading path, and what the pack does not say.
+Produces the **answer**: the finding, the quotes that support it, each with its path and heading path, and what the pack does not say. Before the first draft of the answer, and of the note phase 6 makes from it, read the writing set's [readers.md](/docs/writing/readers.md) (the reader and the language), [sentences.md](/docs/writing/sentences.md) (the lead and what is cut) and [facts.md](/docs/writing/facts.md) (quotes, claims, a rule about money, access or safety, and what the source does not say).
 
 1. Lead with the answer in the shape the frame asked for. Then the evidence: each quote with `path` and the heading path (`docs/billing.md, Billing > Late fees`), so that a reader opens the section.
 2. Where two documents disagree, say so and quote both; where the pack is silent, say "the pack does not say" rather than inferring. A claim to check is answered true, false or not stated by the pack, with the quote.
