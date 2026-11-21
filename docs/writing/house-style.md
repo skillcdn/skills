@@ -32,14 +32,13 @@ The minutes skill writes the answer into the organization's own records (a notes
 
 The deck skill and the minutes skill each have a helper that checks every string of the document's file against a set of characters and lists each offending string with where it is. The file is fixed and rendered again; a draft rendered without the check is for a look, never a delivery.
 
-The two helpers differ (checked 2026-11):
+Both read the same shape and apply the same default (checked 2026-11):
 
-| | `html-meeting-minutes-from-notes` | `html-deck-from-outline` |
-|---|---|---|
-| The check runs | Unless the file says `external: false` | Only where the file says `external: true` |
-| With no style in the file | The usual set is applied whole | Nothing is banned: the usual set is written into the deck file's `meta.style` |
-| `usual` | `usual: true` starts from the usual set and the file's map adds to it; without it the file's map is the whole set | No such key |
-| The `forbidden` map | One character to its name; a list of characters is taken too | A character, or a string of characters checked one by one, to its name |
-| A bracketed head | Any string that starts with `[`; banned with the usual set, or where `no_bracket_heads` is set | A string that starts with a closed `[...]`; banned where `no_bracket_heads` is set |
+- The check runs where the document leaves the organization: a minutes file unless it says `external: false`, a deck only where it says `external: true`.
+- With no style in the file, the usual set. `usual: true` starts from the usual set and the file's `forbidden` adds to it; without it, `forbidden` is the whole set.
+- `forbidden` maps a character, or a string of characters checked one by one, to its name.
+- A bracketed head is any string that starts with `[`, banned with the usual set or where `no_bracket_heads` is set.
 
-A set copied from one file to the other is rewritten in the other's shape; each skill's spec page gives its own.
+A set written for one skill's file reads the same in the other's; each skill's spec page gives its keys.
+
+The house style is the organization's rule for what leaves it. Inside any text, for any reader, a middle dot joining words in a sentence or a long dash setting off an aside reads as machine-written, and is rewritten as [`/docs/variation/not-ai.md`](/docs/variation/not-ai.md) says; as a separator outside a sentence either may stay.

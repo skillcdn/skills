@@ -25,7 +25,7 @@ How a sentence is built so that a reader can use it, what a title and a heading 
 - A caveat said twice.
 - A text that is too long is cut, not shrunk: the section the reader did not need goes, and the type stays readable.
 
-The full list of what makes a text read as machine-written, with the fix for each, is [`/docs/variation/not-ai.md`](/docs/variation/not-ai.md) "Signals in words": the same ending on every sentence, a triad, a rhetorical question that answers itself, a line that could be any subject's.
+The full list of what makes a text read as machine-written, with the fix for each, is [`/docs/variation/not-ai.md`](/docs/variation/not-ai.md) "Signals in words": the same ending on every sentence, a triad, a rhetorical question that answers itself, a line that could be any subject's, a middle dot or a long dash inside a sentence.
 
 ## Rewriting
 
