@@ -1,5 +1,7 @@
 {
-  "audience": { "scope": "domestic", "market": "<country or region>", "language": "<language tag>", "readers": "<who the post is for, in the request's words, where it says more than a market>" },
+  "audience": { "scope": "domestic", "market": "<country or region>", "language": "<language tag>", "readers": "<who the post is for, in the user's or the policy's words>" },
+  "stance": "report",
+  "tone": "calm",
   "topic": { "line": "<the story in one line>", "picked_on": "0000-00-00" },
   "canvas": { "platform": "<platform>", "size": { "width": 1080, "height": 1350 }, "source": "<the format spec, or the platform's help page>", "looked_up": "0000-00-00" },
   "angle": {
@@ -28,6 +30,33 @@
   ],
   "images": [
     {
+      "file": "img/example-subject-clip-12s.mp4",
+      "source_kind": "video-clip",
+      "shows": "<what the clip shows from its first frame on, in the post's language>",
+      "credit": { "agency": "<whoever posted the original>", "photographer": "", "outlet": "<the platform or the page>", "date": "0000-00-00" },
+      "url": "https://example-video.example/watch?v=<id>",
+      "from": 12,
+      "to": 18,
+      "seconds": 6,
+      "px": { "w": 1080, "h": 1350 },
+      "role": "cover",
+      "notes": ""
+    },
+    {
+      "file": "img/example-subject-clip-12s-poster.jpg",
+      "source_kind": "video-frame",
+      "poster_of": "img/example-subject-clip-12s.mp4",
+      "shows": "<the clip's first frame>",
+      "caption": "",
+      "credit": { "agency": "<whoever posted the original>", "photographer": "", "outlet": "<the platform or the page>", "date": "0000-00-00" },
+      "url": "https://example-video.example/watch?v=<id>&t=12s",
+      "px": { "w": 1080, "h": 1350 },
+      "legibility": "clear",
+      "watermark": "none seen",
+      "role": "cover",
+      "notes": ""
+    },
+    {
       "file": "img/example-outlet_subject.jpg",
       "source_kind": "article-figure",
       "shows": "<what the image shows, in the post's language>",
@@ -37,8 +66,7 @@
       "px": { "w": 1200, "h": 800 },
       "legibility": "clear",
       "watermark": "none seen",
-      "licence": { "terms": "none stated", "modification_allowed": "unknown" },
-      "role": "cover",
+      "role": "subject",
       "notes": ""
     },
     {
@@ -51,15 +79,14 @@
       "px": { "w": 1920, "h": 1080 },
       "legibility": "soft",
       "watermark": "broadcaster's logo, top right",
-      "licence": { "terms": "none stated", "modification_allowed": "unknown" },
       "role": "subject",
       "notes": "<what the build must know: a blurred face, a subject at the edge, the footage's origin as the clip credits it>"
     }
   ],
-  "images_searched_for": ["<a beat the articles and the cited material left unshown, and what was looked for first>"],
+  "images_searched_for": ["<a beat the earlier sources left unshown, and what was looked for first>"],
   "candidates": {
-    "shown": [{ "rank": 1, "line": "<what happened>", "angle": "<one line>", "why_now": "<movement>", "articles": ["example-outlet 0000-00-00"], "images": "<note>", "recommended": true }],
-    "excluded": ["<a story the account already posted, or none>"]
+    "shown": [{ "rank": 1, "line": "<what happened>", "angle": "<one line>", "why_now": "<movement>", "talk": "<where it is talked about, or outlets only>", "articles": ["example-outlet 0000-00-00"], "images": "<note>", "recommended": true }],
+    "excluded": ["<a story a rule kept off the list, with the rule; or none>"]
   },
   "beats": [
     { "order": 1, "facts": ["f1"], "image_role": "cover", "note": "<what this beat does>" }

@@ -96,9 +96,9 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Find some hot issues in these categories and I will pick one."
 
-- You get: a ranked list of this week's candidate stories to pick from, then, for the pick, a topic brief: every fact traced to the sentence of an article read in full, the angle as a published interpretation, numbers cross-checked, what no article confirmed, and the images that show the story with captions, credits, sizes, legibility and licence terms.
+- You get: a ranked list of candidate stories found in the outlets and where people are talking, with the hottest stories a rule kept off the list shown first; then, for the pick, a topic brief: every fact traced to the sentence of an article read in full, the angle as a published interpretation, numbers cross-checked, what no article confirmed, and the story's video clips and images with captions, credits, sizes and legibility. In an account's folder it follows the account's policy and its ledger.
 - Skill: [`product/skills/web-card-news-topic-brief/`](/product/skills/web-card-news-topic-brief/SKILL.md)
-- Also asked as: "research this topic for a post with sources and images", "fact-check this story before it is designed", "a sourced brief for a card news post", "what happened this week in these categories".
+- Also asked as: "research this topic for a post with sources and images", "fact-check this story before it is designed", "a sourced brief for a card news post", "what happened this week in these categories", "find the next topics for our account", "something hot in the communities".
 - Not this one when: you have the facts and want the slides (the build under Design), or you want the format (the study and the variations under Design). A story told as a news script starts at the anchor report under Writing, which runs this skill first, without images.
 
 ## Engineering
