@@ -24,7 +24,7 @@ The bible is one Markdown file the whole series is written from. Phase 1 writes 
 - **A character reacts only to what they have seen.** A line that reads as a reaction to something the character missed (a transformation, a confession) is a logic error, however good the joke. Fix the event (the character faints, looks away, arrives late) or the line, in that order.
 - **Wrongs are done where the viewer sees them.** The strongest wrong of an episode is done to the hero's face, in front of witnesses: a push, a slap, a lie. A secret the viewer witnesses is a wrong too, and the villain still pays for it in the open.
 - **Payback inside the episode.** Every wrong done in an episode is answered in the same episode, on the spot where possible.
-- **Few words to learn.** Replace coined terms with words the viewer knows. One coined term at most, with a term card at its first use.
+- **Few words to learn.** One coined term at most, with a term card at its first use.
 - **Say it out loud.** Rules and secrets are spoken by characters or by the inner voice, never left to inference. The inner voice states the situation in one line at each turning point.
 - **Name cards carry relationships.** Not "the sister" but "half-sister; took her place once before".
 - **Endings are events.** An episode stops on something that happened, not on a mood.

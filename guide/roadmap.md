@@ -115,7 +115,7 @@ The `operations` area was created with its first skill; `support` and `data` are
 
 | Job | Area | Tool family | Status |
 |---|---|---|---|
-| "Make episode one of a short drama from this premise." [`higgsfield-shorts-drama`](../media/skills/higgsfield-shorts-drama/). A fresh run reached the cost checkpoint with the fallback named (2026-10); a production of this version, a second episode and a 150-second episode are untried. | media | Higgsfield | done |
+| "Make episode one of a short drama from this premise." [`higgsfield-shorts-drama`](../media/skills/higgsfield-shorts-drama/). A fresh run reached the cost checkpoint with the fallback named (2026-10); a production of this version, a second episode and a 150-second episode are untried. Version 1.4 reads the writing set's pages from phase 1, before the first draft, and leaves to them the general sentences its own files repeated; read against the set by a fresh agent, not run (2026-11). | media | Higgsfield | done |
 | "Make an explainer video for this." | media | Higgsfield explainer presets | candidate |
 
 ## M9: Writing
