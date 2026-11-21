@@ -28,7 +28,7 @@ A push to the default branch is served once the deployment has looked the branch
 | The REST listing (`GET /api/v1/listing/<address>`, `?uri=` for one item; SkillCDN 0.4.2) | What the skills extension gives, as data: each `SKILL.md` assembled with the rules and the included files, every file with its digest, for a program that installs skills into an agent's own folder |
 | A copy of the skill's directory | That directory alone |
 
-A skill's Requirements say which of these lack what it reads, and where to fetch it. A change to a manifest or to a shared page a skill includes changes the served digest of every skill below the manifest or including the page, so a host that verified those skills through the extension asks its user again.
+A skill's Requirements say which of these lack what it reads, and where to fetch it. The `SKILL.md` a host receives through the extension names the commit it was assembled from, so its digest changes with every push to the branch, and a host that verified a skill asks its user again after any push; an address pinned to a commit keeps the digests (SkillCDN 0.5.3, checked 2026-11).
 
 ## The two checks
 
