@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the tools of the topic brief skill when the story is still to be researched (a web search tool, a page reader, a shell) and a way to start an agent with none of the session's context for the cold listen (a subagent tool, or a second session the user opens); a shell counts the spoken length where there is one. Works in any agent that can write files.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: web
 skillcdn:
   include:
@@ -19,7 +19,7 @@ skillcdn:
 
 A story goes in: a topic brief, or a request that the pack's research skill turns into one. Out comes one file, `script.md`: the report as numbered sentences an anchor reads, each with the facts it rests on, the cut sheet that says what the viewer sees under every sentence, and the list of what to confirm before it airs. The form is the anchor report, a news item the anchor tells alone with no reporter's piece: the lead on camera, a handover to the screen, then the anchor's voice over graphics and scenes to a close.
 
-A viewer hears a report once and cannot go back, so the script is judged by one hearing. The writer cannot make that judgment, having read the brief, and a script whose every sentence is true to its source can still leave a viewer lost. So three things are checked apart: the facts against their sources, the form of each sentence against [script.md](references/script.md), and the sense by a listener who is given the script and nothing else.
+A viewer hears a report once and cannot go back, and the writer, having read the brief, cannot hear it as one: a script whose every sentence is true to its source can still leave a viewer lost. So three things are checked apart: the facts against their sources, the form of each sentence against [script.md](references/script.md), and the sense by a listener who is given the script and nothing else.
 
 ## How the user is involved
 
@@ -36,7 +36,7 @@ A viewer hears a report once and cannot go back, so the script is judged by one 
 | A way to start an agent with none of this session's context: a subagent tool, or a second session the user opens | The cold listen ([cold-listen.md](references/cold-listen.md)). Without either, say so before the first sentence is written; the delivery then says the script was not heard cold. |
 | Optional: a shell | Counting the spoken length. Without one it is counted by hand, sentence by sentence. |
 
-Check these before the first message. Nothing here costs money. [script.md](references/script.md) is included and arrives with this skill; [cold-listen.md](references/cold-listen.md) and [screen.md](references/screen.md) are read when their phases come. The pages of the pack's writing set [`docs/writing/`](/docs/writing/README.md), the fields of the brief ([topic-brief.md](/docs/card-news/topic-brief.md)), how a fresh agent is started ([fresh-agents.md](/engineering/docs/skillcdn/fresh-agents.md)) and the signals of machine-written text ([not-ai.md](/docs/variation/not-ai.md)) are linked from the phases that read them and read through the repository connection. A copy of this directory, the area's plugin and a mount of one area or one skill cannot read those: say so, fetch them from `docs/` and `engineering/docs/skillcdn/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`), and otherwise write by script.md, which carries what a spoken news script adds.
+Check these before the first message. Nothing here costs money. [script.md](references/script.md) is included and arrives with this skill; [cold-listen.md](references/cold-listen.md), [screen.md](references/screen.md) and, for a report the user names, [reference.md](references/reference.md) are read when their phases come. The pages of the pack's writing set [`docs/writing/`](/docs/writing/README.md), the fields of the brief ([topic-brief.md](/docs/card-news/topic-brief.md)), how a fresh agent is started ([fresh-agents.md](/engineering/docs/skillcdn/fresh-agents.md)) and the signals of machine-written text ([not-ai.md](/docs/variation/not-ai.md)) are linked from the phases that read them and read through the repository connection. A copy of this directory, the area's plugin and a mount of one area or one skill cannot read those: say so, fetch them from `docs/` and `engineering/docs/skillcdn/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`), and otherwise write by script.md, which carries what a spoken news script adds.
 
 The area's rule that a text is as firm as its sources takes this form here: every sentence the anchor says, the lead and the close included, and every word on the screen is a fact of the brief said for the ear; nothing the brief lists as unverified is said; and what rests on one outlet is listed for the user to confirm before it airs.
 
@@ -46,7 +46,7 @@ The area's rule that a text is as firm as its sources takes this form here: ever
 |---|---|
 | The story | A brief folder the user names, or a story named in the request, which the research skill takes as the pick. With neither, the field the user names: the research skill finds this week's candidates in it, and the user picks. |
 | The brief | The research skill's, run first when the user has none and started with these as its inputs, which answer its own questions: the categories are the field; the brief is for an anchor report script, takes no images, and this skill writes from it next; the readers are the report's viewers (people who know nothing of the subject, unless the request says who watches); the stance is a report and the tone calm unless the request says otherwise; its files go under `anchor-report/`, the candidate list there and the brief in `<story>/brief/`. Its pick and its brief checkpoint stay its own stops. Articles, a release or notes the user brings go to it as that story's sources, so that the facts table is made the same way. |
-| The reference | A report the user names, as a link or a pasted script. It gives its form only ([script.md](references/script.md) "A reference"). None is asked for, and with none the form is this skill's own. |
+| The reference | A report the user names, as a link or a pasted script. It gives its form only ([reference.md](references/reference.md)). None is asked for, and with none the form is this skill's own. |
 | Length | The request's; else ninety seconds. |
 | Air date | The request's; else the day the script is written. Every "yesterday" and "next week" in the script rests on it. |
 | Viewers, stance, tone, language | The brief's `audience`, `stance` and `tone`; the script is in the brief's language. |
@@ -59,15 +59,15 @@ Each phase produces a named part of `script.md`, in this order: the plan, the sc
 
 ### Phase 1: The brief
 
-Produces the **brief**. Take the folder the user names, or run the research skill with the inputs above, at its own stops. Read the result whole, by [topic-brief.md](/docs/card-news/topic-brief.md): `facts` with their source sentences and their `single_source` marks, `angle` with its outlet, `disagreements`, `unverified`, `audience`. Say in a line how many facts it holds and the angle with its outlet, and go on.
+Produces the **brief**. Take the folder the user names, or run the research skill with the inputs above, at its own stops. Read the result whole, by [topic-brief.md](/docs/card-news/topic-brief.md): `facts` with their source sentences and their `single_source` marks, `angle` with its outlet, `disagreements`, `unverified`, `audience`. Where the research skill ran, its brief checkpoint was the stop for this; a brief the user brought is said in a line (how many facts, the angle with its outlet), and the run goes on.
 
 ### Phase 2: The plan
 
-Produces the **plan**, by [script.md](references/script.md) "The thread", "The lead" and "Parts and their jobs", and by [screen.md](references/screen.md) "What a screen can be", read now so that the opening picture is one the screen may show.
+Produces the **plan**, by [script.md](references/script.md) "The thread", "The lead" and "Parts and their jobs", and by [screen.md](references/screen.md) "What a screen can be", read now so that the opening picture is one the screen may show. A report the user named is read first, by [reference.md](references/reference.md).
 
 1. Write the thread: the report in one sentence, from the brief's angle.
-2. Choose the lead from the viewer's side, as strong as the facts and no stronger, and the opening picture with it.
-3. Sort the facts. For each one that might enter, write its link to the thread in a clause the brief supports; a fact with no such clause is left out and listed with the reason.
+2. Choose the lead from the viewer's side, as strong as the facts and no stronger, and the opening picture with it. Choose the close with it: where what the lead opened on goes from here, and the fact kept for saying so.
+3. Sort the facts. For each one that might enter, write its link to the thread in a clause the brief supports; a fact with no such clause is left out and listed with the reason. Of causes, demands or measures, two are told: those the brief's outlets weigh most.
 4. For each case the report would tell (something that happened to someone), find in the brief why one thing led to the next. Where the brief gives the events and not the cause, the question goes back to the research skill, which reads the brief's articles again and one more in full and adds what it finds to the brief as a fact with its source sentence; with no answer the case is left out, and the count it belongs to stays.
 5. Order the parts, each with its job and its fact ids, and split the length among them, the lead the shortest.
 
@@ -75,18 +75,18 @@ Say the thread and the lead in two lines, and go on.
 
 ### Phase 3: The script
 
-Produces the **script**. Before the first sentence, read [readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md) and [facts.md](/docs/writing/facts.md) of the writing set; script.md is their sharper form for a spoken report and wins where they differ. Write the report sentence by sentence by script.md, each numbered, each followed by its fact ids, each with one job and the form that says how its content is known. Dates are said as the viewer lives them, with the absolute date in parentheses. Count the spoken length as soon as the draft stands (script.md "Length") and cut to the target before the screen is planned.
+Produces the **script**. Before the first sentence, read [readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md) and [facts.md](/docs/writing/facts.md) of the writing set; script.md is their sharper form for a spoken report and wins where they differ. Write the report sentence by sentence by script.md, each numbered, each followed by its fact ids, each with one job and the form that says how its content is known. Count the spoken length as soon as the draft stands (script.md "Length") and cut to the target before the screen is planned.
 
 ### Phase 4: The screen
 
-Produces the **cut sheet**, by [screen.md](references/screen.md): one row per cut with its sentences, its seconds, what the screen is and where it would come from, the text on screen, and the facts that text rests on. What the ear cannot hold (an exact figure, a quote as printed, a weekday) goes on the screen at the moment it is said.
+Produces the **cut sheet**, by [screen.md](references/screen.md): one row per cut with its sentences, its seconds, what the screen is and where it would come from, the text on screen, and the facts that text rests on.
 
 ### Phase 5: The checks
 
 Produces the **checks**, in this order, each recorded with its result.
 
 1. **Facts.** Every sentence, and every text on screen, against the source sentences of its facts; a quote word for word; nothing from `unverified`.
-2. **Form.** Every sentence against script.md: its job named in a few words, its ending or its attribution matched to how its content is known, one number, terms explained where they first come. Then the script as text, against [not-ai.md](/docs/variation/not-ai.md) "Signals in words".
+2. **Form.** Every sentence against script.md: its job named in a few words, its ending or its attribution matched to how its content is known, one number, terms explained where they first come. Then the script in order: each opening tied to what came before, two of a kind at most, the close answering the lead. Then as text, against [not-ai.md](/docs/variation/not-ai.md) "Signals in words".
 3. **The cold listen**, by [cold-listen.md](references/cold-listen.md): a fresh listener with only the script reports where it stumbled; rewrite and listen again as that page says.
 4. **Length.** The final text counted again as script.md "Length" says, within a twentieth of the target.
 
@@ -96,7 +96,7 @@ Checkpoint, in plain words: the script itself, numbered and whole; the thread in
 
 ### Phase 6: Deliver
 
-One message: the path of `script.md`; the script itself; the length; what the cut sheet asks a video stage to make; **before air** (each fact that rests on one outlet, each quote that is another outlet's reporting and is named so on screen, what the sources do not say, and that anything after the brief's last article is unread); and what a video stage still decides, which is its own job with its own estimate: the voice of the narrated part, the model, the cost. Nothing is published and nothing is sent.
+One message: the path of `script.md`; the script itself; the length; what the cut sheet asks a video stage to make; **before air** (each fact that rests on one outlet, each quote that is another outlet's reporting and is named so on screen, what the sources do not say, and that anything after the brief's last article is unread); and what a video stage still decides, which is its own job with its own estimate: the voice of the narrated part, the model, the cost. Working files (article text, scripts) stay in the report's folder and are named. Nothing is published and nothing is sent.
 
 ## Verdicts
 
@@ -104,16 +104,14 @@ One message: the path of `script.md`; the script itself; the length; what the cu
 |---|---|
 | A sentence, or a text on screen, with no fact of the brief under it | Cut, or traced; never kept for its sound |
 | A lead that states an effect the sources only fear, or sizes it past their count | Rewritten to the strength of the facts |
-| A listener's report | Read by [cold-listen.md](references/cold-listen.md) "Reading the report"; three rounds at most, and what is left then goes to the checkpoint as it is |
-| Length outside a twentieth of the target | A sentence or a part cut or restored; never more packed into each sentence |
 | Another outlet's photograph or footage as a cut | Not planned: a graphic or a labelled generated scene, or the cut marked as needing the rights holder's permission |
 
 ## Hard rules
 
 1. Every sentence and every text on screen rests on a fact of the brief, the lead and the close included. A lead written for effect past its sources is the first thing a viewer who knows the story catches.
 2. A sentence says how its content is known. What someone announced, demanded, counted, said or expects is never stated flat in the anchor's own voice, because the viewer hears that as the newsroom vouching for it.
-3. A sentence has one job the listener could name. A sentence that mixes two, or has none, is what a listener calls "I do not see the point".
-4. Wording never supplies a link the sources lack: a cause between two events, or a reason for mentioning a fact. Listeners asked the same question of every rewording of such a sentence.
+3. A sentence has one job the listener could name.
+4. Wording never supplies a link the sources lack: a cause between two events, or how a neighbouring event bears on the story.
 5. A reference gives its form only. Its story, its people, its sentences and its outlet's name enter neither the script nor any file the run keeps.
 6. A script that no listener with only the script has heard is not shown as checked: the delivery says so.
 7. No picture the user has no right to show is planned onto the screen, and a generated scene is labelled as generated and never stands for the event itself.
@@ -126,7 +124,5 @@ One message: the path of `script.md`; the script itself; the length; what the cu
 | Lead | What the anchor says on camera before the handover. |
 | Thread | The report in one sentence; what every part serves. |
 | Cut sheet | The table of cuts, each a stretch of the report under one picture: its sentences, its seconds, the screen and where it comes from, the text on screen. |
-| Spoken form | The script as it is said: numbers as words, the notes in parentheses dropped; what the length is counted on. |
 | Cold listen | One hearing of the script by an agent that has the script and nothing else. |
-| Stopped, slowed | A listener who lost the report at a sentence, and one who had a question and went on. |
 | Before air | The list of what the user confirms before the report is shown to anyone. |
