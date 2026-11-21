@@ -30,15 +30,15 @@ The minutes skill writes the answer into the organization's own records (a notes
 
 ## How it is checked
 
-The deck skill and the minutes skill each have a helper that checks every string of the document's file against a set of characters and lists each offending string with where it is. The file is fixed and rendered again; a draft rendered without the check is for a look, never a delivery.
+The deck skill, the product deck skill and the minutes skill each have a helper that checks every string of the document's file against a set of characters and lists each offending string with where it is. The file is fixed and rendered again; a draft rendered without the check is for a look, never a delivery.
 
-Both read the same shape and apply the same default:
+All read the same shape and apply the same default:
 
-- The check runs where the document leaves the organization: a minutes file unless it says `external: false`, a deck only where it says `external: true`.
+- The check runs where the document leaves the organization: a minutes file and a product deck unless they say `external: false`, a deck only where it says `external: true`.
 - With no style in the file, the usual set. `usual: true` starts from the usual set and the file's `forbidden` adds to it; without it, `forbidden` is the whole set.
 - `forbidden` maps a character, or a string of characters checked one by one, to its name.
 - A bracketed head is any string that starts with `[`, banned with the usual set or where `no_bracket_heads` is set.
 
-A set written for one skill's file reads the same in the other's; each skill's spec page gives its keys.
+A set written for one skill's file reads the same in the others'; each skill's spec page gives its keys, and the product deck adds a list of phrases its user rejected.
 
 The house style is the organization's rule for what leaves it. Inside any text, for any reader, a middle dot joining words in a sentence or a long dash setting off an aside reads as machine-written, and is rewritten as [`/docs/variation/not-ai.md`](/docs/variation/not-ai.md) says; as a separator outside a sentence either may stay.

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Product deck</title>
+<!-- Read by scripts/render.mjs. banned: wordings the user rejected, added as they come, so that a render names
+     any slide they return on. style: only where the house style differs from the usual set. -->
+<script type="application/json" id="deck-meta">
+{"canvas": [1920, 1080], "external": true, "banned": []}
+</script>
+<style>
+/* A brand font: its local name first, then its documented file, and the stack ends in a system face that has the
+   language's letters.
+   @font-face { font-family: "Deck"; src: local("<family>"), url("<the family's documented woff2>") format("woff2"); } */
+@page { size: 1920px 1080px; margin: 0 }
+:root {
+  /* Placeholders. The deck's tokens are the look's: the product's own, or the pick of the four looks. */
+  --bg: #0b1020; --paper: #f4f6fa; --ink: #101624; --ink-2: #4a5568; --on-dark: #eef2fb; --on-dark-2: #a9b4c8;
+  --accent: #3564d8; --point: #f2a23a; --line: #dfe4ee; --radius: 28px;
+  --font: "Deck", system-ui, -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { background: #2b2f36 }
+body { font-family: var(--font); -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: break-word }
+
+/* Shared by every slide: the box, the two grounds, the title and the page number. Nothing else is shared. */
+.slide { width: 1920px; height: 1080px; position: relative; overflow: hidden; break-after: page }
+.slide:last-child { break-after: auto }
+@media screen { .slide { margin: 0 auto 24px } }
+.slide > * { position: absolute }
+.dark { background: var(--bg); color: var(--on-dark) }
+.light { background: var(--paper); color: var(--ink) }
+.t { left: 120px; top: 96px; right: 120px; font-size: 64px; line-height: 1.2; font-weight: 780; letter-spacing: -0.03em }
+.t em, .big em { font-style: normal; color: var(--accent) }
+.pn { right: 80px; bottom: 50px; font-size: 18px; font-weight: 600; opacity: 0.55; font-variant-numeric: tabular-nums }
+
+/* Slide 1, prefix c-: the cover. Every class of a slide's own scene carries that slide's prefix. */
+.c-title { left: 120px; top: 300px; width: 980px; font-size: 108px; line-height: 1.14; font-weight: 800; letter-spacing: -0.035em }
+.c-mark { left: 120px; top: 96px; font-size: 30px; font-weight: 800 }
+.c-art { left: 1130px; top: 0; width: 790px; height: 1080px }
+.c-shot { position: absolute; border-radius: 22px; background: #1b2540; border: 1px solid rgba(255, 255, 255, 0.14) }
+.c-shot.a { left: 0; top: 150px; width: 330px; height: 586px }
+.c-shot.b { left: 356px; top: -40px; width: 420px; height: 342px }
+.c-shot.c { left: 356px; top: 330px; width: 330px; height: 586px }
+.c-shot.d { left: 0; top: 762px; width: 330px; height: 400px }
+.c-chip { left: 1010px; top: 690px; padding: 15px 22px; border-radius: 16px; background: #0d1730; border: 1px solid rgba(255, 255, 255, 0.16); font-size: 19px; white-space: nowrap }
+
+/* Slide 2, prefix v-: the buyer's own words. */
+.v-title { left: 120px; top: 250px; width: 780px; font-size: 86px; line-height: 1.16; font-weight: 800; letter-spacing: -0.035em }
+.v-turn { left: 120px; top: 700px; width: 760px; font-size: 32px; line-height: 1.5; color: var(--ink-2); font-weight: 500 }
+.v-turn b { color: var(--accent) }
+.v-voices { left: 940px; top: 250px; width: 860px; display: flex; flex-direction: column; gap: 40px }
+.v-voice { max-width: 760px; padding: 34px 42px; background: #fff; border: 1px solid var(--line); border-radius: 30px; font-size: 31px; line-height: 1.45; font-weight: 600 }
+.v-voice:nth-child(odd) { align-self: flex-start; border-bottom-left-radius: 8px }
+.v-voice:nth-child(even) { align-self: flex-end; border-bottom-right-radius: 8px; background: #e9f0fd }
+</style>
+</head>
+<body>
+
+<!-- 1. data-pattern names the slide's scene; two slides in a row never share one. data-bleed marks what is meant
+     to run past the slide's edge, data-clip what is meant to be cut by its box. -->
+<section class="slide dark" data-pattern="cover-collage">
+  <div class="c-mark">Product</div>
+  <h1 class="c-title big">The promise,<br>in the buyer's<br><em>own words.</em></h1>
+  <div class="c-art" data-bleed>
+    <div class="c-shot a"></div><div class="c-shot b"></div><div class="c-shot c"></div><div class="c-shot d"></div>
+  </div>
+  <div class="c-chip">What the product just did for someone</div>
+</section>
+
+<!-- 2. -->
+<section class="slide light" data-pattern="voices">
+  <h1 class="v-title">The question<br>the buyer<br>already asks</h1>
+  <p class="v-turn">One sentence that turns it:<br><b>what is really missing.</b></p>
+  <div class="v-voices">
+    <div class="v-voice">A complaint as the buyer says it at work.</div>
+    <div class="v-voice">A second one, from another seat in the same office.</div>
+    <div class="v-voice">A third, the one that costs them the most.</div>
+  </div>
+  <div class="pn">2</div>
+</section>
+
+</body>
+</html>

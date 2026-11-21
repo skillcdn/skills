@@ -24,6 +24,7 @@ One topic has one page, and these are not repeated here.
 | The text is | Its own list is in |
 |---|---|
 | A slide of a deck | `html-deck-from-outline`: the deck's spec, its two registers and its reviewer's notes |
+| A slide of a product deck | `html-product-deck`: the storyboard page (titles that hook, copy in the buyer's words) and its hard rules |
 | The minutes of a meeting | `html-meeting-minutes-from-notes`: the composition rules and the review notes |
 | A card news slide and its caption | `html-card-news-from-brief`: the script page, checked sentence by sentence against the format's spec |
 | A sourced brief | `web-card-news-topic-brief`: the facts table and the angle |
