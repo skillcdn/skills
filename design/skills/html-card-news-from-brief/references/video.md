@@ -8,7 +8,7 @@ A clip is an `images[]` entry with `source_kind: "video-clip"`: the mp4 in `img/
 
 ## Without ffmpeg, or without a clip
 
-With a clip in the brief, check ffmpeg before the plan (`ffmpeg -version`; the variable `FFMPEG`, then the path). Without it, each clip's poster is placed as a photograph and the post is PNGs: said in one line at the plan checkpoint and in the delivery, with what to install for the next run. A brief with no clip makes a post of photographs, which is a result like any other: nothing more is looked for and nothing is said of video.
+The check before the first message says whether ffmpeg is there. Without it, each clip's poster is placed as a photograph and the post is PNGs: said in one line at the plan checkpoint and in the delivery, with what to install for the next run. A brief with no clip makes a post of photographs, which is a result like any other: nothing more is looked for and nothing is said of video.
 
 ## In the plan
 
@@ -42,7 +42,7 @@ Open every frame sheet and read every frame, since the PNG shows the first alone
 | Result | Verdict |
 |---|---|
 | The account's text over the subject in any frame | Redo: the position moved, or the block where the type allows; else a range in which the subject stays clear of it |
-| Something that enters after the first frame (a window, a player's control, a name on screen), a scene cut, or an edge that cuts a thing in two | Redo: a shorter range or a tighter crop, cut from the clip's own file with the helper's `cut` into a new file with its poster, which the plan then names; where no range is clean, the poster as a photograph |
+| Something that enters after the first frame (a window, a player's control, a name on screen), a scene cut, or an edge that cuts a thing in two | Redo: a shorter range or a tighter crop, cut from the clip's own file with the helper's `cut` into a new file with its poster, `--offset` set to the clip's `from` so that the range it prints is the source's. The plan names the new file and `credits.md` its range; the brief stays as it is. Where no range is clean, the poster as a photograph |
 | A clip, or a range that overlaps it, on two slides; a scene a clip shows used again as a photograph | Redo: one of the two takes another image of its beat from the brief, or goes without |
 | A clip outside the platform's bounds | Redo: trimmed inside them; shorter than the lower bound, the poster as a photograph |
 | A sound track in an exported mp4 (the export's line says so) | Redo: exported again without it; the helper drops it |

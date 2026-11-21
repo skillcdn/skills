@@ -2,9 +2,11 @@
 // clip with its first frame as the poster, and lays a clip into an exported slide.
 // Usage: node video.example.mjs probe <file | url>
 //        node video.example.mjs sheet <file | url> <sheet.jpg> [--step=<seconds between frames>]
-//        node video.example.mjs cut <file | url> <clip.mp4> --from=<s> --to=<s> [--crop=w:h:x:y] [--height=1350] [--width=<px>] [--crf=22]
+//        node video.example.mjs cut <file | url> <clip.mp4> --from=<s> --to=<s> [--offset=<s>] [--crop=w:h:x:y] [--height=1350] [--width=<px>] [--crf=22]
 //   FFMPEG  the ffmpeg binary, else "ffmpeg" on the path
 // cut writes <clip>.mp4 (H.264, no sound) and <clip>-poster.jpg and prints JSON for the brief's two entries.
+// --from and --to are seconds of the file given. Cutting again from a clip, give --offset the clip's own from:
+// the range printed is then in seconds of the original source.
 // export.example.mjs imports composeSlide and sheet for a slide whose picture carries data-video.
 import { spawnSync } from "node:child_process";
 import { statSync } from "node:fs";
@@ -47,11 +49,11 @@ export function sheet(src, out, { step, width = 240, cols = 8 } = {}) {
   return { sheet: out, step: every, frames };
 }
 
-export function cut(src, out, { from, to, crop, height = 1350, width = 0, crf = 22 }) {
+export function cut(src, out, { from, to, offset = 0, crop, height = 1350, width = 0, crf = 22 }) {
   const meta = probe(src);
   if (!meta) throw new Error(`no video ffmpeg can read at ${src}`);
   const seconds = Number(to) - Number(from);
-  if (!(seconds > 0)) throw new Error("--from and --to are seconds of the source, --to the later");
+  if (!(seconds > 0)) throw new Error("--from and --to are seconds of the file given, --to the later");
   const filters = [];
   let [w, h] = [meta.width, meta.height];
   if (crop) {
@@ -67,7 +69,7 @@ export function cut(src, out, { from, to, crop, height = 1350, width = 0, crf = 
   const toJpeg = made.height >= 720 ? "scale=in_color_matrix=bt709:out_color_matrix=bt601:out_range=full,format=yuvj420p" : "format=yuvj420p";
   ffmpeg(["-y", "-i", out, "-frames:v", "1", "-vf", toJpeg, "-q:v", "2", "-update", "1", poster]);
   const px = { w: made.width, h: made.height };
-  return { clip: { file: out, source_kind: "video-clip", from: Number(from), to: Number(to), seconds: made.duration, px }, poster: { file: poster, source_kind: "video-frame", poster_of: out, px }, bytes: statSync(out).size };
+  return { clip: { file: out, source_kind: "video-clip", from: Number(from) + Number(offset), to: Number(to) + Number(offset), seconds: made.duration, px }, poster: { file: poster, source_kind: "video-frame", poster_of: out, px }, bytes: statSync(out).size };
 }
 
 // One slide as mp4: the slide's PNG, the clip laid over the picture's box as CSS lays the poster there
@@ -101,7 +103,7 @@ if (import.meta.url === pathToFileURL(process.argv[1] || "").href) {
   const opt = Object.fromEntries(rest.filter((a) => a.startsWith("--")).map((a) => a.slice(2).split("=")));
   const run = { probe: () => probe(args[0]), sheet: () => sheet(args[0], args[1], opt), cut: () => cut(args[0], args[1], opt) }[command];
   if (!run || !args[0]) {
-    console.log("usage: node video.example.mjs probe <src> | sheet <src> <sheet.jpg> [--step=5] | cut <src> <clip.mp4> --from=12 --to=18 [--crop=w:h:x:y] [--height=1350] [--width=1080]");
+    console.log("usage: node video.example.mjs probe <src> | sheet <src> <sheet.jpg> [--step=5] | cut <src> <clip.mp4> --from=12 --to=18 [--offset=0] [--crop=w:h:x:y] [--height=1350] [--width=1080]");
     process.exit(1);
   }
   console.log(JSON.stringify(run(), null, 2));

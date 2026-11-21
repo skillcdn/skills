@@ -4,7 +4,7 @@ How the post is built as one HTML page, shown to the user, rendered to PNG, and 
 
 ## The page
 
-One `index.html` in the post folder, with `img/` beside it (the brief's images copied in) and `out/` for the PNGs.
+One `index.html` in the post folder, with `img/` beside it (the brief's images copied in, or the brief's own `img/` in an account's folder) and `out/` for the PNGs.
 
 - **Slides at native size, a grid, a lightbox, an export mode.** Each slide is a box of the canvas size (`width: 1080px; height: 1350px`) scaled into its card, with a number badge on each card (`data-n`), a lightbox, and an export mode (`?slide=N`) that renders one slide at native size for the headless browser, as rendering-html.md "Boxes at native size, and an export mode" says.
 - **Below the grid**, the caption as preformatted text and the credits as a list, so that a reviewer sees them with the slides.
@@ -17,7 +17,7 @@ Serve the post folder and show it as rendering-html.md "Serving the page" says (
 
 ## Export
 
-Copy [export.example.mjs](../scripts/export.example.mjs) into the post folder and run it there; it renders every slide as rendering-html.md "PNG at the canvas size" says (the viewport at the canvas at device scale 1, the waits for the network and the fonts, a screenshot clipped to the canvas per slide, every slide every time), and launches the browser as [headless.md](/docs/browser/headless.md) "playwright-core from Node.js" says (`playwright-core` borrowed through `PLAYWRIGHT_FROM`, else installed once into `card-news/tools/` beside the brief folders with `PLAYWRIGHT_FROM` pointing at its `package.json`, never into `post/`; `chrome`, then `msedge`, then its own `chromium`; a browser download asked first). The environment names the served page (`BASE`), the slide count (`SLIDES`), the file prefix (`PREFIX`, the post's name) and the canvas (`WIDTH`, `HEIGHT`); set them the way the shell does (`$env:NAME = "value"` in PowerShell, `NAME=value` before the command in a POSIX shell). The PNGs land in `out/<post>-<NN>.png`.
+Copy [export.example.mjs](../scripts/export.example.mjs) into the post folder and run it there; it renders every slide as rendering-html.md "PNG at the canvas size" says (the viewport at the canvas at device scale 1, the waits for the network and the fonts, a screenshot clipped to the canvas per slide, every slide every time), and launches the browser as [headless.md](/docs/browser/headless.md) "playwright-core from Node.js" says (`playwright-core` borrowed through `PLAYWRIGHT_FROM`, else installed once into the tools folder with `PLAYWRIGHT_FROM` pointing at its `package.json`: `card-news/tools/` beside the brief folders, in an account's folder its scratch folder, never the post folder; `chrome`, then `msedge`, then its own `chromium`; a browser download asked first). The environment names the served page (`BASE`), the slide count (`SLIDES`), the file prefix (`PREFIX`: the plan's `post`, which in an account's folder is the post folder's name) and the canvas (`WIDTH`, `HEIGHT`); set them the way the shell does (`$env:NAME = "value"` in PowerShell, `NAME=value` before the command in a POSIX shell). The PNGs land in `out/<post>-<NN>.png`.
 
 ## The review
 
