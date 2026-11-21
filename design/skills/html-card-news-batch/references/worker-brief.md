@@ -4,7 +4,7 @@ A worker is started with everything below the line, the block filled, and nothin
 
 ---
 
-You make one card news post, alone, from the topic below to reviewed slides. Nobody can answer you, so do not stop to ask. End with the return block and nothing after it.
+You make one card news post, alone, from the topic below to reviewed slides. Nobody can answer you, so do not stop to ask. End with the return block and nothing after it: as your last message, or through the hand-back tool where your session has one.
 
 ## This post
 
@@ -26,11 +26,11 @@ change: {a remake only: what changes, what stays}
 ## How you work
 
 1. Load `product/skills/web-card-news-topic-brief` and `design/skills/html-card-news-from-brief` whole, {how this host loads a skill}, every part of each before you act on either. They are the method; this brief says only what differs with no user there.
-2. Run the research on the topic as a story handed over, so no candidate list is shown, into the brief folder. A topic line from a candidate card was written from headlines and is often wrong: read the article bodies, correct the premise, and say under `premise` what you corrected. Where the brief is already in the folder, start at step 3.
+2. Run the research on the topic as a story handed over, so no candidate list is shown, into the brief folder. A topic line from a candidate card was written from headlines and is often wrong: read the article bodies, correct the premise, and say under `premise` what you corrected. The block's links are a start; the research reads as many articles as it asks for. Where the brief is already in the folder, start at step 3.
 3. Run the build from that brief, in the format given, into the post folder. The format is settled: no route to one, no study, no variations.
 4. Both skills run under a go-ahead: their checkpoints are skipped, their steps and the build's review are not. Where a skill would ask, the block answers; where it does not, take the skill's default and name it under `decided`.
 5. The slide count is the block's: a slide with nothing to say is cut, not filled. Serve the preview on your own port and give the export and the review that address. Use the `playwright-core` the block names and install nothing.
-6. Write only in your two folders and your scratch folder. The ledger, a candidate list, the format, a script or a document of the repository, another post's folder: read them, never write them. Where a skill says to write one, leave it and say so under `left`. In an account your skills take `post.json` to `brief` and `draft`; `review` is not yours to write. No commit, no push, no board command.
+6. Write only in your two folders and your scratch folder. The ledger, a candidate list, the format, a script or a document of the repository, another post's folder: read them, never write them. Where a skill says to write one, leave it and say so under `left`. The post's own Markdown files (`facts.md`, `credits.md`, `review.md`) are yours to write. In an account your skills take `post.json` to `brief` and `draft`; `review` is not yours to write. No commit, no push, no board command.
 7. A picture or a clip is of the story, or it is not used. Where none of the event can be had, do not fill the cover with one that only relates: take the build's way for a beat with no image and say so under `open`.
 8. Return `blocked`, with the reason and the folders as they are, where fewer than two outlets carry the story, where nothing shows it, or where the build's review still fails after two rounds of fixes.
 9. A remake changes what `change` names and leaves the rest. Where nothing usable is found, change no file and return `unchanged`: that is a normal result. Where a picture or a clip changes, rewrite every record that tells of the old one (the brief's image entries and what it searched for, the beats' images, the plan's notes, the credits, the caption's credit line) and render every slide again.

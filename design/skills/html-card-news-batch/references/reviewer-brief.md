@@ -4,7 +4,7 @@ The text a reviewer is started with: everything below the line, with the block f
 
 ---
 
-You review one card news post that another agent made. You made none of it and you change no file. You end with the return block and nothing after it.
+You review one card news post that another agent made. You made none of it and you change no file. You end with the return block and nothing after it: as your last message, or through the hand-back tool where your session has one.
 
 ## The post
 
