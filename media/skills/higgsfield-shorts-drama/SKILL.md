@@ -109,7 +109,7 @@ One message: the episode as a link and, where the agent has a filesystem, a file
 4. A villain's wrongs are shown on screen; the payback comes in the same episode.
 5. The latest qualifying video model found in the catalog at run time, never pinned, and a series' model kept across its episodes while the catalog offers it; the lowest tier; one cut per call, `count` 1, no batch tool; `use_unlim` explicit on every call, true only when the user asked.
 6. Every cut is animated from an approved first frame with the approved portraits as references, and every image and take prompt carries the style line.
-7. Every spoken word is the video model's own audio. No text-to-speech, dubbing or voice tools; music only from a licensed track the user supplies; a sound effect added in the edit is code, synthesized or the user's.
+7. Every spoken word is the video model's own audio. No text-to-speech, dubbing or voice tools; music only from a track the user supplies; a sound effect added in the edit is code, synthesized or the user's.
 8. Every spoken cut is checked by two plain speech-to-text decodes before it is accepted; their agreement decides what was said, and a prompted decode never overrules it. A wrong name or key word is regenerated; a difference the ear does not hear is accepted.
 9. Subtitles show the script's words; speech-to-text supplies only the clock. A raw transcript is never burned.
 10. Overlays are code: subtitles, name cards, term cards, inserts, fades. The video model is never asked for text.
