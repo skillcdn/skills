@@ -10,14 +10,14 @@ One JSON file holds the deck: `meta` and `slides`. The helper `scripts/render.py
 | `client`, `date`, `brand` | Who the deck is for, the date in the organization's format, the presenting organization. Shown on a proposal cover only with `footer: true`; `brand` and `date` in a report's footer. |
 | `doc_name`, `footer` | A report's document name for its footer (default: the cover's first title line); `footer: false` turns the footer line off. |
 | `logo`, `logo_white`, `client_logo` | Paths relative to the deck file (PNG, JPG or SVG, embedded): the presenter's wordmark on light, the white one for the closing and a report's cover, the client's for a proposal cover, first before the presenter's. |
-| `external`, `style` | `external: true` turns the style check on: `forbidden` maps a character, or a string of characters checked one by one, to its name; `no_bracket_heads` bans a string that starts with `[...]`. |
+| `external`, `style` | `external: true` turns the style check on: the usual set where `style` is absent; `usual: true` adds `forbidden` to it, else `forbidden` is the whole set; `forbidden` maps a character, or a string of characters checked one by one, to its name; `no_bracket_heads` bans a string that starts with `[` (on with the usual set). The same keys as the minutes skill's `style`. |
 | `labels` | The helper's fixed words, in the deck's language: `step` ("STEP") before the number of a detail tile, `q` ("Q.") before a question. |
 | `theme` | Colors and font (`navy`, `accent` for a second brand color, `steel`, the grays and tints, `font`, `font_css`): roles, defaults and the derivation from one color in layout.md "Theme". |
 | `page_numbers` | `false` turns the page number off. Default on. |
 
 ```json
 { "meta": { "register": "report", "date": "<date>", "brand": "<brand>", "doc_name": "<title> business plan", "external": false,
-    "style": { "forbidden": { "·": "middle dot", "—": "em dash", "–": "en dash", "①②③④⑤⑥⑦⑧⑨⑩": "circled number" }, "no_bracket_heads": true },
+    "style": { "usual": true, "forbidden": { "~": "tilde" } },
     "theme": { "navy": "#22408E", "accent": "#7089BF", "font": "Pretendard" }, "logo": "<path>/logo.png", "logo_white": "<path>/logo-white.png" },
   "slides": [] }
 ```

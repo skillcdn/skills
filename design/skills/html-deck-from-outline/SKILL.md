@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Python 3 for the helper and a Chromium-family browser (an installed Chrome or Edge, or Playwright's) for the PDF, the layout report and the contact sheet; the helper prints with Playwright from Python, with Node.js and playwright-core, or with the browser's own print, whichever the host has, and says which. Without any browser the HTML is still delivered and the PDF is printed by the user. Works in any agent that can write files, run a shell and look at an image.
 metadata:
   author: skillcdn
-  version: "1.7"
+  version: "1.8"
   tools: browser
 skillcdn:
   include:
@@ -43,7 +43,7 @@ Check the shell, the browser and the image reader before the first message. Noth
 |---|---|
 | Outline | The user's content; an idea in a few lines is one. Figures come from it or from the user's answers: this skill does no research; a figure the user wants found is a research skill's job first, on their word, and where the pack has none for the subject the agent searches the web itself, keeps a figure two sources agree on with its source, and tags the rest to be confirmed. |
 | Register | Derived from the request's and the outline's words (registers.md "Which register"), recommended on the look sheet, written into `meta.register`. |
-| Audience, house style | Internal or external, from the outline; external turns the style check on, with the organization's banned characters from the request or its documents, else asked once, into `meta.style`. |
+| Audience, house style | Internal or external, from the outline; external turns the style check on, with the organization's banned characters from the request or its documents, else asked once, into `meta.style` where they differ from the usual set, which the helper applies when it is absent. |
 | A finished deck to match | The reference: the organization's finished deck (a Figma Slides file, an exported PDF), its cover, closing and one body page read first and matched; asked where the request names none. A look of the user's own beyond the two registers is `html-design-variations` on the cover and a body slide, run before phase 2 on the user's word, its looks the cover and one body slide rendered with this skill's helper rather than that skill's page skeleton, its pick written into `meta.theme` and the blocks. |
 | Theme and logos | From the organization's files or the matched deck; a second brand color is `accent`; the client's logo only from an asset the organization holds. |
 | Tool marks | A named product's mark from its brand page (search its name with "brand assets") or a public brand-icon set, named in the delivery; never a generic icon; where none is found or the request forbids it, the name in type. |

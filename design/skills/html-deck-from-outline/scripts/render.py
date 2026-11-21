@@ -16,8 +16,9 @@ Usage:
   gantt / profiles / timeline / stack / cards / banner / stats / bullets / qa / shots / split / note. Every block's root
   carries data-path ($.slides[3].blocks[0]) and every slide data-slide, which the layout report names findings by.
 - Line icons (ICONS) exist for the rare item whose meaning a word does not carry; a named product gets its real logo.
-- When meta.external is true, the strings of meta and slides are checked against meta.style before rendering; a failure
-  lists each string with its path. --no-check renders anyway, for a look at a draft; a delivery never uses it.
+- When meta.external is true, the strings of meta and slides are checked against the house style before rendering: the
+  usual set where meta.style is absent, the usual set and the file's own with style.usual, else the file's own set. A
+  failure lists each string with its path. --no-check renders anyway, for a look at a draft; a delivery never uses it.
 - The browser route is the first the host has: Playwright from Python; Node.js with playwright-core (PLAYWRIGHT_FROM,
   or a tools folder in the user's cache, installed there once); the installed browser's own --print-to-pdf and
   --screenshot (no layout report on that route). --route forces one. The route taken is printed.
@@ -88,20 +89,51 @@ def _walk_strings(obj, path="$"):
             yield from _walk_strings(v, f"{path}.{k}")
 
 
+# The usual house style of a deck that leaves the organization: middle dots in every form, dashes, circled numbers,
+# and a head in brackets. A deck declares its own in meta.style; this is the default. The same set and the same keys
+# as the minutes skill's helper.
+USUAL_FORBIDDEN = {
+    "·": "middle dot", "•": "bullet", "‧": "hyphenation point", "∙": "bullet operator",
+    "ㆍ": "Hangul middle dot", "—": "em dash", "–": "en dash", "―": "horizontal bar",
+}
+for _i in range(20):
+    USUAL_FORBIDDEN[chr(0x2460 + _i)] = "circled number"
+
+
+def resolve_style(meta):
+    """The set the check applies: the usual set where meta.style is absent, the usual set and the file's own with
+    style.usual, else the file's own set alone."""
+    style = meta.get("style")
+    if style is None:
+        return dict(USUAL_FORBIDDEN), True, "the usual set"
+    usual = bool(style.get("usual"))
+    forbidden = dict(USUAL_FORBIDDEN) if usual else {}
+    own = style.get("forbidden", {})
+    if isinstance(own, list):
+        own = {chars: chars for chars in own}
+    for chars, name in own.items():
+        for ch in chars:  # a key of several characters is a set, each checked
+            forbidden[ch] = name
+    no_bracket = bool(style.get("no_bracket_heads", usual))
+    return forbidden, no_bracket, ("the usual set and the file's own" if usual else "the file's own set")
+
+
 def check_style(spec):
     """Return the list of house-style violations (empty when the deck passes)."""
-    style = spec.get("meta", {}).get("style", {})
-    forbidden = style.get("forbidden", {})
+    meta = spec.get("meta", {})
+    forbidden, no_bracket, _ = resolve_style(meta)
     problems = []
-    checked = {"meta": {k: v for k, v in spec.get("meta", {}).items() if k not in ("style", "theme")}, "slides": spec["slides"]}
+    checked = {"meta": {k: v for k, v in meta.items() if k not in ("style", "theme")}, "slides": spec["slides"]}
     for path, s in _walk_strings(checked):
-        for chars, name in forbidden.items():
-            for ch in chars:  # a key of several characters is a set, each checked
-                if ch in s:
-                    problems.append(f"{path}: {name} ({ch}) in: {s[:60]}")
-                    break
-        if style.get("no_bracket_heads") and re.match(r"^\s*\[[^\]]+\]", s):
-            problems.append(f"{path}: bracket head in: {s[:60]}")
+        found = []
+        for ch in s:
+            if ch in forbidden and ch not in found:
+                found.append(ch)
+        if found:
+            names = ", ".join(f"{forbidden[ch]} ({ch})" for ch in found)
+            problems.append(f"{path}: {names} in: {s[:60]}")
+        if no_bracket and s.lstrip().startswith("["):
+            problems.append(f"{path}: bracketed head in: {s[:60]}")
     return problems
 
 
@@ -1388,7 +1420,7 @@ def main(argv):
             for p in probs:
                 print("  -", p)
             return 1
-        print("house-style check passed")
+        print(f"house-style check passed ({resolve_style(meta)[2]})")
     theme = {**DEFAULT_THEME, **meta.get("theme", {})}
     out_html = args[1]
     needs_browser = any(k in args for k in ("--pdf", "--report", "--sheet", "--look", "--page"))
