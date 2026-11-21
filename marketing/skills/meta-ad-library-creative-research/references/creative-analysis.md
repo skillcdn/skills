@@ -125,7 +125,7 @@ Look at the images: a sheet that was made and not looked at was not read, and ea
 
 ## Vocabulary
 
-Use one word for one thing across the report, and add a word when none fits.
+The report names each kind with these words.
 
 - **Hook types.** Question. Bold claim. Problem callout. Curiosity gap. Number or social proof. Before and after. Demonstration. Contrarian or myth. Offer first. Story or confession. Native disguise (looks like a post, a review, a message). Authority. Comparison. Trend or meme.
 - **Angles.** Pain relief. Aspiration. Proof by others. Price or deal. Novelty. Scarcity. Identity ("for people like you"). Ease.
@@ -134,11 +134,11 @@ Use one word for one thing across the report, and add a word when none fits.
 
 ## Patterns
 
-Count, do not characterize: "5 of 8", not "most". Across the shortlist, and across the cleaned pool where the text allows: hook types, formats, video lengths, offers, buttons, landing page kinds, words and claims that recur. Then three readings: what the Rising tier does that the Evergreen tier does not (the trend), what many advertisers do alike (crowded), and what nobody in the pool does (open).
+Count across the shortlist, and across the cleaned pool where the text allows: hook types, formats, video lengths, offers, buttons, landing page kinds, words and claims that recur. Then three readings: what the Rising tier does that the Evergreen tier does not (the trend), what many advertisers do alike (crowded), and what nobody in the pool does (open).
 
 ## Recommendations
 
-Three directions for the user's subject, written new. Each has: the mechanism and the library ads it is taken from (links); why it fits this subject; one hook line in the market's language, with a bracketed blank wherever a fact about the user's product is needed and not known; the structure in beats with seconds; format, length, on-screen text style; the call to action; what to avoid. One direction follows the proven pattern, one bets on an open angle, and one takes a form the pool lacks (a kind of proof, a format). Statements about the user's product come only from its page or from the user.
+Three directions for the user's subject, written new. Each has: the mechanism and the library ads it is taken from (links); why it fits this subject; one hook line in the market's language, with a bracketed blank wherever a fact about the user's product is needed and not known; the structure in beats with seconds; format, length, on-screen text style; the call to action; what to avoid. One direction follows the proven pattern, one bets on an open angle, and one takes a form the pool lacks (a kind of proof, a format).
 
 ## Report
 
