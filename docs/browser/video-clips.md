@@ -51,7 +51,7 @@ One command: seek before the input (`-ss <from> -t <seconds> -i <source>`), crop
 ffmpeg -y -ss 160 -t 6 -i <source> -vf "crop=<w>:<h>:<x>:<y>,scale=<w2>:<h2>:flags=lanczos" -an -c:v libx264 -preset slow -crf 22 -maxrate 8M -bufsize 16M -pix_fmt yuv420p -movflags +faststart <name>-clip-160s.mp4
 ```
 
-- Cut to the strip the slide shows. A picture that fills a 4:5 canvas shows a strip of the clip 0.8 times its height wide: the sides outside it are cropped away, with a margin for the position the slide sets. An eight-second clip went from 18 MB to 10 MB that way. A picture shown whole in a box of the page keeps its ratio and is scaled to the box's width.
+- Cut to the strip the slide shows, where the slide is known. A clip taken before its slide is chosen (a research that gathers a story's material) keeps the source's ratio, and the composite below crops it. A picture that fills a 4:5 canvas shows a strip of the clip 0.8 times its height wide: the sides outside it are cropped away, with a margin for the position the slide sets. An eight-second clip went from 18 MB to 10 MB that way. A picture shown whole in a box of the page keeps its ratio and is scaled to the box's width.
 - The crop also removes what sits at an edge of the source: a browser's bar in a recording, a letterbox band, a broadcaster's mark where the slide does not keep it.
 - Width and height are even numbers, or the encoder refuses them.
 - A quality two or three steps lower (a higher `-crf`) showed no difference once the platform had encoded the post again. As a shape: five seconds at 1200 by 1180 was 3.6 MB, eight seconds 7.9 MB, seven seconds at 1080 by 600 3.6 MB (libx264 at `-crf 22`, illustrative).

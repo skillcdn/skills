@@ -38,9 +38,11 @@
       "from": 12,
       "to": 18,
       "seconds": 6,
-      "px": { "w": 1080, "h": 1350 },
+      "px": { "w": 1920, "h": 1080 },
+      "legibility": "clear",
+      "watermark": "none seen",
       "role": "cover",
-      "notes": ""
+      "notes": "<what the build must know when it crops the clip to a slide: where the subject stays in the frame>"
     },
     {
       "file": "img/example-subject-clip-12s-poster.jpg",
@@ -50,7 +52,7 @@
       "caption": "",
       "credit": { "agency": "<whoever posted the original>", "photographer": "", "outlet": "<the platform or the page>", "date": "0000-00-00" },
       "url": "https://example-video.example/watch?v=<id>&t=12s",
-      "px": { "w": 1080, "h": 1350 },
+      "px": { "w": 1920, "h": 1080 },
       "legibility": "clear",
       "watermark": "none seen",
       "role": "cover",

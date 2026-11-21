@@ -10,12 +10,12 @@ Read `docs/policy.md` before the first message. Each line is the user's standing
 |---|---|
 | Readers | The brief's `audience`. |
 | Stance and tone | The brief's `stance` and `tone`. |
-| Lane | The categories, and what is left out: a story outside the lane is not a card, however timely. |
+| Lane | The categories, from its subjects, and what is left out, by the kind of story it wants: a story outside the lane is not a card, however timely. A lane that names a kind and no subjects leaves the categories to the spec, else to the question. |
 | Follow-ups | Whether a later turn of a story the ledger holds is a candidate. |
 | Window | The days searched, in place of seven, and how far ahead a season counts. |
 | Ranking | The criteria, their points and the bar, in place of the order in [candidates.md](candidates.md): each card then carries its score with its parts, only a card at the bar or over is recommended, and one under it is kept as a spare, named as such. |
 | Sources | The outlets, official pages and boards searched first. |
-| Pictures | Whether a video goes before a photo and what a cover must show, for phase 3. |
+| Pictures | Whether a video goes before a photo and what a cover must show, for phase 3. Where it asks for video, the clip tools are checked before the first message. |
 
 The first message says in a line what was taken from the policy and asks only what the page lacks. An answer or a correction that holds for the account (the user says "always" or "from now on", or answers yes to "Should that stand for the account?", asked once) is written under its heading in the same run, and the message says so; a word that changes a line changes the line.
 
@@ -23,7 +23,7 @@ The first message says in a line what was taken from the policy and asks only wh
 
 Read the rows of `topics/covered.md` and the last candidate lists in `topics/` before searching: a post that is booked or still being made is covered, and a story shown and passed over is not offered again unless it moved.
 
-Check each candidate against the rows by the record page's three tests. Where a row is close (a shared topic key, the same protagonist), open that post's slide plan and caption and look for the passage itself: a check by titles missed a follow-up that an earlier post had already told on one of its slides, and a check by how stories work threw out candidates that overlapped nothing. Each card gets one more line, `Overlap: <the nearest row and why this is another story>`, and a protagonist the ledger already holds is said there.
+Check each candidate against the rows by the record page's three tests. Where a row is close (a shared topic key, the same protagonist), open that post's `slide-plan.json` and `caption.txt`, in `posts/<slug>/` or, once it is live, `posts/published/<day>/<slug>/`, and look for the passage itself: a check by titles missed a follow-up that an earlier post had already told on one of its slides, and a check by how stories work threw out candidates that overlapped nothing. Each card gets one more line, `Overlap: <the nearest row and why this is another story>`, and a protagonist the ledger already holds is said there.
 
 ## The candidate list
 
@@ -34,9 +34,9 @@ Written as `topics/<YYYY-MM-DD>.md`, the day of the search, in place of the `can
 For each pick, before its brief is written:
 
 1. Add the row to `topics/covered.md`: the slug, `idea` with the day, what happened in one line, two to four topic keys, the protagonist.
-2. Create the post's folder `posts/<YYYY-MM-DD-slug>/`, the day being the one the post is meant for (the user's, else the day of the pick), with `post.json` at `idea`. Where the folder has a template for a new post or a command that makes one, use it: the folder's own agreement says.
+2. Create the post's folder `posts/<YYYY-MM-DD-slug>/`, the day being the one the post is meant for (the user's, else the day of the pick), with `post.json` at `idea`, holding the fields the record page lists for a pick. Where the folder has a template for a new post or a command that makes one, use it: the folder's own agreement says.
 
-That folder is the brief folder: `topic-brief.json`, `img/`, `credits.md` and `facts.md` go into it. At the delivery set `status` to `brief` and rewrite the row's state. Where the folder has a check of its own, run it after the row and after the brief.
+That folder is the brief folder: `topic-brief.json`, `img/`, `img-unused/`, `credits.md` and `facts.md` go into it. What the run fetches or installs for itself (the browser driver, a downloaded video, a clip's capture folder) goes where the record page puts such files, in place of `card-news/tools/` and of `frames/` in the brief folder. At the delivery set `status` to `brief` and rewrite the row's state. Where the folder has a check of its own, run it after the row and after the brief.
 
 Several picks at once each get their row and their folder first; the briefs are then written one pick at a time, or side by side by `html-card-news-batch`.
 

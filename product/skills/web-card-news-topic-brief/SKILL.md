@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a web search tool, a way to read a page's full text and its image elements (a fetch tool, a driven browser, or a shell with curl), and a shell with Node.js for downloading images and reading their pixel size. Optional, for the story's video, the tools docs/browser/video-clips.md names for a clip and a Chromium-family browser that playwright-core can launch for frames. Without a shell, image URLs are listed instead of downloaded.
 metadata:
   author: skillcdn
-  version: "1.13"
+  version: "1.14"
   tools: web
 skillcdn:
   translations:
@@ -20,7 +20,7 @@ The categories an account covers go in, with who the post is for; a ranked list 
 ## How the user is involved
 
 - **Questions:** one message, only for what neither the request, a starting skill nor an account's policy answers. The readers, always: "Who are the readers: what do they know of the subject, and what of theirs does the story touch?", with what the request implies offered as the default so that one word continues, because a post written for a reader nobody named reads as nobody's. With them the stance and the tone, the request's implication as the default: "A neutral report, commentary, or a case for one side? Calm or aggressive?" The market or the language where the request leaves one open: "Which country or market?", "In which language will the post be?" The categories, when neither the request nor a format spec gives them.
-- **Checkpoints:** the candidate list, where the user picks, with one card recommended; picking also accepts that the story's video and images are collected. Then the brief, in plain words, before it is delivered. A story handed over in the request is the pick, and no list is shown.
+- **Checkpoints:** the candidate list, where the user picks, with one card recommended. Then the brief, in plain words, before it is delivered. A story handed over in the request is the pick, and no list is shown.
 - **Go-ahead:** skips the brief checkpoint. The pick is never made by the skill.
 - **Changes mid-run:** "domestic, not global" re-ranks the candidates. A word on what the list should hold ("something hotter", "funnier", "nothing we already did") re-enters at the search as a rule for the list, and in an account's folder the skill asks whether it stands for the account. A fact the user doubts is re-read in its article; the chat points to its id while the quoted sentence lives in the brief.
 
@@ -31,11 +31,11 @@ The categories an account covers go in, with who the post is for; a ranked list 
 | A web search tool | The candidates; the articles that carry a story. Recognize it by its action: a query in, titles and links out. |
 | A way to read a page in full: a fetch tool that returns the article's text and its image elements, a browser the agent drives, or a shell with curl | The article bodies the facts come from; the figure images and their captions. Which tool reads what, and where a reading stops, is in [reading-pages.md](/docs/browser/reading-pages.md), read before the first article. |
 | A shell with Node.js | Downloading images and reading their pixel size; writing the brief. Without a shell the brief lists image URLs and the delivery says they were not downloaded. |
-| Optional: what [video-clips.md](/docs/browser/video-clips.md) names for fetching and cutting a clip | A clip of the story's own video. Without it, photographs alone. |
+| Optional: what [video-clips.md](/docs/browser/video-clips.md) names for fetching and cutting a clip | A clip of the story's own video. |
 | Optional: a Chromium-family browser playwright-core can launch, or a driven browser that saves a screenshot to a file | Frames of a public clip the articles cite; images.md says where `playwright-core` comes from. Without either, the clip is listed as a source by its address. |
 | Optional: a tool that starts agents side by side | The search split by region or by category. Without it, one search after another. |
 
-Check the first three before the first message, and the optional ones after the pick, when a video makes them wanted. Without search, stop and say what to add; without a page reader, facts cannot be sourced and the run stops at the candidate list. No paywall is bypassed and no account is signed in to: an article that cannot be read in full is not a source.
+Check the first three before the first message: without search, stop and say what to add; without a page reader, facts cannot be sourced and the run stops at the candidate list. The optional ones are checked after the pick, when a video makes them wanted, and a missing one is said in a line, the run going on with frames or photographs. Where the request or an account's policy asks for video, the clip tools are checked before the first message, by video-clips.md "What it takes", and it names what is missing and what adding it gives.
 
 Nothing is included with this skill: each reference is read when the phase that names it comes, and [tool-notes.md](references/tool-notes.md), how the tools behaved in runs, before phase 1. The pages of the pack's sets `docs/card-news/`, `docs/browser/` and `docs/writing/` are linked from the phases that read them and read through the repository connection. A copy of this directory, the area's plugin and a mount of one area or one skill cannot read them: say so, fetch them from those folders of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`), and otherwise write the brief by [topic-brief.example.json](assets/topic-brief.example.json), which is the shape, and read a spec's fields as its file is.
 
@@ -65,9 +65,9 @@ Produces the **candidate list**, by [candidates.md](references/candidates.md).
 
 1. List the seasons and dates ahead of the readers, then search each category in the window, in the outlets and where the market's readers talk.
 2. Open the one or two articles each story cites and write its card from the body, in the card's shape there.
-3. Leave out what the account has covered and what the user's words or the lane leave out, and keep the most talked about of those for the top of the list, each with the rule that caught it. Rank the rest; keep five to eight, at most three per category, and never pad the list.
+3. Leave out what the account has covered and what the user's words or the lane leave out, and keep the most talked about of those for the top of the list, each with the rule that caught it. Rank the rest, keep five to eight and never pad the list.
 
-Checkpoint: the stories a rule kept off the list, then the cards, numbered, with one recommended and why; "pick a number, or name a story of your own; the pick also lets me collect its video and images". The pick is the user's; the run waits.
+Checkpoint: the stories a rule kept off the list, then the cards, numbered, with one recommended and why; "pick a number, or name a story of your own; the pick also lets me collect its video and images". The run waits.
 
 ### Phase 2: Facts
 
@@ -84,7 +84,7 @@ Produces the **facts table** (`facts.md`; it becomes the brief's `facts`) and th
 Produces the **image set** in `img/` and its entries, by [images.md](references/images.md). Left out for a brief that takes no images.
 
 1. Draft the beats under the table in `facts.md`: five to eight, in story order, each naming its facts, one of them the readers' own case where the facts hold it. What each beat has to show is what the set is judged against.
-2. Look in the order images.md gives and stop when every beat has what the set must hold: the story's own video first, as a clip; then the articles' photographs, the material they cite as frames, the subject's public pages, a page capture, and an image search last. No clip worth taking is a normal result: photographs alone, said in a line.
+2. Look in the order images.md gives, the story's own video first, as a clip, and stop when every beat has what the set must hold. No clip worth taking is a normal result: photographs alone, said in a line.
 3. Download and measure each, judge it at phone size, and set aside what is not kept with its reason.
 4. Write the entries and `credits.md`.
 
@@ -113,7 +113,6 @@ One message: the brief folder and its files; the angle in a line with its outlet
 | A superlative or a comparison with no source, or one an earlier article contradicts | Dropped; the contradicted one with both in `disagreements` |
 | A page that is not an outlet's article: a post on a community board or a social platform, an influencer's post on a portal, a listing or aggregator site, a blog | A lead, not a source; what only it says goes to `unverified` |
 | An organizer's, a venue's, an institution's or the subject's own page or notice, for a schedule, a price, an address or another fact of its own matter | A source for that fact only (`source.kind` `official`, `single_source` true); the story itself still needs an outlet's article |
-| An article behind a paywall or a login | Not a source; another outlet is read |
 | An image or a clip | By the table in images.md "Legibility and what an image is": it shows a thing the facts name, reads at phone size, and is a picture of the event or is marked as not |
 
 ## Hard rules
@@ -124,7 +123,7 @@ One message: the brief folder and its files; the angle in a line with its outlet
 4. The pick is the user's, made at the candidate checkpoint or given in the request, and a rule that excludes a story is a reason to show it with the rule, not to hide it: the week's most talked-about story, kept off a list by three rules and noted in one line, was the next day's biggest news.
 5. Images show the story. They come from where the story's own video and the articles point, in the order images.md gives, and from an image search only for what those leave unshown; none is generated or taken from a stock library unless the user asks for that; all are collected only after the pick. A brief whose photos showed nothing of the story sent the build to the clip the articles cited, and that is where the images were.
 6. Every image is judged legible at phone size, at about a third of the canvas width, before it is kept for a slide that has to be read. Slides built on frames that were blur alone were sent back with "this cannot be seen".
-7. No paywall, no login, no bypass: what cannot be read in full is not used, and a site that refuses the host is not read from it.
+7. No paywall, no login, no bypass: what cannot be read in full is not used. A site that refuses this host is not read from it: one source among several gives way to the next, and the run stops only where the pick's own articles cannot be read ([tool-notes.md](references/tool-notes.md) "A site this host cannot read").
 8. Nothing is spent and nothing is posted.
 
 ## Terminology

@@ -10,7 +10,7 @@ A working folder is an account's when it holds `docs/policy.md` or `topics/cover
 |---|---|
 | `docs/policy.md` | The policy. |
 | `formats/<name>/format-spec.json` | The format the account builds in, a new folder for a new version. |
-| `posts/<YYYY-MM-DD-slug>/` | One post: `post.json`, `topic-brief.json` with its `img/`, `credits.md` and `facts.md`, `slide-plan.json`, `caption.txt`, the rendered slides under `out/`, `review.md`. The brief folder and the post folder the skills name are this one folder, so nothing is copied from one to the other. The day in the name is the day the post is meant for, and posts are booked in that order unless the request gives another. |
+| `posts/<YYYY-MM-DD-slug>/` | One post: `post.json`, `topic-brief.json` with its `img/`, `img-unused/`, `credits.md` and `facts.md`, `slide-plan.json`, `caption.txt`, the rendered slides under `out/`, `review.md`. The brief folder and the post folder the skills name are this one folder, so nothing is copied from one to the other. The day in the name is the day the post is meant for, and posts are booked in that order unless the request gives another. |
 | `posts/published/<upload day>/<slug>/` | The same folder, moved once the post is live. |
 | `topics/covered.md` | The ledger. |
 | `topics/<YYYY-MM-DD>.md` | The candidate list of one search, with what was picked. |

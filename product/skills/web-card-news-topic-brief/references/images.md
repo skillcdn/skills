@@ -19,19 +19,19 @@ Start from what each beat has to show, read from the facts: the subject, the sce
 | 5 | A capture of a page the story is about or the articles cite (an advisory, a notice, a release, a post), or of the subject's own public page, taken by the run's browser at a width that reads at phone size and kept whole | The page's owner, with the address and the day | When 1 to 4 give no picture of what a beat names, as for a story about software or a document, or the spec has a type that carries a capture |
 | 6 | An image search | The page the image was found on | Last, for a beat 1 to 5 left unshown; said at the brief checkpoint with what was looked for first |
 
-A source the host cannot reach is skipped, not worked around: a site that fails from its first page while other sites load ([walls.md](/docs/browser/walls.md) "The host's wall") is named in the brief's `notes` as not reached, the next source in order is read, and the checkpoint and the delivery say so. A stock library or a generated image is used only when the user asks for it, and the credit says so. Which source each image came from goes in `source_kind` of its entry (`video-clip`, `article-figure`, `share-image`, `video-frame`, `subject-page`, `page-capture`, `image-search`, `user`).
+A source this host cannot read is one among several ([tool-notes.md](tool-notes.md) "A site this host cannot read"): it is named in the brief's `notes` as not reached and the next source in the order is read, without a stop, and the checkpoint and the delivery say so. A stock library or a generated image is used only when the user asks for it, and the credit says so. Which source each image came from goes in `source_kind` of its entry (`video-clip`, `article-figure`, `share-image`, `video-frame`, `subject-page`, `page-capture`, `image-search`, `user`).
 
 ## A clip of the story's video
 
-Look for the story's own video before its photographs: what the subject posted, what was filmed of the event, the product shown working. The articles and the boards where the story is talked about name it; a re-upload, another outlet's edit with its captions and logo, or a video that is only about the same subject is not it. How a video is fetched, which range is worth cutting and how it is cut, with what that takes, is the pack's [video-clips.md](/docs/browser/video-clips.md), read before the first video is opened; nothing of it is repeated here. This skill adds one test: the range shows what a beat names, and shows it better than the photographs do. Each clip gives two entries: the clip itself (`source_kind` `video-clip`, the file `img/<name>.mp4`, the source's `url`, `from` and `to` in seconds of the source, `seconds`, `px`, `shows`, `credit`), and its first frame as a `video-frame` entry with `poster_of` naming the clip's file. `credits.md` says whose video it is and which seconds.
+The story's own video is the one the articles and the boards where the story is talked about name; a re-upload, another outlet's edit with its captions and logo, or a video that is only about the same subject is not it. How a video is fetched, which range is worth cutting and how it is cut, with what that takes, is the pack's [video-clips.md](/docs/browser/video-clips.md), read before the first video is opened; the downloaded video goes into a cache beside the tools folder (`card-news/tools/cache/`), never into the brief folder. This skill adds two things. The range shows what a beat names, and shows it better than the photographs do. And the research does not know the slide the clip will sit in, so it cuts to no strip: the clip keeps the source's own ratio, less a band or a bar at an edge, scaled down to the canvas's height where the source is taller, and the build crops it to its slide.
 
-No video of the story, no way on this host to cut one, a video behind a login, or a clip that shows the thing worse than a photograph: the set is photographs alone. That is a normal result, said in one line at the checkpoint with what was looked for; a clip is never added to have one.
+Each clip gives two entries: the clip itself (`source_kind` `video-clip`, the file `img/<name>.mp4`, the source's `url`, `from` and `to` in seconds of the source, `seconds`, `px`, `shows`, `credit`, `legibility`, `watermark`, `role`), and its first frame as a `video-frame` entry with `poster_of` naming the clip's file. Both carry the clip file's own size as `px`, read from the file. `legibility` is judged as an image's is, on the poster and on a frame from the middle of the range; `watermark` says which mark stays in view. `credits.md` says whose video it is and which seconds.
+
+No video of the story, a video behind a login, or a clip that shows the thing worse than a photograph: the set is photographs alone. No tool on this host to cut one: the video's frames where they can be captured (below), else photographs. Each is a normal result, said in one line at the checkpoint with what was looked for and which tool was missing; a clip is never added to have one.
 
 ## Finding the images in an article
 
-An article's photographs are its figure elements: an `img` inside a `figure`, with the caption and the credit in the text next to it (a byline of the agency, a photographer, a "provided by"). A page reader that returns the article's text usually returns the image URLs and the captions with it; where it returns no images, a driven browser reads the `img` elements with the script in [reading-pages.md](/docs/browser/reading-pages.md) "The images on a page".
-
-The share image in the page's metadata (`og:image`) is a fallback when the article has one photo only; its credit is then the outlet, with `source_kind` `share-image`. The article's logo, icons and advertisements are not images. A news photograph often appears in several outlets with the same agency credit; the largest copy is the one to download, and the credit names the agency, with the outlet noted as where it appeared.
+An article's photographs are found as [reading-pages.md](/docs/browser/reading-pages.md) "The images on a page" says: its figure elements, each with the caption and the credit printed beside it (the agency's byline, a photographer, a "provided by"), the largest copy where several outlets carry one photograph. This skill adds the credit: a photograph several outlets carry is credited to its agency, with the outlet noted as where it appeared; the share image in the page's metadata, taken only where the article has one photograph, is credited to the outlet, with `source_kind` `share-image`.
 
 ## Frames from a clip the articles cite
 
@@ -41,19 +41,18 @@ Capture the whole clip once into a capture folder of its own in the brief folder
 
 ## Finding by search
 
-For a beat the sources above left unshown, an image search of the subject's name with the event: open the page each result sits on and take the image from that page, never from the thumbnail, credited to that page with the credit it prints. A search is never the first source, because the articles' and the material's images are what the account would show and what a reader recognizes. Where the host's search tool returns text results only, an image search engine's results page opened in the browser at hand, driven or headless, lists the images with the page each sits on (checked 2026-10).
+For a beat the sources above left unshown, an image search of the subject's name with the event: open the page each result sits on and take the image from that page, never from the thumbnail, credited to that page with the credit it prints. Where the host's search tool returns text results only, an image search engine's results page opened in the browser at hand, driven or headless, lists the images with the page each sits on (checked 2026-10).
 
 ## Downloading and measuring
 
 - One file per image, named for its source and subject (`<outlet>_<subject>.jpg`; a frame as the script names it, by its time code), into `img/` of the brief folder, after the pick and never before.
-- Request each as [reading-pages.md](/docs/browser/reading-pages.md) "Downloading a file" says: one at a time, through the browser that read the article where there is one, else by a plain request; the transform segment removed where the host serves the original to a plain request; a host that answers with an error is not downloaded from.
-- Read the pixel size from the file with [image-size.example.mjs](../scripts/image-size.example.mjs) (JPEG, PNG and WebP) or a few lines like it. The size goes in the entry, not an estimate. A frame's `px` is the resolution the clip was served at, read from the capture table, not the capture file's size, which is always the box's.
+- Request each, and read its pixel size from the file, as [reading-pages.md](/docs/browser/reading-pages.md) "Downloading a file" says; [image-size.example.mjs](../scripts/image-size.example.mjs) reads JPEG, PNG and WebP. A frame's `px` is the resolution the clip was served at, read from the capture table, not the capture file's size, which is always the box's.
 - Note where a logo, a watermark or a credit mark sits (a corner, the lower edge), because the build crops around it where the account crops and keeps it where the account keeps it.
 - Downloads not kept go to `img-unused/` with one line each in `credits.md` on why (a duplicate, smaller, a large mark, unreadable), so that the user or the build can swap one in.
 
 ## Choosing
 
-The canvas is the spec's documented size when a spec exists, else the platform's documented portrait size (about 1080 by 1350 pixels for 4:5 at the time of writing, illustrative; looked up at run time). An image rendered full-bleed at that size is judged by its own size; a frame the account keeps whole at the canvas width is judged against that width:
+The canvas is the brief's `canvas`, as the skill's Inputs derive it. An image rendered full-bleed at that size is judged by its own size; a frame the account keeps whole at the canvas width is judged against that width:
 
 | Image | At the canvas |
 |---|---|
@@ -67,7 +66,7 @@ Where no image of a beat reaches the canvas, look for the same photograph's larg
 
 ### Legibility and what an image is
 
-Every image is judged as a phone reader will see it, at about a third of the canvas width (the file shown in the driven browser or the host's browser pane at that width; or, with `playwright-core` at hand, a headless page that shows the file at that width, screenshotted, as the pack's [rendering-html.md](/docs/browser/rendering-html.md) "Looking at a render" says, since Node.js has no image resize of its own): the subject must be made out and any text on it read. `legibility` in the entry is `clear`, `soft` (usable, with the factor or the reason in `notes`) or `unreadable`. Slides delivered on unreadable frames were sent back with "this cannot be seen"; the judgement is made here, image by image, so that the build never has to make it.
+Every image is judged as a phone reader will see it, at about a third of the canvas width (the file shown in the driven browser or the host's browser pane at that width; or, with `playwright-core` at hand, a headless page that shows the file at that width, screenshotted, as the pack's [rendering-html.md](/docs/browser/rendering-html.md) "Looking at a render" says, since Node.js has no image resize of its own): the subject must be made out and any text on it read. `legibility` in the entry is `clear`, `soft` (usable, with the factor or the reason in `notes`) or `unreadable`. The judgement is made here, image by image, so that the build never has to make it.
 
 `shows` says in the post's language what the image shows (the person by name as the articles give it, the scene, the thing), so that the build matches each slide's text to an image that shows what it names; a frame's `shows` includes what its caption states.
 
@@ -77,8 +76,6 @@ Every image is judged as a phone reader will see it, at about a third of the can
 | Its subject cannot be made out at phone size (blur or mosaic alone, a dark scene, motion blur, a small picture that would upscale past about two times) | `unreadable`: set aside, or kept only as a background under type, said so; a slide that has to be read takes only a clear one |
 | A re-enactment, an illustration or a generated image inside the material | Not a photograph of the event: `role` `illustration` with `notes` saying what it is, or not kept |
 | A frame whose printed caption states something no article body carries | Kept for what it shows, with `notes` saying its caption is uncarried; the statement goes to `unverified` with the clip as where it was seen |
-| Found by image search | Kept only for what the earlier sources left unshown, and said at the checkpoint |
-| Smaller than the canvas | Kept with its size and the upscale factor noted, as the table above says |
 
 ## Roles
 
