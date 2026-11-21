@@ -73,7 +73,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Make the card news and show it here."
 
-- You get: the carousel of a card news post as PNG slides built in the format spec's slide types (a reference's, or a format of your own) from a sourced brief, previewed, reviewed slide by slide at phone size, delivered with the caption, the credits and a pre-publish checklist.
+- You get: the carousel of a card news post as PNG slides built in the format spec's slide types (a reference's, or a format of your own) from a sourced brief, with an mp4 for a slide that carries one of the brief's video clips, previewed, reviewed slide by slide at phone size, delivered with the caption, the credits and a pre-publish checklist.
 - Skill: [`design/skills/html-card-news-from-brief/`](/design/skills/html-card-news-from-brief/SKILL.md)
 - Also asked as: "build the finished post from this brief", "make this one the same way as the last", "the slides of this post as images", "a card news carousel from these facts".
 - Not this one when: there is no brief yet (the brief under Product) or no format spec (the study and the variations above); the skill asks for the reference, offers the routes to a spec in their order, the reference varied first, and says what to run first. A request for the whole post ("make a card news post about this, the way that account does it") runs them in order: the study (once per account), the brief, the variations unless the reference is wanted as it is, then this build.

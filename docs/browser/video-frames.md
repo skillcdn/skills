@@ -1,6 +1,6 @@
 # Frames of a public clip
 
-How stills of a public video (a broadcaster's clip of a report, footage an article cites, an ad's video) are taken for a brief, a breakdown or a reference, without downloading the video, by the route the agent has. The frames are working files of the run: nothing of the clip is kept beyond them, and the delivery cites the clip's address and the time of each frame.
+How stills of a public video (a broadcaster's clip of a report, footage an article cites, an ad's video) are taken for a brief, a breakdown or a reference, without downloading the video, by the route the agent has. The frames are working files of the run: nothing of the clip is kept beyond them, and the delivery cites the clip's address and the time of each frame. A few seconds of the video kept as a moving clip, for a slide that plays it, is another job with a download: [video-clips.md](video-clips.md).
 
 ## Routes
 

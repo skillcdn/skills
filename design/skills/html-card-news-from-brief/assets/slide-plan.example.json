@@ -15,5 +15,5 @@
   "caption": "<the caption text, also in caption.txt>",
   "credits": ["<one line per image in the spec's credit pattern>"],
   "derived": { "slide_count": 4, "fonts": "spec", "sequence": "<as the spec's build, or differs from the previous post in slides n and m>", "nearest_type_used_for": [], "dropped_beats": [] },
-  "checklist": { "unverified": ["<item>"], "upscaled": [{ "file": "img/example-outlet_mood.jpg", "factor": 1.6 }], "licence_flags": [], "legibility": ["<a slide whose image is soft, and why it stayed>"] }
+  "checklist": { "unverified": ["<item>"], "upscaled": [{ "file": "img/example-outlet_mood.jpg", "factor": 1.6 }], "legibility": ["<a slide whose image is soft, and why it stayed>"] }
 }

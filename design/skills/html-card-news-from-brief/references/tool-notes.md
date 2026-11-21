@@ -1,6 +1,6 @@
 # Tool notes: how the tools behaved
 
-What runs of this skill met in the review and in the render, by topic, with the day where a fact can go stale. What holds for any page the agent writes and renders (the host's preview and its server, the cached image reader, ES modules, `playwright-core` and the waits, fonts) is in [rendering-html.md](/docs/browser/rendering-html.md), included with this skill, and in [headless.md](/docs/browser/headless.md); this page holds what this skill's own slides met.
+What runs of this skill met in the review and in the render, by topic, with the day where a fact can go stale. What holds for any page the agent writes and renders (the host's preview and its server, the cached image reader, ES modules, `playwright-core` and the waits, fonts) is in [rendering-html.md](/docs/browser/rendering-html.md) and [headless.md](/docs/browser/headless.md), and what ffmpeg does to a clip in [video-clips.md](/docs/browser/video-clips.md); this page holds what this skill's own slides met.
 
 ## Reading the PNGs
 
