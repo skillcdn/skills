@@ -19,7 +19,7 @@ A script is speech written down, and its test is the mouth. Say each sentence at
 
 - **The common word.** For what a body is doing (looking into it, reviewing it, deciding by a date) the viewer knows a few words from every night's news, and those are the ones to use; in Korean, 조사 중입니다 or 검토하고 있습니다. A rarer word chosen for precision or for variety makes the viewer hear the word and miss the sentence. [sentences.md](/docs/writing/sentences.md) holds plain words for any text.
 - **The thing, not a stand-in.** A sentence that says what something is ends on the noun that names it (a measure, a plan, the reason), and not on a filler that only closes the clause; in Korean, -대책입니다 or -이유입니다 where the draft has -ㄴ 것입니다. The noun tells the viewer what kind of thing they just heard, and the sentence is shorter by it.
-- **A name comes with what it is** at its first mention ("the agency that issues the permits"), and by its short form after that. A short form the viewer was never given is a new unknown.
+- **A name comes with what it is** at its first mention ("the agency that issues the permits"), and by its short form after that. A short form the viewer was never given is a new unknown. The gloss says what any reference work says the thing is, and needs no fact of the brief; anything it adds about the story needs one.
 
 ## How it is known
 

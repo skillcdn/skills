@@ -27,6 +27,7 @@ In the order they are chosen:
 | A graphic drawn in code | A definition, a count, a quote, two sides set against each other, a route or a map, the dates that come next | The exact figures, the quote as printed with its speaker and its outlet, who counted and up to when. It builds a line at a time, with the voice |
 | A generated general scene | What the thing looks like in general: a place, an object, an action anyone could film there | Labelled as generated in the text on screen, in the viewers' language ("AI-generated scene"). No real person, no mark or logo, no text the viewer must read, and never offered as the event itself |
 | Footage or photographs the user holds the rights to | The event itself | Used where the user says they hold them, with the credit on screen |
+| Pictures the story's subject published itself (an agency's or a company's own release) | The thing itself, where its terms allow | Used under the terms its publisher states, with the credit. The terms are read first and named in before air, and a graphic stands in where they are not at hand |
 | Another outlet's photograph or footage | Nothing, as planned | A brief may list such images with their terms, which usually forbid reproduction. A cut that needs one names the rights holder whose permission it waits for, and the graphic that stands in until then |
 
 A report can be made from the first three alone, and a cut sheet that leans on the last two is one the user cannot produce without someone else's word.

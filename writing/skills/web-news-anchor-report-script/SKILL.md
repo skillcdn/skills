@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the tools of the topic brief skill when the story is still to be researched (a web search tool, a page reader, a shell) and a way to start an agent with none of the session's context for the cold listen (a subagent tool, or a second session the user opens); a shell counts the spoken length where there is one. Works in any agent that can write files.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: web
 skillcdn:
   include:
@@ -50,7 +50,7 @@ The area's rule that a text is as firm as its sources takes this form here: ever
 | Length | The request's; else ninety seconds. |
 | Air date | The request's; else the day the script is written. Every "yesterday" and "next week" in the script rests on it. |
 | Viewers, stance, tone, language | The brief's `audience`, `stance` and `tone`; the script is in the brief's language. |
-| Where it goes | The folder the user names, else `anchor-report/<story in a few plain words>/` under the working folder (under the host's scratch folder when the working folder is a git checkout, under the user's home without one), holding `script.md` and the brief in `brief/`. Said in the message that creates it. |
+| Where it goes | The folder the user names, else `anchor-report/<story in a few plain words>/` under the working folder (under the host's scratch folder when the working folder is a git checkout, under the user's home without one), holding `script.md` and the brief in `brief/`, a copy where the user brought one. Said in the message that creates it. |
 | Everything else | Derived and shown at the checkpoint: the thread, the lead and its picture, the parts, what is left out. |
 
 ## Workflow
@@ -59,7 +59,7 @@ Each phase produces a named part of `script.md`, in this order: the plan, the sc
 
 ### Phase 1: The brief
 
-Produces the **brief**. Take the folder the user names, or run the research skill with the inputs above, at its own stops. Read the result whole, by [topic-brief.md](/docs/card-news/topic-brief.md): `facts` with their source sentences and their `single_source` marks, `angle` with its outlet, `disagreements`, `unverified`, `audience`. Where the research skill ran, its brief checkpoint was the stop for this; a brief the user brought is said in a line (how many facts, the angle with its outlet), and the run goes on.
+Produces the **brief**. Take the folder the user names, or run the research skill with the inputs above, at its own stops. Read the result whole, by [topic-brief.md](/docs/card-news/topic-brief.md): `facts` with their source sentences and their `single_source` marks, `angle` with its outlet, `disagreements`, `unverified`, `audience`. Where the research skill ran, its brief checkpoint was the stop for this; a brief the user brought is said in a line (how many facts, the angle with its outlet) with the length and the air date, and the run goes on.
 
 ### Phase 2: The plan
 
@@ -114,7 +114,7 @@ One message: the path of `script.md`; the script itself; the length; what the cu
 2. A sentence says how its content is known. What someone announced, demanded, counted, said or expects is never stated flat in the anchor's own voice, because the viewer hears that as the newsroom vouching for it.
 3. A sentence has one job the listener could name.
 4. Wording never supplies a link the sources lack: a cause between two events, or how a neighbouring event bears on the story.
-5. A reference gives its form only. Its story, its people, its sentences and its outlet's name enter neither the script nor any file the run keeps.
+5. A reference gives its form only. Its story, its people, its sentences and its outlet's name enter neither the script nor any file the run keeps. A source of the brief that is itself a broadcast report gives its facts, as any article does, and none of its wording.
 6. A script that no listener with only the script has heard is not shown as checked: the delivery says so.
 7. No picture the user has no right to show is planned onto the screen, and a generated scene is labelled as generated and never stands for the event itself.
 8. No video and no image is generated here.
