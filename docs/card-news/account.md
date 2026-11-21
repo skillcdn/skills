@@ -10,10 +10,11 @@ A working folder is an account's when it holds `docs/policy.md` or `topics/cover
 |---|---|
 | `docs/policy.md` | The policy. |
 | `formats/<name>/format-spec.json` | The format the account builds in, a new folder for a new version. |
-| `posts/<YYYY-MM-DD-slug>/` | One post: `post.json`, the topic brief with its `img/` and `credits.md`, the slide plan, the caption, the rendered slides, `review.md`. The brief folder and the post folder the skills name are this one folder. The day in the name is the day it is meant for. |
+| `posts/<YYYY-MM-DD-slug>/` | One post: `post.json`, `topic-brief.json` with its `img/`, `credits.md` and `facts.md`, `slide-plan.json`, `caption.txt`, the rendered slides under `out/`, `review.md`. The brief folder and the post folder the skills name are this one folder, so nothing is copied from one to the other. The day in the name is the day the post is meant for, and posts are booked in that order unless the request gives another. |
 | `posts/published/<upload day>/<slug>/` | The same folder, moved once the post is live. |
 | `topics/covered.md` | The ledger. |
 | `topics/<YYYY-MM-DD>.md` | The candidate list of one search, with what was picked. |
+| The host's scratch folder, else `.cache/` at the root, which the repository ignores | What a run fetches or installs for itself: a browser driver, a downloaded video, the frames a clip is chosen from. Never a post's folder, and nothing under `posts/`. |
 
 ## The policy
 
@@ -23,21 +24,21 @@ One page under headings, each line the person's standing answer. A skill takes a
 |---|---|---|
 | Account | The handle, the platform, what the account is for. | Every skill. |
 | Readers | The market, the language and who reads: the brief's `audience`. | The research. |
-| Lane | Which stories the account tells and which it leaves, in the person's own distinctions (only stories that make a reader laugh; product news and nothing else; no private individuals). | The research, for its candidates. |
+| Lane | The subjects the account covers, which are the categories the research searches in, and the kind of story it wants in any of them, in the person's own distinctions (only stories that make a reader laugh; no private individuals). A kind of story filters every category and is not a category itself. | The research, for its candidates. |
 | Follow-ups | Whether a later turn of a story already told is a new story. | The research, with the ledger. |
 | Window | How many days back a story may be, and whether a coming season or date adds to a story's timeliness. | The research. |
 | Ranking | The criteria a candidate is scored on, the points of each and the score from which one is recommended. Left out, the research ranks as it does for any request. | The research. |
 | Sources | Where candidates are looked for first: outlets, official pages, the communities whose talk counts as heat. | The research. |
-| Stance and tone | The brief's `stance` and `tone`. | The research and the build. |
+| Stance and tone | The brief's `stance` and `tone`. | The research, which writes them into the brief the build follows. |
 | Voice | The register of headlines, body and caption where the format spec leaves room; words the account does not use. | The build. |
 | Pictures | Whether a video goes before a photo, what a cover must show. | The research and the build. |
-| Cadence | Posts a day, the slots, how far the minutes vary, what may replace a booked post on the day. | The batch and the posting. |
+| Cadence | Posts a day, the slots and their time zone, how far the minutes vary, what may replace a booked post on the day. | The batch and the posting. |
 | Approval | Who approves a post and what they are shown. | The batch and the posting. |
 | New techniques | How often someone looks for a better way to make the posts, and who decides a trial. | The studio's trial procedure. |
 
 ## A post's record
 
-`post.json` in the post's folder: `slug`, `title`, `format` (the folder under `formats/`), `kind` (news, promo, update), `status`, `owner`, `task` (the board task where the work has one), `created_at`, `slides`, `notes`, and what the later states add.
+`post.json` in the post's folder. Written when the topic is picked: `slug`, `title`, `kind` (news, promo, update), `status`, `created_at`, `format` (the folder under `formats/` the account builds in, left empty where it has none yet), `owner` (who the post is assigned to, where someone is) and `task` (the board task, where the work has one). The build adds `slides`, a number; `notes` takes a line for anything a later reader must know; the later states add their own fields.
 
 | `status` | Means | Written by |
 |---|---|---|
@@ -58,7 +59,7 @@ A post changed after `review` (a slide remade, a caption edited) is rendered aga
 
 A candidate overlaps a row when it is the same event, when it is a later turn of that event and the policy says follow-ups are not new stories, or when the same subject does the same thing somewhere else. A story that only works the same way as an earlier one (the same kind of mistake by another subject) does not overlap; two of them in one batch are placed apart.
 
-A candidate the ledger or the lane rules out is not dropped silently: the candidate list shows the hottest of them first, each with the rule that caught it, and the person may tell the account to cover one, which the row then records in their words. The row is added by the skill that takes the pick, before the brief is written, and its state is rewritten by the skill that moves the post. In a studio both are the repository's own commands (`npm run new` adds the folder and the row and refuses a key another row holds, `npm run file` rewrites the row's state from the record and files a published post): a skill runs them where they exist and writes by hand only where they do not.
+A candidate the ledger or the lane rules out is not dropped silently: the candidate list shows the hottest of them first, each with the rule that caught it, and the person may tell the account to cover one, which the row then records in their words. The row is added by the skill that takes the pick, before the brief is written, and its state is rewritten by the skill that moves the post. In a studio both are the repository's own commands (`npm run new` adds the folder and the row and refuses a key another row holds; `npm run file`, run after every change of a post's `status`, rewrites the row's state from the record and files a published post): a skill runs them where they exist and writes by hand only where they do not.
 
 ## Who reads and writes what
 
