@@ -4,7 +4,7 @@ What a report the user names gives the script, how it is read, and what of it en
 
 ## What it gives
 
-Its form and nothing else: how long the lead runs before the handover, the order of its parts, how its sentences end, how many causes or sides it tells in full, how it closes, what the screen shows under each part, where sources are named on screen, and its pace.
+Its form and nothing else: how long the lead runs before the handover, the order of its parts, how long its sentences run and how their endings are mixed, how many causes or sides it tells in full, how it closes, what the screen shows under each part, where sources are named on screen, and its pace.
 
 ## How it is read
 

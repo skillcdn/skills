@@ -4,12 +4,12 @@ What the viewer sees under each sentence, and what the screen carries so that th
 
 ## The cut sheet
 
-One table in `script.md`, one row per cut. A cut is a stretch of the report under one picture; it begins where the picture changes, which is usually where a part begins, and holds one to four sentences.
+One table in `script.md`, one row per cut. A cut is a stretch of the report under one picture; it begins where the picture changes, which is usually where a part and its paragraph begin, and holds one to four sentences.
 
 | Column | Holds |
 |---|---|
 | Cut | Its number |
-| Sentences | The numbers of the sentences said under it |
+| Sentences | The numbers, from the sentence table, of the sentences said under it |
 | Seconds | From and to, from the count made when the draft stood (each sentence's share of the spoken length), as an estimate a recorded voice replaces |
 | Screen | What is shown, and its class from the table below |
 | Text on screen | The title, the supers, the figures, the quote and its source, as final text |

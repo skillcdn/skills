@@ -11,7 +11,7 @@ Skills whose result is the text itself, read or heard as it is: a news script, a
 
 | Skill | Tool family | What it does |
 |---|---|---|
-| [`web-news-anchor-report-script`](skills/web-news-anchor-report-script/) | Web | Writes the script of a news anchor report from a sourced topic brief, about ninety seconds unless asked otherwise: the lead from the viewer's side, each sentence with one job and the form that says how its content is known, and a cut sheet of graphics and labelled generated scenes for a video made later. Checked for its facts, its form, its spoken length, and its sense by a listener who has only the script. |
+| [`web-news-anchor-report-script`](skills/web-news-anchor-report-script/) | Web | Writes the script of a news anchor report from a sourced topic brief, about ninety seconds unless asked otherwise: the lead from the viewer's side, short sentences as an anchor says them, each with one job and the form that says how its content is known, and a cut sheet of graphics and labelled generated scenes for a video made later. Checked for its facts, its form, its spoken length, and its sense by a listener who has only the script. |
 
 The other kinds of text planned here, each a job with its status, are in [guide/roadmap.md](../guide/roadmap.md) "M9: Writing". A skill is written from the job done once ([guide/adding.md](../guide/adding.md)).
 
