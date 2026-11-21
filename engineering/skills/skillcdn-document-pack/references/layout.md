@@ -43,7 +43,7 @@ A file is what a search lists and an agent reads: it carries a title and a descr
 | A page of a book, a slide, a sheet | Never a file of its own: join pages into their chapter, slides into their deck or its sections, sheets into one document per workbook with a heading per sheet. |
 | Many short notes on one subject | One file per note when each stands alone, else one file per subject with a heading per note. |
 
-The bounds: a deployment indexes a file up to its per-file limit and serves it up to its read limit, both configuration with defaults ([deploy](https://github.com/skillcdn/skillcdn/blob/main/deploy/README.md)); `npx @skillcdn/cli check` names a file too large to be searched, which is the sign to split it. A file of a few thousand words is far under both. Keep the chapter's heading path at the top of a split file (`# The Guide: Installing`), so that a chapter read alone says what it belongs to.
+The bounds: a deployment indexes a file up to its per-file limit and serves it up to its read limit, both configuration with defaults ([deploy](https://github.com/skillcdn/skillcdn/blob/main/deploy/README.md)); `npx @skillcdn/cli@latest check` names a file too large to be searched, which is the sign to split it. A file of a few thousand words is far under both. Keep the chapter's heading path at the top of a split file (`# The Guide: Installing`), so that a chapter read alone says what it belongs to.
 
 ## Front-matter
 

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory; a shell with git in a checkout of the pack's repository to keep notes. Works in any agent that can call MCP tools or run a shell.
 metadata:
   author: skillcdn
-  version: "1.5"
+  version: "1.6"
   tools: skillcdn
 skillcdn:
   include:
@@ -96,7 +96,7 @@ Produces the **note**, when the user owns the repository ([notes.md](references/
 
 1. Write the note in the notes document set, marked `derived` in its front-matter, each quote a block quote of the section's own words whose last line links to that section ([notes.md](references/notes.md)): the question, the date, the answer, the quotes, and what was not found. One note per question; a question asked again updates its note.
 2. Add the note's line to the set's map, and the set to the manifest's roots when it is new.
-3. Where the shell has npm, `npx @skillcdn/cli check` until it reports no `quote_not_in_source`, `quote_without_link` or `derived_from_missing` (SkillCDN 0.5.0). Checkpoint, skipped on a go-ahead: the note as it will be committed. Commit as the repository's agreement says, and push only as it allows; once served, the next run's phase 1 finds the note by its words.
+3. Where the shell has npm, `npx @skillcdn/cli@latest check` until it reports no `quote_not_in_source`, `quote_without_link` or `derived_from_missing` (SkillCDN 0.5.0). Checkpoint, skipped on a go-ahead: the note as it will be committed. Commit as the repository's agreement says, and push only as it allows; once served, the next run's phase 1 finds the note by its words.
 
 ## Hard rules
 

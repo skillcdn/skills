@@ -52,4 +52,4 @@ The server embeds no image and runs no vision model: what the agent writes at co
 
 ## Checking a conversion
 
-Open three converted files against their sources and compare: the headings, a table, a list, a passage in the middle. Count the sections `npx @skillcdn/cli check` reports for a document against the headings of the source. Where a document lost something the agent cannot restore, the note in the file says so and names the source.
+Open three converted files against their sources and compare: the headings, a table, a list, a passage in the middle. Count the sections `npx @skillcdn/cli@latest check` reports for a document against the headings of the source. Where a document lost something the agent cannot restore, the note in the file says so and names the source.

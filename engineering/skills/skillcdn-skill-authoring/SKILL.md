@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git and Node.js in a checkout of the target repository, and the host's transcripts and memory where the user points to earlier sessions. The tool the new skill drives is needed for the test run. The example script needs Python; a transcript can be read without it. Works in any agent that can read files and run a shell.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: skillcdn
 skillcdn:
   include:
@@ -39,7 +39,7 @@ What goes in: a job that was done with a tool, in this session or in others, wit
 | The host's transcripts and memory | Evidence from sessions this one did not see, read when the user points to them or the session refers to work it does not hold; [transcripts.md](/engineering/docs/skillcdn/transcripts.md) says where each host keeps them. |
 | The tool the new skill drives | Its catalog today, for the discovery instructions; the test run. |
 | A way to run a fresh agent: a subagent tool, or a second session the user starts | The dry read and the fresh run. |
-| Optional: the SkillCDN connection to the repository (`skillcdn.ai/gh/<owner>/<repo>`); `npx @skillcdn/cli check`, which needs npm and the network | Loading the pushed skill as a fresh agent does, and `search_repo` over the skills' descriptions; the indexer's own check, which prints what an agent is told and the skill's size as served. |
+| Optional: the SkillCDN connection to the repository (`skillcdn.ai/gh/<owner>/<repo>`); `npx @skillcdn/cli@latest check`, which needs npm and the network | Loading the pushed skill as a fresh agent does, and `search_repo` over the skills' descriptions; the indexer's own check, which prints what an agent is told and the skill's size as served. |
 
 Check these before the first message. Without a checkout, stop: say that the skill is written into a checkout of the repository, give the clone command (`git clone https://github.com/skillcdn/skills` for this pack; a fork gives its own), and go on to the design only if the user wants it handed over as text. Without the tool but with a run, write from the evidence and report the test as not run. Without the tool and without a run, stop and say what to connect: there is nothing to write from. Without a way to run a fresh agent, the user runs it: give them the brief.
 
@@ -101,7 +101,7 @@ Produces the **draft**: the skill directory, its rows in the catalogs, its row i
 1. Read, in the checkout, `guide/skill-authoring.md`, `guide/roadmap.md` and `guide/tools/<family>.md` where one exists. Open the existing skill closest to this one and keep its shape, or the one `guide/adding.md` names first for a job of a new kind.
 2. Write `SKILL.md` in the skeleton and the style the guide gives, and the files the design placed: references linked from their phases and listed in `skillcdn.include` when every run reads them, `references/tool-notes.md` by topic, assets as small JSON with placeholder values, a script only as an example an agent may run locally. `metadata.author` as the repository's manifest has it; `version` starts at "1.0"; a `translations` entry in the user's language when it is not English, and in each language the neighbouring skills carry.
 3. The catalog rows `guide/adding.md` lists for a skill, an area's first skill and a new family; the skill's section in the jobs index `docs/pack/jobs.md` (the sentence a user says, what comes back, the skill's path, the other phrasings, the look-alike skill and when it is the better choice); and the skill's row in `guide/roadmap.md` with the status `next`.
-4. `node scripts/check.mjs` until it reports nothing; then `npx @skillcdn/cli check` until it prints `ok: no index diagnostics` and lists the skill under the extension with no warnings. Without npm or the network, say so and go on with the first check alone.
+4. `node scripts/check.mjs` until it reports nothing; then `npx @skillcdn/cli@latest check` until it prints `ok: no index diagnostics` and lists the skill under the extension with no warnings. Without npm or the network, say so and go on with the first check alone.
 5. Self-review by distillation.md "Before the draft is shown"; fix what it finds.
 
 ### Phase 5: Dry read
