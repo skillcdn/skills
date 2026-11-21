@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a browser the agent can drive (navigate and report its URL, set the viewport, take a screenshot, click and hover at coordinates, zoom into a region, read the page's text, run a script in the page), or a shell with Node.js or Python and an installed Chrome, Edge or Chromium that a script of the run's own drives headless the same way; optionally a web search tool, to find a genre's accounts. No account and no sign-in. Works in any agent with a driven browser or such a shell.
 metadata:
   author: skillcdn
-  version: "1.15"
+  version: "1.16"
   tools: instagram
 skillcdn:
   include:
@@ -91,7 +91,7 @@ Checkpoint, in plain words: the posts read and their kinds; each slide type with
 
 ### Phase 4: Deliver
 
-Reset the browser's viewport to the size recorded before phase 1; a headless browser is closed and its screenshots and cookie state file removed. One message: the spec folder's path with `format-spec.json` and `style-notes.md`, and `slide-log.md` kept beside them, because the build reads a measurement there that the spec lacks; the categories and cadence in two lines; the slide types with their density in one line each; the register in two lines; how many posts were visible without signing in and how many were read, and which kinds were not seen; any field or kind added to the spec's shape, named; that the account's photos and words are not to be reused in a post built from the spec; and the next step by what the user wants (format-spec.md "Where a spec comes from"): the build in this format as it is, or html-design-variations from this spec for a slight change, a format of the user's own from the genre, or something new from the reference.
+Reset the browser's viewport to the size recorded before phase 1; a headless browser is closed and its screenshots and cookie state file removed. One message: the spec folder's path with `format-spec.json` and `style-notes.md`, and `slide-log.md` kept beside them, because the build reads a measurement there that the spec lacks; the categories and cadence in two lines; the slide types with their density in one line each; the register in two lines; how many posts were visible without signing in and how many were read, and which kinds were not seen; any field or kind added to the spec's shape, named; and the next step by what the user wants (format-spec.md "Where a spec comes from"): the build in this format as it is, or html-design-variations from this spec for a slight change, a format of the user's own from the genre, or something new from the reference.
 
 ## Verdicts
 
@@ -112,7 +112,7 @@ Reset the browser's viewport to the size recorded before phase 1; a headless bro
 
 ## Hard rules
 
-1. No sign-in and no way around the site's prompts: the posts visible without an account are the sample, and the delivery says so; where the site refuses the host, the posts read on the account's own site, the slides supplied or the samples found are the sample, said so in the spec and the delivery. The site's terms restrict automated collection; this is one person's reading of the dozen or so posts visible without an account, or of one post on each of a few accounts, one page at a time with a few seconds between loads, through one browser alone, driven or headless; a wall ends the reading.
+1. No sign-in and no way around the site's prompts: the posts visible without an account are the sample, and the delivery says so; where the site refuses the host, the posts read on the account's own site, the slides supplied or the samples found are the sample, said so in the spec and the delivery. The reading is one person's, of the dozen or so posts visible without an account, or of one post on each of a few accounts, one page at a time with a few seconds between loads, through one browser alone, driven or headless; a wall ends the reading.
 2. The spec carries counts for text, not impressions: sub characters, sentences per slide, characters per sentence, lines, headline characters per line. A spec without them makes a post that looks right and reads wrong, which is what the user notices first. Sizes, weights and colors are estimates and are marked as such.
 3. The register is written as patterns with wrong-sounding counterparts. The account's sentences are not copied as the spec's register examples, and a post built from the spec never reuses its words; the spec may quote a label, a category name or a caption's first line to identify what was read.
 4. Variants are mapped to the content they carried, so that the build chooses a layout by what a slide says and not by the last post's order.
