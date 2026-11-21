@@ -39,7 +39,7 @@ The spec's `register` patterns, applied sentence by sentence. The checks, with w
 | Voice | The account's, as the spec's patterns give it | The agent's; a first-person line on a slide unless the spec shows one |
 | A quote | As the article printed it, marked as a quote, with who said it in the sub or the sentence | Paraphrased as a fact |
 
-A sentence that fails a check is rewritten, not softened. Read the finished slides once more as the account's editor would: a line a news desk would not print is rewritten.
+The editor of the last read is the account's: a line a news desk would not print is rewritten.
 
 ## The caption
 
