@@ -20,7 +20,7 @@ Write the report in one sentence before any of it: what happened, what it does t
 
 The lead is the viewer's reason to keep watching.
 
-- Start where the viewer stands: what the story does to people like them, and in the same sentence who acted, as its cause. A lead that opens on the body that acted gives the viewer an institution's news; one that opens on the effect gives them their own.
+- Start where the viewer stands: what the story does to people like them, and in the same sentence who acted, as its cause, or in the next where the cause is an interpretation whose source must be named. A lead that opens on the body that acted gives the viewer an institution's news; one that opens on the effect gives them their own.
 - Choose the opening picture with the opening sentence: the one scene that shows that effect. The sentence does not describe the picture, and the picture shows what the sentence says.
 - The lead is as strong as the facts. Where the sources say an effect is feared, the lead says it is feared; where they count it, the lead states the count.
 - One thing, in one or two sentences, then the handover: one short line that sends the viewer to the screen, in the words the language's newscasts use (in Korean, 자세한 내용 보시겠습니다), carrying no fact. The lead is the shortest part of the report.
@@ -39,7 +39,7 @@ After the handover the anchor's voice runs over the screen. The parts come in th
 | Why | Why is this happening? | The causes the sources give, or what each side wants, in its own terms and at its own strength, the reply beside the claim |
 | What comes next | Where does this go? | The story's latest step, then the close |
 
-A story need not have every part, and a part is a few short sentences, five at most: more, and it is answering a second question. The order changes where the story's own logic asks for it, never to put the actors before the viewer.
+A story need not have every part, and a part is a few short sentences, five at most, or five for each where a part tells two (two causes, two sides): more, and it is answering a second question. The order changes where the story's own logic asks for it, never to put the actors before the viewer.
 
 ## A sentence has one job
 

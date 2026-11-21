@@ -10,7 +10,7 @@ A script is speech written down, and its test is the mouth. Say each sentence at
 
 ## One breath, one point
 
-- **The point, in the words it needs.** A written sentence carries its conditions with it. A spoken one carries the point, and a qualifier stays only where the sentence would be false, or heard as something else, without it: "parking in a marked lane is fined", not "a vehicle left in a marked lane without the permit issued beforehand is fined". The exact terms of a rule are the article's, and the screen can hold them.
+- **The point, in the words it needs.** A written sentence carries its conditions with it. A spoken one carries the point, and a qualifier stays only where a viewer would take the sentence to mean something else without it: "parking in a marked lane is fined", not "a vehicle left in a marked lane without the permit issued beforehand is fined". The test is what the viewer understands, not whether the rule is complete. A condition anyone would assume (that there was a way to comply, that it holds in the place the story is about) is cut though the rule has it, and the sentence stays true as the viewer hears it. The exact terms of a rule are the article's, and the screen can hold them.
 - **Two points are two sentences.** A sentence that gives a setting and then a point is said as two, the first handing on to the second ("Sentences hand on", below). A reason given for a statement is a sentence of its own, after it.
 - **One breath.** A sentence the anchor cannot say in a breath is two. Measure it when the length is counted, as the spoken count over the number of sentences: for Korean, about thirty syllables a sentence across the report, and a sentence past fifty is split (illustrative).
 - **A subject sits close to its verb.** A long clause before the noun it describes is heard as words with no owner: split it in two, the noun in the first sentence and what is said of it in the next.
@@ -60,7 +60,7 @@ A language without such an ending does the same with length and order: a short s
 
 What users corrected in Korean scripts, each under the habit it shows, as the phrase before and after and never a run's sentence, name or figure. A new correction goes into the list it belongs to, and one that shows a new habit adds its rule above first. A run lists the corrections its user made in its delivery, each as the phrase before and after, for whoever maintains the skill. Add a language section when a run teaches one.
 
-- **A condition out of the rule's text**, cut to the point: "미리 신고하지 않고 세워 두기만 해도" as "세워 두기만 해도". The sentence was true and clear, and was heard as long.
+- **A condition out of the rule's text**, cut to the point: "미리 신고하지 않고 세워 두기만 해도" as "세워 두기만 해도". The sentence was true and clear, and was heard as long. Runs after this correction still kept such a condition so that the rule would be exact; the viewer needs the point, and the screen holds the rule.
 - **A rarer verb for what a body is doing**, replaced by the newscast's: "-는지 가리고 있습니다" as "-는지 조사 중입니다".
 - **것 as the predicate**, replaced by the noun: "-가 내놓은 것입니다" as "-가 내놓은 대책입니다". The news forms in -ㄴ 것으로 (-ㄴ 것으로 나타났습니다, -ㄴ 것으로 전해졌습니다) are not this, and stay.
 - **Every sentence on -습니다**, mixed with the open endings: "A했는데, B였습니다" in one sentence as "A했는데요. B였습니다." in two, and a count said as "-는 …건인데요." before the cases that show it.

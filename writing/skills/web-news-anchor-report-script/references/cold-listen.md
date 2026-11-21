@@ -32,10 +32,10 @@ Given in the language of the script, translated plainly, with its four kinds of 
 | The listener | It means | Then |
 |---|---|---|
 | Was stopped | The script fails there for a viewer | Rewrite by [script.md](script.md) and [spoken.md](spoken.md), and listen again |
-| Was slowed, and the brief holds the answer | A term, a name or a link the script left out | Add it where the question arises, not later |
+| Was slowed, and the brief holds the answer | A term, a name or a link the script left out | Add it where the question arises, not later (after the last round a link is not added: "Rounds") |
 | Was slowed, and the brief does not hold the answer | The sources' own limit: a size, a degree or a cause no article gave | Keep the sentence, or cut it where the question outweighs the fact; list it in before air as what the sources do not say |
 | Asked "why did that follow?" of a case | The cause is missing from the script, and perhaps from the brief | script.md "Links the sources state" |
-| Asked the same question of a sentence already rewritten once for it | The fact is missing, not the wording | Cut the sentence or the case; in the lead or the close, cut the connective instead ("Rounds"). This row wins over the two "Was slowed" rows: a question that comes back after a rewrite is a cut, whether or not the brief holds the answer |
+| Asked the same question of a sentence already rewritten once for it | The fact is missing, not the wording | Cut the sentence or the case; in the lead or the close, cut the connective instead ("Rounds"). This row wins over the two "Was slowed" rows: a question that comes back after a rewrite is a cut, whether or not the brief holds the answer, except as "Rounds" says for what the report cannot lose |
 | Found a number hard to place | Two numbers too close, or a number without the thing it counts | spoken.md "For the ear" |
 | Asked what a sentence that set something up was for, after the sentence that followed it | The open ending promised a point that did not come | spoken.md "Sentences hand on": the next sentence lands it, or the setting goes |
 | Could not keep the causes, the demands or the measures apart | More of a kind than the ear keeps | spoken.md "For the ear", two of a kind |
@@ -52,5 +52,11 @@ A listener given no rules reports unexplained causes, facts with no link, terms 
 
 - Every round has a new listener. One that heard an earlier version fills gaps as the writer does.
 - The whole script is heard again after a rewrite, not the changed sentence alone. A fix opens gaps elsewhere: a number dropped for the ear leaves its sentence without the size that was its point, and a sentence moved leaves a name used before it is introduced.
-- Stop when a round reports no stop and every question left is one the brief cannot answer. Three rounds at most. A question of the last round about a word or a name, which the brief answers, is still fixed, and the fix is listed at the checkpoint as unheard. One about a link (what a thing has to do with the story, why one thing followed another) is not patched unheard, because a link is the fix a writer most often believes made and the next listener still misses: the link goes. A sentence that was there for the link is cut; in one the report cannot lose (the lead, the close) the connective is cut, and the two facts stand as two sentences, side by side. What the brief cannot answer goes to the checkpoint as it is, in the listener's own words, and the user says whether to go on.
+- Stop when a round reports no stop and every question left is one the brief cannot answer. Three rounds at most.
+- After the last round nothing is added unheard but a word or a name's gloss. Each question left is handled by the first of these that fits:
+  1. A question about a word or a name, which the brief answers, is fixed, and the fix is listed at the checkpoint as unheard.
+  2. A question about a link (what a thing has to do with the story, why one thing followed another), where taking the link out would change what the report tells (one of its two causes, a side's reply): it stays, and the question goes to the checkpoint in the listener's own words with what the cut would cost. The user says.
+  3. Any other question about a link is never answered with more words, because a link is the fix a writer most often believes made and the next listener still misses. The link is taken out: a sentence that was there for the link is cut, and in the lead or the close the connective is cut, so that the two facts stand as two sentences, side by side.
+  4. Any other question the brief cannot answer goes to the checkpoint as it is, and is listed in before air.
+- A script the last cut left short stays short, and the checkpoint says by how much.
 - Record each round in the checks: how many stops and slowings, what was changed, what stays and why.

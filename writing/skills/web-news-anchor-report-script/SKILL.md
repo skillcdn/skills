@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the tools of the topic brief skill when the story is still to be researched (a web search tool, a page reader, a shell) and a way to start an agent with none of the session's context for the cold listen (a subagent tool, or a second session the user opens); a shell counts the spoken length where there is one. Works in any agent that can write files.
 metadata:
   author: skillcdn
-  version: "1.3"
+  version: "1.4"
   tools: web
 skillcdn:
   include:
@@ -50,7 +50,7 @@ The area's rule that a text is as firm as its sources takes this form here: ever
 | Length | The request's; else ninety seconds. |
 | Air date | The request's; else the day the script is written. Every "yesterday" and "next week" in the script rests on it. |
 | Viewers, stance, tone, language | The brief's `audience`, `stance` and `tone`; the script is in the brief's language. |
-| Where it goes | The folder the user names, else `anchor-report/<story in a few plain words>/` under the working folder (under the host's scratch folder when the working folder is a git checkout, under the user's home without one), holding `script.md` and the brief in `brief/`, a copy where the user brought one. Said in the message that creates it. |
+| Where it goes | The folder the user names, else `anchor-report/<story in a few plain words>/` under the working folder (under the host's scratch folder when the working folder is a git checkout, under the user's home without one), holding `script.md`, the brief in `brief/` (a copy where the user brought one) and the working files in `work/`. Said in the message that creates it. |
 | Everything else | Derived and shown at the checkpoint: the thread, the lead and its picture, the parts, what is left out. |
 
 ## Workflow
@@ -87,7 +87,7 @@ Produces the **cut sheet**, by [screen.md](references/screen.md): one row per cu
 
 Produces the **checks**, in this order, each recorded with its result.
 
-1. **Facts.** Every sentence, and every text on screen, against the source sentences of its facts; a quote word for word; nothing from `unverified`.
+1. **Facts.** Every sentence, and every text on screen, against the source sentences of its facts; a quote word for word; nothing from `unverified`. A sentence that leaves out a condition of its source for the ear passes where no viewer would take it to mean otherwise.
 2. **Form.** Every sentence against script.md and spoken.md, by its row of the sentence table: its job named in a few words, its ending or its attribution matched to how its content is known, no word its point does not need and none the newscast would not use, one number, terms explained where they first come. Then the script in order, said aloud: each opening tied to what came before, a sentence that sets up followed by one that lands, no one ending throughout, what the lead named said again where the body reaches it, two of a kind at most, the close answering the lead. Then as text, against [not-ai.md](/docs/variation/not-ai.md) "Signals in words".
 3. **The cold listen**, by [cold-listen.md](references/cold-listen.md): a fresh listener with only the script reports where it stumbled; rewrite and listen again as that page says.
 4. **Length.** The final text counted again as script.md "Length" says, within a twentieth of the target, and the count over the sentences beside it.
@@ -98,7 +98,7 @@ Checkpoint, in plain words: the script itself, whole, as it is read; the thread 
 
 ### Phase 6: Deliver
 
-One message: the path of `script.md`; the script itself; the length; what the cut sheet asks a video stage to make; **before air** (each fact that rests on one outlet, each quote that is another outlet's reporting and is named so on screen, what the sources do not say, and that anything after the brief's last article is unread); what a video stage still decides, which is its own job with its own estimate: the voice of the narrated part, the model, the cost; and each wording the user corrected in this run, as the phrase before and after, for the record at the end of spoken.md. Working files (article text, scripts) stay in the report's folder and are named. Nothing is published and nothing is sent.
+One message: the path of `script.md`; the script itself; the length; what the cut sheet asks a video stage to make; **before air** (each fact that rests on one outlet, each quote that is another outlet's reporting and is named so on screen, what the sources do not say, and that anything after the brief's last article is unread); what a video stage still decides, which is its own job with its own estimate: the voice of the narrated part, the model, the cost; and each wording the user corrected in this run, as the phrase before and after, for the record at the end of spoken.md. Working files (article text, scripts) stay in the report's folder, under `work/`, and are named. Nothing is published and nothing is sent.
 
 ## Verdicts
 
