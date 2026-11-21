@@ -1,11 +1,11 @@
 ---
 name: web-news-anchor-report-script
-description: Writes the script of a news anchor report from a sourced story, with the screen planned cut by cut for a video made later, about ninety seconds unless asked otherwise. Use when a user says "write an anchor report on this", "a news script for an anchor to read", "뉴스 앵커 리포트 써줘" or "뉴스 대본 써줘", or wants this week's story told as broadcast news. The facts come from a topic brief, which web-card-news-topic-brief researches first, without images, when the user brings none; a card news post from the same brief is html-card-news-from-brief, and the spoken lines of a drama or an ad are higgsfield-shorts-drama and higgsfield-shorts-ad. Leads from the viewer's side, writes short sentences as an anchor says them, each with one job and the form that says how it is known, plans graphics and labelled generated scenes in place of other outlets' pictures, has a listener with only the script hear it once before the user does, and measures the spoken length. No video is generated and nothing is spent.
+description: Writes the script of a news anchor report from a sourced story, with the screen planned cut by cut for a video made later, about ninety seconds unless asked otherwise. Use when a user says "write an anchor report on this", "a news script for an anchor to read", "뉴스 앵커 리포트 써줘" or "뉴스 대본 써줘", or wants this week's story told as broadcast news. The facts come from a topic brief, which web-card-news-topic-brief researches first, without images, when the user brings none; a card news post from the same brief is html-card-news-from-brief, and the spoken lines of a drama or an ad are higgsfield-shorts-drama and higgsfield-shorts-ad. Leads from the viewer's side, writes short sentences as an anchor says them, each with one job and the form that says how it is known, plans the screen as graphics and labelled generated scenes, has a listener with only the script hear it once before the user does, and measures the spoken length. No video is generated and nothing is spent.
 license: MIT
 compatibility: Needs the tools of the topic brief skill when the story is still to be researched (a web search tool, a page reader, a shell) and a way to start an agent with none of the session's context for the cold listen (a subagent tool, or a second session the user opens); a shell counts the spoken length where there is one. Works in any agent that can write files.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: web
 skillcdn:
   include:
@@ -13,7 +13,7 @@ skillcdn:
   translations:
     ko:
       title: 출처가 붙은 뉴스 앵커 리포트 대본
-      description: 출처가 확인된 이야기로 뉴스 앵커 리포트 대본을 씁니다. 나중에 영상으로 만들 수 있게 화면을 컷 단위로 함께 짜고, 따로 말하지 않으면 약 90초 분량입니다. "이걸로 앵커 리포트 써줘", "앵커가 읽을 뉴스 대본", "뉴스 앵커 리포트 써줘", "뉴스 대본 써줘"라고 하거나 이번 주 이야기를 방송 뉴스처럼 전하고 싶을 때 쓰세요. 사실은 소재 브리프에서 가져오며, 브리프가 없으면 web-card-news-topic-brief가 이미지 없이 먼저 조사합니다. 같은 브리프로 카드뉴스를 만드는 일은 html-card-news-from-brief가, 드라마나 광고의 대사는 higgsfield-shorts-drama와 higgsfield-shorts-ad가 맡습니다. 첫 멘트는 시청자 쪽에서 시작하고, 앵커가 말하듯 짧은 문장으로 쓰되 문장마다 맡은 일 하나와 어떻게 알게 된 내용인지 드러나는 어미를 주며, 다른 언론사의 사진 대신 그래픽과 표시를 단 생성 장면으로 화면을 짜고, 대본만 받은 청자가 한 번 들어 본 뒤에 사용자에게 보이며, 말하는 길이를 잽니다. 영상은 만들지 않고 비용도 들지 않습니다.
+      description: 출처가 확인된 이야기로 뉴스 앵커 리포트 대본을 씁니다. 나중에 영상으로 만들 수 있게 화면을 컷 단위로 함께 짜고, 따로 말하지 않으면 약 90초 분량입니다. "이걸로 앵커 리포트 써줘", "앵커가 읽을 뉴스 대본", "뉴스 앵커 리포트 써줘", "뉴스 대본 써줘"라고 하거나 이번 주 이야기를 방송 뉴스처럼 전하고 싶을 때 쓰세요. 사실은 소재 브리프에서 가져오며, 브리프가 없으면 web-card-news-topic-brief가 이미지 없이 먼저 조사합니다. 같은 브리프로 카드뉴스를 만드는 일은 html-card-news-from-brief가, 드라마나 광고의 대사는 higgsfield-shorts-drama와 higgsfield-shorts-ad가 맡습니다. 첫 멘트는 시청자 쪽에서 시작하고, 앵커가 말하듯 짧은 문장으로 쓰되 문장마다 맡은 일 하나와 어떻게 알게 된 내용인지 드러나는 어미를 주며, 그래픽과 표시를 단 생성 장면으로 화면을 짜고, 대본만 받은 청자가 한 번 들어 본 뒤에 사용자에게 보이며, 말하는 길이를 잽니다. 영상은 만들지 않고 비용도 들지 않습니다.
 ---
 # The script of a news anchor report, with its screen
 
@@ -106,7 +106,6 @@ One message: the path of `script.md`; the script itself; the length; what the cu
 |---|---|
 | A sentence, or a text on screen, with no fact of the brief under it | Cut, or traced; never kept for its sound |
 | A lead that states an effect the sources only fear, or sizes it past their count | Rewritten to the strength of the facts |
-| Another outlet's photograph or footage as a cut | Not planned: a graphic or a labelled generated scene, or the cut marked as needing the rights holder's permission |
 
 ## Hard rules
 
@@ -116,7 +115,7 @@ One message: the path of `script.md`; the script itself; the length; what the cu
 4. Wording never supplies a link the sources lack: a cause between two events, or how a neighbouring event bears on the story.
 5. A reference gives its form only. Its story, its people, its sentences and its outlet's name enter neither the script nor any file the run keeps. A source of the brief that is itself a broadcast report gives its facts, as any article does, and none of its wording.
 6. A script that no listener with only the script has heard is not shown as checked: the delivery says so.
-7. No picture the user has no right to show is planned onto the screen, and a generated scene is labelled as generated and never stands for the event itself.
+7. A generated scene is labelled as generated and never stands for the event itself.
 8. No video and no image is generated here.
 
 ## Terminology
