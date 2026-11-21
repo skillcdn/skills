@@ -63,6 +63,5 @@ A slide is `{"type": ..., ...}`. Three types.
 
 ## Writing the strings
 
-- A `title` names; a `subtitle` is the slide's one-sentence message; a `statement` is the message in full; `desc` is a full sentence; a fact value, a node's sub line, a table cell or a profile line is a phrase or a number; a `kpi` label is one sentence and its `tag` names the source or says "to be confirmed" in the deck's language ("확인 필요" in Korean).
-- One idea per row, step, node, cell or fact; where the outline has more, split the slide. A quality bar is a floor with the ceiling open, two sentences. For an external deck, write within the house style from the first draft; the check is a net.
-- No placeholder text: where a fact is not yet known, say it is to be confirmed in the slide's own words, or tag the figure.
+- A `title` names; a `subtitle` is the slide's one-sentence message; a `statement` is the message in full; `desc` is a full sentence; a fact value, a node's sub line, a table cell or a profile line is a phrase or a number; a `kpi` label is one sentence and its `tag` names the source or says "to be confirmed" in the deck's language.
+- One idea per row, step, node, cell or fact; where the outline has more, split the slide. A quality bar is a floor with the ceiling open, two sentences.

@@ -17,8 +17,6 @@ The look sheet (SKILL.md, phase 1) shows the cover and one body slide, the one t
 - **Content from the outline and the user's answers.** A figure the outline gives is tagged with where it comes from (the organization's own count, a pilot's result); one the outline does not source, and anything the user left open, is "to be confirmed", in the deck's language. A section the outline gives nothing for is one slide that says what is to be confirmed, or is dropped and listed at the plan checkpoint; the length rules below bend before this rule.
 - **A schedule only as the outline gives it.** Months make a Gantt chart; a horizon without months ("the first year") makes `steps` in stages or a `timeline` by quarter, the split said to be the agent's in the delivery; no cadence, no interim date, no "weekly" the outline does not say. A range given for several items in sequence is split, and the delivery says the split is the agent's.
 - **The block the content fits, then the order.** Where "no two consecutive slides share a layout" would take a block the register's table does not give the content (three definitions as a `stack`), the slides are reordered or two are merged; the table wins over variety.
-- **Durations** that are alternatives per item are stated as alternatives with what decides the total, never summed.
-- **Two products easily confused** (a tool and the service it runs on) are told apart: which one the work uses, what it talks to.
 
 ## proposal: an external proposal
 
@@ -30,7 +28,7 @@ Pages on a light gradient, an accent bar beside the title, a page number alone, 
 - **Structure from type, rules and real marks, not from boxes.** The overview is a statement in large type beside a definition list with thin rules. A quality bar is one bold sentence with its lead inline. Sequence is carried by numbers only where the order is the information (steps, a schedule). A real mark stands for a named thing; a line icon is for the rare item whose meaning a word does not carry, never one per item. Figures go into the definition list or the inline facts, never into number tiles, each with its source as a row of the list or a tag inline, since the page has no footnote.
 - **Layout variety.** No two consecutive slides share a layout. The set to draw from: statement beside facts, numbered rows, a loop beside a numbered list, two brand panels, a process strip above a diagram, a Gantt chart, profiles. Same-size cards are the last resort, never the page structure.
 - **Cut what the room already knows.** The project's name on the overview, the boundaries nobody will contest, an appendix of figures: out, unless the outline asks. A figure the audience needs goes into the definition list or the inline facts on the slide it belongs to.
-- **Nothing said for the room's own ears.** An external proposal carries none of the outline's pricing logic, staffing, remarks about the audience or open doubts; the plan checkpoint lists what was left out. A report keeps them where its reader needs them (the use of funds, a role still to be hired, an open figure), each tagged.
+- **Nothing said for the room's own ears.** An external proposal leaves out what the writing set's outside-readers.md keeps inside, and the plan checkpoint lists it; a report keeps such a line where its reader needs it, tagged.
 - **A method that repeats** is a loop with the tools' marks at its center, beside the numbered steps; the facts that go with it (volumes, durations) sit under both as inline facts. The preparation the outline implies is in the steps.
 - **The tools the work stands on** get one slide of brand panels: each panel its real wordmark or symbol and name, one line on what it is, the marks of where it lives with a fact beside each, and what it does in this work.
 - **A system** is a full-width diagram with a numbered process strip above it; each step's number is a chip on the node where the step happens; the node that holds the tools carries their marks; the boundary that matters is the dashed frame, and what crosses it sits outside with its arrow across the line.
@@ -68,7 +66,7 @@ White pages. Above the title, a section label: the number and the name of the se
 - **The ask** (funds, a decision) is a `kpi` panel in the navy tone with the amount, beside a `numbered` list of what it buys.
 - **Photographs** only where the organization or the user supplied them, in a `photo` block beside a definition list or a numbered list, with the credit the source requires.
 - **No note at the foot of a page** except the source line under a table or a panel. A caveat that matters is a row in the table or a tag on the figure.
-- **Length:** twelve to sixteen pages when the outline fills them, the contents and the closing counted; a thin outline makes a shorter deck, never an invented one.
+- **Length:** twelve to sixteen pages when the outline fills them, the contents and the closing counted.
 
 Blocks for this register:
 

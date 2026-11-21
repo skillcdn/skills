@@ -25,7 +25,6 @@ The composition rules of each register ([registers.md](registers.md)) and the de
 | A subtitle on every page | A subtitle only where the slide needs its one sentence; most slides have none. |
 | A note at the foot of every page, and a summary banner on most | Both out. A caveat is said in the meeting; a quality bar is one bold sentence on the scope slide. In a report, the source line under a table or a panel is the one note that stays. |
 | A product's logo in the slide header | Out of the header; a product's mark belongs in its brand panel. |
-| A title that states the speaker's stance toward the room | A title that names the slide's content ("Items to confirm"). |
 
 ## Structure
 
@@ -44,7 +43,6 @@ The composition rules of each register ([registers.md](registers.md)) and the de
 | A schedule with a cadence or an interim date the outline never gave | Only the outline's schedule, as a Gantt chart: a bar per phase, a diamond for the deadline. |
 | A slide of things to decide today, and an appendix of figures | Both out; the figures the audience needs go into the slide of the method they belong to. |
 | An overview that repeats what the room knows (the project's name, the boundaries nobody contests) | The overview is the goal and the facts. |
-| Alternative durations per item presented as if they added up | Stated as alternatives, with the rule that decides the total. |
 | A method without its preparation | The preparation the outline implies (what is set up before the cycle runs) is a step of the method. |
 | A platform the work stands on, left invisible | A slide of its own: what it is, where it comes from, what it does here. |
 | Items given equal time with unequal bars; the delivery period missing from the schedule | Equal bars for the sequence, the delivery period as a bar, the deadline as a diamond. |
@@ -57,12 +55,11 @@ The composition rules of each register ([registers.md](registers.md)) and the de
 
 | The default rejected | The move |
 |---|---|
-| A word that is awkward, or reads as foreign in the audience's language | A plain word, with "to be confirmed" where that matters; the ordinary term, and the audience's ear decides. |
+| A word that is awkward, or reads as foreign in the audience's language | A plain word, with "to be confirmed" where that matters. |
 | A team slide whose titles do not say each person's role in this work | A subtitle that names the team's specialty; titles that name the role in this work, in the organization's own words. |
 
 ## What generalizes
 
-- A note that names one slide usually names a default the whole deck repeats. Fix the default, then every slide.
 - A note on composition (icon card grids, predictable layouts, boxes everywhere) is answered by the design floor; a note on the whole deck's look or its professionalism is answered by the register choice, with the look sheet. Neither is answered by writing the HTML by hand.
 - Real marks beat icons every time a thing has a name. An icon is for the rare item whose meaning a word does not carry.
 - A visual check is a check only when it is written down or measured: a wrapped value, a word broken inside, an overlap, an empty half page are on the layout report or the phase 4 list because each one has reached a reviewer.

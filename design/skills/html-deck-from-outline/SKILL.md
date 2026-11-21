@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Python 3 for the helper and a Chromium-family browser (an installed Chrome or Edge, or Playwright's) for the PDF, the layout report and the contact sheet; the helper prints with Playwright from Python, with Node.js and playwright-core, or with the browser's own print, whichever the host has, and says which. Without any browser the HTML is still delivered and the PDF is printed by the user. Works in any agent that can write files, run a shell and look at an image.
 metadata:
   author: skillcdn
-  version: "1.8"
+  version: "1.9"
   tools: browser
 skillcdn:
   include:
@@ -35,7 +35,7 @@ A content outline goes in (a meeting plan, a document, notes in chat, an idea in
 | A way to look at an image | The look sheet and the contact sheet are looked at by the agent; without an image reader, stop and say so. |
 | The organization's tokens and logos | From its brand file, a previous deck or its site, written into the deck file; the defaults in layout.md otherwise, said in the delivery. |
 
-Check the shell, the browser and the image reader before the first message. Nothing here costs money. What any skill that renders a page with a browser shares is in the repository's [`docs/browser/`](/docs/browser/README.md), linked from layout.md and tool-notes.md; a copy, the area's plugin or a mount of one skill cannot read it, and the helper and layout.md carry what the PDF and the review need. How the helper and the browsers behaved in runs: [tool-notes.md](references/tool-notes.md), read before phase 1.
+Check the shell, the browser and the image reader before the first message. Nothing here costs money. What any skill that renders a page with a browser shares is in the repository's [`docs/browser/`](/docs/browser/README.md), linked from layout.md and tool-notes.md, and what every text shares in [`docs/writing/`](/docs/writing/README.md), linked from phase 1, both read through the repository connection; a copy, the area's plugin or a mount of the area or of one skill cannot read them and fetches the writing set from `docs/writing/` of `github.com/skillcdn/skills`; the helper and layout.md carry what the PDF and the review need. How the helper and the browsers behaved in runs: [tool-notes.md](references/tool-notes.md), read before phase 1.
 
 ## Inputs
 
@@ -57,13 +57,13 @@ Check the shell, the browser and the image reader before the first message. Noth
 
 ### Phase 1: Read the outline into slides
 
-Read the whole outline. Derive the register and plan the slides with that register's composition rules and block table in registers.md: every slide a type and one to three blocks, so that nothing has to shrink; no two consecutive slides share a layout; a report opens with its contents (that slide carries no section label) and carries a section label on every other body slide. A section the outline gives nothing for is one slide that says what is to be confirmed, or is dropped and listed at the checkpoint. Keep the outline's own words; add no claim it does not make. Apply the design floor while planning.
+Read the whole outline, then, before the first slide's text, the writing set's [readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md) and [facts.md](/docs/writing/facts.md), and for an external deck [outside-readers.md](/docs/writing/outside-readers.md) and [house-style.md](/docs/writing/house-style.md); the deck's own forms win. Derive the register and plan the slides with that register's composition rules and block table in registers.md: every slide a type and one to three blocks, so that nothing has to shrink; no two consecutive slides share a layout; a report opens with its contents (that slide carries no section label) and carries a section label on every other body slide. A section the outline gives nothing for is one slide that says what is to be confirmed, or is dropped and listed at the checkpoint. Keep the outline's own words. Apply the design floor while planning.
 
 Produce the **slide plan** (one line per slide: title, section, block types) and the **look sheet**: write the deck file of phase 2 far enough for the cover and the body slide that carries a table, a schedule or the figures, and run the helper's `--look` (`--look-slide <index>` picks another body slide, 0 being the cover, while `--page` counts from 1; no style check), which prints the two slides in each register's frame, the blocks the recommended register's in both. Show both (checkpoint).
 
 ### Phase 2: Write the deck file
 
-Write the deck file as [deck-spec.md](references/deck-spec.md) defines it: `meta` (register, client, date, brand, document name, logos, `external`, `style`, `theme`), then `slides`; the cover and the closing are their own types, a report's contents is a `toc` block. Every string is final presentation text: full sentences where the slide speaks, short labels where it names, a figure with its source or its tag. An external deck is written within the house style from the start, the outline's own words included (a middle dot joining two nouns becomes "and" or a comma, said in the delivery); a proposal carries nothing the outline said for the room's own ears (registers.md).
+Write the deck file as [deck-spec.md](references/deck-spec.md) defines it: `meta` (register, client, date, brand, document name, logos, `external`, `style`, `theme`), then `slides`; the cover and the closing are their own types, a report's contents is a `toc` block. Every string is final presentation text, in the forms of its "Writing the strings"; a proposal carries nothing the outline said for the room's own ears (registers.md).
 
 ### Phase 3: Render and check
 
