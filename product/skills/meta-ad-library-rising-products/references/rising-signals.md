@@ -111,7 +111,7 @@ Order of the report, items and themes in one ranking: Breakout, faster or level,
 
 For each reported item, from the pages already loaded:
 
-- **What it is**, in plain words, and the price and offer as the ads state them, quoted.
+- **What it is**, and the price and offer as the ads state them, quoted.
 - **Who sells it**: the store, the number of Pages that advertise it, creators named as partners.
 - **The ads that carry it**: two or three links by Library ID: the oldest survivor, the most reused (`uses`), the newest burst. The share of video.
 - **The numbers**: `A`, `new7`, `new30`, `older(30)`, `older(90)`, the class and the pace with the reason in a line, the first day when known, the change since the snapshot when there is one.

@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a real browser engine to load facebook.com/ads/library, either a shell with a Chromium-family browser on the same machine or a browser the agent can drive (a built-in browser, a browser extension, a Playwright or Chrome DevTools server). Plain fetch and search tools cannot load the site. Any agent with one of the two can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.6"
+  version: "1.7"
   tools: meta-ad-library
 skillcdn:
   include:
@@ -38,7 +38,7 @@ Capabilities, not product names: the tools that provide them differ by assistant
 
 Optional: a web-reading tool for a landing page's price. Nothing here costs money; a paid service (a scraping service, an "ad spy" subscription) is used only when the user asks for it and agrees to its cost.
 
-[rising-signals.md](references/rising-signals.md), the method, comes with this skill. How the library is reached and read is in the pages the skills of this family share, under [`docs/meta-ad-library/`](/docs/meta-ad-library/README.md). [ad-library.md](/docs/meta-ad-library/ad-library.md), read before phase 1, which is before the seed terms are chosen and the first page is loaded, is included too and arrives with this skill wherever SkillCDN serves it. [record.md](/docs/meta-ad-library/record.md) and the page of the route the agent has, [page-dump.md](/docs/meta-ad-library/page-dump.md) or [driven-browser.md](/docs/meta-ad-library/driven-browser.md), are read when phase 2 comes, with `read_repo_file` at those paths through the repository or the marketing connection, or as files of the marketing plugin, two levels above this skill's folder (`../../docs/meta-ad-library/`). A mount of this skill alone or of its area, a host that takes skills through the skills extension and has no `read_repo_file`, and the area's plugin cannot read those pages there, and a copy of this directory has none of the pages: say so in the first message and fetch what is missing before phase 2 from `docs/meta-ad-library/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`); without them the record's fields, the script and the readers are unknown.
+[rising-signals.md](references/rising-signals.md), the method, comes with this skill. How the library is reached and read is in the pages the skills of this family share, under [`docs/meta-ad-library/`](/docs/meta-ad-library/README.md). [ad-library.md](/docs/meta-ad-library/ad-library.md), read before phase 1, which is before the seed terms are chosen and the first page is loaded, is included too and arrives with this skill wherever SkillCDN serves it. [record.md](/docs/meta-ad-library/record.md) and the page of the route the agent has, [page-dump.md](/docs/meta-ad-library/page-dump.md) or [driven-browser.md](/docs/meta-ad-library/driven-browser.md), are read when phase 2 comes, with `read_repo_file` at those paths through the repository connection. A mount of this skill alone or of its area, a host that takes skills through the skills extension and has no `read_repo_file`, and the area's plugin cannot read those pages there, and a copy of this directory has none of the pages: say so in the first message and fetch what is missing before phase 2 from `docs/meta-ad-library/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`); without them the record's fields, the script and the readers are unknown. The pack's writing set, [`docs/writing/`](/docs/writing/README.md), is read before phase 6 through the repository connection; a mount of this skill alone or of its area, the area's plugin and a copy of this directory lack it: fetch it from `docs/writing/` of the same repository.
 
 ## Inputs
 
@@ -73,7 +73,7 @@ Produces the **ranking**: each candidate's class and pace by "Classes", in the o
 
 ### Phase 6: Profile
 
-Produces one **profile** per reported item or theme, by "Profiles": what it is, who sells it, the ads that carry it, the numbers, the competition, the flags.
+Produces one **profile** per reported item or theme, by "Profiles": what it is, who sells it, the ads that carry it, the numbers, the competition, the flags. Before the first profile, read [readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md) and [facts.md](/docs/writing/facts.md) of the pack's writing set: every text of the report is written by them, in the forms "Report and snapshot" gives.
 
 ### Phase 7: Deliver
 
