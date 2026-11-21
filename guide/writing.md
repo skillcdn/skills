@@ -45,9 +45,9 @@ As knowledge pages (`skill-authoring.md`, "Knowledge pages"): one section per to
 
 ## The area and its skills
 
-`writing/` holds the skills whose result is the text itself, read as it is: an article, a report, a self-introduction, a briefing ([roadmap.md](roadmap.md), "M9: Writing"). It was created before its first skill, with its manifest and its catalog, so that the set had its home; a skill arrives as every skill does, written from the job done once. A skill whose text is a part of another area's job stays in that area (the launch posts in marketing, the opportunity brief in product) and reads the same set.
+`writing/` holds the skills whose result is the text itself, read or heard as it is: a news script, an article, a report, a self-introduction, a briefing ([roadmap.md](roadmap.md), "M9: Writing"). It was created before its first skill, with its manifest and its catalog, so that the set had its home; a skill arrives as every skill does, written from the job done once, and the first is the news script, `web-news-anchor-report-script`. A skill whose text is a part of another area's job stays in that area (the launch posts in marketing, the opportunity brief in product) and reads the same set.
 
-Every writing skill includes the set's pages its runs need, which the format serves from the root's `docs/` to a skill of any area, and states only what its kind of text adds: the parts of the text and their order, the questions it asks, its checkpoint with the text itself, and its review.
+Every writing skill reads the set's pages its runs need before it writes: included with it, which the format serves from the root's `docs/` to a skill of any area, where the skill stays within the size a command prints whole, and linked from the phase that writes where it does not, as the first one, the news script, does. It states only what its kind of text adds: the parts of the text and their order, the questions it asks, its checkpoint with the text itself, and its review.
 
 ## Testing
 

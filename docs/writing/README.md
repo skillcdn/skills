@@ -29,6 +29,7 @@ One topic has one page, and these are not repeated here.
 | A sourced brief | `web-card-news-topic-brief`: the facts table and the angle |
 | An answer from documents | `skillcdn-document-answer`: the answer's shape and its citations |
 | A spoken line of an ad or a drama | `higgsfield-shorts-ad` and `higgsfield-shorts-drama`: the ad's story page and the drama's episode script page |
+| The script of a news report an anchor reads | `web-news-anchor-report-script`: the script page (one hearing, one job a sentence, how each thing is said to be known, dates as the viewer lives them) and the cold listen |
 | A research report | `meta-ad-library-creative-research` and `meta-ad-library-rising-products`: the report's order and its words |
 
 A rule that turns out to hold for every medium moves here, into the sentence it bears on; a rule of one medium stays in its skill.

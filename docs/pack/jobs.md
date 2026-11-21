@@ -92,7 +92,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - You get: a ranked list of this week's candidate stories to pick from, then, for the pick, a topic brief: every fact traced to the sentence of an article read in full, the angle as a published interpretation, numbers cross-checked, what no article confirmed, and the images that show the story with captions, credits, sizes, legibility and licence terms.
 - Skill: [`product/skills/web-card-news-topic-brief/`](/product/skills/web-card-news-topic-brief/SKILL.md)
 - Also asked as: "research this topic for a post with sources and images", "fact-check this story before it is designed", "a sourced brief for a card news post", "what happened this week in these categories".
-- Not this one when: you have the facts and want the slides (the build under Design), or you want the format (the study and the variations under Design).
+- Not this one when: you have the facts and want the slides (the build under Design), or you want the format (the study and the variations under Design). A story told as a news script starts at the anchor report under Writing, which runs this skill first, without images.
 
 ## Engineering
 
@@ -189,6 +189,15 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - Also asked as: "meeting minutes for the client", "a 회의록 to send today", "write up the kickoff meeting", "turn these meeting notes into minutes as a PDF", "a meeting record for the partner".
 - Not this one when: you want slides from the meeting (the deck under Design), or a note for your own team that need not leave the organization.
 
+## Writing
+
+### "Write an anchor report on this."
+
+- You get: the script of a news anchor report, about ninety seconds unless you say otherwise, as numbered sentences an anchor reads, each traced to a fact of a sourced brief and saying how it is known; a cut sheet of what the viewer sees under every sentence, made of graphics and labelled generated scenes; and what to confirm before it airs. A listener with only the script has heard it once before you see it.
+- Skill: [`writing/skills/web-news-anchor-report-script/`](/writing/skills/web-news-anchor-report-script/SKILL.md)
+- Also asked as: "a news script for an anchor to read", "뉴스 앵커 리포트 써줘", "뉴스 대본 써줘", "tell this week's story as broadcast news", "a news report script for a video".
+- Not this one when: you want the story as a card news post (the brief under Product, then the build under Design), the facts alone (the brief under Product, which this skill runs first when you bring none), or the spoken lines of a story or an ad that is not news (the drama under Media, the ad under Marketing). The video itself is not made here.
+
 ## Jobs with no skill yet
 
-What the pack plans next is kept in its guide on the git host, which the mount does not serve. For a job no section above covers, the agent says so and names the nearest one above. A text asked for as the result itself (an article, a self-introduction, a briefing, a written report that is neither a deck nor the research a section above delivers) has no skill yet: say so, and where the user wants it written all the same, write it by the pages of [`/docs/writing/`](/docs/writing/README.md), which hold what every text of this pack shares.
+What the pack plans next is kept in its guide on the git host, which the mount does not serve. For a job no section above covers, the agent says so and names the nearest one above. A text asked for as the result itself that no section above covers (an article, a self-introduction, a briefing, a press release, a written report that is neither a deck nor the research a section above delivers) has no skill yet: say so, and where the user wants it written all the same, write it by the pages of [`/docs/writing/`](/docs/writing/README.md), which hold what every text of this pack shares.

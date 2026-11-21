@@ -42,6 +42,12 @@
       "source": "./operations",
       "description": "Running the company's and its clients' work day to day: the minutes of a meeting sent the same day, status reports, visit logs, handovers, the records an engagement keeps. The minutes of a client meeting as one HTML file and an A4 PDF from the notes a person brings back, split into decisions, questions and answers, items to confirm and actions with what stays internal kept out, rendered in grayscale with the client's logo first, checked against the house style and looked at before delivery.",
       "license": "MIT"
+    },
+    {
+      "name": "writing",
+      "source": "./writing",
+      "description": "Text that is the result itself, read or heard as it is: a news script, an article, a report, a briefing. The script of a news anchor report from a sourced topic brief, with the screen planned cut by cut for a video made later: the lead from the viewer's side, each sentence with one job and the form that says how its content is known, checked for its facts, its form and its spoken length, and heard once by a listener who has only the script.",
+      "license": "MIT"
     }
   ]
 }

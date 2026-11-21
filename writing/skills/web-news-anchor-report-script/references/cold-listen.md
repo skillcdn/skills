@@ -1,0 +1,52 @@
+# The cold listen: one hearing by someone who has only the script
+
+How the script is checked for sense: who listens, what the listener is given, the brief, how the report is read, what a listener does not catch, and when the rounds stop. Read before check 3 of phase 5.
+
+## Why the writer cannot do it
+
+The writer has read the brief. Every gap in the script (a term never explained, two events joined with no reason, a fact with no reason to be there) is filled from the brief before it is noticed. A fact check does not find these either: it passes a script whose every sentence is true and whose listener is lost. A listener with only the script meets each gap as a viewer would.
+
+## Who listens
+
+An agent with none of this session's context: no brief, no facts, no rules of this skill. A subagent where the host has a subagent tool, else a second session the user opens with the brief below pasted in; [fresh-agents.md](/engineering/docs/skillcdn/fresh-agents.md) "What fresh means" says what can still reach such an agent. It needs no directory and no tool: the brief is the whole of what it gets. Where the host offers neither, the writer reads the script once more, sentence by sentence, asking of each what a viewer would ask, and the delivery says the script was not heard cold.
+
+## What the listener is given
+
+- The script, its sentences numbered and its two stretches marked (on camera, over the screen), without the fact ids.
+- Who the viewers are, in a line, from the brief's `audience`.
+- The form in a line: the anchor speaks the first stretch on camera and the rest over pictures; the title on screen, as the cut sheet has it.
+- The air date, and that words in parentheses are notes nobody reads aloud.
+
+It is not given the brief, the thread, this skill's pages, or what the writer is unsure of. A listener told what to look for finds it.
+
+## The brief
+
+Given in the language of the script, translated plainly, with its four kinds of stumble and its two grades kept; `<length>` is the target length:
+
+> Hear this script as a viewer would: once, in order, with no way back. You are <the viewers, in a line>. It is a news report of about <length>; the anchor speaks the first part on camera and the rest over pictures; the title on screen reads "<title>"; it airs on <date>, and words in parentheses are notes that are not read aloud. Go through it sentence by sentence and report only where you really stumbled: a word whose meaning you were not given, two things joined with no reason you could hear, a sentence whose point you could not tell, something mentioned for no reason you could hear. A question the very next sentence answers is not a stumble. For each: the sentence's number and the words, the question you had at that moment in one line, and whether you were stopped (you lost the report there) or slowed (you went on with the question). Worst first. "None" is an answer: do not search for faults, and do not rewrite anything. End with what the report told you, in one sentence, as you heard it. Use no tool, read no file, and use nothing you remember or were handed (a memory index, a working agreement).
+>
+> <the script>
+
+## Reading the report
+
+| The listener | It means | Then |
+|---|---|---|
+| Was stopped | The script fails there for a viewer | Rewrite by [script.md](script.md), and listen again |
+| Was slowed, and the brief holds the answer | A term, a name or a link the script left out | Add it where the question arises, not later |
+| Was slowed, and the brief does not hold the answer | The sources' own limit: a size, a degree or a cause no article gave | Keep the sentence, or cut it where the question outweighs the fact; list it in before air as what the sources do not say |
+| Asked "why did that follow?" of a case | The cause is missing from the script, and perhaps from the brief | script.md "Links the sources state" |
+| Asked the same question of a sentence already rewritten once for it | The fact is missing, not the wording | Cut the sentence or the case |
+| Found a number hard to place | Two numbers too close, or a number without the thing it counts | script.md "For the ear" |
+| Gave a one-sentence account that is not the thread | The script tells another story than it means to | Find what carried the listener off, usually a fact with no link, and cut it |
+| Reports none | | The check is passed |
+
+## What a listener does not catch
+
+A listener given no rules reports unexplained causes, facts with no link, terms explained late and numbers it could not place. It does not remark on a sentence that asserts in the anchor's own voice, or on a lead that opens with the actor: both sound like news. Those are form, and are checked sentence by sentence against script.md in check 2, before the listen.
+
+## Rounds
+
+- Every round has a new listener. One that heard an earlier version fills gaps as the writer does.
+- The whole script is heard again after a rewrite, not the changed sentence alone. A fix opens gaps elsewhere: a number dropped for the ear leaves its sentence without the size that was its point, and a sentence moved leaves a name used before it is introduced.
+- Stop when a round reports no stop and every question left is one the brief cannot answer. Three rounds at most; what is left then goes to the checkpoint as it is, in the listener's own words, and the user says whether to go on.
+- Record each round in the checks: how many stops and slowings, what was changed, what stays and why.

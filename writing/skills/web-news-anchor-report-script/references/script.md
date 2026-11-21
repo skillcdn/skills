@@ -1,0 +1,90 @@
+# The script: words a viewer hears once
+
+How the script of an anchor report is written so that a viewer follows it in one hearing: the thread, the lead, the parts, the one job of each sentence, the links a script may state, how each thing is said to be known, what the ear can hold, the close, the length, and what a reference gives. The pack's writing set ([readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md), [facts.md](/docs/writing/facts.md)) holds what every text shares. This page is its sharper form for a spoken news script and wins where they differ: the dates, the form that says how a thing is known, and the close.
+
+## One hearing
+
+A reader can stop and look back. A viewer cannot: a sentence not understood as it passes is lost, and the next is heard through the question it left. Every rule on this page is that fact applied. Before a sentence is kept, ask what the viewer knows at that second and what they are asking. The sentence answers that question, or it is in the wrong place.
+
+## The thread
+
+Write the report in one sentence before any of it: what happened, what it does to the viewer, and what decides what comes next. The thread is the brief's angle said plainly, never a reading of the writer's own; where the brief says the story has no angle yet, it is what happened and what is pending. Everything in the script serves it.
+
+- A fact enters with its link to the thread, said in the script in a clause the brief supports. A fact that is true, sourced and interesting, and whose link the script cannot say, is left out: the viewer hears it as the start of a second story and waits for it to matter.
+- A report of this length carries one story. A neighbouring event (another body's action, a date that falls nearby) belongs only where a source says how it bears on this one, and the script says it too.
+
+## The lead
+
+The lead is the viewer's reason to keep watching.
+
+- Start where the viewer stands: what the story does to people like them, and in the same sentence who acted, as its cause. A lead that opens on the body that acted gives the viewer an institution's news; one that opens on the effect gives them their own.
+- Choose the opening picture with the opening sentence: the one scene that shows that effect. The sentence does not describe the picture, and the picture shows what the sentence says.
+- The lead is as strong as the facts. Where the sources say an effect is feared, the lead says it is feared; where they count it, the lead states the count. The plan decides this before the wording does.
+- One thing, in one or two sentences, then the handover: one short line that sends the viewer to the screen, in the words the language's newscasts use, carrying no fact. The lead is the shortest part of the report.
+- The largest thing still to come (a decision, a date, a step someone has announced) is told once, with its condition, where the story reaches it, which is usually the end. Told in the lead without its condition and later with it, the viewer hears two facts that disagree. The title on screen may name it from the start.
+
+## Parts and their jobs
+
+After the handover the anchor's voice runs over the screen. The parts come in the order the viewer's questions do.
+
+| Part | The viewer is asking | It holds |
+|---|---|---|
+| What it is | What is this thing I just heard named? | The term or the measure, defined, and what it does to the viewer |
+| What it looks like | What does that mean where I stand? | One scene or one witness |
+| What happened | So how did it go? | The point first, then the count or the case that shows it |
+| Why | Why is this happening? | What each side wants, in its own terms and at its own strength, the reply beside the claim |
+| What comes next | What do I watch for? | The date, the condition, the step that follows |
+
+A story need not have every part, and a part is one to four sentences: more, and it is answering a second question. The order changes where the story's own logic asks for it, never to put the actors before the viewer.
+
+## A sentence has one job
+
+Each sentence does one of these: it defines, shows, states a result, gives a side's position, says what comes next, or hands over. Name the job in a few words before the sentence is kept. A sentence whose job cannot be named holds two jobs or none, and a listener says of it that they cannot tell what it is for.
+
+- A definition is written as one: the term, what it is, and what it does to the viewer, in that order. A list of what people are doing under the term is a scene, and leaves the viewer to work the meaning out; where the report needs both, they are two sentences, the definition first.
+- The point comes before the detail that carries it. A detail given alone ("the shelves were half empty by noon") hands the viewer an observation to interpret. Say what it showed, then the detail.
+- The first sentence after the handover answers the question the lead raised, which is usually what the named thing is.
+
+## Links the sources state
+
+A cause, a consequence and a reason for mentioning are facts like any other, and come from the brief.
+
+- Two things joined in one sentence have a relation the source states. "As A happened, B" and "A, so B" are claims about cause, whatever the connective.
+- A case is told only when its sources say why one thing led to the next. Where they give the events and not the cause, no wording repairs it: a listener asks "why did that follow?" of every version. The case goes back to the brief's articles, and without an answer it is left out, while the count it belonged to stays.
+- Cutting a number is cutting a fact. Where a size was the point of a sentence (how much it costs, how many it covers), the sentence still says it after the edit, or the listener asks the question the number answered.
+
+## How it is known
+
+An anchor reports. The form of each sentence says how the newsroom knows what it says: it is going on and seen, it was announced, it was counted, someone said it, it is planned, it is expected. A plain statement of what someone else does, demands or expects is heard as the newsroom vouching for it. [facts.md](/docs/writing/facts.md) "A hedge" gives the rule for any text; in a spoken report it sits in the ending or the attribution of every sentence. This is attribution and not softening: a count is stated flat, as its counter's count, and the "reportedly" with no one behind it that facts.md rules out stays out. Endings change with what the sentences carry; one ending on every sentence is a signal of machine-written text.
+
+| The sentence carries | Its form | In Korean, for example |
+|---|---|---|
+| Something going on now | The progressive, or what is seen | -고 있습니다, -는 모습입니다 |
+| A side's demand, position or account | That side as the subject, ongoing or as its position | -라는 입장입니다, -라고 설명하고 있습니다, -라고 주장하고 있습니다 |
+| A count or an outcome | With who counted, and up to when | -로 집계됐습니다, -ㄴ 것으로 나타났습니다 |
+| What a person said | With who and in what capacity; what another outlet reported, as heard through it | -라고 말했습니다, -ㄴ 것으로 전해졌습니다 |
+| A plan or an announcement | As announced, with its condition | -ㄹ 예정입니다, -기로 했습니다 |
+| What may follow | As an outlook, naming what decides it | -ㄹ 전망입니다, -ㄹ 수 있습니다 |
+| A definition, or a fact of the record | Stated | -입니다 |
+
+A language without such endings carries the same in attribution and tense ("has said", "is expected to", "by the ministry's count"). A note that one ending asserts too much is a note on every sentence of that row.
+
+## For the ear
+
+- **One number to a sentence**, with the thing it counts. Two leave the viewer unsure which was which and whether one is part of the other. Say a figure rounded, as people say it, and put the exact figure on the screen at the same moment.
+- **A name comes with what it is** at its first mention ("the agency that issues the permits"), and by its short form after that. A short form the viewer was never given is a new unknown.
+- **Dates are said as the viewer lives them**, counted from the air date: yesterday, next Monday, the day before the vote. The absolute date follows the word in parentheses and is not read, so that the script can be dated again for another day. This is where the script leaves the writing set, which writes dates absolute.
+- **A quote is spoken as a quote only when it is short and stands alone.** A longer one is said in plain words with its speaker, because the ear loses where a long quote ends, and the words as printed go on the screen as the quote. Words cut from the middle of a sentence keep what they point at, or are said plainly: half a quote that refers to something unsaid is a new question.
+- **A person another outlet interviewed is that outlet's reporting.** The screen names the outlet with the quote, so that the viewer knows whose reporting it is.
+
+## The close
+
+The last sentence is the one thing to watch: what decides the next step, and when. It is an outlook said as one. It does not sum the report up, which repeats what the viewer just heard, and does not judge it, which would be the writer's own reading.
+
+## Length
+
+A report's length is its spoken length. Write the spoken form (every number, unit and symbol as it is said, the notes in parentheses dropped), count it in the unit the language is timed in (syllables for Korean and Japanese, words for English), and divide by the pace. The pace is the language's own for news reading with its pauses in it, so none are added: look it up and name its source in the checks. Korean news reading is commonly put near 350 syllables a minute (illustrative). Where the user gave a reference, its own pace is counted and used in its place. Keep within a twentieth of the target, since a reader's pace varies by as much. A script that runs long loses a sentence or a part; it is never packed tighter.
+
+## A reference
+
+A report the user names gives its form and nothing else: how long the lead runs before the handover, the order of its parts, how its sentences end, how it closes, what the screen shows under each part, where sources are named on screen, and its pace. Read its script where the user pastes one, its captions where the host can read them, and its screen from frames where a browser is at hand ([video-frames.md](/docs/browser/video-frames.md)); where none can be read, ask for the script. Its story, its people, its sentences and its outlet's name are not form: none enters the script, the cut sheet or any file the run keeps. The checkpoint says in a line what was taken from it.
