@@ -18,6 +18,13 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - Also asked as: "competitor ad research", "ad references or a swipe file for this product", "what hooks are working in Facebook and Instagram ads for this".
 - Not this one when: you want to know which products or services are being advertised more and more (rising products under Product), or to make the ad itself (the ad above).
 
+### "Book the posts I approved on our Instagram."
+
+- You get: each approved post (a carousel of images and video slides with its caption) booked for its slot in the account's own web interface, read back on the scheduled list, and once the slot has passed found live, its address recorded and its folder filed.
+- Skill: [`marketing/skills/instagram-post-scheduling/`](/marketing/skills/instagram-post-scheduling/SKILL.md)
+- Also asked as: "schedule these from noon tomorrow, thirty minutes apart", "post this card news to our account at 10", "swap that booking for the video version", "move it to tomorrow", "did they all go up?".
+- Not this one when: the post is still to be made (the card news under Design, one or a batch), or you want to read another account's posts (the format study under Design).
+
 ## Media
 
 ### "Make episode one of a short drama from this premise."

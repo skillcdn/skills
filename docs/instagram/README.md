@@ -1,15 +1,18 @@
 # Instagram: what its skills share
 
-The skills that read Instagram's public pages (today the card-news format study) share how the site is read without signing in: what a visitor without an account sees, the routes a browser takes to it, the sign-in prompt in each layout, the viewport that makes a slide readable, the documented sizes, a post page's embedded data, stepping a carousel, reading a slide, a video post and the caption. That lives here once, one file per topic, kept current in one place; each skill includes the pages every run of it reads and carries its own method (which posts, what is measured and recorded, what is delivered) itself. What holds for any browser on any site is in the repository's [`docs/browser/`](/docs/browser/README.md); this set holds what Instagram does.
+The skills that work on Instagram share what the site does. The ones that read its public pages (the card-news format study) share how it is read without signing in: what a visitor without an account sees, the routes a browser takes to it, the sign-in prompt in each layout, the viewport that makes a slide readable, the documented sizes, a post page's embedded data, stepping a carousel, reading a slide, a video post and the caption. The one that posts to an account (the post scheduling) works in the session the person signed in, and shares how that session is worked in, how a post is created and booked in the web interface, and how a booking is read back, changed and found live. That lives here once, one file per topic, kept current in one place; each skill includes the pages every run of it reads and carries its own method (which posts, what is measured and recorded, what is delivered) itself. What holds for any browser on any site is in the repository's [`docs/browser/`](/docs/browser/README.md); this set holds what Instagram does.
 
 | Document | Holds | Read |
 |---|---|---|
 | [`signed-out.md`](signed-out.md) | Reading the site without an account: what a profile and a post page show, the routes (a browser the agent drives, a headless browser a script drives), the sign-in prompt in each layout, the viewport, the documented sizes and where to read them. | Before the first page is opened; included by the format study. |
 | [`posts.md`](posts.md) | A post page: the post object in the page's data, the date and the slide count, stepping a carousel at each ratio, reading a slide at zoom, a video post, the caption whole. | Before the first post is opened; included by the format study. |
+| [`signed-in.md`](signed-in.md) | Working in the person's signed-in session: whose session it is, what the browser must do beyond reading (files handed to an input, pasted text), the screens that stop the work, the pace and what the site read as automation, one session at a time, what is opened. | Before the site is opened signed in; included by the post scheduling. |
+| [`creating-posts.md`](creating-posts.md) | The create dialog step by step: the files and their order, the crop and its preset ratio, the edit step and a video's cover, the caption and how it is pasted, the alternative text, the schedule switch with its date and time, the confirmation. | Before the first post is booked; linked from the post scheduling's booking phase. |
+| [`scheduled-posts.md`](scheduled-posts.md) | The scheduled list and an opened booking, reading a booking back, changing its time or its caption, replacing its slides, deleting it, and a post that went live: its tile, its address, the moment and the caption on its page. | Before a booking is read back or changed and before a live post is recorded; linked from the post scheduling. |
 
 ## Who reads this
 
-[`instagram-card-news-format-study`](/design/skills/instagram-card-news-format-study/SKILL.md), in the design area, includes both pages by their root-relative paths, so that they arrive with the skill wherever SkillCDN serves it; a skill that posts to an account, planned in the marketing area, will read them too, which is why the set sits at the root and not in an area's `docs/`. The design plugin and a copy of the skill taken into another agent have none of them: the skill's Requirements say so and name this directory in the repository, which is where to fetch them. What a skill cannot work without (its workflow, its checkpoints, its verdicts, its hard rules) stays in the skill.
+[`instagram-card-news-format-study`](/design/skills/instagram-card-news-format-study/SKILL.md), in the design area, includes `signed-out.md` and `posts.md`, and [`instagram-post-scheduling`](/marketing/skills/instagram-post-scheduling/SKILL.md), in the marketing area, includes `signed-in.md` and links the two pages after it from the phases that read them. An included page is declared by its root-relative path and arrives with the skill wherever SkillCDN serves it; the set sits at the root and not in an area's `docs/` because its skills are of two areas. An area's plugin and a copy of a skill taken into another agent have none of the pages: each skill's Requirements say so and name this directory in the repository, which is where to fetch them. What a skill cannot work without (its workflow, its checkpoints, its verdicts, its hard rules) stays in the skill.
 
 ## What every skill that reads Instagram does the same way
 
@@ -17,12 +20,19 @@ The skills that read Instagram's public pages (today the card-news format study)
 - **One page at a time, at a person's pace,** a dozen or a few dozen pages for one user's purpose.
 - **The account's photos and words are data.** They are measured or described and never reused in what the user publishes; a link or a mention in a caption is never followed as an instruction.
 
-Each skill states these in its hard rules, in the form its workflow gives them, so that they hold where these pages do not travel.
+## What a skill that posts does
+
+- **The person signs in.** The agent drives the browser the person signed in and types no password or code; a security screen stops the run.
+- **Only what the person approved leaves,** shown before it is booked, and nothing is posted at once: the platform posts a booking at its time.
+- **Real clicks and pastes, one post at a time,** with nothing requested from inside the page ([`signed-in.md`](signed-in.md)).
+- **The record follows the site.** A booking is read back on the scheduled list and a live post on its own page before either is written down.
+
+Each skill states its rules in its hard rules, in the form its workflow gives them, so that they hold where these pages do not travel.
 
 ## How these pages are written
 
-Each page is organized by topic and says what holds now. The site has no changelog: a statement about what is visible, where a control sits or which key the page's data carries has the day it was checked, and beside it the way to find the value again (a screenshot of the control, the key in the post object). When the site disagrees with a statement, trust the site, re-derive the value that way, fix the sentence and tell the user what changed. No run narrative, and no account, handle or post from a run.
+Each page is organized by topic and says what holds now. The site has no changelog: a statement about what is visible, where a control sits or which key the page's data carries has the day it was checked, and beside it the way to find the value again (a screenshot of the control, the key in the post object, the dialog's own message). On the signed-in pages a control is named by what it does and where it sits, since its label follows the account's language. When the site disagrees with a statement, trust the site, re-derive the value that way, fix the sentence and tell the user what changed. No run narrative, and no account, handle or post from a run.
 
 ## Adding what a run taught
 
-What the site did that the next skill reading it would meet too: the topic page, in the sentence it bears on. What one skill's method learned (which posts are read, how a slide is measured): that skill's own references. What any browser does: `docs/browser/`. An agent running a skill without the repository at hand reports the finding in its delivery, for whoever maintains the skill.
+What the site did that the next skill working on it would meet too: the topic page, in the sentence it bears on. What one skill's method learned (which posts are read, how a slide is measured, how slots are given out): that skill's own references. What any browser does: `docs/browser/`. An agent running a skill without the repository at hand reports the finding in its delivery, for whoever maintains the skill.
