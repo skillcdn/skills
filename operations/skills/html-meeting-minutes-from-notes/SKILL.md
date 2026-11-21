@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Python 3 and a Chromium-family browser the agent can drive for the PDF (Playwright from Python with the Chrome or Edge already installed is what the helper script uses); without a browser the HTML is still delivered and the PDF is printed by the user. Works in any agent that can write files and run a shell.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: browser
 skillcdn:
   include:

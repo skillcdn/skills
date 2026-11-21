@@ -33,7 +33,8 @@ import re
 import sys
 
 # The usual house style of a document that leaves the organization: middle dots in every form, dashes,
-# circled numbers, and a head in brackets. A minutes file declares its own in `style`; this is the default.
+# circled numbers, and a head in brackets. A minutes file declares its own in `style`; this is the default. The same
+# set and the same keys as the deck skill's helper.
 USUAL_FORBIDDEN = {
     "·": "middle dot", "•": "bullet", "‧": "hyphenation point", "∙": "bullet operator",
     "ㆍ": "Hangul middle dot", "—": "em dash", "–": "en dash", "―": "horizontal bar",
@@ -165,8 +166,10 @@ def resolve_style(spec):
     forbidden = dict(USUAL_FORBIDDEN) if usual else {}
     own = style.get("forbidden", {})
     if isinstance(own, list):
-        own = {ch: ch for ch in own}
-    forbidden.update(own)
+        own = {chars: chars for chars in own}
+    for chars, name in own.items():
+        for ch in chars:  # a key of several characters is a set, each checked, as in the deck skill's helper
+            forbidden[ch] = name
     no_bracket = bool(style.get("no_bracket_heads", usual))
     return forbidden, no_bracket, ("the usual set and the file's own" if usual else "the file's own set")
 
