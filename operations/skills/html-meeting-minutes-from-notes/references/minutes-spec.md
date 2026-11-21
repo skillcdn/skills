@@ -38,7 +38,7 @@ Example: [minutes.example.json](../assets/minutes.example.json), a fictional mee
 
 ## Terms
 
-The headings, the header labels and the columns are in the minutes' language, in the terms the organization's earlier minutes use. With none, in English: Date and time, Place, Attendees, Author; Overview, Decisions, Questions and answers, Reference., Items to confirm, Actions, Next meeting; Item, Owner, Planned; "and others". In Korean: 일시, 장소, 참석, 작성; 회의 개요, 결정사항, 질의와 답변, 참고., 확인사항, 조치사항, 다음 회의; 항목, 담당, 예정; 외. Another language takes the plainest words of its business writing for the same things.
+The headings, the header labels and the columns where the organization's earlier minutes give no terms, in English: Date and time, Place, Attendees, Author; Overview, Decisions, Questions and answers, Reference., Items to confirm, Actions, Next meeting; Item, Owner, Planned; "and others". In Korean: 일시, 장소, 참석, 작성; 회의 개요, 결정사항, 질의와 답변, 참고., 확인사항, 조치사항, 다음 회의; 항목, 담당, 예정; 외.
 
 ## Markup and style
 
