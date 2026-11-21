@@ -26,13 +26,13 @@ Look first in the request, next to the material the user brought, and in the org
 
 ## Where the answer is kept
 
-The minutes skill writes the answer into the organization's own records (a notes file in its brand folder, or its handbook where it has one), so that the next run, for any reader, finds it and does not ask again. The deck skill writes it into the deck file alone (checked 2026-11).
+The minutes skill writes the answer into the organization's own records (a notes file in its brand folder, or its handbook where it has one), so that the next run, for any reader, finds it and does not ask again. The deck skill writes it into the deck file alone.
 
 ## How it is checked
 
 The deck skill and the minutes skill each have a helper that checks every string of the document's file against a set of characters and lists each offending string with where it is. The file is fixed and rendered again; a draft rendered without the check is for a look, never a delivery.
 
-Both read the same shape and apply the same default (checked 2026-11):
+Both read the same shape and apply the same default:
 
 - The check runs where the document leaves the organization: a minutes file unless it says `external: false`, a deck only where it says `external: true`.
 - With no style in the file, the usual set. `usual: true` starts from the usual set and the file's `forbidden` adds to it; without it, `forbidden` is the whole set.

@@ -33,3 +33,4 @@ The two kinds of document differ, and each rule holds for its own:
 
 - Another party's document text and its prices appear only where the material was supplied for that purpose.
 - A published reading, a statement or a figure of someone else's is theirs in the text: quoted and attributed ([facts.md](facts.md) "A quote and a claim").
+- A risk named about another party is an observation of what the material shows, never a verdict on that party.

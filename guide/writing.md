@@ -17,6 +17,7 @@ Each sentence of the set generalizes a rule a skill already carried for one medi
 | `facts.md`: a hedge | The AI-feel page (no hedge where a fact has a source), the minutes skill (a decision firm, an answer no firmer than what was said), the topic brief (a reading is the outlet's, never the agent's) and the research reports (the report's own readings, counted), which read as opposite until they are set side by side. "A hedge belongs where the source is hedged" is the set's own sentence for all four |
 | `facts.md`: a quote and a claim, dates and names | The card news build's script page, the topic brief's sourcing page, the document answer skill's hard rules, the minutes skill's meeting facts |
 | `outside-readers.md` | The operations area's rule that nothing internal crosses, the deck's proposal register, the minutes skill's split and its wording notes |
+| Added when the skills were linked to the set | `facts.md`: a source the run could not read, the agent's own rendering of a source, "planned" and not "due", the rules and thresholds an analysis applied, a name taken from where it is written, a reader's word read as the source's term; `outside-readers.md`: a risk named about another party; `sentences.md`: a record of decisions without their intentions. From the document answer, research and pack skills, the two Meta Ad Library reports and the minutes |
 | `house-style.md` | The question both the deck and the minutes skills ask, the minutes helper's usual set, the deck's replacement for a middle dot, the minutes skill's record of the answer |
 
 A sentence that is true of a text in any medium went into the set; a sentence true of one medium stayed in its skill. Text that reads as machine-written stayed where it was, in `docs/variation/not-ai.md`, which the set links: that page is included by the two variation skills, and moving its word signals would have changed both.
@@ -25,17 +26,15 @@ A sentence that is true of a text in any medium went into the set; a sentence tr
 
 A skill carries what it cannot work without, so it keeps the form its own medium gives each rule: the deck's slide strings and blocks, the minutes' sections and their terms, the card news build's counts per line from the spec, the ad's hook table. The set holds no limit of one medium (characters per line, words per cue, pages) and no layout rule. The sharper list wins in its skill, as `not-ai.md` says of its own.
 
-## Duplicated on purpose, for now
+## How a skill reads the set
 
-No existing skill links the set yet. Each skill that writes text states its rules in its own files, as it did before the set, and a run of it reads those. Making a skill read the set is a change to that skill: its Requirements name the page, the phase that writes links it, and a fresh agent runs it once (`guide/adding.md`, "Changing an existing skill"). That is done one skill at a time, when the skill is next revised, and the general sentences its references then repeat are cut to the medium's own form. Until then the set is reached by search, by the jobs index's section on jobs with no skill, and by the writing skills to come, which include its pages.
-
-The order that costs least: the minutes skill and the deck skill first, since both render with a helper and spend nothing; the card news build with the topic brief next, as one chain.
+Every skill that writes a text a person reads links the set's pages from the phase that writes, read before the first draft, and names in its Requirements that a plugin install, a copy or a mount below the root lacks them. It links and does not include them: the pages together are larger than what most skills may add to a load, and the deck skill must stay in two pages. A general sentence a skill's own files repeated was cut when the skill was linked to the set; what its medium adds stayed. Each skill's change was read against the set by a fresh agent, not run end to end: a run of each skill is still owed and is noted in its roadmap row.
 
 ## Where the skills disagree today
 
-Found when the set was written (2026-11), and stated in the set as they are, not smoothed over:
+Found when the set was written, and stated in the set as they are, not smoothed over:
 
-- **Where the house style's answer is kept.** The minutes skill records the organization's answer for the next run; the deck skill keeps it in the deck file and asks again. The two helpers read one shape and apply one default since 2026-11: before, the deck's banned nothing unless the deck file declared a set, its example set lacked the Hangul middle dot and four other characters the minutes set has, and it read a `forbidden` map the minutes' did not, so that a deck with a Hangul middle dot passed where the same sentence failed the minutes.
+- **Where the house style's answer is kept.** The minutes skill records the organization's answer for the next run; the deck skill keeps it in the deck file and asks again.
 - **Naming tools.** The minutes name the organization's own tooling by a generic noun; a proposal deck names the tools the work stands on by their real names. Both are right for their document, and `outside-readers.md` gives each its row.
 - **The hedge and the reading.** No skill is wrong; the rule was said from several sides. A news post prints no reading of the agent's own, and a research report's readings are its findings. `facts.md` has one table, with a row for each.
 - **The default language.** The minutes take the language of the notes, the research reports the user's language whatever the ads are in, the topic brief the language asked for or the market's. `readers.md` states the three as cases of one rule, the reader's language.
@@ -52,4 +51,4 @@ Every writing skill includes the set's pages its runs need, which the format ser
 
 ## Testing
 
-A change to a page of the set is dry-read by a fresh agent against the skills it was generalized from: a sentence that contradicts a skill's own rule is a finding, about the set or about the skill. Once skills include the set, a change to an included page is a change under each of them, verified as the verification skill's change review says. A request for a text with no skill ("write a press release for this") is a case of the finding round ([finding.md](finding.md)): the agent says no skill fits and names the set as what it would write by.
+A change to a page of the set is dry-read by a fresh agent against the skills it was generalized from: a sentence that contradicts a skill's own rule is a finding, about the set or about the skill. A change to a page of the set is a change under every skill that links it (each skill's Requirements name the pages), verified as the verification skill's change review says; a writing skill that includes a page has its digest changed by it too. A request for a text with no skill ("write a press release for this") is a case of the finding round ([finding.md](finding.md)): the agent says no skill fits and names the set as what it would write by.

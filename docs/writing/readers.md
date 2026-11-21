@@ -21,7 +21,7 @@ Who a text is written for decides its language, its terms, its register and how 
 ## The register and the voice
 
 - The register is taken from what the reader already reads: the organization's earlier documents of the same kind, or the reference whose format the text is built in, whose patterns are applied sentence by sentence.
-- With nothing to take it from, sentences are plain declaratives in the neutral written register (in Korean, 한다체), never the clipped note form.
+- With nothing to take it from, the medium's own default holds where its skill gives one (the polite form of an app's interface or of a post, for example); with none, sentences are plain declaratives in the neutral written register (in Korean, 한다체), never the clipped note form.
 - The stance and the tone are the user's to give. A stance (a report, a commentary, advocacy for a side) decides which facts and quotes come first and where the other side's reply sits; a tone decides how far a headline goes. Neither moves the floor of the facts ([facts.md](facts.md)).
 - The voice is that of whoever speaks (the organization, the account, the figure), never the agent's. A first-person line stands only where someone speaks as themselves.
 
