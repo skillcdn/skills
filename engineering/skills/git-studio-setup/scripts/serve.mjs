@@ -1,4 +1,4 @@
-// Serves the repository on this machine so that the gallery and the items' pages open in a browser:
+// Serves the repository on this machine so that the gallery and the units' pages open in a browser:
 // http://localhost:<port>/gallery/, built again on every visit, nothing cached. Ctrl+C stops it.
 // Usage: node scripts/serve.mjs [--port=8787]   (a port in use gives way to a free one)
 import { createReadStream, existsSync, readdirSync, statSync } from "node:fs";

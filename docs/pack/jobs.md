@@ -161,9 +161,9 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Set up a repository where we keep making our card news."
 
-- You get: a studio, committed and pushed: the repository the setup skill lays out, with one unit of production and its states (the approval a person's alone), a ledger so that nothing is made or tried twice, a review screen served on your machine, one check, and a small pack of the studio's own, in which each job has a skill that extends a skill of this pack with your standing answers, and what the studio learns is kept as pages by topic.
+- You get: a studio, committed and pushed: the repository the setup skill lays out, with its unit of production and the unit's states (the approval a person's alone), or two units where rounds of ongoing work run on what is made, a ledger so that nothing is made or tried twice, a review screen served on your machine, one check, and a small pack of the studio's own, in which each job has a skill that extends a skill of this pack with your standing answers, and what the studio learns is kept as pages by topic.
 - Skill: [`engineering/skills/git-studio-setup/`](/engineering/skills/git-studio-setup/SKILL.md)
-- Also asked as: "make this repo our ad creative studio", "a repo for the team to run ad optimization in", "set our content production up so the know-how stays", "add a job to our studio".
+- Also asked as: "make this repo our ad creative studio", "a repo for the team to run ad optimization in", "a repo where we make ad creatives every week and keep optimizing them", "set our content production up so the know-how stays", "add a job to our studio".
 - Not this one when: the repository holds code or documents and produces nothing day after day (the new repository above, which this skill runs first); one post or one ad is wanted now (the skill that makes it).
 
 ### "Set up my desk."

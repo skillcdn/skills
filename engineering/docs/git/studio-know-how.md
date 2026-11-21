@@ -4,11 +4,13 @@ What a studio knows outlasts what it made, and it lasts only when the next sessi
 
 ## The manifest
 
-`SKILLCDN.md` at the root: a `name`, a `description` of two sentences (what the studio produces and for whom, then when to use its skills), `language`, and `exclude` naming the unit's folder and `gallery`, so that a search of the studio finds what it knows and never an old unit. Its body holds only the rules that hold for every job here and are about the work itself: what a result must never contain, what a person alone decides, that a run ends with its findings folded back. A rule about the repository (secrets, the check, commits) is the agreement's, and neither file restates the other. The body arrives before every studio skill, so it stays within its bound ([studio.md](studio.md) "studio.json").
+`SKILLCDN.md` at the root: a `name`, a `description` of two sentences (what the studio produces and for whom, then when to use its skills), `language`, and `exclude` naming each unit's folder and `gallery`, so that a search of the studio finds what it knows and never an old unit. Its body holds only the rules that hold for every job here and are about the work itself: what a result must never contain, what a person alone decides, that a run ends with its findings folded back. A rule about the repository (secrets, the check, commits) is the agreement's, and neither file restates the other. The body arrives before every studio skill, so it stays within its bound ([studio.md](studio.md) "studio.json").
 
 ## A studio skill extends a pack skill
 
 A job done here has one skill, `skills/<job>/SKILL.md`, and it is an extension: it runs a skill of the pack with this studio's standing answers and adds only what this studio does differently. It never copies the pack skill. The pack skill is loaded as served at the start of every run, every part of it, so a technique the pack gains reaches the studio without an edit, and the studio's own text stays small enough to keep true.
+
+A job that uses one phase of a pack skill (a round reads `meta-ads-setup` for its monitoring alone) loads less, and its skill says which parts: the pack's rules, which a whole load would have brought (`SKILLCDN.md` at the pack's root and the area's), then the pack skill's hard rules and that one phase, each read as a section. The file's outline gives the sections (`console skills <path>`, or `browse_repo` on the file through a connection), and one is read with `console skill --file <path> --offset <n> --limit <n>`, or with `read_repo_file` and the same two numbers (console and SkillCDN 0.5, checked 2026-11).
 
 | Goes in the studio skill | Stays in the pack skill |
 |---|---|
@@ -25,7 +27,7 @@ A job no pack skill covers gets a skill written whole, in the format's shape, an
 
 ## The policy and the pages
 
-- **`docs/policy.md`** is the person's standing answers under headings: what is made and for whom, what the studio takes on and what it leaves, how it speaks, how often it delivers, who approves and what they are shown, how often new techniques are looked for. A word of the person's that changes a line changes the line, never a note beside it, and a correction given twice goes in before the run ends. An answer that lives only in an agent's memory is not policy.
+- **`docs/policy.md`** is the person's standing answers under headings: what is made and for whom, what the studio takes on and what it leaves, how it speaks, how often it delivers, who approves and what they are shown, how often new techniques are looked for. It is written in the language [layout.md](layout.md) gives every document an agent reads, and a line keeps the person's own words, as a quotation, only where the wording itself is the rule (a phrase the account never uses). A word of the person's that changes a line changes the line, never a note beside it, and a correction given twice goes in before the run ends. An answer that lives only in an agent's memory is not policy.
 - **`docs/guides/<step>.md`** is one page per step of the work, named as the step is called (`sourcing`, `pictures`, `review`, `reading-results`). It says what holds now: a procedure in the imperative, a fact as a statement, with the evidence in the same sentence and one section per thing an agent would search for. A fact about an outside tool or site carries the month it was last seen true. There is no dated entry, no account of a run, and no list of lessons: a lesson replaces or sharpens the sentence it bears on, and where none bears on it, it becomes a sentence under the heading it belongs to.
 - **A fact lives in one page.** Every other page and skill links there. A rule that hardened moves to where rules live (the policy, the manifest, the format's README) and leaves the guide.
 - **`docs/decisions.md`** keeps the one dated line per decision that layout.md gives it: a format's new version, a technique adopted, a state added.
@@ -34,8 +36,8 @@ A job no pack skill covers gets a skill written whole, in the format's shape, an
 
 | When | An agent reads | Never |
 |---|---|---|
-| A session starts | `AGENTS.md`, which the host hands it and which only routes: the commands, the map, which skill does which job, what a session does first. The task | The guides, the policy, the ledger |
-| One job | That job's studio skill, with the manifest's rules before it and the policy after it, which is the one page it includes; then the pack skill it names; then, phase by phase, the guide page the phase links | Another job's skill, a guide no phase of this job links |
+| A session starts | `AGENTS.md`, which the host hands it and which only routes (the commands, the map, which skill does which job), and the task; what it then does first is [studio.md](studio.md) "Working together" | The guides, the policy, the ledger |
+| One job | That job's studio skill, with the manifest's rules before it and the policy after it, which is the one page it includes; then the pack skill it names, or the parts of it the studio skill names; then, phase by phase, the guide page the phase links | Another job's skill, a guide no phase of this job links, the other kind's units beyond the slugs this unit names |
 | A question whether something was made or tried | The ledger, by a search for the key | The filed folders |
 | Before reversing a choice | The line of `docs/decisions.md`, the row of `docs/trials.md` | |
 
