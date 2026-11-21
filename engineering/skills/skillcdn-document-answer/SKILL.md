@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the SkillCDN connection to the pack (the MCP tools browse_repo, search_repo and read_repo_file) or the skillcdn command with the pack's address or directory. Works in any agent that can call MCP tools or run a shell; no file tool is needed, since the answer is the delivery.
 metadata:
   author: skillcdn
-  version: "1.4"
+  version: "1.5"
   tools: skillcdn
 skillcdn:
   include:
@@ -34,7 +34,7 @@ A question goes in, with a pack of documents served through SkillCDN; an answer 
 | The SkillCDN connection to the pack, or the `skillcdn` command (`skillcdn browse`, `skillcdn find`, `skillcdn file` with the pack's address or directory) | Reading the maps, searching, reading sections by offset and limit, re-reading a cited section. The connection's instructions name the pack and its language. |
 | A pack token, where a deployment reads its own directory with a token only | The operator's token, presented as `Authorization: Bearer <token>`; without it the pack answers as absent (SkillCDN 0.5.0). |
 
-Check it before the first message. Without a connection or the command, stop and say what to connect: the pack's address at a deployment, or the command on a directory. How a search over a pack behaves, and how to ask it so that it answers, is in the area's document set [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md): [searching.md](/engineering/docs/skillcdn/searching.md) is included and arrives with this skill wherever SkillCDN serves it; a copy of this directory lacks it, and fetches it from `engineering/docs/skillcdn/` of the repository this skill comes from (`github.com/skillcdn/skills`, which is not the pack the question is put to) or reads it as a file at `docs/skillcdn/` of the engineering plugin. The pack under question is its own connection: `read_repo_file` on it reads that pack, and this skill's pages are read only through the connection that served the skill. The shape of an answer is in [answer.example.md](assets/answer.example.md), which comes with the skill.
+Check it before the first message. Without a connection or the command, stop and say what to connect: the pack's address at a deployment, or the command on a directory. How a search over a pack behaves, and how to ask it so that it answers, is in the area's document set [`engineering/docs/skillcdn/`](/engineering/docs/skillcdn/README.md): [searching.md](/engineering/docs/skillcdn/searching.md) is included and arrives with this skill wherever SkillCDN serves it; a copy of this directory lacks it, and fetches it from `engineering/docs/skillcdn/` of the repository this skill comes from (`github.com/skillcdn/skills`, which is not the pack the question is put to) or reads it as a file at `docs/skillcdn/` of the engineering plugin. The pack under question is its own connection: `read_repo_file` on it reads that pack, and this skill's pages are read only through the connection that served the skill. The writing set is [`docs/writing/`](/docs/writing/README.md) of the repository this skill comes from, linked from phase 5 and read through that repository's connection, never the pack's; a plugin install, a copy or a mount below the root lacks it and fetches it from that repository. The shape of an answer is in [answer.example.md](assets/answer.example.md), which comes with the skill.
 
 ## Inputs
 
@@ -70,14 +70,14 @@ Produces the **candidates**: the sections a search named, with their path, headi
 Produces the **evidence**: the passages read, each quoted with its path, heading path, offset and limit.
 
 1. Read each candidate with `read_repo_file` at its offset and limit; read the neighbouring section where the passage defers to it, and follow a link to another document of the pack where the passage points there, by the section the references after the page name for it, at its offset and limit, rather than the file (SkillCDN 0.5.0). A result marked `(made from other documents: quote what it points to)` is a note or a glossary: the sections its quotes link to are the candidates, read and cited in its place.
-2. Stop when a section answers the frame and a second section says the same or defers to it, or when every candidate is read. A frame one section alone answers is answered from it, and the answer says that no other section read says the same; candidates all read with no answer send the search back to phase 3 for its next change. A rule about money, access or safety is quoted, never only paraphrased: the lead may say it in its own words, and the quote beneath carries the rule's own numbers, names and conditions.
+2. Stop when a section answers the frame and a second section says the same or defers to it, or when every candidate is read. A frame one section alone answers is answered from it, and the answer says that no other section read says the same; candidates all read with no answer send the search back to phase 3 for its next change.
 3. A passage that describes a figure or transcribes a scanned page is the converting agent's words: where the answer hangs on it, the answer says so and names the original the document's outline gives, with where its bytes are and the place in words ("page 12 of the original"), since the original is a download the tools do not read ([searching.md](/engineering/docs/skillcdn/searching.md), "Reading what was found").
 
 ### Phase 5: Draft and verify
 
 Produces the **draft** and the **verification**: the answer in the frame's shape with its quotes, then every quote re-read.
 
-1. Draft: the answer first; then each quote in the pack's language, with its citation.
+1. Draft: the answer first; then each quote in the pack's language, with its citation. Before the first draft, read the writing set's [readers.md](/docs/writing/readers.md) (the reader and the language), [sentences.md](/docs/writing/sentences.md) (the lead and what is cut) and [facts.md](/docs/writing/facts.md) (quotes, claims, a rule about money, access or safety, and what the source does not say).
 2. Verify: for every citation, read the cited section once more at its path, offset and limit. Where the read returns another section (the pack moved between calls, which the `Source` line says), find the section by its heading through the document's outline and re-cite it first. Then find the quoted words in the section word for word; a table is quoted as its row's cells in order and checked cell by cell. A quote that is not there as written is corrected to the words that are, or dropped with its claim, and the answer says in one line that a quote was dropped, without its claim. Nothing that failed the check stays in the answer.
 
 ### Phase 6: Answer
