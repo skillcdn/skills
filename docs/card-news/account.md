@@ -4,7 +4,7 @@ An account that posts card news day after day keeps three things beside the post
 
 ## Where the record is
 
-A working folder is an account's when it holds `docs/policy.md` or `topics/covered.md`. `git-studio-setup` sets one up as a repository a team shares, with the check that holds the three together; a plain folder with the same paths serves one person.
+A working folder is an account's when it holds `docs/policy.md` or `topics/covered.md`. [`git-studio-setup`](/engineering/skills/git-studio-setup/SKILL.md) sets one up as a repository a team shares, with the check that holds the three together; a plain folder with the same paths serves one person.
 
 | Path | Holds |
 |---|---|
@@ -33,6 +33,7 @@ One page under headings, each line the person's standing answer. A skill takes a
 | Pictures | Whether a video goes before a photo, what a cover must show. | The research and the build. |
 | Cadence | Posts a day, the slots, how far the minutes vary, what may replace a booked post on the day. | The batch and the posting. |
 | Approval | Who approves a post and what they are shown. | The batch and the posting. |
+| New techniques | How often someone looks for a better way to make the posts, and who decides a trial. | The studio's trial procedure. |
 
 ## A post's record
 
@@ -53,11 +54,11 @@ A post changed after `review` (a slide remade, a caption edited) is rendered aga
 
 ## The ledger
 
-`topics/covered.md` has one row per post from the moment its topic is picked, so a post that is booked or still being made counts as covered: the slug, the state and its day, what happened in one line, two to four **topic keys**, and the protagonist. A topic key is a specific name of the event (a person, an organization, a thing, an act), never a broad word such as the field the account covers.
+`topics/covered.md` has one row per post from the moment its topic is picked, so a post that is booked or still being made counts as covered: the slug, the state and its day, what happened in one line, two to four **topic keys**, the protagonist, and a note, which holds the person's words where they allowed a repeat. A topic key is a specific name of the event (a person, an organization, a thing, an act), never a broad word such as the field the account covers.
 
 A candidate overlaps a row when it is the same event, when it is a later turn of that event and the policy says follow-ups are not new stories, or when the same subject does the same thing somewhere else. A story that only works the same way as an earlier one (the same kind of mistake by another subject) does not overlap; two of them in one batch are placed apart.
 
-A candidate the ledger or the lane rules out is not dropped silently: the candidate list shows the hottest of them first, each with the rule that caught it, and the person may tell the account to cover one, which the row then records in their words. The row is added by the skill that takes the pick, before the brief is written, and its state is rewritten by the skill that moves the post.
+A candidate the ledger or the lane rules out is not dropped silently: the candidate list shows the hottest of them first, each with the rule that caught it, and the person may tell the account to cover one, which the row then records in their words. The row is added by the skill that takes the pick, before the brief is written, and its state is rewritten by the skill that moves the post. In a studio both are the repository's own commands (`npm run new` adds the folder and the row and refuses a key another row holds, `npm run file` rewrites the row's state from the record and files a published post): a skill runs them where they exist and writes by hand only where they do not.
 
 ## Who reads and writes what
 
@@ -65,5 +66,5 @@ A candidate the ledger or the lane rules out is not dropped silently: the candid
 |---|---|---|
 | [`web-card-news-topic-brief`](/product/skills/web-card-news-topic-brief/SKILL.md) | The policy, the ledger, the last candidate lists. | The candidate list, the ledger row, the post folder to `brief`. |
 | [`html-card-news-from-brief`](/design/skills/html-card-news-from-brief/SKILL.md) | The policy's voice and pictures, the format, `post.json`. | The post to `draft` and `review`. |
-| `html-card-news-batch` | All of it. | Several posts to `review` at once, each by the two skills above. |
-| `instagram-post-scheduling` | The approved posts, the cadence. | `scheduled`, `published`, the move under `posts/published/`, the ledger's state. |
+| [`html-card-news-batch`](/design/skills/html-card-news-batch/SKILL.md) | All of it. | Several posts to `review` at once, each by the two skills above. |
+| [`instagram-post-scheduling`](/marketing/skills/instagram-post-scheduling/SKILL.md) | The approved posts, the cadence. | `scheduled`, `published`, the move under `posts/published/`, the ledger's state. |
