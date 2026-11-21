@@ -14,7 +14,7 @@ skillcdn:
   translations:
     ko:
       title: Stripe 결제 연동, 샌드박스에서 라이브까지
-      description: 웹 프로젝트에 Stripe 결제를 붙입니다. 샌드박스에서 시작해 실제 돈이 오가는 라이브까지, 키로 할 수 있는 세팅은 에이전트가 전부 합니다. 무엇을 얼마에 파는지와 판매자가 누구인지(본인 또는 Stripe)를 묻고, 주문 원장과 호스티드 Checkout, 주문을 정확히 한 번만 확정하는 복귀 확인과 웹훅(환불·분쟁·구독 포함)을 만들고, 상품·가격·웹훅 엔드포인트를 API로 등록하고, Stripe CLI와 테스트 카드로 샌드박스에서 흐름 전체를 증명한 뒤, 라이브 키·라이브 엔드포인트·사람만 할 수 있는 대시보드 설정으로 전환하고, 운영 패널 명세가 담긴 docs/payments.md를 남깁니다. 결제 받게 해 달라, 체크아웃 붙여 달라, 유료 기능 만들어 달라, 구독 넣어 달라, Stripe 연동해 달라고 할 때 쓰세요(기본은 Cloudflare Workers). 돈을 보고 환불하는 운영 화면은 cloudflare-admin-dashboard, 손님을 데려오는 광고는 meta-ads-setup이 맡습니다.
+      description: 웹 프로젝트에 Stripe 결제를 붙입니다. 샌드박스에서 시작해 실제 돈이 오가는 라이브까지, 키로 할 수 있는 세팅은 에이전트가 전부 합니다. 무엇을 얼마에 파는지와 판매자가 누구인지(본인 또는 Stripe)를 묻고, 주문 원장과 호스티드 Checkout, 주문을 정확히 한 번만 확정하는 복귀 확인과 웹훅(환불, 분쟁, 구독 포함)을 만들고, 상품, 가격, 웹훅 엔드포인트를 API로 등록하고, Stripe CLI와 테스트 카드로 샌드박스에서 흐름 전체를 증명한 뒤, 라이브 키, 라이브 엔드포인트, 사람만 할 수 있는 대시보드 설정으로 전환하고, 운영 패널 명세가 담긴 docs/payments.md를 남깁니다. 결제 받게 해 달라, 체크아웃 붙여 달라, 유료 기능 만들어 달라, 구독 넣어 달라, Stripe 연동해 달라고 할 때 쓰세요(기본은 Cloudflare Workers). 돈을 보고 환불하는 운영 화면은 cloudflare-admin-dashboard, 손님을 데려오는 광고는 meta-ads-setup이 맡습니다.
 ---
 # Payments with Stripe, from a sandbox to live money
 
