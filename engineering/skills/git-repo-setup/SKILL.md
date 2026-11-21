@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.13"
+  version: "1.14"
   tools: git
 skillcdn:
   translations:
@@ -46,7 +46,7 @@ What every repository of this pack shares is the area's set [`engineering/docs/g
 | [agreement.md](/engineering/docs/git/agreement.md) | The files | `AGENTS.md` section by section |
 | [readme-guide.md](/engineering/docs/git/readme-guide.md) | The files | The README |
 
-A page is read the way this skill was: through a console with `console skill --file <path from the pack's root>`, through a connection of the host's with its file read, as the file at `docs/git/` of the engineering plugin, or in a checkout of the pack; each page in a call of its own, since a host hands on only so much of one call's output. Read it from the folder this skill was loaded in, or before the new folder is bound: a bound checkout reads its own project's pack, which may be another. A mount of this skill alone, or a copy of its directory, lacks the pages: fetch them from `engineering/docs/git/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack). A page that cannot be read stops the phase that needs it, said to the user; nothing of it is written from memory.
+A page is read the way this skill was: through a console with `console skill --file <path from the pack's root>`, through a connection of the host's with its file read, as the file at `docs/git/` of the engineering plugin, or in a checkout of the pack; each page in a call of its own, since a host hands on only so much of one call's output. Read it from the folder this skill was loaded in, or before the new folder is bound: a bound checkout reads its own project's pack, which may be another. A mount of this skill alone, or a copy of its directory, lacks the pages: fetch them from `engineering/docs/git/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack). A page that cannot be read stops the phase that needs it, said to the user; nothing of it is written from memory. The two pages of the pack's writing set [`docs/writing/`](/docs/writing/README.md) that phase 4 names are read the same way from the pack's root; the plugin, a mount below the root and a copy lack them: fetch them from `docs/writing/` of the same repository, or else write the files by this skill's hard rules.
 
 ## Inputs
 
@@ -88,7 +88,7 @@ Produces the **board**, with console.md's commands in its order. First the folde
 
 ### Phase 4: Files
 
-Produces the **repository**. Read the pages of the files. Then, in this order, each step a line to the user and, at the end of the phase, one report on the setup task:
+Produces the **repository**. Read the pages of the files, and, before the first document is drafted, [readers.md](/docs/writing/readers.md) (the reader, the language) and [facts.md](/docs/writing/facts.md) (what a document may state, what is still open). Then, in this order, each step a line to the user and, at the end of the phase, one report on the setup task:
 
 1. The stack's skeleton, for an empty folder with a stack: the package manager's own init, and the test runner, the linter, the type checker and the runtime version file of testing.md, each at the version it says how to find. A scaffold keeps its own choices, and a file already there is kept and completed, never replaced. The repository alone of a web app skips this step and says so: its code is scaffolded in later (agreement.md "Code that arrives later").
 2. The files of the root: `.gitignore` (with `.skillcdn-console.json` in it for a public repository), `.gitattributes` (`* text=auto eol=lf`), `.editorconfig`, `.env.example` where the code reads an environment.
