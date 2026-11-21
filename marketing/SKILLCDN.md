@@ -1,12 +1,12 @@
 ---
 name: Marketing
-description: A short video ad from a reference and a product link, and the ads running for a keyword or a competitor researched; posting to social accounts next. Use when the task is to make, improve or research something that promotes a product, brand or service.
+description: Short video ads from a reference, approved posts scheduled on Instagram, competitors' running ads researched. Use when the task is to make, improve, research or publish something that promotes a product, brand or service.
 image: https://skillcdn.ai/media/fc8b97efc2bed1eceb04b2ff434894e430802e273f143921611a0d73e17ef764
 license: MIT
 translations:
   ko:
     name: 마케팅
-    description: 레퍼런스 영상과 제품 링크로 만드는 숏폼 광고, 키워드나 경쟁사의 집행 중인 광고 조사. 다음은 소셜 계정에 올리기. 제품, 브랜드, 서비스를 알리는 결과물을 만들거나 다듬을 때, 또는 그에 앞선 조사를 할 때 쓰세요.
+    description: 레퍼런스 영상과 제품 링크로 만드는 숏폼 광고, 승인된 게시물의 인스타그램 예약, 키워드나 경쟁사의 집행 중인 광고 조사. 제품, 브랜드, 서비스를 알리는 결과물을 만들거나 다듬거나 내보낼 때, 또는 그에 앞선 조사를 할 때 쓰세요.
 metadata:
   author: skillcdn
 ---
