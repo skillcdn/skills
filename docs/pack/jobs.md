@@ -78,6 +78,13 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - Also asked as: "build the finished post from this brief", "make this one the same way as the last", "the slides of this post as images", "a card news carousel from these facts".
 - Not this one when: there is no brief yet (the brief under Product) or no format spec (the study and the variations above); the skill asks for the reference, offers the routes to a spec in their order, the reference varied first, and says what to run first. A request for the whole post ("make a card news post about this, the way that account does it") runs them in order: the study (once per account), the brief, the variations unless the reference is wanted as it is, then this build.
 
+### "Make ten posts from these topics."
+
+- You get: that many card news posts at review, each made in its own folder by a worker agent that ran the research and the build, each read by a reviewer that made none of it, gathered in one message with a contact sheet per post and the question of which may be posted; the workers' tokens are estimated and agreed before any starts.
+- Skill: [`design/skills/html-card-news-batch/`](/design/skills/html-card-news-batch/SKILL.md)
+- Also asked as: "make this week's batch", "do all of these at once", "ten posts for next week from the candidate list", "remake every booked post with video".
+- Not this one when: you want one post (the build above, which runs the research), or the posts booked on the account (the scheduling under Marketing). On a host that cannot start agents side by side it makes the posts one after another and says so.
+
 ## Product
 
 ### "What is taking off in this market?"
