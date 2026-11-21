@@ -14,6 +14,7 @@ The skills drive git in a shell, the git host's command for what only the host d
 | `agreement.md`: `AGENTS.md` section by section, the binding sentence, the skills section (the project's pack through the console; a host's own connection on request), the agents' settings | The order of the phases, its stops, its verdicts |
 | `console.md`: the project, the binding, the project's rules, the first goal and tasks, what lives where | How the setup task is written and taken, and what is handed in |
 | `readme-guide.md`, `testing.md`: the README and the test structure | What a skill that builds adds to them (a web app's sections, its rules, its secret files) |
+| `studio.md`, `studio-know-how.md`: what a repository that keeps producing adds, and how it keeps what it learns as a small pack of its own | The studio skill's questions and plan, its templates and the scripts it ships as text |
 
 The test for a sentence: would it hold for every repository the pack makes, whatever it holds? Then it belongs in the set. A sentence that holds for one kind of product (a web app's localization section, a deploy record) stays in the skill that builds that product, in the reference that says what it adds to the shared shape, as `cloudflare-new-app`'s `references/working-agreement.md` does.
 
@@ -26,6 +27,10 @@ Each page says what holds now, by topic. A fact about a tool that can move (a co
 ## The desk skill
 
 `git-desk-setup` makes a member's own desk a repository. The desk's files and the shell of its pages are the console's, written by `console desk` and `console agent setup`, and what a desk keeps and shows is the console's own skill keeping-a-desk, which this one hands over to; so the skill carries only its method (what it asks, the checks before the first commit, the private remote) and one reference for building and serving the pages' shell, which only a run that builds it reads; it reads none of the set, since a desk has no layout of the pack's and is bound to no project. What the console's command prints and writes changes with its version: the skill names the command and what it is for, and quotes of its output only the sentence it prints for a person to say to their agent, which is how a request for the skill arrives. An agent account's desk is made a repository by `console agent setup` itself, its git set to take the account's token from its store (console 0.5.2, 2026-11): the skill reads how the desk stands before it changes anything, and carries that setting only for a desk that has none, since the console's own skill gives none any more.
+
+## The studio skill
+
+`git-studio-setup` extends the setup skill for a repository that keeps producing: it lays the studio's files out, then runs `git-repo-setup` with what its run settled and leaves the remote to it. Its two pages are read by agents at work in a studio long after the setup, so they say what holds for every studio and name no kind's renderer; what one kind of studio needs beyond them (a card news account's paths and policy headings) lives in that kind's own set and is linked from the starting values. The scripts are dependency-free text the studio owns once copied: a change to one is tried on a throwaway studio (the new command, a change of state, the file command, the check with a broken link, an orphan page and an oversized page, the gallery and the local address) before it is committed. A studio skill is written as an extension, and the template for it is a fenced block in the skill's `references/templates.md`, since a link in a template names a file of another repository.
 
 ## Keeping every repository the same
 

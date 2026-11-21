@@ -60,6 +60,7 @@ A file is added when its first content exists, never as an empty placeholder:
 | `docs/specs/<name>.md` | A contract has a caller outside the repository (a public API, a file format, a protocol) | Whoever publishes the contract |
 | `docs/guides/<topic>.md` | A procedure was done once and will be done again | Whoever did it |
 | A folder's own `README.md` | A folder has rules of its own (a package of a monorepo, a generated folder) | Whoever creates the folder |
+| `SKILLCDN.md`, `studio.json`, `skills/<job>/`, `docs/policy.md`, `docs/trials.md`, `formats/`, the unit's folder, the ledger, `scripts/` | The repository is a studio, one that keeps producing one kind of thing or running one kind of round ([studio.md](studio.md)) | `git-studio-setup` |
 | `.mcp.json`, `.cursor/mcp.json`, `.codex/config.toml` | The user asks for the skills in their tools through a connection of the host's own (agreement.md "The skills section") | `git-repo-setup`, on request |
 
 Each addition gets a row in `docs/README.md` and, when it changes how work is done, a line in the agreement's documentation protocol, in the same commit.

@@ -157,7 +157,14 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - You get: a git repository in the layout every repository of this pack shares, committed and pushed: `AGENTS.md` as the working agreement with `CLAUDE.md` importing it, a README in your language, `docs/` for the brief, the architecture and the decisions, one check with a first test and continuous integration, and a console project the repository is bound to, with its rules, its first goal and its tasks, whose pack the repository's skills are read from.
 - Skill: [`engineering/skills/git-repo-setup/`](/engineering/skills/git-repo-setup/SKILL.md)
 - Also asked as: "start a repo for this", "make this repo ready for the team and agents", "connect this repository to the console", "write the AGENTS.md for this new project".
-- Not this one when: the app itself is to be built and put live (the new app below, which runs this skill for its repository); the repository is your own desk (the desk below).
+- Not this one when: the app itself is to be built and put live (the new app below, which runs this skill for its repository); the repository keeps producing one kind of thing (the studio below, which runs this skill too); the repository is your own desk (the desk below).
+
+### "Set up a repository where we keep making our card news."
+
+- You get: a studio, committed and pushed: the repository the setup skill lays out, with one unit of production and its states (the approval a person's alone), a ledger so that nothing is made or tried twice, a review screen served on your machine, one check, and a small pack of the studio's own, in which each job has a skill that extends a skill of this pack with your standing answers, and what the studio learns is kept as pages by topic.
+- Skill: [`engineering/skills/git-studio-setup/`](/engineering/skills/git-studio-setup/SKILL.md)
+- Also asked as: "make this repo our ad creative studio", "a repo for the team to run ad optimization in", "set our content production up so the know-how stays", "add a job to our studio".
+- Not this one when: the repository holds code or documents and produces nothing day after day (the new repository above, which this skill runs first); one post or one ad is wanted now (the skill that makes it).
 
 ### "Set up my desk."
 

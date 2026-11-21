@@ -1,17 +1,17 @@
 ---
 name: git-repo-setup
-description: "Sets up a new git repository so a team and its agents keep developing in it: the working agreement (AGENTS.md, CLAUDE.md), a README in the team's language, the documents under docs/, one check with tests and CI, and a SkillCDN console project the repository is bound to, with its rules, first goal and tasks. Use when a user says \"set up a new repo\", \"start a repository for this project\", \"make this repo ready for the team and agents\", \"connect this repo to the console\", \"레포 초기 세팅해줘\". The structure only, no app: for a new web app built and put live, cloudflare-new-app, which runs this skill for its repository; for a member's own desk, git-desk-setup. Asks what the repository is for and who works in it, shows the plan, creates the console project, the remote and the teammates' access on the user's word, commits, pushes and hands the commit in on the board. Nothing is bought."
+description: "Sets up a new git repository so a team and its agents keep developing in it: the working agreement (AGENTS.md, CLAUDE.md), a README in the team's language, the documents under docs/, one check with tests and CI, and a SkillCDN console project the repository is bound to, with its rules, first goal and tasks. Use when a user says \"set up a new repo\", \"start a repository for this project\", \"make this repo ready for the team and agents\", \"connect this repo to the console\", \"레포 초기 세팅해줘\". The structure only, no app: for a new web app built and put live, cloudflare-new-app, and for a repository that keeps producing one kind of thing, git-studio-setup, both of which run this skill; for a member's own desk, git-desk-setup. Asks what the repository is for and who works in it, shows the plan, creates the console project, the remote and the teammates' access on the user's word, commits, pushes and hands the commit in on the board. Nothing is bought."
 license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.14"
+  version: "1.15"
   tools: git
 skillcdn:
   translations:
     ko:
       title: 팀과 에이전트가 계속 개발하는 깃 저장소 초기 구성
-      description: "팀과 에이전트가 세션이 바뀌어도 계속 개발할 수 있게 새 깃 저장소를 구성합니다. 작업 합의(AGENTS.md, CLAUDE.md), 팀의 언어로 쓴 README, docs/ 아래 문서, 테스트와 CI를 갖춘 하나의 검사 명령, 그리고 저장소가 묶이는 SkillCDN 콘솔 프로젝트와 그 규칙, 첫 목표, 작업까지 만듭니다. '새 레포 세팅해줘', '이 프로젝트 저장소 시작해줘', '팀이랑 에이전트가 쓰게 레포 잡아줘', '이 레포 콘솔에 연결해줘'라고 할 때 쓰세요. 앱은 만들지 않고 구조만 잡습니다. 새 웹앱을 만들어 올리는 일은 cloudflare-new-app이 하고, 그 스킬이 저장소 구성에 이 스킬을 씁니다. 구성원 자신의 데스크는 git-desk-setup이 만듭니다. 저장소의 용도와 함께 일할 사람을 묻고, 계획을 보여 주고, 사용자의 승인으로 콘솔 프로젝트, 원격 저장소, 팀원 접근을 만들고, 커밋하고 푸시하고, 커밋을 보드에 제출합니다. 구매는 없습니다."
+      description: "팀과 에이전트가 세션이 바뀌어도 계속 개발할 수 있게 새 깃 저장소를 구성합니다. 작업 합의(AGENTS.md, CLAUDE.md), 팀의 언어로 쓴 README, docs/ 아래 문서, 테스트와 CI를 갖춘 하나의 검사 명령, 그리고 저장소가 묶이는 SkillCDN 콘솔 프로젝트와 그 규칙, 첫 목표, 작업까지 만듭니다. '새 레포 세팅해줘', '이 프로젝트 저장소 시작해줘', '팀이랑 에이전트가 쓰게 레포 잡아줘', '이 레포 콘솔에 연결해줘'라고 할 때 쓰세요. 앱은 만들지 않고 구조만 잡습니다. 새 웹앱을 만들어 올리는 일은 cloudflare-new-app이, 한 종류의 결과물을 계속 만들어 내는 저장소는 git-studio-setup이 하고, 두 스킬 모두 저장소 구성에 이 스킬을 씁니다. 구성원 자신의 데스크는 git-desk-setup이 만듭니다. 저장소의 용도와 함께 일할 사람을 묻고, 계획을 보여 주고, 사용자의 승인으로 콘솔 프로젝트, 원격 저장소, 팀원 접근을 만들고, 커밋하고 푸시하고, 커밋을 보드에 제출합니다. 구매는 없습니다."
 ---
 # A new repository, set up for a team and its agents
 
@@ -118,7 +118,7 @@ Produces the **delivery**. On the board: the commit handed in on the setup task 
 
 ## Run by another skill
 
-A skill that builds the product (`cloudflare-new-app`) runs this one on its project folder and hands it what its own run settled: what the product is and for whom, who works in it, the stack and its check, the README's language, the lines its Skills section gains, and whether it keeps the remote. Nothing handed is asked again, and the plan here shows only the console project and the teammates. Where the caller keeps the remote, this skill ends after phase 4 with the files written, the check green and the board set, and gives the caller the setup task's number, on which the caller reports, hands in and finishes.
+A skill that builds the product (`cloudflare-new-app`) or lays out a studio (`git-studio-setup`) runs this one on its project folder and hands it what its own run settled: what the product is and for whom, who works in it, the stack and its check, the README's language, what the agreement and the documents' map gain, the tasks that come next, and whether it keeps the remote. Nothing handed is asked again, a file the caller wrote is kept and completed, and the plan here shows only the console project and the teammates, with the remote where the caller leaves it to this skill. Where the caller keeps the remote, this skill ends after phase 4 with the files written, the check green and the board set, and gives the caller the setup task's number, on which the caller reports, hands in and finishes; where it does not, the run goes on through phase 6.
 
 ## Verdicts
 
