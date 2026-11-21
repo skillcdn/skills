@@ -1,6 +1,6 @@
 ---
 name: SkillCDN Pack
-description: Your marketer, designer and developer in the AI you already use, making the short ad, the card news, the deck, the web app and the meeting minutes itself, checked before you see them. docs/pack/finding-a-skill.md says how to find a skill.
+description: Your marketer, designer and developer in the AI you already use, making the short ad, the card news, the deck, the web app and the meeting minutes, checked before you see them. Before a job, find its skill (docs/pack/finding-a-skill.md).
 image: assets/banner.webp
 documents:
   - docs
@@ -8,7 +8,7 @@ language: en
 translations:
   ko:
     name: SkillCDN 팩
-    description: 이미 쓰는 AI 안의 마케터, 디자이너, 개발자. 숏폼 광고, 카드뉴스, 발표 덱, 웹 앱, 회의록을 직접 만들고, 보여 드리기 전에 검토합니다. 일에 맞는 스킬을 찾는 법은 docs/pack/finding-a-skill.md에 있습니다.
+    description: 이미 쓰는 AI 안의 마케터, 디자이너, 개발자. 숏폼 광고, 카드뉴스, 발표 덱, 웹 앱, 회의록을 직접 만들고, 보여 드리기 전에 검토합니다. 일을 하기 전에 맞는 스킬을 찾으세요. 찾는 법은 docs/pack/finding-a-skill.md에 있습니다.
 license: MIT
 metadata:
   author: skillcdn
