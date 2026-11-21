@@ -4,7 +4,7 @@ Where a signed-in account's booked posts are listed, how a booking is read back,
 
 ## The scheduled list
 
-`https://www.instagram.com/scheduled_content/` shows the account's booked posts on a week's calendar, each with its time and its cover (checked 2026-11-05). A click on a booking opens it: the slides one at a time with a next arrow, the caption, the date and the time, and three controls at the bottom, which delete the booking, **share it at once**, and save a change. The sharing control posts the moment it is pressed and sits beside the saving one: it is never pressed. A video slide shows there re-encoded small, 720 by 900 pixels, which is the preview's size and not the post's (checked 2026-11-17).
+`https://www.instagram.com/scheduled_content/` shows the account's booked posts on a week's calendar, each with its time and its cover (checked 2026-11-05). A click on a booking opens it: the slides one at a time with a next arrow, the caption, the date and the time, and three controls at the bottom, which delete the booking, **share it at once**, and save a change; the sharing control sits beside the saving one. An opened booking is left as it is by opening the list's address again, with none of the three pressed. A video slide shows there re-encoded small, 720 by 900 pixels, which is the preview's size and not the post's (checked 2026-11-17).
 
 ## Reading a booking back
 

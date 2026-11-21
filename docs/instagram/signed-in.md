@@ -12,7 +12,7 @@ The capabilities of [driven-browser.md](/docs/browser/driven-browser.md), and th
 
 | Capability | Recognize it by | Needed for |
 |---|---|---|
-| Hand files to a page's file input | A tool that takes file paths and an input or a file chooser | The slides of a post. One host's tool took at most 10 MB in one call (checked 2026-11-17); a set over the tool's limit is picked by the person in the dialog, and the run goes on from the crop step |
+| Hand files to a page's file input | A tool that takes file paths and an input element of the page | The slides of a post. One host's tool took at most 10 MB in one call (checked 2026-11-17) |
 | Send key presses to the focused field | A tool that presses a key or a chord | Pasting a caption, selecting a field's whole text |
 | Put text on the clipboard of the machine the browser runs on | A shell there with the system's clipboard command | The caption, which is pasted and never typed |
 

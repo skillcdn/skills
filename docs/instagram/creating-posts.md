@@ -8,10 +8,11 @@ The site's own web interface books a post; no other product of the platform is s
 
 - The dialog widens between steps and its controls move with it. A click at a position read before the move hit the close mark, which asks whether to discard the draft (its cancel keeps the draft), or landed late on a filter tile of the edit step and laid that filter over the first slide (checked 2026-11-13). Read a control's position twice and click when both readings agree; confirm by the step's title that the step changed, since after the crop step a second press was sometimes needed. A filter set by accident is undone by going back a step and picking the original.
 - The Escape key asks to discard the whole draft (checked 2026-11-05). A list of suggested accounts under the caption is closed by a click on the dialog's title, never with Escape.
+- The caption step holds more than the caption: sections for accessibility, for scheduling and others, any of which may be folded. Read the step's text once it has rendered, find a section by what it names, and open a folded one with a real click on its heading.
 
 ## The files and their order
 
-Give the dialog's file input every slide in order, images and mp4 together: they become one carousel in that order, and the first may be a video (five images with one video, and video, video, image, were both booked, checked 2026-11-17). JPEG and mp4 are what was uploaded; the input's `accept` attribute lists the types the dialog takes, and the site stores an image as JPEG whatever went up. Posts of up to ten slides were booked this way; the platform's help page on carousels gives the limit of the day. With a video in the set the dialog may show, the first time, a notice that video posts are shared as reels: it is passed by its own button, and the post is still a carousel post ([scheduled-posts.md](scheduled-posts.md) "A post that went live").
+The first step holds a file input, an `input` of type `file` among its elements whether or not it is drawn. Give the file tool that element and every slide's path in order, images and mp4 together. The step's button that opens the system's file picker is not pressed: the agent cannot drive that window. The files become one carousel in that order, and the first may be a video (five images with one video, and video, video, image, were both booked, checked 2026-11-17). JPEG and mp4 are what was uploaded; the input's `accept` attribute lists the types the dialog takes, and the site stores an image as JPEG whatever went up. Posts of up to ten slides were booked this way; the platform's help page on carousels gives the limit of the day. With a video in the set the dialog may show, the first time, a notice that video posts are shared as reels: it is passed by its own button, and the post is still a carousel post ([scheduled-posts.md](scheduled-posts.md) "A post that went live").
 
 ## The crop step
 
@@ -39,7 +40,7 @@ The caption is pasted, never typed. Text sent as key presses came out wrong in a
 
 ## The alternative text
 
-The caption step's accessibility section takes a text for each slide. The post's title, written there for the first slide, is what the tile on the profile grid then carries as its image's alternative text, and a live post is matched to its record by it ([scheduled-posts.md](scheduled-posts.md) "A post that went live").
+The caption step's accessibility section takes a text for each slide. The post's title goes there for the first slide, pasted as the caption is and read back, since typed text breaks the same way. The tile on the profile grid then carries it as its image's alternative text, which tells a live post from a tile that looks like it ([scheduled-posts.md](scheduled-posts.md) "A post that went live"). A first slide that is a video takes a text only where the section shows a field for it.
 
 ## The schedule switch, the date and the time
 
@@ -53,4 +54,4 @@ The step's other switches stay as the account left them.
 
 ## Booking and its confirmation
 
-Press the header's button once the switch is on, the date and the time read right and the caption compared equal. A progress state follows, thirty to fifty seconds with a video in the set, then a line that the post was scheduled (checked 2026-11-17): wait for that line. A message that the post could not be scheduled came now and then; see on the scheduled list that the post is not there, and start again from the files, which then booked (checked 2026-11-13). With the switch off, the same button posts at once.
+Press the header's button once the switch is on, the date and the time read right and the caption compared equal. A progress state follows, thirty to fifty seconds with a video in the set, then a line that the post was scheduled (checked 2026-11-17): wait for that line. A message that the post could not be scheduled came now and then; see on the scheduled list that the post is not there, and start again from the files, which then booked (checked 2026-11-13).
