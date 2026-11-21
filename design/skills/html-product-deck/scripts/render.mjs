@@ -7,7 +7,7 @@
 //   <name>.pdf    one page per slide at the canvas size
 //   pages/NN.png  every slide at the canvas size
 //   sheet.png     every slide small on one image, numbered
-//   report.json   the slide count, the fonts that loaded and the findings
+//   report.json   the slide count, the fonts that loaded, the faces that rendered the text, the findings, the notes
 // Reads <script type="application/json" id="deck-meta"> in the deck: canvas ([width, height], default
 // [1920, 1080]), banned (phrases that must not appear), style (the house style, in the keys the deck and
 // minutes skills use: none means the usual set; usual: true adds forbidden to it; else forbidden alone;
@@ -20,6 +20,9 @@
 //   pattern  a slide declares no data-pattern
 //   style    a character or a bracketed head the house style bans
 //   banned   a phrase from the deck's banned list
+//   unstable a slide whose image kept changing from one shot to the next
+// Notes, which are no findings: fallback, a run of text partly rendered in a face its own stack does not name (a
+// script the stack's faces lack fell to a system face), as the browser itself reports the faces it used.
 // Exit code 0 with no finding, 1 with findings (the files are written either way), 2 when it cannot run.
 import { createRequire } from "node:module";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -154,6 +157,59 @@ async function launch() {
   stop("no Chromium-family browser found: install Chrome or Edge, or run npx playwright install chromium");
 }
 
+// The faces the browser rendered the text in, by the DevTools protocol: every family with its glyph count, and
+// every run of text of which a part was rendered in a face its own stack does not name (a script the stack's faces
+// lack fell to a system face). A family declared by @font-face is named by its local() sources too, and a face
+// the page loaded from a file is always named. Returns no faces where the browser will not say.
+const LOCALS = new Map();
+for (const block of doc.match(/@font-face\s*{[^}]*}/g) || []) {
+  const family = (block.match(/font-family:\s*(['"]?)([^;'"]+)\1/) || [])[2];
+  if (!family) continue;
+  const key = family.trim().toLowerCase();
+  LOCALS.set(key, [...(LOCALS.get(key) || []), ...[...block.matchAll(/local\((['"]?)([^)'"]+)\1\)/g)].map((m) => m[2].trim().toLowerCase())]);
+}
+async function facesUsed(page) {
+  try {
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send("DOM.enable");
+    await cdp.send("CSS.enable");
+    const { root } = await cdp.send("DOM.getDocument", { depth: -1 });
+    const attr = (node, key) => {
+      const at = (node.attributes || []).indexOf(key);
+      return at >= 0 && at % 2 === 0 ? node.attributes[at + 1] : "";
+    };
+    const runs = [];
+    let slide = 0;
+    const walk = (node, parent, inSlide) => {
+      const isSlide = node.nodeName === "SECTION" && attr(node, "class").split(/\s+/).includes("slide");
+      if (isSlide) slide += 1;
+      if (node.nodeType === 3 && inSlide && node.nodeValue.trim()) runs.push({ nodeId: node.nodeId, slide, parent, text: node.nodeValue.trim().replace(/\s+/g, " ") });
+      for (const child of node.children || []) walk(child, node, inSlide || isSlide);
+    };
+    walk(root, null, false);
+    const glyphs = new Map();
+    const mixed = [];
+    for (const run of runs) {
+      const { fonts } = await cdp.send("CSS.getPlatformFontsForNode", { nodeId: run.nodeId });
+      const byFamily = new Map();
+      for (const font of fonts) if (font.glyphCount > 0) byFamily.set(font.familyName, (byFamily.get(font.familyName) || 0) + font.glyphCount);
+      for (const [family, count] of byFamily) glyphs.set(family, (glyphs.get(family) || 0) + count);
+      if (byFamily.size < 2) continue;
+      const { computedStyle } = await cdp.send("CSS.getComputedStyleForNode", { nodeId: run.parent.nodeId });
+      const stack = ((computedStyle.find((p) => p.name === "font-family") || {}).value || "").split(",").map((n) => n.trim().replace(/^['"]|['"]$/g, "").toLowerCase());
+      const named = new Set(stack.flatMap((n) => [n, ...(LOCALS.get(n) || [])]));
+      const strangers = [...new Set(fonts.filter((f) => f.glyphCount > 0 && !f.isCustomFont && !named.has(f.familyName.toLowerCase()) && !named.has((f.postScriptName || "").toLowerCase())).map((f) => f.familyName))];
+      if (!strangers.length) continue;
+      const cls = attr(run.parent, "class").trim();
+      mixed.push({ slide: run.slide, kind: "fallback", what: `${run.parent.nodeName.toLowerCase()}${cls ? "." + cls.split(/\s+/).join(".") : ""} "${run.text.slice(0, 40)}" partly in ${strangers.join(" and ")}, which its stack (${stack.slice(0, 3).join(", ")}, ...) does not name` });
+    }
+    await cdp.detach();
+    return { faces: [...glyphs].sort((x, y) => y[1] - x[1]).map(([family, count]) => ({ family, glyphs: count })), mixed };
+  } catch {
+    return { faces: null, mixed: [] };
+  }
+}
+
 const browser = await launch();
 const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
 await page.goto(pathToFileURL(htmlPath).href, { waitUntil: "networkidle" });
@@ -175,15 +231,30 @@ slides.forEach((slide, i) => {
   if (style.brackets) for (const line of slide.text.split("\n")) if (line.trim().startsWith("[")) findings.push({ slide: n, kind: "style", what: `bracketed head "${line.trim().slice(0, 40)}"` });
   for (const phrase of meta.banned || []) if (phrase && slide.text.includes(phrase)) findings.push({ slide: n, kind: "banned", what: `"${phrase}" in "${around(slide.text.indexOf(phrase), phrase.length)}"` });
 });
-findings.sort((a, b) => a.slide - b.slide);
+const { faces, mixed } = await facesUsed(page);
 
 await page.pdf({ path: join(outDir, `${name}.pdf`), width: `${width}px`, height: `${height}px`, printBackground: true, preferCSSPageSize: true });
+// Every slide is shot until two shots in a row are the same image: a first shot of a slide far down a long page
+// can come out part painted, and the next one whole.
+const painted = () => page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
 const shots = [];
 for (let i = 0; i < slides.length; i++) {
   const file = `${String(i + 1).padStart(2, "0")}.png`;
-  await page.locator("section.slide").nth(i).screenshot({ path: join(pagesDir, file) });
+  const slide = page.locator("section.slide").nth(i);
+  await slide.scrollIntoViewIfNeeded();
+  await painted();
+  let shot = await slide.screenshot();
+  let same = false;
+  for (let tries = 0; tries < 4 && !same; tries++) {
+    const again = await slide.screenshot();
+    same = again.equals(shot);
+    shot = again;
+  }
+  if (!same) findings.push({ slide: i + 1, kind: "unstable", what: "its image differed from one shot to the next, five shots in a row" });
+  writeFileSync(join(pagesDir, file), shot);
   shots.push(file);
 }
+findings.sort((a, b) => a.slide - b.slide);
 
 // The contact sheet: the page PNGs three to a row, numbered, taken as one screenshot.
 const tile = 640;
@@ -197,9 +268,12 @@ await sheet.screenshot({ path: join(outDir, "sheet.png"), fullPage: true });
 await browser.close();
 rmSync(sheetHtml);
 
-writeFileSync(join(outDir, "report.json"), JSON.stringify({ slides: slides.length, canvas: [width, height], fonts, house_style: style.label, findings }, null, 2), "utf8");
+writeFileSync(join(outDir, "report.json"), JSON.stringify({ slides: slides.length, canvas: [width, height], fonts, faces, house_style: style.label, findings, notes: mixed }, null, 2), "utf8");
 console.log(`${slides.length} slides at ${width}x${height}; fonts loaded: ${fonts.join(", ") || "none (system fallback)"}; house style: ${style.label}`);
+if (faces) console.log(`faces that rendered the text: ${faces.map((f) => `${f.family} (${f.glyphs} glyphs)`).join(", ") || "none"}`);
 console.log(`${htmlPath}\n${join(outDir, `${name}.pdf`)}\n${join(outDir, "sheet.png")}\n${pagesDir}`);
 for (const f of findings) console.log(`  slide ${f.slide} ${f.kind}: ${f.what}`);
-console.log(`${findings.length} findings`);
+for (const m of mixed.slice(0, 12)) console.log(`  slide ${m.slide} note, fallback: ${m.what}`);
+if (mixed.length > 12) console.log(`  and ${mixed.length - 12} more notes in report.json`);
+console.log(`${findings.length} findings${mixed.length ? `, ${mixed.length} notes` : ""}`);
 process.exit(findings.length ? 1 : 0);

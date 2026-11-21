@@ -9,15 +9,17 @@
 {"canvas": [1920, 1080], "external": true, "banned": []}
 </script>
 <style>
-/* A brand font: its local name first, then its documented file, and the stack ends in a system face that has the
-   language's letters.
-   @font-face { font-family: "Deck"; src: local("<family>"), url("<the family's documented woff2>") format("woff2"); } */
+/* A brand font: its local name first, then its documented woff2 downloaded into assets/, which the helper embeds;
+   the stack ends in a system face that has the language's letters. A mono stack names the deck's font after its
+   own faces, so that a script the mono face lacks falls to the deck's font.
+   @font-face { font-family: "Deck"; src: local("<family>"), <the woff2 under assets/, as a url> format("woff2"); } */
 @page { size: 1920px 1080px; margin: 0 }
 :root {
   /* Placeholders. The deck's tokens are the look's: the product's own, or the pick of the four looks. */
   --bg: #0b1020; --paper: #f4f6fa; --ink: #101624; --ink-2: #4a5568; --on-dark: #eef2fb; --on-dark-2: #a9b4c8;
   --accent: #3564d8; --point: #f2a23a; --line: #dfe4ee; --radius: 28px;
   --font: "Deck", system-ui, -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, Menlo, "Deck", "Apple SD Gothic Neo", "Malgun Gothic", monospace;
 }
 * { box-sizing: border-box; margin: 0; padding: 0 }
 html, body { background: #2b2f36 }
@@ -45,10 +47,8 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; word-break
 .c-shot.d { left: 0; top: 762px; width: 330px; height: 400px }
 .c-chip { left: 1010px; top: 690px; padding: 15px 22px; border-radius: 16px; background: #0d1730; border: 1px solid rgba(255, 255, 255, 0.16); font-size: 19px; white-space: nowrap }
 
-/* Slide 2, prefix v-: the buyer's own words. */
-.v-title { left: 120px; top: 250px; width: 780px; font-size: 86px; line-height: 1.16; font-weight: 800; letter-spacing: -0.035em }
-.v-turn { left: 120px; top: 700px; width: 760px; font-size: 32px; line-height: 1.5; color: var(--ink-2); font-weight: 500 }
-.v-turn b { color: var(--accent) }
+/* Slide 2, prefix v-: the buyer's own words. The title stands alone: no line under it restates or extends it. */
+.v-title { left: 120px; top: 340px; width: 780px; font-size: 86px; line-height: 1.16; font-weight: 800; letter-spacing: -0.035em }
 .v-voices { left: 940px; top: 250px; width: 860px; display: flex; flex-direction: column; gap: 40px }
 .v-voice { max-width: 760px; padding: 34px 42px; background: #fff; border: 1px solid var(--line); border-radius: 30px; font-size: 31px; line-height: 1.45; font-weight: 600 }
 .v-voice:nth-child(odd) { align-self: flex-start; border-bottom-left-radius: 8px }
@@ -71,7 +71,6 @@ body { font-family: var(--font); -webkit-font-smoothing: antialiased; word-break
 <!-- 2. -->
 <section class="slide light" data-pattern="voices">
   <h1 class="v-title">The question<br>the buyer<br>already asks</h1>
-  <p class="v-turn">One sentence that turns it:<br><b>what is really missing.</b></p>
   <div class="v-voices">
     <div class="v-voice">A complaint as the buyer says it at work.</div>
     <div class="v-voice">A second one, from another seat in the same office.</div>

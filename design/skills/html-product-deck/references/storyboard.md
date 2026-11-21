@@ -16,12 +16,12 @@ The default order, as jobs. A job takes one slide, two where it has two hooks, n
 | Who does what | What the product takes over and what stays the buyer's. |
 | What is different | The one or two things the buyer cannot get elsewhere. |
 | Where it is used | Results it has made, as the results themselves. |
-| A customer's day | The buyer's own day with it, by kind of customer. |
+| A customer's day | The buyer's own day with it, by kind of customer; for a tool an organization buys, by kind of user inside it. |
 | The effect | A strong figure, or before and after. |
 | Who is behind it | The company, by what it has built. |
 | The ask | One way to start, and what happens next. |
 
-- A deck for one feature of a product tells the feature's story: the problem it removes, the moment it is used, what the buyer does first. The product as a whole gets one slide at most.
+- A deck for one feature of a product tells the feature's story: the problem it removes, the moment it is used, what the buyer does first. The product as a whole gets one slide at most, and the cover carries the product's mark with the feature's name in type beside it.
 - A deck sent as a file is read alone: each title carries its slide's message without a speaker. A deck shown on a call takes fewer words a slide.
 - The reader the brief names decides the examples: their trade, their tools, the size of their team.
 
@@ -45,20 +45,18 @@ A pattern is the scene's kind. These names go into the storyboard and into `data
 | `big-figure` | One figure large, with the bar or the before and after that gives it scale. |
 | `closing` | The ask, one way to start, the marks. |
 
-No two consecutive slides share a pattern; where the story needs the same kind twice, the second is composed differently enough to take another name. A deck may alternate a dark and a light ground for rhythm; the ground is not the pattern.
+Where the story needs the same kind twice in a row, the second is composed differently enough to take another name. A deck may alternate a dark and a light ground for rhythm; the ground is not the pattern.
 
 ## Titles
 
 - A title hooks: the buyer's own question, a promise they can picture, a result, in words they use at work.
+- A line under the title that restates or extends it is a subtitle row, and there is none. A line that belongs to the scene (a speaker's turn, a caption inside a picture) is the scene's.
 - The product's name appears where it is the answer, not in every title.
 - A line break in a title is placed by hand, where a person would pause.
 
 ## Copy
 
-The hard rules give the floor; these are its forms.
-
 - What the buyer gets, in the words they would use to tell a colleague. The product's own name for a thing stays on its screens; the copy may call the same thing by the buyer's word.
-- A small count ("three sites", "two integrations") is said in words or left out.
 - Nothing carried over from the organization's internal documents: a comparison the buyer never asked for, a caveat written for a reviewer, a phrase from a plan.
 - A feature every product of the kind has is not a selling point: leave it out, or show the one thing about it the buyer would not expect.
 - The cast is the buyer's world: plausible people, names, tasks and sample figures, the same person under the same name on every slide.
@@ -68,4 +66,3 @@ The hard rules give the floor; these are its forms.
 | "Feature overview" | "What if the report wrote itself by Monday?" |
 | "A background worker polls the queue every minute." | "It picks up the next task by itself." |
 | "Connected to 3 tools" | "It works inside the tools you already use." |
-| "Dashboard (sample data)" | The dashboard, with the cast's data and no note. |

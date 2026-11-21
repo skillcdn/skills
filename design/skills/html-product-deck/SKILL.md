@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, a Chromium-family browser (an installed Chrome or Edge, or Playwright's), a way to read the product's pages and documents, and a way to look at an image. Without the browser or the image reader the skill stops before the first message and says what to add.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: browser
 skillcdn:
   include:
@@ -21,7 +21,7 @@ A product goes in (its site, its documents, its screens, or one feature named in
 
 ## How the user is involved
 
-- **Questions:** one first message, only for what the request and the material leave open: where the product can be read about and seen ("Where can I read about it and see it: a site, documents, a demo or a preview, brand files?"); the reader and the use ("Who will see this deck, and how: sent as a PDF, shown on a call, handed out?"); what stays out ("Is there anything that must not appear, such as internal screens, figures or how you work? And a feature still being built: left out, or shown?"); the reference ("Is there a deck or a page whose look ours should start from? Without one I start from the product's own site and brand."). A first message with no question states what was derived and goes on.
+- **Questions:** one first message, only for what the request and the material leave open: where the product can be read about and seen ("Where can I read about it and see it: a site, documents, a demo or a preview, brand files?"); the reader and the use ("Who will see this deck, and how: sent as a PDF, shown on a call, handed out?"); what stays out ("Is there anything that must not appear, such as internal screens, figures or how you work? And a feature still being built: left out, or shown?"); the reference ("Is there a deck or a page whose look ours should start from? Without one I start from the product's own site and brand."). A first message with nothing left to ask, or under a go-ahead, states what was derived and goes on.
 - **Checkpoints:** the storyboard, before any slide is built: one line per slide (its message, its title, its scene), the look's routes with the recommendation, what stays out, the facts not found. Then the rendered deck: the contact sheet, the count of findings (none), which screens are captured and which drawn, what the scenes made up. One short message each; "OK" takes the recommendation.
 - **Go-ahead:** the storyboard is stated and not waited on, with the recommended look; the sheet is still shown with the delivery.
 - **Changes mid-run:** a note on the whole deck ("repetitive", "obvious", "too technical", "the hooks are weak") re-enters at the storyboard, for every slide; a note on one slide rewrites that slide's section; a note on a wording fixes it wherever it stands and adds it to the deck's `banned` list, so that a later render names it if it returns. Every round renders the whole deck, runs the checks and looks again.
@@ -35,7 +35,7 @@ A product goes in (its site, its documents, its screens, or one feature named in
 | A way to read the product's pages | A page reader, the browser, or the connection its documents are served through (a repository, a document pack with search and read tools). |
 | A way to look at an image | Every slide is looked at before it is shown. |
 
-Before the first message, run the helper on [`assets/deck-skeleton.html`](assets/deck-skeleton.html) into a scratch folder: two slides and no finding mean the driver, the browser and the helper work. Without a browser or a way to look at an image, stop and say what to add. Through SkillCDN the helper and the skeleton are read with `read_repo_file` at their paths and saved in the run folder.
+Before the first message, run the helper on [`assets/deck-skeleton.html`](assets/deck-skeleton.html) into the host's scratch folder: two slides and no finding mean the driver, the browser and the helper work. Without a browser or a way to look at an image, stop and say what to add. Through SkillCDN the helper and the skeleton are read with `read_repo_file` at their paths and saved in the run folder.
 
 [storyboard.md](references/storyboard.md) is included; [building.md](references/building.md) is read before phase 2. The pack's shared pages are linked from their phases and read through the repository connection: the writing set [`docs/writing/`](/docs/writing/README.md), [rendering-html.md](/docs/browser/rendering-html.md), headless.md and [not-ai.md](/docs/variation/not-ai.md). A copy of this directory, the area's plugin or a mount of the area or of one skill lacks them: fetch them from `docs/writing/`, `docs/browser/` and `docs/variation/` of `github.com/skillcdn/skills`.
 
@@ -47,7 +47,7 @@ Before the first message, run the helper on [`assets/deck-skeleton.html`](assets
 | What the product does | Its own pages and documents, read in full in phase 1: the site, the documentation, a README and release notes, a document pack the host is connected to. Never memory or a search summary. |
 | Screens | In this order: files the user hands over; captures from a site, a demo or a preview the agent can open; scenes drawn from what the documents say a screen holds (building.md "Screens"). |
 | The reader and the use | Asked; the request's implication is the default, a buyer who is not technical where nothing says. |
-| What stays out, and features still being built | Asked. By default the organization's internal screens, figures and ways of working stay out, and so does a feature the documents do not describe as there. |
+| What stays out, and features still being built | Asked. By default the organization's internal screens, figures and ways of working stay out, and so does a feature the documents do not describe as there, or describe and mark as not yet proven. |
 | The reference | Asked: a deck or a page of the user's choice, else the product's own site and brand file. Where the user has none and the product has neither, three product pages of the kind are found and the user picks one. |
 | House style | The usual set ([house-style.md](/docs/writing/house-style.md)) unless the request or the organization's records say otherwise; stated in the first message, written into the deck's `style` only where it differs. |
 | The user's own facts | A career, a partner's name, a measured figure: used as given, never blurred into a vaguer word. |
@@ -58,7 +58,7 @@ Before the first message, run the helper on [`assets/deck-skeleton.html`](assets
 
 ### Phase 1: The brief and the facts
 
-Produces `brief.md` and `facts.md`. Read the product's pages and documents in full, as [facts.md](/docs/writing/facts.md) of the writing set says; for one feature, every page that describes it, found by search, and the page that introduces the product. `brief.md` holds the reader and the use, what stays out, how a feature still being built is treated, the user's own facts, and three to five strengths to lead with, each as what the buyer gets. `facts.md` is a table of every claim the deck may make (what the product does, for whom, how a buyer starts, a figure), each with an id, the page or section it comes from and its sentence there, and the product's own word for a thing beside the buyer's word for it. What the documents do not say is not claimed: it goes under "not found", with where it was looked for, and is asked at the storyboard or dropped. The phase ends with the reader, the strengths and the gaps in a few lines.
+Produces `brief.md` and `facts.md`. Read the product's pages and documents in full, as [facts.md](/docs/writing/facts.md) of the writing set says; for one feature, the pages that introduce the product and the feature, and the pages those name for what it does; a further search result is read only where a claim needs it, and `facts.md` lists what was read and what was found and left unread. `brief.md` holds the reader and the use, what stays out, how a feature still being built is treated, the user's own facts, and three to five strengths to lead with, each as what the buyer gets. `facts.md` is a table of every claim the deck may make (what the product does, for whom, how a buyer starts, a figure), each with an id, the page or section it comes from and its sentence there, and the product's own word for a thing beside the buyer's word for it. What the documents do not say is not claimed: it goes under "not found", with where it was looked for, and is asked at the storyboard or dropped. The phase ends with the reader, the strengths and the gaps in a few lines.
 
 ### Phase 2: Materials
 
@@ -66,7 +66,7 @@ Produces `assets/`, by [building.md](references/building.md) "Materials" and "Sc
 
 ### Phase 3: The storyboard
 
-Produces `storyboard.md`, by [storyboard.md](references/storyboard.md). Read first [readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md), [outside-readers.md](/docs/writing/outside-readers.md) and house-style.md; this skill's own forms win. One row per slide: the message (one sentence the buyer could repeat to a colleague), the title, the scene's pattern, the material it uses (which screen, captured or drawn; which fact ids), and what the scene makes up. A job of the story that has no hook for this buyer is dropped, not shortened. No two consecutive slides share a pattern.
+Produces `storyboard.md`, by [storyboard.md](references/storyboard.md). Read first [readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md), [outside-readers.md](/docs/writing/outside-readers.md) and house-style.md; this skill's own forms win. One row per slide: the message (one sentence the buyer could repeat to a colleague), the title, the scene's pattern, the material it uses (which screen, captured or drawn; which fact ids), and what the scene makes up. A job of the story that has no hook for this buyer is dropped, not shortened.
 
 The look is decided here, from the reference, on the routes in this order:
 
@@ -87,13 +87,13 @@ Produces `deck.html`, from the skeleton, by building.md "The deck file": one `se
 node render.mjs deck.html out --name <YYYY-MM-DD-product>-deck
 ```
 
-The helper writes `out/<name>.html`, `out/<name>.pdf`, `out/pages/NN.png`, `out/sheet.png` and `out/report.json`, prints every finding with its slide, and exits 1 while there is one (building.md "The helper" has each finding's fix). Fix `deck.html` and run again until there is none; the HTML and the PDF are never edited by hand. Then look: the sheet for the deck as a whole (rhythm, a pattern that returns too soon, a slide that reads as a document page), then every page image at full size, as [rendering-html.md](/docs/browser/rendering-html.md) "Looking at a render" says, against the verdicts below. A slide that passes and still reads as a default is held against [not-ai.md](/docs/variation/not-ai.md).
+The helper writes the one-file HTML, the PDF, `pages/NN.png`, `sheet.png` and `report.json` into `out/`, prints every finding with its slide, and exits 1 while there is one (building.md "The helper" has each finding's fix, and what its notes mean). Fix `deck.html` and run again until there is none; the HTML and the PDF are never edited by hand. Then look: the sheet for the deck as a whole (rhythm, a pattern that returns too soon, a slide that reads as a document page), then every page image at full size, as [rendering-html.md](/docs/browser/rendering-html.md) "Looking at a render" says, against the verdicts below. A slide that passes and still reads as a default is held against [not-ai.md](/docs/variation/not-ai.md).
 
-Checkpoint: the sheet attached or by its path, the count of findings, which screens are captured and which drawn, and what the scenes made up.
+Checkpoint: the sheet attached or by its path, the count of findings, which screens are captured and which drawn (said plainly where all are drawn), and what the scenes made up.
 
 ### Phase 6: Deliver
 
-Deliver the HTML and the PDF by path, with the slide count and the report's verdict. Say where the tokens and the font came from and which fonts loaded, which slides show captured screens and which drawn ones, what the scenes made up, what was left out on purpose, and what the user confirms before the deck goes out: a claim that rests on one source, a fact not found. `deck.html` and `assets/` stay as the source of the next change, the sheet and the report as the review's record.
+Deliver the HTML and the PDF by path, with the slide count and the report's verdict. Say where the tokens and the font came from, which fonts loaded and any face the text fell back to, which slides show captured screens and which drawn ones, what the scenes made up, what was left out on purpose, and what the user confirms before the deck goes out: a claim that rests on one source, a fact not found, a feature shown that the documents mark as unproven. `deck.html` and `assets/` stay as the source of the next change, the sheet and the report as the review's record.
 
 ## Verdicts
 

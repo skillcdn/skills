@@ -6,9 +6,9 @@ How the materials of a product deck are gathered, how the deck's source file is 
 
 Everything goes into `assets/` beside `deck.html`, under a name that says what it is, and its origin goes into `facts.md` (the page it came from, the day).
 
-- **Marks.** The product's logo and symbol from its brand file or its site, as SVG where there is one, in the variant for the ground it sits on. The mark of another product the deck names comes from that product's own brand page (search its name with "brand assets"); where none is found, the name in type.
-- **Tokens.** The product's colors, radius and surfaces are read from its site, not picked by eye: the CSS custom properties on the root element (`getComputedStyle(document.documentElement)` in a browser, or the stylesheet itself), and the brand file where it has one. They become the deck's `:root` tokens under the deck's own names; the storyboard names their source. Where the look came from the four looks, the pick's handoff gives them instead.
-- **Font.** The brand's font by its local name first, then its documented web file, as [rendering-html.md](/docs/browser/rendering-html.md) "Fonts" says; the stack ends in a system face with the language's letters.
+- **Marks.** The product's logo and symbol from its brand file or its site, as SVG where there is one, in the variant for the ground it sits on. The mark of another product the deck names is taken from the product's own pages where they show it, else from that product's brand page (search its name with "brand assets"), and used as published: a mark drawn in the current text colour (`fill="currentColor"`) is placed inline, so that it takes the slide's ground, and nothing else of a mark is changed. Where none is found, the name in type.
+- **Tokens.** The product's colors, radius and surfaces are read from its site, not picked by eye: the CSS custom properties on the root element (`getComputedStyle(document.documentElement)` in a browser, or the stylesheet itself), and the brand file where it has one. They become the deck's `:root` tokens under the deck's own names; the storyboard names their source. A product whose site and whose app differ has two sets: a screen, captured or drawn, and the ground it sits on take the app's, the other ground the site's, and the storyboard says which ground took which. Where the look came from the four looks, the pick's handoff gives them instead.
+- **Font.** The brand's font by its local name first, then its documented web file, downloaded into `assets/` so that the one-file HTML embeds it ([rendering-html.md](/docs/browser/rendering-html.md) "Fonts" has where a family documents its file); the stack ends in a system face with the language's letters. A second stack (a mono face for a command) names the deck's font after its own faces: a script the mono face lacks, Hangul inside a command, then falls to the deck's font and not to a system face.
 - **Results the product made.** From the site's own showcase or the user's files: the original file, its size read from the file ([reading-pages.md](/docs/browser/reading-pages.md) "Downloading a file"). Photographs are kept as JPEG: Chromium stores a WebP in the PDF decoded, where a JPEG goes in as it is, and one deck's PDF came out at 9 MB against 5.3 MB with the same pictures as JPEG (illustrative; checked 2026-11).
 - **A localized page.** A site with no language path in its addresses may still serve each language at the root address, by the request's `Accept-Language` (seen on one site, 2026-11): request the page with the reader's language in that header before taking a screen or a sentence from it.
 
@@ -16,7 +16,7 @@ Everything goes into `assets/` beside `deck.html`, under a name that says what i
 
 In the order of the Inputs: handed over, captured, drawn.
 
-- **Captured.** Open the site, the demo or the preview in the browser at a fixed viewport and a device scale of 2, so that a crop still fills its place on the slide ([headless.md](/docs/browser/headless.md) "Screenshots"). An empty environment is filled first with the cast's data, plausible and in the reader's language. Crop to the part the slide talks about.
+- **Captured.** Open the site, the demo or the preview in the browser at a fixed viewport and a device scale of 2, so that a crop still fills its place on the slide ([headless.md](/docs/browser/headless.md) "Screenshots"). The organization's own screens are not captured: where the only screens that open are its sign-in page or its live workspace, they stay out and the screens are drawn, and a local install is a demo only where it shows nothing of the organization's. An empty environment is filled first with the cast's data, plausible and in the reader's language. Crop to the part the slide talks about.
 - **Pins.** A pin on a screen is placed in percent of the image's box (`left: 63%; top: 20%`), so that it holds when the image is resized.
 - **Drawn.** Where no screen can be had, the scene is drawn in HTML and CSS from what the documents say the screen holds: its regions, its nouns, its states, in the deck's tokens and with the cast's data. Draw the few elements that carry the slide's message, large enough to read on the sheet; a drawn scene is a picture of the product at work, not a replica of a screen nobody saw. The storyboard marks it "drawn" and the delivery lists it.
 
@@ -35,7 +35,7 @@ In the order of the Inputs: handed over, captured, drawn.
 
 ## The helper
 
-`node render.mjs <deck.html> <out folder> [--name <file name>]`, with `PLAYWRIGHT_FROM` set where `playwright-core` is borrowed. It loads the one-file HTML in the browser, waits for the network, the fonts and the images, measures, prints the PDF at the canvas size, takes every slide as a PNG and tiles the sheet three to a row. It exits 0 with no finding, 1 with findings (every file is still written, for a look at a draft), 2 when it cannot run, with the reason.
+`node render.mjs <deck.html> <out folder> [--name <file name>]`, with `PLAYWRIGHT_FROM` set where `playwright-core` is borrowed. It loads the one-file HTML in the browser, waits for the network, the fonts and the images, measures, prints the PDF at the canvas size, takes every slide as a PNG, shooting each until two shots in a row are the same image, and tiles the sheet three to a row. It exits 0 with no finding, 1 with findings (every file is still written, for a look at a draft), 2 when it cannot run, with the reason.
 
 | Finding | Means | Fix, in `deck.html` |
 |---|---|---|
@@ -45,7 +45,9 @@ In the order of the Inputs: handed over, captured, drawn.
 | `repeat`, `pattern` | Two slides in a row declare the same pattern; a slide declares none. | Another scene for one of them, in the storyboard first. |
 | `style` | A character or a bracketed head the house style bans. | Rewrite within the house style, as house-style.md "Writing within the house style" says. |
 | `banned` | A phrase of the deck's banned list. | Rewrite the sentence; the phrase stays on the list. |
+| `unstable` | A slide's image differed from one shot to the next and did not settle in five. | Take out what moves on that slide (an animation, a transition); a deck is still. |
 
 - The first output line names the fonts that loaded. "None" means every slide rendered in the system fallback: check the font's address, and name the fallback in the delivery where it stays.
+- The second line names the faces the browser rendered the text in, with their glyph counts. A `fallback` note names a run of text partly rendered in a face its own stack does not name: a script the stack's faces lack fell to a system face. A note is no finding and does not change the exit code; fix it as "Font" says, or name the face in the delivery where it stays.
 - The checks measure boxes and words. They do not see two elements that overlap, a title under a picture, or a scene that says nothing: those are found by looking at every page at full size.
 - The lone-word check reads a block's lines letter by letter, so a line of mixed type sizes is counted once.
