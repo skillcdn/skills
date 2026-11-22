@@ -95,7 +95,7 @@ exclude:
 ---
 # Rules for every job in this studio
 
-**<A rule about the work itself, in two or three words>.** <The rule, with its reason, in a sentence. Three to five rules: what a result never contains, what only <the approver> decides, what a run does before it ends.>
+**<A rule about the work itself, in two or three words>.** <The rule, with its reason, in a sentence. Three to five rules: what a result never contains, that a person state is given only by the person the policy's Approval names, what a run does before it ends. Who that person is stands in the policy alone.>
 
 **Fold back.** A run ends with what it learned in the sentence it bears on: the guide page of the step, the policy's line, or the job's skill.
 ```
@@ -152,7 +152,7 @@ One <unit> of <the studio>, from <its input> to `<the state this job ends in>`. 
 
 ## Before anything
 
-Load the pack skill as served: `console skill <area>/skills/<pack skill>/SKILL.md`. <Or, where this job uses one phase of it: read the pack's rules, the skill's hard rules and its phase "<name>", each as a section, as studio-know-how.md "A studio skill extends a pack skill" says.> Run it as written, with the answers and the differences below. Where it and this page disagree, this page holds for what it states. Where the pack skill no longer has what an answer names, say so and mend this page in the same session.
+Load the pack skill as served, every part, through the connection this session has to the pack: `console skill <area>/skills/<pack skill>/SKILL.md` in a checkout a console binds, `load_skill` where the host has the pack's connection, else `npx @skillcdn/cli@latest skill gh/<owner>/<pack> <area>/skills/<pack skill>/SKILL.md`. <Or, where this job uses one phase of it: read the pack's rules, the skill's hard rules and its phase "<name>", each as a section, as studio-know-how.md "A studio skill extends a pack skill" says.> Run it as written, with the answers and the differences below. Where it and this page disagree, this page holds for what it states. Where the pack skill no longer has what an answer names, say so and mend this page in the same session.
 
 ## Standing answers
 
@@ -160,7 +160,7 @@ Load the pack skill as served: `console skill <area>/skills/<pack skill>/SKILL.m
 |---|---|
 | <its question, in its words> | <the policy's heading that answers it> |
 | <a folder it names> | `<folder>/<slug>/` |
-| <a helper it names> | `npm run <command>` |
+| <a helper it names> | `npm run <command>`, its studio copy in `scripts/<job>/`, adapted once; a unit's folder holds none |
 | <a checkpoint of its> | <answered by the policy | by the task | stops for <the approver>, asked <where>> |
 
 ## What this studio does differently
@@ -295,8 +295,8 @@ jobs:
 
 Handed to `git-repo-setup`, which writes `AGENTS.md` by agreement.md; in a repository that has its agreement, added to the section named. The agreement says how the repository is worked and stays short: which job is which skill is the start page's, and what a job needs is in that job's skill.
 
-- **Project.** What the studio produces, for whom, who approves, and its status.
-- **Commands.** After the check ("its last lines say where the studio stands"): `npm run new` (with the unit's name first where the studio holds several kinds), `npm run file` ("after any change of state"), `npm run gallery` and `npm run serve` ("the review screen"), and the loading of a studio skill, `npx @skillcdn/cli@latest skill . skills/<job>/SKILL.md`.
+- **Project.** What the studio produces, for whom, and its status; who approves is the policy's Approval, linked.
+- **Commands.** After the check ("its last lines say where the studio stands"): `npm run new -- <unit> <slug> --title=...` (the `--` passes the options on, which npm otherwise takes for itself; the unit's name first where the studio holds several kinds), `npm run file` ("after any change of state"), `npm run gallery` and `npm run serve` ("the review screen"), and the loading of a studio skill, `npx @skillcdn/cli@latest skill . skills/<job>/SKILL.md`.
 - **Map.** The lines of studio.md's tree that exist, and the single sources: the design in `formats/`, a unit's state in its record, what was made or tried in the ledger, the person's answers in `docs/policy.md`, what the studio knows in `docs/guides/`.
 - **Workflow.** The start and the end of a session as studio-operating.md "Which change goes where" gives them ("A session starts"), in the team's words, with a line that sends every session to the start page, its path written as a link: "Read docs/start.md before the task's first step."
 - **Rules**, within the eight, each with its reason: a person state is written only on that person's answer, with their words; the design changes only in `formats/` and a generated file is never edited by hand; one unit has one owner at a time; nothing leaves but through a job's skill, after the person's state.

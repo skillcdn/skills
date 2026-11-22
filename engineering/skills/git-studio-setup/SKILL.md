@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git and Node.js, git-lfs where a unit holds pictures or video, and what git-repo-setup needs (the console command and the git host's command, signed in). Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: git
 skillcdn:
   translations:
@@ -46,7 +46,7 @@ The scripts are this skill's `scripts/`, read as text and written into the studi
 | The jobs | Derived and shown in the plan: one per step that a pack skill does for this kind, with the skill it extends. A job no pack skill covers is named as one to be written whole, after the setup |
 | The standing answers | Each extended pack skill's Inputs and questions, asked once in the same message, in that skill's own wording, with "leave it open" as an answer; and what the request and the folder already say |
 | What the team already knows | Asked: "Is there anything the team has already settled or learned about this work: a guide, corrections you keep repeating, a format? Point me to it." |
-| Who works in it (people, agent accounts), the console project, the remote's owner | `git-repo-setup`'s inputs, asked here in its wording, in the same message, and handed to it as settled |
+| Who works in it (people, agent accounts), the console project, the remote's owner | `git-repo-setup`'s inputs, asked here in its wording, in the same message, and handed to it as settled. A person named without a login is a task for the project's owner, not a question; the approver's console login is asked with their name |
 | Everything else | Derived and shown in the plan: the folder's and the ledger's names, a standing file, `needs`, `previews`, `shows`, `large`, the pack's address for the skills' links (`console skills` names it), which changes go straight to the main branch |
 
 ## Workflow
@@ -62,18 +62,18 @@ Produces the **frame**: the tools found, `git-repo-setup`'s checks, what the req
 Produces the **plan**. Read [studio.md](/engineering/docs/git/studio.md) and [studio-know-how.md](/engineering/docs/git/studio-know-how.md) before this phase, each in a call of its own. Find and load each pack skill the studio extends, far enough to list what it asks, what it names (folders, helpers) and where it stops; where the kind's own set already lists them (a card news account's record), that page stands in for the reading. Ask what remains in one message, `git-repo-setup`'s questions among them. Then show:
 
 - each unit: its name and folder, the states in order with who writes each, the person's states, the last state and where a unit is filed, its ledger's path and what a key names, a standing file where rounds read one; for several kinds, the field in which one names the other and which job reads it;
-- the jobs: each studio skill, the pack skill it extends, and what it answers for it;
+- the jobs: each studio skill, the pack skill it extends, and what it answers for it; a helper the pack skill adapts for a run (a page server, an export, a review) is kept once in `scripts/<job>/` with its `npm run` command, adapted by the job's first run, and never copied into a unit's folder;
 - the policy: its headings with the answers given, and those left open;
 - the know-how brought in: which page of `docs/guides/` each thing the team already knows goes to;
 - what a session will read: the agreement, the start page and the check's last lines, then one skill and the pages its phases link; for a repository in production, beside the bytes read today;
 - what a card of the review screen shows; where the large files are stored, with what the git host's page says of its storage;
 - for a repository in production: what is renamed or moved, which page keeps each doubled fact, and that finished units stay where they are unless the user says otherwise.
 
-Checkpoint: "Here is the studio. OK, or change something?" One word proceeds.
+Checkpoint: "Here is the studio. OK, or change something?" One word proceeds. A request that already answered every line the plan lists outside the machine (the console project, the board's lines, the remote or that there is none) is that word: the plan is shown, and the run goes on.
 
 ### Phase 3: Lay out
 
-Produces the **studio's files**. Read [templates.md](references/templates.md) and [studio-operating.md](/engineering/docs/git/studio-operating.md) before this phase. In this order, each a line to the user:
+Produces the **studio's files**. Read [templates.md](references/templates.md) and [studio-operating.md](/engineering/docs/git/studio-operating.md) before this phase. On a console, `git-repo-setup`'s task for the setup is taken before the first file is written, as that skill takes it; phase 4 goes on from there. In this order, each a line to the user:
 
 1. `git init -b main` where the folder is no repository; with large files, `git lfs install` and the patterns in `.gitattributes`. `.gitignore`, `package.json`, the workflow of continuous integration with its two jobs.
 2. `studio.json`, and each unit's template folder and ledger; a standing file in the shape of the pack skill that reads it.
@@ -87,14 +87,14 @@ In a repository in production, step 5 moves each standing instruction to its one
 
 ### Phase 4: The repository
 
-Produces the **pushed repository**.
+Produces the **committed repository**, pushed where it has a remote.
 
-- **A new folder:** run `git-repo-setup` on it and hand it what this run settled: what the studio is for and for whom, who works in it, the console project and the remote's owner as answered, the stack (documents and data with Node.js scripts) and its check (`npm run check`), the README's language, what the agreement and the documents' map gain (templates.md, the last section), the tasks that come next (the first format where there is none, the first unit, each job to be written whole), and that the remote is left to it. It stops once, for its own plan, then writes its files around these, commits, pushes and hands the commit in on its setup task.
+- **A new folder:** run `git-repo-setup` on it and hand it what this run settled: what the studio is for and for whom, who works in it, the console project and the remote's owner as answered, the stack (documents and data with Node.js scripts) and its check (`npm run check`), the README's language, what the agreement and the documents' map gain (templates.md, the last section), the tasks that come next (the first format where there is none, the first unit, each job to be written whole), and that the remote is left to it. It stops once, for its own plan (passed as phase 2's is, where the request answered it), then writes its files around these, commits, pushes where there is a remote and hands the commit in on its setup task.
 - **A repository that has the layout:** the agreement and the map gain the same lines, the workflow its second job, and the commit and the push go as that repository's agreement says, on a task of the board.
 
 ### Phase 5: Delivery
 
-Produces the **delivery**, one message: the repository; each unit and its states in a line; each studio skill with the pack skill it extends and the command that loads it; what the policy holds and leaves open; what a session reads at its start, in bytes; `npm run serve` and the address it prints (started now only if the user wants to look); the two checks and their results; the first thing to do, which is one unit made with the studio skill; what was not tried. The next tasks are on the board.
+Produces the **delivery**, one message: the repository; each unit and its states in a line; each studio skill with the pack skill it extends and the command that loads it; what the policy holds and leaves open; what a session reads at its start, in bytes; `npm run serve` and the address it prints (started now only if the user wants to look); the two checks and their results, and with no remote the local commit and that continuous integration has not run; the first thing to do, which is one unit made with the studio skill; what was not tried. The next tasks are on the board.
 
 ## Adding a job later
 

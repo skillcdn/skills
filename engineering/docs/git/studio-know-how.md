@@ -66,7 +66,7 @@ After a unit, a batch or a round, before the run finishes, each thing learned go
 | A correction of the person's that holds from now on | The policy's line, or the difference of the job's skill it changes, their words kept as the reason |
 | What had to be said in chat for the job to go right, what the agent had to guess, a stop that was answered the same way again | The studio skill: a standing answer or a difference. The pack's `skillcdn-skill-authoring` does this from the work done ("Improving a skill from a run"); in a studio the shapes are this page's |
 | A rule that runs broke more than once and a script can test | The kind's own check (`scripts/check-<unit>.mjs`), and its sentence shrinks to what the check asks: words a worker keeps missing are not said louder |
-| Something every user of the pack skill would gain | A task for the pack's maintainers |
+| Something every user of the pack skill would gain (how a site behaves, what a tool does) | The studio's guide page as well, so that the studio has it now, and a task for the pack's maintainers: on the board of the project that keeps the pack where the person's console has one, else a line of the run's report that names the pack page it belongs to |
 | A slip of one run | The run's report, nowhere else |
 
 The fold is part of the job's end, in the same commit as the unit where the push goes straight to the main branch. The check then holds the bounds: a page that outgrew its limit is split by topic, not trimmed of what is true.
