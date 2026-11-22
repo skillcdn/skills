@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a real browser engine to load facebook.com/ads/library, either a shell with a Chromium-family browser on the same machine or a browser the agent can drive (a built-in browser, a browser extension, a Playwright or Chrome DevTools server). Plain fetch and search tools cannot load the site. Any agent with one of the two can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.10"
+  version: "1.11"
   tools: meta-ad-library
 skillcdn:
   include:
