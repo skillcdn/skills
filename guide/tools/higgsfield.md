@@ -21,9 +21,9 @@ The conventions are listed once, for agents, in the set's [README](../../docs/hi
 | `pronunciation.md`: the sounds per language, by kind, with what fixed each | Nothing |
 | | `references/tool-notes.md`: how the tools behave in this skill's own phases |
 
-The test for a sentence: would it be true, word for word, in the next Higgsfield skill? Then it belongs in the set. A page of the set is reached by a root-relative path (`/docs/higgsfield/<topic>.md`). `pronunciation.md`, which every run writes and reviews lines with, is in each skill's `skillcdn.include` and arrives with the skill wherever SkillCDN serves it; the rest are linked from the phase that reads them and cost one `read_repo_file` call when it comes and no page of the skill's load. A change to `pronunciation.md` changes the served digest of both skills, as a change to a manifest does, and a host that verified one asks its user again: edit it deliberately.
+The test for a sentence: would it be true, word for word, in the next Higgsfield skill? Then it belongs in the set. A page of the set is reached by a root-relative path (`/docs/higgsfield/<topic>.md`). Each skill includes only the pages its first message and its plan are written by, which are its own; every page of the set, `pronunciation.md` among them, is named under "Read first" at the phase that reads it and costs one `read_repo_file` call when it comes and no page of the skill's load. Since no page of the set is included, an edit to the set changes no skill's served digest: it reaches a run when the phase that names the page reads it.
 
-A skill runs without the linked pages when it is mounted below the repository root or taken through the skills extension by a host without `read_repo_file`, and without the set at all when it is installed as a plugin or copied: its Requirements say so and name `docs/higgsfield/` in the repository as where to fetch the pages. Keep every hard rule and every step of the workflow in the skill for that case; the set holds knowledge, not rules.
+A skill runs without the linked pages when it is mounted below the repository root or taken through the skills extension by a host without `read_repo_file`, and without the set at all when it is installed as a plugin or copied: its Requirements end with the one sentence on where such a route reads a linked file. Keep every hard rule and every step of the workflow in the skill for that case; the set holds knowledge, not rules.
 
 The variation set, `docs/variation/`, generalizes the ad skill's hook table, its "Choose" rule among researched ads and its plan checkpoint with a runner-up; the ad and drama skills keep their own forms until a run of them can be made again, when their story pages cite the general pages and the seam in `docs/variation/handoff.md` is tested with one request that needs both skills ([variation.md](../variation.md)).
 
@@ -36,7 +36,7 @@ What a run taught goes into the files the same day, as behavior and never as a r
 - An edge of one skill's own phase: that skill's `tool-notes.md`, in the same shape.
 - A step a fresh agent had to guess: the skill's `SKILL.md` or the reference of that phase.
 
-A skill run by an agent without the repository at hand reports its findings in the delivery, in a short list for whoever maintains the skill; both skills ask for that list.
+A skill run by an agent without the repository at hand writes what a tool or a sound did differently in the run's own record (the ad's folder, the drama's production log), not in the delivery: the user's message holds what the user gets, and whoever maintains the pack folds the record into the pages.
 
 ## Testing
 

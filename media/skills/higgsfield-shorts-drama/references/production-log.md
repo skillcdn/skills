@@ -21,11 +21,8 @@ The notes say what the picture showed shot by shot, what was accepted as close e
 5. **Final cut.** One block per version, the current one first and marked so: file, duration, hosted media id, the command that produced it (with the environment overrides for replaced takes and line timings), timeline offsets, credits spent on it. An older version keeps its block, marked archived, with the one-line reason it was replaced (a logic error, a stray sound).
 6. **Ledger.** Estimate, reserve, spent per item and retry, balance after.
 7. **Handover.** What the next episode inherits: the references by key and id, the knowledge table's state at the ending hook, the last three lines and their takes for the previously-on, the lines accepted as close enough, the finalize or upscale offer and whether it was taken.
+8. **Notes.** What a tool did differently from a page of this skill or of `docs/higgsfield/`, and each sound outcome the pronunciation page does not list: the behavior or the word as a sound example, what was tried, what came back, the model, the month. Never the story's lines beyond the word itself. Whoever maintains the pack folds these into the pages; the delivery message does not carry them.
 
 ## Three-file sync
 
 When a take is replaced or a line changes after the script checkpoint, three files change in the same turn: the bible (the knowledge table, the episode table's ending, the production notes), the script (the cut row, the edit plan, the ending hook in the header) and this log (the cut row, the final-cut block). A line that exists in the video and not in the script is a defect of the run.
-
-## Delivery message
-
-In plain words: the episode as a link and, where there is a filesystem, a file; the contact sheet; the accepted take per cut; the ledger against the estimate, retries called out with their reasons; the words accepted as close enough and what was heard; what was edited rather than regenerated; that the people are generated and the platform's label for AI-made content is the user's to set; the finalize offer with its price and the upscale offer, a spend the tool will not price first, neither started; what the next episode inherits and where the three files are. Then wait: the next episode starts only on the user's word, with its own estimate.

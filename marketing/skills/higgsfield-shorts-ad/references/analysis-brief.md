@@ -1,12 +1,12 @@
 # Analysis brief
 
-The artifact of phase 2. Fill every section; write "none" rather than leaving a section out, so the user can see what was looked for.
+The artifact of phase 2: the sandbox pass that measures the reference, and the template the brief is written in. Fill every section; write "none" rather than leaving a section out, so the user can see what was looked for.
 
 ## Sandbox pass
 
 Run in one `sandbox_exec` call, started with `background: true`, while `video_analysis_create` is processing. `<url>` is a link the sandbox can download: the original link when it points straight at a media file, otherwise the hosted URL of the confirmed upload or import (`show_medias` with type `video` lists it). Before the call, reserve an upload for the contact sheet with `media_upload` (filename `sheet.png`) and put its `upload_url` on the last line, so the sheet can be looked at by its hosted URL after `media_confirm`. The call returns a pid, a log path and a status path; poll them with later short calls (`sleep 20; cat <status path>; tail -n 60 <log path>`, a sleep of at most 25 seconds and `timeout_seconds` of at most 45, as [/docs/higgsfield/sandbox.md](/docs/higgsfield/sandbox.md) says). The pass takes about a minute, the Whisper model download included.
 
-If `video_analysis_status` still says queued after about five minutes, do not wait for it: build the brief from the frames and the transcript, poll it again between later phases, and fold the scene analysis in if it arrives. The frames are the ground truth for look and text in any case.
+The scene analysis is never waited for ([tool-notes.md](tool-notes.md) "Scene analysis"): the brief is built from the frames and the transcript, and the analysis is folded in if it arrives.
 
 ```sh
 curl -fsSL -o ref.mp4 '<url>' \
@@ -46,7 +46,7 @@ To look at frames larger than the sheet, pass them in `image_paths` in a short c
 
 Look at the contact sheet (by its hosted URL, or downloaded where the client can view images) and at individual frames for cast appearance and on-screen text. Frames are the ground truth for text, look and structure; the transcript is the ground truth for dialogue; the scene analysis, when it arrives, adds scene boundaries and descriptions to check the shot list against.
 
-The frames, the sheet, the audio and the imported reference are for looking and listening only. None of them is ever passed to a model as a start frame, a reference, a motion source or an audio source, and none appears in the output. The cast section below is the source of the cast list and the portraits ([cast.md](cast.md)); it describes, it never copies.
+The template's cast section is the source of the cast list and the portraits ([cast.md](cast.md)): it describes people and never identifies one.
 
 ## Template
 
@@ -102,50 +102,3 @@ Speaking time: <s> of <runtime> (<share>) · Units: <n> (syllables or words) · 
 ## Build routes summary
 Generate: <shots>. Edit: <elements>. Drop: <elements, with why>.
 ```
-
-## Intake
-
-Ask only for what the request did not give and what cannot be found:
-
-1. The product: a link to its site or page, or a name and one sentence about it.
-2. The reference video: a link straight to a media file, or a local file through the upload widget where the client has one. An agent with a shell and no widget uploads a local file itself, and an unattended agent asks for a hosted link, as [/docs/higgsfield/sandbox.md](/docs/higgsfield/sandbox.md) "Files in" says. A YouTube link alone is not enough: it feeds the scene analysis but not the frames or the transcript. Short is better; analysis accuracy drops with length. When the request has none, it is found before it is asked for ("When there is no reference" below), and asked for only when nothing at hand can find one.
-
-The message is short: the one or two things needed (for the reference, that the link must lead straight to a media file), one line on what happens next (the reference is analyzed, then a plan with its cost is shown), and nothing else. Never ask about language, length, captions, cast, setting, images or budget. Those are derived and shown at the plan checkpoint, where the user can change any of them. When the request already has both, there is no intake message at all.
-
-## When there is no reference
-
-A user who names only the product still gets an ad built on what works: the reference is found among the ads now running for that kind of product. A skill that researches running ads does the finding (in this pack `meta-ad-library-creative-research`, which reads the Meta Ad Library), and this skill chooses from what it returns. Say in a line that a reference is being looked for and that the user's own is welcome at any point. With no such skill at hand, ask for the reference as "Intake" says and name the skill that would find one.
-
-1. **Research.** Run the research skill with the product as its subject, in the market of the ad's language (the product page's, in the user's language when the page has it), through to its delivery. Its method, its limits and its checkpoint are its own: none of it is repeated here, and none of it is cut short because an ad comes next.
-2. **Choose** among the videos on its shortlist, in this order:
-
-| Step | Rule | Why |
-|---|---|---|
-| Candidates | The shortlisted videos whose frames the research looked at (its report says which), from advertisers who sell this kind of product or to its buyers. Nothing off the shortlist, however well it fits, and nothing that only matched the search words: an ad for another kind of product has its proof with other buyers. | The reference teaches a video's hook and pacing, and the shortlist is where proof was checked. |
-| Honest | Drop a mechanism whose proof the product cannot supply: a creator's or a customer's own experience of it, a before and after, a number or an offer its page does not state. What is dropped is the proof, not the order of telling: an ad that shows its maker's own results stays a candidate when the product's page has proof of its own for that place (its screens, its figures, its reviews). | The ad may say only what the product's page or the user says. An invented experience is a false claim. |
-| Fit | Take the candidate whose mechanism the product can carry most fully with what its own page has: its claims, its persona, its story, its reviews, its images. | What transfers is the mechanism. A reference that fits half-way leaves the ad leaning on its surface. |
-| Proof | Between two that fit alike, the one the research gives the stronger proof, and one it ranks as working now before an old one it keeps as a benchmark. | Fit chooses among proven ads; it does not replace proof. An old ad shows that its mechanism lasts, and is the one its viewers have seen longest. |
-| Cost | Then the shorter video, with fewer people and places. | A take is paid by the second, and every person and place adds shots. |
-
-3. **Say what the choice rests on.** The plan checkpoint opens with the reference (the advertiser, its library link), its proof, its weak signs, why the product can carry it, and the runner-up with what it would have given instead. The weak signs are read from its record even when the research's breakdown names none: a single use, a low place among its advertiser's own ads, an old ad kept only as a benchmark. A choice that passes over the ads the research ranks as working now says in a line what they lacked. The user can pick another, or send their own, before anything is paid for. When no candidate fits, do not force one: say which came nearest and what the user would have to supply for it (a real customer, a result that can be shown), and stop for their choice.
-
-From the chosen reference on, the phases run as for any reference, with these differences:
-
-- **The address is the link.** The video's address is in the research's record of that ad, and the sandbox downloads it as it is. It expires within days: run the sandbox pass in the same run, and once it has expired have the research skill load that ad again for a fresh one.
-- **The breakdown is a first look, not the brief.** Frames the research made, in its run folder's `frames/`, may stand in for looking at the reference when they cover the whole of it; the sandbox pass still runs for the transcript and the delivery line, and every section of the template is filled.
-- **The readings feed the concept.** Keep the mechanism that shows proof. Leave the surface the market crowds: the opening, the proof shot and the offer line that most of its ads share. Take the open angle where the product's own world covers it.
-- **The reference is a competitor's ad.** Its viewers may see the new ad too, so the plan says what the ad keeps (the mechanism, the medium, the look in kind) and what differs at a glance: the cast, the first frame, the colors and the type, the device, every line. A line that is the reference's with the words swapped is rewritten, the hook and the closing line first: the odd act and the last turn of phrase must be the product's own, not the reference's with another year, another seller or another verb.
-- **It speaks after its turn.** A direct-response ad names the product, the offer and a call to action after its story turns. The new script keeps those marks in the reference's order ([story.md](story.md) "Writing the new story", step 7), in the product's own words and with only an offer its page states.
-
-## Product brief
-
-From the product page (or the user's sentence), record:
-
-- Name, what it is, who it is for: one line each.
-- The tagline, if any, verbatim.
-- The claims the page makes, as a short list. Only these, or what the user states, may be spoken in the ad.
-- The page's language, which becomes the dialogue and caption language: a site with several languages gives the user's where it has it (fetch with `Accept-Language` set to it and read the page's `lang`), else its default.
-- The page's type and colors: font families from its stylesheet, the ground, text and accent colors, the logo's clear space where the site states one, else the logo's own height on every side ([design.md](design.md)).
-- Images: the logo, one product image, and the photo of any person the site presents as the brand's own (a founder, a face of the brand, a mascot). Fetch the page in the sandbox (`curl -sL '<url>'`), read the `og:image` tag and the `img` sources whose path, alt or class mentions logo, product, hero, portrait or the product's name; download the candidates, look at them, and keep what serves: a logo for the end card and overlays, a product image for overlays and as a product reference where the video model takes one, a person's photo for casting ([cast.md](cast.md)). Import them with `media_import_url`, to use as they are or as references; nothing is taken from any other site.
-
-A text-only web tool gives the words; the images need the sandbox. Without either, ask the user for two lines about the product and go on without images.

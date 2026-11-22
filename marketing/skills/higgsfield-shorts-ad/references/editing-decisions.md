@@ -1,8 +1,6 @@
 # Editing decisions: video model or code
 
-Every element of the reference gets a build route in the analysis brief: **generate** (the video model makes it), **edit** (code in the sandbox makes it), or **drop**. This page is the rule book. When a case is not covered, prefer code: it is free, exact and repeatable, and a take can always be re-edited without spending credits.
-
-The reference video itself is never a build material. No frame, clip, still or sound from it is uploaded as a model input, used as a start frame, a reference or a motion source, or cut into the output. The brief describes it in words, and the words drive the build.
+Every element of the reference gets a build route in the analysis brief: **generate** (the video model makes it), **edit** (code in the sandbox makes it), or **drop**. This page is the rule book, read before the routes are marked in phase 2 and again before the assembly. When a case is not covered, prefer code: it is free, exact and repeatable, and a take can always be re-edited without spending credits. The brief describes the reference in words, and the words drive the build.
 
 ## Always code
 
@@ -38,7 +36,7 @@ The reference video itself is never a build material. No frame, clip, still or s
 | A cut inside a shot of the reference (jump cut for pace) | One generation, then cut in code | Cutting is free. |
 | Picture-in-picture: an inset video playing over the main shot | Generate the inset only if it must be new footage; otherwise use a user-supplied clip or a still, composited in code | The model cannot place an inset accurately. |
 | A sound effect that is comedic or emphatic (record scratch, ding) | Code, from a user-supplied effect or one synthesized in the sandbox with sox (a sine ding, a filtered-noise whoosh) | Models rarely produce it on cue, and the server's audio tool makes speech only. |
-| Music that is heard in the reference | A track the user supplies, mixed in code; the reference's own is no build material. The server has no music generation, so without a track the ad runs on native audio and effects, and the plan says so | A bed mixed in code is remixed for free. |
+| Music that is heard in the reference | A track the user supplies, mixed in code. The server has no music generation, so without a track the ad runs on native audio and effects, and the plan says so | A bed mixed in code is remixed for free. |
 | Ambient sound (street, café) | Model native audio if the shot has it; otherwise a user-supplied bed, or room tone synthesized with sox, in the edit | Native ambience is free with the take. |
 | Speech that is slightly off in a good take | Trim around it, cut to a beat, cover with an effect | Cheaper than a retry; see [regeneration](regeneration.md). |
 | A shot that needs the exact product | Give the model the product image as a reference input where the model supports it; verify against the image; overlay a packshot in the edit if the label is wrong | Identity inputs help but do not guarantee text on packaging. |

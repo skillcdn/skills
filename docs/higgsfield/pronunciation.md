@@ -2,7 +2,7 @@
 
 Video models with native dialogue have no pronunciation dictionary, and a transcript often cannot show the fault. This file is the knowledge, per language, gathered from real runs of every Higgsfield skill of the repository; the procedure that uses it (how lines are written, how a take is read, how a retry is made) is each skill's own. A fault kept out of the first take costs nothing; one found in a take costs a retry; one found by the user costs their trust.
 
-This is the one copy. A new outcome goes into the list it belongs to, with the word as a sound example, what the decodes wrote and what settled it; an agent running a skill without the repository at hand reports it in its delivery instead. Add a language section when a run teaches one.
+This is the one copy. A run reads "In any language" and the section of its dialogue language, and writes a new outcome in its own record; whoever maintains the pack moves it into the list it belongs to, with the word as a sound example, what the decodes wrote and what settled it, and adds a language section when a run teaches one.
 
 ## In any language
 
