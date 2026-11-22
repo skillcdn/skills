@@ -10,7 +10,7 @@ A size is a product of factors, and each factor is a row:
 
 - **Base** comes from official statistics: a population count, a register of businesses or institutions, a licence count. The public sources by country, with how each is read, are in the set's [sources.md](/docs/market-research/sources.md).
 - **Spend** comes from an official survey of spending, an industry's reported sales divided by its buyers, or the competitors' price bands. A band stays a band: the size is then a range.
-- **Share** is the factor most often invented. It is taken from a measured figure (a survey, a competitor's reported users over the base) or it is an assumption, graded `estimate` and given as a range. A share with no source and no range is not multiplied in.
+- **Share** is the factor most often invented. It is taken from a measured figure (a survey, a competitor's reported users over the base) or it is an assumption, graded `estimate` and given as a range. A share with no source and no range is not multiplied in. Where nothing measured is found, a new entrant's share is taken at 1, 3 and 5 percent, working values marked as the assumption they are.
 
 ## The assumptions table
 

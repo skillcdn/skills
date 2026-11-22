@@ -43,6 +43,7 @@ The file a market survey leaves so that the same markets are measured again by t
 - **A source** is read again on its `cadence`: `weekly`, `monthly`, `quarterly`, `yearly` or `irregular`. A metric's `source` is a source id, or an address where the source is read once.
 - **A theme** is `big` (money already moves there) or `rising`. Its `gates` hold, per country code, the verdict on each of the four questions in the vocabulary of [evidence-grades.md](evidence-grades.md), the memo and the day it was judged. `doc` is the note or the review that says more.
 - **A metric** belongs to one theme and one country and is evidence for one gate. A figure for the whole world is a metric of the country whose gate it bears on, its note beginning `worldwide`: it is a proxy there. Its `id` is what a magazine's ledger and a report point to, so it is never reused for another definition.
+- **Two runs** may hold the file at once (a magazine's delivery, a deep dive's, a round): read it just before writing, and change only the lines of the theme and the metrics this run adds.
 - **An id** is lower-case words joined by hyphens, unique in its list, and never renamed.
 
 ## An observation

@@ -47,9 +47,13 @@ A risk is never left out because it is uncertain: `unknown` is a row. A table of
 
 A short list drawn from the table's fourth column, each principle naming the rows it answers, in the imperative and about the product: what users may bring, what is never passed on, what is shown before a sale, who signs off. The changed form of the item is written from this list.
 
+## Reading a statute
+
+Read the article in force on the day, on the country's official portal, and cite its address. Korea's portal (`law.go.kr`) gives a plain fetch only its frame: dump `https://www.law.go.kr/법령/<name>` headless to find its `lsiSeq`, then dump `/LSW/lsInfoP.do?lsiSeq=<n>` with time for its script to run (checked 2026-11; [headless.md](/docs/browser/headless.md) has the dump).
+
 ## Questions for a lawyer
 
-Six to ten, in the order of what the verdict rests on:
+Six to ten, in the order of what the verdict rests on; where more rows must become questions, rows that turn on the same facts share one, and the rows of routes the changed form does not use stay in the law note, said so:
 
 - Every row that is `disputed` or `unknown`, and every row whose basis is commentary alone, is a question.
 - Each names its row, states the facts of the item it turns on, and can be answered: "May we <do this> with <this material> for <these buyers> under <article>?", not "Is it legal?".

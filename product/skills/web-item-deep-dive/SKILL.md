@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a web search tool and a way to read a page in full (a fetch tool, a driven browser, or a shell with curl). Optional, a tool that starts agents side by side for the branches, and what the two skills it calls need (a browser for the ad library, the DART website). Any agent with the first two can run it.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: web
 skillcdn:
   include:
@@ -56,7 +56,7 @@ Each phase produces a named result in the item's folder. The reference a phase n
 
 ### Phase 1: Intake
 
-Produces **the item as given**: one line (what is sold, to whom, at what price), who pays, the kinds of material the product is made from (documents, data, images, people's work), the country and the date. Split the host's search allowance between the branches, or set a number a branch where the host states none, and say each branch's share before any search.
+Produces **the item as given**: one line (what is sold, to whom, at what price), who pays, the kinds of material the product is made from (documents, data, images, people's work), the country and the date. Split the host's search allowance between the branches, or, where the host states none, set fifteen a branch and twenty for the law, and say each branch's share before any search.
 
 Checkpoint: the line, who pays, the material, the country, the four branches with their budgets, and "OK, or change the line".
 
@@ -75,7 +75,7 @@ Produces **four notes**, `notes/<branch>.md`, by [branch-note.md](references/bra
 
 Produces the review's four **sections**, each from its note and checked against "Verdicts" before the next.
 
-1. **Competition.** For each Korean operator run [dart-company-figures](/product/skills/dart-company-figures/SKILL.md) and take its `figures.json` rows whose `check` is `matches` or `sums-up` into the table; `announced-only` is shown as announced and listed for the user to confirm. An operator of another country is read from its own filing where it is listed. A competitor whose ads are how it sells is read with [meta-ad-library-creative-research](/marketing/skills/meta-ad-library-creative-research/SKILL.md), at that skill's own stops, for how many ads it runs and since when. Two tables, consumers and businesses, and the closest competitor in depth.
+1. **Competition.** For each Korean operator run [dart-company-figures](/product/skills/dart-company-figures/SKILL.md), its `figures.json` in the item's folder, and take its `figures.json` rows whose `check` is `matches` or `sums-up` into the table; `announced-only` is shown as announced and listed for the user to confirm. An operator of another country is read from its own filing where it is listed. A competitor whose ads are how it sells is read with [meta-ad-library-creative-research](/marketing/skills/meta-ad-library-creative-research/SKILL.md), one run for all of them as [competitors.md](references/competitors.md) "Ads" says, at that skill's own stops (a go-ahead given here covers its shortlist), for how many ads each runs and since when. Two tables, consumers and businesses, and the closest competitor in depth.
 2. **Market.** The assumptions table, three sizes kept apart, the calendar. Figures are written by [facts.md](/docs/writing/facts.md).
 3. **Supply.** The routes table and the combination that reaches what a pilot needs. A route's legal standing is the law note's finding, by the row it points at; a route the law note did not cover goes back to the law branch first.
 4. **Law.** The head that says it is research, the risk table, the design principles, the questions for a lawyer.
@@ -87,14 +87,14 @@ Produces **`review.md`**, in the user's language and the shape of [review.exampl
 - **The item as given:** holds, or is stopped, reason by reason (a crowded field, a risk no design avoids, material that cannot be had), each naming its section.
 - **A changed form:** what changes in scope, in where the material comes from and in how it is sold, judged by the same four sections; or "none", with why. A form the risk table or the routes table stops is not proposed.
 - **Where to win and what to avoid**, from the competitors' observed gaps.
-- **A pilot:** who, when (from the calendar), where, and success criteria that can be measured (the cost to win a buyer at or under the first payment, repeat purchase, the rate of error reports), with a schedule.
+- **A pilot:** who, when (from the calendar), where, and success criteria that can be measured (the cost to win a buyer at or under the first payment, repeat purchase, the rate of error reports), with a schedule. A target the research cannot set is a marked blank and one of the things the user decides.
 - **For the user to decide**, then the sources and what was not verified.
 
-Checkpoint: both verdicts in a sentence each, the three findings that weigh most, what the user decides, what was not verified, and where the file is.
+Checkpoint: both verdicts in a sentence each, the three findings that weigh most, what the user decides, what was not verified, and where the file is. Phase 5 waits for the user's word.
 
 ### Phase 5: Deliver
 
-The item's folder holds `review.md` and `notes/`. Where the market folder has a `watch.json`, change that theme's line, or add one with the status `watch`, as watch-record.md "The file" defines it: `name` (the changed form), `ai_role`, `doc` (the review's path), `note` (one plain line), and a metric with its first observation for each figure worth measuring again. No status is moved and no id renamed; `log.md` gets one dated line. Say in one message what was made and that the review is internal: which of its numbers may appear in anything published is the user's to say.
+The item's folder holds `review.md` and `notes/`. Where the market folder has a `watch.json`, change that theme's line, or add one with the status `watch`, as watch-record.md "The file" defines it: `name` (the changed form, unless the theme holds another country's gates: then the name stays and the changed form opens `note`), `ai_role`, `doc` (the review's path), `note` (one plain line), and a metric with its first observation for each figure worth measuring again. No status is moved and no id renamed; `log.md` gets one dated line. Say in one message what was made and that the review is internal: which of its numbers may appear in anything published is the user's to say.
 
 ## Verdicts
 

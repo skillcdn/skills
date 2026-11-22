@@ -40,7 +40,7 @@ The App Store search and charts answer for any country code, Korea included.
 | Source | Counts | Gate | Where |
 |---|---|---|---|
 | Meta Ad Library | Active ads for a phrase, how many outlived 90 days, how many sellers | 03, graded `measured` | Read with `meta-ad-library-rising-products` in its watch mode, which keeps the terms, the sort and the locale in the snapshot |
-| Search interest: Google Trends, Naver DataLab for Korea | A relative index of searches over time | The fad rule; never a size | `trends.google.com`, `datalab.naver.com` (checked 2026-11) |
+| Search interest: Google Trends, Naver DataLab for Korea | A relative index of searches over time | The fad rule; never a size | `trends.google.com`, `datalab.naver.com`. Neither answers a plain fetch (Trends answered scripted requests with 429, DataLab asks for its form, checked 2026-11): read them in a driven browser, else the report says the fad rule was not read |
 
 ## When a round reads which
 

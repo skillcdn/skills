@@ -48,7 +48,7 @@ A price is read on the service's own price page, with the day it was read, as a 
 
 ## Ads
 
-Where a competitor sells through ads, `meta-ad-library-creative-research` reads its Page, run from the session at that skill's own stops. The competition section takes three things from its report: how many ads are active, the start date of the oldest one still running, and the hooks in a line.
+Where competitors sell through ads, one run of `meta-ad-library-creative-research` reads them all, from the session at that skill's own stops: its subject the competitors, its terms the category word and each competitor's domain and name as exact phrases, its folder inside the item's folder. The competition section takes three things from its report: how many ads are active, the start date of the oldest one still running, and the hooks in a line.
 
 ## The table
 
