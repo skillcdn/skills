@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js 22 or newer and network access to dart.fss.or.kr, or a browser the agent drives or a web-reading tool that opens the site's pages. Works in any agent that has one of them; a search engine's summary of a filing is not a substitute.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: dart
 skillcdn:
   include:
@@ -41,7 +41,7 @@ Links that start with `/` are files of the pack this skill is from: a copy of th
 
 | Input | Source |
 |---|---|
-| The company, or several | The request: a name, a website or a business registration number. A calling skill passes its list. |
+| The company, or several | The request: a name, a website or a business registration number. A calling skill passes its list; a company whose row of the same fiscal year another `figures.json` of the same market folder already holds is carried over from it, an observation saying so. |
 | What the company announced | Optional: a figure or a phrase in the request, or the address of the release or the article. With it the announcement is checked; without it the row carries the filing's figures alone. A request that asks for the check and names no announcement: the company's own release of the year's results, found on the homepage or the IR homepage the overview filed (following its redirect), then by a web search for the year's results with the company's name; an article that quotes the company is the address only where no release is found, and the row says so. |
 | More companies of the same kind | Only when the request asks for others beside the one named: candidates from a web search for the kind of company, each then looked up like any other and put in the same table. |
 | Everything else | Derived: the fiscal year (the latest one an audited filing covers, with the year before beside it), the basis (consolidated where the company files one, else separate), the folder (the one the user or the calling skill named, else `company-figures-<YYYYMMDD>/` in the working directory). |
