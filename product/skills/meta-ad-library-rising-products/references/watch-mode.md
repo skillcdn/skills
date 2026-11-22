@@ -7,19 +7,19 @@ Topics fixed earlier are counted again the same way, so that this run's numbers 
 - A topic is an `id` (lowercase words joined by hyphens, the same in every country and every run, because entries are matched by it), a name, and one search phrase per country, in that country's language as its sellers write it. Every snapshot keeps the phrases of all the countries with the topic (`terms`), so that the pair is never rebuilt from memory.
 - The topics come from the request or the calling skill's list; else from the latest watch snapshot of the same market and category, when the request is to count the same again; else from the entries of a sweep's snapshot the user points at, each taken over with its `key`, `query` and `search_type`.
 - A topic that has an earlier snapshot takes over that snapshot's `query`, `search_type`, `sort` and `locale` exactly, even where a better phrase is in sight. A better phrase is a new topic beside the old one, or replaces it on the user's word: its first count is a new basis and is compared with nothing.
-- A topic counted for the first time is searched as an exact phrase, and the first page of its first count is checked as [rising-signals.md](rising-signals.md) "Themes" says under "Check": two thirds on the topic, tightened once, else dropped and said so. For a second country the phrase is what that country's sellers write for the same thing, not a word-for-word translation, checked the same way. After its first run a phrase is not tightened again; strays become a flag.
+- A topic counted for the first time is searched as an exact phrase, and the first page of its first count is checked as [rising-signals.md](rising-signals.md) "Themes" says under "Check": two thirds on the topic, tightened once, else dropped and said so. A page off the topic because its sellers name the thing another way takes one other phrase in place of the tightening, as its one change. For a second country the phrase is what that country's sellers write for the same thing, not a word-for-word translation, checked the same way. After its first run a phrase is not tightened again; strays become a flag.
 
 ## One run per country
 
 Each country is a run of its own with its own 80 page loads, one country after the other and never side by side, in its own folder `rising-products-<category>-<market>-<YYYYMMDD>/`, with its own snapshot.
 
-- **Baseline**, four loads: the earlier snapshot's baseline query; in a first run, the broadest word of the category in that country's language whose count is under the library's ceiling.
+- **Baseline**, four loads: the earlier snapshot's baseline query; in a first run, the broadest word of the category in that country's language whose count is under the library's ceiling, in any order, or as an exact phrase where the word in any order reaches it; the snapshot keeps the search type, and the next run counts it the same way.
 - **Topics**, four loads each (`A`, `older(7)`, `older(30)`, `older(90)`, by "Counts"), which is nineteen topics a run at most. With more, count in the order given and write the rest to `deferred`. The dated counts print the count alone (`lines=0`); the page of `A` is kept for the check and the flags.
 - For each topic compute `new7`, `new30`, `life90`, and the class and the pace by "Classes". No profile is written, and `reported` is `true` for every topic counted.
 
 ## When the site slows the run down
 
-At a sign of being slowed down ([ad-library.md](/docs/meta-ad-library/ad-library.md) "Manners and limits"; the one a long run meets is a count with no results under it) the run stops there. The load that showed the sign and any after it give no number. The topics not yet counted go to the snapshot's `deferred`, and the next run counts them first. The other country's run does not start in the same sitting unless the user says so.
+At a sign of being slowed down ([ad-library.md](/docs/meta-ad-library/ad-library.md) "Manners and limits"; the one a long run meets is a count with no results under it) the run stops there. The load that showed the sign and any after it give no number. The topics not yet counted go to the snapshot's `deferred`, and the next run counts them first; a topic whose `A` was counted before the sign keeps it, its dated counts are null, and it is in `deferred` for them. The page-dump script stops at the sign by itself ([page-dump.md](/docs/meta-ad-library/page-dump.md)). The other country's run does not start in the same sitting unless the user says so.
 
 ## The comparison
 

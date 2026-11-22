@@ -202,9 +202,12 @@ if __name__ == "__main__":
         with open(out, "a", encoding="utf-8") as f:
             f.write(json.dumps(result, ensure_ascii=False) + "\n")
         if not result["ok"]:
-            print("NOT READ (no result data in the page):", spec)
-            continue
+            print("NOT READ (no result data in the page):", spec, "| the run stops here")
+            break
         print(f"count={result['count']} more={result['more']} ads={len(result['ads'])} | {spec}")
+        if result["count"] and not result["ads"]:  # the sign of being slowed down: no spec after it is loaded
+            print("SLOWED (a count with no results under it): this count is no number, the run stops here")
+            break
         shown = re.search(r"(?:^|&)lines=(\d+)", spec)  # the file keeps every record; this only shortens what is printed
         for a in result["ads"][:int(shown.group(1)) if shown else None]:
             text = " ".join((a["title"] or a["body"] or "").split())[:48]
@@ -214,4 +217,4 @@ if __name__ == "__main__":
         print("page loads so far:", sum(1 for _ in f))
 ```
 
-The script loads a page up to three times, the second and third with time for the check. `NOT READ` after that is a stop sign, not a prompt to retry harder: see "Manners and limits" in [ad-library.md](ad-library.md). When only the count is wanted, as in counting by age, it is on the `count=` line, and `lines=0` in the spec keeps the rest out of the context. Take the script's whole output, and have a script of the agent's own that prints ad text write UTF-8 (headless.md "Long runs").
+The script loads a page up to three times, the second and third with time for the check. `NOT READ` after that, and `SLOWED`, are stop signs, not prompts to retry harder: the script loads none of the specs after either, and the run goes on as "Manners and limits" in [ad-library.md](ad-library.md) says. When only the count is wanted, as in counting by age, it is on the `count=` line, and `lines=0` in the spec keeps the rest out of the context. Take the script's whole output, and have a script of the agent's own that prints ad text write UTF-8 (headless.md "Long runs").
