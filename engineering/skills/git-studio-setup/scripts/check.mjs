@@ -1,13 +1,14 @@
 // The studio's check, the same before a commit and in continuous integration. It reads only: the configuration,
 // every unit's record against its state, the ledgers, what the units of one kind name of another, large-file
-// tracking, and the links and sizes of the Markdown.
+// tracking, and the links, the sizes and the routes of the Markdown. Its last lines say where the studio stands:
+// each kind's open units by state, the ones that wait for a person, the times that come next.
 // It needs no binary output: a large file may be a pointer. Usage: node scripts/check.mjs   (exit 1 on an error)
 // A kind's own rules live in scripts/check-<unit>.mjs, where it exists: export default (items, { error, warn }) => {}.
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { SLUG, config, dayOf, items, reached, readLedger, recordName, refsOf, root, sharedKeys, statesOf, units } from "./studio.mjs";
+import { SLUG, config, dayOf, items, reached, readLedger, recordName, refsOf, root, sharedKeys, standing, statesOf, units } from "./studio.mjs";
 
 const errors = [], warnings = [];
 const error = (where, what) => errors.push(`${where}: ${what}`);
@@ -27,6 +28,7 @@ for (const u of units) {
   for (const s of u.person) if (!u.states.includes(s)) error("studio.json", `${name}: person state "${s}" is not one of the states`);
   if (!u.states.includes(u.filed)) error("studio.json", `${name}: filed state "${u.filed}" is not one of the states`);
   if (!existsSync(join(root, u.folder, "_template", recordName(u)))) error("studio.json", `${u.folder}/_template/${recordName(u)} is missing`);
+  for (const path of standing(u)) if (!existsSync(join(root, path))) error("studio.json", `${name}: the standing file ${path} is missing`);
   byUnit.set(u, items(u));
 }
 
@@ -100,27 +102,36 @@ for (const file of markdown) {
 }
 
 // The know-how stays cheap to read: what every session reads is small, a job's skill is small, a page is one read,
-// every page of docs/ is linked from somewhere, and the agreement routes to every skill of the studio.
-// Until the agreement and the documents' map are written, their two checks are skipped with a warning each.
-const limits = { "AGENTS.md": 12000, "SKILLCDN.md": 3000, "docs/policy.md": 8000, skill: 8000, page: 16000, ...config.limits };
+// every page of docs/ is linked from somewhere, and the start page routes to every skill and every guide page.
+// The bounds are bytes: a page costs a reader its bytes, whatever language it is written in.
+// Until the agreement, the start page and the documents' map are written, their checks are skipped with a warning each.
+const limits = { "AGENTS.md": 12288, "docs/start.md": 4096, "SKILLCDN.md": 3072, "docs/policy.md": 8192, skill: 8192, page: 16384, ...config.limits };
 const pages = markdown.map(rel);
 const read = (path) => readFileSync(join(root, path), "utf8");
 const agreement = existsSync(join(root, "AGENTS.md")) ? read("AGENTS.md") : null;
 const map = existsSync(join(root, "docs", "README.md"));
-if (agreement === null) warn("AGENTS.md", "not written yet: its routes to the skills are not checked");
+// The page a session reads first is the one the manifest names (start: docs/start.md).
+const manifestHead = existsSync(join(root, "SKILLCDN.md")) ? read("SKILLCDN.md").split(/^---\s*$/m)[1] ?? "" : "";
+const startPath = /^start:\s*["']?([^"'\s]+)/m.exec(manifestHead)?.[1]?.replace(/^\//, "") ?? null;
+const start = startPath && existsSync(join(root, startPath)) ? read(startPath) : null;
+if (startPath && start === null) error("SKILLCDN.md", `start names ${startPath}, which is not there`);
+if (!startPath) warn("SKILLCDN.md", "names no start page (start: docs/start.md): the routes to the skills and the guides are not checked");
+if (agreement === null) warn("AGENTS.md", "not written yet: its line that sends a session to the start page is not checked");
+else if (startPath && !agreement.includes(startPath)) error("AGENTS.md", `does not send a session to ${startPath}`);
 if (!map) warn("docs/README.md", "not written yet: orphan pages are not checked");
+if (startPath) limits[startPath] ??= limits["docs/start.md"];
 for (const path of pages) {
   const isSkill = /^skills\/[^/]+\/SKILL\.md$/.test(path);
+  if (start !== null && (isSkill || /^docs\/guides\/[^/]+\.md$/.test(path)) && !start.includes(isSkill ? dirname(path) + "/" : path.slice("docs/".length))) error(path, `${startPath} does not route to it`);
   if (!isSkill) continue;
   // A page a skill includes (skillcdn.include in its front-matter) is linked.
   const head = read(path).split(/^---\s*$/m)[1] ?? "";
   for (const [, target] of head.matchAll(/^\s*-\s+(\S+\.md)\s*$/gm)) linked.add(target.startsWith("/") ? target.slice(1) : `${dirname(path)}/${target}`);
-  if (agreement !== null && !agreement.includes(dirname(path) + "/")) error(path, "AGENTS.md does not route to it");
 }
 for (const path of pages) {
   const limit = limits[path] ?? (/^skills\/[^/]+\/SKILL\.md$/.test(path) ? limits.skill : path.startsWith("docs/") ? limits.page : 0);
-  const size = read(path).length;
-  if (limit && size > limit) error(path, `${size} characters, over its ${limit}: move what one phase reads to the page of that step`);
+  const size = Buffer.byteLength(read(path));
+  if (limit && size > limit) error(path, `${size} bytes, over its ${limit}: move what one phase reads to the page of that step`);
   if (map && path.startsWith("docs/") && path !== "docs/README.md" && !linked.has(path)) error(path, "no page links it: give it a row in docs/README.md, or link it from the phase that reads it");
 }
 
@@ -134,4 +145,15 @@ for (const w of warnings) console.log(`warning  ${w}`);
 for (const e of errors) console.log(`error    ${e}`);
 const counts = [...byUnit].map(([u, all]) => `${all.length} ${u.unit}(s)`).join(", ") || "no units";
 console.log(`${counts}, ${errors.length} error(s), ${warnings.length} warning(s)`);
+
+// Where the studio stands, for the session that starts with this check; nobody keeps a page of it.
+for (const [u, all] of byUnit) {
+  const open = all.filter((i) => i.data && !i.filed && u.states.includes(i.data.status));
+  const byState = u.states.map((s) => [s, open.filter((i) => i.data.status === s).length]).filter(([, n]) => n);
+  console.log(`${u.folder}: ${byState.map(([s, n]) => `${n} ${s}`).join(", ") || "nothing open"}`);
+  const waits = open.filter((i) => u.person.includes(u.states[u.states.indexOf(i.data.status) + 1]));
+  if (waits.length) console.log(`  waits for a person: ${waits.map((i) => `${i.slug} (${u.states[u.states.indexOf(i.data.status) + 1]})`).join(", ")}`);
+  const timed = open.map((i) => [i.data[`${i.data.status}_for`], i]).filter(([t]) => t).sort((a, b) => Date.parse(a[0]) - Date.parse(b[0]));
+  if (timed.length) console.log(`  next: ${timed.slice(0, 5).map(([t, i]) => `${i.slug} ${i.data.status} ${t}`).join("; ")}${timed.length > 5 ? `; and ${timed.length - 5} more` : ""}`);
+}
 process.exit(errors.length ? 1 : 0);

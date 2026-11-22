@@ -82,3 +82,5 @@ docs/     how it is built and why
 ## Keeping it true
 
 The agreement's documentation protocol names the README for what it holds: a new command people run, a change to the quick start, a new requirement, a new screen worth showing. The quick start is tried from a clean clone before the README says it works; a step not tried is left out of the README until it is.
+
+A repository that is itself a pack in the SkillCDN Format (a `SKILLCDN.md` at its root, as a studio has) lists its skills in a table nobody keeps by hand: `npx @skillcdn/cli@latest catalog --write README.md` writes it between `<!-- skillcdn:catalog -->` and `<!-- /skillcdn:catalog -->`, each skill's name linked to its `SKILL.md` with the first sentence of its description, and `npx @skillcdn/cli@latest catalog --check README.md` in the check fails when the table and the pack have parted ([writing a pack](skill://gh/skillcdn/skillcdn/docs/guide/write-a-repository.md), `docs/guide/write-a-repository.md` of `github.com/skillcdn/skillcdn`; SkillCDN 0.6, checked 2026-11).

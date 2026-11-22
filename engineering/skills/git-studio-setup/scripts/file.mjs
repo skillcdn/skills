@@ -31,3 +31,4 @@ for (const u of units) {
   if (!dry) rows.push(...syncLedger(u).map((slug) => `${u.folder}/${slug}`));
 }
 console.log(`${moved} filed; ${rows.length} ledger row(s) brought up to the records${rows.length ? `: ${rows.join(", ")}` : ""}`);
+if (moved && !dry) console.log("the moves are staged: commit them with the records and the ledgers, in one commit");

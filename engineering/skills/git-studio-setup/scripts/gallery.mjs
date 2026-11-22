@@ -1,12 +1,12 @@
-// The review screen: writes gallery/index.html (a section per kind of unit: what waits for a person first, then the
-// open ones by state, then the filed ones by day) and a page per unit (its previews, the fields studio.json's `shows`
+// The review screen: writes gallery/index.html (a section per kind of unit, with a link to each standing file of the
+// kind: what waits for a person first, then the open ones by state, then the filed ones by day) and a page per unit (its previews, the fields studio.json's `shows`
 // names, the units of another kind it names and those that name it, its Markdown records, its record whole).
 // Generated, never committed. Usage: node scripts/gallery.mjs, then node scripts/serve.mjs.
 // Previews are large files: git lfs pull first.
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { allItems, dayOf, previews, recordName, refsOf, root, units } from "./studio.mjs";
+import { allItems, dayOf, previews, recordName, refsOf, root, standing, units } from "./studio.mjs";
 
 // The page's own words, to be put in the team's language.
 const WORDS = { waiting: "Waiting for a person", filed: "Filed", search: "Search", record: "Record", back: "All", namedBy: "Named by" };
@@ -45,6 +45,7 @@ export function buildGallery() {
     const days = [...new Set(mine.filter((i) => i.filed).map(dayFolder))].sort().reverse();
     return [
       `<h1 id="${esc(u.folder)}">${esc(u.folder)} (${mine.length})</h1>`,
+      standing(u).length ? `<p>${standing(u).map((p) => `<a href="../${esc(p)}">${esc(p)}</a>`).join(" · ")}</p>` : "",
       section(WORDS.waiting, open.filter(waits)),
       ...[...u.states, "archived"].map((s) => section(s, open.filter((i) => i.data.status === s && !waits(i)))),
       ...days.map((day) => section(`${WORDS.filed} ${day}`, mine.filter((i) => i.filed && dayFolder(i) === day))),

@@ -11,6 +11,8 @@ export const config = readJson(join(root, "studio.json"));
 // The kinds of unit the studio holds, each with its folder, its states and its ledger. Most studios hold one.
 export const units = Array.isArray(config.units) ? config.units : [];
 export const recordName = (u) => `${u.unit}.json`;
+// The files every unit of a kind works on, outside any unit: the watch list a round reads and adds to.
+export const standing = (u) => [u.standing ?? []].flat();
 export const SLUG = /^\d{4}-\d{2}-\d{2}-[a-z0-9]+(-[a-z0-9]+)*$/;
 export const statesOf = (u) => [...u.states, "archived"];
 // True from the state on, in the order studio.json gives; an archived unit has reached nothing.

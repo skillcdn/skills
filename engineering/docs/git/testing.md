@@ -29,7 +29,7 @@ The repository's framework decides first: when a scaffold or the framework's own
 | Python | pytest | Ruff (`ruff check`, `ruff format --check`) | Pyright or mypy | Playwright for Python |
 | Go | `go test ./...` | `gofmt -l` (empty output), `go vet ./...` | The compiler | A test binary against the running service |
 | Rust | `cargo test` | `cargo fmt --check`, `cargo clippy -- -D warnings` | The compiler | A test binary against the running service |
-| Content only (documents, data, skills), or no code yet | A script that validates what the repository holds: every local link of the Markdown resolves, front-matter parses, data files match their schema; written in the language of the machine's runtime with no dependency (`node scripts/check.mjs`) | The script | None | None |
+| Content only (documents, data, skills), or no code yet | A script that validates what the repository holds: every local link of the Markdown resolves, front-matter parses, data files match their schema; written in the language of the machine's runtime with no dependency (`node scripts/check.mjs`). A pack in the SkillCDN Format (a `SKILLCDN.md` at its root) also runs the indexer's own reading, `npx @skillcdn/cli@latest check`, always with `@latest`: a bare `npx` runs the copy its cache holds, which may read by older rules (SkillCDN 0.6, checked 2026-11) | The script | None | None |
 
 A stack the table lacks gets the same shape: one `check`, unit tests next to the code, and the agreement's command table saying which command does what.
 

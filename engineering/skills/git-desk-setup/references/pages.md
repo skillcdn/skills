@@ -1,6 +1,6 @@
 # The desk's pages
 
-How the shell of a desk's pages is built, served and checked, who stops its server and how the pages are started again. A run of the desk setup reads this page only when the request asked for the pages. What a page shows and what it is built from are not this page's: they are the console's own skill keeping-a-desk and the package's README, which the shell's own page names. The commands are the console's 0.5 line (checked 2026-11); `console help desk` and `console help serve` are the reference at run time.
+How the shell of a desk's pages is built, served and checked, who stops its server and how the pages are started again. A run of the desk setup reads this page only when the request asked for the pages. What a page shows and what it is built from are not this page's: they are the console's own skill keeping-a-desk and the package's README, which the shell's own page names. The commands are the console's 0.6 line (checked 2026-11); `console help desk` and `console help serve` are the reference at run time.
 
 ## What the shell is
 
