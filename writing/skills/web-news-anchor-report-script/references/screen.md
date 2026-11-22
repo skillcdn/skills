@@ -40,10 +40,10 @@ A report can be made from the first three alone; the brief is researched without
 
 ## What the video stage decides
 
-The cut sheet is taken over by whoever makes the video, a person or a skill of the pack that drives a video tool. This skill leaves to that stage, and names in its delivery:
+The cut sheet is the deliverable for whoever makes the video: a person, or an agent with a video tool. No skill of this pack takes a cut sheet as its input: `higgsfield-shorts-ad` starts from a reference video and a product, `higgsfield-shorts-drama` from a premise or a series bible, and each writes its own lines. What the pack's Higgsfield pages hold serves a report made with those tools, as two of the points below say. This skill leaves to that stage, and names in its delivery:
 
 - **The voice of the narrated stretch.** Most of an anchor report is the anchor's voice over pictures. How that voice is made, and that it matches the anchor on camera, is that stage's first decision and its first cost.
-- **How a line is said.** The script is delivered as it is written. A line respelled for a generated voice is that stage's, by its own tool's page; for the pack's Higgsfield skills that is [pronunciation.md](/docs/higgsfield/pronunciation.md).
+- **How a line is said.** The script is delivered as it is written. A line respelled for a generated voice is that stage's, by its own tool's page; for a video model reached through Higgsfield that is [pronunciation.md](/docs/higgsfield/pronunciation.md).
 - **The length of a generated clip**, which that stage reads from its tool. A lead longer than one clip is cut at a sentence end, and the cut sheet lists the lead's sentences one by one so that it can be.
-- **Text over the picture.** The pack's video skills draw every title, super, figure and label in code over the footage and ask no video model for text ([`docs/higgsfield/`](/docs/higgsfield/README.md)); the cut sheet's text column is written to be drawn that way.
+- **Text over the picture.** Every title, super, figure and label is drawn in code over the footage, and no video model is asked for text, as the pack's video skills do ([`docs/higgsfield/`](/docs/higgsfield/README.md)); the cut sheet's text column is written to be drawn that way.
 - **The label on what is generated.** A generated anchor and generated scenes are delivered as generated, and the platform's label for AI-made content is the user's to set.

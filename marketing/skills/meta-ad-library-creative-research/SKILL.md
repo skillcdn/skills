@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a real browser engine to load facebook.com/ads/library, either a shell with a Chromium-family browser on the same machine or a browser the agent can drive (a built-in browser, a browser extension, a Playwright or Chrome DevTools server). Video frames need ffmpeg or the driven browser. Plain fetch and search tools cannot load the site. Any agent with one of the two can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.7"
+  version: "1.8"
   tools: meta-ad-library
 skillcdn:
   include:
@@ -18,7 +18,7 @@ skillcdn:
 ---
 # Ad creative research in the Meta Ad Library
 
-A keyword, a product or a competitor goes in; a research report the user can act on comes out: what is advertised for that subject on Facebook and Instagram now, a shortlist of recent creatives that show proof of working, each linked to its library entry and broken down into hook, angle, structure and offer, the patterns across them, and directions for the user's own ads. The library is read as the public website, at a person's pace, because its API returns commercial ads only where they were delivered in the EU or the UK. Nothing is asked beyond the subject, nothing costs money, and no one's creative is copied.
+A keyword, a product or a competitor goes in; a research report the user can act on comes out: what is advertised for that subject on Facebook and Instagram now, a shortlist of recent creatives that show proof of working, each linked to its library entry and broken down into hook, angle, structure and offer, the patterns across them, and directions for the user's own ads. The library is read as the public website, at a person's pace, because its API returns commercial ads only where they were delivered in the EU or the UK. Nothing is asked beyond the subject, and nothing costs money.
 
 ## How the user is involved
 
@@ -39,7 +39,7 @@ Capabilities, not product names: the tools that provide them differ by assistant
 
 Optional: a speech-to-text tool for the audio, a web-reading tool for the user's product page. Nothing here costs money; a paid service (a scraping service, a paid analysis tool) is used only when the user asks for it and agrees to its cost.
 
-[creative-analysis.md](references/creative-analysis.md), the method, comes with this skill. How the library is reached and read is in the pages the skills of this family share, under [`docs/meta-ad-library/`](/docs/meta-ad-library/README.md). [ad-library.md](/docs/meta-ad-library/ad-library.md), read before phase 1, which is before the terms are chosen and the first page is loaded, is included too and arrives with this skill wherever SkillCDN serves it. [record.md](/docs/meta-ad-library/record.md) and the page of the route the agent has, [page-dump.md](/docs/meta-ad-library/page-dump.md) or [driven-browser.md](/docs/meta-ad-library/driven-browser.md), are read when phase 2 comes, with `read_repo_file` at those paths through the repository connection. A mount of this skill alone or of its area, a host that takes skills through the skills extension and has no `read_repo_file`, and the area's plugin cannot read those pages there, and a copy of this directory has none of the pages: say so in the first message and fetch what is missing before phase 2 from `docs/meta-ad-library/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`, served at `skillcdn.ai/gh/skillcdn/skills`); without them the record's fields, the script and the readers are unknown. The pack's writing set, [`docs/writing/`](/docs/writing/README.md), is read before phase 5 through the repository connection; a mount of this skill alone or of its area, the area's plugin and a copy of this directory lack it: fetch it from `docs/writing/` of the same repository.
+[creative-analysis.md](references/creative-analysis.md), the method up to the shortlist, and [ad-library.md](/docs/meta-ad-library/ad-library.md), how the library is reached and read, arrive with this skill, so both are read before the terms are chosen and the first page is loaded. Every other page is read when the phase that names it begins. Links that start with `/` are files of the pack this skill is from: a copy of this directory, a plugin or a mount below the root that lacks one reads it through the pack's connection (`https://skillcdn.ai/gh/skillcdn/skills`) or at `github.com/skillcdn/skills`.
 
 ## Inputs
 
@@ -58,7 +58,7 @@ Produces the **research brief**: the subject in a line, the market as a country 
 
 ### Phase 2: Access
 
-Produces the **route**. Take the first route of [ad-library.md](/docs/meta-ad-library/ad-library.md) "Routes" that the agent has and prove it by running the first view of the search plan: a count and at least one Library ID. With a shell, that means saving the script of [page-dump.md](/docs/meta-ad-library/page-dump.md) "The script" and running it, not checking the machine first; with a driven browser, navigating and running the reader of [driven-browser.md](/docs/meta-ad-library/driven-browser.md) "The embedded results". Either yields the record of [record.md](/docs/meta-ad-library/record.md). When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every "days running" depends on it.
+Produces the **route**. Read first: [record.md](/docs/meta-ad-library/record.md) and the page of the route the agent has, [page-dump.md](/docs/meta-ad-library/page-dump.md) or [driven-browser.md](/docs/meta-ad-library/driven-browser.md). Take the first route of ad-library.md "Routes" that the agent has and prove it by running the first view of the search plan: a count and at least one Library ID. With a shell, that means saving the script of page-dump.md "The script" and running it, not checking the machine first; with a driven browser, navigating and running the reader of driven-browser.md "The embedded results". Either yields the record of record.md. When no route works, stop as "When no route works" says. Take today's date from the system, not from memory: every "days running" depends on it.
 
 ### Phase 3: Collect
 
@@ -70,19 +70,19 @@ Produces the **shortlist**. Give each entry its tier by "Proof", choose by "Shor
 
 ### Phase 5: Deep read
 
-Produces one **breakdown** per shortlisted creative, by "Deep read": the copy, the frames of each video (a hook sheet and an overview sheet, or screenshots, or the poster alone), the image, the versions. Media addresses expire within days ([record.md](/docs/meta-ad-library/record.md) "Media addresses"), so media is read in the run that collected it. Before the first breakdown, read [readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md) and [facts.md](/docs/writing/facts.md) of the pack's writing set: every text of the report is written by them, in the forms "Report" gives.
+Produces one **breakdown** per shortlisted creative. Read first: [deep-read.md](references/deep-read.md), the method from here to the delivery, and [readers.md](/docs/writing/readers.md), [sentences.md](/docs/writing/sentences.md) and [facts.md](/docs/writing/facts.md) of the pack's writing set, by which every text of the report is written, in the forms deep-read.md "Report" gives. By "Deep read" there: the copy, the frames of each video (a hook sheet and an overview sheet, or screenshots, or the poster alone), the image, the versions. Media addresses expire within days ([record.md](/docs/meta-ad-library/record.md) "Media addresses"), so media is read in the run that collected it.
 
 ### Phase 6: Patterns
 
-Produces the **patterns**: counts across the shortlist and the pool, then the trend, the crowded and the open.
+Produces the **patterns**, by deep-read.md "Patterns": counts across the shortlist and the pool, then the trend, the crowded and the open.
 
 ### Phase 7: Recommendations
 
-Produces three **directions** for the user's subject, written new, each tied to the library ads its mechanism comes from.
+Produces three **directions** for the user's subject, by deep-read.md "Recommendations": written new, each tied to the library ads its mechanism comes from.
 
 ### Phase 8: Deliver
 
-The run's folder by "Report": `report.md` in the user's language, `ads.json`, and the frames as working files. Remove the browser profile the page dump left behind, with the script's `clean` ([page-dump.md](/docs/meta-ad-library/page-dump.md) "The script"). One message: where the files are, the three or four findings that matter most, what was not read and why. When the user wants one of the references made into an ad, say that a skill that produces ads takes it from here; in this pack `higgsfield-shorts-ad` starts from a reference video's address and a product link.
+The run's folder by deep-read.md "Report": `report.md` in the user's language, `ads.json`, and the frames as working files. Remove the browser profile the page dump left behind, with the script's `clean` ([page-dump.md](/docs/meta-ad-library/page-dump.md) "The script"). One message: where the files are, the three or four findings that matter most, what was not read and why. When the user wants one of the references made into an ad, say that a skill that produces ads takes it from here; in this pack [higgsfield-shorts-ad](/marketing/skills/higgsfield-shorts-ad/SKILL.md) starts from a reference video's address and a product link.
 
 ## Hard rules
 

@@ -7,11 +7,13 @@
 //   <name>.pdf    one page per slide at the canvas size
 //   pages/NN.png  every slide at the canvas size
 //   sheet.png     every slide small on one image, numbered
-//   report.json   the slide count, the fonts that loaded, the faces that rendered the text, the findings, the notes
+//   report.json   the slide count, the PDF's size, the fonts that loaded, the faces that rendered the text, the
+//                 findings, the notes
 // Reads <script type="application/json" id="deck-meta"> in the deck: canvas ([width, height], default
 // [1920, 1080]), banned (phrases that must not appear), style (the house style, in the keys the deck and
 // minutes skills use: none means the usual set; usual: true adds forbidden to it; else forbidden alone;
-// no_bracket_heads), external (false turns the house-style check off; banned is always checked).
+// no_bracket_heads), external (false turns the house-style check off; banned is always checked), pdf_max_mb (the
+// megabytes the PDF must stay under; none means no limit).
 // Findings, each with its slide number:
 //   outside  an element reaches past the slide (an ancestor with data-bleed is meant to)
 //   cut      text longer than its box (an ancestor with data-clip is meant to cut)
@@ -21,11 +23,13 @@
 //   style    a character or a bracketed head the house style bans
 //   banned   a phrase from the deck's banned list
 //   unstable a slide whose image kept changing from one shot to the next
+//   count    an element with data-count="N" that does not hold N element children (dots, unit marks, bars)
+//   heavy    the PDF is larger than the deck's pdf_max_mb (a finding of the deck, printed without a slide)
 // Notes, which are no findings: fallback, a run of text partly rendered in a face its own stack does not name (a
 // script the stack's faces lack fell to a system face), as the browser itself reports the faces it used.
 // Exit code 0 with no finding, 1 with findings (the files are written either way), 2 when it cannot run.
 import { createRequire } from "node:module";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { basename, dirname, extname, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -134,6 +138,10 @@ const MEASURE = () => {
       const last = lines[lines.length - 1].text.trim();
       if (last && last.split(/\s+/).length === 1) findings.push({ slide: i + 1, kind: "lone", what: `${label(el)}, last line "${last}"` });
     });
+    // A drawing of counted units says its count, and holds that many element children.
+    slide.querySelectorAll("[data-count]").forEach((el) => {
+      if (el.children.length !== Number(el.dataset.count)) findings.push({ slide: i + 1, kind: "count", what: `${label(el)} holds ${el.children.length} units and declares ${el.dataset.count}` });
+    });
     return { text: slide.innerText, pattern: slide.dataset.pattern || "" };
   });
   const fonts = [...new Set([...document.fonts].filter((f) => f.status === "loaded").map((f) => f.family.replace(/["']/g, "")))];
@@ -233,7 +241,12 @@ slides.forEach((slide, i) => {
 });
 const { faces, mixed } = await facesUsed(page);
 
-await page.pdf({ path: join(outDir, `${name}.pdf`), width: `${width}px`, height: `${height}px`, printBackground: true, preferCSSPageSize: true });
+const pdfPath = join(outDir, `${name}.pdf`);
+await page.pdf({ path: pdfPath, width: `${width}px`, height: `${height}px`, printBackground: true, preferCSSPageSize: true });
+const pdfBytes = statSync(pdfPath).size;
+const megabytes = (bytes) => (bytes / 1048576).toFixed(1);
+const pdfSize = pdfBytes < 1048576 ? `${Math.ceil(pdfBytes / 1024)} KB` : `${megabytes(pdfBytes)} MB`;
+if (Number(meta.pdf_max_mb) > 0 && pdfBytes > Number(meta.pdf_max_mb) * 1048576) findings.push({ slide: 0, kind: "heavy", what: `the PDF is ${megabytes(pdfBytes)} MB, over the deck's ${meta.pdf_max_mb} MB` });
 // Every slide is shot until two shots in a row are the same image: a first shot of a slide far down a long page
 // can come out part painted, and the next one whole.
 const painted = () => page.evaluate(() => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done))));
@@ -268,11 +281,11 @@ await sheet.screenshot({ path: join(outDir, "sheet.png"), fullPage: true });
 await browser.close();
 rmSync(sheetHtml);
 
-writeFileSync(join(outDir, "report.json"), JSON.stringify({ slides: slides.length, canvas: [width, height], fonts, faces, house_style: style.label, findings, notes: mixed }, null, 2), "utf8");
-console.log(`${slides.length} slides at ${width}x${height}; fonts loaded: ${fonts.join(", ") || "none (system fallback)"}; house style: ${style.label}`);
+writeFileSync(join(outDir, "report.json"), JSON.stringify({ slides: slides.length, canvas: [width, height], pdf_bytes: pdfBytes, fonts, faces, house_style: style.label, findings, notes: mixed }, null, 2), "utf8");
+console.log(`${slides.length} slides at ${width}x${height}; PDF ${pdfSize}; fonts loaded: ${fonts.join(", ") || "none (system fallback)"}; house style: ${style.label}`);
 if (faces) console.log(`faces that rendered the text: ${faces.map((f) => `${f.family} (${f.glyphs} glyphs)`).join(", ") || "none"}`);
-console.log(`${htmlPath}\n${join(outDir, `${name}.pdf`)}\n${join(outDir, "sheet.png")}\n${pagesDir}`);
-for (const f of findings) console.log(`  slide ${f.slide} ${f.kind}: ${f.what}`);
+console.log(`${htmlPath}\n${pdfPath}\n${join(outDir, "sheet.png")}\n${pagesDir}`);
+for (const f of findings) console.log(`  ${f.slide ? `slide ${f.slide}` : "deck"} ${f.kind}: ${f.what}`);
 for (const m of mixed.slice(0, 12)) console.log(`  slide ${m.slide} note, fallback: ${m.what}`);
 if (mixed.length > 12) console.log(`  and ${mixed.length - 12} more notes in report.json`);
 console.log(`${findings.length} findings${mixed.length ? `, ${mixed.length} notes` : ""}`);

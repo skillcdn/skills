@@ -1,11 +1,11 @@
 ---
 name: html-product-deck
-description: "Makes a product deck that sells a product or one of its features to buyers, as one HTML file and a PDF, every slide one message in a scene composed for it (a real screen, a scene drawn in the product's shapes, a chat, a customer's day) under a title that hooks in the buyer's words. Use when a user says \"make a product deck\", \"a product introduction for our customers\", \"a sales deck that hooks\", \"a brochure deck for our service\" or \"introduce this feature to customers as a deck\". A business plan, an investor plan, a kickoff or a report from notes is html-deck-from-outline; four looks for the cover come from html-design-variations. Reads what the product does from its own pages and documents, gathers its screens and brand tokens, storyboards one message a slide, writes each slide by hand, renders with a Chromium-family browser, checks the layout, the house style and the deck's banned phrases, and looks at every slide before delivery. Nothing is spent."
+description: "Makes a product deck that sells a product or one of its features to buyers, as one HTML file and a PDF, every slide one message in a scene composed for it (a real screen, a scene drawn in the product's shapes, a chat, a customer's day) under a title that hooks in the buyer's words. Use when a user says \"make a product deck\", \"a product introduction for our customers\", \"a sales deck that hooks\", \"a brochure deck for our service\" or \"introduce this feature to customers as a deck\". A business plan, an investor plan, a kickoff or a report from notes is html-deck-from-outline, a market magazine issue is html-signal-magazine, and four looks for the cover come from html-design-variations. Reads what the product does from its own pages and documents, gathers its screens and brand tokens, storyboards one message a slide, writes each slide by hand, renders with a Chromium-family browser, checks the layout, the house style and the banned phrases, and looks at every slide before delivery. Nothing is spent."
 license: MIT
 compatibility: Needs a shell with Node.js, a Chromium-family browser (an installed Chrome or Edge, or Playwright's), a way to read the product's pages and documents, and a way to look at an image. Without the browser or the image reader the skill stops before the first message and says what to add.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: browser
 skillcdn:
   include:
@@ -13,7 +13,7 @@ skillcdn:
   translations:
     ko:
       title: 제품을 파는 소개 덱을 HTML과 PDF로
-      description: 제품이나 그 기능 하나를 구매자에게 파는 소개 덱을 HTML 파일 하나와 PDF로 만듭니다. 장마다 전할 말 하나를 그 장을 위해 새로 짠 장면(제품의 실제 화면, 제품 모양을 본떠 그린 장면, 메신저 대화, 고객의 하루)에 담고, 제목은 구매자의 말로 후킹합니다. "제품 소개서 만들어 줘", "고객에게 보여 줄 제품 소개 덱", "후킹되는 세일즈 덱", "서비스 브로슈어 PPT", "이 기능을 고객에게 소개하는 덱"이라고 할 때 쓰세요. 사업 기획안, 투자용 기획안, 착수회의 발표, 보고서는 html-deck-from-outline의 몫이고, 표지의 네 가지 룩은 html-design-variations가 맡습니다. 제품이 하는 일은 제품의 페이지와 문서에서 읽고, 화면과 브랜드 토큰을 모으고, 장마다 한 문장으로 스토리보드를 짠 뒤, 장을 손으로 쓰고 크로미움 계열 브라우저로 렌더해 배치와 문안 규칙과 금지 문구를 검사하고, 모든 장을 직접 본 뒤 전달합니다. 비용은 들지 않습니다.
+      description: 제품이나 그 기능 하나를 구매자에게 파는 소개 덱을 HTML 파일 하나와 PDF로 만듭니다. 장마다 전할 말 하나를 그 장을 위해 새로 짠 장면(제품의 실제 화면, 제품 모양을 본떠 그린 장면, 메신저 대화, 고객의 하루)에 담고, 제목은 구매자의 말로 후킹합니다. "제품 소개서 만들어 줘", "고객에게 보여 줄 제품 소개 덱", "후킹되는 세일즈 덱", "서비스 브로슈어 PPT", "이 기능을 고객에게 소개하는 덱"이라고 할 때 쓰세요. 사업 기획안, 투자용 기획안, 착수회의 발표, 보고서는 html-deck-from-outline의 몫이고, 시장 매거진 한 호는 html-signal-magazine이, 표지의 네 가지 룩은 html-design-variations가 맡습니다. 제품이 하는 일은 제품의 페이지와 문서에서 읽고, 화면과 브랜드 토큰을 모으고, 장마다 한 문장으로 스토리보드를 짠 뒤, 장을 손으로 쓰고 크로미움 계열 브라우저로 렌더해 배치와 문안 규칙과 금지 문구를 검사하고, 모든 장을 직접 본 뒤 전달합니다. 비용은 들지 않습니다.
 ---
 # A product deck that sells, in HTML and PDF
 
@@ -37,7 +37,7 @@ A product goes in (its site, its documents, its screens, or one feature named in
 
 Before the first message, run the helper on [`assets/deck-skeleton.html`](assets/deck-skeleton.html) into the host's scratch folder: two slides and no finding mean the driver, the browser and the helper work. Without a browser or a way to look at an image, stop and say what to add. Through SkillCDN the helper and the skeleton are read with `read_repo_file` at their paths and saved in the run folder.
 
-[storyboard.md](references/storyboard.md) is included; [building.md](references/building.md) is read before phase 2. The pack's shared pages are linked from their phases and read through the repository connection: the writing set [`docs/writing/`](/docs/writing/README.md), [rendering-html.md](/docs/browser/rendering-html.md), headless.md and [not-ai.md](/docs/variation/not-ai.md). A copy of this directory, the area's plugin or a mount of the area or of one skill lacks them: fetch them from `docs/writing/`, `docs/browser/` and `docs/variation/` of `github.com/skillcdn/skills`.
+Links that start with `/` are files of the pack this skill is from: a copy of this directory, a plugin or a mount below the root that lacks one reads it through the pack's connection (`https://skillcdn.ai/gh/skillcdn/skills`) or at `github.com/skillcdn/skills`.
 
 ## Inputs
 
@@ -72,7 +72,7 @@ The look is decided here, from the reference, on the routes in this order:
 
 | Route | What happens | Recommended when |
 |---|---|---|
-| Four looks from the reference | `html-design-variations` runs now on the cover and the slide with the strongest scene, with this storyboard's titles as the words, at its own stops; the pick's palette, type and shape become the deck's tokens. | The reference is another party's deck or page, so that ours is not a copy of it. |
+| Four looks from the reference | [html-design-variations](/design/skills/html-design-variations/SKILL.md) runs now on the cover and the slide with the strongest scene, with this storyboard's titles as the words, at its own stops; the pick's palette, type and shape become the deck's tokens. | The reference is another party's deck or page, so that ours is not a copy of it. |
 | The reference as it is | Its colors, font, radius and surfaces are read into the tokens (building.md "Materials"); its pictures, words and layouts are not taken. | The reference is the product's own site and brand. |
 
 Checkpoint, in plain words: the rows as a short list; the look's two routes with the recommendation; what stays out; the facts not found; "OK builds it, a number changes that slide, or name the other route".
