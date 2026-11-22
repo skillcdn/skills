@@ -71,7 +71,7 @@ Produces one **note** per branch, by [branch-note.md](references/branch-note.md)
 
 ### Phase 4: Verdicts
 
-Produces **`report.md`**, shaped as [gates-report.example.md](assets/gates-report.example.md). Begin only when every note and every snapshot of the plan is in the folder: a report begun early leaves a section "in progress" that nobody fills. Judge each theme per country on the four questions by gates.md, the benchmark first; write the memo and the grades of every row; mark what the user set aside. Read [facts.md](/docs/writing/facts.md) before the summary is written.
+Produces **`report.md`**, shaped as [gates-report.example.md](assets/gates-report.example.md). Begin only when every note and every snapshot of the plan is in the folder: a report begun early leaves a section "in progress" that nobody fills. Judge each theme per country on the four questions by gates.md, the benchmark first; write the memo and the grades of every row; mark what the user set aside. Read [facts.md](/docs/writing/facts.md) before the summary is written, and count the summary's rows from the gates table: a summary that said twelve where the table held eleven reached the next skill.
 
 ### Phase 5: Watch list
 
