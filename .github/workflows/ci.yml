@@ -44,6 +44,12 @@ jobs:
       # The released indexer, the code the service reads the pack with. Unpinned on purpose: a pinned one would
       # keep passing after the service had moved on. It reads the checkout and needs no secret.
       - run: npx --yes @skillcdn/cli@latest check
+      # The skill tables of the READMEs are written by the same command: a table behind the pack fails here.
+      - run: >-
+          npx --yes @skillcdn/cli@latest catalog
+          --check README.md --check design/README.md --check engineering/README.md
+          --check marketing/README.md --check media/README.md --check operations/README.md
+          --check product/README.md --check writing/README.md
 
   secrets:
     name: Secret scan

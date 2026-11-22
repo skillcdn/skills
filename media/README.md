@@ -9,10 +9,14 @@
 
 Skills for original video and audio content: scripted short dramas, series episodes and other story-driven shorts. The area manifest next to this file ([SKILLCDN.md](SKILLCDN.md)) says who these skills are for and adds the rules every media skill follows on top of the repository's. The area mounts alone at `skillcdn.ai/gh/skillcdn/skills/media` and installs as the `media` plugin of the repository's Claude Code marketplace.
 
-| Skill | Tool family | What it does |
-|---|---|---|
-| [`skills/higgsfield-shorts-drama/`](skills/higgsfield-shorts-drama/) | Higgsfield | One episode of an original vertical short drama (9:16, about 150 seconds) from a premise or a series bible. Write or update the bible and the episode's cut table, keep a who-knows-what table so every twist holds for the viewer, confirm the latest qualifying model with its credit estimate before anything is generated, approve portraits, sets and a still first frame per cut, animate one cut at a time with the model speaking every line, verify each line with two plain speech-to-text decodes, regenerate only failed cuts, and burn subtitles, name cards and inserts in code. Delivers the episode, a contact sheet, the credit ledger and a production log the next episode starts from. |
+<!-- skillcdn:catalog -->
+| Skill | What it does |
+|---|---|
+| [higgsfield-shorts-drama](skills/higgsfield-shorts-drama/SKILL.md) | Makes one episode of an original vertical short drama (9:16, about 150 seconds by default) on Higgsfield from a premise or an existing series bible. |
+
+1 skill.
+<!-- /skillcdn:catalog -->
 
 Documents for this area go in `docs/` next to this file, where SkillCDN discovers them by default; there are none yet.
 
-How to write a skill: [guide/skill-authoring.md](../guide/skill-authoring.md). How to add one here: [guide/adding.md](../guide/adding.md). The `node scripts/check.mjs` check fails when a skill directory is missing from this table.
+How to write a skill: [guide/skill-authoring.md](../guide/skill-authoring.md). How to add one here: [guide/adding.md](../guide/adding.md). The table is written by `npx @skillcdn/cli@latest catalog --write`, from each skill's first sentence; `node scripts/check.mjs` fails when a skill is missing from it.

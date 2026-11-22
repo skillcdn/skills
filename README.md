@@ -7,15 +7,212 @@
   <a href="LICENSE.md"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-3a6dd4"></a>
   </p>
   <p>
-  <a href="https://skillcdn.ai">skillcdn.ai</a> · <a href="https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md">SkillCDN Format</a> · <a href="#skills">Skills</a> · <a href="#make-it-yours">Make it yours</a> · <a href="guide/skill-authoring.md">Authoring guide</a>
+  <a href="https://skillcdn.ai">skillcdn.ai</a> · <a href="#what-you-can-ask-for">What you can ask for</a> · <a href="#for-an-agent-account">Agent accounts</a> · <a href="#skills">Skills</a> · <a href="#make-it-yours">Make it yours</a> · <a href="guide/skill-authoring.md">Authoring guide</a>
   </p>
 </div>
 
-What you can ask for, in your own words, and which skill does it, is one page: [docs/pack/jobs.md](docs/pack/jobs.md), a section per job with the sentence you say, what comes back and the skill. How an agent finds a skill here, from the folder names and the search, is [docs/pack/finding-a-skill.md](docs/pack/finding-a-skill.md).
+Give an AI agent the job, not the instructions. This pack holds the skills of a marketer, a designer, a developer and a market researcher: each one takes a request in your own words, drives the real tool from the first question to the finished result, stops where a person must decide, and checks its work before you see it.
 
-This repository is a SkillCDN pack: what an agent receives whole at one address, with the skills as the units inside. From marketing to design, engineering and customer support, each folder is an area of work with the skills that do it and the documents its people read: marketing, media, engineering, design, product, operations and writing have the first skills, and more areas will follow. It is also the reference pack for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md): the shape SkillCDN proposes for a pack, kept working against real tools. Fork it to publish your own pack in the same shape.
+It works in the AI you already use, and it is what an **agent account** on a [SkillCDN Console](https://github.com/skillcdn/console) starts work with: a member of your team with a name, a role and a manager, who takes a task from the board and finds the skill for it here.
 
-[SkillCDN](https://github.com/skillcdn/skillcdn) turns a git repository into an MCP server. Point an agent at an address and it gets what the address covers:
+**Try it now.** Add `https://skillcdn.ai/gh/skillcdn/skills` as a remote MCP server in ChatGPT, Claude, Cursor, VS Code, Claude Code, Codex CLI, Gemini CLI or any other MCP client ([the page of the address](https://skillcdn.ai/gh/skillcdn/skills) has the steps for each), and say:
+
+> Make a card news post about this week's biggest AI story.
+
+The agent finds the story with its sources, asks which account's look to work in, builds the slides, reviews them at phone size and shows you the post. Nothing is spent and nothing is posted until you say so.
+
+---
+
+## What you can ask for
+
+Say it in your own words. Each line is a job the pack does end to end.
+
+| You say | You get |
+|---|---|
+| **Marketing** | |
+| "Make an ad for this product." | A captioned vertical video ad built on a reference that is working now, approved shot by shot, with the credits estimated before anything is generated. |
+| "Research the ads running for this keyword." | The creatives that show proof of working in the Meta Ad Library, broken down into hook, angle, structure and offer, with directions for your own. |
+| "Make this week's batch of card news, and book the ones I approve." | Topics with sources, a post each made side by side and reviewed by an agent that made none of them, then each approved post booked on your Instagram and filed once it is live. |
+| **Design** | |
+| "Make a product deck that sells this to our customers." | A deck as one HTML file and a PDF, every slide one message, measured for overlaps and cut text before you see it. |
+| "Draft the slides for this meeting from these notes." | A report or a proposal deck in your organization's tokens, at 16:9, with a PDF. |
+| "Show me four looks for this." | Four rendered directions on one contact sheet, each judged for the AI feel first, with a recommendation. |
+| "Put this PDF into this deck, as it is." | New slides inside your Figma deck, built in the deck's own type scale, colors and spacing. |
+| **Product and market research** | |
+| "Find a market we could enter." | Every theme judged per country on four questions, with the sources behind each verdict and a watch list that is measured again by the same yardstick. |
+| "Look into this idea properly." | One review: the market and when it buys, who already sells it and what they earn, where the material can come from, the legal risks with a design around each, and a pilot plan. |
+| "Turn the research into this month's issue." | One issue of a market magazine in your brand, every number traced to its source. |
+| "What is taking off in this market?" | The products and services advertised more and more, counted in the public ad library. |
+| **Engineering** | |
+| "Build me an app for this and put it online." | A web app live on your own domain, then payments, ads and an admin to watch them, each a skill that takes over from the last. |
+| "Make these documents searchable for our agents." | A handbook or a body of specifications as a pack an agent searches and answers from, with checked citations. |
+| "Set up a repository for this project." | A repository laid out the way every agent expects, with its agreement, its check and its board; or a studio that keeps producing, with its know-how kept where the next session reads it. |
+| "Make what we just did into a skill." | A skill written from the work already done, then run again by a fresh agent before it ships. |
+| **Media, operations, writing** | |
+| "Make episode one of a short drama from this premise." | A vertical episode, every line spoken by the video model and checked by two plain decodes. |
+| "Write up today's client meeting from my notes." | The minutes as a PDF to send the same day: what was decided, what is open, who does what by when. |
+| "Write an anchor report on this." | A news script from a sourced story, written to be heard once. |
+
+Every job, with the other ways it is asked for and the skill that does it, is one page: [docs/pack/jobs.md](docs/pack/jobs.md).
+
+## For an agent account
+
+On a [SkillCDN Console](https://github.com/skillcdn/console) an agent is a member of its own: it is assigned a task as a colleague is, takes it, reports as it goes, hands in what it made, and asks a person when a person must decide. What it knows how to do comes from a pack. This is the pack a team starts with.
+
+- **A role is a set of skills.** An account whose job is marketing works with the ad, the ad research and the card news chain; one whose job is development with the app, the deploy, payments and the admin; one that watches markets with the survey, its rounds and the magazine.
+- **The skill's stops are the board's decisions.** Where a skill would stop for you in a chat (a plan, a cost, what is posted), an agent account raises a decision to the person who can make it and goes on with other work until it is answered. Nothing is spent, posted or deployed in passing.
+- **Work that continues has a place.** [`git-studio-setup`](engineering/skills/git-studio-setup/SKILL.md) lays out a repository where people and agent accounts keep producing the same kind of thing (posts, ad creatives, optimization rounds, market rounds) with the policy, each unit's state and what the runs taught kept where the next session reads them. [`git-desk-setup`](engineering/skills/git-desk-setup/SKILL.md) makes a member's own desk a private repository.
+- **The pack is read through the board.** A console's project names this pack, or your fork of it; an agent there finds a skill with `console skills --search` and loads it with `console skill`, with no connection of its own to set up.
+
+```sh
+console agent new mira --name "Mira" --title "Marketing" --manager me    # an administrator makes the account
+console task new "This week's card news batch, five posts" --worker mira  # assign it as you would a colleague
+```
+
+The console's own README has [an agent account from invitation to first task](https://github.com/skillcdn/console#an-agent-account-from-invitation-to-first-task).
+
+## Why these skills hold up
+
+- **Written from work done once, with the real tool.** A skill here is a job that was carried through by hand first, then run again by a fresh agent that had only the files. What that run had to be told went back into the skill.
+- **Checked before you see it.** Every skill ends in a review with verdicts: slides measured for overlap and cut text, spoken lines decoded twice, numbers read again in their source, a reviewer that made nothing.
+- **A person decides what a person should.** A skill asks only what it cannot derive, shows each step briefly, estimates before it spends, and confirms one by one what leaves: a post, a deploy, a message.
+- **Nothing pinned.** A skill tells the agent how to find today's models, prices and parameters in the tool's own catalog, so it does not break when they change.
+- **They chain.** A skill that needs what another makes names it and runs it first: the brief becomes the post, the post joins the batch, the batch is booked. One person, or one team of agent accounts, runs the skills of every area together.
+- **Plain files, yours to fork.** Every skill is an [Agent Skills](https://agentskills.io/specification) folder of Markdown under MIT. No code runs on a server or on your machine unless the agent you trust runs it.
+
+## Skills
+
+By area of work. A row is the skill's own first sentence; its `SKILL.md` says the rest.
+
+### Marketing
+
+Ads, ad research, promotional video, posting to social accounts. [`marketing/`](marketing/)
+
+<!-- skillcdn:catalog folder=marketing -->
+| Skill | What it does |
+|---|---|
+| [higgsfield-shorts-ad](marketing/skills/higgsfield-shorts-ad/SKILL.md) | Makes a short-form vertical AI ad, promo or commercial on Higgsfield from a product link and a reference video, found among the ads running now when the user has none. |
+| [instagram-post-scheduling](marketing/skills/instagram-post-scheduling/SKILL.md) | Schedules approved Instagram posts (card news carousels of images and video slides with their captions) on the account's web interface, in the browser the person is signed in to, reads each booking b… |
+| [meta-ad-library-creative-research](marketing/skills/meta-ad-library-creative-research/SKILL.md) | Researches ad creatives in the Meta Ad Library for a keyword, a product or a competitor by reading the public library with a browser, because its API leaves out most commercial ads. |
+
+3 skills.
+<!-- /skillcdn:catalog -->
+
+### Design
+
+Slides and decks, card news posts and the formats they are built in, looks on a contact sheet. [`design/`](design/)
+
+<!-- skillcdn:catalog folder=design -->
+| Skill | What it does |
+|---|---|
+| [figma-slides-from-content](design/skills/figma-slides-from-content/SKILL.md) | Moves a document (a proposal, a report, any PDF) into an existing Figma Slides deck as new slides, one per page, built in the deck's own design system rather than a generic one. |
+| [html-card-news-batch](design/skills/html-card-news-batch/SKILL.md) | Makes several card news posts at once from picked topics and one format. |
+| [html-card-news-from-brief](design/skills/html-card-news-from-brief/SKILL.md) | Builds an Instagram card news carousel from a sourced topic brief in a format spec's format, as HTML rendered to PNG, with an mp4 for a slide whose picture is a clip of the brief's; with no spec or b… |
+| [html-deck-from-outline](design/skills/html-deck-from-outline/SKILL.md) | Drafts a slide deck as one HTML file and a PDF from notes, a meeting plan or an idea, as a corporate report (a business plan, a plan for investors, a company presentation, an internal report) or an e… |
+| [html-design-variations](design/skills/html-design-variations/SKILL.md) | Shows four looks for one design (a page's first screen, a deck's cover, a card news format) as HTML rendered in a browser and tiled on one contact sheet, from a reference, a concept or the thing as i… |
+| [html-product-deck](design/skills/html-product-deck/SKILL.md) | Makes a product deck that sells a product or one of its features to buyers, as one HTML file and a PDF, every slide one message in a scene composed for it (a real screen, a scene drawn in the product… |
+| [instagram-card-news-format-study](design/skills/instagram-card-news-format-study/SKILL.md) | Studies the card news of a reference Instagram account, of one reference post, or of a few accounts of a genre, and writes the format as a spec a new post can be built in, from the posts visible with… |
+
+7 skills.
+<!-- /skillcdn:catalog -->
+
+### Product
+
+What is worth building before anything is built: markets, signals, a sourced brief, concept directions. [`product/`](product/)
+
+<!-- skillcdn:catalog folder=product -->
+| Skill | What it does |
+|---|---|
+| [meta-ad-library-rising-products](product/skills/meta-ad-library-rising-products/SKILL.md) | Finds what is taking off in a market or a field of work, such as AI tools, by what its advertisers are putting new money behind, read from the public Meta Ad Library with a browser. |
+| [web-card-news-topic-brief](product/skills/web-card-news-topic-brief/SKILL.md) | Finds what is worth a card news post now in the categories an account covers, in the outlets and where people are talking, lets the user pick, and turns the pick into a sourced topic brief a post can… |
+| [web-concept-variations](product/skills/web-concept-variations/SKILL.md) | Shows four to six concept directions that get a reference's effect by other means, for a product, a post, a page, a deck or a campaign, from a reference the user gives or one found among what is work… |
+
+3 skills.
+<!-- /skillcdn:catalog -->
+
+### Engineering
+
+Apps put live with payments, ads and an admin; repositories and studios set up; documents made searchable; skills made from work done. [`engineering/`](engineering/)
+
+<!-- skillcdn:catalog folder=engineering -->
+| Skill | What it does |
+|---|---|
+| [cloudflare-admin-dashboard](engineering/skills/cloudflare-admin-dashboard/SKILL.md) | Builds the operator's admin dashboard as a separate Cloudflare Worker that only the operator can open, bound to the project's own database, protected by Cloudflare Access with a one-time email code a… |
+| [cloudflare-deploy](engineering/skills/cloudflare-deploy/SKILL.md) | Puts a web project live on Cloudflare Workers and makes it deploy itself from then on. |
+| [cloudflare-new-app](engineering/skills/cloudflare-new-app/SKILL.md) | Builds a new web app from an idea and puts it live on Cloudflare. |
+| [git-desk-setup](engineering/skills/git-desk-setup/SKILL.md) | Sets up a member's own desk as a private git repository: the folder that console desk writes for a person of a SkillCDN Console, or that an agent account is set up with, committed and pushed to their… |
+| [git-repo-setup](engineering/skills/git-repo-setup/SKILL.md) | Sets up a new git repository so a team and its agents keep developing in it: the working agreement (AGENTS.md, CLAUDE.md), a README in the team's language, the documents under docs/, one check with t… |
+| [git-studio-setup](engineering/skills/git-studio-setup/SKILL.md) | Sets up a studio, the shared git repository in which a team and its agents keep producing one kind of thing (card news for an account, ad creatives, the episodes of a series) or keep running one kind… |
+| [meta-ads-setup](engineering/skills/meta-ads-setup/SKILL.md) | Connects a web project to Meta ads and runs them end to end, with the agent doing every step a token allows. |
+| [skillcdn-document-answer](engineering/skills/skillcdn-document-answer/SKILL.md) | Answers a question from a pack of documents served through SkillCDN (a handbook, a manual, a policy set, an archive), with every citation verified against the section it quotes, and says plainly what… |
+| [skillcdn-document-pack](engineering/skills/skillcdn-document-pack/SKILL.md) | Turns documents a person has (PDF, Word, slides, spreadsheets, HTML, wiki and chat exports, plain text) into a pack of documents in the SkillCDN Format, in a repository they own, so that agents brows… |
+| [skillcdn-document-research](engineering/skills/skillcdn-document-research/SKILL.md) | Answers a question from a large pack of documents (a handbook, a manual, an archive) through SkillCDN, compiles a reference or checks a claim, and keeps what it learned for the next time. |
+| [skillcdn-skill-authoring](engineering/skills/skillcdn-skill-authoring/SKILL.md) | Turns work a person and an agent have already done together into a skill in the SkillCDN Format, in a checkout of this repository or a fork of it. |
+| [skillcdn-skill-verification](engineering/skills/skillcdn-skill-verification/SKILL.md) | Verifies a skill in a repository of the SkillCDN Format the way a user's agent will meet it. |
+| [stripe-payments](engineering/skills/stripe-payments/SKILL.md) | Takes payments on a web project with Stripe, from a sandbox to live money, with the agent doing every setup step a key allows. |
+
+13 skills.
+<!-- /skillcdn:catalog -->
+
+### Media
+
+Original video and audio content. [`media/`](media/)
+
+<!-- skillcdn:catalog folder=media -->
+| Skill | What it does |
+|---|---|
+| [higgsfield-shorts-drama](media/skills/higgsfield-shorts-drama/SKILL.md) | Makes one episode of an original vertical short drama (9:16, about 150 seconds by default) on Higgsfield from a premise or an existing series bible. |
+
+1 skill.
+<!-- /skillcdn:catalog -->
+
+### Operations
+
+The records a company and its clients' work keep day to day. [`operations/`](operations/)
+
+<!-- skillcdn:catalog folder=operations -->
+| Skill | What it does |
+|---|---|
+| [html-meeting-minutes-from-notes](operations/skills/html-meeting-minutes-from-notes/SKILL.md) | Writes the minutes of a client meeting as one HTML file and an A4 PDF from the notes a person brings back (what was decided, what is still to be confirmed, who does what by when, the next meeting), f… |
+
+1 skill.
+<!-- /skillcdn:catalog -->
+
+### Writing
+
+Text that is the result itself, read or heard as it is. [`writing/`](writing/)
+
+<!-- skillcdn:catalog folder=writing -->
+| Skill | What it does |
+|---|---|
+| [web-news-anchor-report-script](writing/skills/web-news-anchor-report-script/SKILL.md) | Writes the script of a news anchor report from a sourced story, with the screen planned cut by cut for a video made later, about ninety seconds unless asked otherwise. |
+
+1 skill.
+<!-- /skillcdn:catalog -->
+
+Areas to come, each with its first skill: sales, support, data, finance, legal, people. What is planned is in [guide/roadmap.md](guide/roadmap.md).
+
+## Document sets
+
+What the skills of one tool family share is written once, as documents an agent searches and reads without a skill. A skill includes the page every run needs and links the rest.
+
+| Set | What it holds |
+|---|---|
+| [`docs/pack/`](docs/pack/) | How an agent finds the skill for a job, and the jobs index. The page a client is told to read first. |
+| [`docs/browser/`](docs/browser/) | A browser the agent drives or runs headless: reading a page in full, the ways around a wall, rendering HTML to PNG and PDF, clips. |
+| [`docs/writing/`](docs/writing/) | What every text shares: the reader, sentences, facts and figures, what stays inside, the house style. |
+| [`docs/variation/`](docs/variation/) | Making variations: the effect brief, the axes, the signals of the AI feel, the comparison sheet. |
+| [`docs/card-news/`](docs/card-news/) | The format spec, the topic brief, and the record an account that keeps posting holds. |
+| [`docs/instagram/`](docs/instagram/) | Reading Instagram signed out, and booking posts in a person's signed-in session. |
+| [`docs/meta-ad-library/`](docs/meta-ad-library/) | What the public ad library is evidence of, its routes and parameters, counting by age, manners. |
+| [`docs/higgsfield/`](docs/higgsfield/) | The sandbox, models and credits, first frames, decoding a take, the sounds of each language. |
+| [`engineering/docs/cloudflare/`](engineering/docs/cloudflare/) | Accounts and tokens, the platform's parts, deploys, domains, mail, as the app skills use them. |
+| [`engineering/docs/stripe/`](engineering/docs/stripe/) | Sandboxes and keys, the Checkout flow and its webhooks, the balance ledger. |
+| [`engineering/docs/meta-marketing-api/`](engineering/docs/meta-marketing-api/) | Tokens, datasets and the Conversions API, campaigns, insights. |
+| [`engineering/docs/git/`](engineering/docs/git/) | A repository's layout, agreement and README, its console project, a studio and how its know-how is kept. |
+| [`engineering/docs/skillcdn/`](engineering/docs/skillcdn/) | From a push to what an agent gets, searching a pack of documents, fresh agents, transcripts. |
+
+## Using the pack
 
 ```
 skillcdn.ai/gh/skillcdn/skills                                        the whole pack (recommended)
@@ -24,158 +221,80 @@ skillcdn.ai/gh/skillcdn/skills/marketing/skills/higgsfield-shorts-ad  one skill
 skillcdn.ai/gh/skillcdn/skills@<commit>                               pinned to a commit
 ```
 
-A host that implements the MCP skills extension receives these skills as skills: each `SKILL.md` arrives as a plain Agent Skills document with the repository's rules, the area's rules, the references every run needs and the shared pages it includes inside it, listed with a digest per file under `skill://gh/skillcdn/skills/<path>`. Any other MCP client reaches the same skills through the server's tools: `browse_repo`, `search_repo`, `load_skill` and `read_repo_file`.
+1. **Connect it.** Add an address as a remote MCP server in your agent. An agent with only a shell reads the same pack with the `skillcdn` command, and an agent on a console with `console skills`.
+2. **Ask.** In your own words. The agent is told on connect to read [docs/pack/finding-a-skill.md](docs/pack/finding-a-skill.md) first, and finds the skill from there.
+3. **Connect what the skill names.** Each skill lists the tools it drives under "Requirements", checks for them before its first message, and says exactly what to add when one is missing.
 
-The same folders work without SkillCDN. Every skill is a plain [Agent Skills](https://agentskills.io/specification) folder: copy `<area>/skills/<name>/` into any agent that reads `SKILL.md`. Every area with skills is a [Claude Code](https://code.claude.com/docs/en/plugins) plugin: `claude plugin marketplace add skillcdn/skills`, then `claude plugin install marketing@skillcdn`. Only through SkillCDN do the rules in [SKILLCDN.md](SKILLCDN.md) and the area's manifest, and the shared pages a skill includes, arrive with every skill; a copied or installed skill relies on its own hard rules, and what its tool family shares comes with an area plugin when the set is the area's (`<area>/docs/<family>/`), and from this repository on the git host when the set is the root's (`docs/<family>/`) or the skill was copied bare.
-
-## Areas
-
-One folder per area of work. Each carries a `SKILLCDN.md` that says who its skills are for and adds the rules they share, a `README.md` that lists them, its skills under `skills/`, and the documents its people read under `docs/`.
-
-| Area | For | Skills |
-|---|---|---|
-| [`marketing/`](marketing/) | Ads, ad research, promotional video, content, campaigns, posting to social accounts. | 3 |
-| [`product/`](product/) | Discovery (what is taking off in a market), research synthesis, a sourced brief of a story, concept directions and alternatives, requirements, specifications, roadmaps, prioritization. | 3 |
-| [`engineering/`](engineering/) | Software development and the tooling an agent works with: writing and changing code, keeping a codebase's documents true, building apps, taking payments, connecting ads, the operator's dashboard, testing, debugging, making skills from work done, documents into packs, research in them and answers from them with checked citations. | 13 |
-| [`media/`](media/) | Original video and audio content: scripted short dramas, series episodes, story-driven shorts. | 1 |
-| [`design/`](design/) | Slides and decks, card news posts and the formats they are built in, brand assets, icons and store graphics, made in the team's design tool, drafted as HTML and PDF before the tool, or varied as looks on a contact sheet. | 7 |
-| [`operations/`](operations/) | Running the company's and its clients' work day to day: the minutes of a meeting sent the same day, status reports, visit logs, handovers, the records an engagement keeps. | 1 |
-| [`writing/`](writing/) | Text that is the result itself, read or heard as it is: a news script, an article, a report, a self-introduction, a briefing. The kinds still planned are in the roadmap, and what every text shares is in `docs/writing/`. | 1 |
-
-Areas to come, each with its first skill: sales, support, data, finance, legal, people. The naming rule and the steps are in [guide/adding.md](guide/adding.md); what is planned, stage by stage of a product's life, is in [guide/roadmap.md](guide/roadmap.md); how an agent finds a skill as the pack grows, and how that is checked, is in [guide/finding.md](guide/finding.md).
-
-## Skills
-
-| Skill | Area | Tool family | What it does |
-|---|---|---|---|
-| [`marketing/skills/higgsfield-shorts-ad/`](marketing/skills/higgsfield-shorts-ad/) | Marketing | Higgsfield | Makes a vertical short-form AI ad from just a reference video and a product link: learns what makes the reference work (its hook, the rule its story runs on, its measured pacing) and writes an original story on the product's own world, derives language, length, medium and the brand's typography itself, has the user approve generated cast portraits and a still first frame per shot, directs each performance, recommends the latest Kling or Seedance model with a credit estimate, animates one draft-quality take at a time, and adds captions, text and the end card with code-based editing. With no reference, it first finds one among running ads, with the creative research skill. |
-| [`marketing/skills/meta-ad-library-creative-research/`](marketing/skills/meta-ad-library-creative-research/) | Marketing | Meta Ad Library | Researches the ad creatives running for a keyword, a product or a competitor by reading the public library with a browser: finds the ads that show proof of working (their place in the impressions order, days running, reuse of the creative, the advertiser's volume), puts recent ones first, reads videos frame by frame, and delivers a report with the landscape, a linked shortlist, a breakdown of each hook, angle, structure and offer, the patterns across them, and directions for the user's own ads. |
-| [`marketing/skills/instagram-post-scheduling/`](marketing/skills/instagram-post-scheduling/) | Marketing | Instagram | Schedules approved posts (carousels of images and video slides with their captions) on the account's own web interface in the browser the person signed in: gates each post on its recorded approval and its files, shows the schedule, books one post at a time with real clicks and a pasted caption, reads each booking back on the scheduled list, and once a slot has passed finds the post live, records its address and files its folder. |
-| [`product/skills/meta-ad-library-rising-products/`](product/skills/meta-ad-library-rising-products/) | Product | Meta Ad Library | Finds what is taking off in a market or a field by where advertisers are putting new money, reading the public library with a browser: sweeps a sector or purchase phrases, groups ads by seller, counts for each item (a product, or an app, a tool, a service or a course) and for each theme several sellers share the active ads and those started in the last 7, 30 and 90 days, classes it as a breakout, a new push or proven with its pace this week, and delivers a ranked report with the ads, the sellers, the offer and the risks, plus a snapshot the next run measures real growth against. |
-| [`media/skills/higgsfield-shorts-drama/`](media/skills/higgsfield-shorts-drama/) | Media | Higgsfield | Makes one episode of an original vertical short drama (9:16, about 150 seconds) from a premise or a series bible: writes or updates the bible and the episode's cut table, keeps a who-knows-what table so every twist holds for the viewer, confirms the latest qualifying model with its credit estimate before anything is generated, has the user approve portraits, sets and a still first frame per cut, animates one cut at a time with the model speaking every line, verifies each line with two plain speech-to-text decodes, regenerates only failed cuts, burns subtitles, name cards and inserts in code, and delivers the episode with a credit ledger and a production log the next episode starts from. |
-| [`engineering/skills/skillcdn-skill-authoring/`](engineering/skills/skillcdn-skill-authoring/) | Engineering | SkillCDN | Turns work a person and an agent have already done into a skill in this repository or a fork of it: reads the session first (the request, the steps, the questions, the corrections, what was approved, what a draft was rejected for), then earlier transcripts, memory and results where the user points, keeps the method and leaves the product and the people out, designs what is asked, derived, confirmed and accepted, writes the skill in this layout with discovery in place of values, validates it, has a fresh agent follow the files alone, and ships it with its catalog rows. Also folds a run's findings back into an existing skill. |
-| [`engineering/skills/skillcdn-skill-verification/`](engineering/skills/skillcdn-skill-verification/) | Engineering | SkillCDN | Verifies a skill the way a user's agent will meet it: a fresh agent dry-reads its files for every place it would have to guess, a fresh agent runs the served skill through SkillCDN with its checkpoints answered as the user would, and each finding is folded into the sentence it bears on, checked and pushed on the user's word. Works on what is served, on a local change before it is pushed, after a tool, a model or a shared page changed under the skill, and after a release of SkillCDN or the console, whose changelog and spec it reads against every sentence that states how the service behaves; reruns at most once unasked, and says what no run reached. |
-| [`engineering/skills/skillcdn-document-pack/`](engineering/skills/skillcdn-document-pack/) | Engineering | SkillCDN | Turns documents a person has (PDF, Word, slides, spreadsheets, HTML, exports, text) into a pack of documents in the SkillCDN Format, in a repository they own: surveys the sources, plans the layout with the user, converts each with the tools the agent has, lays them out one file per document or chapter with a title and a description, keeps each original beside its documents and names it, writes the map of every document set, keeps figures with their words and transcribes scans as text beside the images, points out what looks private with the repository's visibility for the user to decide, declares the document roots and the language in the manifest, checks the pack with the indexer's own check and commits it. SkillCDN never receives a file. |
-| [`engineering/skills/skillcdn-document-research/`](engineering/skills/skillcdn-document-research/) | Engineering | SkillCDN | Answers a question, compiles a reference or checks a claim from a large pack of documents through SkillCDN: reads the maps first, searches in the pack's own words and language, reads the sections a result names by their offset and limit, walks a long document by its outline, quotes every finding with its path and heading, says plainly what the pack does not say, and keeps the answer as a research note committed to the pack when the user owns it. |
-| [`engineering/skills/skillcdn-document-answer/`](engineering/skills/skillcdn-document-answer/) | Engineering | SkillCDN | Answers a question now from a pack of documents through SkillCDN with every citation checked before the answer is sent: frames the question in the pack's words, reads the maps, searches by words and by meaning where the deployment does, reads the sections a result names by their offset and limit, drafts the answer, reads every cited section once more so that each quote is found word for word or dropped, and answers with the path, the heading and the offset of each citation and what the pack does not say; writes nothing into the pack and spends nothing, and names the research skill when the answer is to be kept. |
-| [`engineering/skills/git-repo-setup/`](engineering/skills/git-repo-setup/) | Engineering | Git | Sets up a new git repository so a team and its agents keep developing in it, in the layout every repository of this pack shares: `AGENTS.md` as the working agreement with `CLAUDE.md` importing it, a README in the readers' language that is good to look at, the documents under `docs/` that let a session pick up where the last ended, one check with tests and continuous integration, and a SkillCDN console project the checkout is bound to, with its rules, its first goal and its tasks, whose pack the repository's skills are read from. The structure only; the new-app skill runs it for an app's repository. |
-| [`engineering/skills/git-studio-setup/`](engineering/skills/git-studio-setup/) | Engineering | Git | Sets up a studio, the repository a team and its agents keep producing in or keep running rounds of ongoing work in, or both: each unit with its states, a ledger, a review screen, one check, and a small pack of the studio's own whose skills extend this pack's and whose pages keep what the studio learns. Runs `git-repo-setup` first. |
-| [`engineering/skills/git-desk-setup/`](engineering/skills/git-desk-setup/) | Engineering | Git | Sets up a member's own desk as a private git repository: the folder `console desk` writes for a person of a SkillCDN console, or that an agent account is set up with, committed and pushed to their own git account, with git LFS where large files will be kept and, where the request asks, its pages built and served on their own machine. What the desk keeps and shows is the console's own skill, which this one hands over to. Never a public desk. |
-| [`engineering/skills/cloudflare-new-app/`](engineering/skills/cloudflare-new-app/) | Engineering | Cloudflare | Builds a new web app from an idea and puts it live: asks a few plain questions anyone can answer (what it does and for whom, which languages, sign-in or not, a domain or not, the look), plans it, proposes a look, builds a TypeScript app on the path Cloudflare's framework guide recommends that day (Next.js by default), mobile-first, every language in from the first commit, ready for search and AI engines (metadata, sitemap, hreflang, structured data, llms.txt), with a share image and favicon set from its brand, sign-in, a database, analytics, tests and one check; sets its repository up for a team of developers, planners and designers with the setup skill (AGENTS.md, README, docs, a console project); hands over to the deploy skill for the launch. |
-| [`engineering/skills/cloudflare-deploy/`](engineering/skills/cloudflare-deploy/) | Engineering | Cloudflare | Puts a web project live on Cloudflare Workers and makes it deploy itself: gets access with the user's API token (the exact steps of the day for creating it), creates the database, bucket and namespace the code binds, applies the schema, sets the secrets (generated signing keys, provider keys the user supplies), deploys, attaches the domain (owned and moved to Cloudflare, bought through the Registrar API with the price confirmed, or a free workers.dev address), connects the repository so that every push to main deploys and every branch previews, turns on logs and analytics, and writes `DEPLOY.md` into the project. |
-| [`engineering/skills/stripe-payments/`](engineering/skills/stripe-payments/) | Engineering | Stripe | Takes payments on a web project with Stripe, from a sandbox to live money, with the agent doing every setup step a key allows: asks what is sold, at what price and who the seller of record is, builds the order ledger, the hosted Checkout, the return and the webhook that settle an order exactly once (refunds, disputes and subscriptions included), registers the products, prices and webhook endpoint through the API, proves the flow in a sandbox with the Stripe CLI and a test card, switches to the live key and endpoint, lists the dashboard-only settings for the owner, and writes `docs/payments.md` with the operator panel's spec. |
-| [`engineering/skills/meta-ads-setup/`](engineering/skills/meta-ads-setup/) | Engineering | Meta Marketing API | Connects a web project to Meta ads and runs them: wires the measurement (a dataset per market, the pixel on public pages only, the Conversions API with deduplication, attribution from the first click to the order, privacy signals honored), creates the datasets and the domain's verification with the business's system user token, maps the ad accounts and syncs spend, builds campaigns from finished creatives the way a working account runs them (a sales campaign per market, one ad set per creative at a small daily budget, purchase optimization, a broad audience, URL tags for the site's own attribution), created paused and activated only after the budget is confirmed, and writes the monitoring and optimization rules the operator panel applies. |
-| [`engineering/skills/cloudflare-admin-dashboard/`](engineering/skills/cloudflare-admin-dashboard/) | Engineering | Cloudflare | Builds the operator's dashboard as a separate Worker only the operator can open: bound to the project's database, protected by Cloudflare Access with a one-time email code and verified again inside the Worker so that it fails closed until protected, with its own least-privilege keys, an audit log of every action, confirmations for anything that moves money or ads, and a cron that syncs the ledgers and sends a daily digest; shows the overview, the funnel, orders and refunds, campaigns with spend, results on the site's own numbers and the controls with the rules' recommendations, costs, and the system's health. |
-| [`design/skills/figma-slides-from-content/`](design/skills/figma-slides-from-content/) | Design | Figma | Moves a document (a proposal, a report, any PDF) into an existing Figma Slides deck as new slides, one per page, in the deck's own design system: reads the document's text with its sizes, positions and breaks and its images, measures the existing slides for the type scale, colors, margins, title treatment, bullet marks, cards and shadows, plans one slide per page with a layout type, builds through the Figma MCP server, and audits every slide by numbers and zoomed renders so that alignments hold on the glyphs and every element of one role is identical. Existing and user-edited slides stay untouched; nothing is spent. |
-| [`design/skills/instagram-card-news-format-study/`](design/skills/instagram-card-news-format-study/) | Design | Instagram | Studies the card news of a reference account, of one reference post or of a few accounts of a genre, from the posts visible without signing in, and writes the format as a spec: the canvas and slide count, each slide type's anatomy and how it treats its photo (cropped, or a broadcast frame kept whole with its marks), which text is the account's own, the text density counted on the slides, the register of slides and captions as patterns, the caption's parts and credit line, which variant carries which content, and what the account never does, from every post visible without signing in. Measured, not described; the account's photos and words never enter a result. |
-| [`product/skills/web-card-news-topic-brief/`](product/skills/web-card-news-topic-brief/) | Product | Web | Finds candidate stories in the categories an account covers, in the outlets and where people are talking, shows the hottest stories a rule kept off the list first, lets the user pick one, and turns the pick into a topic brief: every fact traced to the sentence of an article read in full, the angle as a published interpretation quoted from its outlet, numbers cross-checked, what no article confirmed listed as unverified, and the story's video clips and images, each with its caption, credit, pixel size and legibility. In an account's folder it follows the account's policy and its ledger of covered topics. |
-| [`design/skills/html-card-news-from-brief/`](design/skills/html-card-news-from-brief/) | Design | Browser | Builds the carousel from a brief in a format spec's format (measured from a reference, or designed from one at the user's pick; with none, the routes to one offered) as HTML rendered to PNG by a headless browser, and to mp4 for a slide that carries one of the brief's video clips: every slide one of the spec's slide types with no layouts of the skill's own, one thread from the published angle at the format's density and register, every slide reviewed at native and phone size and every frame of a video slide, delivered with the caption and the credits. |
-| [`design/skills/html-card-news-batch/`](design/skills/html-card-news-batch/) | Design | Browser | Several card news posts at once from picked topics and one format: a worker agent per post runs the research and the build in the post's own folder, a reviewer that made none of them reads each against its brief, and the posts come back together at review with a contact sheet each, after an estimate of the workers' tokens that the person agrees to. |
-| [`design/skills/html-deck-from-outline/`](design/skills/html-deck-from-outline/) | Design | Browser | Makes a slide deck as one self-contained HTML file and a PDF from a content outline, in one of two registers, an external proposal (a kickoff presentation, a proposal, a status report) or a corporate report (a business plan, a plan for investors, a company presentation, an internal report): turns the outline into a deck file in which every slide is a type and a list of blocks (a statement beside a definition list, a table, figures with their sources, numbered rows, a loop, a Gantt-style schedule, a system diagram with a process strip, brand panels with real logos, team profiles), confirms the register on the cover and one body slide, renders at a fixed 16:9 page size in the organization's own tokens, prints the PDF with a Chromium-family browser, measures the layout for overlaps, cut text and empty pages, checks the wording against the house style the deck declares, and reviews a contact sheet before delivery; structure from type, rules and real marks, with no icon card grids. Nothing is spent. |
-| [`design/skills/html-product-deck/`](design/skills/html-product-deck/) | Design | Browser | Makes a product deck that sells a product or one of its features to buyers, as one HTML file and a PDF: one message a slide in a scene composed for it, titles in the buyer's words, facts from the product's own pages, rendered, checked and looked at slide by slide. |
-| [`product/skills/web-concept-variations/`](product/skills/web-concept-variations/) | Product | Web | Shows four to six concept directions that get a reference's effect by other means, for a product, a post, a page, a deck or a campaign: reads the reference for its intent, effect, aesthetics, fun, expected effect and the prior knowledge it rests on, finds other references that get the same effect on the open web, places candidates on the concept axes (stake, figure, device, form, register, order of telling, setting, proof) with one near and one far, judges each for the AI feel before it is shown, compares them on one sheet with a recommendation and a runner-up, and hands the user's pick to the skill that produces. Nothing is spent. |
-| [`design/skills/html-design-variations/`](design/skills/html-design-variations/) | Design | Browser | Shows four looks for one design (a page's first screen, a deck's cover with a body slide, a post's cover, a card news format's cover and body slide, a frame) as HTML rendered in a browser and tiled on one contact sheet: reads the reference's aesthetics for what the look must say, places candidates on the design axes (palette, type, composition, imagery, shape) near or far as the request asks, renders each at its size, judges each for the AI feel (icon card grids, gradients, mockups, kickers) before it is shown, compares them with a recommendation and a runner-up, and hands the pick's tokens to the skill that produces, a card news format as a spec the build follows. Nothing is spent. |
-| [`operations/skills/html-meeting-minutes-from-notes/`](operations/skills/html-meeting-minutes-from-notes/) | Operations | Browser | Writes the minutes of a client meeting as one self-contained HTML file and an A4 PDF from the notes a person brings back, for sending the same day: sorts the notes into decisions, questions and answers, items to confirm, actions and the next meeting and keeps what was said for the organization's own ears out, listed at a checkpoint; writes one minutes file with a four-row header table and numbered sections, renders it in grayscale with the client's logo before the organization's, checks the wording against the declared house style, prints the PDF with a Chromium-family browser, looks at the preview and the page breaks, and delivers both files into the client's folder with what to confirm before sending. Sending is the user's own step; nothing is spent. |
-| [`writing/skills/web-news-anchor-report-script/`](writing/skills/web-news-anchor-report-script/) | Writing | Web | Writes the script of a news anchor report from a sourced topic brief, with the screen planned cut by cut for a video made later, about ninety seconds unless asked otherwise: the lead from the viewer's side, a handover, then the anchor's voice over graphics and labelled generated scenes; short sentences as an anchor says them, each with one job and the form that says how its content is known; every sentence traced to a fact of the brief, the form checked sentence by sentence, the sense checked by a listener who has only the script, and the spoken length measured. No video is generated and nothing is spent. |
-
-## Document sets
-
-Directories of Markdown without a `SKILL.md`, read by an agent through `search_repo` and `read_repo_file` without any skill: the playbooks, handbooks and product documentation an area's people work from, and what the skills of one tool family share. They live in [`docs/`](docs/) when they serve every area and in `<area>/docs/` when they serve one. A page every run of a skill needs is also named in that skill's `skillcdn.include` and arrives with it wherever SkillCDN serves the skill.
-
-| Document set | What it holds |
-|---|---|
-| [`docs/higgsfield/`](docs/higgsfield/) | What the skills that drive Higgsfield share, whichever area they are in: how the sandbox behaves, how models and credits are found and quoted, how portraits and first frames are made, how a take is decoded, and what the video models do with the sounds of each language, as real runs showed it. One file per topic, organized by what holds now; each skill includes `pronunciation.md` and links the rest from the phase that reads it. |
-| [`docs/pack/`](docs/pack/) | How an agent finds its way in this pack: how the pack is laid out, the three ways to find a skill (the jobs index, browsing an area, searching with English words), how a result is read, what to do when no skill fits; and the jobs index, one section per job in the words a user says, with what comes back and the skill's path. An agent searches `docs/pack` first. |
-| [`docs/variation/`](docs/variation/) | What the skills that make variations share, whichever area they are in: the effect brief that reads a reference for its intent, effect, aesthetics, fun, expected effect and prior knowledge before its surface; the axes a concept or a look can move on, with a near and a far candidate; the AI feel's signals, bundles and positive tests; the comparison sheet with a recommendation and a runner-up; and the handoff to the skill that produces. Method only, with no tool's name or price; the two variation skills include four pages, and the skills that produce link the AI-feel page from their review. |
-| [`docs/browser/`](docs/browser/) | What the skills that read a website or render a page with a browser share, whichever area they are in: what a browser the agent drives can do and how hosts differ, how a headless Chromium-family browser is launched from a shell, how a page is read in full and its images taken, the ways around a wall of the host, how an HTML page the agent wrote becomes PNG or PDF and is looked at, how frames of a public clip are captured, and how a clip is cut from a video and laid into a rendered slide as mp4. A skill includes the page every run of it needs and links the rest from the phase that reads it. |
-| [`docs/writing/`](docs/writing/) | What every text shares, whichever skill writes it and in whichever area: who reads it, in which language and register, and in which words; how a sentence, a title and a heading are built and what is cut; how a fact, a figure and a quote are stated, when a hedge is right and what is said of a thing not yet known; what stays inside the organization and how tools are named in a document that leaves it; and the house style, the characters and heading forms that stay out of such a document. One file per topic, generalized from the skills that write (the deck, the minutes, the card news, the brief, the answer from documents); each medium's sharper list stays in its skill and wins there. |
-| [`docs/instagram/`](docs/instagram/) | What the skills that work on Instagram share: reading the site signed out (what a visitor sees, the routes, the sign-in prompt, the viewport, a post page's data, stepping a carousel, the caption), and posting in the person's signed-in session (the session and its pace, the create dialog, the scheduled list and a post that went live). At the root, because the format study in `design/` and the post scheduling in `marketing/` both include its pages. |
-| [`docs/meta-ad-library/`](docs/meta-ad-library/) | What the two skills that read the Meta Ad Library share: what the library is evidence of, the routes into it with their code, the URL parameters, the record a result yields, counting by age, manners and limits; each skill includes `ad-library.md` and links the rest. At the root, because its two skills are of two areas, the creative research in `marketing/` and the rising products in `product/`. |
-| [`engineering/docs/skillcdn/`](engineering/docs/skillcdn/) | What the skills that work on a pack in this format share: which commit an agent is served and how long a push takes, what each way of receiving a skill brings, how an agent with none of the session's context is started on each host, where a session's record and memory are kept, and how a search over a pack behaves and is asked (`searching.md`, included by the document research and the question-answering skills). The authoring and verification skills include `serving.md` and `fresh-agents.md` and link `transcripts.md`; in the area's `docs/`, so it travels with the engineering mount and plugin. |
-| [`engineering/docs/git/`](engineering/docs/git/) | What every repository the pack's skills set up or build shares: the layout (who reads each file, English for everything agents read and the readers' language for the README), the working agreement section by section, the console project and the binding of every checkout, the README and how to make it good to look at, and the test structure (one check, three layers, continuous integration). The setup skill includes `layout.md`, `agreement.md` and `console.md` and links the rest; the new-app skill links them through the setup skill it runs. A studio, the repository a team keeps producing in, has two pages of its own: its structure (the unit, its states, the ledger, the review screen, the check) and its know-how (the studio as a small pack whose skills extend this pack's). |
-| [`engineering/docs/cloudflare/`](engineering/docs/cloudflare/) | What the skills that build for, deploy to and operate on Cloudflare share: the API token (which kind, where it is created, the permissions and what each is for, verification, storage, the sign-in fallback), the Workers platform (the runtime's limits, the configuration, bindings and secrets, the framework paths, the plans), the automation (what the token does with the command for each, what a person does once in the dashboard), and Access (protecting an operator's Worker, the one-time setup, verifying the token at the origin). Dated where a fact can move; the deploy skill includes `tokens.md` and `automation.md`, the new-app skill `platform.md`, the admin skill `access.md`, each links the rest; in the area's `docs/`, so it travels with the engineering mount and plugin. |
-| [`engineering/docs/stripe/`](engineering/docs/stripe/) | What the skills that take payments with Stripe and read its ledger share: sandboxes and keys with the permissions a restricted key needs, the hosted Checkout and its confirmation, the webhook and its idempotency, products and prices by lookup key, promotion codes, subscriptions, refunds, and settled revenue from the balance ledger with the rules that keep a cache honest. The payments skill includes `checkout.md`; the admin skill links `ledger.md`. |
-| [`engineering/docs/meta-marketing-api/`](engineering/docs/meta-marketing-api/) | What the skills that connect a site to Meta ads and run them share: the business, the app, the system user and its token, the dataset and the pixel's rules on a site with private pages, the Conversions API and attribution, the campaign objects and the settings a working account runs, the insights call, the spend cache, the review method and the optimization rules. The ads skill includes `access.md` and `measurement.md`; the admin skill links `campaigns.md` and `monitoring.md`. |
-| [`docs/card-news/`](docs/card-news/) | What the card-news skills share: the routes to a format spec in their order, the reference varied first, the fields of the spec and of the topic brief with how each is obtained and used, and the record an account that keeps posting holds beside its posts (its policy, each post's state from idea to published, the ledger of covered topics). At the root, because its skills are of three areas: the study, the build and the batch in `design/`, the research in `product/`, the posting in `marketing/`. |
-
-## Where things live
-
-Four scopes, each with one place, so that nothing is written twice and a finding is kept current where every reader looks:
-
-| What | Where | How it reaches the agent |
-|---|---|---|
-| A rule for every skill | The body of [`SKILLCDN.md`](SKILLCDN.md) | Paged before every skill, on every mount |
-| A rule for every skill of one area | The body of `<area>/SKILLCDN.md` | Paged before every skill of the area |
-| What the skills of one tool family share: how its tools behave, what they did in runs, the knowledge every run adds to | `docs/<family>/`, or `<area>/docs/<family>/` when every skill that includes its pages is in that area; one file per topic | The page every run needs is included by the skill and arrives with it wherever SkillCDN serves the skill; the rest are read on demand from the phase that links them, through the repository connection, an area's set also through the area's mount and plugin |
-| A skill's own workflow, checkpoints, verdicts, hard rules and craft | `<area>/skills/<name>/` | With the skill, wherever it is mounted, installed or copied |
-
-Areas are by function, and a tool family can serve several of them, which is why what its skills share sits at the root; a family whose including skills all sit in one area keeps it in that area's `docs/`, which travels with the area's mount and its plugin, and a skill of another area links what it reads of it. A skill carries what it cannot work without, so that it still works alone; what it shares it reads from one place, so that a run's finding is written once. A rule the family shares (the model speaks, overlays are code, two plain decodes decide what was said) stays in each skill's hard rules, in the form that skill gives it, because a manifest's rules reach only the skills below it.
+The same folders work without SkillCDN. Copy `<area>/skills/<name>/` into any agent that reads `SKILL.md`, or install an area as a [Claude Code](https://code.claude.com/docs/en/plugins) plugin: `claude plugin marketplace add skillcdn/skills`, then `claude plugin install marketing@skillcdn`. Through SkillCDN the rules in [SKILLCDN.md](SKILLCDN.md), the area's rules and the shared pages a skill includes arrive with every skill; a copy relies on the skill's own hard rules and reads the pages it links from this repository.
 
 ## Tool families
 
-| Family | What it is | How the user connects it | Documentation |
-|---|---|---|---|
-| Higgsfield | AI image, video and audio generation with a cloud sandbox for editing. | Add the Higgsfield MCP server to the agent. Skills check for the tools they need and ask for the server when it is missing. | [higgsfield.ai](https://higgsfield.ai) |
-| Meta Ad Library | Meta's public library of the ads running on Facebook, Instagram, Messenger, Threads and WhatsApp, read as a website because its API leaves out most commercial ads. | Nothing to connect. The agent needs a shell with a Chromium-family browser, or a browser it can drive; skills check which one it has and say what to add when it has neither. | [facebook.com/ads/library](https://www.facebook.com/ads/library) |
-| SkillCDN | A pack in the SkillCDN Format, this one or a fork of it, with its check and its git host, served as an MCP server. | A checkout of the repository with git and Node.js. The SkillCDN connection to the repository, for a fresh agent to load what was pushed. | [skillcdn.ai](https://skillcdn.ai), the [format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md) |
-| Git | git and a git host (GitHub through `gh`), with the SkillCDN Console's `console` command where the repository's work is tracked on a board: every repository the pack makes laid out the same way, with its agreement, its check and its console project, and a member's own desk made a private repository. | git on the machine; the git host's command signed in, to create the remote; the `console` command (`npm install -g @skillcdn/console`) signed in to the organization's console. The skill says what is missing, and works without a console on the user's word. What the skills share is in [`engineering/docs/git/`](engineering/docs/git/). | [git-scm.com](https://git-scm.com/doc), [the console](https://github.com/skillcdn/console) |
-| Cloudflare | The Workers platform with D1, R2, KV, custom domains, Workers Builds, the Registrar and Email Service, driven through the project's CLI (Wrangler on a Wrangler file, `cf` on the typed `cloudflare.config.ts`) and the REST API. | A Cloudflare account and an API token the user creates with the steps the skills give (or `wrangler login`); a shell with Node.js, npm, git and curl. Skills say which dashboard steps only a signed-in person can take. | [developers.cloudflare.com](https://developers.cloudflare.com/workers/) |
-| Stripe | Payments: the hosted Checkout, products and prices, webhooks, refunds, subscriptions and the balance ledger, driven through the REST API with `fetch` and the Stripe CLI. | A Stripe account and a restricted key the user creates in the sandbox and then in live mode, saved where the skills say; the Stripe CLI installed with npm for local webhook tests and as the reference of the day (`stripe docs`). | [docs.stripe.com](https://docs.stripe.com) |
-| Meta Marketing API | Meta's advertising API: datasets and the Conversions API, ad accounts, campaigns, ad sets, creatives and ads, insights. | A Meta business portfolio with an ad account and a Page, a system user token the user creates in Business settings and saves in `.meta-token`; the dataset's own token for the site's events. | [developers.facebook.com/docs/marketing-apis](https://developers.facebook.com/docs/marketing-apis) |
-| Browser | A Chromium-family browser run headless from a shell or driven from the host: here it renders an HTML page the agent wrote to PNG at the canvas size or prints it to PDF at a declared page size, previewed from a small static server. | Nothing to connect. A shell with Node.js or Python and an installed Chrome, Edge or Chromium, which `playwright-core` or Playwright launches by channel (a browser download is asked first), or a browser the agent drives; the skills check which they have and say what to add. What the skills share is in [`docs/browser/`](docs/browser/). | [playwright.dev](https://playwright.dev) |
-| Figma | Figma Design, FigJam and Figma Slides, written through the Figma MCP server's Plugin API tool with its own skills guidance, image uploads and screenshots. | Add the Figma MCP server to the agent and sign in to a Figma account that can edit the file; writing through the server needs a paid Full seat. Skills check for the tools they need and ask for the server when it is missing. | [help.figma.com](https://help.figma.com/hc/en-us/articles/32132100833559) |
-| Instagram | A reference account's public posts, read as a website without signing in, for the format of its card news; and the user's own account, where approved posts are booked in the site's web interface. | Nothing to connect for reading: a browser the agent can drive, or a shell with an installed Chrome, Edge or Chromium that a script of its own drives headless. Booking needs the person's own browser, signed in by them, driven by the agent with a tool that hands files to a page; the agent signs in nowhere. The skills check what they have and say what to add. | [instagram.com](https://www.instagram.com) |
-| Web | The open web read for a story: a search tool, article pages read in full for their text and their photographs, the public clip they cite as frames, and a shell for downloads. | Nothing to connect. The agent needs a web search tool, a page reader or a driven browser, a shell with Node.js and, for frames of a clip, a Chromium-family browser playwright-core can launch; the skill says what is missing. | The outlets' own pages |
+| Family | What it is | What you connect |
+|---|---|---|
+| Higgsfield | AI image, video and audio generation with a cloud sandbox for editing. | The Higgsfield MCP server. |
+| Meta Ad Library | Meta's public library of running ads, read as a website because its API leaves out most commercial ads. | Nothing: a browser the agent drives, or a shell with a Chromium-family browser. |
+| Instagram | A reference account's public posts read signed out; your own account's posts booked in its web interface. | Nothing to read. Booking needs your own browser, signed in by you. |
+| Web | The open web read for a story or a market: search, pages read in full, public statistics, app stores. | Nothing: a web search tool and a page reader or a driven browser. |
+| DART | The Korean Financial Supervisory Service's disclosure system, read for a company's audited figures. | Nothing for the public website; a free OpenDART key if you have one. |
+| Browser (HTML) | A Chromium-family browser that renders a page the agent wrote to PNG or PDF. | Nothing: an installed Chrome, Edge or Chromium. |
+| Figma | Figma Design and Figma Slides, written through the Figma MCP server. | The Figma MCP server, signed in to an account that can edit the file. |
+| Cloudflare | Workers with D1, R2, KV, custom domains, builds, the Registrar and mail. | A Cloudflare account and an API token you create with the steps the skills give. |
+| Stripe | Checkout, products and prices, webhooks, refunds, subscriptions, the balance ledger. | A Stripe account and a restricted key, sandbox first. |
+| Meta Marketing API | Datasets and the Conversions API, campaigns, ad sets, creatives, insights. | A business portfolio with an ad account and a Page, and a system user token. |
+| Git | git, a git host, and the console's board where a repository's work is tracked. | git and the host's command signed in; the `console` command where there is a console. |
+| SkillCDN | A pack in the SkillCDN Format, this one or a fork, with its check. | A checkout with git and Node.js, and the pack's connection for a fresh agent. |
 
-## Using a skill
+Each skill says what is missing and stops; none substitutes a tool that changes the result or the cost.
 
-1. Add an address above as a remote MCP server in your agent, install an area as a Claude Code plugin, or copy a skill folder into your agent's skills directory.
-2. Ask for what the skill does, in your own words. The skill's `description` is what the agent matches on.
-3. Connect the tools the skill names under "Requirements". A skill stops and asks when one is missing.
+## From one skill to a whole team
 
-Skills that spend money or credits always estimate first and wait for your approval.
+The pack is one of three repositories built toward one thing: a team of AI agents working beside its people, each agent with the skills of its job, all of them on one board.
+
+| | What it is | Start at |
+|---|---|---|
+| [**SkillCDN**](https://github.com/skillcdn/skillcdn)<br>`skillcdn/skillcdn` | The standard and the server: the format a pack is written in, the address that serves it to any agent, the command that reads it. | `skillcdn.ai/gh/<owner>/<repo>` |
+| **SkillCDN Pack**<br>this repository | Skills for real company work, by area. What a team starts with, and forks into a pack of its own. | [`skillcdn.ai/gh/skillcdn/skills`](https://skillcdn.ai/gh/skillcdn/skills) |
+| [**SkillCDN Console**](https://github.com/skillcdn/console)<br>`skillcdn/console` | Where that team works: the board, the agent accounts, the runs and the decisions. | [`skillcdn.ai/gh/skillcdn/console`](https://skillcdn.ai/gh/skillcdn/console) |
+
+Put together: an organization keeps its skills in git, SkillCDN hands them to every agent, this pack is what the team starts with, and the console is where people and agent accounts take their work, report and get their decisions.
 
 ## Make it yours
 
-This repository takes no pull requests. It is meant to be forked: the layout, the checks, the CI and the rules for agents come with the fork, and your skills go in.
+This repository takes no pull requests. It is the reference pack for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md) and is meant to be forked: the layout, the checks, the CI and the rules for agents come with the fork, and your skills go in.
 
 1. Fork the repository, or copy it into a new one.
 2. In `SKILLCDN.md`, set `name`, `description`, `translations` and `metadata.author` to yours. Keep the rules that hold for you; change the rest.
-3. Keep a license SkillCDN can pass on. It serves a skill in full only under a license it recognizes as permissive, taken from the skill's directory, its `license` field, the manifests above it or the repository's license file; under a restrictive or unrecognized license, in a public repository, the skill is only described, with a link to its source; a private repository is served in full whatever its license says.
+3. Keep a license SkillCDN can pass on. It serves a skill in full only under a license it recognizes as permissive; under another, in a public repository, the skill is only described, with a link to its source.
 4. Keep the areas you need and delete the others. A new area is a folder with a `SKILLCDN.md` and a `README.md`; the steps are in [guide/adding.md](guide/adding.md).
-5. Write your skills at `<area>/skills/<name>/`, following [guide/skill-authoring.md](guide/skill-authoring.md), or have an agent write them from work already done with the authoring skill in [`engineering/`](engineering/); put what the skills of one tool share in `docs/<tool>/`, or in the area's `docs/` when every skill that includes its pages is in that area. Run `node scripts/check.mjs`; CI runs it on every push. Replace [guide/roadmap.md](guide/roadmap.md) with your own plan, or delete it.
-6. Rewrite this README and each area's README for your repository, their tops first. The lockup and the symbol are SkillCDN's marks, so put your own there or none ([trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md)); keep the badge and give it your address, in its link and in its picture's URL (`https://skillcdn.ai/badge/gh/<you>/<repo>`), so that a reader sees where SkillCDN serves your pack and how many skills it has. The `image` of `SKILLCDN.md` and of the area manifests is the picture the explorer shows for the folder; here it is the pack's own picture at the root, `assets/banner.webp`, and a result of the pack's own showcase on three areas, so put a picture of yours there, as a file of your repository (`scripts/check.mjs` allows that one path, under 200 KiB) or an `https` URL, or leave the field out. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place its shared pages come from, put yours.
-7. Connect it at `skillcdn.ai/gh/<you>/<repo>`. A public repository needs no setup.
+5. Write your skills at `<area>/skills/<name>/`, following [guide/skill-authoring.md](guide/skill-authoring.md), or have an agent write them from work already done with the authoring skill in [`engineering/`](engineering/). Put what the skills of one tool share in `docs/<tool>/`. Run `node scripts/check.mjs`, and `npx @skillcdn/cli@latest catalog --write README.md` to fill the tables above; CI runs both. Replace [guide/roadmap.md](guide/roadmap.md) with your own plan, or delete it.
+6. Rewrite this README and each area's README for your repository, their tops first. The lockup and the symbol are SkillCDN's marks, so put your own there or none ([trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md)); keep the badge and give it your address, in its link and in its picture's URL (`https://skillcdn.ai/badge/gh/<you>/<repo>`). The `image` of `SKILLCDN.md` is the picture the explorer shows: put your own at `assets/banner.webp` (under 200 KiB) or an `https` URL in the field, or leave the field out. In `.claude-plugin/marketplace.json`, set `name` and `owner` to yours and list the areas that have skills. Where a skill's Requirements name this repository as the place a copy reads its pages, put yours.
+7. Connect it at `skillcdn.ai/gh/<you>/<repo>`. A public repository needs no setup. On a console, name it as your project's pack.
 
 The rules for changing anything, for people and agents alike, are in [AGENTS.md](AGENTS.md); a fork keeps them or changes them. A skill here that no longer works can be reported in an issue.
 
 ## Repository layout
 
 ```
-SKILLCDN.md       the repository manifest: the pack's name, description, document roots, the rules for every skill
+SKILLCDN.md       the pack's manifest: its name, description, the page read first, the rules for every skill
 README.md         this introduction
-assets/           banner.webp, the pack's own picture: the root manifest's image, shown by the explorer and the page of the address
-<area>/           one folder per area of work: marketing/, media/, product/, engineering/, ...
+<area>/           one folder per area of work: marketing/, design/, product/, engineering/, ...
   SKILLCDN.md     the area manifest: who its skills are for, the rules its skills add
   README.md       the area's catalog
   skills/<name>/  one directory per skill: SKILL.md, references/, assets/, optional scripts/
-  docs/           the area's document sets, <area>/docs/<family>/ for what a tool family's skills share when all are here
-docs/             document sets that serve every area, docs/<family>/ for what a tool family's skills share across areas
-guide/            how skills in this layout are written, how to add to a repository like this one, how an agent finds a skill, and what is planned
+  docs/           the area's document sets
+docs/             document sets that serve every area
+guide/            how skills here are written, added and found, and what is planned
 scripts/          check.mjs, the validation CI runs
 .claude-plugin/   the Claude Code marketplace: one plugin per area with skills
 ```
 
-What an agent connected through SkillCDN gets: the skills, the manifests and the document sets are discoverable with `browse_repo` and `search_repo` (a search names the sections of a document that matched, and `browse_repo` outlines a file by its headings and names the manifest of a folder), and the skills are listed through the MCP skills extension; the connection's instructions quote the pack's description and a line per area, and name this README and the root manifest as what to read on demand; this README, an area's README and the pages they link are readable with `read_repo_file`; everything else stays on the git host. How a pack, its skills and its documents are written in general is the format's own: [writing a pack](https://github.com/skillcdn/skillcdn/blob/main/docs/guide/write-a-repository.md), [writing skills](https://github.com/skillcdn/skillcdn/blob/main/docs/guide/write-skills.md) and [writing documents](https://github.com/skillcdn/skillcdn/blob/main/docs/guide/write-documents.md).
-
 ```sh
-node scripts/check.mjs    # validates manifests, front-matter, catalogs, links and text; needs Node.js 24, no install
+node scripts/check.mjs                 # manifests, front-matter, catalogs, links and text; Node.js 24, no install
+npx @skillcdn/cli@latest check         # the indexer's own reading: what an agent is told, what each skill weighs
 ```
 
-`npx @skillcdn/cli@latest check` reads the repository with the indexer itself, the same code SkillCDN serves it with, and prints what an agent is told; it needs Node.js 24 or newer and no checkout of SkillCDN. Name `@latest`: without it `npx` runs whichever copy its cache holds, and an older indexer reads the pack by older rules. CI runs both checks on every push and the indexer's once a week, so that a release of SkillCDN that reads the pack differently shows before an agent meets it.
+Name `@latest`: without it `npx` runs whichever copy its cache holds, and an older indexer reads the pack by older rules. CI runs both on every push and the indexer's once a week, so that a release of SkillCDN that reads the pack differently shows before an agent meets it.
 
 ## License
 
 The content of this repository is under the [MIT License](LICENSE.md), a license SkillCDN recognizes as permissive, which is why it serves these skills in full. "SkillCDN" and its logos are trademarks of KDX Labs Corp.; its [trademark policy](https://github.com/skillcdn/skillcdn/blob/main/TRADEMARKS.md) allows everyone the file name `SKILLCDN.md`, the `skillcdn` front-matter key and the name of the format, so a fork keeps them. The tools the skills drive are third-party products with their own terms.
-
-Built by KDX Labs. Copyright (c) 2026 KDX Labs Corp.

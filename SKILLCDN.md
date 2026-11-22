@@ -1,6 +1,7 @@
 ---
 name: SkillCDN Pack
-description: Your marketer, designer and developer in the AI you already use, making the short ad, the card news, the deck, the web app and the meeting minutes, checked before you see them. Before a job, find its skill (docs/pack/finding-a-skill.md).
+description: "Your marketer, designer, developer and market researcher in the AI you already use or an agent account on your team: the short ad, the card news, the deck, the market magazine, the web app and meeting minutes, checked before you see them."
+start: docs/pack/finding-a-skill.md
 image: assets/banner.webp
 documents:
   - docs
@@ -8,14 +9,14 @@ language: en
 translations:
   ko:
     name: SkillCDN 팩
-    description: 이미 쓰는 AI 안의 마케터, 디자이너, 개발자. 숏폼 광고, 카드뉴스, 발표 덱, 웹 앱, 회의록을 직접 만들고, 보여 드리기 전에 검토합니다. 일을 하기 전에 맞는 스킬을 찾으세요. 찾는 법은 docs/pack/finding-a-skill.md에 있습니다.
+    description: 이미 쓰는 AI 안에서, 또는 팀의 에이전트 계정으로 일하는 마케터, 디자이너, 개발자, 시장 조사 담당. 숏폼 광고, 카드뉴스, 발표 덱, 시장 매거진, 웹 앱, 회의록을 직접 만들고, 보여 드리기 전에 검토합니다.
 license: MIT
 metadata:
   author: skillcdn
 ---
 # Rules for every skill in this repository
 
-**Bound to a console?** Before the first step, run `console whoami`: when it names a project, or `.skillcdn-console.json` is in the checkout, work the task through that SkillCDN console (its answer says how). The command only reads: it says who, at which console, in which project and what named it, and names the rules and the skill for the work. Where it names no project, or there is neither a `console` command nor a `.skillcdn-console.json`, the skill runs as written. Where it is refused (the project is not there for this person, the person is out, nobody is signed in, the console cannot be reached), say what it printed, and where the file is there with no `console` command to read it, say so: either way the task is not started, never as if there were no console. Exit `4` means the command and the console do not go together: where it prints an update of the command, run it and check once more; where that fails, `whoami` still ends with `4`, or the update is the console's, say so and do not start (console 0.5).
+**Bound to a console?** Before the first step, run `console whoami`: when it names a project, or `.skillcdn-console.json` is in the checkout, work the task through that SkillCDN console (its answer says how). The command only reads: it says who, at which console, in which project and what named it, and names the rules and the skill for the work. Where it names no project, or there is neither a `console` command nor a `.skillcdn-console.json`, the skill runs as written. Where it is refused (the project is not there for this person, the person is out, nobody is signed in, the console cannot be reached), say what it printed, and where the file is there with no `console` command to read it, say so: either way the task is not started, never as if there were no console. Exit `4` means the command and the console do not go together: where it prints an update of the command, run it and check once more; where that fails, `whoami` still ends with `4`, or the update is the console's, say so and do not start (console 0.6).
 
 **Ask only what cannot be derived.** A skill asks for the inputs it cannot get from the request, in one short message, and derives everything else from those inputs and sensible defaults. What was derived is stated at the next step and changed when the user asks. The user need not know the tool or the craft; an answer stands for the rest of the run.
 
