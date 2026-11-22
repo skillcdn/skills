@@ -23,5 +23,5 @@ The official site is, in this order: the homepage in the DART overview; the site
 
 ## The site
 
-- The company lookup takes the Korean name, with or without `주식회사`, a part of it, or a stock code. An English name returns nothing, even the one the overview shows (checked 2026-11): look the brand up for its Korean legal name first.
+- The company lookup takes the Korean name, with or without `주식회사`, a longer part of it, or a stock code. An English name returns nothing, even the one the overview shows, and a two-syllable brand that begins the legal name returned no row where the legal name returned the filer (checked 2026-11): look the brand up for its Korean legal name first, in its site's footer.
 - The filing search returns only the types asked for. An audit report its auditor filed is not among the business report types, nor the reverse: ask for `A001,F001,F002` together, as the script does by default, and read the filer column to tell who filed.

@@ -15,5 +15,6 @@ One of 1 or 2, or two of 3 to 5, is an identity. One of 3 to 5 alone is written 
 ## What does not decide it
 
 - **The representative.** The filing names the registered representative directors; the press names a founder or a chief executive. They can be different people in the same company, and the same name in two companies.
+- **A site that refuses the page-reading tool.** A footer is the same page in any reader: take the next route the host has, the shell's fetch or a browser, in the order of [walls.md](/docs/browser/walls.md). A brand's site refused a fetch tool and answered the shell's fetch with a browser's user agent (2026-11).
 - **A site with no operator on it.** A recruiting site, a campaign page or an app's landing page may state no business information at all. Go to the terms of service of the product itself, then to 3 and 4.
 - **A similar legal name.** DART holds dissolved companies, renamed ones and namesakes: read the founding day, the industry and the address in the overview before a name is believed.

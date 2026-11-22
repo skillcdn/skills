@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js 22 or newer and network access to dart.fss.or.kr, or a browser the agent drives or a web-reading tool that opens the site's pages. Works in any agent that has one of them; a search engine's summary of a filing is not a substitute.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: dart
 skillcdn:
   include:
@@ -33,7 +33,7 @@ A company goes in, by its name, its website or its business registration number,
 | Read DART | A shell with Node.js 22 or newer that reaches `dart.fss.or.kr`, which runs [dart.example.mjs](scripts/dart.example.mjs); else a browser the agent drives or a web-reading tool that opens the same pages, by the routes of [dart-web.md](references/dart-web.md) | Stop and say what to add. A press article or a search result is not a filing, and a figure read from one is graded `press`, never `filing`. |
 | Write the result | A file tool | Put the table and the rows in the reply. |
 
-Before the first message, prove the route on the first company: `node dart.example.mjs corp "<name>"` prints at least one line with a corp code. `NOT READ` is a stop: say what the script printed and offer the next route of the table. With `DART_API_KEY` set in the environment, a key of OpenDART the user holds, phase 3 takes its figures from the API where the company files a business report ([opendart.md](references/opendart.md)); the key is never asked for.
+Save the script as it is served into the working folder and run it there; it writes no file. Before the first message, prove the route on the first company: `node dart.example.mjs corp "<name>"` prints at least one line with a corp code. `NOT READ` is a stop: say what the script printed and offer the next route of the table. With `DART_API_KEY` set in the environment, a key of OpenDART the user holds, phase 3 takes its figures from the API where the company files a business report ([opendart.md](references/opendart.md)); the key is never asked for.
 
 Links that start with `/` are files of the pack this skill is from: a copy of this directory, a plugin or a mount below the root that lacks one reads it through the pack's connection (`https://skillcdn.ai/gh/skillcdn/skills`) or at `github.com/skillcdn/skills`.
 
@@ -42,7 +42,7 @@ Links that start with `/` are files of the pack this skill is from: a copy of th
 | Input | Source |
 |---|---|
 | The company, or several | The request: a name, a website or a business registration number. A calling skill passes its list. |
-| What the company announced | Optional: a figure or a phrase in the request, or the address of the release or the article. With it the announcement is checked; without it the row carries the filing's figures alone. |
+| What the company announced | Optional: a figure or a phrase in the request, or the address of the release or the article. With it the announcement is checked; without it the row carries the filing's figures alone. A request that asks for the check and names no announcement: the company's own release of the year's results, found on the homepage or the IR homepage the overview filed (following its redirect), then by a web search for the year's results with the company's name; an article that quotes the company is the address only where no release is found, and the row says so. |
 | More companies of the same kind | Only when the request asks for others beside the one named: candidates from a web search for the kind of company, each then looked up like any other and put in the same table. |
 | Everything else | Derived: the fiscal year (the latest one an audited filing covers, with the year before beside it), the basis (consolidated where the company files one, else separate), the folder (the one the user or the calling skill named, else `company-figures-<YYYYMMDD>/` in the working directory). |
 
@@ -52,7 +52,7 @@ Each phase produces a named result. The commands are the script's; without a she
 
 ### Phase 1: Identify
 
-Produces the **company**: its corp code and its overview. `corp "<name>"` lists the companies a name matches with corp code, market, representative, business registration number and industry; `info <corp code>` adds the address, the homepage the company filed, the founding day and the month its fiscal year ends. A website or a registration number in the request is matched against those fields. Several matches that the request does not settle: the question. No match: try the Korean legal name, a shorter part of it and the stock code once each, then say that DART has no filer of that name and grade whatever the company announced `announced-only`.
+Produces the **company**: its corp code and its overview. `corp "<name>"` lists the companies a name matches with corp code, market, representative, business registration number and industry; `info <corp code>` adds the address, the homepage the company filed, the founding day and the month its fiscal year ends. A website or a registration number in the request is matched against those fields. Several matches that the request does not settle: the question. No match for a brand or a site: read the operator's name and business registration number in the site's footer or terms ([identity.md](references/identity.md)) and look that name up, which settles phase 5 as well. Still no match: try a shorter part of the legal name and the stock code once each, then say that DART has no filer of that name and grade whatever the company announced `announced-only`.
 
 ### Phase 2: Find the filings
 
@@ -72,7 +72,7 @@ Produces the **figures**. `toc <rcpNo> "손익계산서"` names the income state
 
 ### Phase 4: Check the announcement
 
-Produces the **check**, one value of the company-figure vocabulary in the grades page that comes with this skill. Compare like with like: the same fiscal year, the same basis. An announced figure that rounds to the filed one `matches`. An adjective with no amount ("profitable", "record sales") is compared by its sign and its direction and is never copied: the row carries the filed amount. Where the announcement is consolidated and the company files only separate statements, read [consolidation.md](references/consolidation.md) before grading: it says when the parts add up (`sums-up`), when the filings only bound the figure (`scale-fits`) and when nothing can be said (`unverifiable`). A row with no announcement to compare, whose figures are the filing's own, carries `matches`.
+Produces the **check**, one value of the company-figure vocabulary in the grades page that comes with this skill. Compare like with like: the same fiscal year, the same basis. An announced figure that rounds to the filed one `matches`. An adjective with no amount ("profitable", "record sales") is compared by its sign and its direction and is never copied: the row carries the filed amount. Where the announcement is consolidated and the company files only separate statements, read [consolidation.md](references/consolidation.md) before grading: it says when the parts add up (`sums-up`), when the filings only bound the figure (`scale-fits`) and when nothing can be said (`unverifiable`). A row with no announcement to compare, whose figures are the filing's own, carries `matches`. An announcement on both bases is checked on each: the row's basis in the row, the other basis with its check in an observation. A growth rate it states is checked against the statement's two columns and written as computed.
 
 ### Phase 5: Show it is the same company
 
@@ -80,17 +80,17 @@ Produces the **identity**: the one fact that ties the website, or the brand the 
 
 ### Phase 6: Note what else the filing shows
 
-Produces the **observations**, as plain facts from the sections already open and the auditor's opinion (`toc <rcpNo> "감사인"` names its section in either kind of filing): an audit opinion that is not unqualified, a doubt about the going concern, revenue that comes mostly from one customer or from related parties, the parent and its stake, a provisional figure the audit changed. Each is a sentence with its address.
+Produces the **observations**, as plain facts from the sections already open and the auditor's opinion (`toc <rcpNo> "감사인"` names its section in either kind of filing): an audit opinion that is not unqualified, a doubt about the going concern, revenue that comes mostly from one customer or from related parties, the parent and its stake, a provisional figure the audit changed, a change of auditor between the two years, an operating profit far apart on the two bases (the gap computed; its cause is in the notes, read only when the user asks). An unqualified opinion is not an observation. Each is a sentence with its address.
 
 ### Phase 7: Deliver
 
-`figures.json` in the folder, shaped like [figures.example.json](assets/figures.example.json), one row per company (a file already there gains the rows, and a row of the same company and fiscal year is replaced; amounts are whole won, `basis` and `check` take their fixed words, `listed` is `KOSPI`, `KOSDAQ`, `KONEX` or `no`), and a table in the user's language: company (founded, listed or not), revenue and operating profit of the year and the year before in units of 100 million won beside the won figure, the basis, the announced figure with its check, the identity, the observations, the filing's address. One message: the table, which rows a card or a text may show (`matches` and `sums-up`), which wait on the user (`announced-only`, `scale-fits`, `unverifiable`, `differs`) and why, and what could not be read.
+`figures.json` in the folder, shaped like [figures.example.json](assets/figures.example.json), one row per company (a file already there gains the rows, and a row of the same company and fiscal year is replaced; amounts are whole won, `basis` and `check` take their fixed words, `listed` is `KOSPI`, `KOSDAQ`, `KONEX` or `no`), and a table in the user's language (a line per basis where one company was announced on both): company (founded, listed or not), revenue and operating profit of the year and the year before in units of 100 million won beside the won figure, the basis, the announced figure with its check, the identity, the observations, the filing's address. One message: the table, which rows a card or a text may show (`matches` and `sums-up`), which wait on the user (`announced-only`, `scale-fits`, `unverifiable`, `differs`) and why, and what could not be read.
 
 ## Verdicts
 
 | Result | Accept | Accept with a change | Redo |
 |---|---|---|---|
-| A figure | The amount as the statement has it, with its unit, basis and the filing's address | Rounded to another unit: the won figure goes beside it | Taken from an article or a summary: find the filing, or grade it `press` and keep it out of the row |
+| A figure | The amount as the statement has it, with its unit, basis and the filing's address | Rounded to another unit: the won figure goes beside it | Taken from an article, a summary or a data service's table, even one that says it read the filings: find the filing, or grade it `press` and keep it out of the row |
 | The announcement | `matches` or `sums-up` | `scale-fits`, `announced-only`, `unverifiable`: the check and its reason go to the user's list | `differs`: the row carries the filed figure, and the announced one is quoted beside it |
 | The identity | The registration number agrees, or two filed facts agree with the site | One fact: said so in the row | The name alone: back to phase 5 |
 
