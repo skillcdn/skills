@@ -1,12 +1,12 @@
 <!-- dot-plot: one value a row as a dot on a common scale (a share, a lifespan). A dot's left is its value in
      percent of the scale's end; the row the title speaks of is .on; the scale's two ends are named, nothing else. -->
 <style>
-.d-ends { left: 448px; top: 350px; width: 1196px; display: flex; justify-content: space-between; font: 500 20px var(--mono); color: var(--ink-2) }
+.d-ends { left: 448px; top: 350px; width: 1196px; display: flex; justify-content: space-between; font: 500 20px var(--font); font-variant-numeric: tabular-nums; color: var(--ink-2) }
 .d-rows { left: 96px; top: 410px; width: 1728px; display: grid; row-gap: 44px }
 .d-row { display: grid; grid-template-columns: 320px 1fr 148px; align-items: center; column-gap: 32px; font-size: 30px; font-weight: 700 }
 .d-track { position: relative; height: 2px; background: var(--card-line) }
 .d-track i { position: absolute; top: -15px; width: 32px; height: 32px; margin-left: -16px; border-radius: 50%; background: var(--ink-2) }
-.d-row b { text-align: right; font: 600 28px var(--mono) }
+.d-row b { text-align: right; font: 700 28px var(--font); font-variant-numeric: tabular-nums }
 .d-row.on { color: var(--accent-2) }
 .d-row.on .d-track i { background: var(--accent); box-shadow: 0 0 0 12px rgba(79, 125, 255, 0.2) }
 </style>

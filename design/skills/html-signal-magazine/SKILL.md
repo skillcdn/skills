@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js, a Chromium-family browser (an installed Chrome or Edge, or Playwright's), a way to read web pages, and a way to look at an image. Without the browser or the image reader the skill stops before the first message and says what to add.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: browser
 skillcdn:
   include:
@@ -35,7 +35,7 @@ Research already done goes in (verdicts on markets, the numbers behind them, the
 | A way to read web pages | The brand's site, and every source a number is checked against. |
 | A way to look at an image | Every slide is looked at before it is shown. |
 
-Before the first message, save the helper and [`assets/issue-skeleton.html`](assets/issue-skeleton.html) in the run folder (through SkillCDN, `read_repo_file` at their paths) and run the helper on the skeleton into the host's scratch folder: two slides and no finding mean the driver, the browser and the helper work.
+Before the first message, save the helper and [`assets/issue-skeleton.html`](assets/issue-skeleton.html) in the series folder (through SkillCDN, `read_repo_file` at their paths) and run the helper on the skeleton into the host's scratch folder: two slides and no finding mean the driver, the browser and the helper work.
 
 Links that start with `/` are files of the pack this skill is from: a copy of this directory, a plugin or a mount below the root that lacks one reads it through the pack's connection (`https://skillcdn.ai/gh/skillcdn/skills`) or at `github.com/skillcdn/skills`.
 
@@ -44,7 +44,7 @@ Links that start with `/` are files of the pack this skill is from: a copy of th
 | Input | Source |
 |---|---|
 | The research | What [web-market-entry-signals](/product/skills/web-market-entry-signals/SKILL.md) left in the market folder: the latest survey's gates table `report.md` and `notes/`, and `watch.json` with its observations. Taken first: what moved since the last issue. A verdict of `unknown` is shown as unknown; the watch list's statuses and the user's own plans are not shown. With no research, say that skill runs first. |
-| Company figures | `figures.json` of [dart-company-figures](/product/skills/dart-company-figures/SKILL.md), run in phase 2 on the companies that could stand on a card. A figure goes on a slide where its `check` is `matches` or `sums-up`; `announced-only` goes on the user's list to confirm. |
+| Company figures | `figures.json` of [dart-company-figures](/product/skills/dart-company-figures/SKILL.md), run in phase 2, into the issue's folder, on the entrants and incumbents of the notes that could stand on a card. A figure goes on a slide where its `check` is `matches` or `sums-up`; `announced-only` goes on the user's list to confirm. |
 | An item looked into | From `review.md` of [web-item-deep-dive](/product/skills/web-item-deep-dive/SKILL.md), only the numbers the user says may be public; never its verdict or its pilot plan. |
 | The brand, the contact, the name, what stays out | Asked. The issue goes out as the brand: no person and no company name stands on it unless the user gives one for it. |
 | The series folder | The folder the user names, else `magazine/` in the market folder: `brand.md`, `library/`, and one folder an issue, `<YYYY-MM>/` with `plan.md`, `facts.md`, `deck.html`, `handoff.md`, `out/`. A later issue starts as a copy of the last one's folder without `out/`. |
@@ -60,7 +60,7 @@ Produces `brand.md`, by [design-system.md](references/design-system.md) "Reading
 
 ### Phase 2: The numbers
 
-Produces `facts.md`, shaped as [`facts.example.md`](assets/facts.example.md): one row for every number the issue may show, with the sentence of its source, the address, its grade, its check and, where the watch list holds it, its metric id. Open every source again and find the number in the sentence: a number its source does not state, states of something narrower, or states of another period is corrected or dropped, and the row says which. A price is a band from the cheapest to the dearest; a comparison sets two values of the same year side by side; a profit is an amount.
+Produces `facts.md`, shaped as [`facts.example.md`](assets/facts.example.md): one row for every number the issue may show, with the sentence of its source, the address, its grade, its check and, where the watch list holds it, its metric id. Open every source again and find the number in the sentence: a number its source does not state, states of something narrower, or states of another period is corrected or dropped, and the row says which. A price is a band from the cheapest to the dearest of one billing period; a comparison sets side by side two values of the same year, definition and method (two countries' counts of themes named apart are not one); a profit is an amount.
 
 ### Phase 3: The plan
 
@@ -69,6 +69,7 @@ Produces `plan.md`. Read first [sentences.md](/docs/writing/sentences.md), [outs
 - The contents slide's title is the issue's one sentence, and the slides right after it are the ones that carry it.
 - A slide's title is one sentence that holds its figure, the figure first: "<figure> came in within two years", not "Entry trends".
 - No scene twice in a row, and several scenes an issue that the last issue did not use. A numbered list of three lines is a document page, not a scene.
+- Under the question whether entrants earn, a card holds only a company that entered within the survey's window; an older one stands under its own head with the year it entered (a reader took an incumbent's profit there for the entrants').
 - The closing view answers the series' questions in their order and ends on a question the reader would put to the brand; each of its sentences names in `plan.md` the slides it rests on.
 
 Checkpoint: the rows as a short list, the closing view's sentences, the look's routes, the companies proposed for cards (the name, what it sells, its founding year, whether it is listed, both figures with their `check`) for the user to pick, and "OK builds it, a number changes that slide".
@@ -79,7 +80,7 @@ Produces `library/` and its `index.md`, by [library.md](references/library.md): 
 
 ### Phase 5: Build
 
-Produces `deck.html`: the skeleton with the brand's tokens, then one `section.slide` a row of the plan, each started from its file under [`assets/scenes/`](assets/scenes/contents.html) and composed for its message, by design-system.md "The deck file" and scenes.md. The small figure beside a number on the cover and the contents is drawn by [sparks.md](references/sparks.md). Render the cover and the busiest slide first.
+Produces `deck.html`: the skeleton with the brand's tokens, then one `section.slide` a row of the plan, each started from its file under [`assets/scenes/`](assets/scenes/contents.html) and composed for its message, by design-system.md "The deck file" and scenes.md. The small figure beside a number on the cover and the contents is drawn by [sparks.md](references/sparks.md). Render the cover and the busiest slide first: the company cards where the plan has them, else the slide with the most drawn units.
 
 Checkpoint: those two slides, by path or attached, and what was taken from the site.
 
@@ -99,7 +100,7 @@ Checkpoint: the sheet, the count of findings, the PDF's size, and the list the u
 
 ### Phase 8: Deliver and hand off
 
-Deliver the HTML and the PDF by path with the slide count. Say which figures rest on one source, which scenes are new, and what was left out. A figure the series will show again and `watch.json` does not hold yet is added there as a metric, this reading its first observation, in the shape [watch-record.md](/docs/market-research/watch-record.md) gives, and `facts.md` takes its id. Where a designer takes the issue on, write `handoff.md` as [`handoff.example.md`](assets/handoff.example.md) and show it; putting it and the files on a board is the user's step, confirmed each time.
+Deliver the HTML and the PDF by path with the slide count. Say which figures rest on one source, which scenes are new, and what was left out. A figure the series will show again and `watch.json` does not hold yet is added there as a metric, this reading its first observation (the filed figures of the companies on cards under gate 04, a new period of a count the issue drew; never a price band), with one line in `log.md`, in the shape [watch-record.md](/docs/market-research/watch-record.md) gives, and `facts.md` takes its id. Where a designer takes the issue on, write `handoff.md` as [`handoff.example.md`](assets/handoff.example.md) and show it; putting it and the files on a board is the user's step, confirmed each time.
 
 ## Verdicts
 

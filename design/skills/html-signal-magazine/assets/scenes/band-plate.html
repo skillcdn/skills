@@ -2,12 +2,12 @@
      log scale. With D decades on the scale and a first tick of F: a band's left is log10(low / F) / D and its
      width log10(high / low) / D, in percent. Here F is 1 and D is 3 (1 to 1,000). -->
 <style>
-.b-ticks { left: 448px; top: 350px; width: 1376px; display: flex; justify-content: space-between; font: 500 20px var(--mono); color: #6b7487 }
+.b-ticks { left: 448px; top: 350px; width: 1376px; display: flex; justify-content: space-between; font: 500 20px var(--font); font-variant-numeric: tabular-nums; color: #6b7487 }
 .b-rows { left: 96px; top: 410px; width: 1728px; display: grid; row-gap: 34px }
 .b-row { display: grid; grid-template-columns: 320px 1fr; align-items: center; column-gap: 32px; font-size: 30px; font-weight: 700 }
 .b-scale { position: relative; height: 64px; border-left: 1px solid #c9d0de; border-right: 1px solid #c9d0de }
 .b-scale i { position: absolute; top: 8px; height: 48px; border-radius: 24px; background: #c3cbdc }
-.b-scale b { position: absolute; top: 18px; font: 600 22px var(--mono); white-space: nowrap; transform: translateX(14px) }
+.b-scale b { position: absolute; top: 18px; font: 700 22px var(--font); font-variant-numeric: tabular-nums; white-space: nowrap; transform: translateX(14px) }
 .b-row.on .b-scale i { background: var(--accent) }
 </style>
 <section class="slide plate" data-pattern="band-plate">

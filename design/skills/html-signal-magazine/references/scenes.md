@@ -35,9 +35,9 @@ The scenes an issue is planned from, each with the file it starts from under `as
 | Scene | Starts from | The drawing |
 |---|---|---|
 | `sieve` | `sieve.html` | The questions as cards, and how many candidates were left after each, as counted dots. |
-| `verdict-map` | `verdict-map.html` | The themes on two axes, the cell the title speaks of lit, a signal mark beside each theme. |
+| `verdict-map` | `verdict-map.html` | The themes on two axes, the cell the title speaks of lit, beside each theme the mark of its gate 04 verdict (pass, partial, fail, unknown). |
 | `company-cards` | `company-cards.html` | A card a company: the logo, the name, what it sells in a line, two figures as amounts. |
-| `screen-tiles` | `screen-tiles.html` | The products as their own screens in a row, a name under each. |
+| `screen-tiles` | `screen-tiles.html` | The products as their own screens in a row, a name under each and, where the plan's sentence needs it, one line of what the product does. |
 | `icon-timeline` | `icon-timeline.html` | When each came in, as its icon over the year on one line. |
 | `logo-columns` | `logo-columns.html` | Three groups of companies by their logos, a count and a head a group. |
 

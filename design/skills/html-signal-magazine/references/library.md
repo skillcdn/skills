@@ -17,7 +17,7 @@ library/
 
 In this order, stopping at the first that has the file:
 
-1. **The company's own site**: its header and footer, its press or brand page. The logo as SVG where the site serves one (the `img` or the inline `svg` of the header, saved as it is).
+1. **The company's own site**: its header and footer, its press or brand page. The logo as SVG where the site serves one (the `img` or the inline `svg` of the header, saved as it is; an inline one that lacks `xmlns="http://www.w3.org/2000/svg"` gains it, since without it the file does not open as an image).
 2. **The app's store listing**, for an app's icon and its screens. The iTunes Search API answers without a key: `https://itunes.apple.com/search?term=<name>&entity=software&country=<cc>` gives `artworkUrl512`, `screenshotUrls` and `sellerName` for each match (checked 2026-11); pick the match by its seller, not by its rank.
 3. **Simple Icons**, for the mark of a widely known brand whose site serves only a raster logo.
 
