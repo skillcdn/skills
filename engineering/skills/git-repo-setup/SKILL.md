@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the runtime of the stack the repository will hold (Node.js, Python, Go, Rust) where it holds code. The console command, signed in, for the console project (recommended; without it the repository tracks its work in a file). The git host's command (gh for GitHub), signed in, to create the remote and give teammates access. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.17"
+  version: "1.18"
   tools: git
 skillcdn:
   translations:
@@ -118,7 +118,7 @@ Produces the **delivery**. On the board: the commit handed in on the setup task 
 
 ## Run by another skill
 
-A skill that builds the product (`cloudflare-new-app`) or lays out a studio ([git-studio-setup](/engineering/skills/git-studio-setup/SKILL.md)) runs this one on its project folder and hands it what its own run settled: what the product is and for whom, who works in it, the console project where the caller asked, the stack and its check, the README's language, what the agreement and the documents' map gain, the tasks that come next, and whether it keeps the remote. Nothing handed is asked again, a file the caller wrote is kept and completed, a check the caller wrote stands in for the stack's skeleton and the check of phase 4, and the plan here shows only the console project and the teammates, with the remote where the caller leaves it to this skill. Where the caller keeps the remote, this skill ends after phase 4 with the files written, the check green and the board set, and gives the caller the setup task's number, on which the caller reports, hands in and finishes; where it does not, the run goes on through phase 6.
+A skill that builds the product (`cloudflare-new-app`) or lays out a studio ([git-studio-setup](/engineering/skills/git-studio-setup/SKILL.md)) runs this one on its project folder and hands it what its own run settled: what the product is and for whom, who works in it, the console project where the caller asked, the stack and its check, the README's language, what the agreement and the documents' map gain, the tasks that come next, and whether it keeps the remote. Nothing handed is asked again, a file the caller wrote is kept and completed, a check the caller wrote stands in for the stack's skeleton and the check of phase 4, and the plan here shows only the console project and the teammates, with the remote where the caller leaves it to this skill. Where the caller's request named the console project to bind, this repository's line in its rules and the next tasks there are part of that answer, and the plan is shown and passed. With nobody in the chat, a line still open is the setup task's first decision on the board: the files are written and committed meanwhile, and the run reports and hands the decision back instead of waiting on it. Where the caller keeps the remote, this skill ends after phase 4 with the files written, the check green and the board set, and gives the caller the setup task's number, on which the caller reports, hands in and finishes; where it does not, the run goes on through phase 6.
 
 ## Verdicts
 
