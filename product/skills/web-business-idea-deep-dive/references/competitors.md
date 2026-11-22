@@ -1,15 +1,15 @@
 # Competitors: who sells it, the company behind each, and when it came in
 
-How the competition branch finds who already sells the item, names the company behind each service, dates its entry, reads its prices as bands and its revenue from filings, and how the review's competition section is laid out. Read by the competition branch and before the section is written.
+How the competition branch finds who already sells what the idea would sell, names the company behind each service, dates its entry, reads its prices as bands and its revenue from filings, and how the review's competition section is laid out. Read by the competition branch and before the section is written.
 
 ## Who counts
 
-A competitor sells the same result to the same payer. Two lists are kept apart from the start: those that sell to consumers and those that sell to businesses or institutions, since their prices, their sales and their numbers do not compare. What the buyers do today in place of any product (by hand, with a general tool, through a person they pay) is written as a third, short list of substitutes: it is what the item must beat first.
+A competitor sells the same result to the same payer. Two lists are kept apart from the start: those that sell to consumers and those that sell to businesses or institutions, since their prices, their sales and their numbers do not compare. What the buyers do today in place of any product (by hand, with a general tool, through a person they pay) is written as a third, short list of substitutes: it is what the idea must beat first.
 
 ## Finding them
 
 1. Search in the market's language, with the words a buyer uses for the job and not the product's category name; then with the names the first results compare themselves to.
-2. Search the market's app stores with the same words, where the item could be an app.
+2. Search the market's app stores with the same words, where the idea could be an app.
 3. Read a comparison article or a ranking as a pointer to names. Every name is then opened on its own site.
 4. Stop adding names when two searches in a row bring none that is new, or when the budget's discovery share is spent, and say which in "Not seen".
 
@@ -48,7 +48,7 @@ A price is read on the service's own price page, with the day it was read, as a 
 
 ## Ads
 
-Where competitors sell through ads, one run of `meta-ad-library-creative-research` reads them all, from the session at that skill's own stops: its subject the competitors, its terms the category word and each competitor's domain and name as exact phrases, its folder inside the item's folder. The competition section takes three things from its report: how many ads are active, the start date of the oldest one still running, and the hooks in a line.
+Where competitors sell through ads, one run of `meta-ad-library-creative-research` reads them all, from the session at that skill's own stops: its subject the competitors, its terms the category word and each competitor's domain and name as exact phrases, its folder inside the idea's folder. The competition section takes three things from its report: how many ads are active, the start date of the oldest one still running, and the hooks in a line.
 
 ## The table
 
@@ -68,4 +68,4 @@ A table of more than a dozen rows is split by the form of what is sold, each par
 
 ## The closest one, in depth
 
-The competitor nearest the item gets a subsection: its funnel from the free step to each paid step with the price at each, what it covers and what it leaves out as its own pages show it, and its weak points as observations with their evidence (a review quoted with its address, a feature absent from its pages, a complaint repeated across reviews). The review's "where to win" is written from these observations; a judgment on the company is not.
+The competitor nearest the idea gets a subsection: its funnel from the free step to each paid step with the price at each, what it covers and what it leaves out as its own pages show it, and its weak points as observations with their evidence (a review quoted with its address, a feature absent from its pages, a complaint repeated across reviews). The review's "where to win" is written from these observations; a judgment on the company is not.

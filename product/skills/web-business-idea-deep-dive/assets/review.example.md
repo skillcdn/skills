@@ -1,10 +1,10 @@
-# Review: <the item in one line>
+# Review: <the idea in one line>
 
 Date: <YYYY-MM-DD>. Country: <code>. Grades and checks as `evidence-grades.md` names them. Notes: `notes/competition.md`, `notes/market.md`, `notes/supply.md`, `notes/law.md`.
 
 Every value below is a placeholder that shows the shape; none is a finding.
 
-## The item as given
+## The idea as given
 
 <What is sold>, to <whom>, at about <price band>. <Who pays>, where that is not who uses it. Made from: <kinds of material>.
 
@@ -39,7 +39,7 @@ Funnel: free <what>, then <step> at <price>, then <step> at <price>. Covers <sco
 
 | Factor | Value | Grade | Source | Note |
 |---|---|---|---|---|
-| Base: <who could buy> | <n>, <year> | official | <address> | <a wider category than the item's> |
+| Base: <who could buy> | <n>, <year> | official | <address> | <a wider category than the idea's> |
 | Spend a buyer a year | <low> to <high> | measured | competitors' price pages, read <date> | A band |
 | Share that buys | <low> to <high> % | estimate | assumption | No measured figure was found |
 
@@ -66,7 +66,7 @@ This section is research into public sources for a lawyer to check, and not lega
 
 | # | Law | What meets it | How sure | Design that avoids it | Basis |
 |---|---|---|---|---|---|
-| 1 | <Statute>, article <n> (<address>) | <the part of the item> | clear | <what the product does> | statute |
+| 1 | <Statute>, article <n> (<address>) | <the part of the idea> | clear | <what the product does> | statute |
 | 2 | <Case number> (<address>) | <the route> | disputed: <source> says <x>, <source> says <y> | <what the product does> | case |
 | 3 | <Statute>, article <n> (<address>) | <the route> | unknown | none found | commentary |
 

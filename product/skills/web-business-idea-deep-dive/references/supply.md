@@ -20,7 +20,7 @@ Write down every route before judging any: the answer is usually a combination, 
 - Collected from other services' pages.
 - Bought as a business: a company or a catalogue that already holds it.
 
-A route that does not apply to the item is listed with one line saying why.
+A route that does not apply to the idea is listed with one line saying why.
 
 ## The routes table
 
@@ -37,4 +37,4 @@ Whether a route is lawful is the law branch's finding, written in the risk table
 
 ## The combination
 
-The section ends with the routes that together reach what the pilot needs, what each contributes, and what the product would add later. A changed form of the item rests only on routes whose `Use` is `use` or carries a design; where no combination reaches the pilot's need, the section says so, and that is a reason the item as given is stopped.
+The section ends with the routes that together reach what the pilot needs, what each contributes, and what the product would add later. A changed form of the idea rests only on routes whose `Use` is `use` or carries a design; where no combination reaches the pilot's need, the section says so, and that is a reason the idea as given is stopped.

@@ -1,6 +1,6 @@
 # Evidence grades: the tags on a number and a verdict
 
-The four small vocabularies the market research skills tag with, so that a note, a gates table, a watch list, a figures file and a magazine's ledger say the same thing with the same word. A tag stands beside its number with the address of the source: `1,240 (official, <url>)`. What a text may state from a source is in [facts.md](/docs/writing/facts.md); this page holds only the tags.
+The four small vocabularies the market research skills tag with, so that a note, a gates table, a watch list, a figures file and a market report's ledger say the same thing with the same word. A tag stands beside its number with the address of the source: `1,240 (official, <url>)`. What a text may state from a source is in [facts.md](/docs/writing/facts.md); this page holds only the tags.
 
 ## The grade of a number
 

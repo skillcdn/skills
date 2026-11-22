@@ -1,6 +1,6 @@
 ---
 name: SkillCDN Pack
-description: "Your marketer, designer, developer and market researcher in the AI you already use or an agent account on your team: the short ad, the card news, the deck, the market magazine, the web app and meeting minutes, checked before you see them."
+description: "Your marketer, designer, developer and market researcher in the AI you already use or an agent account on your team: the short ad, the card news, the deck, the market report, the web app and meeting minutes, checked before you see them."
 start: docs/pack/finding-a-skill.md
 image: assets/banner.webp
 documents:
@@ -9,7 +9,7 @@ language: en
 translations:
   ko:
     name: SkillCDN 팩
-    description: 이미 쓰는 AI 안에서, 또는 팀의 에이전트 계정으로 일하는 마케터, 디자이너, 개발자, 시장 조사 담당. 숏폼 광고, 카드뉴스, 발표 덱, 시장 매거진, 웹 앱, 회의록을 직접 만들고, 보여 드리기 전에 검토합니다.
+    description: 이미 쓰는 AI 안에서, 또는 팀의 에이전트 계정으로 일하는 마케터, 디자이너, 개발자, 시장 조사 담당. 숏폼 광고, 카드뉴스, 발표 덱, 시장 리포트, 웹 앱, 회의록을 직접 만들고, 보여 드리기 전에 검토합니다.
 license: MIT
 metadata:
   author: skillcdn

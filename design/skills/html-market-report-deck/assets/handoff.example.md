@@ -4,7 +4,7 @@ The shape of `handoff.md` in an issue's folder, with placeholder values. It goes
 
 ## The file to work from
 
-`<magazine>-<YYYY-MM>.pdf` and `.html`, the edition rendered on `<day>`. This edition is the base: an earlier one is not.
+`<report>-<YYYY-MM>.pdf` and `.html`, the edition rendered on `<day>`. This edition is the base: an earlier one is not.
 
 ## What to keep
 

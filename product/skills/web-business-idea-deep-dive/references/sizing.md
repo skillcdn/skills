@@ -22,19 +22,19 @@ Every factor of every size is a row; a size whose factors are not all in the tab
 | Value | The figure or the range, with its unit and its period |
 | Grade | `official`, `filing`, `announced`, `estimate`, `press`, `measured` or `computed` |
 | Source | The address of the page the sentence was read on, or "assumption" |
-| Note | The limit of the source: an old year, a wider category than the item's, a sample |
+| Note | The limit of the source: an old year, a wider category than the idea's, a sample |
 
 ## Three sizes, kept apart
 
 1. **The whole market:** everyone who has the problem, at what they spend on it today, substitutes included.
-2. **The base case:** the part the item as given can reach in the pilot's country through the channel it would sell in, at the share's range. Low, middle and high are three rows, not one number.
+2. **The base case:** the part the idea as given can reach in the pilot's country through the channel it would sell in, at the share's range. Low, middle and high are three rows, not one number.
 3. **The business case:** organizations that could pay for many users at once (how many there are, what a contract is worth), sized by itself whenever a business or an institution could be the payer.
 
 The consumer and the business sizes are alternatives of who pays and are never summed. A size computed here is graded `computed`, with its formula beside it.
 
 ## The calendar
 
-Demand for most items gathers at a few points of the year. Find them, since they date the pilot:
+Demand for most products gathers at a few points of the year. Find them, since they date the pilot:
 
 - What triggers the purchase: a season, a deadline, an enrolment, an exam, a fiscal year, a holiday. The official schedule that fixes it is the first source.
 - Search interest by month for the buyer's words, graded `measured`, over at least two years so that one year's event is not read as a season.

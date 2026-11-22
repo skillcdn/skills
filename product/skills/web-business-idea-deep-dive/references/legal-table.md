@@ -1,6 +1,6 @@
 # Law: the risk table, the design principles and the questions for a lawyer
 
-How the law branch finds the laws an item meets, cites each by its article or its case, weighs what it read, and writes the risk table, the design principles and the questions a lawyer is asked. Read by the law branch and before the review's law section is written. The section is research that prepares a consultation; it replaces none.
+How the law branch finds the laws an idea meets, cites each by its article or its case, weighs what it read, and writes the risk table, the design principles and the questions a lawyer is asked. Read by the law branch and before the review's law section is written. The section is research that prepares a consultation; it replaces none.
 
 ## The head
 
@@ -8,15 +8,15 @@ The law note and the review's law section both begin with one sentence, in the u
 
 ## What to look for
 
-The law is the country's the item is sold in, and where the material or the buyers are in another, that one's too. Ask of the item, in this order, and research what each answer names:
+The law is the country's the idea is sold in, and where the material or the buyers are in another, that one's too. Ask of the idea, in this order, and research what each answer names:
 
 - **What it sells:** is the product or the service one that needs a licence, a registration or a qualified person to offer; is the claim it makes one that is regulated.
-- **What it is made from:** who holds rights in each kind of material (copyright, a database's maker, a person in their data or their image), and what the terms of the service it comes from allow. Every kind of material the item line names is asked this, and every route the supply note adds.
+- **What it is made from:** who holds rights in each kind of material (copyright, a database's maker, a person in their data or their image), and what the terms of the service it comes from allow. Every kind of material the idea line names is asked this, and every route the supply note adds.
 - **How it sells:** what the market's rules on selling to consumers ask (information before the sale, withdrawal and refunds, subscriptions, advertising claims).
 - **Whom it serves:** minors, patients, borrowers, members of a regulated profession, and what protects them.
 - **What the product does by itself:** rules on automated output where the market has them (disclosure, liability for what is generated).
 
-A question the item does not raise is written as not raised, in a line.
+A question the idea does not raise is written as not raised, in a line.
 
 ## What counts as a basis
 
@@ -36,7 +36,7 @@ One row a risk:
 | Column | Holds |
 |---|---|
 | Law | The statute and article, or the case number, with its address |
-| What meets it | The part of the item, or the supply route, that the law bears on |
+| What meets it | The part of the idea, or the supply route, that the law bears on |
 | How sure | `clear`, `disputed` (the sources disagree: both are written) or `unknown` (nothing firm was found) |
 | Design that avoids it | What the product or the business does so that the risk does not arise, or "none found" |
 | Basis | `statute`, `case`, `guideline` or `commentary` |
@@ -45,7 +45,7 @@ A risk is never left out because it is uncertain: `unknown` is a row. A table of
 
 ## Design principles
 
-A short list drawn from the table's fourth column, each principle naming the rows it answers, in the imperative and about the product: what users may bring, what is never passed on, what is shown before a sale, who signs off. The changed form of the item is written from this list.
+A short list drawn from the table's fourth column, each principle naming the rows it answers, in the imperative and about the product: what users may bring, what is never passed on, what is shown before a sale, who signs off. The changed form of the idea is written from this list.
 
 ## Reading a statute
 
@@ -56,7 +56,7 @@ Read the article in force on the day, on the country's official portal, and cite
 Six to ten, in the order of what the verdict rests on; where more rows must become questions, rows that turn on the same facts share one, and the rows of routes the changed form does not use stay in the law note, said so:
 
 - Every row that is `disputed` or `unknown`, and every row whose basis is commentary alone, is a question.
-- Each names its row, states the facts of the item it turns on, and can be answered: "May we <do this> with <this material> for <these buyers> under <article>?", not "Is it legal?".
+- Each names its row, states the facts of the idea it turns on, and can be answered: "May we <do this> with <this material> for <these buyers> under <article>?", not "Is it legal?".
 - The last asks what the research did not think to ask.
 
 ## What the section never says

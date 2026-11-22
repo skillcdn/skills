@@ -45,8 +45,9 @@ The requests of the round, with the skill each must find:
 | "어느 시장에 들어갈지 실제 통계로 찾아 줘, 한국이랑 미국." (find which market to enter from real statistics, Korea and the US) | `web-market-entry-signals` |
 | "지켜보는 시장들 이번 주 다시 재 줘." (measure the markets we watch again this week) | `web-market-entry-signals`, its round |
 | "이 회사 작년 영업이익 공시로 확인해 줘." (check this company's operating profit last year in its filings) | `dart-company-figures` |
-| "이 사업 아이템 법이랑 경쟁자까지 깊게 조사해 줘." (look into this business idea in depth, the law and the competitors too) | `web-item-deep-dive` |
-| "이번 조사로 시장 매거진 이번 호 만들어 줘." (make this issue of the market magazine from the research) | `html-signal-magazine` |
+| "이 사업 아이템 법이랑 경쟁자까지 깊게 조사해 줘." (look into this business idea in depth, the law and the competitors too) | `web-business-idea-deep-dive` |
+| "이번 조사로 이번 달 시장 리포트 만들어 줘." (make this month's market report from the research) | `html-market-report-deck` |
+| "이번 조사로 시장 매거진 이번 호 만들어 줘." (make this issue of the market magazine from the research) | `html-market-report-deck` |
 | "우리 팀이 광고 소재를 계속 만들고 최적화하는 저장소를 세팅해 줘." (set up a repository where our team keeps making and tuning ad creatives) | `git-studio-setup` |
 | "우리 제품 소개 덱 만들어줘." (make our product introduction deck) | `html-product-deck` |
 

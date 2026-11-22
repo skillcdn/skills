@@ -1,6 +1,6 @@
 ---
 name: web-market-entry-signals
-description: Finds which markets are worth entering now, from official statistics, filings, app stores and the ads running, in Korea and the US by default, and measures the watched markets again later. Judges every theme per country on four questions (are many people paying, is it growing, are new competitors coming in, are those who came in earning), with the sources behind each verdict and a watch list; a later round reads again what is due, compares the ads with the last snapshot and reports only what changed status. Use when a user says "find a market we could enter", "where is money moving now", "a growing market with new entrants", "business ideas that use AI", "look again at the ideas I dropped", "run the market scan again" or "update the watch list and tell me what moved". Ad counts come from meta-ad-library-rising-products, company figures from dart-company-figures; a market the user picks goes to web-item-deep-dive, the findings to html-signal-magazine. Nothing is spent.
+description: Finds which markets are worth entering now, from official statistics, filings, app stores and the ads running, in Korea and the US by default, and measures the watched markets again later. Judges every theme per country on four questions (are many people paying, is it growing, are new competitors coming in, are those who came in earning), with the sources behind each verdict and a watch list; a later round reads again what is due, compares the ads with the last snapshot and reports only what changed status. Use when a user says "find a market we could enter", "where is money moving now", "a growing market with new entrants", "business ideas that use AI", "look again at the ideas I dropped", "run the market scan again" or "update the watch list and tell me what moved". Ad counts come from meta-ad-library-rising-products, company figures from dart-company-figures; a market the user picks goes to web-business-idea-deep-dive, the findings to html-market-report-deck. Nothing is spent.
 license: MIT
 compatibility: Needs a web search tool and a way to read a page in full. A shell with Node.js 22 or newer runs the watch list's scripts and the app store count. The ad counts need what meta-ad-library-rising-products needs, a real browser engine. A host that starts agents side by side runs the branches at once; without one they run in turn. Any agent with these can run it, whatever its vendor.
 metadata:
@@ -13,7 +13,7 @@ skillcdn:
   translations:
     ko:
       title: 시장 진입 신호 조사와 감시 라운드
-      description: 지금 들어갈 만한 시장을 공식 통계, 공시, 앱 스토어, 집행 중인 광고로 찾고, 지켜보는 시장을 나중에 같은 잣대로 다시 잽니다. 기본 범위는 한국과 미국입니다. 테마마다 나라별로 네 질문(이미 돈을 내는 사람이 많은가, 자라는가, 새 경쟁자가 들어오는가, 들어온 회사가 버는가)을 판정하고, 판정마다 근거 주소와 다시 잴 감시 목록을 남깁니다. 다음 라운드에서는 확인일이 온 지표를 다시 읽고, 광고를 지난 스냅샷과 비교하고, 상태가 바뀐 것만 보고합니다. "들어갈 시장 찾아 줘", "요즘 돈이 몰리는 분야", "자라면서 새 경쟁자가 들어오는 시장", "AI로 할 만한 사업 기회", "접었던 아이디어 신호 다시 봐 줘"라고 하거나 "시장 스캔 다시 돌려 줘", "지켜보는 시장 다시 재 줘", "감시 목록 업데이트하고 바뀐 것만 알려 줘"라고 할 때 쓰세요. 광고 수는 meta-ad-library-rising-products, 회사 숫자는 dart-company-figures에서 오고, 사용자가 고른 시장 하나는 web-item-deep-dive로, 결과는 html-signal-magazine으로 넘어갑니다. 조사는 갈래를 나눠 동시에 돌립니다. 비용은 들지 않습니다.
+      description: 지금 들어갈 만한 시장을 공식 통계, 공시, 앱 스토어, 집행 중인 광고로 찾고, 지켜보는 시장을 나중에 같은 잣대로 다시 잽니다. 기본 범위는 한국과 미국입니다. 테마마다 나라별로 네 질문(이미 돈을 내는 사람이 많은가, 자라는가, 새 경쟁자가 들어오는가, 들어온 회사가 버는가)을 판정하고, 판정마다 근거 주소와 다시 잴 감시 목록을 남깁니다. 다음 라운드에서는 확인일이 온 지표를 다시 읽고, 광고를 지난 스냅샷과 비교하고, 상태가 바뀐 것만 보고합니다. "들어갈 시장 찾아 줘", "요즘 돈이 몰리는 분야", "자라면서 새 경쟁자가 들어오는 시장", "AI로 할 만한 사업 기회", "접었던 아이디어 신호 다시 봐 줘"라고 하거나 "시장 스캔 다시 돌려 줘", "지켜보는 시장 다시 재 줘", "감시 목록 업데이트하고 바뀐 것만 알려 줘"라고 할 때 쓰세요. 광고 수는 meta-ad-library-rising-products, 회사 숫자는 dart-company-figures에서 오고, 사용자가 고른 시장 하나는 web-business-idea-deep-dive로, 결과는 html-market-report-deck으로 넘어갑니다. 조사는 갈래를 나눠 동시에 돌립니다. 비용은 들지 않습니다.
 ---
 # Market entry signals
 
@@ -79,7 +79,7 @@ Produces **`watch.json`**, by [watch-record.md](/docs/market-research/watch-reco
 
 ### Phase 6: Deliver
 
-One message with the folder: the themes that pass all four questions; those that pass 01 to 03 with 04 open; what the user set aside, as signals only; what was not seen; and what comes next, with the date of the first round. A market the user picks is looked into by [web-item-deep-dive](/product/skills/web-item-deep-dive/SKILL.md); in two weeks a round measures against this survey; [html-signal-magazine](/design/skills/html-signal-magazine/SKILL.md) makes an issue of the findings.
+One message with the folder: the themes that pass all four questions; those that pass 01 to 03 with 04 open; what the user set aside, as signals only; what was not seen; and what comes next, with the date of the first round. A market the user picks is looked into by [web-business-idea-deep-dive](/product/skills/web-business-idea-deep-dive/SKILL.md); in two weeks a round measures against this survey; [html-market-report-deck](/design/skills/html-market-report-deck/SKILL.md) makes an issue of the findings.
 
 ### A round
 

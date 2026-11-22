@@ -15,7 +15,7 @@ For each metric due, open its source as its `how` says and add one observation: 
 - The number is about a period: write the period the source gives, not today.
 - A period already in the file that the source has revised gets a second line with the same `period`.
 - A source that has not come out, or could not be reached, gets a line with `value` null and the note `not published` or `not reached`. Nothing is estimated in its place.
-- A number written in an issue of the magazine that came back as worth reading again is already a metric: read it like the rest.
+- A number written in an issue of the market report that came back as worth reading again is already a metric: read it like the rest.
 
 ## 3. The ads
 

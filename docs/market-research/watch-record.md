@@ -1,6 +1,6 @@
 # The watch record: a market measured again
 
-The file a market survey leaves so that the same markets are measured again by the same yardstick: `watch.json`, with its sources, themes, metrics and observations, the statuses a theme moves through and who moves them, what may be compared with what, and where the files of a market folder are. [`web-market-entry-signals`](/product/skills/web-market-entry-signals/SKILL.md) writes it in a survey and adds to it in every round, and carries its schema, an example and the two scripts that print and check it; the deep dive adds or corrects one theme line; the magazine reads figures by metric id and returns the ones it will use again as observations.
+The file a market survey leaves so that the same markets are measured again by the same yardstick: `watch.json`, with its sources, themes, metrics and observations, the statuses a theme moves through and who moves them, what may be compared with what, and where the files of a market folder are. [`web-market-entry-signals`](/product/skills/web-market-entry-signals/SKILL.md) writes it in a survey and adds to it in every round, and carries its schema, an example and the two scripts that print and check it; the deep dive adds or corrects one theme line; the market report reads figures by metric id and returns the ones it will use again as observations.
 
 ## The market folder
 
@@ -12,7 +12,7 @@ The file a market survey leaves so that the same markets are measured again by t
 | `log.md` | One dated line a survey, a round or a deep dive: what was read, what moved, what was put off. The course of events lives here, not in a note field. | The survey, every round, the deep dive |
 | `snapshots/<YYYY-MM-DD>-meta-<market>-<category>.json` | The ad counts of one market and category on one day. | `meta-ad-library-rising-products` |
 | `<YYYY-MM-DD>-entry-signals/report.md`, `notes/<branch>.md` | A survey's gates table and its branch notes. The latest dated folder is the current survey. | The survey |
-| `<YYYY-MM-DD>-<item>/review.md`, `notes/` | The review of one item and its branch notes. | [`web-item-deep-dive`](/product/skills/web-item-deep-dive/SKILL.md) |
+| `<YYYY-MM-DD>-<idea>/review.md`, `notes/` | The review of one business idea and its branch notes. | [`web-business-idea-deep-dive`](/product/skills/web-business-idea-deep-dive/SKILL.md) |
 
 ## The file
 
@@ -42,8 +42,8 @@ The file a market survey leaves so that the same markets are measured again by t
 
 - **A source** is read again on its `cadence`: `weekly`, `monthly`, `quarterly`, `yearly` or `irregular`. A metric's `source` is a source id, or an address where the source is read once.
 - **A theme** is `big` (money already moves there) or `rising`. Its `gates` hold, per country code, the verdict on each of the four questions in the vocabulary of [evidence-grades.md](evidence-grades.md), the memo and the day it was judged. `doc` is the note or the review that says more.
-- **A metric** belongs to one theme and one country and is evidence for one gate. A figure for the whole world is a metric of the country whose gate it bears on, its note beginning `worldwide`: it is a proxy there. Its `id` is what a magazine's ledger and a report point to, so it is never reused for another definition.
-- **Two runs** may hold the file at once (a magazine's delivery, a deep dive's, a round): read it just before writing, and change only the lines of the theme and the metrics this run adds.
+- **A metric** belongs to one theme and one country and is evidence for one gate. A figure for the whole world is a metric of the country whose gate it bears on, its note beginning `worldwide`: it is a proxy there. Its `id` is what a market report's ledger and a round's report point to, so it is never reused for another definition.
+- **Two runs** may hold the file at once (a market report's delivery, a deep dive's, a round): read it just before writing, and change only the lines of the theme and the metrics this run adds.
 - **An id** is lower-case words joined by hyphens, unique in its list, and never renamed.
 
 ## An observation
@@ -59,7 +59,7 @@ One line a reading: `read` (the day it was read), `period` (what the number is a
 
 | Status | Means | Who moves a theme here |
 |---|---|---|
-| `watch` | Measured every round. | The survey, when it adds the theme; the deep dive, when its item is not on the list yet. |
+| `watch` | Measured every round. | The survey, when it adds the theme; the deep dive, when its idea is not on the list yet. |
 | `candidate` | Worth the user's look: the rise was measured, not inferred. | A round, by its rule. |
 | `testing` | The user is trying it. | The user only. |
 | `cooling` | The measure it was raised on is falling. | A round, by its rule. |

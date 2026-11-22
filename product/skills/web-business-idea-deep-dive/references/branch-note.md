@@ -6,22 +6,22 @@ What one branch of the review is given and what it writes back: the brief, the n
 
 A branch agent starts with none of the session's context, so its brief carries all of it:
 
-- The item as given, in its one line, with who pays, the kinds of material and the country.
+- The idea as given, in its one line, with who pays, the kinds of material and the country.
 - Today's date, read from the system.
 - The branch's name and the text of its page (`competitors.md`, `sizing.md`, `supply.md` or `legal-table.md`), pasted or named by its path where the agent reads the pack itself.
 - This page, the same way, and the tables of `evidence-grades.md`.
-- Its budget of searches, as a number, and the order: confirm what the item line claims first (that the buyers exist, that the named competitors sell what is said, that the material is where it is said to be), then discover with what is left.
-- Where the note goes: `notes/<branch>.md` in the item's folder. Where the host refuses a subagent's Markdown file, the note comes back as the agent's final message and the session saves it.
+- Its budget of searches, as a number, and the order: confirm what the idea line claims first (that the buyers exist, that the named competitors sell what is said, that the material is where it is said to be), then discover with what is left.
+- Where the note goes: `notes/<branch>.md` in the idea's folder. Where the host refuses a subagent's Markdown file, the note comes back as the agent's final message and the session saves it.
 - What comes back with it: three lines, the finding that weighs most, the one that surprised, and what the budget did not reach.
 
-The brief holds no verdict, no hope for the item and none of what the user rules out. A branch that knows the wished answer finds it.
+The brief holds no verdict, no hope for the idea and none of what the user rules out. A branch that knows the wished answer finds it.
 
 ## The head
 
 The first lines of a note, before any section:
 
 ```
-# <branch>: <the item in one line>
+# <branch>: <the idea in one line>
 Date read: <YYYY-MM-DD>. Country: <code>. Searches used: <n> of <budget>.
 Grades: official, filing, announced, estimate, press, measured, computed. A figure with no grade is not a finding.
 ```

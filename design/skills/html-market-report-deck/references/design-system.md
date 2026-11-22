@@ -1,6 +1,6 @@
 # The look of an issue: the brand's tokens, the frame, the deck file
 
-How the look is read from the brand's site, what a magazine adds to it, how the deck's one file is written, and what the helper reports. Read before phase 1, and again at the build.
+How the look is read from the brand's site, what the series' frame adds to it, how the deck's one file is written, and what the helper reports. Read before phase 1, and again at the build.
 
 ## Reading the brand's site
 
@@ -11,9 +11,9 @@ Phase 1 writes `brand.md` in the series folder from the site itself, never by ey
 - **Fonts.** The site's family by its local name first, then its documented web file saved under `library/fonts/` ([rendering-html.md](/docs/browser/rendering-html.md) "Fonts"). A serif for the masthead is one the brand already uses, else one plain system serif.
 - **`brand.md`** names each token with its value and where on the site it was read, the fonts with their files, and in a line each: how the site builds a card, how it lights its ground, how it writes a section head. The skeleton's `:root` takes these values under its own names.
 
-## What the magazine adds
+## What the series' frame adds
 
-The site gives the ground, the surfaces, the colours and the type. The magazine adds four things and no more: the masthead (the name in the serif, the issue's period beside it), the cover's lines, the contents slide, and the foot mark on every slide (the name in the serif, the period in the mono). A slide between them looks like a page of the brand's site that happens to hold a chart.
+The site gives the ground, the surfaces, the colours and the type. The series adds a frame in a magazine's manner, four things and no more: the masthead (the name in the serif, the issue's period beside it), the cover's lines, the contents slide, and the foot mark on every slide (the name in the serif, the period in the mono). A slide between them looks like a page of the brand's site that happens to hold a chart.
 
 ## Colour and emphasis
 

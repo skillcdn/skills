@@ -14,9 +14,9 @@ Skills for product planning and research: discovery (what is taking off in a mar
 |---|---|
 | [dart-company-figures](skills/dart-company-figures/SKILL.md) | Finds a Korean company's revenue and operating profit in its filings on DART, the Financial Supervisory Service's disclosure site, and checks what the company announced against them. |
 | [meta-ad-library-rising-products](skills/meta-ad-library-rising-products/SKILL.md) | Finds what is taking off in a market or a field of work, such as AI tools, by what its advertisers are putting new money behind, read from the public Meta Ad Library with a browser. |
+| [web-business-idea-deep-dive](skills/web-business-idea-deep-dive/SKILL.md) | Reviews one business idea in depth before anything is built, as one document with what exactly is sold to whom and who pays, how big the market is and when in the year it buys, who already sells it (… |
 | [web-card-news-topic-brief](skills/web-card-news-topic-brief/SKILL.md) | Finds what is worth a card news post now in the categories an account covers, in the outlets and where people are talking, lets the user pick, and turns the pick into a sourced topic brief a post can… |
 | [web-concept-variations](skills/web-concept-variations/SKILL.md) | Shows four to six concept directions that get a reference's effect by other means, for a product, a post, a page, a deck or a campaign, from a reference the user gives or one found among what is work… |
-| [web-item-deep-dive](skills/web-item-deep-dive/SKILL.md) | Reviews one business idea in depth before anything is built, as one document with what exactly is sold to whom and who pays, how big the market is and when in the year it buys, who already sells it (… |
 | [web-market-entry-signals](skills/web-market-entry-signals/SKILL.md) | Finds which markets are worth entering now, from official statistics, filings, app stores and the ads running, in Korea and the US by default, and measures the watched markets again later. |
 
 6 skills.

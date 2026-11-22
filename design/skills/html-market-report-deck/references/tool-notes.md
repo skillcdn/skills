@@ -25,4 +25,4 @@ The helper prints the PDF's size and reports `heavy` over the deck's `pdf_max_mb
 
 ## The files a reader receives
 
-The HTML and the PDF are named for their readers, `<magazine>-<YYYY-MM>`, with no date of making in front: the name shows in a mail and in a download. The issue's own folder carries the period.
+The HTML and the PDF are named for their readers, `<report>-<YYYY-MM>`, with no date of making in front: the name shows in a mail and in a download. The issue's own folder carries the period.

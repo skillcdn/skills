@@ -57,12 +57,12 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - Also asked as: "a product introduction for our customers", "a sales deck that hooks", "a brochure deck for our service", "introduce this feature to customers as a deck", "our product introduction, with the presentation skill".
 - Not this one when: the deck is a business plan, a plan for investors, a kickoff or a report from notes (the deck above), or the slides go into an existing Figma deck (the Figma skill above).
 
-### "Make this month's issue of our market magazine."
+### "Make this month's market report from our research."
 
-- You get: one issue as a deck, one HTML file and a PDF, from research already done: every slide one message carried by a chart or a picture composed for it, in your brand's own look under a magazine's cover and contents, every number in a ledger checked against its source, logos and app screens from the companies' own pages, and a closing view that says no more than the slides before it; the next issue starts from this one's folder.
-- Skill: [`design/skills/html-signal-magazine/`](/design/skills/html-signal-magazine/SKILL.md)
-- Also asked as: "turn the research into a deck we hand out", "a market data deck in our brand", "a magazine for founders", "the next issue".
-- Not this one when: the deck sells a product (the product deck above), it is a report or a proposal from notes (the deck from notes above), or the research is still to be done (the market entry signals under Product).
+- You get: one issue as a deck, one HTML file and a PDF, from research already done: every slide one message carried by a chart or a picture composed for it, in your brand's own look with a magazine-style cover and contents, every number in a ledger checked against its source, logos and app screens from the companies' own pages, and a closing view that says no more than the slides before it; the next issue starts from this one's folder.
+- Skill: [`design/skills/html-market-report-deck/`](/design/skills/html-market-report-deck/SKILL.md)
+- Also asked as: "turn the research into a deck we hand out", "a market trend report in our brand", "an industry report for founders", "this issue of our market magazine", "a market data deck", "the next issue".
+- Not this one when: the deck sells a product (the product deck above), it is an internal report or a proposal from notes (the deck from notes above), or the research is still to be done (the market entry signals under Product).
 
 ### "Show me four looks for this."
 
@@ -125,7 +125,7 @@ What you can ask for, in your own words, and which skill does it. One section pe
 ### "Look into this idea properly before we build it."
 
 - You get: one review document of a business idea: what is sold to whom and who pays, the market's size with every assumption in a table and the weeks of the year it buys, the competitors with the company behind each, its revenue, price bands and when it came in, every route to the material the product needs, the legal risks by article or case with a design that avoids each, a verdict on the idea as given and on a changed form, a pilot with measurable success criteria, and the questions for a lawyer.
-- Skill: [`product/skills/web-item-deep-dive/`](/product/skills/web-item-deep-dive/SKILL.md)
+- Skill: [`product/skills/web-business-idea-deep-dive/`](/product/skills/web-business-idea-deep-dive/SKILL.md)
 - Also asked as: "research the law, the supply, the market and the competitors for this", "can we do this business", "dig into the market I picked", "is this legal and who else sells it", "a review document for this idea".
 - Not this one when: you want to know which market to enter (the entry signals above), one company's figures checked against its filings (the company figures below), or a competitor's ad creatives studied (the creative research under Marketing).
 

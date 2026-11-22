@@ -41,7 +41,7 @@ Say it in your own words. Each line is a job the pack does end to end.
 | **Product and market research** | |
 | "Find a market we could enter." | Every theme judged per country on four questions, with the sources behind each verdict and a watch list that is measured again by the same yardstick. |
 | "Look into this idea properly." | One review: the market and when it buys, who already sells it and what they earn, where the material can come from, the legal risks with a design around each, and a pilot plan. |
-| "Turn the research into this month's issue." | One issue of a market magazine in your brand, every number traced to its source. |
+| "Turn the research into this month's market report." | One issue of a market report in your brand, every number traced to its source. |
 | "What is taking off in this market?" | The products and services advertised more and more, counted in the public ad library. |
 | **Engineering** | |
 | "Build me an app for this and put it online." | A web app live on your own domain, then payments, ads and an admin to watch them, each a skill that takes over from the last. |
@@ -59,7 +59,7 @@ Every job, with the other ways it is asked for and the skill that does it, is on
 
 On a [SkillCDN Console](https://github.com/skillcdn/console) an agent is a member of its own: it is assigned a task as a colleague is, takes it, reports as it goes, hands in what it made, and asks a person when a person must decide. What it knows how to do comes from a pack. This is the pack a team starts with.
 
-- **A role is a set of skills.** An account whose job is marketing works with the ad, the ad research and the card news chain; one whose job is development with the app, the deploy, payments and the admin; one that watches markets with the survey, its rounds and the magazine.
+- **A role is a set of skills.** An account whose job is marketing works with the ad, the ad research and the card news chain; one whose job is development with the app, the deploy, payments and the admin; one that watches markets with the survey, its rounds and the market report.
 - **The skill's stops are the board's decisions.** Where a skill would stop for you in a chat (a plan, a cost, what is posted), an agent account raises a decision to the person who can make it and goes on with other work until it is answered. Nothing is spent, posted or deployed in passing.
 - **Work that continues has a place.** [`git-studio-setup`](engineering/skills/git-studio-setup/SKILL.md) lays out a repository where people and agent accounts keep producing the same kind of thing (posts, ad creatives, optimization rounds, market rounds) with the policy, each unit's state and what the runs taught kept where the next session reads them. [`git-desk-setup`](engineering/skills/git-desk-setup/SKILL.md) makes a member's own desk a private repository.
 - **The pack is read through the board.** A console's project names this pack, or your fork of it; an agent there finds a skill with `console skills --search` and loads it with `console skill`, with no connection of its own to set up.
@@ -110,8 +110,8 @@ Slides and decks, card news posts and the formats they are built in, looks on a 
 | [html-card-news-from-brief](design/skills/html-card-news-from-brief/SKILL.md) | Builds an Instagram card news carousel from a sourced topic brief in a format spec's format, as HTML rendered to PNG, with an mp4 for a slide whose picture is a clip of the brief's; with no spec or b… |
 | [html-deck-from-outline](design/skills/html-deck-from-outline/SKILL.md) | Drafts a slide deck as one HTML file and a PDF from notes, a meeting plan or an idea, as a corporate report (a business plan, a plan for investors, a company presentation, an internal report) or an e… |
 | [html-design-variations](design/skills/html-design-variations/SKILL.md) | Shows four looks for one design (a page's first screen, a deck's cover, a card news format) as HTML rendered in a browser and tiled on one contact sheet, from a reference, a concept or the thing as i… |
+| [html-market-report-deck](design/skills/html-market-report-deck/SKILL.md) | Makes one issue of a market report a brand hands out, as a slide deck in one HTML file and a PDF, from market research already done: every slide one message carried by a chart or a picture composed f… |
 | [html-product-deck](design/skills/html-product-deck/SKILL.md) | Makes a product deck that sells a product or one of its features to buyers, as one HTML file and a PDF, every slide one message in a scene composed for it (a real screen, a scene drawn in the product… |
-| [html-signal-magazine](design/skills/html-signal-magazine/SKILL.md) | Makes one issue of a market signal magazine as a deck, one HTML file and a PDF, from market research already done: every slide one message carried by a chart or a picture composed for it, in the look… |
 | [instagram-card-news-format-study](design/skills/instagram-card-news-format-study/SKILL.md) | Studies the card news of a reference Instagram account, of one reference post, or of a few accounts of a genre, and writes the format as a spec a new post can be built in, from the posts visible with… |
 
 8 skills.
@@ -126,9 +126,9 @@ What is worth building before anything is built: markets, signals, a sourced bri
 |---|---|
 | [dart-company-figures](product/skills/dart-company-figures/SKILL.md) | Finds a Korean company's revenue and operating profit in its filings on DART, the Financial Supervisory Service's disclosure site, and checks what the company announced against them. |
 | [meta-ad-library-rising-products](product/skills/meta-ad-library-rising-products/SKILL.md) | Finds what is taking off in a market or a field of work, such as AI tools, by what its advertisers are putting new money behind, read from the public Meta Ad Library with a browser. |
+| [web-business-idea-deep-dive](product/skills/web-business-idea-deep-dive/SKILL.md) | Reviews one business idea in depth before anything is built, as one document with what exactly is sold to whom and who pays, how big the market is and when in the year it buys, who already sells it (… |
 | [web-card-news-topic-brief](product/skills/web-card-news-topic-brief/SKILL.md) | Finds what is worth a card news post now in the categories an account covers, in the outlets and where people are talking, lets the user pick, and turns the pick into a sourced topic brief a post can… |
 | [web-concept-variations](product/skills/web-concept-variations/SKILL.md) | Shows four to six concept directions that get a reference's effect by other means, for a product, a post, a page, a deck or a campaign, from a reference the user gives or one found among what is work… |
-| [web-item-deep-dive](product/skills/web-item-deep-dive/SKILL.md) | Reviews one business idea in depth before anything is built, as one document with what exactly is sold to whom and who pays, how big the market is and when in the year it buys, who already sells it (… |
 | [web-market-entry-signals](product/skills/web-market-entry-signals/SKILL.md) | Finds which markets are worth entering now, from official statistics, filings, app stores and the ads running, in Korea and the US by default, and measures the watched markets again later. |
 
 6 skills.

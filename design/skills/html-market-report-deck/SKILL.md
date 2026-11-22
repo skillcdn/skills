@@ -1,27 +1,27 @@
 ---
-name: html-signal-magazine
-description: "Makes one issue of a market signal magazine as a deck, one HTML file and a PDF, from market research already done: every slide one message carried by a chart or a picture composed for it, in the look of the brand's own site under a magazine's cover and contents, every number kept in a ledger and checked against its source, and a closing view that says no more than the slides before it. Use when a user says \"make this month's issue\", \"turn the research into a deck we hand out\", \"a market data deck in our brand\", \"a magazine for founders\" or \"the next issue\". The research comes from web-market-entry-signals and company figures from dart-company-figures; a deck that sells a product is html-product-deck, whose renderer this skill runs, and a report or a proposal from notes is html-deck-from-outline. Reads the brand's site for its tokens, plans one message a slide, gathers logos and app screens, writes each slide by hand, renders and looks at every slide before delivery. Nothing is spent."
+name: html-market-report-deck
+description: "Makes one issue of a market report a brand hands out, as a slide deck in one HTML file and a PDF, from market research already done: every slide one message carried by a chart or a picture composed for it, in the look of the brand's own site with a magazine-style cover and contents, every number kept in a ledger and checked against its source, and a closing view that says no more than the slides before it. Use when a user says \"make this month's market report\", \"turn the research into a deck we hand out\", \"a market trend report in our brand\", \"an industry report for founders\", \"this issue of our market magazine\" or \"the next issue\". The research comes from web-market-entry-signals and company figures from dart-company-figures; a deck that sells a product is html-product-deck, and an internal report or a proposal from notes is html-deck-from-outline. Reads the brand's site, gathers logos and app screens, writes each slide by hand and looks at every one before delivery. Nothing is spent."
 license: MIT
 compatibility: Needs a shell with Node.js, a Chromium-family browser (an installed Chrome or Edge, or Playwright's), a way to read web pages, and a way to look at an image. Without the browser or the image reader the skill stops before the first message and says what to add.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: browser
 skillcdn:
   include:
     - /docs/market-research/evidence-grades.md
   translations:
     ko:
-      title: 시장 신호 매거진 한 호를 HTML과 PDF로
-      description: 이미 해 둔 시장 조사로 시장 신호 매거진 한 호를 덱(HTML 파일 하나와 PDF)으로 만듭니다. 장마다 전할 말 하나를 그 장을 위해 짠 도표나 그림에 담고, 디자인은 브랜드 사이트를 따르되 표지와 차례만 매거진답게 하며, 모든 숫자는 숫자 표에 적어 원문과 대조하고, 마지막 시각은 앞 장들이 말한 만큼만 말합니다. "이번 달 호 만들어 줘", "조사 결과를 배포용 덱으로", "우리 브랜드로 시장 자료 덱", "창업자에게 돌릴 매거진", "다음 호"라고 할 때 쓰세요. 조사는 web-market-entry-signals에서, 회사 숫자는 dart-company-figures에서 옵니다. 제품을 파는 덱은 html-product-deck(이 스킬은 그 렌더러를 씁니다), 노트로 만드는 보고서나 제안서는 html-deck-from-outline의 몫입니다. 브랜드 사이트에서 토큰을 읽고, 장마다 한 문장으로 구성을 짜고, 로고와 앱 화면을 모으고, 장을 손으로 쓴 뒤 렌더해 모든 장을 직접 보고 전달합니다. 비용은 들지 않습니다.
+      title: 시장 리포트 한 호를 덱으로, HTML과 PDF
+      description: 이미 해 둔 시장 조사로, 브랜드가 바깥에 내는 시장 리포트 한 호를 슬라이드 덱(HTML 파일 하나와 PDF)으로 만듭니다. 장마다 전할 말 하나를 그 장을 위해 짠 도표나 그림에 담고, 디자인은 브랜드 사이트를 따르되 표지와 차례는 매거진처럼 하며, 모든 숫자는 숫자 표에 적어 원문과 대조하고, 마지막 시각은 앞 장들이 말한 만큼만 말합니다. "이번 달 시장 리포트 만들어 줘", "조사 결과를 배포용 덱으로", "우리 브랜드로 시장 트렌드 리포트", "창업자에게 돌릴 산업 리포트", "시장 매거진 이번 호", "다음 호"라고 할 때 쓰세요. 조사는 web-market-entry-signals에서, 회사 숫자는 dart-company-figures에서 옵니다. 제품을 파는 덱은 html-product-deck, 노트로 만드는 내부 보고서나 제안서는 html-deck-from-outline의 몫입니다. 브랜드 사이트에서 토큰을 읽고, 로고와 앱 화면을 모으고, 장을 손으로 쓴 뒤 모든 장을 직접 보고 전달합니다. 비용은 들지 않습니다.
 ---
-# One issue of a market signal magazine, in HTML and PDF
+# One issue of a market report, as a deck in HTML and PDF
 
-Research already done goes in (verdicts on markets, the numbers behind them, the companies in them) with the brand the magazine goes out under; out comes one issue: `deck.html` with one hand-written scene a slide, one self-contained HTML file and a PDF, the ledger of its numbers (`facts.md`), a library of logos, icons and screens the next issue uses again, and a note that hands the issue to a designer. Its readers did not ask for it, so an issue wins on data shown well and never on explanation: every slide is one sentence with its figure and one drawing composed for it. The series carries its corrections forward: the next issue starts from this one's folder.
+Research already done goes in (verdicts on markets, the numbers behind them, the companies in them) with the brand the report goes out under; out comes one issue: `deck.html` with one hand-written scene a slide, one self-contained HTML file and a PDF, the ledger of its numbers (`facts.md`), a library of logos, icons and screens the next issue uses again, and a note that hands the issue to a designer. Its readers did not ask for it, so an issue wins on data shown well and never on explanation: every slide is one sentence with its figure and one drawing composed for it. The series carries its corrections forward: the next issue starts from this one's folder.
 
 ## How the user is involved
 
-- **Questions:** one first message, only for what the request and the series folder leave open: "Which brand does it go out under, and where is its site? I take the look from the site."; "What is the contact on the back cover?"; for a first issue, "What is the magazine called?"; "Which names and subjects stay out: your own companies and people, ideas you are still weighing, partners?" The readers and the questions the series answers are stated with their defaults (people and teams who want to start a business; which market to enter now, and how AI is put to work in it) and changed on the user's word.
+- **Questions:** one first message, only for what the request and the series folder leave open: "Which brand does it go out under, and where is its site? I take the look from the site."; "What is the contact on the back cover?"; for a first issue, "What is the report called?"; "Which names and subjects stay out: your own companies and people, ideas you are still weighing, partners?" The readers and the questions the series answers are stated with their defaults (people and teams who want to start a business; which market to enter now, and how AI is put to work in it) and changed on the user's word.
 - **Checkpoints:** the plan, before any slide: one line a slide (its sentence, its scene, its figures with their grades), how the closing view answers the series' questions, the companies proposed for cards with each figure's check, a recommended order and one alternative. Then the cover and the busiest slide, rendered in the brand's tokens. Then the whole issue: the sheet, no finding, and what the user confirms before it goes out (a figure that rests on one source, the companies named and their marks). Then the hand-off note, before anything is put on a designer's board.
 - **Go-ahead:** the plan and the cover are stated and not waited on. The companies on cards are still the user's pick, the issue is still shown, and nothing goes to a designer or to readers without the user's word.
 - **Changes mid-run:** a note on a wording fixes that slide, then every slide with a sentence of the same form, and the wording joins the `banned` list; a note on the order or the conclusion re-enters at the plan and runs phase 6 again; a note on the look ("off-brand", "too much emphasis") re-enters at phase 1's tokens, for every slide. Every round renders the whole deck and looks again.
@@ -45,9 +45,9 @@ Links that start with `/` are files of the pack this skill is from: a copy of th
 |---|---|
 | The research | What [web-market-entry-signals](/product/skills/web-market-entry-signals/SKILL.md) left in the market folder: the latest survey's gates table `report.md` and `notes/`, and `watch.json` with its observations. Taken first: what moved since the last issue. A verdict of `unknown` is shown as unknown; the watch list's statuses and the user's own plans are not shown. With no research, say that skill runs first. |
 | Company figures | `figures.json` of [dart-company-figures](/product/skills/dart-company-figures/SKILL.md), run in phase 2, into the issue's folder, on the entrants and incumbents of the notes that could stand on a card. A figure goes on a slide where its `check` is `matches` or `sums-up`; `announced-only` goes on the user's list to confirm. |
-| An item looked into | From `review.md` of [web-item-deep-dive](/product/skills/web-item-deep-dive/SKILL.md), only the numbers the user says may be public; never its verdict or its pilot plan. |
+| An idea looked into | From `review.md` of [web-business-idea-deep-dive](/product/skills/web-business-idea-deep-dive/SKILL.md), only the numbers the user says may be public; never its verdict or its pilot plan. |
 | The brand, the contact, the name, what stays out | Asked. The issue goes out as the brand: no person and no company name stands on it unless the user gives one for it. |
-| The series folder | The folder the user names, else `magazine/` in the market folder: `brand.md`, `library/`, and one folder an issue, `<YYYY-MM>/` with `plan.md`, `facts.md`, `deck.html`, `handoff.md`, `out/`. A later issue starts as a copy of the last one's folder without `out/`. |
+| The series folder | The folder the user names, else `market-report/` in the market folder: `brand.md`, `library/`, and one folder an issue, `<YYYY-MM>/` with `plan.md`, `facts.md`, `deck.html`, `handoff.md`, `out/`. A later issue starts as a copy of the last one's folder without `out/`. |
 | The issue's name | Derived: its period ("JAN 2026"), the month its data stands at; issues are not numbered. |
 | The banned list | The `banned` of the last issue's `deck.html`, the names and subjects the user keeps out, and every wording the user corrects. |
 | Everything else | Derived and shown at the plan: the order, the slide count, each slide's scene, which companies and apps are shown. |
@@ -91,7 +91,7 @@ Take the closing view's sentences one by one against the slides they rest on. A 
 ### Phase 7: Render, check and look
 
 ```
-node render.mjs <YYYY-MM>/deck.html <YYYY-MM>/out --name <magazine>-<YYYY-MM>
+node render.mjs <YYYY-MM>/deck.html <YYYY-MM>/out --name <report>-<YYYY-MM>
 ```
 
 The helper writes the one-file HTML, the PDF, `pages/NN.png`, `sheet.png` and `report.json`, and exits 1 while it has a finding; design-system.md "The helper's findings" has each fix, and [tool-notes.md](references/tool-notes.md) what grows a PDF. Fix `deck.html` and run again until there is none. Then look: the sheet for the issue as a whole, then every page at full size, as [rendering-html.md](/docs/browser/rendering-html.md) "Looking at a render" says, for what no check sees: things that overlap or touch, a label off its tick, a drawing that says something other than its figure.
@@ -116,7 +116,7 @@ Read before the build and at the look.
 
 ## Hard rules
 
-- **The look stays the brand's.** One ground with its light, the site's cards as the surfaces, one accent and about one accented figure a slide, the point colour for a dot, a fall drawn faint and never in a warning colour; the serif stands in the masthead and the foot mark alone. The magazine shows in the cover, the contents and the foot mark, nowhere else: an edition that left the site's look was sent back.
+- **The look stays the brand's.** One ground with its light, the site's cards as the surfaces, one accent and about one accented figure a slide, the point colour for a dot, a fall drawn faint and never in a warning colour; the serif stands in the masthead and the foot mark alone. The series' own frame, in a magazine's manner, shows in the cover, the contents and the foot mark, nowhere else: an edition that left the site's look was sent back.
 - **Sources and methods stay in `facts.md`.** No source line, no counting method and no note on how a chart was made stands on a slide: the sources are the brand's record and the method its know-how.
 - **Every number is checked against its source's sentence before it is drawn**, and recorded: an issue whose numbers were all read again found several wrong or wider than their source.
 - **A small figure is a different shape for every item**, drawn from real values: a straight line reads as made up.
