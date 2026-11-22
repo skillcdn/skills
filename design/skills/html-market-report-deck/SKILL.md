@@ -35,7 +35,7 @@ Research already done goes in (verdicts on markets, the numbers behind them, the
 | A way to read web pages | The brand's site, and every source a number is checked against. |
 | A way to look at an image | Every slide is looked at before it is shown. |
 
-Before the first message, save the helper and [`assets/issue-skeleton.html`](assets/issue-skeleton.html) in the series folder (through SkillCDN, `read_repo_file` at their paths) and run the helper on the skeleton into the host's scratch folder: two slides and no finding mean the driver, the browser and the helper work.
+Before the first message, save the helper and [`assets/issue-skeleton.html`](assets/issue-skeleton.html) in the series folder, or in the host's scratch folder while no market folder is found yet (through SkillCDN, `read_repo_file` at their paths), and run the helper on the skeleton into the host's scratch folder: two slides and no finding mean the driver, the browser and the helper work.
 
 Links that start with `/` are files of the pack this skill is from: a copy of this directory, a plugin or a mount below the root that lacks one reads it through the pack's connection (`https://skillcdn.ai/gh/skillcdn/skills`) or at `github.com/skillcdn/skills`.
 
