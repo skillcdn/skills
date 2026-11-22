@@ -5,11 +5,10 @@ license: MIT
 compatibility: Needs a shell with Node.js, npm, git and curl in a checkout of the project, network access to the Cloudflare API and to the git host, and a Cloudflare API token the user creates (or a sign-in of the project's CLI, Wrangler or cf). Works in any agent that can run a shell.
 metadata:
   author: skillcdn
-  version: "1.5"
+  version: "1.6"
   tools: cloudflare
 skillcdn:
   include:
-    - /engineering/docs/cloudflare/tokens.md
     - /engineering/docs/cloudflare/automation.md
   translations:
     ko:
@@ -32,14 +31,14 @@ What goes in: a project in a checkout, with a Cloudflare configuration of either
 | What | Used for |
 |---|---|
 | A shell with Node.js (the major the project pins in `.node-version` or `engines`, else the current LTS; a project with the typed `cloudflare.config.ts` also needs the floor of its `cf` package, 22.18 or later when checked, 2026-11, below which no `cf` command runs inside it), npm, git and curl, in a checkout of the project with its dependencies installed (`npm ci` when `node_modules` is missing) | The project's CLI through `npx` (Wrangler on a Wrangler file, `cf` on the typed configuration: [platform.md](/engineering/docs/cloudflare/platform.md) "The configuration file" says which a project has), the build, the API calls, the commit of the deploy record |
-| The Cloudflare API token, or a sign-in of the project's CLI (`wrangler login`, or `cf auth login`) | Everything the first table of [automation.md](/engineering/docs/cloudflare/automation.md) lists |
+| The Cloudflare API token, or a sign-in of the project's CLI (`wrangler login`, or `cf auth login`) | Everything [automation.md](/engineering/docs/cloudflare/automation.md) lists under "What the agent does with the token" |
 | Network access to `api.cloudflare.com` and the git host | Resources, deploys, the repository connection |
 | Optional: the `gh` CLI signed in | Creating the repository and pushing without the user's hands |
-| The user, with a browser on any device | The few dashboard steps in automation.md's second table |
+| The user, with a browser on any device | The few dashboard steps of automation.md "What a person does once in the dashboard" |
 
-Check these before the first message. Without the token, give the steps of [tokens.md](/engineering/docs/cloudflare/tokens.md); when the user cannot create one, the project's CLI signs in (`npx wrangler login`, `--device` when the shell has no browser; `npx cf auth login`, `--no-browser`), which covers that CLI's own commands in phases 3 to 6; the REST calls (the subdomain, zones, the Registrar, Builds, analytics) then take `npx wrangler auth token` as their bearer on a Wrangler project and fall to the dashboard steps on a typed one, and the Wrangler-only commands of a typed project (`tail`, a single secret) are skipped or need a `wrangler login` as well, since the two CLIs share no login. Below the Node.js floor, stop and give the upgrade as the user's step (resources.md "Access"). Without network, stop and say so; without `gh`, the user creates the repository and gives its address.
+Check these before the first message. Without the token, read [tokens.md](/engineering/docs/cloudflare/tokens.md) and give its steps; when the user cannot create one, the project's CLI signs in as its "When there is no token yet" says, which covers that CLI's own commands in phases 3 to 6; the REST calls then take the bearer that section names on a Wrangler project and fall to the dashboard steps on a typed one, and the Wrangler-only commands of a typed project (`tail`, a single secret) are skipped or need a `wrangler login` as well. Below the Node.js floor, stop and give the upgrade as the user's step (resources.md "Access"). Without network, stop and say so; without `gh`, the user creates the repository and gives its address.
 
-The Cloudflare skills share the area's document set [`engineering/docs/cloudflare/`](/engineering/docs/cloudflare/README.md): [tokens.md](/engineering/docs/cloudflare/tokens.md) (access) and [automation.md](/engineering/docs/cloudflare/automation.md) (what the token does, what a person does once, the command for each) are included and arrive with this skill wherever SkillCDN serves it; [platform.md](/engineering/docs/cloudflare/platform.md) (the runtime, the configuration keys, the framework paths, the plans) is linked from phase 2 and read with `read_repo_file` through the repository or engineering connection, from the engineering plugin's `docs/cloudflare/`, or from a checkout of this repository. A mount of this skill alone lacks the linked page and a copy of its directory lacks all three: say so in the first message, fetch them from `engineering/docs/cloudflare/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules. The procedure of each phase, with its checks and failures, is [resources.md](references/resources.md); what the tools did in runs is [tool-notes.md](references/tool-notes.md).
+Links that start with `/` are files of the pack this skill is from: a copy of this directory, a plugin or a mount below the root that lacks one reads it through the pack's connection (`https://skillcdn.ai/gh/skillcdn/skills`) or at `github.com/skillcdn/skills`. What the tools did in runs is [tool-notes.md](references/tool-notes.md).
 
 ## Inputs
 
@@ -52,13 +51,13 @@ The Cloudflare skills share the area's document set [`engineering/docs/cloudflar
 | Secret values | Generated for signing keys (a name with `_SECRET` or `_KEY` and no provider named, or marked as generated in the example file); asked at the plan checkpoint, by name and with where to get each, for provider keys. |
 | Everything else | Derived and shown in the plan: the Worker's name (`name` in the configuration), its `workers.dev` address (the subdomain call), resource names (the configuration's, else `<name>-db`, `<name>-files`, `<name>-kv`), the plan (Free unless a feature needs Paid), the build and deploy commands (`package.json`, resources.md "Inventory"), the build variables (`NEXT_PUBLIC_*` names found in the code and the example files, `NODE_VERSION` from the project's version file or the machine's `node -v`). |
 
-The questions, in one message at the start, each only when the answer is not already in the request, the project, or the handover from `cloudflare-new-app`:
+The questions, in one message at the start, each only when the answer is not already in the request, the project, or the handover from [cloudflare-new-app](/engineering/skills/cloudflare-new-app/SKILL.md):
 
 - "To work on your Cloudflare account I need an API token. It takes a minute: [the steps of tokens.md, as the dashboard shows them today, with the rows of its "When the plan needs it" table that the configuration's bindings and the request need]. Save it in a file named `.cf-token` in the project folder and tell me; that keeps it out of this chat. If you paste it here instead, I move it into that file and never repeat it."
 - "Do you already have a domain for this, should I find and buy one (I show the price before buying), or do we start on a free address (`<name>.<subdomain>.workers.dev`) and add a domain later?"
 - "Where does the code live on GitHub? If nowhere yet, I can create a private repository for it, under your account or an organization you name."
 
-At the plan checkpoint, for each value the user holds: "`<NAME>`: [the steps of automation.md's second table for that provider, with the exact callback URLs of this project]. Paste it, save it in `.dev.vars`, or say 'later' and the feature stays off until it is set."
+At the plan checkpoint, for each value the user holds: "`<NAME>`: [the steps of automation.md "What a person does once in the dashboard" for that provider, with the exact callback URLs of this project]. Paste it, save it in `.dev.vars`, or say 'later' and the feature stays off until it is set."
 
 ## Workflow
 
@@ -66,7 +65,7 @@ Each phase produces a named artifact and ends with one line to the user; the rec
 
 ### Phase 1: Access
 
-Produces the **access record**: the project's configuration file and CLI, the token's kind, the account id and name, the `workers.dev` subdomain, what the token can do. First the project itself (resources.md "Access"): which configuration file it has, its dependencies installed so that the CLI called next is the project's own copy, and `node -v` against the project's floor, since a typed configuration refuses to load below it and the fix is an upgrade the user makes. Export the token from its file (never print it), run the accounts call, then the verify call that fits the token's kind, and the subdomain call, then the CLI's own check (`npx wrangler whoami`, or `npx cf auth whoami` on a typed project); when the token sees several accounts, take the one that holds the zone of the domain the user named, else the one they name, else ask, and set `CLOUDFLARE_ACCOUNT_ID`. Probe each permission the project's bindings and the request will need with the harmless reads resources.md lists, and report a missing one now, with the row of tokens.md to add, not at the step that fails.
+Produces the **access record**: the project's configuration file and CLI, the token's kind, the account id and name, the `workers.dev` subdomain, what the token can do. First the project itself (resources.md "Access"): which configuration file it has, its dependencies installed so that the CLI called next is the project's own copy, and `node -v` against the project's floor, since a typed configuration refuses to load below it and the fix is an upgrade the user makes. Export the token from its file (never print it), run the accounts call, then the verify call that fits the token's kind, and the subdomain call, then the CLI's own check (`npx wrangler whoami`, or `npx cf auth whoami` on a typed project); when the token sees several accounts, take the one that holds the zone of the domain the user named, else the one they name, else ask, and set `CLOUDFLARE_ACCOUNT_ID`. Probe each permission the project's bindings and the request will need with the harmless reads resources.md lists, and report a missing one now, with the row of tokens.md "Permissions" to add (read the page now where the first message did not need it), not at the step that fails.
 
 ### Phase 2: Inventory and plan
 

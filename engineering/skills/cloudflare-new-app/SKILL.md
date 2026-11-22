@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Node.js (the current LTS; at least 22.18 for the typed Cloudflare configuration the scaffold writes), npm and git, network access to the npm registry and to Cloudflare's documentation, and, for the launch, what cloudflare-deploy needs. A browser the agent can drive is optional, for looking at the pages. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.17"
+  version: "1.18"
   tools: cloudflare
 skillcdn:
   include:
@@ -40,7 +40,7 @@ What goes in: an idea in the user's words and the answers to a few plain questio
 
 Check these before the first message. Without Node.js or git, stop and say what to install. Without network, stop: nothing can be scaffolded.
 
-The Cloudflare skills share the area's document set [`engineering/docs/cloudflare/`](/engineering/docs/cloudflare/README.md): [platform.md](/engineering/docs/cloudflare/platform.md) (the runtime, the configuration, bindings and secrets, the framework paths, the plans) is included and arrives with this skill wherever SkillCDN serves it; [tokens.md](/engineering/docs/cloudflare/tokens.md) (the token steps) is linked from the intake and [automation.md](/engineering/docs/cloudflare/automation.md) from the launch, read with `read_repo_file` through the repository or engineering connection, from the engineering plugin's `docs/cloudflare/`, or from a checkout of this repository. A mount of this skill alone lacks the two linked pages and a copy of its directory lacks all three: say so in the first message, fetch them from `engineering/docs/cloudflare/` of the repository this skill comes from (`github.com/skillcdn/skills` for this pack) where the agent can, and otherwise run on this skill's own files, which carry its workflow and its rules. The pages of the pack's writing set [`docs/writing/`](/docs/writing/README.md) that phase 3 names are read through the repository connection or a checkout; the engineering plugin, a mount of the area or of this skill, and a copy lack them and fetch them from `docs/writing/` of the same repository. The repository's layout, agreement and console project are `git-repo-setup` of the same area, run at phase 5, with the shared set [`engineering/docs/git/`](/engineering/docs/git/README.md) it reads; the launch is `cloudflare-deploy`. Where either cannot be loaded, the delivery says so and gives the user its name and address. [tool-notes.md](references/tool-notes.md) holds what the tools did in runs, read before the build and when a tool misbehaves.
+Links that start with `/` are files of the pack this skill is from: a copy of this directory, a plugin or a mount below the root that lacks one reads it through the pack's connection (`https://skillcdn.ai/gh/skillcdn/skills`) or at `github.com/skillcdn/skills`. [tool-notes.md](references/tool-notes.md) holds what the tools did in runs: read it before the build and when a tool misbehaves.
 
 ## Inputs
 
@@ -87,11 +87,11 @@ Produces the **app**. In this order, each step reported in a line and verified b
 
 ### Phase 5: Agreement
 
-Produces the **working agreement**. Run `git-repo-setup` on the project folder with what this run already has, as [working-agreement.md](references/working-agreement.md) "Running the setup skill" says: it lays the repository out (`AGENTS.md` with `CLAUDE.md` importing it, `README.md` in the readers' language, `docs/`, the check's continuous integration, the agreement's Skills section for the console project's pack) and binds it to a console project with the setup task taken, at its own stop for the project. Then add the web app's part of working-agreement.md (`docs/brand.md`, `.dev.vars.example`, what `AGENTS.md` says for a web app, what is open as tasks), and make the first commit of the skill's work on top of the scaffold's, with everything above and nothing secret. Nothing is pushed here: pushing is the deploy skill's stop.
+Produces the **working agreement**. Run [git-repo-setup](/engineering/skills/git-repo-setup/SKILL.md) on the project folder with what this run already has, as [working-agreement.md](references/working-agreement.md) "Running the setup skill" says: it lays the repository out (`AGENTS.md` with `CLAUDE.md` importing it, `README.md` in the readers' language, `docs/`, the check's continuous integration, the agreement's Skills section for the console project's pack) and binds it to a console project with the setup task taken, at its own stop for the project. Then add the web app's part of working-agreement.md (`docs/brand.md`, `.dev.vars.example`, what `AGENTS.md` says for a web app, what is open as tasks), and make the first commit of the skill's work on top of the scaffold's, with everything above and nothing secret. Nothing is pushed here: pushing is the deploy skill's stop.
 
 ### Phase 6: Launch
 
-Hands over to **`cloudflare-deploy`** with: the project path, the token file the user prepared, the domain answer, the secrets by name with which are generated and which the user holds (the sign-in provider's keys, which the deploy skill asks for with the exact callback URLs once the address is known), the audience from the brief (the deploy skill picks the database's region from it), that the database id in the configuration is a placeholder to replace, the seed when one exists, and the repository answer when the deploy skill asks it. Its stops are the user's. When the deploy skill cannot be loaded, say so, and give the user its name and address to run it next.
+Hands over to **[cloudflare-deploy](/engineering/skills/cloudflare-deploy/SKILL.md)** with: the project path, the token file the user prepared, the domain answer, the secrets by name with which are generated and which the user holds (the sign-in provider's keys, which the deploy skill asks for with the exact callback URLs once the address is known), the audience from the brief (the deploy skill picks the database's region from it), that the database id in the configuration is a placeholder to replace, the seed when one exists, and the repository answer when the deploy skill asks it. Its stops are the user's. When the deploy skill cannot be loaded, say so, and give the user its name and address to run it next.
 
 ### Phase 7: Delivery
 
