@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with Python or Node.js and a Chromium-family browser a headless driver can launch, or a browser the agent drives that can screenshot a local page; a way to look at an image (the host's image reader or a browser pane); a file tool. Without a browser or a way to look at a screen the skill stops before the first message and says what to add.
 metadata:
   author: skillcdn
-  version: "1.8"
+  version: "1.9"
   tools: browser
 skillcdn:
   include:
