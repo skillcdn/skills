@@ -32,6 +32,14 @@ A benchmark the request named stands in the first row. A theme marked `fad` in i
 - Prices: <kind of product>: <cheapest> to <most expensive> (<grade>, <url> each end)
 - What AI does: <the part of the product or the operation>
 
+## Seen by ads alone
+
+A theme no note of a country holds, counted there with the others: no verdict.
+
+| Theme | Country | Phrase | Active ads | `life90` (baseline) | Class, pace |
+|---|---|---|---|---|---|
+| <theme> | kr | <phrase> | <n> | <share> (<share>) | <class>, <pace> |
+
 ## Measured again
 
 `watch.json` holds <n> themes and <m> metrics from this survey. The first round that compares is due on <YYYY-MM-DD>.

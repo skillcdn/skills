@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a web search tool and a way to read a page in full. A shell with Node.js 22 or newer runs the watch list's scripts and the app store count. The ad counts need what meta-ad-library-rising-products needs, a real browser engine. A host that starts agents side by side runs the branches at once; without one they run in turn. Any agent with these can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: web
 skillcdn:
   include:
@@ -32,7 +32,7 @@ A question goes in, "which market could we enter?"; a table comes out that judge
 |---|---|
 | A web search tool | Finding the releases, the filings and the themes. Know how many searches the host allows a session before the plan: the budget is divided among the branches. |
 | A way to read a page in full: a fetch tool, a browser the agent drives, or a shell with curl | Every number: a search result's excerpt is a pointer, never a source. |
-| A shell with Node.js 22 or newer | [watch.mjs](scripts/watch.mjs), [check-watch.mjs](scripts/check-watch.mjs) and the app store count. Without it the watch list is written by hand to [watch.example.json](assets/watch.example.json) and said to be unchecked. |
+| A shell with Node.js 22 or newer | [watch.mjs](scripts/watch.mjs), [check-watch.mjs](scripts/check-watch.mjs) and the app store count. Each is saved fresh through the connection into the run's `work/` folder and given the path of `watch.json`. Without it the watch list is written by hand to [watch.example.json](assets/watch.example.json) and said to be unchecked. |
 | What [meta-ad-library-rising-products](/product/skills/meta-ad-library-rising-products/SKILL.md) needs | The ad counts. Without it gate 03 rests on the other counts, and the report says the ads were not read. |
 | Optional: a tool that starts agents side by side | The branches at once ([fresh-agents.md](/engineering/docs/skillcdn/fresh-agents.md)). Without it, one after another. |
 
@@ -67,7 +67,7 @@ Checkpoint: the branches with their budgets, the thresholds, the benchmark judge
 
 ### Phase 3: Branches
 
-Produces one **note** per branch, by [branch-note.md](references/branch-note.md): its brief and the note's shape. Start the research branches side by side where the host can. Entrants are counted only by [entrant-count.md](references/entrant-count.md). When the notes name the themes, count their ads: run `meta-ad-library-rising-products` in its watch mode with every theme of the survey as a topic in every country's run, each with the phrase its sellers use in that country's language (a theme no note of that country holds is reported there by its ads alone), a run per country, and keep each snapshot in `snapshots/`. For a Korean entrant's revenue and operating profit run [dart-company-figures](/product/skills/dart-company-figures/SKILL.md); a US company's are read in its filing on SEC EDGAR.
+Produces one **note** per branch, by [branch-note.md](references/branch-note.md): its brief and the note's shape. Start the research branches side by side where the host can. Entrants are counted only by [entrant-count.md](references/entrant-count.md). When the notes name the themes, count their ads: run `meta-ad-library-rising-products` in its watch mode with every theme of the survey as a topic in every country's run, each with the phrase its sellers use in that country's language (a theme no note of that country holds is reported there by its ads alone, in the report's section for it and without a verdict), a run per country, and keep each snapshot in `snapshots/`. For the revenue and operating profit of each Korean entrant of the window run [dart-company-figures](/product/skills/dart-company-figures/SKILL.md), its `figures.json` in the survey folder, an incumbent only where a memo compares with it; a US company's are read in its filing on SEC EDGAR.
 
 ### Phase 4: Verdicts
 
