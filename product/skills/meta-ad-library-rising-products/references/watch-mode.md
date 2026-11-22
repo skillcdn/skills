@@ -19,7 +19,7 @@ Each country is a run of its own with its own 80 page loads, one country after t
 
 ## When the site slows the run down
 
-At a sign of being slowed down ([ad-library.md](/docs/meta-ad-library/ad-library.md) "Manners and limits"; the one a long run meets is a count with no results under it) the run stops there. The load that showed the sign and any after it give no number. The topics not yet counted go to the snapshot's `deferred`, and the next run counts them first; a topic whose `A` was counted before the sign keeps it, its dated counts are null, and it is in `deferred` for them. The page-dump script stops at the sign by itself ([page-dump.md](/docs/meta-ad-library/page-dump.md)). The other country's run does not start in the same sitting unless the user says so.
+At a sign of being slowed down ([ad-library.md](/docs/meta-ad-library/ad-library.md) "Manners and limits"; the one a long run meets is a count with no results under it) the run stops there. The load that showed the sign and any after it give no number. The topics not yet counted go to the snapshot's `deferred`, and the next run counts them first; a topic whose `A` was counted before the sign keeps it, its dated counts are null, and it is in `deferred` for them. A run that takes up the deferred topics on the stopped run's day continues it: the same folder, snapshot and budget, the kept `A` paired with the dated counts. On a later day a deferred topic is counted in full. Counts a user reads off the page header by hand are rounded and start a new basis. The page-dump script stops at the sign by itself ([page-dump.md](/docs/meta-ad-library/page-dump.md)). The other country's run does not start in the same sitting unless the user says so.
 
 ## The comparison
 

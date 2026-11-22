@@ -15,7 +15,7 @@ The shell route of [ad-library.md](ad-library.md) "Routes": one headless run of 
 
 ## The script
 
-`adlib.py` below does this. It builds each address from a short spec, prints one short line per result while the full records go to a file (a page costs about a thousand tokens of context instead of ten thousand), and logs every browser run, so that the page-load budget is counted and not guessed. The printed line is for the eye; the record's `group` and `page_id`, which cleaning and the advertiser views need, are read from the output file with a few lines of the agent's own. Pass about eight specs per call at most (headless.md "Long runs", with what any such script does about its output, its log and its cleanup). Save it in the run's `work/` folder and call it with `python` (`python3` on some systems): the output file, the country, then one spec per page.
+`adlib.py` below does this. It builds each address from a short spec, prints one short line per result while the full records go to a file (a page costs about a thousand tokens of context instead of ten thousand), and logs every browser run, so that the page-load budget is counted and not guessed. The printed line is for the eye; the record's `group` and `page_id`, which cleaning and the advertiser views need, are read from the output file with a few lines of the agent's own. Pass about eight specs per call at most (headless.md "Long runs", with what any such script does about its output, its log and its cleanup). Save it fresh from the pack in each run's `work/` folder, never an earlier run's copy, and call it with `python` (`python3` on some systems): the output file, the country, then one spec per page.
 
 ```sh
 python work/adlib.py work/pool.jsonl KR "q=<term>" "q=<term>&media=video" "q=<term>&sort=recent"
@@ -206,7 +206,7 @@ if __name__ == "__main__":
             break
         print(f"count={result['count']} more={result['more']} ads={len(result['ads'])} | {spec}")
         if result["count"] and not result["ads"]:  # the sign of being slowed down: no spec after it is loaded
-            print("SLOWED (a count with no results under it): this count is no number, the run stops here")
+            print("SLOWED (a count with no results under it): this count is no number, the run stops here" + ("; a count this small may be hidden ads, and one load of the baseline tells (ad-library.md)" if result["count"] <= 2 else ""))
             break
         shown = re.search(r"(?:^|&)lines=(\d+)", spec)  # the file keeps every record; this only shortens what is printed
         for a in result["ads"][:int(shown.group(1)) if shown else None]:
