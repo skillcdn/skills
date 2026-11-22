@@ -6,14 +6,14 @@ How a theme is judged, per country, on four questions, with the thresholds the p
 
 | Gate | Question | Evidence that answers it | Default threshold |
 |---|---|---|---|
-| 01 | Are many people already paying? | Yearly spend from an official statistic or filings; failing that, users from a vendor's estimate | Spend of KRW 100 bn a year in Korea, USD 100 m in the US; or 1 million monthly users |
+| 01 | Are many people already paying? | Yearly spend on the theme in the country: from an official statistic, from filings, or from a vendor's measure of spend (a card panel, an app-store revenue estimate), each with its grade | Spend of KRW 100 bn a year in Korea, USD 100 m in the US |
 | 02 | Is it growing? | The same measure a year apart, from the same source | 10 percent or more over the last year |
 | 03 | Are new competitors coming in? | A count that can be made again: [entrant-count.md](entrant-count.md) | Three or more entrants within two years, or an official count of operators that rises |
 | 04 | Are the ones who came in earning? | The revenue and operating profit of named entrants, from filings | At least one entrant of the last three years files an operating profit |
 
 The thresholds are working values, not findings: the plan shows them, the user changes any of them in a word, and the head of the gates table and `thresholds` in the watch list say which were used. For a country other than these two, scale 01 by the size of its economy and say so.
 
-A verdict is one of `pass`, `partial`, `fail`, `unknown` ([evidence-grades.md](/docs/market-research/evidence-grades.md)). A cell with no address behind it is `unknown`. A cell met through a proxy (customers in place of spend, the spend of a neighbouring market) is `partial`, and the memo names the proxy.
+A verdict is one of `pass`, `partial`, `fail`, `unknown` ([evidence-grades.md](/docs/market-research/evidence-grades.md)). A cell with no address behind it is `unknown`. A cell met through a proxy is `partial`, and the memo names the proxy: users in place of spend (a million monthly users is the working mark), the spend of the whole world or of a neighbouring market, one company's figure for the theme's. A vendor's measure of the theme's spend in the country is no proxy: no official statistic counts what people spend in apps, and a survey that held 01 to one left every app market `partial` and passed nothing. It passes with its grade in the row.
 
 ## Why 03 never decides alone
 
@@ -37,7 +37,7 @@ A market's price is written as a band for each kind of product, from the cheapes
 
 ## A fad
 
-A theme whose search interest fell to half within 30 days of its peak is marked `fad` in the memo and is not raised on that rise. The 30 days are a working value: where the run has the budget, measure how long a few past fads of the same market took to halve and say what was found. Search interest is an index: it places a peak in time and says nothing of size.
+A theme whose search interest fell to half within 30 days of its peak is marked `fad` in the memo and is not raised on that rise. Each branch reads it once a theme, by the index [sources.md](/docs/market-research/sources.md) names for its country; a survey that gave the read to no branch marked nothing. The 30 days are a working value: where the run has the budget, measure how long a few past fads of the same market took to halve and say what was found. Search interest is an index: it places a peak in time and says nothing of size.
 
 ## What the user set aside
 

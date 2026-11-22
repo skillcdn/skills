@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a web search tool and a way to read a page in full. A shell with Node.js 22 or newer runs the watch list's scripts and the app store count. The ad counts need what meta-ad-library-rising-products needs, a real browser engine. A host that starts agents side by side runs the branches at once; without one they run in turn. Any agent with these can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.0"
+  version: "1.1"
   tools: web
 skillcdn:
   include:
@@ -61,13 +61,13 @@ Produces the **scope**: the countries, what is looked for, the benchmark and the
 
 ### Phase 2: Plan
 
-Produces the **branch list**. Read [gates.md](references/gates.md). One branch per country and kind of customer (consumers, businesses); one for the benchmark when one is named; one ad count per country. Divide the host's search budget among the research branches and give each its number (where the host names no limit, forty searches a branch is a working number), with the order "confirm the named themes first, discover with what is left": a run that left the order open spent every branch's budget before it reached its discovery target.
+Produces the **branch list**. Read [gates.md](references/gates.md). One branch per country and kind of customer (consumers, businesses); one for the benchmark when one is named; one ad count per country. Divide the host's search budget among the research branches and give each its number (where the host names no limit, forty searches a branch is a working number), with the order "confirm the named themes first, discover with what is left": a run that left the order open spent every branch's budget before it reached its discovery target. With no theme named, a branch discovers with at most a third of its budget, keeps at most six themes and confirms them with the rest ([branch-note.md](references/branch-note.md)).
 
 Checkpoint: the branches with their budgets, the thresholds, the benchmark judged first, where the files will be. "OK" starts the branches.
 
 ### Phase 3: Branches
 
-Produces one **note** per branch, by [branch-note.md](references/branch-note.md): its brief and the note's shape. Start the research branches side by side where the host can. Entrants are counted only by [entrant-count.md](references/entrant-count.md). When the notes name the themes, count their ads: run `meta-ad-library-rising-products` in its watch mode with the themes as topics, each with the phrase its sellers use in that country's language, a run per country, and keep each snapshot in `snapshots/`. For a Korean entrant's revenue and operating profit run [dart-company-figures](/product/skills/dart-company-figures/SKILL.md); a US company's are read in its filing on SEC EDGAR.
+Produces one **note** per branch, by [branch-note.md](references/branch-note.md): its brief and the note's shape. Start the research branches side by side where the host can. Entrants are counted only by [entrant-count.md](references/entrant-count.md). When the notes name the themes, count their ads: run `meta-ad-library-rising-products` in its watch mode with every theme of the survey as a topic in every country's run, each with the phrase its sellers use in that country's language (a theme no note of that country holds is reported there by its ads alone), a run per country, and keep each snapshot in `snapshots/`. For a Korean entrant's revenue and operating profit run [dart-company-figures](/product/skills/dart-company-figures/SKILL.md); a US company's are read in its filing on SEC EDGAR.
 
 ### Phase 4: Verdicts
 
@@ -115,7 +115,7 @@ With a watch list and a request to measure again, read [round.md](references/rou
 | Gate | One of the four questions, judged `pass`, `partial`, `fail` or `unknown` per theme and country. |
 | Branch | One part of the research (a country and a kind of customer, the benchmark, an ad count), leaving one note. |
 | Benchmark | A market the user names as the pattern to look for. |
-| Entrant | A business that began selling in the theme within the window the threshold names. |
+| Entrant | A product that began selling in the theme within the window the threshold names, whatever the age of the company behind it. |
 | Year of the inflow | How many years since the theme's first entrants appeared. |
 | Watch list | `watch.json`: the themes, their metrics and every observation. |
 | Round | One later pass over the watch list: what is due is read again, and what changed status is reported. |

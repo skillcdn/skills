@@ -2,7 +2,7 @@
   "schema": "market-watch/1",
   "updated": "2026-01-19",
   "thresholds": {
-    "01": "<yearly spend or monthly users, per country, as the plan showed them>",
+    "01": "<yearly spend, per country, as the plan showed it>",
     "02": "<growth over the last year>",
     "03": "<entrants within two years, by a count that can be made again>",
     "04": "<entrants whose filings show a profit, and the year of the inflow>"

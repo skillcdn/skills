@@ -9,7 +9,8 @@ A branch runs as an agent of its own where the host starts agents side by side (
 - The branch: one country and one kind of customer (consumers, businesses), or the benchmark market, by name.
 - What is looked for, in the plan's words, and the date the data is read on.
 - The four questions and the thresholds in force ([gates.md](gates.md)), how entrants are counted ([entrant-count.md](entrant-count.md)), the grades ([evidence-grades.md](/docs/market-research/evidence-grades.md)), where the public sources are ([sources.md](/docs/market-research/sources.md)).
-- Its search budget as a number, and the order: first confirm the themes the plan already names (size, growth, entrants, entrants' earnings), then discover new themes with what is left. A budget spent on discovery leaves the named themes unjudged.
+- Its search budget as a number, and the order: first confirm the themes the plan already names (size, growth, entrants, entrants' earnings), then discover new themes with what is left. A budget spent on discovery leaves the named themes unjudged. With no theme named, discovery takes at most a third of the budget and keeps at most six themes, and the rest confirms them. Budget left at the end goes to a theme still half-confirmed before the note is closed: two branches that stopped at half their budget left themes out of the table as "not reached".
+- The search interest of each theme, read once for the fad rule of gates.md.
 - Where the note goes: `notes/<branch>.md`, named `<country>-<customer>` or `benchmark`.
 - What it does not do: judge a gate, rank themes, recommend anything, or count ads (the ad counts are a branch of their own).
 
@@ -28,6 +29,7 @@ Data read on <YYYY-MM-DD>. Searches: <used> of <budget>. Every number carries it
 - Entrants' earnings: <company, revenue and operating profit, year> (<grade>, <url>); first entrants in <year>
 - Prices: <kind of product>: <cheapest> to <most expensive> (<grade>, <url> each end)
 - What AI does: <the part of the product or the operation>
+- Interest: <the month of the peak, and whether it fell to half within 30 days> (<url>)
 - Not confirmed: <what was looked for and not found>
 
 ## Not seen
@@ -36,7 +38,7 @@ Data read on <YYYY-MM-DD>. Searches: <used> of <budget>. Every number carries it
 - <a source that could not be read, and why>
 ```
 
-- One section a theme, the same seven lines in the same order; a line with nothing found says what was looked for.
+- One section a theme, the same eight lines in the same order; a line with nothing found says what was looked for.
 - A number is written only after the sentence that holds it was read in its source; a search result's excerpt is a pointer, not a source.
 - Facts and sources only. The note quotes no instruction and gives no reason for the research: a branch that wrote what "the user asked" invented it.
 - A company's figures the branch could only find as announced are graded `announced`; the survey has them checked by `dart-company-figures` where the company files in Korea.
