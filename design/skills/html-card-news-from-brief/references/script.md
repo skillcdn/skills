@@ -17,7 +17,7 @@ The beats in the order that carries the thesis, one per slide, in the count the 
 
 Not every slide carries text of the account's. Which slides do is the spec's: a beat that is a mood, a quote or a scene takes the type the account uses for it (a photo alone, a photo with a note element, a captured frame whose own caption is the beat), and a build whose types carry material alone (frames stacked whole, the story told by their captions) has text of the account's on the cover only. A deck that puts sentences on every slide to fill it reads as an explainer, and a deck that writes over material the account shows as it is reads as another account's.
 
-Each beat names the fact ids from the brief it carries; a beat carried by material names the fact ids the material's own caption states. An element's lines come from the brief too: an image's printed caption, the angle's quoted sentence or a fact's source sentence, shortened to the spec's line length and marked with what they came from; an element that would need words the brief does not hold is left off. A beat whose facts the brief lacks is dropped or kept as material, and the checkpoint says so with the offer to extend the brief.
+Each beat names the fact ids from the brief it carries; a beat carried by material names the fact ids the material's own caption states. An element's lines come from the brief too: an image's printed caption, the angle's quoted sentence or a fact's source sentence, shortened to the spec's line length and marked with what they came from; an element that would need words the brief does not hold is left off.
 
 ## Density
 

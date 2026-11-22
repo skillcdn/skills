@@ -38,7 +38,7 @@ For each pick, before its brief is written:
 
 That folder is the brief folder: `topic-brief.json`, `img/`, `img-unused/`, `credits.md` and `facts.md` go into it. What the run fetches or installs for itself (the browser driver, a downloaded video, a clip's capture folder) goes where the record page puts such files, in place of `card-news/tools/` and of `frames/` in the brief folder. At the delivery set `status` to `brief` and rewrite the row's state. Where the folder has a check of its own, run it after the row and after the brief.
 
-Several picks at once each get their row and their folder first; the briefs are then written one pick at a time, or side by side by `html-card-news-batch`.
+Several picks at once each get their row and their folder first; the briefs are then written one pick at a time, or side by side by [html-card-news-batch](/design/skills/html-card-news-batch/SKILL.md).
 
 ## A same-day story
 

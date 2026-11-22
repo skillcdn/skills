@@ -17,7 +17,7 @@ skillcdn:
 ---
 # Card news in a batch: a worker per post, a reviewer that made none
 
-Picked topics and one format go in; that many posts come out at review, each in its own folder with its brief, its slides and its caption, gathered in one message with a contact sheet per post. The skill is the orchestration alone. Every post is made by the two skills that make one, `web-card-news-topic-brief` and `html-card-news-from-brief`, run by a worker agent that is handed everything those skills would ask, so that it never stops; it is read by a reviewer that made none of it; and this session, the orchestrator, keeps what only one agent may hold: the picks, the ledger, the number of slides, the fixes and the person's approval.
+Picked topics and one format go in; that many posts come out at review, each in its own folder with its brief, its slides and its caption, gathered in one message with a contact sheet per post. The skill is the orchestration alone. Every post is made by the two skills that make one, [web-card-news-topic-brief](/product/skills/web-card-news-topic-brief/SKILL.md) and [html-card-news-from-brief](/design/skills/html-card-news-from-brief/SKILL.md), run by a worker agent that is handed everything those skills would ask, so that it never stops; it is read by a reviewer that made none of it; and this session, the orchestrator, keeps what only one agent may hold: the picks, the ledger, the number of slides, the fixes and the person's approval.
 
 ## How the user is involved
 
@@ -37,7 +37,7 @@ Picked topics and one format go in; that many posts come out at review, each in 
 
 Check all four before the first message. Without the second or the third, stop and say what to add. Without the first, say so and offer the one alternative, the posts made one after another in this session, as tool-notes.md "One after another" says.
 
-[worker-brief.md](references/worker-brief.md) is included; [tool-notes.md](references/tool-notes.md) is read before phase 1, and [reviewer-brief.md](references/reviewer-brief.md) when phase 5 comes. Of the repository's document sets, [account.md](/docs/card-news/account.md) is read before the plan where the working folder is an account's, and [rendering-html.md](/docs/browser/rendering-html.md) "A contact sheet of many pages" at phase 4. A copy of this directory, the area's plugin and a mount below the root cannot read those two or fresh-agents.md: fetch them from `docs/card-news/`, `docs/browser/` and `engineering/docs/skillcdn/` of the repository this skill comes from (for this pack, `github.com/skillcdn/skills`).
+Links that start with `/` are files of the pack this skill is from: a copy of this directory, a plugin or a mount below the root that lacks one reads it through the pack's connection (`https://skillcdn.ai/gh/skillcdn/skills`) or at `github.com/skillcdn/skills`.
 
 The area's rule to check the render takes this form here: every post is judged on its rendered slides by its worker in the build's review, by this session on the contact sheet and by the reviewer at phone size.
 
@@ -59,9 +59,9 @@ The area's rule to check the render takes this form here: every post is judged o
 
 ### Phase 1: Plan
 
-Produces the **batch record** (`batch.md`: a row per post with its topic, sources, folders, port, worker, reviewer and researcher ids, return, verdict and state) and the first checkpoint.
+Read [tool-notes.md](references/tool-notes.md) before this phase. Produces the **batch record** (`batch.md`: a row per post with its topic, sources, folders, port, worker, reviewer and researcher ids, return, verdict and state) and the first checkpoint.
 
-1. Settle the topics, the count and the format. In an account, read the policy and the ledger first: a named topic that overlaps a row goes into the plan with the rule that caught it, and the days of "this week" are the policy's Cadence, else asked.
+1. Settle the topics, the count and the format. In an account, read [account.md](/docs/card-news/account.md), then the policy and the ledger, first: a named topic that overlaps a row goes into the plan with the rule that caught it, and the days of "this week" are the policy's Cadence, else asked.
 2. Mark the delicate topics.
 3. Choose the roles, and estimate: per post, one worker and two reviewer passes, at the sizes of tool-notes.md "What a batch costs", illustrative until this batch's first return replaces them.
 
@@ -75,7 +75,7 @@ Produces the **post folders** and a filled **worker brief** per post.
 2. The browser: `playwright-core` resolved once, borrowed or installed into the tools folder as the build's Requirements say, its `PLAYWRIGHT_FROM` path written into every brief. A worker installs nothing.
 3. A port per worker for the build's preview server, which otherwise all take the same one, and a scratch folder per worker.
 4. A delicate topic has its research run first, beside the wave, by an agent of this session's tier started with the worker's brief and the line "stop after the research's delivery"; its worker starts from the finished brief when that agent returns. In such stories that research overturned the topic line's premise in two posts of three: a story that is then no longer the one picked leaves the batch with its reason.
-5. Fill the block of worker-brief.md for each post. A topic line taken from a candidate card says so.
+5. Fill the block of [worker-brief.md](references/worker-brief.md) for each post. A topic line taken from a candidate card says so.
 
 ### Phase 3: Workers
 
@@ -87,7 +87,7 @@ While they run, this session keeps to hard rule 1. A worker that ends without it
 
 Produces a **contact sheet** per post (`out/contact-sheet.png` in its post folder) and this session's own check of each.
 
-1. For each `draft` returned, see that the files the build delivers are there and the PNGs number what the return says. Make the sheet with [contact-sheet.example.mjs](scripts/contact-sheet.example.mjs), or as rendering-html.md says, and look at it.
+1. For each `draft` returned, see that the files the build delivers are there and the PNGs number what the return says. Make the sheet with [contact-sheet.example.mjs](scripts/contact-sheet.example.mjs), or as [rendering-html.md](/docs/browser/rendering-html.md) "A contact sheet of many pages" says, and look at it.
 2. Hold it against what a worker gets wrong most: more slides than the ceiling, or a slide with nothing to say; a cover that does not show what its headline names; a picture that only relates to the story; one picture used twice. Then hold the posts against each other, which no worker could: two with the same sequence of slide types, where the build varies it, is a fix for the later one.
 3. Where the repository has a check of its own, run it on the post folders.
 
@@ -95,7 +95,7 @@ What fails here is settled before any reviewer reads the post (Verdicts).
 
 ### Phase 5: Review
 
-Produces the **verdicts**. Start one reviewer per clean post, all in one message, each with reviewer-brief.md filled and nothing else (hard rule 2).
+Produces the **verdicts**. Start one reviewer per clean post, all in one message, each with [reviewer-brief.md](references/reviewer-brief.md) filled and nothing else (hard rule 2).
 
 Rule on each list of fixes before anything goes back (hard rule 5), and drop a point that is taste in wording. Then:
 
@@ -107,7 +107,7 @@ Rule on each list of fixes before anything goes back (hard rule 5), and drop a p
 
 One message. Per post: the contact sheet attached, or its path; the headline, the folder and the slide count; the reviewer's verdict with what was fixed after it; what was corrected in the topic line; the brief's unverified items and anything a person must decide. Then the posts that left the batch, each with its reason; the tokens and the time against the estimate; and "Which may be posted? Numbers, or all."
 
-In an account the answer is written to each named post's record as `approved`, with when and by whom, the ledger following as at a pass; booking is `instagram-post-scheduling`'s, and a remade post that was already booked keeps its booking until the person approves the remake. In a repository the posts are committed as its agreement (`AGENTS.md`) says.
+In an account the answer is written to each named post's record as `approved`, with when and by whom, the ledger following as at a pass; booking is [instagram-post-scheduling](/marketing/skills/instagram-post-scheduling/SKILL.md)'s, and a remade post that was already booked keeps its booking until the person approves the remake. In a repository the posts are committed as its agreement (`AGENTS.md`) says.
 
 ## Verdicts
 
