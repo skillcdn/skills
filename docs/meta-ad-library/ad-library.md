@@ -56,7 +56,7 @@ There is no filter on the start date, but the count answers the question. With `
 
 - `A` is the count with no date. `older(n)` is the count with `start_date[max]` set to the day n days ago.
 - The ads that started in the last n days and still run number `A − older(n)`.
-- The first day of what still runs lies between a date whose count is zero and one whose count is not; halve the gap to narrow it.
+- The first day of what still runs lies between a date whose count is zero and one whose count is not; halve the gap to narrow it. A bound on the oldest ad's own start day counted it out once: to show it, step a few days earlier.
 
 Each count costs one page load, and the page that comes with it lists the most-shown ads of that age group, which are the survivors worth reading; on that page `uses` counts only the copies of a creative that had started by day D. In the EU and the UK, `active_status=all` with both dates set counts every ad that delivered in that week, stopped or not: a true history. Counts drift by a few between loads minutes apart; a difference that small means nothing.
 
