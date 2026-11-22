@@ -1,0 +1,24 @@
+<!-- band-plate: on the light plate, what each kind costs as a band from its lowest price to its highest, on a
+     log scale. With D decades on the scale and a first tick of F: a band's left is log10(low / F) / D and its
+     width log10(high / low) / D, in percent. Here F is 1 and D is 3 (1 to 1,000). -->
+<style>
+.b-ticks { left: 448px; top: 350px; width: 1376px; display: flex; justify-content: space-between; font: 500 20px var(--mono); color: #6b7487 }
+.b-rows { left: 96px; top: 410px; width: 1728px; display: grid; row-gap: 34px }
+.b-row { display: grid; grid-template-columns: 320px 1fr; align-items: center; column-gap: 32px; font-size: 30px; font-weight: 700 }
+.b-scale { position: relative; height: 64px; border-left: 1px solid #c9d0de; border-right: 1px solid #c9d0de }
+.b-scale i { position: absolute; top: 8px; height: 48px; border-radius: 24px; background: #c3cbdc }
+.b-scale b { position: absolute; top: 18px; font: 600 22px var(--mono); white-space: nowrap; transform: translateX(14px) }
+.b-row.on .b-scale i { background: var(--accent) }
+</style>
+<section class="slide plate" data-pattern="band-plate">
+  <div class="hd">Section</div>
+  <h1 class="t">What it costs, from the cheapest<br>kind to <em>the dearest.</em></h1>
+  <div class="b-ticks"><span>1</span><span>10</span><span>100</span><span>1,000</span></div>
+  <div class="b-rows">
+    <div class="b-row"><span>Kind one</span><div class="b-scale"><i style="left: 10%; width: 22%"></i><b style="left: 32%">0 to 00</b></div></div>
+    <div class="b-row on"><span>Kind two</span><div class="b-scale"><i style="left: 30%; width: 40%"></i><b style="left: 70%">00 to 000</b></div></div>
+    <div class="b-row"><span>Kind three</span><div class="b-scale"><i style="left: 46%; width: 16%"></i><b style="left: 62%">00 to 00</b></div></div>
+    <div class="b-row"><span>Kind four</span><div class="b-scale"><i style="left: 58%; width: 30%"></i><b style="left: 88%">00 to 000</b></div></div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">6</div>
+</section>

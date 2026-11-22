@@ -1,0 +1,138 @@
+{
+  "schema": "market-watch/1",
+  "updated": "2026-01-19",
+  "thresholds": {
+    "01": "<yearly spend or monthly users, per country, as the plan showed them>",
+    "02": "<growth over the last year>",
+    "03": "<entrants within two years, by a count that can be made again>",
+    "04": "<entrants whose filings show a profit, and the year of the inflow>"
+  },
+  "sources": [
+    {
+      "id": "kr-online-shopping",
+      "name": "<the monthly release, by its own name>",
+      "url": "https://example.org/kr/online-shopping",
+      "cadence": "monthly",
+      "free": true,
+      "how": "<which table and which row hold the number>"
+    },
+    {
+      "id": "us-business-formation",
+      "name": "<the monthly file, by its own name>",
+      "url": "https://example.org/us/business-formation.csv",
+      "cadence": "monthly",
+      "free": true,
+      "how": "<which sector and series, adjusted or not>"
+    },
+    {
+      "id": "meta-ad-library",
+      "name": "Meta Ad Library, counted in watch mode",
+      "url": "https://www.facebook.com/ads/library/",
+      "cadence": "weekly",
+      "free": true,
+      "how": "<the term pair per country, the sort and the locale are in the snapshot>"
+    }
+  ],
+  "themes": [
+    {
+      "id": "example-theme-a",
+      "name": "<a theme in a few words>",
+      "kind": "rising",
+      "status": "watch",
+      "ai_role": "<what AI does in the product or the operation>",
+      "added": "2026-01-05",
+      "next_check": "2026-02-02",
+      "doc": "2026-01-05-entry-signals/notes/kr-consumer.md",
+      "note": "<one plain line>",
+      "gates": {
+        "kr": { "01": "pass", "02": "partial", "03": "pass", "04": "unknown", "memo": "<no entrant with a filing yet; second year of the inflow>", "judged": "2026-01-05" },
+        "us": { "01": "pass", "02": "pass", "03": "pass", "04": "partial", "memo": "<one entrant files a profit, two a loss; third year of the inflow>", "judged": "2026-01-05" }
+      }
+    },
+    {
+      "id": "example-theme-b",
+      "name": "<a theme where money already moves>",
+      "kind": "big",
+      "status": "candidate",
+      "ai_role": "<what AI does>",
+      "added": "2026-01-05",
+      "next_check": "2026-01-19",
+      "doc": "2026-01-05-entry-signals/notes/us-business.md",
+      "note": "<one plain line>",
+      "gates": {
+        "us": { "01": "pass", "02": "pass", "03": "pass", "04": "pass", "memo": "<two entrants file a profit; second year of the inflow>", "judged": "2026-01-19" }
+      }
+    },
+    {
+      "id": "example-theme-c",
+      "name": "<a theme the user set aside>",
+      "kind": "rising",
+      "status": "dropped",
+      "ai_role": "<what AI does>",
+      "added": "2026-01-05",
+      "next_check": "2026-01-19",
+      "doc": "2026-01-05-entry-signals/notes/kr-business.md",
+      "note": "<why the user set it aside, in one line>",
+      "gates": {
+        "kr": { "01": "partial", "02": "unknown", "03": "pass", "04": "fail", "memo": "<entrants file losses; first year of the inflow>", "judged": "2026-01-05" }
+      }
+    }
+  ],
+  "metrics": [
+    {
+      "id": "kr-example-a-online-sales",
+      "theme": "example-theme-a",
+      "name": "<what is counted>",
+      "unit": "KRW bn a month",
+      "source": "kr-online-shopping",
+      "gate": "02",
+      "country": "kr",
+      "observations": [
+        { "read": "2026-01-05", "period": "2025-10", "value": 100, "grade": "official", "url": "https://example.org/kr/online-shopping/2025-10", "note": "" },
+        { "read": "2026-01-05", "period": "2025-11", "value": 104, "grade": "official", "url": "https://example.org/kr/online-shopping/2025-11", "note": "" },
+        { "read": "2026-01-19", "period": "2025-11", "value": 105, "grade": "official", "url": "https://example.org/kr/online-shopping/2025-12", "note": "revised in the next release" },
+        { "read": "2026-01-19", "period": "2025-12", "value": null, "note": "not published" }
+      ]
+    },
+    {
+      "id": "kr-example-a-ads",
+      "theme": "example-theme-a",
+      "name": "<active ads for the theme's phrase>",
+      "unit": "active ads",
+      "source": "meta-ad-library",
+      "gate": "03",
+      "country": "kr",
+      "observations": [
+        { "read": "2026-01-05", "period": "2026-01-05", "value": 60, "grade": "measured", "url": "https://www.facebook.com/ads/library/", "note": "snapshots/2026-01-05-meta-kr-example-category.json" },
+        { "read": "2026-01-19", "period": "2026-01-19", "value": 72, "grade": "measured", "url": "https://www.facebook.com/ads/library/", "note": "snapshots/2026-01-19-meta-kr-example-category.json" }
+      ]
+    },
+    {
+      "id": "us-example-b-applications",
+      "theme": "example-theme-b",
+      "name": "<business applications in the theme's sector>",
+      "unit": "applications a month",
+      "source": "us-business-formation",
+      "gate": "03",
+      "country": "us",
+      "observations": [
+        { "read": "2026-01-05", "period": "2025-10", "value": 5000, "grade": "official", "url": "https://example.org/us/business-formation.csv", "note": "" },
+        { "read": "2026-01-05", "period": "2025-11", "value": 5300, "grade": "official", "url": "https://example.org/us/business-formation.csv", "note": "" },
+        { "read": "2026-01-19", "period": "2025-12", "value": 5700, "grade": "official", "url": "https://example.org/us/business-formation.csv", "note": "" }
+      ]
+    },
+    {
+      "id": "kr-example-c-filings",
+      "theme": "example-theme-c",
+      "name": "<new filings of sellers in the theme's category>",
+      "unit": "filings a month",
+      "source": "https://example.org/kr/filings",
+      "gate": "03",
+      "country": "kr",
+      "cadence": "monthly",
+      "observations": [
+        { "read": "2026-01-05", "period": "2025-11", "value": 40, "grade": "computed", "url": "https://example.org/kr/filings", "note": "counted from the downloaded file by filing date" }
+      ]
+    }
+  ]
+}

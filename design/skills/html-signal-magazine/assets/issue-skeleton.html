@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Magazine issue</title>
+<!-- Read by the helper (scripts/render.mjs of html-product-deck). banned: the names and wordings that stay out,
+     carried from issue to issue and added to as the user corrects. pdf_max_mb: the size the PDF must stay under. -->
+<script type="application/json" id="deck-meta">
+{"canvas": [1920, 1080], "external": true, "pdf_max_mb": 10, "banned": []}
+</script>
+<style>
+/* The brand's fonts: local names first, then the documented files under ../library/fonts/, which the helper embeds.
+   @font-face { font-family: "Issue"; src: local("<family>"), <the woff2 under ../library/fonts/, as a url> format("woff2"); } */
+@page { size: 1920px 1080px; margin: 0 }
+:root {
+  /* Placeholders. The tokens are the brand site's, read in phase 1 and named in brand.md. */
+  --bg: #0e1014; --bg-2: #1a1d24; --ink: #eef2fb; --ink-2: #93a0bb; --accent: #3c78d8; --accent-2: #9bb6ff; --point: #e0a43a;
+  --card: rgba(255, 255, 255, 0.05); --card-line: rgba(255, 255, 255, 0.13); --plate: #f3f5fa; --plate-ink: #101624;
+  --radius: 28px;
+  --font: "Issue", system-ui, -apple-system, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --serif: "Issue Serif", Georgia, "Times New Roman", serif;
+  --mono: ui-monospace, "Cascadia Mono", Consolas, Menlo, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0 }
+html, body { background: #1d2027 }
+body { font-family: var(--font); -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: break-word }
+
+/* Shared by every slide: the box and its one light, the light plate, the header, the title, the foot mark, the
+   page number, the card and the figure face. Everything else belongs to one slide, under that slide's prefix. */
+.slide { width: 1920px; height: 1080px; position: relative; overflow: hidden; break-after: page; color: var(--ink);
+  background: radial-gradient(1100px 760px at 86% -8%, var(--bg-2), transparent 70%), var(--bg) }
+.slide:last-child { break-after: auto }
+@media screen { .slide { margin: 0 auto 24px } }
+.slide > * { position: absolute }
+.plate { background: var(--plate); color: var(--plate-ink) }
+.hd { left: 96px; top: 72px; font-size: 22px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2) }
+.t { left: 96px; top: 124px; width: 1560px; font-size: 68px; line-height: 1.18; font-weight: 800; letter-spacing: -0.03em; text-wrap: balance }
+.t em { font-style: normal; color: var(--accent) }
+.ft { left: 96px; bottom: 54px; display: flex; align-items: baseline; gap: 14px; color: var(--ink-2) }
+.ft i { font: italic 26px var(--serif) }
+.ft b { font: 500 18px var(--mono); letter-spacing: 0.06em }
+.pn { right: 96px; bottom: 56px; font: 500 20px var(--mono); color: var(--ink-2) }
+.card { background: var(--card); border: 1px solid var(--card-line); border-radius: var(--radius) }
+.plate .card { background: #fff; border-color: #dfe4ee }
+.plate .hd, .plate .ft, .plate .pn, .plate .cap { color: #6b7487 }
+.hero { border-color: var(--accent); box-shadow: 0 0 90px rgba(79, 125, 255, 0.28) }
+.num { font-variant-numeric: tabular-nums; font-weight: 800; letter-spacing: -0.03em }
+.cap { font-size: 24px; line-height: 1.4; color: var(--ink-2); text-wrap: balance }
+
+/* Slide 1, prefix c-: the cover. The masthead is the one place the serif leads. */
+.c-mast { left: 96px; top: 64px; font: italic 600 92px/1 var(--serif); letter-spacing: -0.02em }
+.c-issue { right: 96px; top: 96px; font: 500 22px var(--mono); letter-spacing: 0.12em; color: var(--ink-2) }
+.c-rule { left: 96px; top: 184px; width: 1728px; height: 1px; background: var(--card-line) }
+.c-kick { left: 96px; top: 240px; font-size: 24px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-2) }
+.c-title { left: 96px; top: 292px; width: 1000px; font-size: 104px; line-height: 1.1; font-weight: 800; letter-spacing: -0.035em }
+.c-title em { font-style: normal; color: var(--accent) }
+.c-lines { left: 96px; top: 760px; width: 1040px; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 40px }
+.c-line { padding-top: 24px; border-top: 1px solid var(--card-line) }
+.c-line b { display: flex; align-items: center; gap: 16px; font-size: 60px; line-height: 1 }
+.c-line svg { width: 96px; height: 48px }
+.c-line span { display: block; margin-top: 14px; font-size: 22px; line-height: 1.35; color: var(--ink-2) }
+.c-art { left: 1180px; top: 150px; width: 760px; height: 960px }
+.c-shot { position: absolute; width: 300px; height: 620px; border-radius: 40px; background: #17213d; border: 1px solid var(--card-line); overflow: hidden }
+.c-shot img { width: 100%; height: 100%; object-fit: cover }
+.c-shot.a { left: 0; top: 150px }
+.c-shot.b { left: 330px; top: 30px }
+.c-shot.c { left: 330px; top: 680px }
+.c-by { left: 96px; bottom: 54px; font-size: 20px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2) }
+
+/* The last slide, prefix z-: the back cover, centred. It ends on the question a reader would put to the brand. */
+.z-mast { left: 0; top: 300px; width: 1920px; text-align: center; font: italic 600 120px/1 var(--serif); letter-spacing: -0.02em }
+.z-ask { left: 360px; top: 500px; width: 1200px; text-align: center; font-size: 52px; line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance }
+.z-mail { left: 0; top: 760px; width: 1920px; text-align: center; font: 500 28px var(--mono); color: var(--accent-2) }
+.z-by { left: 0; bottom: 72px; width: 1920px; text-align: center; font-size: 20px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2) }
+</style>
+</head>
+<body>
+
+<!-- 1. data-pattern names the slide's scene; two slides in a row never share one. data-bleed marks what is meant
+     to run past the slide's edge. A cover line's small figure comes from references/sparks.md, one shape a line. -->
+<section class="slide" data-pattern="cover">
+  <div class="c-mast">Masthead</div>
+  <div class="c-issue">JAN 2026</div>
+  <div class="c-rule"></div>
+  <div class="c-kick">Cover story</div>
+  <h1 class="c-title">The issue's one<br>sentence, with<br><em>its figure.</em></h1>
+  <div class="c-lines">
+    <div class="c-line"><b class="num">00%<svg viewBox="0 0 96 48" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 40 30 30 52 34 88 8"/><path d="M72 8h16v16"/></svg></b><span>What the first figure says</span></div>
+    <div class="c-line"><b class="num">00<svg viewBox="0 0 96 48" fill="currentColor"><g data-count="5"><circle cx="10" cy="24" r="7"/><circle cx="29" cy="24" r="7"/><circle cx="48" cy="24" r="7" opacity=".3"/><circle cx="67" cy="24" r="7" opacity=".3"/><circle cx="86" cy="24" r="7" opacity=".3"/></g></svg></b><span>What the second figure says</span></div>
+    <div class="c-line"><b class="num">0.0x<svg viewBox="0 0 96 48" fill="currentColor"><rect x="8" y="26" width="18" height="18" rx="3" opacity=".4"/><rect x="38" y="6" width="18" height="38" rx="3"/><path d="M68 36h18M78 28l8 8-8 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></b><span>What the third figure says</span></div>
+  </div>
+  <div class="c-art" data-bleed>
+    <div class="c-shot a"></div><div class="c-shot b"></div><div class="c-shot c"></div>
+  </div>
+  <div class="c-by">The brand</div>
+</section>
+
+<!-- The scenes between come from assets/scenes/, one file a scene, each under its own prefix. -->
+
+<section class="slide" data-pattern="back-cover">
+  <div class="z-mast">Masthead</div>
+  <p class="z-ask">The question this issue leaves the reader with?</p>
+  <div class="z-mail">hello@example.com</div>
+  <div class="z-by">The brand</div>
+</section>
+
+</body>
+</html>

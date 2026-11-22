@@ -1,0 +1,33 @@
+<!-- sieve: the questions the candidates were put to as four cards, and under them how many were left after
+     each: a count, its dots (data-count holds the count), an arrow to the next. The last step is .on. -->
+<style>
+.v-qs { left: 96px; top: 340px; width: 1728px; display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 24px }
+.v-q { padding: 30px 32px; font-size: 28px; line-height: 1.35; font-weight: 700 }
+.v-q i { display: block; margin-bottom: 12px; font: 500 20px var(--mono); color: var(--accent-2) }
+.v-steps { left: 96px; top: 620px; width: 1728px; display: grid; grid-template-columns: 5fr 80px 3fr 80px 2fr; align-items: center }
+.v-step b { display: block; font-size: 110px; line-height: 1 }
+.v-step span { display: block; margin: 8px 0 22px }
+.v-dots { display: flex; flex-wrap: wrap; gap: 10px; max-width: 640px }
+.v-dots i { width: 26px; height: 26px; border-radius: 50%; background: var(--ink-2) }
+.v-arrow { width: 56px; height: 40px; color: var(--ink-2) }
+.v-step.on b { color: var(--accent) }
+.v-step.on .v-dots i { background: var(--accent) }
+</style>
+<section class="slide" data-pattern="sieve">
+  <div class="hd">Section</div>
+  <h1 class="t"><em>Two</em> of twenty-four were left<br>after the four questions.</h1>
+  <div class="v-qs">
+    <div class="v-q card"><i>01</i>The first question</div>
+    <div class="v-q card"><i>02</i>The second question</div>
+    <div class="v-q card"><i>03</i>The third question</div>
+    <div class="v-q card"><i>04</i>The fourth question</div>
+  </div>
+  <div class="v-steps">
+    <div class="v-step"><b class="num">12</b><span class="cap">looked at</span><div class="v-dots" data-count="12"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <svg class="v-arrow" viewBox="0 0 56 40" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h46M36 6l14 14-14 14"/></svg>
+    <div class="v-step"><b class="num">5</b><span class="cap">passed the first three</span><div class="v-dots" data-count="5"><i></i><i></i><i></i><i></i><i></i></div></div>
+    <svg class="v-arrow" viewBox="0 0 56 40" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h46M36 6l14 14-14 14"/></svg>
+    <div class="v-step on"><b class="num">1</b><span class="cap">passed all four</span><div class="v-dots" data-count="1"><i></i></div></div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">8</div>
+</section>

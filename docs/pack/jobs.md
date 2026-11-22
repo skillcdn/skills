@@ -57,6 +57,13 @@ What you can ask for, in your own words, and which skill does it. One section pe
 - Also asked as: "a product introduction for our customers", "a sales deck that hooks", "a brochure deck for our service", "introduce this feature to customers as a deck", "our product introduction, with the presentation skill".
 - Not this one when: the deck is a business plan, a plan for investors, a kickoff or a report from notes (the deck above), or the slides go into an existing Figma deck (the Figma skill above).
 
+### "Make this month's issue of our market magazine."
+
+- You get: one issue as a deck, one HTML file and a PDF, from research already done: every slide one message carried by a chart or a picture composed for it, in your brand's own look under a magazine's cover and contents, every number in a ledger checked against its source, logos and app screens from the companies' own pages, and a closing view that says no more than the slides before it; the next issue starts from this one's folder.
+- Skill: [`design/skills/html-signal-magazine/`](/design/skills/html-signal-magazine/SKILL.md)
+- Also asked as: "turn the research into a deck we hand out", "a market data deck in our brand", "a magazine for founders", "the next issue".
+- Not this one when: the deck sells a product (the product deck above), it is a report or a proposal from notes (the deck from notes above), or the research is still to be done (the market entry signals under Product).
+
 ### "Show me four looks for this."
 
 - You get: four looks for one design (a page's first screen, a deck's cover with a body slide, a post's cover, a card news format's cover and body slide) as HTML rendered in a browser and tiled on one contact sheet, each judged for the AI feel at desktop and phone size (a post at feed width) before you see it, with a recommendation and a runner-up, and your pick's tokens handed to the skill that builds the thing.
@@ -96,10 +103,38 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "What is taking off in this market?"
 
-- You get: a ranked report of what advertisers are putting new money behind in a sector, item by item and theme by theme, with the ads, the sellers, the offers and the risks, and a snapshot the next run measures growth against.
+- You get: a ranked report of what advertisers are putting new money behind in a sector, item by item and theme by theme, with the ads, the sellers and the risks, and a snapshot the next run is compared with; given topics fixed earlier, the same counts again per country, set beside the last snapshot.
 - Skill: [`product/skills/meta-ad-library-rising-products/`](/product/skills/meta-ad-library-rising-products/SKILL.md)
-- Also asked as: "winning or trending products", "what is hot in this field right now", "new product ideas from what people are buying", "which AI tools are being pushed".
-- Not this one when: you want the creatives of one keyword or competitor studied (the creative research under Marketing).
+- Also asked as: "winning or trending products", "what is hot in this field right now", "new product ideas from what people are buying", "which AI tools are being pushed", "count these topics again the same way", "compare the ads for these topics in Korea and the US".
+- Not this one when: you want the creatives of one keyword or competitor studied (the creative research under Marketing), or a market judged on more than its ads, with statistics and filings (the entry signals below, which count the ads with this skill).
+
+### "Find a market we could enter."
+
+- You get: a table that judges every theme, per country, on four questions (are many people already paying, is it growing, are new competitors coming in, are the ones who came in earning), each verdict with its graded number and its address; a note of sourced facts per branch of the research; and a watch list of what to measure again. Korea and the US unless you say otherwise. It judges and you pick.
+- Skill: [`product/skills/web-market-entry-signals/`](/product/skills/web-market-entry-signals/SKILL.md)
+- Also asked as: "where is money moving now", "a growing market with new entrants", "business ideas that use AI even if AI is not what we sell", "which market is worth entering, from real statistics", "look again at the ideas I dropped".
+- Not this one when: you want only what advertisers are pushing in one sector (rising products above), one idea looked into in depth with its law and competitors (the deep dive below), or one company's numbers (the company figures below).
+
+### "Run the market scan again and tell me what moved."
+
+- You get: one round over the watch list: every metric that is due read again from its source and added as one observation, the ads counted the same way as last time and set beside the last snapshot, each theme's status moved by fixed rules, and a report of three lists only: what rose to candidate, what is cooling, and which set-aside themes newly pass a question. The date of the next round.
+- Skill: [`product/skills/web-market-entry-signals/`](/product/skills/web-market-entry-signals/SKILL.md), its round
+- Also asked as: "measure the markets we watch again", "update the watch list", "the two-weekly market monitoring", "are the ads for these up since last time", "add this metric to the watch list and read it".
+- Not this one when: there is no watch list yet (the survey above writes the first one), or the counts are wanted for topics outside a watch list (rising products above, in its watch mode).
+
+### "Look into this idea properly before we build it."
+
+- You get: one review document of a business idea: what is sold to whom and who pays, the market's size with every assumption in a table and the weeks of the year it buys, the competitors with the company behind each, its revenue, price bands and when it came in, every route to the material the product needs, the legal risks by article or case with a design that avoids each, a verdict on the idea as given and on a changed form, a pilot with measurable success criteria, and the questions for a lawyer.
+- Skill: [`product/skills/web-item-deep-dive/`](/product/skills/web-item-deep-dive/SKILL.md)
+- Also asked as: "research the law, the supply, the market and the competitors for this", "can we do this business", "dig into the market I picked", "is this legal and who else sells it", "a review document for this idea".
+- Not this one when: you want to know which market to enter (the entry signals above), one company's figures checked against its filings (the company figures below), or a competitor's ad creatives studied (the creative research under Marketing).
+
+### "Find this company's operating profit in its filings."
+
+- You get: one line per Korean company with its revenue and operating profit as the audit report or the business report on DART states them, in won, with the basis, the check of what the company announced against the filing, how the website and the filer were shown to be one company, and what the filing shows besides (the audit opinion, one customer's share, the parent).
+- Skill: [`product/skills/dart-company-figures/`](/product/skills/dart-company-figures/SKILL.md)
+- Also asked as: "can we use the revenue they announced", "is this website really that company", "compare these companies on audited numbers", "they say they are profitable, are they".
+- Not this one when: the company files in the United States (its filing is on SEC EDGAR, which no skill of the pack reads), or you want its ads (the creative research under Marketing) or the market around it (the market entry signals).
 
 ### "Show me five different ways to get this reference's effect."
 

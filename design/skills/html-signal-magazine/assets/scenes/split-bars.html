@@ -1,0 +1,27 @@
+<!-- split-bars: two measures of the same things, one growing left and one right from the names in the middle.
+     A bar's width is its value in percent of the largest value on its side; the row the title speaks of is .on. -->
+<style>
+.s-head { left: 96px; top: 340px; width: 1728px; display: grid; grid-template-columns: 1fr 280px 1fr; column-gap: 28px; font-size: 22px; font-weight: 700; color: var(--ink-2) }
+.s-head span:first-child { text-align: right }
+.s-rows { left: 96px; top: 400px; width: 1728px; display: grid; row-gap: 26px }
+.s-row { display: grid; grid-template-columns: 1fr 280px 1fr; align-items: center; column-gap: 28px }
+.s-side { display: flex; align-items: center; gap: 18px }
+.s-side.l { flex-direction: row-reverse }
+.s-side i { height: 60px; border-radius: 12px; background: var(--card-line) }
+.s-side b { font: 600 26px var(--mono) }
+.s-name { text-align: center; font-size: 30px; font-weight: 700 }
+.s-row.on .s-side i { background: var(--accent) }
+</style>
+<section class="slide" data-pattern="split-bars">
+  <div class="hd">Section</div>
+  <h1 class="t">The message, with <em>its figure</em><br>at the front of the sentence.</h1>
+  <div class="s-head"><span>The left measure, its unit</span><span></span><span>The right measure, its unit</span></div>
+  <div class="s-rows">
+    <div class="s-row on"><div class="s-side l"><i style="width: 92%"></i><b>00</b></div><div class="s-name">Name one</div><div class="s-side"><i style="width: 64%"></i><b>00</b></div></div>
+    <div class="s-row"><div class="s-side l"><i style="width: 70%"></i><b>00</b></div><div class="s-name">Name two</div><div class="s-side"><i style="width: 41%"></i><b>00</b></div></div>
+    <div class="s-row"><div class="s-side l"><i style="width: 48%"></i><b>00</b></div><div class="s-name">Name three</div><div class="s-side"><i style="width: 77%"></i><b>00</b></div></div>
+    <div class="s-row"><div class="s-side l"><i style="width: 30%"></i><b>00</b></div><div class="s-name">Name four</div><div class="s-side"><i style="width: 22%"></i><b>00</b></div></div>
+    <div class="s-row"><div class="s-side l"><i style="width: 18%"></i><b>00</b></div><div class="s-name">Name five</div><div class="s-side"><i style="width: 55%"></i><b>00</b></div></div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">4</div>
+</section>

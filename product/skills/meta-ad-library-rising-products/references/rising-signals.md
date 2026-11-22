@@ -1,6 +1,6 @@
 # Rising signals
 
-The method of phases 1 to 7: where candidates come from, what an item and a theme are, what is counted, how each is classed, and what the report and the snapshot hold. Thresholds are working defaults; state them in the report and change them when the user asks.
+The method of phases 1 to 5: where candidates come from, what an item and a theme are, what is counted and how each is classed. What the profiles, the report and the snapshot hold is [delivery.md](delivery.md), read before phase 6. Thresholds are working defaults; state them in the report and change them when the user asks.
 
 ## The assumption and its limits
 
@@ -20,7 +20,7 @@ Views and counts are written here as the page-dump script's specs ([page-dump.md
 - **Views per term**, one page load each: most recent, and impressions order, both with all media. When a term's first view fits on one page (`more` is false), the second would repeat the same ads: skip it. A term that returns fewer than about twenty ads is replaced once.
 - **Budget.** 80 page loads for the run: the sweep (two per term), the baseline (3), the counts (4 per candidate, 12 candidates at most), a few spare. A sweep of seven or eight seed terms with twelve to fourteen candidates counted has taken 63 to 74 page loads and 11 to 25 minutes.
 
-Work in one folder, `rising-products-<sector>-<YYYYMMDD>/`, the sector in lowercase ASCII words joined by hyphens (translated when it is not written in Latin script; `broad-sweep` when there is none), under the folder the user named for the run's outputs, else in the working directory when it is not a code repository, else in a folder outside it named at the checkpoint. Scripts, raw records and the load log go in `work/` inside it. Earlier runs are the other `rising-products-…` folders in that same parent folder, and nothing outside it is searched; the earlier snapshot is the latest `snapshot.json` among them with the same `market` and a `sector` that means the same (the sector is free text in the user's language, so the meaning is matched, not the spelling), looked for before the sweep and named at the checkpoint.
+Work in one folder, `rising-products-<sector>-<YYYYMMDD>/`, the sector in lowercase ASCII words joined by hyphens (translated when it is not written in Latin script; `broad-sweep` when there is none), under the folder the user or a calling skill named for the run's outputs, else in the working directory when it is not a code repository, else in a folder outside it named at the checkpoint. Scripts, raw records and the load log go in `work/` inside it. The snapshots of every run are kept together in `snapshots/` of that same parent folder, each named `<YYYY-MM-DD>-meta-<market>-<category>.json`: the day it was taken, the market's country code in lowercase, and as the category the sector as the run folder's name has it, so that the snapshots of one market and category sort by day. The earlier snapshot is the latest file there with the same market and a category that means the same (the sector is free text in the user's language, so the meaning is matched, not the spelling); a `snapshot.json` inside a `rising-products-…` folder of that parent is an earlier snapshot as well. It is looked for before the sweep and named at the checkpoint, and nothing outside the parent folder is searched.
 
 ## Items
 
@@ -75,13 +75,15 @@ Four counts per candidate, by [ad-library.md](/docs/meta-ad-library/ad-library.m
 | `A` | nothing | Active ads now. |
 | `older(7)` | `before=7d` | `new7 = A − older(7)`: started this week and still running. |
 | `older(30)` | `before=30d` | `new30 = A − older(30)`; `older(30)` itself is the ads that outlived a month. |
-| `older(90)` | `before=90d` | The ads that outlived a quarter. Zero means no surviving ad is older than 90 days. |
+| `older(90)` | `before=90d` | The ads that outlived a quarter. Zero means no surviving ad is older than 90 days. `life90 = older(90) / A`, the lifespan share. |
+
+`life90` is the part of what runs now that someone has kept paying for through a quarter, and is read against the baseline's, never alone. Well above it, more of the entry's advertising has lasted than is ordinary; well below, the advertising is younger than ordinary, which is new sellers coming in or ads that do not survive: the sellers' count and the class say which. It costs no load beyond the four counts.
 
 Each of these loads also lists the most-shown ads of that age group with their start dates: they are saved with the count and read from the file for the profile, so the dated counts can print the count alone (`lines=0` in the spec). When the `older(30)` page fits on one page, its oldest start date is the first day of the item's surviving ads; when it does not, two more counts at 45 and 60 days narrow that day to a fortnight, or to the month beyond day 60 when the 60-day count is not zero; for a Breakout only and inside the budget.
 
 **An item inside a general store.** The store's counts are not the item's. Count the item itself: a product phrase that only its ads use, as an exact phrase, after checking on the first page that no other product comes back; failing that, the sum of `uses` over the item's creative groups, read on the unfiltered page and again under each date bound, where `uses` shrinks to the copies that had started by then. When neither isolates the item, report the store's numbers labeled as the store's, and do not class the item.
 
-**Baseline.** The seed term with the highest count under the library's ceiling (a category word in a sector, a purchase cue in a broad sweep), with the same three date bounds, searched in any order as the sweep searched it (its `A` is already known from the sweep), so that its shares compare like with like. Its shares say what is ordinary. As an illustration only (checked 2026-10): for four broad terms in one market, 33 to 46 percent of the active ads had started within seven days, 64 to 77 percent within thirty, and 7 to 13 percent were older than ninety; `new7 / new30` lay between 0.53 and 0.59. A third of the ads being new is the normal churn of the library, not a rise.
+**Baseline.** The seed term with the highest count under the library's ceiling (a category word in a sector, a purchase cue in a broad sweep), with the same three date bounds, searched in any order as the sweep searched it (its `A` is already known from the sweep), so that its shares compare like with like. Its shares say what is ordinary. As an illustration only (checked 2026-10): for four broad terms in one market, 33 to 46 percent of the active ads had started within seven days, 64 to 77 percent within thirty, and 7 to 13 percent were older than ninety; `new7 / new30` lay between 0.53 and 0.59. A third of the ads being new is the normal churn of the library, not a rise. The share started within thirty days is as high for a broad term as for most of its topics, so it does not tell topics apart, and `life90` does: the broadest term of one sector in two markets had 63 to 68 percent of its ads started within thirty days and a `life90` near 14 percent in both, while the topics counted beside it lay far apart on it (checked 2026-11).
 
 ## Classes
 
@@ -104,51 +106,5 @@ A theme takes the same class and pace. Its age is the age of the kind of thing, 
 
 Order of the report, items and themes in one ranking: Breakout, faster or level, by `A`; Proven, faster, by `new7`; Breakout, slower, said to be slowing; New push by `A`. The three Proven ones with the largest `A` that are not faster go under "Benchmarks", not in the ranking; anything else counted goes in "Method and limits" with its numbers. A ranking with no Breakout and no measured growth says so in its first line: nothing is rising by these rules yet, and what follows is the closest, with its class and pace; a New push is a bet to watch and is never called rising.
 
-- **With an earlier snapshot** of the same market: for every entry counted in both runs, the change in `A` over the days between. Growth of a quarter or more and at least ten ads is stated as measured growth and puts the entry in the ranking at the top of its class, a Proven one included; a fall of a quarter marks it fading. What the earlier run reported and this one did not count is listed as not counted this time, never as gone. This is the only true trend outside the EU and the UK, so say when it is missing.
+- **With an earlier snapshot** of the same market: for every entry counted in both runs, the change in `A` over the days between. To have it printed, write this run's snapshot now with the counts, classes and paces it has, shaped like [snapshot.example.json](../assets/snapshot.example.json), and run [compare-snapshots.example.mjs](../scripts/compare-snapshots.example.mjs) on the `snapshots/` folder: it lays the two latest files of the market and category side by side, every entry of either run by its key, with the change in `A` and in `life90`. Growth of a quarter or more and at least ten ads is stated as measured growth and puts the entry in the ranking at the top of its class, a Proven one included; a fall of a quarter marks it fading. What the earlier run reported and this one did not count is listed as not counted this time, never as gone. This is the only true trend outside the EU and the UK, so say when it is missing.
 - **In the EU and the UK** the library keeps stopped ads for a year. For the strongest entries, as many as the budget still allows and five at most, count the ads that delivered in each of the last four weeks and in one week two months back (`status=all` with `after` and `before`): a rising series is a rise, whatever the class.
-
-## Profiles
-
-For each reported item, from the pages already loaded:
-
-- **What it is**, and the price and offer as the ads state them, quoted.
-- **Who sells it**: the store, the number of Pages that advertise it, creators named as partners.
-- **The ads that carry it**: two or three links by Library ID: the oldest survivor, the most reused (`uses`), the newest burst. The share of video.
-- **The numbers**: `A`, `new7`, `new30`, `older(30)`, `older(90)`, the class and the pace with the reason in a line, the first day when known, the change since the snapshot when there is one.
-- **Competition**: how many other sites in the pool sell the same kind of item. Several sellers with fresh creatives confirm demand; the same creative on dozens of stores is saturation.
-- **Flags**, stated as observations about the ads and not as verdicts on the seller: cure or miracle claims; income or savings promised as a figure; a health, finance or other regulated category; a general store; borrowed brand names or likely counterfeits; a seasonal push; a whole footprint launched on one day; almost every ad marked low impression; a Page that runs the same ads in many countries, whose count is not this market's alone.
-
-A theme's profile reads across its sellers: what its ads promise, as two or three lines quoted from different sellers; who sells it (how many sellers, the most present named, and what they sell: the thing itself, or courses about it); the ads as above; the numbers; and as flags the strays its phrase matches and the spelling it misses.
-
-With a driven browser, the advertiser's `About` tab adds the day its Page was created. A web-reading tool may read the landing page for the price. Neither is required.
-
-## Report and snapshot
-
-The run's folder holds `report.md` in the user's language, `snapshot.json` shaped like [snapshot.example.json](../assets/snapshot.example.json), which the next run compares against, and `work/`. In the snapshot the field names and the values of `class` (`breakout`, `new push`, `proven`, `thin`), `pace` (`faster`, `level`, `slower`), `scope`, `route` (`page dump`, `driven browser`, `hand-carried`) and `search_type` (the URL parameter's value: `keyword_exact_phrase`, `keyword_unordered`, `page`) are fixed English words; everything else is free text in the user's language. `scope` says what the counts cover: `store` (a site or a Page that sells the one thing, counted whole), `item` (one product inside a general store), `theme` (a phrase across its sellers). `pages` is the number of Pages seen advertising it, which for a theme is its sellers; `week_share` is `new7 / new30`; `since_last_run` is the change in `A` since the earlier snapshot; `reported` is true for what the ranking or the benchmarks show. Where the agent cannot write files, the report goes into the client's document surface and the snapshot is given as a code block to save. The template's headings are written in the report's language; a class or a pace keeps its English word beside the translation, so that the report and the snapshot agree.
-
-```markdown
-# Rising products: <sector> (<market>, <date>)
-
-## Scope
-<Sector, what counts as an item in it, market, terms, date read, route, page loads. What the classes and the pace mean. What the library cannot show: spend, sales, stopped ads outside the EU and the UK. Whether an earlier snapshot was compared.>
-
-## Ranking
-| # | Item or theme | Seller | Active ads | New 7d | New 30d | Older 30d | Older 90d | Class, pace | Since last run | Ads |
-<A theme's seller is "<n> sellers".>
-
-## Items and themes
-### 1. <item or theme>
-<The profile: what it is, who sells it, the ads that carry it, the numbers, competition, flags.>
-
-## Benchmarks
-<The largest Proven ones that are not faster, a line each.>
-
-## Sector baseline
-<The four counts of the baseline term and its shares.>
-
-## <What the user asked, in their words>
-<Only when the request asked more than a ranking: what to build, stock, offer or write about. Each answer names the entries of the ranking it rests on, and says what the library cannot tell about it.>
-
-## Method and limits
-<Class and pace rules as used. Counted but not reported, with numbers. Themes dropped at their check. What was left out, and what a signed-out reader cannot see (age-restricted ads). That the next run measures real growth against this snapshot.>
-```

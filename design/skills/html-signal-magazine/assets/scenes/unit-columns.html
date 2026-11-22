@@ -1,0 +1,26 @@
+<!-- unit-columns: columns built of unit blocks, one block a fixed amount, named once in the key. Each stack
+     declares its count in data-count and holds that many blocks, so that the helper finds a column drawn wrong. -->
+<style>
+.u-key { right: 96px; top: 150px; display: flex; align-items: center; gap: 12px }
+.u-key i { width: 30px; height: 30px; border-radius: 8px; background: var(--ink-2) }
+.u-cols { left: 96px; top: 340px; width: 1728px; height: 620px; display: flex; align-items: flex-end; justify-content: space-between }
+.u-col { width: 300px; display: flex; flex-direction: column; align-items: center; gap: 18px }
+.u-col b { font-size: 56px; line-height: 1 }
+.u-stack { width: 252px; display: flex; flex-wrap: wrap-reverse; gap: 8px }
+.u-stack i { width: 44px; height: 44px; border-radius: 10px; background: var(--ink-2) }
+.u-col span { font-size: 28px; font-weight: 700 }
+.u-col.on b { color: var(--accent) }
+.u-col.on .u-stack i { background: var(--accent) }
+</style>
+<section class="slide" data-pattern="unit-columns">
+  <div class="hd">Section</div>
+  <h1 class="t">The message, with <em>its figure</em><br>at the front of the sentence.</h1>
+  <div class="u-key"><i></i><span class="cap">one block is 00</span></div>
+  <div class="u-cols">
+    <div class="u-col"><b class="num">00</b><div class="u-stack" data-count="7"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>Year one</span></div>
+    <div class="u-col"><b class="num">00</b><div class="u-stack" data-count="12"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>Year two</span></div>
+    <div class="u-col"><b class="num">00</b><div class="u-stack" data-count="19"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>Year three</span></div>
+    <div class="u-col on"><b class="num">00</b><div class="u-stack" data-count="31"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span>Year four</span></div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">7</div>
+</section>

@@ -1,0 +1,22 @@
+<!-- screen-tiles: the products themselves, as their own app screens in a row, a name under each and nothing
+     else. A screen is an img from ../library/screens/, cut by its frame (data-clip); the middle ones stand lower. -->
+<style>
+.p-row { left: 96px; top: 330px; width: 1728px; display: grid; grid-template-columns: repeat(5, 1fr); column-gap: 36px }
+.p-tile { display: grid; row-gap: 20px; justify-items: center }
+.p-tile:nth-child(even) { margin-top: 56px }
+.p-shot { width: 280px; height: 520px; border-radius: 36px; background: #17213d; border: 1px solid var(--card-line); overflow: hidden }
+.p-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top }
+.p-tile span { font-size: 26px; font-weight: 700 }
+</style>
+<section class="slide" data-pattern="screen-tiles">
+  <div class="hd">Section</div>
+  <h1 class="t">Five that sell it now, and<br><em>what each puts on its first screen.</em></h1>
+  <div class="p-row">
+    <div class="p-tile"><div class="p-shot" data-clip></div><span>App one</span></div>
+    <div class="p-tile"><div class="p-shot" data-clip></div><span>App two</span></div>
+    <div class="p-tile"><div class="p-shot" data-clip></div><span>App three</span></div>
+    <div class="p-tile"><div class="p-shot" data-clip></div><span>App four</span></div>
+    <div class="p-tile"><div class="p-shot" data-clip></div><span>App five</span></div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">11</div>
+</section>

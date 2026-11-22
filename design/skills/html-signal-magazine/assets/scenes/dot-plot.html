@@ -1,0 +1,25 @@
+<!-- dot-plot: one value a row as a dot on a common scale (a share, a lifespan). A dot's left is its value in
+     percent of the scale's end; the row the title speaks of is .on; the scale's two ends are named, nothing else. -->
+<style>
+.d-ends { left: 448px; top: 350px; width: 1196px; display: flex; justify-content: space-between; font: 500 20px var(--mono); color: var(--ink-2) }
+.d-rows { left: 96px; top: 410px; width: 1728px; display: grid; row-gap: 44px }
+.d-row { display: grid; grid-template-columns: 320px 1fr 148px; align-items: center; column-gap: 32px; font-size: 30px; font-weight: 700 }
+.d-track { position: relative; height: 2px; background: var(--card-line) }
+.d-track i { position: absolute; top: -15px; width: 32px; height: 32px; margin-left: -16px; border-radius: 50%; background: var(--ink-2) }
+.d-row b { text-align: right; font: 600 28px var(--mono) }
+.d-row.on { color: var(--accent-2) }
+.d-row.on .d-track i { background: var(--accent); box-shadow: 0 0 0 12px rgba(79, 125, 255, 0.2) }
+</style>
+<section class="slide" data-pattern="dot-plot">
+  <div class="hd">Section</div>
+  <h1 class="t">The message, with <em>its figure</em><br>at the front of the sentence.</h1>
+  <div class="d-ends"><span>0</span><span>40%</span></div>
+  <div class="d-rows">
+    <div class="d-row on"><span>Name one</span><div class="d-track"><i style="left: 82%"></i></div><b>00%</b></div>
+    <div class="d-row"><span>Name two</span><div class="d-track"><i style="left: 54%"></i></div><b>00%</b></div>
+    <div class="d-row"><span>Name three</span><div class="d-track"><i style="left: 37%"></i></div><b>00%</b></div>
+    <div class="d-row"><span>Name four</span><div class="d-track"><i style="left: 33%"></i></div><b>00%</b></div>
+    <div class="d-row"><span>Name five</span><div class="d-track"><i style="left: 12%"></i></div><b>00%</b></div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">5</div>
+</section>

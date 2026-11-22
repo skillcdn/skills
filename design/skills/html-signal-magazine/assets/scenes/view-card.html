@@ -1,0 +1,25 @@
+<!-- view-card: the closing view. One large card holds the view in two or three sentences, and a card each
+     answers the series' two questions. Every sentence here rests on a slide before it and says no more than
+     that slide's verdict (phase 6); the slides it rests on are named in plan.md, never on the slide. -->
+<style>
+.w-main { left: 96px; top: 340px; width: 1000px; height: 620px; padding: 56px 60px; display: grid; align-content: center; row-gap: 30px }
+.w-main p { font-size: 44px; line-height: 1.36; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance }
+.w-main em { font-style: normal; color: var(--accent-2) }
+.w-side { left: 1124px; top: 340px; width: 700px; display: grid; row-gap: 28px }
+.w-q { height: 296px; padding: 40px 44px; display: grid; align-content: center; row-gap: 14px }
+.w-q i { font: 500 20px var(--mono); letter-spacing: 0.06em; color: var(--accent-2) }
+.w-q p { font-size: 32px; line-height: 1.36; font-weight: 700; text-wrap: balance }
+</style>
+<section class="slide" data-pattern="view-card">
+  <div class="hd">Our view</div>
+  <h1 class="t">The view in one sentence, as far<br>as <em>the slides before it</em> carry it.</h1>
+  <div class="w-main card hero">
+    <p>The first sentence of the view, which a slide before this one shows.</p>
+    <p>The second, which says <em>what was not known</em> as not known.</p>
+  </div>
+  <div class="w-side">
+    <div class="w-q card"><i>THE FIRST QUESTION</i><p>The answer to the series' first question, in a sentence or two.</p></div>
+    <div class="w-q card"><i>THE SECOND QUESTION</i><p>The answer to the second, in a sentence or two as well.</p></div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">16</div>
+</section>

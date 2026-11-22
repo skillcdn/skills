@@ -1,0 +1,38 @@
+<!-- verdict-map: the themes on two axes, each axis an arrow with its title at the arrow's end, the cell the
+     title speaks of lit (.hero), and beside each theme a signal mark: three bars, two bars, or one dashed bar,
+     named once in the key. A theme sits in the cell its two verdicts put it in. -->
+<style>
+.m-y { left: 96px; top: 330px; width: 250px; font-size: 22px; font-weight: 700; color: var(--ink-2) }
+.m-x { left: 96px; top: 944px; width: 1220px; text-align: right; font-size: 22px; font-weight: 700; color: var(--ink-2) }
+.m-axes { left: 96px; top: 372px; width: 1220px; height: 576px; color: var(--ink-2) }
+.m-grid { left: 150px; top: 388px; width: 1140px; height: 520px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 16px }
+.m-cell { padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; gap: 10px; border-radius: 20px }
+.m-th { display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700 }
+.m-th svg, .m-key svg { width: 40px; height: 36px; flex: none; color: var(--accent-2) }
+.m-key { left: 1400px; top: 420px; width: 424px; display: grid; row-gap: 26px }
+.m-key div { display: flex; align-items: center; gap: 16px; font-size: 26px; line-height: 1.3; font-weight: 600 }
+</style>
+<section class="slide" data-pattern="verdict-map">
+  <div class="hd">Section</div>
+  <h1 class="t">Where the money is and the door<br>is open: <em>one cell of nine.</em></h1>
+  <div class="m-y">The upward measure</div>
+  <svg class="m-axes" viewBox="0 0 1220 576" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 560V8M12 22 24 8l12 14M24 560h1188M1198 548l14 12-14 12"/></svg>
+  <div class="m-x">The rightward measure</div>
+  <div class="m-grid">
+    <div class="m-cell card"></div>
+    <div class="m-cell card"><div class="m-th"><svg viewBox="0 0 34 30" fill="currentColor"><rect x="2" y="18" width="7" height="10" rx="2"/><rect x="13" y="10" width="7" height="18" rx="2"/><rect x="24" y="2" width="7" height="26" rx="2" opacity=".25"/></svg>Theme four</div></div>
+    <div class="m-cell card hero"><div class="m-th"><svg viewBox="0 0 34 30" fill="currentColor"><rect x="2" y="18" width="7" height="10" rx="2"/><rect x="13" y="10" width="7" height="18" rx="2"/><rect x="24" y="2" width="7" height="26" rx="2"/></svg>Theme one</div><div class="m-th"><svg viewBox="0 0 34 30" fill="currentColor"><rect x="2" y="18" width="7" height="10" rx="2"/><rect x="13" y="10" width="7" height="18" rx="2"/><rect x="24" y="2" width="7" height="26" rx="2"/></svg>Theme two</div></div>
+    <div class="m-cell card"><div class="m-th"><svg viewBox="0 0 34 30" fill="currentColor"><rect x="2.5" y="17.5" width="7" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2"/><rect x="13" y="10" width="7" height="18" rx="2" opacity=".18"/><rect x="24" y="2" width="7" height="26" rx="2" opacity=".18"/></svg>Theme six</div></div>
+    <div class="m-cell card"><div class="m-th"><svg viewBox="0 0 34 30" fill="currentColor"><rect x="2" y="18" width="7" height="10" rx="2"/><rect x="13" y="10" width="7" height="18" rx="2"/><rect x="24" y="2" width="7" height="26" rx="2" opacity=".25"/></svg>Theme three</div></div>
+    <div class="m-cell card"></div>
+    <div class="m-cell card"><div class="m-th"><svg viewBox="0 0 34 30" fill="currentColor"><rect x="2.5" y="17.5" width="7" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2"/><rect x="13" y="10" width="7" height="18" rx="2" opacity=".18"/><rect x="24" y="2" width="7" height="26" rx="2" opacity=".18"/></svg>Theme five</div></div>
+    <div class="m-cell card"></div>
+    <div class="m-cell card"></div>
+  </div>
+  <div class="m-key">
+    <div><svg viewBox="0 0 34 30" fill="currentColor"><rect x="2" y="18" width="7" height="10" rx="2"/><rect x="13" y="10" width="7" height="18" rx="2"/><rect x="24" y="2" width="7" height="26" rx="2"/></svg>Those who came in earned</div>
+    <div><svg viewBox="0 0 34 30" fill="currentColor"><rect x="2" y="18" width="7" height="10" rx="2"/><rect x="13" y="10" width="7" height="18" rx="2"/><rect x="24" y="2" width="7" height="26" rx="2" opacity=".25"/></svg>Only the large earned</div>
+    <div><svg viewBox="0 0 34 30" fill="currentColor"><rect x="2.5" y="17.5" width="7" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2"/><rect x="13" y="10" width="7" height="18" rx="2" opacity=".18"/><rect x="24" y="2" width="7" height="26" rx="2" opacity=".18"/></svg>Not known yet</div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">9</div>
+</section>

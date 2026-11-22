@@ -1,0 +1,24 @@
+<!-- company-cards: the companies the user picked, one card each: the logo, the name, what it sells in a line,
+     and two figures as amounts. A figure is on a card only where its check is matches or sums-up. The logo is
+     an img from ../library/logos/ at its own proportions. -->
+<style>
+.k-cards { left: 96px; top: 350px; width: 1728px; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 28px }
+.k-card { padding: 44px; display: grid; row-gap: 22px }
+.k-logo { height: 64px; display: flex; align-items: center }
+.k-logo img { max-height: 64px; max-width: 280px }
+.k-logo span { width: 200px; height: 56px; border-radius: 12px; background: var(--card-line) }
+.k-card h2 { font-size: 40px; letter-spacing: -0.02em }
+.k-figs { margin-top: 26px; padding-top: 30px; border-top: 1px solid var(--card-line); display: grid; grid-template-columns: 1fr 1fr; column-gap: 24px }
+.k-figs b { display: block; font-size: 60px; line-height: 1.1 }
+.k-figs .on { color: var(--accent) }
+</style>
+<section class="slide" data-pattern="company-cards">
+  <div class="hd">Section</div>
+  <h1 class="t">Those who came in early <em>earn</em>:<br>three of them, by their filings.</h1>
+  <div class="k-cards">
+    <div class="k-card card"><div class="k-logo"><span></span></div><h2>Company one</h2><p class="cap">What it sells, to whom, in one line</p><div class="k-figs"><div><b class="num">000</b><span class="cap">revenue, its unit</span></div><div><b class="num on">00</b><span class="cap">operating profit</span></div></div></div>
+    <div class="k-card card"><div class="k-logo"><span></span></div><h2>Company two</h2><p class="cap">What it sells, to whom, in one line</p><div class="k-figs"><div><b class="num">000</b><span class="cap">revenue, its unit</span></div><div><b class="num on">00</b><span class="cap">operating profit</span></div></div></div>
+    <div class="k-card card"><div class="k-logo"><span></span></div><h2>Company three</h2><p class="cap">What it sells, to whom, in one line</p><div class="k-figs"><div><b class="num">000</b><span class="cap">revenue, its unit</span></div><div><b class="num on">00</b><span class="cap">operating profit</span></div></div></div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">10</div>
+</section>

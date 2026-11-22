@@ -15,7 +15,7 @@ There is no MCP server and no account to connect. A skill's "Requirements" name 
 | `page-dump.md`: the shell route on this site (its check and the flags that pass it) and `adlib.py`; what holds for any headless run is in `docs/browser/headless.md` | |
 | `driven-browser.md`: what a driven browser does on this site, the in-page readers, the reach script; what any driven browser does is in `docs/browser/driven-browser.md` | The frame script of the creative research skill |
 
-The set sits at the root because its two skills are of two areas, the creative research in `marketing/` and the rising products in `product/`: its included page travels with every mount, a skill mounted alone or with its area cannot read the linked pages there, and a plugin and a copy lack the set, which each skill's Requirements say. The test for a sentence: would it be true in the next skill that reads the library? Then it belongs in the set. A page of the set is reached by a root-relative path. Each skill includes its own method page and `ad-library.md`, which every run reads before its first page load, so that both arrive with the skill wherever SkillCDN serves it; `record.md` and the route pages are linked from phase 2 and cost one `read_repo_file` each when it comes. A change to `ad-library.md` changes the served digest of both skills, as a change to a manifest does: edit it deliberately.
+The set sits at the root because its two skills are of two areas, the creative research in `marketing/` and the rising products in `product/`: its included page travels with every mount, and the one sentence that ends each skill's Requirements says where a route that lacks a linked page reads it. The test for a sentence: would it be true in the next skill that reads the library? Then it belongs in the set. A page of the set is reached by a root-relative path. Each skill includes its own method page and `ad-library.md`, which every run reads before its first page load, so that both arrive with the skill wherever SkillCDN serves it; `record.md` and the route pages are linked from phase 2 and cost one `read_repo_file` each when it comes. The rising products skill keeps its method in three references: `rising-signals.md`, included, `delivery.md`, read before its report, and `watch-mode.md`, read when topics fixed earlier are counted again. A change to `ad-library.md` reaches both skills on their next load, since both include it.
 
 ## Facts are dated, and rediscoverable
 
@@ -31,7 +31,7 @@ Five page loads show whether the set still describes the site: a keyword search 
 python adlib.py check.jsonl US "q=<word>" "q=<word>&sort=recent" "page=<page id>" "q=<word>&before=30d" "id=<library id>"
 ```
 
-The in-page readers of `driven-browser.md` and the frame script of the creative research skill are checked the same way in a driven browser: paste, run, compare with the page.
+The in-page readers of `driven-browser.md` and the frame script of the creative research skill are checked the same way in a driven browser: paste, run, compare with the page. The snapshot comparison of the rising products skill is checked without the site: two snapshots named `<day>-meta-<market>-<category>.json` in one folder, `node compare-snapshots.example.mjs <folder>`, which must show an entry that grew, a `new basis` where a query differs, a `deferred` and a `dropped out`.
 
 ## Manners are part of the skill
 

@@ -1,0 +1,28 @@
+<!-- circles: two or three sizes compared by area, and a count beside them as dots. A circle's diameter is the
+     largest one's times the square root of (its value / the largest value): a diameter in proportion to the
+     value would show it larger than it is. The dots declare their count in data-count. -->
+<style>
+.o-stage { left: 96px; top: 330px; width: 1060px; height: 640px }
+.o-c { position: absolute; bottom: 0; border-radius: 50%; display: grid; place-content: center; text-align: center; background: var(--card); border: 1px solid var(--card-line) }
+.o-c b { font-size: 84px; line-height: 1 }
+.o-c.on { background: var(--accent); border: 0; color: #fff }
+.o-c.on .cap { color: #fff }
+.o-out { position: absolute; left: 930px; bottom: 116px }
+.o-out b { display: block; font-size: 40px }
+.o-side { left: 1250px; top: 400px; width: 574px; padding: 44px }
+.o-side b { display: block; font-size: 84px; line-height: 1; margin-bottom: 12px }
+.o-dots { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px }
+.o-dots i { width: 24px; height: 24px; border-radius: 50%; background: var(--point) }
+</style>
+<section class="slide" data-pattern="circles">
+  <div class="hd">Section</div>
+  <h1 class="t"><em>00 times</em> the size of the next<br>market, in the same year.</h1>
+  <div class="o-stage">
+    <div class="o-c on" style="left: 0; width: 620px; height: 620px"><b class="num">000</b><span class="cap">Market one</span></div>
+    <div class="o-c" style="left: 600px; width: 310px; height: 310px"><b class="num">00</b><span class="cap">Market two</span></div>
+    <div class="o-c" style="left: 930px; width: 98px; height: 98px"></div>
+    <div class="o-out"><b class="num">0</b><span class="cap">Market three</span></div>
+  </div>
+  <div class="o-side card"><b class="num">00</b><span class="cap">sellers in the largest one, a dot each</span><div class="o-dots" data-count="14"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">14</div>
+</section>

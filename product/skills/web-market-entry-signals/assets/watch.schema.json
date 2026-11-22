@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "market-watch/1",
+  "description": "The watch list a market survey writes and every round adds to. scripts/check-watch.mjs checks a file against these rules and a few this schema cannot say: ids unique, a metric's theme and source in the lists, observations in the order they were read, notes one plain line.",
+  "type": "object",
+  "required": ["schema", "updated", "sources", "themes", "metrics"],
+  "properties": {
+    "schema": { "const": "market-watch/1" },
+    "updated": { "$ref": "#/$defs/day" },
+    "thresholds": {
+      "type": "object",
+      "description": "The working threshold each question was judged by, one plain line each.",
+      "properties": { "01": { "type": "string" }, "02": { "type": "string" }, "03": { "type": "string" }, "04": { "type": "string" } }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "url", "cadence"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "name": { "type": "string" },
+          "url": { "type": "string", "pattern": "^https?://" },
+          "cadence": { "$ref": "#/$defs/cadence" },
+          "free": { "type": "boolean" },
+          "how": { "$ref": "#/$defs/line" }
+        }
+      }
+    },
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "kind", "status", "added", "next_check"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "name": { "type": "string" },
+          "kind": { "enum": ["big", "rising"] },
+          "status": { "enum": ["watch", "candidate", "testing", "cooling", "dropped"] },
+          "ai_role": { "$ref": "#/$defs/line" },
+          "added": { "$ref": "#/$defs/day" },
+          "next_check": { "$ref": "#/$defs/day" },
+          "doc": { "type": "string", "description": "The note or the review that says more: a path under the market folder, or an address." },
+          "note": { "$ref": "#/$defs/line" },
+          "gates": {
+            "type": "object",
+            "description": "One entry a country, by its two-letter code in lower case.",
+            "patternProperties": {
+              "^[a-z]{2}$": {
+                "type": "object",
+                "required": ["01", "02", "03", "04", "memo", "judged"],
+                "properties": {
+                  "01": { "$ref": "#/$defs/verdict" },
+                  "02": { "$ref": "#/$defs/verdict" },
+                  "03": { "$ref": "#/$defs/verdict" },
+                  "04": { "$ref": "#/$defs/verdict" },
+                  "memo": { "$ref": "#/$defs/line" },
+                  "judged": { "$ref": "#/$defs/day" }
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "theme", "name", "unit", "source", "gate", "country", "observations"],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "theme": { "$ref": "#/$defs/id" },
+          "name": { "type": "string" },
+          "unit": { "type": "string" },
+          "source": { "type": "string", "description": "A source id, or an address where the source is read once." },
+          "gate": { "enum": ["01", "02", "03", "04"] },
+          "country": { "type": "string", "pattern": "^[a-z]{2}$" },
+          "cadence": { "$ref": "#/$defs/cadence" },
+          "observations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["read", "period", "value"],
+              "properties": {
+                "read": { "$ref": "#/$defs/day" },
+                "period": { "type": "string", "pattern": "^\\d{4}(-(Q[1-4]|\\d{2}|\\d{2}-\\d{2}|W\\d{2}))?$" },
+                "value": { "type": ["number", "null"], "description": "Null for a source that could not be read; the note then says not published or not reached." },
+                "grade": { "enum": ["official", "filing", "announced", "estimate", "press", "measured", "computed"] },
+                "url": { "type": "string", "pattern": "^https?://" },
+                "note": { "$ref": "#/$defs/line" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "day": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "cadence": { "enum": ["weekly", "monthly", "quarterly", "yearly", "irregular"] },
+    "verdict": { "enum": ["pass", "partial", "fail", "unknown"] },
+    "line": { "type": "string", "maxLength": 200, "description": "One plain line: no line break, no Markdown." }
+  }
+}

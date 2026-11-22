@@ -1,0 +1,40 @@
+{
+  "schema": "dart-company-figures/1",
+  "read": "2026-11-05",
+  "companies": [
+    {
+      "company": "<legal name as DART has it>",
+      "corp_code": "00000000",
+      "business": "<what it sells, in a line>",
+      "founded": "2000-01-01",
+      "listed": "no",
+      "fiscal_year": 2025,
+      "revenue_krw": 10000000000,
+      "operating_profit_krw": -1000000000,
+      "prior": { "fiscal_year": 2024, "revenue_krw": 9000000000, "operating_profit_krw": 500000000 },
+      "basis": "separate",
+      "announced": { "said": "<the company's words, quoted>", "revenue_krw": null, "operating_profit_krw": null, "url": "<where it said so>" },
+      "check": "differs",
+      "identity": "<the registration number in the site's footer is the filer's: site address, overview address>",
+      "observations": ["<the auditor's opinion, where it is not unqualified>", "<revenue from one customer, as the note states it>"],
+      "urls": ["https://dart.fss.or.kr/dsaf001/main.do?rcpNo=00000000000000"]
+    },
+    {
+      "company": "<legal name>",
+      "corp_code": "00000001",
+      "business": "<what it sells, in a line>",
+      "founded": "2000-01-01",
+      "listed": "no",
+      "fiscal_year": 2025,
+      "revenue_krw": 5000000000,
+      "operating_profit_krw": null,
+      "prior": null,
+      "basis": "announced",
+      "announced": { "said": "<the release's sentence>", "revenue_krw": 15000000000, "operating_profit_krw": null, "url": "<the release>" },
+      "check": "announced-only",
+      "identity": "<the filed homepage is the site>",
+      "observations": ["<DART has no audit report or business report for this company, looked for 2026-11-05>"],
+      "urls": []
+    }
+  ]
+}

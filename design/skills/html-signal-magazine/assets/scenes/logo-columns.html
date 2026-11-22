@@ -1,0 +1,23 @@
+<!-- logo-columns: three groups side by side, each a head in a few words and the companies of the group by
+     their logos. A logo is an img from ../library/logos/ at its own proportions; a mark a reader would not
+     know by sight has its name beside it, one that is plain or was shown before stands alone. -->
+<style>
+.l-cols { left: 96px; top: 350px; width: 1728px; display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 28px }
+.l-col { padding: 40px; display: grid; row-gap: 28px; align-content: start; min-height: 560px }
+.l-col h2 { font-size: 34px; line-height: 1.25; letter-spacing: -0.02em; text-wrap: balance }
+.l-col b { display: block; font-size: 72px; line-height: 1 }
+.l-logo { display: flex; align-items: center; gap: 18px; font-size: 26px; font-weight: 700 }
+.l-logo img { max-height: 48px; max-width: 200px }
+.l-logo i { width: 48px; height: 48px; border-radius: 12px; background: var(--card-line) }
+.l-col.hero b { color: var(--accent) }
+</style>
+<section class="slide" data-pattern="logo-columns">
+  <div class="hd">Section</div>
+  <h1 class="t">Who sells it: <em>three kinds</em><br>of company, counted.</h1>
+  <div class="l-cols">
+    <div class="l-col card hero"><b class="num">00</b><h2>The first kind, in a few words</h2><div class="l-logo"><i></i>Company one</div><div class="l-logo"><i></i>Company two</div><div class="l-logo"><i></i>Company three</div></div>
+    <div class="l-col card"><b class="num">00</b><h2>The second kind, in a few words</h2><div class="l-logo"><i></i>Company four</div><div class="l-logo"><i></i>Company five</div></div>
+    <div class="l-col card"><b class="num">00</b><h2>The third kind, in a few words</h2><div class="l-logo"><i></i>Company six</div><div class="l-logo"><i></i>Company seven</div><div class="l-logo"><i></i>Company eight</div></div>
+  </div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">13</div>
+</section>

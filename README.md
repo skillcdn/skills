@@ -111,9 +111,10 @@ Slides and decks, card news posts and the formats they are built in, looks on a 
 | [html-deck-from-outline](design/skills/html-deck-from-outline/SKILL.md) | Drafts a slide deck as one HTML file and a PDF from notes, a meeting plan or an idea, as a corporate report (a business plan, a plan for investors, a company presentation, an internal report) or an e… |
 | [html-design-variations](design/skills/html-design-variations/SKILL.md) | Shows four looks for one design (a page's first screen, a deck's cover, a card news format) as HTML rendered in a browser and tiled on one contact sheet, from a reference, a concept or the thing as i… |
 | [html-product-deck](design/skills/html-product-deck/SKILL.md) | Makes a product deck that sells a product or one of its features to buyers, as one HTML file and a PDF, every slide one message in a scene composed for it (a real screen, a scene drawn in the product… |
+| [html-signal-magazine](design/skills/html-signal-magazine/SKILL.md) | Makes one issue of a market signal magazine as a deck, one HTML file and a PDF, from market research already done: every slide one message carried by a chart or a picture composed for it, in the look… |
 | [instagram-card-news-format-study](design/skills/instagram-card-news-format-study/SKILL.md) | Studies the card news of a reference Instagram account, of one reference post, or of a few accounts of a genre, and writes the format as a spec a new post can be built in, from the posts visible with… |
 
-7 skills.
+8 skills.
 <!-- /skillcdn:catalog -->
 
 ### Product
@@ -123,11 +124,14 @@ What is worth building before anything is built: markets, signals, a sourced bri
 <!-- skillcdn:catalog folder=product -->
 | Skill | What it does |
 |---|---|
+| [dart-company-figures](product/skills/dart-company-figures/SKILL.md) | Finds a Korean company's revenue and operating profit in its filings on DART, the Financial Supervisory Service's disclosure site, and checks what the company announced against them. |
 | [meta-ad-library-rising-products](product/skills/meta-ad-library-rising-products/SKILL.md) | Finds what is taking off in a market or a field of work, such as AI tools, by what its advertisers are putting new money behind, read from the public Meta Ad Library with a browser. |
 | [web-card-news-topic-brief](product/skills/web-card-news-topic-brief/SKILL.md) | Finds what is worth a card news post now in the categories an account covers, in the outlets and where people are talking, lets the user pick, and turns the pick into a sourced topic brief a post can… |
 | [web-concept-variations](product/skills/web-concept-variations/SKILL.md) | Shows four to six concept directions that get a reference's effect by other means, for a product, a post, a page, a deck or a campaign, from a reference the user gives or one found among what is work… |
+| [web-item-deep-dive](product/skills/web-item-deep-dive/SKILL.md) | Reviews one business idea in depth before anything is built, as one document with what exactly is sold to whom and who pays, how big the market is and when in the year it buys, who already sells it (… |
+| [web-market-entry-signals](product/skills/web-market-entry-signals/SKILL.md) | Finds which markets are worth entering now, from official statistics, filings, app stores and the ads running, in Korea and the US by default, and measures the watched markets again later. |
 
-3 skills.
+6 skills.
 <!-- /skillcdn:catalog -->
 
 ### Engineering
@@ -205,6 +209,7 @@ What the skills of one tool family share is written once, as documents an agent 
 | [`docs/card-news/`](docs/card-news/) | The format spec, the topic brief, and the record an account that keeps posting holds. |
 | [`docs/instagram/`](docs/instagram/) | Reading Instagram signed out, and booking posts in a person's signed-in session. |
 | [`docs/meta-ad-library/`](docs/meta-ad-library/) | What the public ad library is evidence of, its routes and parameters, counting by age, manners. |
+| [`docs/market-research/`](docs/market-research/) | The grades of a number, the watch list a market is measured on again, the public sources by country. |
 | [`docs/higgsfield/`](docs/higgsfield/) | The sandbox, models and credits, first frames, decoding a take, the sounds of each language. |
 | [`engineering/docs/cloudflare/`](engineering/docs/cloudflare/) | Accounts and tokens, the platform's parts, deploys, domains, mail, as the app skills use them. |
 | [`engineering/docs/stripe/`](engineering/docs/stripe/) | Sandboxes and keys, the Checkout flow and its webhooks, the balance ledger. |

@@ -1,0 +1,28 @@
+<!-- icon-timeline: when each product came in, as its icon over the year on one line. An icon's left is its
+     year's place between the first and the last year, in percent; icons of one year stack upward. An icon is
+     an img from ../library/icons/; the year the title speaks of is .on. -->
+<style>
+.y-line { left: 156px; top: 800px; width: 1608px; height: 2px; background: var(--card-line) }
+.y-years { left: 156px; top: 824px; width: 1608px; height: 40px; font: 500 22px var(--mono); color: var(--ink-2) }
+.y-years span { position: absolute; transform: translateX(-50%) }
+.y-years .on { color: var(--accent-2) }
+.y-icons { left: 156px; top: 360px; width: 1608px; height: 420px }
+.y-app { position: absolute; bottom: 0; width: 170px; margin-left: -85px; display: grid; justify-items: center; row-gap: 12px; font-size: 22px; font-weight: 700 }
+.y-app img, .y-app i { width: 132px; height: 132px; border-radius: 30px; background: #17213d; border: 1px solid var(--card-line) }
+.y-app.up { bottom: 204px }
+</style>
+<section class="slide" data-pattern="icon-timeline">
+  <div class="hd">Section</div>
+  <h1 class="t"><em>00 of 00</em> came in<br>within the last two years.</h1>
+  <div class="y-icons">
+    <div class="y-app" style="left: 0%"><i></i>App one</div>
+    <div class="y-app" style="left: 40%"><i></i>App two</div>
+    <div class="y-app" style="left: 80%"><i></i>App three</div>
+    <div class="y-app up" style="left: 80%"><i></i>App four</div>
+    <div class="y-app" style="left: 100%"><i></i>App five</div>
+    <div class="y-app up" style="left: 100%"><i></i>App six</div>
+  </div>
+  <div class="y-line"></div>
+  <div class="y-years"><span style="left: 0%">2021</span><span style="left: 20%">2022</span><span style="left: 40%">2023</span><span style="left: 60%">2024</span><span class="on" style="left: 80%">2025</span><span class="on" style="left: 100%">2026</span></div>
+  <div class="ft"><i>Masthead</i><b>JAN 2026</b></div><div class="pn">12</div>
+</section>
