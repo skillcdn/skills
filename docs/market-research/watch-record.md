@@ -53,6 +53,7 @@ One line a reading: `read` (the day it was read), `period` (what the number is a
 - A reading of a new period is a new line. A revision of a period already read is a second line with the same `period`; the later `read` is that period's value.
 - A change is measured against the latest observation of an earlier period, never against a revision of the same one.
 - A source that could not be read leaves a line with `value` null and the note `not published` or `not reached`; only the theme's `next_check` moves.
+- A year not yet over is read under its own `period` with the note `to <YYYY-MM-DD>`: a later reading of it is a revision, and it is compared with nothing until the year is over. A share whose base is zero (the `life90` of a topic with no ads) is not written.
 - `note` is one plain line of at most 200 characters, no Markdown. News changes the value or the note; what happened on which day goes to `log.md`.
 
 ## Statuses
