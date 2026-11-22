@@ -467,11 +467,12 @@ function checkLinks(file, text) {
     const abs = decoded.startsWith("/") ? resolve(root, decoded.slice(1)) : resolve(dir, decoded);
     if (!inside(abs, root)) {
       fail(file, `link escapes the repository: ${target}`);
-    } else if (skillRoot && !inside(abs, skillRoot) && !documentDirs.some((d) => inside(abs, d))) {
-      // A skill may be mounted alone: its workflow and rules stay inside its directory, and only documents are
-      // linked from outside, from any area, by the phase that reads them.
-      fail(file, `link leaves the skill and the document directories (its own directory, docs/ of the repository or of any area): ${target}`);
-    } else if (skillRoot && !inside(abs, skillRoot) && exists(abs) && !sharedDocumentDirs(skillRoot).some((d) => inside(abs, d))) {
+    } else if (skillRoot && !inside(abs, skillRoot) && !documentDirs.some((d) => inside(abs, d)) && !skillDirs.some((d) => inside(abs, d))) {
+      // A skill may be mounted alone: its workflow and rules stay inside its directory. From outside it links
+      // documents, from any area, by the phase that reads them, and another skill of the pack it runs before or
+      // after itself, which the format takes as that skill's own file, its rules not applying to this one.
+      fail(file, `link leaves the skill, the document directories (docs/ of the repository or of any area) and the pack's other skills: ${target}`);
+    } else if (skillRoot && !inside(abs, skillRoot) && exists(abs) && !skillDirs.some((d) => inside(abs, d)) && !sharedDocumentDirs(skillRoot).some((d) => inside(abs, d))) {
       // A page of another area's documents: read through the repository connection only, never included.
       crossAreaLinks.push(`${toPosix(file.slice(root.length + 1))} -> ${target}`);
     } else if (servedDocument && !isReachable(abs)) {
