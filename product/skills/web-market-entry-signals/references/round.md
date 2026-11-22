@@ -6,7 +6,7 @@ The second entry into this skill. A watch list exists, and the request is to mea
 
 `node scripts/watch.mjs --due` lists the themes whose `next_check` has come, with each metric's cadence and the last period read. Dropped themes are on the list: their signals are read like any other. From it take the metrics to read now by [sources.md](/docs/market-research/sources.md) "When a round reads which": a metric whose source has nothing new since the last period is left alone. Take today's date from the system.
 
-A metric or a source the user adds in the request is written into the file first, with its first observation, and the round goes on.
+A metric or a source the user adds in the request is written into the file first, with its first observation, and the round goes on. A request to measure again before any `next_check` has come reads only what has a new period since its last reading, the deferred ad topics first; a metric read the same day is left alone, said in one line.
 
 ## 2. Reading again
 
@@ -23,7 +23,7 @@ For each metric due, open its source as its `how` says and add one observation: 
 
 - A snapshot taken with other terms, another sort or another locale is not compared: it becomes the new base, and the report says the series starts over.
 - At a sign of being slowed down that skill stops. What it counted before the sign stands; the topics left are `deferred` in the snapshot and go first in the next round; the report names them.
-- Each topic's active ads and `life90` go into the watch list as observations of that theme's ad metrics, with the day as the period and the snapshot's path as the note.
+- Each topic's active ads and `life90` go into the watch list as observations of that theme's ad metrics, with the day as the period and the snapshot's path as the note; a theme with no such metric in that country gains `<country>-<theme>-ads-life90` (source the ad library, gate 03). Counts of a country where the theme has no gates yet write no verdict there, and the report says so.
 
 ## 4. Statuses and gates
 

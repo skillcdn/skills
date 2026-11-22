@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a web search tool and a way to read a page in full. A shell with Node.js 22 or newer runs the watch list's scripts and the app store count. The ad counts need what meta-ad-library-rising-products needs, a real browser engine. A host that starts agents side by side runs the branches at once; without one they run in turn. Any agent with these can run it, whatever its vendor.
 metadata:
   author: skillcdn
-  version: "1.1"
+  version: "1.2"
   tools: web
 skillcdn:
   include:
