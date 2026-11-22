@@ -1,6 +1,6 @@
 # Layout: how a pack of documents is cut and described
 
-The format says what is served and searched ([document packs](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md#document-packs)). This page says how to cut a body of documents into files that an agent finds and reads well, and how to describe them.
+The format says what is served and searched ([the format](skill://gh/skillcdn/skillcdn/docs/specs/skill-repo.md), "Document packs", with its page for authors, [writing documents](skill://gh/skillcdn/skillcdn/docs/guide/write-documents.md): files of the pack `skillcdn/skillcdn`, under `github.com/skillcdn/skillcdn/blob/main/docs/` on the git host). This page says how to cut a body of documents into files that an agent finds and reads well, and how to describe them.
 
 ## Document sets
 
@@ -39,11 +39,11 @@ A file is what a search lists and an agent reads: it carries a title and a descr
 | A document of a few pages | One file. |
 | A long document with chapters | One file per chapter, named by the chapter, its `title` the chapter's own with the document's title before it where the chapter's alone would not say what it belongs to (quoted in YAML when it holds a colon followed by a space), the heading path at the top of its body; the set's map lists them in the order of the original. |
 | A long document without chapters | Split at its top-level headings, or at the headings the text supports, into parts a reader can take in one sitting. |
-| A chapter too long for one file | A folder of its sections with a map of its own, the files in the original's order, named by a number and the first section they hold (`030-4.2.6-link-resumption.md`), each map line naming the sections, rows and pages it holds; a section is cut only when it alone exceeds a file, between paragraphs or rows, the header repeated (SkillCDN 0.5.0). |
+| A chapter too long for one file | A folder of its sections with a map of its own, the files in the original's order, named by a number and the first section they hold (`030-4.2.6-link-resumption.md`), each map line naming the sections, rows and pages it holds; a section is cut only when it alone exceeds a file, between paragraphs or rows, the header repeated. |
 | A page of a book, a slide, a sheet | Never a file of its own: join pages into their chapter, slides into their deck or its sections, sheets into one document per workbook with a heading per sheet. |
 | Many short notes on one subject | One file per note when each stands alone, else one file per subject with a heading per note. |
 
-The bounds: a deployment indexes a file up to its per-file limit and serves it up to its read limit, both configuration with defaults ([deploy](https://github.com/skillcdn/skillcdn/blob/main/deploy/README.md)); `npx @skillcdn/cli@latest check` names a file too large to be searched, which is the sign to split it. A file of a few thousand words is far under both. Keep the chapter's heading path at the top of a split file (`# The Guide: Installing`), so that a chapter read alone says what it belongs to.
+The bounds: a deployment indexes a file up to its per-file limit and serves it up to its read limit, both configuration with defaults ([deploy](skill://gh/skillcdn/skillcdn/deploy/README.md)); `npx @skillcdn/cli@latest check` names a file too large to be searched, which is the sign to split it. A file of a few thousand words is far under both. Keep the chapter's heading path at the top of a split file (`# The Guide: Installing`), so that a chapter read alone says what it belongs to.
 
 ## Front-matter
 
@@ -65,7 +65,7 @@ A file without front-matter is listed by its first level-one heading and the par
 
 ## Headings
 
-Headings are the structure a search names and an agent walks: `browse_repo` lists them with the offset and the length of each section, and a result names the section that matched. A heading tells what its section holds, in the reader's words, after the number the original gives it (`4.2 Refunds and credit notes`, `TABLE C-2 Modifier codes`), so that a reference or a query by number finds it. Keep the levels of the source; where the source has none, add the headings the text supports, and no more. A section is what an agent reads at once, a few thousand characters: a long table stands in sections of a few dozen rows, each headed by the table's name and its first and last row (`TABLE C-2 Modifier codes: AA to BZ`), the header repeated (SkillCDN 0.5.0).
+Headings are the structure a search names and an agent walks: `browse_repo` lists them with the offset and the length of each section, and a result names the section that matched. A heading tells what its section holds, in the reader's words, after the number the original gives it (`4.2 Refunds and credit notes`, `TABLE C-2 Modifier codes`), so that a reference or a query by number finds it. Keep the levels of the source; where the source has none, add the headings the text supports, and no more. A section is what an agent reads at once, a few thousand characters: a long table stands in sections of a few dozen rows, each headed by the table's name and its first and last row (`TABLE C-2 Modifier codes: AA to BZ`), the header repeated.
 
 ## Maps
 
@@ -87,7 +87,7 @@ Write each document's name as a link to its file, in the order a reader meets th
 
 ## Manifests
 
-The root manifest, `SKILLCDN.md`, names the pack, says who it is for, declares the document roots and the language, and may carry a rule or two for how the documents are read:
+The root manifest, `SKILLCDN.md`, names the pack, says who it is for, declares the document roots and the language, names the page an agent reads first, and may carry a rule or two for how the documents are read:
 
 ```markdown
 ---
@@ -95,19 +95,22 @@ name: Acme handbook
 description: The handbook of Acme, a scheduling and invoicing app, as a pack of documents. Use to find how a feature works, what a role may do, and how billing behaves.
 documents:
   - docs
+start: docs/README.md
 language: en
 license: MIT
 ---
 # Rules for reading this handbook
 
-Read the map in `docs/README.md` first, then search for the words of the question and read the section a result names before answering.
+Search for the words of the question, and read the section a result names before answering.
 ```
+
+`start` is the path of the pack's map, relative to the manifest: every client is told on connect to read it before a task, in the place of the line that names the README, so the map is read without a rule that says so. A path that names no Markdown document of the pack fails the check (`start_missing`).
 
 A folder in another language carries a manifest with `language` and a description of its own. `language` chooses how the words are matched, by stems for English and by pairs of characters for Korean, Japanese and Chinese, and tells an agent what language to search in; a Korean folder without it is matched as English text would be.
 
-The `license` decides what a deployment may pass on: a permissive license serves the documents in full; without one the pack is served in full with a provenance notice, to whoever the host lets see the repository; a restrictive one has the documents of a public repository described only, with a link to the source; a private repository is served in full whatever its license says, since its readers have it at the host already ([licenses](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md#licenses), SkillCDN 0.4.2). The user chooses at the layout checkpoint, with this default: none for an organization's own documents in a private repository, which are served in full to the people the host shows the repository to, and a permissive license only where the user means to let anyone pass the text on; a restrictive license defeats a public pack, and is named as such. The example above carries `license: MIT` because it is a public pack.
+The `license` decides what a deployment may pass on: a permissive license serves the documents in full; without one the pack is served in full with a provenance notice, to whoever the host lets see the repository; a restrictive one has the documents of a public repository described only, with a link to the source; a private repository is served in full whatever its license says, since its readers have it at the host already ([the format](skill://gh/skillcdn/skillcdn/docs/specs/skill-repo.md), "Licenses"). The user chooses at the layout checkpoint, with this default: none for an organization's own documents in a private repository, which are served in full to the people the host shows the repository to, and a permissive license only where the user means to let anyone pass the text on; a restrictive license defeats a public pack, and is named as such. The example above carries `license: MIT` because it is a public pack.
 
-`search` keeps the documents out of a search the user does not want them in: `search: { meaning: false }` in a manifest keeps the documents it governs to the search by words, so that their text is never sent to the embedding model a deployment runs, and `search: { hub: false }` in the root manifest keeps the pack out of the search across every pack of the deployment, found at its own address alone; by default a pack is searched by meaning where the deployment offers it and found across packs. Offer both at the layout checkpoint, with the recommendation to keep the defaults unless the text must not reach a model the deployment runs; a private pack is in no search across packs, since that search covers public packs alone, so `hub` arises for a public pack only. Write what the user chose. An index made from the chapters goes in a folder whose manifest sets `search: { meaning: false }`, so that it never outranks the text by meaning (SkillCDN 0.5.0).
+`search` keeps the documents out of a search the user does not want them in: `search: { meaning: false }` in a manifest keeps the documents it governs to the search by words, so that their text is never sent to the embedding model a deployment runs, and `search: { hub: false }` in the root manifest keeps the pack out of the search across every pack of the deployment, found at its own address alone; by default a pack is searched by meaning where the deployment offers it and found across packs. Offer both at the layout checkpoint, with the recommendation to keep the defaults unless the text must not reach a model the deployment runs; a private pack is in no search across packs, since that search covers public packs alone, so `hub` arises for a public pack only. Write what the user chose. An index made from the chapters goes in a folder whose manifest sets `search: { meaning: false }`, so that it never outranks the text by meaning.
 
 ## What goes in a private repository, and what stays out
 

@@ -8,7 +8,7 @@ A document set named `notes` under the pack's document roots (`docs/notes/` wher
 
 ## The shape of a note
 
-One file per question, named by the question in a few words (`refund-timing.md`), with the front-matter every document carries, `derived` naming what it was made from (the format's derived documents, SkillCDN 0.5.0), and five parts:
+One file per question, named by the question in a few words (`refund-timing.md`), with the front-matter every document carries, `derived` naming what it was made from (the format's derived documents), and five parts:
 
 ```markdown
 ---
@@ -39,7 +39,7 @@ derived:
 ```
 
 - The description says what the note answers, in the words someone would ask with: it is what a search ranks.
-- Every quote is a block quote of the section's own words, `…` for words left out, its last line a link to the section: the root-relative path and a fragment, the heading's first words in lower case joined by hyphens. The check holds each quote against that section word for word, so a note the pack changed under is found (SkillCDN 0.5.0).
+- Every quote is a block quote of the section's own words, `…` for words left out, its last line a link to the section: the root-relative path and a fragment, the heading's first words in lower case joined by hyphens. The check holds each quote against that section word for word, so a note the pack changed under is found.
 - A question asked again updates its note: the answer, the evidence and the date change; the file does not multiply.
 
 ## What stays out
