@@ -5,7 +5,7 @@ The small figures that stand beside a number on the cover and the contents: what
 ## What a small figure may show
 
 - **A different shape for every item.** On one slide no two small figures are of one kind: three little line charts in a row read as decoration.
-- **Real values or no values.** A series is drawn through the values measured, at least three, and bends where they bend. Two values are never joined by a straight line, and no value is invented to make a line bend: a figure of two values is an arrow, a pair of bars or a count.
+- **Real values or no values.** A series is drawn through the values measured, at least three, and bends where they bend. Two values are never joined by a straight line, and no value is invented to make a line bend: a figure of two values is an arrow, a pair of bars or a count. Beside a number that has values behind it (a series by year, a pair, a count), the figure is drawn from them: a pictogram below stands only beside an item with none, and two on a cover drawn with no values read as decoration and were sent back.
 - **Counts are exact.** A figure of units holds the number it says (six of ten is six filled and four faint) and carries `data-count` on the group.
 - **One colour.** A snippet draws in `currentColor`, with the part that is not the point at a lower opacity; the element around it sets the colour.
 

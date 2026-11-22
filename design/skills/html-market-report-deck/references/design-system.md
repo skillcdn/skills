@@ -8,7 +8,7 @@ Phase 1 writes `brand.md` in the series folder from the site itself, never by ey
 
 - **Capture.** The first screen and each main section, at a fixed viewport and with reduced motion requested, so that what a scroll would reveal is in the picture ([headless.md](/docs/browser/headless.md) "Screenshots"; [tool-notes.md](tool-notes.md) has two things a capture met). The captures stay in the scratch folder: they are what the look is checked against, not material for a slide.
 - **Tokens.** Read from the root element's custom properties and the computed styles of a section, a card and a heading: the ground's colours (most sites have two, the ground and a lifted tone), the text colour and its muted tone, the accent, a second accent where the site has one, the one colour it keeps for a small point, the radius, the card (its fill, its border), and where the ground is lit.
-- **Fonts.** The site's family by its local name first, then its documented web file saved under `library/fonts/` ([rendering-html.md](/docs/browser/rendering-html.md) "Fonts"). A serif for the masthead is one the brand already uses, else one plain system serif.
+- **Fonts.** The site's family by its local name first, then its documented web file saved under `library/fonts/` ([rendering-html.md](/docs/browser/rendering-html.md) "Fonts"). Where the site serves its font as subsets by range of characters, save them with their ranges, embed only those the deck's text needs, and say in `brand.md` which characters the site itself leaves to a system face. A serif for the masthead is one the brand already uses, else one plain system serif.
 - **`brand.md`** names each token with its value and where on the site it was read, the fonts with their files, and in a line each: how the site builds a card, how it lights its ground, how it writes a section head. The skeleton's `:root` takes these values under its own names.
 
 ## What the series' frame adds
@@ -17,7 +17,7 @@ The site gives the ground, the surfaces, the colours and the type. The series ad
 
 ## Colour and emphasis
 
-- One ground with its light, on every slide but the plates. A plate, the light ground, carries one or two slides an issue where a chart reads better dark on light.
+- One ground with its light, on every slide but the plates. A plate, the light ground, carries one or two slides an issue where a chart reads better dark on light, proposed in the plan and built only on the user's word: one built unasked read as a slide of another deck.
 - The surfaces are the site's cards. One card a slide may be lit (`.hero`): the one the title speaks of.
 - One accent. About one figure a slide takes it, the one the title names; everything else is the text colour or its muted tone.
 - The point colour marks a dot or a single small mark, never a block.
