@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a web search tool, a way to read a page's full text and its image elements (a fetch tool, a driven browser, or a shell with curl), and a shell with Node.js for downloading images and reading their pixel size. Optional, for the story's video, the tools docs/browser/video-clips.md names for a clip and a Chromium-family browser that playwright-core can launch for frames. Without a shell, image URLs are listed instead of downloaded.
 metadata:
   author: skillcdn
-  version: "1.14"
+  version: "1.15"
   tools: web
 skillcdn:
   translations:
@@ -21,7 +21,7 @@ The categories an account covers go in, with who the post is for; a ranked list 
 
 - **Questions:** one message, only for what neither the request, a starting skill nor an account's policy answers. The readers, always: "Who are the readers: what do they know of the subject, and what of theirs does the story touch?", with what the request implies offered as the default so that one word continues, because a post written for a reader nobody named reads as nobody's. With them the stance and the tone, the request's implication as the default: "A neutral report, commentary, or a case for one side? Calm or aggressive?" The market or the language where the request leaves one open: "Which country or market?", "In which language will the post be?" The categories, when neither the request nor a format spec gives them.
 - **Checkpoints:** the candidate list, where the user picks, with one card recommended. Then the brief, in plain words, before it is delivered. A story handed over in the request is the pick, and no list is shown.
-- **Go-ahead:** skips the brief checkpoint. The pick is never made by the skill.
+- **Go-ahead:** skips the brief checkpoint. The pick is never made by the skill: a request that hands the pick to the agent ("choose one yourself") is the pick given, and the list is still written with the choice and the user's words beside it.
 - **Changes mid-run:** "domestic, not global" re-ranks the candidates. A word on what the list should hold ("something hotter", "funnier", "nothing we already did") re-enters at the search as a rule for the list, and in an account's folder the skill asks whether it stands for the account. A fact the user doubts is re-read in its article; the chat points to its id while the quoted sentence lives in the brief.
 
 ## Requirements

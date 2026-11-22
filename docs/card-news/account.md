@@ -13,7 +13,7 @@ A working folder is an account's when it holds `docs/policy.md` or `topics/cover
 | `posts/<YYYY-MM-DD-slug>/` | One post: `post.json`, `topic-brief.json` with its `img/`, `img-unused/`, `credits.md` and `facts.md`, `slide-plan.json`, `caption.txt`, the rendered slides under `out/`, `review.md`. The brief folder and the post folder the skills name are this one folder, so nothing is copied from one to the other. The day in the name is the day the post is meant for, and posts are booked in that order unless the request gives another. |
 | `posts/published/<upload day>/<slug>/` | The same folder, moved once the post is live. |
 | `topics/covered.md` | The ledger. |
-| `topics/<YYYY-MM-DD>.md` | The candidate list of one search, with what was picked. |
+| `topics/<YYYY-MM-DD>.md` | The candidate lists of one day, each search under a heading of its own, with what was picked. |
 | The host's scratch folder, else `.cache/` at the root, which the repository ignores | What a run fetches or installs for itself: a browser driver, a downloaded video, the frames a clip is chosen from. Never a post's folder, and nothing under `posts/`. |
 
 ## The policy
@@ -30,7 +30,7 @@ One page under headings, each line the person's standing answer. A skill takes a
 | Ranking | The criteria a candidate is scored on, the points of each and the score from which one is recommended. Left out, the research ranks as it does for any request. | The research. |
 | Sources | Where candidates are looked for first: outlets, official pages, the communities whose talk counts as heat. | The research. |
 | Stance and tone | The brief's `stance` and `tone`. | The research, which writes them into the brief the build follows. |
-| Voice | The register of headlines, body and caption where the format spec leaves room; words the account does not use. | The build. |
+| Voice | The register of headlines, body and caption where the format spec leaves room; words the account does not use. Where it and the register a spec took from its reference differ (marks a calm account does not use), the policy holds, and a designed spec takes the policy's. | The build, and the variations when they design the account's format. |
 | Pictures | Whether a video goes before a photo, what a cover must show. | The research and the build. |
 | Cadence | Posts a day, the slots and their time zone, how far the minutes vary, what may replace a booked post on the day. | The batch and the posting. |
 | Approval | Who approves a post and what they are shown. | The batch and the posting. |
