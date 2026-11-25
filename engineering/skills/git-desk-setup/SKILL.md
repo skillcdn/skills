@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a shell with git, and the console command (npm install -g @skillcdn/console, Node.js 24 or newer) signed in as the member whose desk it is. The git host's command (gh for GitHub), signed in as that member, to create the remote; without it the member creates an empty private repository and gives its address. git-lfs where large files will be kept. For the desk's pages, npm and a browser on the same machine. Works in any agent that can run a shell and write files.
 metadata:
   author: skillcdn
-  version: "1.11"
+  version: "1.12"
   tools: git
 skillcdn:
   translations:
@@ -96,7 +96,7 @@ Produces the **delivery**, one message: the desk's folder and its remote, privat
 4. The push, `git push -u origin main`, and nothing left ahead after it. With the setting step 1 listed, git takes the token from the store itself and nothing is typed. Without it, give the desk that setting first, for the remote's host alone (`https://github.com` for a remote there) and in the desk's own configuration, from a POSIX shell (`bash`, which Git for Windows brings): `git config --local credential.https://<git host>.helper ''`, which leaves the machine's own helpers out so that none keeps a copy, then `git config --local --add credential.https://<git host>.helper '!f() { test "$1" = get && printf "username=x-access-token\npassword=%s\n" "$(console secret git.token)"; }; f'`, which reads the store each time git asks and writes nothing down. A push still refused for credentials is the token's to mend, by whoever made it and in the store, asked as a decision; never the git host command's own helper, since the runner and a setup on another machine go by the store. From then on the runner commits and pushes the desk at the end of every session.
 5. A report on the run: the remote's name, that it is private, the pushed commit.
 
-Pages, only where its manager asked for them: `console desk . --web` in the desk writes the shell, a desk written by an older command gets `web/dist/` added to its `.gitignore`, and the rest is pages.md's. What the desk keeps and shows is the account's to shape, as keeping-a-desk says.
+Pages, only where a supervisor of the account asked for them (its manager, whoever is above them in the reporting line, an administrator; console 0.6.2): `console desk . --web` in the desk writes the shell, a desk written by an older command gets `web/dist/` added to its `.gitignore`, and the rest is pages.md's. What the desk keeps and shows is the account's to shape, as keeping-a-desk says.
 
 ## Verdicts
 
