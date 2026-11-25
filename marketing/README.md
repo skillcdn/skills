@@ -13,7 +13,7 @@ Skills for marketing and growth work: ads, ad research, promotional video, conte
 | Skill | What it does |
 |---|---|
 | [higgsfield-shorts-ad](skills/higgsfield-shorts-ad/SKILL.md) | Makes a short-form vertical AI ad, promo or commercial on Higgsfield from a product link and a reference video, found among the ads running now when the user has none. |
-| [instagram-post-scheduling](skills/instagram-post-scheduling/SKILL.md) | Schedules approved Instagram posts (card news carousels of images and video slides with their captions) on the account's web interface, in the browser the person is signed in to, reads each booking b… |
+| [instagram-post-scheduling](skills/instagram-post-scheduling/SKILL.md) | Schedules approved Instagram posts (card news carousels of images and video slides with their captions) on the account's web interface, in a browser signed in to it, reads each booking back on the sc… |
 | [meta-ad-library-creative-research](skills/meta-ad-library-creative-research/SKILL.md) | Researches ad creatives in the Meta Ad Library for a keyword, a product or a competitor by reading the public library with a browser, because its API leaves out most commercial ads. |
 
 3 skills.

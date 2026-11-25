@@ -94,7 +94,7 @@ Ads, ad research, promotional video, posting to social accounts. [`marketing/`](
 | Skill | What it does |
 |---|---|
 | [higgsfield-shorts-ad](marketing/skills/higgsfield-shorts-ad/SKILL.md) | Makes a short-form vertical AI ad, promo or commercial on Higgsfield from a product link and a reference video, found among the ads running now when the user has none. |
-| [instagram-post-scheduling](marketing/skills/instagram-post-scheduling/SKILL.md) | Schedules approved Instagram posts (card news carousels of images and video slides with their captions) on the account's web interface, in the browser the person is signed in to, reads each booking b… |
+| [instagram-post-scheduling](marketing/skills/instagram-post-scheduling/SKILL.md) | Schedules approved Instagram posts (card news carousels of images and video slides with their captions) on the account's web interface, in a browser signed in to it, reads each booking back on the sc… |
 | [meta-ad-library-creative-research](marketing/skills/meta-ad-library-creative-research/SKILL.md) | Researches ad creatives in the Meta Ad Library for a keyword, a product or a competitor by reading the public library with a browser, because its API leaves out most commercial ads. |
 
 3 skills.
@@ -240,7 +240,7 @@ The same folders work without SkillCDN. Copy `<area>/skills/<name>/` into any ag
 |---|---|---|
 | Higgsfield | AI image, video and audio generation with a cloud sandbox for editing. | The Higgsfield MCP server. |
 | Meta Ad Library | Meta's public library of running ads, read as a website because its API leaves out most commercial ads. | Nothing: a browser the agent drives, or a shell with a Chromium-family browser. |
-| Instagram | A reference account's public posts read signed out; your own account's posts booked in its web interface. | Nothing to read. Booking needs your own browser, signed in by you. |
+| Instagram | A reference account's public posts read signed out; your own account's posts booked in its web interface. | Nothing to read. Booking needs a browser signed in to your account, by you or by an agent account that holds its sign-in. |
 | Web | The open web read for a story or a market: search, pages read in full, public statistics, app stores. | Nothing: a web search tool and a page reader or a driven browser. |
 | DART | The Korean Financial Supervisory Service's disclosure system, read for a company's audited figures. | Nothing for the public website; a free OpenDART key if you have one. |
 | Browser (HTML) | A Chromium-family browser that renders a page the agent wrote to PNG or PDF. | Nothing: an installed Chrome, Edge or Chromium. |
