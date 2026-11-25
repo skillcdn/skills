@@ -161,9 +161,9 @@ What you can ask for, in your own words, and which skill does it. One section pe
 
 ### "Verify this skill."
 
-- You get: what a fresh agent had to guess in the skill's files, a run of the served skill with its checkpoints answered as you would, and the findings folded back into it.
+- You get: what a fresh agent had to guess in the skill's files, a run of the served skill with its checkpoints answered as you would, and the findings folded back into it; or, for the whole pack, a report on every skill that changed, its gaps and any step that is unsafe to run.
 - Skill: [`engineering/skills/skillcdn-skill-verification/`](/engineering/skills/skillcdn-skill-verification/SKILL.md)
-- Also asked as: "dry-read this skill", "test the skill from a fresh session", "does the fix hold", "check the skill after the tool changed", "bring the skills up to date after the new release".
+- Also asked as: "dry-read this skill", "test the skill from a fresh session", "does the fix hold", "check the skill after the tool changed", "bring the skills up to date after the new release", "review what changed in our skill pack this week", "is any of our skills unsafe to run".
 - Not this one when: the skill is not written yet (the authoring above).
 
 ### "Make these documents searchable for our agents."
