@@ -267,7 +267,7 @@ Put together: an organization keeps its skills in git, SkillCDN hands them to ev
 
 ## Make it yours
 
-This repository takes no pull requests. It is the reference pack for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md) and is meant to be forked: the layout, the checks, the CI and the rules for agents come with the fork, and your skills go in.
+This repository takes no pull requests from outside. It is the reference pack for the [SkillCDN Format](https://github.com/skillcdn/skillcdn/blob/main/docs/specs/skill-repo.md) and is meant to be forked: the layout, the checks, the CI and the rules for agents come with the fork, and your skills go in.
 
 1. Fork the repository, or copy it into a new one.
 2. In `SKILLCDN.md`, set `name`, `description`, `translations` and `metadata.author` to yours. Keep the rules that hold for you; change the rest.
