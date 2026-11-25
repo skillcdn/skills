@@ -22,7 +22,7 @@ The skills that work on Instagram share what the site does. The ones that read i
 
 ## What a skill that posts does
 
-- **A signed-in session, or the agent's own sign-in.** The agent works in a session already signed in to the account; where there is none and it holds the account's sign-in, it signs in itself, with no password or code in the conversation, a message, a file it keeps or its result; where it holds none, or a screen asks what it cannot answer, it stops and asks a person ([`signed-in.md`](signed-in.md)).
+- **A signed-in session, or an agent account's own sign-in.** The agent works in a session already signed in to the account; where there is none, an agent account whose store holds the sign-in signs in itself in its own browser; any other agent, and one that meets what only a person can give, asks a person ([`signed-in.md`](signed-in.md)).
 - **Only what the person approved leaves,** shown before it is booked, and nothing is posted at once: the platform posts a booking at its time.
 - **Real clicks and pastes, one post at a time,** with nothing requested from inside the page ([`signed-in.md`](signed-in.md)).
 - **The record follows the site.** A booking is read back on the scheduled list and a live post on its own page before either is written down.

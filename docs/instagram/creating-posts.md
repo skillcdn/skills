@@ -31,7 +31,7 @@ A cover that came out wrong cannot be repaired on a booking: the booking is dele
 
 ## The caption
 
-The caption is pasted. Text sent as key presses came out wrong in a script whose characters are composed, two syllables fused into one (checked 2026-11-09), so a caption in such a script is never typed; on a machine with no clipboard command, a caption in an alphabet typed key by key may be typed, and is then compared with the file character by character (untried, 2026-11). Put the caption file on the clipboard, click the caption field, paste, then read the field's text back and compare it with the file, its length and its words.
+The caption is pasted. Text sent as key presses came out wrong in a script whose characters are composed, two syllables fused into one (checked 2026-11-09), so a caption in such a script is never typed; where no clipboard can be filled, a caption in an alphabet typed key by key may be typed, and is then compared with the file character by character (untried, 2026-11). Put the caption file on the clipboard the browser pastes from ([signed-in.md](signed-in.md) "What the browser must do"), click the caption field, paste, then read the field's text back and compare it with the file, its length and its words.
 
 - A paste into a dialog that is still drawing lands empty: set the date and the time first, paste after.
 - A handle written directly after an opening bracket, `(@handle)`, is swallowed by the account suggestions and leaves `(@)`. Write a handle after a space (checked 2026-11-09).

@@ -205,11 +205,11 @@ What the skills of one tool family share is written once, as documents an agent 
 | Set | What it holds |
 |---|---|
 | [`docs/pack/`](docs/pack/) | How an agent finds the skill for a job, and the jobs index. The page a client is told to read first. |
-| [`docs/browser/`](docs/browser/) | A browser the agent drives or runs headless: reading a page in full, the ways around a wall, rendering HTML to PNG and PDF, clips. |
+| [`docs/browser/`](docs/browser/) | A browser the agent drives or runs headless: an agent account's own sign-in, reading a page in full, the ways around a wall, rendering HTML to PNG and PDF, clips. |
 | [`docs/writing/`](docs/writing/) | What every text shares: the reader, sentences, facts and figures, what stays inside, the house style. |
 | [`docs/variation/`](docs/variation/) | Making variations: the effect brief, the axes, the signals of the AI feel, the comparison sheet. |
 | [`docs/card-news/`](docs/card-news/) | The format spec, the topic brief, and the record an account that keeps posting holds. |
-| [`docs/instagram/`](docs/instagram/) | Reading Instagram signed out, and booking posts in a person's signed-in session. |
+| [`docs/instagram/`](docs/instagram/) | Reading Instagram signed out, and booking posts in a session signed in to the account. |
 | [`docs/meta-ad-library/`](docs/meta-ad-library/) | What the public ad library is evidence of, its routes and parameters, counting by age, manners. |
 | [`docs/market-research/`](docs/market-research/) | The grades of a number, the watch list a market is measured on again, the public sources by country. |
 | [`docs/higgsfield/`](docs/higgsfield/) | The sandbox, models and credits, first frames, decoding a take, the sounds of each language. |
