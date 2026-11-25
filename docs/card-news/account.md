@@ -22,7 +22,7 @@ One page under headings, each line the person's standing answer. A skill takes a
 
 | Heading | Says | Read by |
 |---|---|---|
-| Account | The handle, the platform, what the account is for. | Every skill. |
+| Account | The handle, the platform, what the account is for, where else its posts may be shared. | Every skill. |
 | Readers | The market, the language and who reads: the brief's `audience`. | The research. |
 | Lane | The subjects the account covers, which are the categories the research searches in, and the kind of story it wants in any of them, in the person's own distinctions (only stories that make a reader laugh; no private individuals). A kind of story filters every category and is not a category itself. | The research, for its candidates. |
 | Follow-ups | Whether a later turn of a story already told is a new story. | The research, with the ledger. |
@@ -47,11 +47,11 @@ One page under headings, each line the person's standing answer. A skill takes a
 | `draft` | The slide plan and the caption are written and the slides rendered. | The build. |
 | `review` | The build's review passed; the post waits for the person. | The build, and in a batch the orchestrator after the reviewer's pass. |
 | `approved` | The person said it may be posted: `approved` holds `at` and `by`. | Whoever received the person's answer, never before it. |
-| `scheduled` | It is booked on the platform: `scheduled_for` with the zone. | The posting. |
+| `scheduled` | It is booked on the platform: `scheduled_for`, the moment with its zone's offset. | The posting. |
 | `published` | It was seen live: `published` holds `at` and `url`; the folder moves under `posts/published/`. | The posting. |
 | `archived` | It will not be posted. | On the person's word. |
 
-A post changed after `review` (a slide remade, a caption edited) is rendered again and goes back to `review`.
+A post changed after `review` (a slide remade, a caption edited) is rendered again and goes back to `review`; one the posting finds changed after its approval, it names in its schedule and, once that is answered, sends back itself.
 
 ## The ledger
 
@@ -68,4 +68,4 @@ A candidate the ledger or the lane rules out is not dropped silently: the candid
 | [`web-card-news-topic-brief`](/product/skills/web-card-news-topic-brief/SKILL.md) | The policy, the ledger, the last candidate lists. | The candidate list, the ledger row, the post folder to `brief`. |
 | [`html-card-news-from-brief`](/design/skills/html-card-news-from-brief/SKILL.md) | The policy's voice and pictures, the format, `post.json`. | The post to `draft` and `review`. |
 | [`html-card-news-batch`](/design/skills/html-card-news-batch/SKILL.md) | All of it. | Several posts to `review` at once, each by the two skills above. |
-| [`instagram-post-scheduling`](/marketing/skills/instagram-post-scheduling/SKILL.md) | The approved posts, the cadence. | `scheduled`, `published`, the move under `posts/published/`, the ledger's state. |
+| [`instagram-post-scheduling`](/marketing/skills/instagram-post-scheduling/SKILL.md) | The approved posts, the cadence. | `scheduled`, `published`, `review` for a post changed after its approval, the move under `posts/published/`, the ledger's state, the policy's Account line on the person's standing word. |
