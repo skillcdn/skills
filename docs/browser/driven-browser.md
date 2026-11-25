@@ -18,6 +18,22 @@ A browser the agent operates through tools: an assistant's built-in browser or b
 
 A capability the host lacks is worked around as the sections below say, and the delivery says what could not be done. Where a skill names the route, a host with a shell and no browser tool has every capability of the table in a headless browser driven by a script of the run's own ([headless.md](headless.md) "Driving a page from a script"). A browser the agent cannot drive at all is not replaced by a fetch tool where the site answers only a browser ([reading-pages.md](reading-pages.md) "Which tool reads a page").
 
+## An agent account's browser
+
+An agent account of a SkillCDN Console that runs on Claude Code is started with the browser its desk's `runner.json` names as `browser`, a headless one where it names none; under another product it is started with none (console 0.6.1, its specification, read 2026-11). The account changes the name itself, and the runner takes the change between two turns.
+
+| `browser` | What the account drives |
+|---|---|
+| `headless` | A Chrome with no window and a profile of its own, through the tools of a server called `chrome-devtools` |
+| `window` | The same browser and profile with its window, on a machine with a desktop logged in |
+| `chrome` | The product's own browser tool in the Chrome of the account's machine, another profile |
+| `none`, or another product | No browser tool: a skill that names the scripted route takes it ([headless.md](headless.md) "Driving a page from a script"), and any other stops as it does where a browser is missing |
+
+- **No `chrome-devtools` tools in a session that should have them:** Google Chrome or the program is missing on the machine (`npm install -g chrome-devtools-mcp@latest`, on a Node.js it runs on). The account installs it, and the next session has the tools.
+- **What those tools lack.** They act on an element of the page's snapshot and not on a point, and none turns the wheel or zooms; they run a script, press keys, hand files to a file input, set the viewport with its pixel ratio, and save a screenshot of the page or of one element to a file (the program's tool reference, read 2026-11: see what the session lists). Small type is read from its element's screenshot at a higher pixel ratio. A step that needs a point or the wheel goes the scripted route where the skill names it.
+- **A person's sign-in** stays in the profile it was made in from one session to the next. The scripted route has none. Where a skill needs a browser a person is signed in to, the account asks for the sign-in as a decision (the service, the account, the machine), addressed to its manager, whom the console tells, or to the person the task names; they sign in in `chrome`, or in `window`, which the account names before its turn ends and takes back after. Which of the two a site's skills were run with, its own pages say.
+- **One at a time.** One browser opens the profile at once, so one agent of a session drives it.
+
 ## The window and the viewport
 
 - Screenshots time out while the browser window is in the background on one host; the page's text and scripts in the page keep working (checked 2026-10). Bring the window to the front before a screenshot, or read by text and script until a screenshot is needed.
