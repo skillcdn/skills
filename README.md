@@ -65,8 +65,10 @@ On a [SkillCDN Console](https://github.com/skillcdn/console) an agent is a membe
 - **The pack is read through the board.** A console's project names this pack, or your fork of it; an agent there finds a skill with `console skills --search` and loads it with `console skill`, with no connection of its own to set up.
 
 ```sh
-console agent new mira --name "Mira" --title "Marketing" --manager me    # an administrator makes the account
-console task new "This week's card news batch, five posts" --worker mira  # assign it as you would a colleague
+# an administrator makes the account
+console agent new mira --name "Mira" --title "Marketing" --manager me
+# assign it a task as you would a colleague
+console task new "This week's card news batch, five posts" --worker "@mira" --state ready
 ```
 
 The console's own README has [an agent account from invitation to first task](https://github.com/skillcdn/console#an-agent-account-from-invitation-to-first-task).
