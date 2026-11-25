@@ -4,13 +4,13 @@ Where a signed-in account's booked posts are listed, how a booking is read back,
 
 ## The scheduled list
 
-`https://www.instagram.com/scheduled_content/` shows the account's booked posts on a week's calendar, each with its time and its cover (checked 2026-11-05). A click on a booking opens it: the slides one at a time with a next arrow, the caption, the date and the time, and three controls at the bottom, which delete the booking, **share it at once**, and save a change; the sharing control sits beside the saving one. An opened booking is left as it is by opening the list's address again, with none of the three pressed. A video slide shows there re-encoded small, 720 by 900 pixels, which is the preview's size and not the post's (checked 2026-11-17).
+`https://www.instagram.com/scheduled_content/` shows the account's booked posts on a week's calendar, each with its time and its cover (checked 2026-11-05). A click on a booking opens it: the slides one at a time with a next arrow, the caption, the date and the time, and three controls at the bottom, which delete the booking, **share it at once**, and save a change; the sharing control sits beside the saving one. An opened booking is left as it is by opening the list's address again, with none of the three pressed. A booking made by hand or in another sitting is on the list with the rest, so the week that holds a day says which of its times are taken. A video slide shows there re-encoded small, 720 by 900 pixels, which is the preview's size and not the post's (checked 2026-11-17).
 
 ## Reading a booking back
 
 After a booking is made, on the list and in the opened booking, by eye on a screenshot:
 
-- the time is the slot;
+- the time is the slot, in the zone the dialog took it in ([creating-posts.md](creating-posts.md) "The schedule switch, the date and the time");
 - the cover is the first slide whole, its headline complete from side to side, not black, and with no tint the file does not have (a filter set by accident shows here);
 - stepping through gives the post's number of slides, in order;
 - the caption begins with the file's first line.
@@ -23,7 +23,7 @@ Open the booking, change the date and the time and nothing else, and press the s
 
 ## Changing a caption
 
-On a booking: the opened booking's caption field, then the saving control. On a live post: the post's own menu, its edit entry, the caption, then the control that finishes the edit, pressed with a real click, since a click from a script once left the edit unsaved (checked 2026-11-09). The pasting rules of [creating-posts.md](creating-posts.md) "The caption" hold in both.
+On a booking: the opened booking's caption field, then the saving control. On a live post: the post's own menu, its edit entry, the caption, then the control that finishes the edit, pressed with a real click, since a click from a script once left the edit unsaved (checked 2026-11-09). The pasting rules of [creating-posts.md](creating-posts.md) "The caption" hold in both: the new caption replaces the field's whole text, and the field is read back and compared with it before the control is pressed. On a live post the change is public the moment it is saved.
 
 ## Replacing a booking's slides
 

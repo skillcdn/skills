@@ -49,4 +49,4 @@ Two agent sessions that drove the same browser at the same hour both stalled, on
 
 ## What is opened
 
-The sign-in and the checks it leads to, the create dialog, the scheduled list, the account's own profile and its own posts. Messages, notifications, settings, other accounts and the feed are not opened, and nothing is liked, followed, commented on or answered.
+The site's home page for its navigation alone (who is signed in, the create control), its feed neither scrolled nor read; the sign-in and the checks it leads to, the create dialog, the scheduled list, the account's own profile and its own posts. Messages, notifications, settings and other accounts are not opened, and nothing is liked, followed, commented on or answered.

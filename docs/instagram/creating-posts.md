@@ -31,7 +31,7 @@ A cover that came out wrong cannot be repaired on a booking: the booking is dele
 
 ## The caption
 
-The caption is pasted, never typed. Text sent as key presses came out wrong in a script whose characters are composed, two syllables fused into one (checked 2026-11-09). Put the caption file on the clipboard, click the caption field, paste, then read the field's text back and compare it with the file, its length and its words.
+The caption is pasted. Text sent as key presses came out wrong in a script whose characters are composed, two syllables fused into one (checked 2026-11-09), so a caption in such a script is never typed; on a machine with no clipboard command, a caption in an alphabet typed key by key may be typed, and is then compared with the file character by character (untried, 2026-11). Put the caption file on the clipboard, click the caption field, paste, then read the field's text back and compare it with the file, its length and its words.
 
 - A paste into a dialog that is still drawing lands empty: set the date and the time first, paste after.
 - A handle written directly after an opening bracket, `(@handle)`, is swallowed by the account suggestions and leaves `(@)`. Write a handle after a space (checked 2026-11-09).
@@ -49,8 +49,10 @@ The caption step has a switch that schedules the post instead of sharing it (che
 - All three time fields are set. The hour and the minute alone gave half past midnight where half past noon was meant, which the dialog refused as less than twenty minutes ahead (checked 2026-11-16).
 - A slot is at least twenty minutes after the moment the button is pressed; the dialog's own message gives the bound.
 - The calendar's rows shift from month to month. Find the day's number on a screenshot of the open calendar each time.
+- The zone of the fields is the one the dialog names beside them; where it names none, it is taken to be the zone of the browser, as a web page reads its clock there, which is the zone of the machine the browser runs on and not always the person's or the account's. That this dialog does so was not checked from a browser in another zone (untried, 2026-11). Before a sitting's first booking, read the browser's zone once, with a script that only reads (`Intl.DateTimeFormat().resolvedOptions().timeZone`), and compare it with the zone the times were agreed in: where they differ, the fields take the slot converted into the browser's zone, its day too.
+- The scheduled list shows a booking in the same zone as the dialog, so reading a booking back there does not catch a wrong zone. The post's own page does, once it is live: its moment is absolute ([scheduled-posts.md](scheduled-posts.md) "A post that went live").
 
-The step's other switches stay as the account left them.
+The step's other switches are not changed, and they are read before the header's button is pressed. One that is on and would send the post beyond the account's own grid, to another service or to a linked account, is a second thing leaving with the booking: the skill that books says what is done about it. Which switches an account shows was not recorded (2026-11); read them from the step's text.
 
 ## Booking and its confirmation
 
