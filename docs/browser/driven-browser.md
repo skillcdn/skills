@@ -10,9 +10,9 @@ A browser the agent operates through tools: an assistant's built-in browser or b
 | Read the page's text | A tool that returns the page as text or as an accessibility tree | Captions, labels, counts: the fastest read, and the one that keeps working while the window is in the background |
 | Run a script in the page | A tool that evaluates JavaScript in the page and returns its value | Data embedded in the page, image elements, pressing a prompt's own close control, drawing the frames of a video |
 | Take a screenshot | A tool that returns an image of the viewport | Reading type and layout; anything a text read loses |
-| Zoom into a region | A tool that returns a region of the viewport larger | Small type on a slide or a card |
-| Click and hover at coordinates | Tools that take x and y | Controls that script clicks do not move: an arrow that shows on hover, a menu, a player |
-| Scroll with real input | A tool that scrolls the tab | Lists that load on scroll; setting `scrollTop` from a script loads nothing on such sites |
+| Zoom into a region | A tool that returns a region of the viewport larger, or a screenshot of one element at a higher pixel ratio | Small type on a slide or a card |
+| Click and hover with real input | Tools that take x and y, or an element of the page's snapshot, and move a real pointer to it | Controls that script clicks do not move: an arrow that shows on hover, a menu, a player |
+| Scroll with real input | A tool that scrolls the tab, or presses `End` and `Page Down` | Lists that load on scroll, where setting `scrollTop` from a script may load nothing: count the items before and after |
 | Set the tab's viewport | A tool or a setting that takes a width and a height | The mobile layout; a slide read at zoom |
 | Save a screenshot to a file | A tool that writes the image to a path | Frames of a clip kept as files; a render looked at later |
 
@@ -30,9 +30,15 @@ An agent account of a SkillCDN Console that runs on Claude Code is started with 
 | `none`, or another product | No browser tool: a skill that names the scripted route takes it ([headless.md](headless.md) "Driving a page from a script"), and any other stops as it does where a browser is missing |
 
 - **No `chrome-devtools` tools in a session that should have them:** Google Chrome or the program is missing on the machine (`npm install -g chrome-devtools-mcp@latest`, on a Node.js it runs on). That is a missing tool: said with the command and why, installed on the word of whoever keeps the machine, and there from the next session on.
-- **What those tools lack.** They act on an element of the page's snapshot and not on a point, and none turns the wheel or zooms; they run a script, press keys, hand files to a file input, set the viewport with its pixel ratio, and save a screenshot of the page or of one element to a file (the program's tool reference, read 2026-11: see what the session lists). Small type is read from its element's screenshot at a higher pixel ratio. A step that needs a point or the wheel goes the scripted route where the skill names it.
-- **A person's sign-in** stays in the profile it was made in from one session to the next. The scripted route has none. Where a skill needs a browser a person is signed in to, the account asks for it as a decision of its manager, whom the console tells: the service, the account there, the machine, and which name the browser takes meanwhile, `chrome` or `window`. On their word it changes the name and ends its turn, the person signs in there themselves, and when the job that needed the sign-in is done they sign out where it was for that job alone, and the name goes back. Which of the two a site's skills may use, the pack's pages on that site say.
-- **One at a time.** One browser opens the profile at once, so one agent of a session drives it.
+- **How those tools do what "Capabilities" above asks** (run 2026-11 on Windows, as the runner starts the program; the session's list is what counts). They take an element by its id in the latest snapshot, and the pointer and the keys are real: a click stepped a carousel that a script's click does not, and an arrow that shows on hover is in the snapshot taken after the hover. No tool takes a point, turns the wheel or zooms:
+  - What has no name or role (a plain box, a canvas, a video) is in the verbose snapshot alone, and its id is clicked at its middle. Another point of it, on a page nobody is signed in to: a script lays a box of two pixels there with `pointer-events: none`, a role and a label, and a click on that box's id lands on what is under it.
+  - `End` and `Page Down` load what scrolling loads.
+  - Small type is read from a screenshot of its element at a pixel ratio of 2 or 3. The emulation tool sets the viewport with the ratio, to any width, each call replacing the last; the resize tool stops at 500 pixels wide. The viewport a session begins with is the machine's own (1889 by 2045 on one): set it before the first page.
+  - The script tool takes a function: a block of these pages that calls itself runs with its script format, and fails as "not a function" without it. A long answer goes to a file.
+  - A file it writes, or hands to a file input, lies in the session's folder, in one added to it, or in the system's temporary folder; any other path is refused ("Access denied"): copy with the shell. A download the page starts lands in the OS account's downloads folder, and no tool says so.
+- **What a site sees.** The `headless` browser calls itself a headless one, and both it and `window` say they are driven. A site that refuses it has walled that browser ([walls.md](walls.md)); the emulation tool's user agent is never set to pass for another.
+- **A person's sign-in** stays in the profile it was made in from one session to the next, `headless` and `window` sharing theirs; one that the site keeps only until the browser closes is gone with the session. The scripted route has none. Where a skill needs a browser a person is signed in to, the account asks for it as a decision of its manager, whom the console tells: the service, the account there, the machine, and which name the browser takes meanwhile, `chrome` or `window`. On their word it changes the name and ends its turn, the person signs in there themselves, and when the job that needed the sign-in is done they sign out where it was for that job alone, and the name goes back. Which of the two a site's skills may use, the pack's pages on that site say.
+- **One at a time.** One browser opens the profile at once, so one agent of a session drives it: a second is told that the browser is already running, and the first goes on.
 
 ## The window and the viewport
 
@@ -45,7 +51,7 @@ An agent account of a SkillCDN Console that runs on Claude Code is started with 
 ## Clicks that script cannot make
 
 - A click dispatched from a script (`element.click()`) is a synthetic event: it does not open a menu or advance a control that listens for real pointer input, and it does not reveal a control that shows on hover (checked 2026-10 on two sites). Hover at the control's coordinates, take a screenshot to see it, click with a real pointer click at those coordinates, and confirm the step by the URL the browser reports or by what the page shows.
-- A control that exposes no name or role to the accessibility tree cannot be addressed by a text tool. Where a site puts every filter in its URL, set the filter there and load the page anew.
+- A control that exposes no name or role to the accessibility tree cannot be addressed by a text tool, unless the host has a fuller snapshot that lists it. Where a site puts every filter in its URL, set the filter there and load the page anew.
 - An element with the role of a dialog is not always a prompt: a site's header may be one. Read what it contains before closing it.
 
 ## Prompts and walls

@@ -62,7 +62,7 @@ Each count costs one page load, and the page that comes with it lists the most-s
 
 ## What needs a click (driven browser)
 
-- **More than the first page.** Scroll with real scroll input and press `See more` when it appears; 15 to 30 results arrive each time. Setting the scroll position from a script loads nothing.
+- **More than the first page.** Scroll with real scroll input, or press `End`, and press `See more` when it appears; 10 to 30 results arrive each time. Setting the scroll position from a script loaded nothing on one host (2026-10) and the next results in an agent account's headless browser (2026-11): count the cards before and after.
 - **Reach, in the EU and the UK.** `See ad details` on a card (on a grouped card `See summary details` first, then the details of one ad inside it), then the collapsed section `Transparency by location`: `Reach`, its breakdown by country, age and gender, and the targeting the advertiser chose. Reach belongs to one ad, not to its group. `About the advertiser` and `Advertiser and payer` sit beside it. [driven-browser.md](driven-browser.md) has a script for the clicks; it costs no page load.
 - **The advertiser's age.** The advertiser view (`view_all_page_id`) has an `About` tab: the day the Page was created, how often its name changed, the countries of the people who manage it.
 - **Video frames without a shell.** Open the video's own address in a tab: a script in the page can step through it and a screenshot reads the frames.

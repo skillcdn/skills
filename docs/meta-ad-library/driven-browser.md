@@ -12,7 +12,7 @@ The route of [ad-library.md](ad-library.md) "Routes" for a browser the agent ope
 
 ## The embedded results
 
-After navigating to a URL, run this in the page with the tool that evaluates script. It returns the count and one short line per result: the rank, the Library ID, the creative group (`g…`), the Page ID (`p…`), the start date, the days run, the uses, the format, then the advertiser, the landing host and the first words. Set `pick` to a few Library IDs to get their full records. The same script reads a page opened by `id`.
+After navigating to a URL, run this in the page with the tool that evaluates script (its script format where it takes a function; this reader and the next ran so in an agent account's headless browser, 2026-11). It returns the count and one short line per result: the rank, the Library ID, the creative group (`g…`), the Page ID (`p…`), the start date, the days run, the uses, the format, then the advertiser, the landing host and the first words. Set `pick` to a few Library IDs to get their full records. The same script reads a page opened by `id`.
 
 ```js
 (() => {

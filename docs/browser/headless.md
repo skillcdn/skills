@@ -42,7 +42,7 @@ Where a skill names this route for a host that offers a shell and no browser too
 | Run a script in the page | `page.evaluate(() => ...)`, which returns the value |
 | Take a screenshot | `page.screenshot({ path })`: the viewport, to a file the agent reads |
 | Zoom into a region | `page.screenshot({ path, clip: { x, y, width, height } })` in a context made with `deviceScaleFactor: 2` or `3`: the region is rendered at that scale (twice the width and the height for a clip at 2), not cut from a smaller image |
-| Click and hover at coordinates | `page.mouse.move(x, y)`, then `page.mouse.click(x, y)`: input to the browser itself, so that a control that shows on hover appears and a carousel's arrow advances, which a `click()` run from `page.evaluate` does not do (driven-browser.md "Clicks that script cannot make") |
+| Click and hover with real input | `page.mouse.move(x, y)`, then `page.mouse.click(x, y)`: input to the browser itself, so that a control that shows on hover appears and a carousel's arrow advances, which a `click()` run from `page.evaluate` does not do (driven-browser.md "Clicks that script cannot make") |
 | Scroll with real input | `page.mouse.wheel(0, dy)` |
 | Set the tab's viewport | `browser.newContext({ viewport: { width, height }, deviceScaleFactor })`, before the first page |
 | Save a screenshot to a file | Every screenshot above is a file |

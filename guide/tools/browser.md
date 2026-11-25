@@ -4,7 +4,7 @@ How the skills that read a website or render a page with a browser are written a
 
 ## The tool is a capability
 
-A browser is not one product. A skill's Requirements name what it needs (a browser the agent drives that can navigate, click at coordinates, zoom and run a script in the page; a shell with a Chromium-family browser `playwright-core` can launch; a fetch tool) and how to recognize each by what a tool does. The browsing tools of every host are renamed and replaced within months: a product's tool name appears only as a dated example, and the set names a host only as "one host". The `metadata.tools` value is `browser` for a skill whose tool is the browser itself (a page the agent wrote, rendered to PNG or PDF); a skill whose tool is a site it reads with a browser keeps the site as its family (`instagram`, `meta-ad-library`, `web`).
+A browser is not one product. A skill's Requirements name what it needs (a browser the agent drives that can navigate, click with real input, zoom and run a script in the page; a shell with a Chromium-family browser `playwright-core` can launch; a fetch tool) and how to recognize each by what a tool does. The browsing tools of every host are renamed and replaced within months: a product's tool name appears only as a dated example, and the set names a host only as "one host". The `metadata.tools` value is `browser` for a skill whose tool is the browser itself (a page the agent wrote, rendered to PNG or PDF); a skill whose tool is a site it reads with a browser keeps the site as its family (`instagram`, `meta-ad-library`, `web`).
 
 ## What is shared and what stays where
 
