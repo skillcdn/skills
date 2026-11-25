@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs a browser the agent drives that is signed in to the account, or that the agent signs in with the account's sign-in from its own secret store (an extension in the person's browser, a pane they opened, or an agent account's own browser), with a tool that hands files to a page's file input, and a shell on the same machine for the clipboard and the records. Signing in from a headless browser is untried on this site.
 metadata:
   author: skillcdn
-  version: "1.2"
+  version: "1.3"
   tools: instagram
 skillcdn:
   include:
@@ -22,9 +22,9 @@ Approved posts go in: carousels of images and video slides, each with its captio
 ## How the user is involved
 
 - **Questions:** one message, only what neither the request nor the account's policy says: which posts ("Which posts should I book: every approved one?") and when ("From which day and time, and how far apart?"). The sign-in is asked for only when the browser is not signed in to the account and the agent holds no sign-in of it, or the site asks what the agent cannot answer ([signed-in.md](/docs/instagram/signed-in.md) "Whose session"): "Please sign in to <handle> in this browser and tell me when you are in."
-- **Checkpoints:** the schedule, before the first booking (phase 4); "OK" books. A swap and a moved time are shown the same way before they are made, and a booking the person did not name is not deleted without their word. Then the delivery.
-- **Go-ahead:** told to go ahead alone, or where the policy's Approval line says approved posts are booked without a further question, the schedule is shown and the booking goes on without a stop. Never skipped: the person's approval of each post, a person's sign-in where the agent holds none, and the stop at a screen the agent cannot answer.
-- **Changes mid-run:** "move it to tomorrow" changes the booking's time on the scheduled list. "Use the video version" or a corrected slide means new slides, made by [html-card-news-from-brief](/design/skills/html-card-news-from-brief/SKILL.md), which a booking cannot take: the remade post is approved again and replaces the booking as scheduled-posts.md "Replacing a booking's slides" says. "Fix the caption" edits the caption of the booking, or of the live post. "Take it out" deletes the booking, and the post returns to `approved`, or to `archived` on the person's word. A story that takes a booked slot on the day, where the policy's Cadence allows one: the slot is the day's last that is still more than an hour ahead, the displaced booking moves to the first free slot of the days after by its time alone, and the new post is then booked in the slot.
+- **Checkpoints:** the schedule, before the first booking (phase 4); "OK" books. A swap and a moved time are shown the same way before they are made, a changed caption with its new text whole, and a booking the person did not name is not deleted without their word. Then the delivery.
+- **Go-ahead:** told to go ahead alone, or where the policy's Approval line says approved posts are booked without a further question, the schedule is shown and the booking goes on without a stop. Never skipped: the person's approval of each post, the account confirmed where no policy names it, the word on a changed caption, the notice before an account's first booking, a person's sign-in where the agent holds none, and the stop at a screen the agent cannot answer.
+- **Changes mid-run:** a moved time, new slides ("use the video version"), a fixed caption, a booking taken out, a story that takes a booked slot on the day: read [changes-and-stops.md](references/changes-and-stops.md) "A changed booking" before making one. Each is shown first, and no caption on the account changes unseen.
 
 ## Requirements
 
@@ -33,7 +33,7 @@ Capabilities, not product names. Before the first message, look at what the agen
 | What | Used for | When missing |
 |---|---|---|
 | A browser the agent drives that is signed in to the account, or that the agent signs in itself with the account's sign-in from the store it keeps its secrets in: an extension in the person's own browser, a browser pane they opened, or an agent account's own browser. Recognize it by a browser tool with real clicks, key presses, screenshots, the page's text and a tool that hands files to a page's file input | Everything on the site | Stop and say what to add. A headless browser a script of the run launches keeps no session and is not used |
-| A shell on the machine that browser runs on | The clipboard a caption is pasted from (`Set-Clipboard`, `pbcopy`, `wl-copy`), the records, the folder moved | With no clipboard command the caption is typed by the browser tool and compared with the file character by character; a difference stops that booking |
+| A shell on the machine that browser runs on | The clipboard a caption is pasted from (`Set-Clipboard`, `pbcopy`, `wl-copy`), the records, the folder moved | With no clipboard command a caption in an alphabet typed key by key is typed by the browser tool and compared with the file character by character, a difference stopping that booking; a caption in a script whose characters are composed is not typed (creating-posts.md "The caption"): stop and say what to add |
 
 How hosts differ in the browser they drive is in [driven-browser.md](/docs/browser/driven-browser.md). Links that start with `/` are files of the pack this skill is from: a copy of this directory, a plugin or a mount below the root that lacks one reads it through the pack's connection (`https://skillcdn.ai/gh/skillcdn/skills`) or at `github.com/skillcdn/skills`.
 
@@ -45,8 +45,8 @@ The area's rule that a result fits its channel takes this form: the number of sl
 |---|---|
 | The posts | In an account folder ([account.md](/docs/card-news/account.md)): every post whose `post.json` says `approved`, or the ones the request names. Otherwise the folder the user names, with the slides as numbered files and the caption as a text file or in the request. Asked when neither is at hand. |
 | When | The request; else the policy's Cadence (posts a day, the slots, how far the minutes vary); else asked. |
-| The account | The policy's Account line, else the account the browser is signed in to, named in the schedule. |
-| Everything else | Derived and shown in the schedule: the order of the posts across the slots, the zone (the policy's, else the machine's), the alternative text of the first slide (the post's title). |
+| The account | The policy's Account line; else the one the browser is signed in to, confirmed by the person (phase 2). |
+| Everything else | Derived and shown in the schedule: the order of the posts across the slots, the zone (the request's, else the policy's, else that of the machine the browser runs on), the alternative text of the first slide (the post's title). |
 
 ## Workflow
 
@@ -55,15 +55,15 @@ The area's rule that a result fits its channel takes this form: the number of sl
 Read [creating-posts.md](/docs/instagram/creating-posts.md) before this phase, since the gate and the schedule hold a post to the dialog's limits, and in an account folder account.md. Produces the **work list**: the bookings to confirm and the posts to book. In an account folder, a post whose `post.json` says `scheduled` with a `scheduled_for` in the past is a booking to confirm, and comes before anything new. A post to book passes the gate when:
 
 - its record holds `approved` with `at` and `by` (in a plain folder, the person named it in this conversation);
-- no file of the upload set, `slide-plan.json` or `caption.txt` is newer than `approved.at` (the files' times, or the repository's history);
-- its **upload set** is complete: one file per slide in the slides' order, an image or an mp4 for a video slide, at full size (the build's publish copies where the post folder holds them, `out/publish/`, else its renders in `out/`, never the phone-size copies), as many as `post.json`'s `slides`;
+- no file of the upload set, `slide-plan.json` or `caption.txt` is newer than `approved.at`: in a repository by its history (the file's last commit, or a change not committed), since a fresh clone resets every file's time; elsewhere by the files' times;
+- its **upload set** is complete: one file per slide in the slides' order, an image or an mp4 for a video slide, at full size (the build's renders in `out/`, or the copies for upload where the repository's agreement or the post's record names a folder of them; never the phone-size copies), as many as `post.json`'s `slides`;
 - its caption is not empty and within the limits of creating-posts.md "The caption".
 
 A post that fails is not booked and is named in the schedule with what it lacks. Where the repository's agreement names a command for a step (a check before booking, the filing of phase 3), run that command instead of doing the step by hand.
 
 ### Phase 2: The session
 
-Produces the **session**: the browser on the site, signed in to the account. Open the site's home page and read which account is signed in ([signed-in.md](/docs/instagram/signed-in.md) "Whose session"). Nobody signed in: an agent that holds the account's sign-in signs in itself, as signed-in.md "Signing in" says; one that holds none asks the person to sign in, and waits. Another account than the policy names: ask the person, and wait. A screen the agent cannot answer stops the run (Verdicts).
+Produces the **session**: the browser on the site, signed in to the account. Open the site's home page and read which account is signed in ([signed-in.md](/docs/instagram/signed-in.md) "Whose session"). Nobody signed in: an agent that holds the account's sign-in signs in itself, as signed-in.md "Signing in" says; one that holds none asks the person to sign in, and waits. Another account than the policy names: ask the person, and wait. No policy names one: "This browser is signed in to <handle>. Is that the account to book on?", once a run, go-ahead or not; a yes that stands for the account becomes the policy's Account line. A screen the agent cannot answer stops the run (Verdicts).
 
 ### Phase 3: What went live
 
@@ -77,10 +77,11 @@ A plain folder has no record: the address goes in the delivery.
 
 ### Phase 4: The schedule
 
-Produces the **schedule** and the checkpoint. Give each gated post a slot, an account's posts in the order of their folders' days unless the request gives another:
+Produces the **schedule** and the checkpoint. First read what the scheduled list already holds on the days to be booked, and the browser's zone (creating-posts.md "The schedule switch, the date and the time"). Then give each gated post a slot, an account's posts in the order of their folders' days unless the request gives another:
 
 - A slot is at least twenty minutes after the moment its booking will be pressed, counting the bookings and the pauses before it. "From today" means today's first slot that still meets this.
-- Where the policy says the minutes vary, each slot moves by a random amount within that range; otherwise slots are as given.
+- A time a booking already holds is not given; a booking no record of the folder accounts for is named in the schedule and left alone.
+- Where the policy says the minutes vary, each slot taken from its Cadence moves by a random amount within that range; a time the request gives is kept as given.
 - Two stories that work the same way are not placed back to back or on one day where the list allows.
 - One sitting books one day's posts. Later days are listed as left for the next sitting, and booked now only on the person's word.
 
@@ -89,21 +90,24 @@ The message, one line per post, then what is not booked and what is left:
 ```
 Schedule for <handle>, times in <zone>. OK books them.
 1. <day> <time>  <title>  cover: <what it shows>  <n> slides (<m> video)  "<the caption's first line>"
+Already on the list: <day> <time>, <what its cover shows>.
 Not booked: <post>, <what it lacks>.
 Left for the next sitting: <n> posts for <day>.
 ```
 
+Where the browser's zone is another than the schedule's, or the account has no booking by this skill yet (no record says `scheduled` or `published`, or a plain folder), read [changes-and-stops.md](references/changes-and-stops.md) before sending it: each adds a line, and the second a stop that a go-ahead does not skip.
+
 ### Phase 5: Book
 
-Produces the **bookings**, one post at a time in slot order, by [creating-posts.md](/docs/instagram/creating-posts.md): the files in order, the portrait ratio at the crop step, nothing set at the edit step and every video slide seen painted, the date and all three time fields, the caption pasted and compared with the file, the post's title pasted as the first slide's alternative text, the header's button once it says it schedules, then the wait for the line that the post was scheduled.
+Produces the **bookings**, one post at a time in slot order, by [creating-posts.md](/docs/instagram/creating-posts.md): the files in order, the portrait ratio at the crop step, nothing set at the edit step and every video slide seen painted, the date and all three time fields in the browser's zone, the caption pasted and compared with the file, the post's title pasted as the first slide's alternative text, the step's other switches read, the header's button once it says it schedules, then the wait for the line that the post was scheduled. A switch that is on and would send the post beyond the account's own grid, named by neither the policy nor the person, stops that booking before the button (changes-and-stops.md "A switch that shares beyond the grid").
 
-Read the booking back on the scheduled list ([scheduled-posts.md](/docs/instagram/scheduled-posts.md) "Reading a booking back"): the time, the cover, the number of slides, the caption's first line. Then write the record, before the next post is begun: `status: "scheduled"` and `scheduled_for` as the time with its zone offset, a line in `notes` for a swap or a moved time, and the ledger row's state cell as `scheduled <day>`. The next booking begins two to five minutes after the last one was read back.
+Read the booking back on the scheduled list ([scheduled-posts.md](/docs/instagram/scheduled-posts.md) "Reading a booking back"): the time, the cover, the number of slides, the caption's first line. Then write the record, before the next post is begun: `status: "scheduled"` and `scheduled_for` as the slot in the schedule's zone with its offset, a line in `notes` for a swap or a moved time, and the ledger row's state cell as `scheduled <day>`. The next booking begins two to five minutes after the last one was read back.
 
-A changed booking (Changes mid-run) follows the section of scheduled-posts.md that names it, is read back the same way, and rewrites the same fields.
+A changed booking (Changes mid-run) is read back the same way and rewrites the same fields.
 
 ### Phase 6: Deliver
 
-One message: each booking with its time as the scheduled list shows it; each post found live with its address; what was not booked or not found and why; what is left for the next sitting; what the person has to do themselves (a file set picked by hand, a screen to deal with); and what the site showed at a sign-in signed-in.md calls untried. In a repository the records are committed as its agreement says.
+One message: each booking with its time as the scheduled list shows it; each post found live with its address; what was not booked or not found and why; what is left for the next sitting; what the person has to do themselves (a file set picked by hand, a screen to deal with); what the site showed at a sign-in signed-in.md calls untried; and what changes-and-stops.md says a run reports. In a repository the records are committed as its agreement says.
 
 ## Verdicts
 
@@ -118,18 +122,18 @@ One message: each booking with its time as the scheduled list shows it; each pos
 | Nobody signed in, or a login form in the session, and the agent holds the account's sign-in | Sign in as signed-in.md "Signing in" says, once a sitting; a second login form in the sitting, or a sign-in the site refuses, stops the run |
 | A sign-in the agent holds none of, a check it cannot answer with a code it holds or a person gives, a notice about automated behavior, a restricted or suspended account | Stop at once, press nothing, say what the screen says; a person deals with it |
 | A slot has passed and the post is not on the grid | The record stays `scheduled`; say so with what the scheduled list shows; the person decides, and the sharing control is not the remedy |
-| A post is live but its moment is more than a minute off the slot, or its caption begins otherwise | No record written; say what differs |
+| A post is live but its moment is more than a minute off the slot, or its caption begins otherwise | No record written; say what differs. Off by whole or half hours points to the zone: say so, with the bookings still waiting; the person decides |
 | Booked, read back and recorded; or live, read and filed | Delivered |
 
 ## Hard rules
 
-1. **Only a post the person approved is booked, and the schedule is shown first.** The approval recorded on a post is that post's confirmation; the schedule, a swap and a moved time are each shown before they are made, without a stop only where the policy's Approval line or the person's go-ahead says so. What leaves the account is the person's.
+1. **Only a post the person approved is booked, and the schedule is shown first.** The approval recorded on a post is that post's confirmation; the schedule, a swap and a moved time are each shown before they are made, without a stop only where the policy's Approval line or the person's go-ahead says so; a changed caption and an account no policy names wait for the person's word every time. What leaves the account is the person's.
 2. **A signed-in session, else the agent's own sign-in, else a person's.** A session already signed in to the account is worked in. An agent that holds the account's sign-in signs in itself, and the password and every code go from where it keeps them to the field, never into the conversation, a message, a record, a file the run keeps or the delivery. An agent that holds none, or meets a screen it cannot answer, presses nothing there and asks a person. The account is its owner's to answer for.
 3. **The control that shares at once is never pressed**, in the create dialog or on an opened booking: a booking posts by the platform's clock.
 4. **Real clicks and pastes, one post at a time, a pause between two, one day's posts a sitting, one session on the browser.** Nothing is requested from inside the page and no script presses a control. This is what keeps the account from being read as automated ([signed-in.md](/docs/instagram/signed-in.md)).
 5. **The record follows the site.** `scheduled` is written after the booking was read back on the scheduled list, `published` after the post's own page was read; never from the dialog's last message alone.
 6. **A booking is deleted only when the run made it wrong, when its replacement has been read back, or when the person names it.** A deletion cannot be undone. A live post is deleted by the person.
-7. **Only the sign-in, the create dialog, the scheduled list, the account's profile and its own posts are opened.** A browser a person signed in is theirs.
+7. **Only the home page for its navigation, the sign-in, the create dialog, the scheduled list, the account's profile and its own posts are opened.** A browser a person signed in is theirs.
 8. **Nothing is spent.**
 
 ## Terminology
