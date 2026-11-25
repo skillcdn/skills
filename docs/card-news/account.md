@@ -18,7 +18,7 @@ A working folder is an account's when it holds `docs/policy.md` or `topics/cover
 
 ## The policy
 
-One page under headings, each line the person's standing answer. A skill takes a line as the answer to the question it would otherwise ask and as a rule for what it proposes; a value the page does not state is asked as the skill says, and where the person says the answer stands for the account, the skill writes it into the page in the same run. A word of the person's that changes a line changes the line, never a note beside it.
+One page under headings, each line the person's standing answer. A skill takes a line as the answer to the question it would otherwise ask and as a rule for what it proposes; a value the page does not state is asked as the skill says, and where the person says the answer stands for the account, the skill writes it into the page in the same run. Only a standing answer is written: one the person gave for the account ("always", "from now on", or a yes when asked whether it stands), shown to them as the line it becomes. An answer for one run or one post ("this batch at nine", "no video today") is used there and written nowhere. A standing word that changes a line changes the line, never a note beside it.
 
 | Heading | Says | Read by |
 |---|---|---|
