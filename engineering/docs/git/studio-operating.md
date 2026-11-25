@@ -4,7 +4,7 @@ A studio is worked by several people and agents at once, some of them with nobod
 
 ## Who works in it
 
-- **People and agent accounts** are members of the console project the repository is bound to ([console.md](console.md)). A person works with an agent of their own; an agent account is a member of its own, assigned a task as a colleague is and woken for it, with nobody in its chat. Either works a task of the studio in a checkout of the studio. An agent account clones the repository under its desk and works there by the studio's agreement; its desk names no project, so the board commands of a studio's task are run inside that checkout, which names it.
+- **People and agent accounts** are members of the console project the repository is bound to ([console.md](console.md)). A person works with an agent of their own; an agent account is a member of its own, assigned a task as a colleague is and woken once the task is `ready`, with nobody in its chat. Either works a task of the studio in a checkout of the studio. An agent account clones the repository under its desk and works there by the studio's agreement; its desk names no project, so the board commands of a studio's task are run inside that checkout, which names it.
 - **A clone each, one task in it at a time.** Units do not collide, since each has its folder; two sessions in one clone do.
 - **Who decides what** is the policy's Approval heading: who gives each person state, who changes a format, who changes the policy itself. A decision is asked of that person on the board, addressed to them; an agent account asks its manager where the policy names nobody. What a person answered elsewhere is written on the decision in their name.
 
@@ -58,7 +58,7 @@ A studio that books things for a time needs a session after that time, and one t
 
 ## Approval, and what leaves
 
-- **The ask.** A unit waits one state before the person's. The lead asks once for a batch or once for a unit, on the board, with the previews handed in (a contact sheet a unit) and with whatever the policy says the person is shown before they answer. Whoever sits at a checkout looks on the review screen instead.
+- **The ask.** A unit waits one state before the person's. The lead asks once for a batch or once for a unit, on the board, with the previews handed in (a contact sheet a unit) and with whatever the policy says the person is shown before they answer. Whoever sits at a checkout looks on the review screen instead. A batch waits silently on a person the console does not tell: whoever approves has the kind `decision` on ([console.md](console.md) "The people").
 - **The answer** is written into the record by whoever received it: `at`, and `by` with who said it, where, and their words.
 - **What leaves** (a post booked, an ad launched, an issue sent) is a job of its own, whose studio skill extends the pack's skill for that place. It runs only on units at the person's state and writes the next state with its time. No script of the studio sends anything.
 - **After it left**, the unit is filed when it was seen there, never when its time passed.

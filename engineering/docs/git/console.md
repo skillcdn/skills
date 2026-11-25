@@ -19,7 +19,7 @@ How a repository of this pack is worked through a SkillCDN Console: which consol
 
 - **An administrator** makes a project. Anyone else chooses among the projects they are in, or has an administrator make one first.
 - **An owner of the project** adds a member, writes what it adds to the rules, sets a goal and names its skills address. **Anyone in it** writes tasks, takes them and binds a checkout.
-- Where the user does not own the project, each owner's step is a line of the plan marked as the owner's, with its command, and the run writes them as one task on the project for its owner, in the board's language: `console members --project <key>` names who, and the task is theirs with `--worker <their login> --state ready`. The run goes on with what a member may do: the binding, the setup task, the next tasks. The owner's word is that task, not a question in chat to someone who is not there, and a refusal is never worked around or asked a second time.
+- Where the user does not own the project, each owner's step is a line of the plan marked as the owner's, with its command, and the run writes them as one task on the project for its owner, in the board's language: `console members --project <key>` names who, and the task is theirs with `--worker <their login> --state ready`. The delivery gives its number and the address of its page for the user to pass on ("The people"). The run goes on with what a member may do: the binding, the setup task, the next tasks. The owner's word is that task, not a question in chat to someone who is not there, and a refusal is never worked around or asked a second time.
 
 ## The project's pack
 
@@ -38,9 +38,10 @@ The project reads the organization's pack unless it names a skills address of it
 
 ## The people
 
-- Each teammate the user named is listed in a private project by its owner: `console member add <login> --project <key>`. The person must already be of the workspace (`console people` lists who is; `member.invalid_person` otherwise): one who is not is let in by an administrator first, which the plan names. In a project open to the workspace everyone is a member already.
+- Each teammate the user named is listed in a private project by its owner: `console member add <login> --project <key>`. The person must already be of the workspace (`console people` lists who is; `member.invalid_person` otherwise): one who is not is let in by an administrator first, which the plan names. In a project open to the workspace everyone is a member already. An agent account is named by its handle where a command names a member (`--worker`, `--to`, `member add`), the at sign before it and in quotes, since PowerShell reads a bare one as its own (`"@<handle>"`); without the sign it is looked for as a login and not found (console 0.6.1, checked 2026-11).
 - On the git host each teammate is a collaborator of a private repository, invited when the remote is made; the invitation waits for them to accept it.
 - Both are actions others see, listed one per line in the plan and made only on its word.
+- **Who is told of what.** A person is told of nothing but their own agent accounts until they turn a kind on: a task given to them or a decision addressed to them waits in `console work` without a word. So whoever gives one passes its number and its page's address on, and the delivery tells each teammate the command that has the console tell them, `console notify --on assigned --on decision`. An agent account is woken for a task it works on once the task is `ready`, for a comment, a decision and an answer (console 0.6.1, checked 2026-11).
 
 ## The binding
 
