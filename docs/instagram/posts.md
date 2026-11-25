@@ -4,7 +4,7 @@ What a post page carries and how it is read signed out: the post object in the p
 
 ## The post object
 
-Each post page carries a `script` element of type `application/json` that holds the post object; the one whose `code` equals the post's id in the URL is the post. It gives `taken_at`, the post's time as a Unix timestamp; the slide count, as `carousel_media_count` or, on a post that lacks that key, as the length of `carousel_media`; each slide's media type and pixel size; and the whole `caption.text`, with no entities to decode (checked 2026-10). Read it with a script run in the page right after the load ([driven-browser.md](/docs/browser/driven-browser.md) "Data embedded in a page"). It does not carry the slides' text, which is in the images: every slide is still stepped to and read at zoom. The grid's alt text also carries a date, in a time zone that can put it a day off; take dates from `taken_at`.
+Each post page carries a `script` element of type `application/json` that holds the post object; the one whose `code` equals the post's id in the URL and that has a `caption` is the post, since smaller objects can carry the same `code` (checked 2026-11). It gives `taken_at`, the post's time as a Unix timestamp; the slide count, as `carousel_media_count` or, on a post that lacks that key, as the length of `carousel_media`; each slide's media type and pixel size; and the whole `caption.text`, with no entities to decode (checked 2026-10). Read it with a script run in the page right after the load ([driven-browser.md](/docs/browser/driven-browser.md) "Data embedded in a page"). It does not carry the slides' text, which is in the images: every slide is still stepped to and read at zoom. The grid's alt text also carries a date, in a time zone that can put it a day off; take dates from `taken_at`.
 
 ## Stepping a carousel
 
@@ -12,7 +12,7 @@ The next control sits at the right edge of the post's image box, vertically cent
 
 ## Reading a slide
 
-Zoom into the post's image region on every slide; the region is the same for every slide of one post. The dots say how many slides there are, and the last slide is where a call to action or an information box sits.
+Zoom into the post's image region on every slide; the region is the same for every slide of one post. Where the tools have no zoom, the slide's image is an element of the snapshot and its screenshot at a pixel ratio of 2 is the region, with the arrows and the dots lying over it; a slide that comes in has its id in a new snapshot (checked 2026-11). The dots say how many slides there are, and the last slide is where a call to action or an information box sits.
 
 ## A video post
 
