@@ -49,7 +49,7 @@ Which model runs each role, and at which effort, is the studio's own choice: the
 
 ## A session on a schedule
 
-A studio that books things for a time needs a session after that time, and one that looks for the day's subject needs one in the morning. An agent account keeps a wake for the hour, or takes it with its day's briefing; a person's machine keeps a scheduled task of their agent's product, which runs only while that product is open.
+A studio that books things for a time needs a session after that time, and one that looks for the day's subject needs one in the morning. An agent account keeps a wake for the hour, or takes it with its day's briefing; a person's machine keeps a scheduled task of their agent's product, made on their word, which runs only while that product is open.
 
 - **It does three things.** It reads the check's warnings. For each unit whose time has passed it looks where the unit stands in the place it left for (the account, the ad account), writes the record, runs the file command and commits to the main branch. It reports on the board. A morning look may also start a unit at its first state and propose it.
 - **It decides nothing.** It gives no person state, except for a class the person approved in advance, by the policy's line and with that line named in the record. It changes no format, script, skill or page, and it sends nothing out.
@@ -58,7 +58,7 @@ A studio that books things for a time needs a session after that time, and one t
 
 ## Approval, and what leaves
 
-- **The ask.** A unit waits one state before the person's. The lead asks once for a batch or once for a unit, on the board, with the previews handed in (a contact sheet a unit) and with whatever the policy says the person is shown before they answer. Whoever sits at a checkout looks on the review screen instead. A batch waits silently on a person the console does not tell: whoever approves has the kind `decision` on ([console.md](console.md) "The people").
+- **The ask.** A unit waits one state before the person's. The lead asks once for a batch or once for a unit, on the board, with the previews handed in (a contact sheet a unit) and with whatever the policy says the person is shown before they answer. Whoever sits at a checkout looks on the review screen instead. A batch waits silently on a person the console does not tell, so whoever approves turns the kind `decision` on for themselves ([console.md](console.md) "The people").
 - **The answer** is written into the record by whoever received it: `at`, and `by` with who said it, where, and their words.
 - **What leaves** (a post booked, an ad launched, an issue sent) is a job of its own, whose studio skill extends the pack's skill for that place. It runs only on units at the person's state and writes the next state with its time. No script of the studio sends anything.
 - **After it left**, the unit is filed when it was seen there, never when its time passed.
