@@ -4,7 +4,7 @@ What a skill that posts to an account needs from the browser, whose session it w
 
 ## Whose session
 
-The person signs in to the account themselves, in their own browser, and the agent drives that browser: an extension in the person's browser, or a browser pane they opened and signed in ([walls.md](/docs/browser/walls.md), the first of its ways). The agent never types a password, a code or a recovery answer, and a headless browser a script launches has no session and is given none. An agent account's is the one its `runner.json` names as `chrome`; `headless` and `window` have not been tried on this site ([driven-browser.md](/docs/browser/driven-browser.md) "An agent account's browser"). Which account is signed in is read from the profile link in the page's own navigation, whose address is `/<handle>/`; a home page that shows a login form means nobody is.
+The person signs in to the account themselves, in their own browser, and the agent drives that browser: an extension in the person's browser, or a browser pane they opened and signed in ([walls.md](/docs/browser/walls.md), the first of its ways). The agent never types a password, a code or a recovery answer, and a headless browser a script launches has no session and is given none. An agent account's is the one its `runner.json` names as `chrome`; `headless` and `window` have not been tried on this site and are not used on it ([driven-browser.md](/docs/browser/driven-browser.md) "An agent account's browser"). Which account is signed in is read from the profile link in the page's own navigation, whose address is `/<handle>/`; a home page that shows a login form means nobody is, and another account than the one the work is for stops the run as that does.
 
 ## What the browser must do
 

@@ -20,7 +20,7 @@ A capability the host lacks is worked around as the sections below say, and the 
 
 ## An agent account's browser
 
-An agent account of a SkillCDN Console that runs on Claude Code is started with the browser its desk's `runner.json` names as `browser`, a headless one where it names none; under another product it is started with none (console 0.6.1, its specification, read 2026-11). The account changes the name itself, and the runner takes the change between two turns.
+An agent account of a SkillCDN Console that runs on Claude Code is started with the browser its desk's `runner.json` names as `browser`, a headless one where it names none; under another product it is started with none (console 0.6.1, its specification, read 2026-11). Another name is its manager's to say, as how the account is set up is: a step that needs one asks for it as a decision, and the runner takes the change between two turns.
 
 | `browser` | What the account drives |
 |---|---|
@@ -29,9 +29,9 @@ An agent account of a SkillCDN Console that runs on Claude Code is started with 
 | `chrome` | The product's own browser tool in the Chrome of the account's machine, another profile |
 | `none`, or another product | No browser tool: a skill that names the scripted route takes it ([headless.md](headless.md) "Driving a page from a script"), and any other stops as it does where a browser is missing |
 
-- **No `chrome-devtools` tools in a session that should have them:** Google Chrome or the program is missing on the machine (`npm install -g chrome-devtools-mcp@latest`, on a Node.js it runs on). The account installs it, and the next session has the tools.
+- **No `chrome-devtools` tools in a session that should have them:** Google Chrome or the program is missing on the machine (`npm install -g chrome-devtools-mcp@latest`, on a Node.js it runs on). That is a missing tool: said with the command and why, installed on the word of whoever keeps the machine, and there from the next session on.
 - **What those tools lack.** They act on an element of the page's snapshot and not on a point, and none turns the wheel or zooms; they run a script, press keys, hand files to a file input, set the viewport with its pixel ratio, and save a screenshot of the page or of one element to a file (the program's tool reference, read 2026-11: see what the session lists). Small type is read from its element's screenshot at a higher pixel ratio. A step that needs a point or the wheel goes the scripted route where the skill names it.
-- **A person's sign-in** stays in the profile it was made in from one session to the next. The scripted route has none. Where a skill needs a browser a person is signed in to, the account asks for the sign-in as a decision (the service, the account, the machine), addressed to its manager, whom the console tells, or to the person the task names; they sign in in `chrome`, or in `window`, which the account names before its turn ends and takes back after. Which of the two a site's skills were run with, its own pages say.
+- **A person's sign-in** stays in the profile it was made in from one session to the next. The scripted route has none. Where a skill needs a browser a person is signed in to, the account asks for it as a decision of its manager, whom the console tells: the service, the account there, the machine, and which name the browser takes meanwhile, `chrome` or `window`. On their word it changes the name and ends its turn, the person signs in there themselves, and when the job that needed the sign-in is done they sign out where it was for that job alone, and the name goes back. Which of the two a site's skills may use, the pack's pages on that site say.
 - **One at a time.** One browser opens the profile at once, so one agent of a session drives it.
 
 ## The window and the viewport
